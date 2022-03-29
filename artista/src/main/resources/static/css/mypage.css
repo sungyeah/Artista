@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    color: #222;
+    background-color: #fff;
+    line-height: 1;
+}
+    #contents {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-bottom: 46px;
+    padding-top: 140px;
+    }
+    .account-header {
+    width: 96%;
+    max-width: 1152px;
+    margin: 78px auto 50px;
+    line-height: 1.5;
+    }
+    .account-header-title {
+    margin-bottom: 10px;
+    font-size: 36px;
+    font-weight: bold;
+}
+.account-header-description {
+    font-size: 18px;
+    color: #989898;
+}
+.account-guide {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 96%;
+    max-width: 1152px;
+    padding: 23px 30px;
+    margin: 0 auto;
+    border: 1px solid #eeeeee;
+    border-top-color: #222222;
+}
+.account-guide-inner {
+    position: relative;
+    height: 54px;
+}
+.account-guide-name {
+    padding: 14px 0 14px 72px;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0px;
+}
+.account-modify-btn {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 105px;
+    height: 42px;
+    border: 1px solid #dfdfdf;
+    border-radius: 21px;
+    font-size: 14px;
+}
+a {
+    background: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+.account-modify-btn:before {
+    content: ' ';
+    position: absolute;
+    top: 11px;
+    left: 14px;
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: url(../images/p.png) no-repeat center;
+    background-size: 18px;
+}
+.account-modify-btn>p {
+    padding-left: 33px;
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+.account-body {
+    width: 96%;
+    max-width: 1152px;
+    margin: 36px auto 0;
+}
+.orders-in-progress {
+    margin-bottom: 36px;
+}
+.orders-in-progress>h3, .orders-completed>h3 {
+    padding-bottom: 12px;
+    border-bottom: 1px solid;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0px;
+}
+.account-table {
+    width: 100%;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    background-color: #f9f9f9;
+    font-size: 0.875em;
+    line-height: 1.5;
+}
+.account-table th {
+    padding: 7px 10px;
+    background-color: #f8f9fa;
+}
+.account-table td.empty {
+    line-height: 120px;
+}
+.orders-in-progress>h3, .orders-completed>h3 {
+    padding-bottom: 12px;
+    border-bottom: 1px solid;
+    font-size: 20px;
+    font-weight: bold;
+}
+.account-table td {
+    padding: 12px 6px;
+    background-color: #ffffff;
+    text-align: center;
+}
+.account-guide-inner:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    width: 54px;
+    height: 54px;
+    background: url(../images/profile.png) no-repeat center;
+    background-size: 54px 54px;
+    border-radius: 70%;
+}
+.account-table th, .account-table td {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-right: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+.orders-completed {
+    margin-bottom: 36px;
+}
+.register {
+	width: 260px;
+	height: 120px;
+	padding: 8px 8px;
+	background: white;
+	color: #2b2e4a;
+	font-size: 14px;
+	margin: 40px;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+	display: inline-block;
+}
+.profile {
+	width: 30px;
+	height: 30px;
+	border-radius: 70%;
+}
+.container1{
+    margin-left: 38px;
+}
+ .register2{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 96%;
+    max-width: 1152px;
+    padding: 10px 10px;
+    margin: 0 auto;
+} 

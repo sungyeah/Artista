@@ -1,0 +1,32 @@
+ /* .signup .snsLogin {
+    width: 80%;
+    margin: 10px auto 20px;
+    display: flex;
+    max-width: 300px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+} */
+.signup .snsLogin a {
+    margin: 0px 5px;
+    display: block;
+    text-indent: -9999px;
+    font-size: 0;
+    width: 40px;
+    border-radius: 100px;
+    height: 40px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+     filter: grayscale(100%) opacity(0.5);
+}
+    .signup span {
+    display: block;
+    text-align: center;
+    font-size: 13px;
+}
+    .signup .toLogin span a {
+    color: #222222;
+    font-weight: bold;
+    text-decoration: none;
+}

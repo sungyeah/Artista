@@ -1,0 +1,114 @@
+#contents {
+    padding-top: 60px;
+}
+#contents {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-bottom: 46px;
+}
+#contents:before {
+    content: '.';
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    font-size: 0;
+    line-height: 0;
+    width: 0;
+    height: 0;
+}
+.account-header {
+    width: 96%;
+    max-width: 1152px;
+    margin: 78px auto 50px;
+    line-height: 1.5;
+}
+.account-header-title {
+    margin-bottom: 10px;
+    font-size: 36px;
+    font-weight: bold;
+}
+.account-header-description {
+    font-size: 18px;
+    color: #989898;
+}
+.account-body {
+    width: 96%;
+    max-width: 1152px;
+    margin: 36px auto 0;
+}
+.account-modify-form-border {
+    border-top: 1px solid #222222;
+}
+.account-modify-form-row {
+    display: -ms-flexbox;
+    display: flex;
+    padding: 7px 10px;
+    border-bottom: 1px solid #eeeeee;
+    line-height: 2.25;
+}
+.account-modify-form-row-label {
+    width: 20%;
+    font-weight: bold;
+}
+.account-modify-form-row-value {
+    width: 80%;
+    font-size: 14px;
+}
+.account-modify-form-row-label>.red {
+    color: #f32123;
+}
+.account-modify-form-row-label>.white {
+    color: white;
+}
+.account-modify-form-input {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 36px;
+    padding: 0 0 0 6px;
+    border: 1px solid #dfdfdf;
+    outline: 0;
+    font-size: 14px;
+    width: 200px;
+}
+[name=password], [name=new_password1] {
+    width: 200px;
+    margin-bottom: 7px;
+}
+[name=new_password2] {
+    width: 200px;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+.change-password-btn, .set-password-btn {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 70px;
+    height: 36px;
+    padding: 0;
+    margin-left: 8px;
+    border: 1px solid #222222;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #222222;
+    text-align: center;
+}
+.certification-container {
+    position: relative;
+}
+.account-modify-form-submit-btn {
+    display: block;
+    width: 200px;
+    height: 50px;
+    margin: 20px auto 0;
+    padding: 7px 30px;
+    border: 1px solid #c8c8c8;
+    border-radius: 3px;
+    background-color: #222222;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}

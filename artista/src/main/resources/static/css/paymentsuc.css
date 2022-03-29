@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+        #contents {
+    padding-top: 60px;
+}
+#contents {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-bottom: 46px;
+}
+#contents:before {
+    content: '.';
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    font-size: 0;
+    line-height: 0;
+    width: 0;
+    height: 0;
+}
+.pageHead {
+    position: relative;
+}
+.pageHead {
+    width: 96%;
+    max-width: 1152px;
+    margin: 78px auto 50px;
+    line-height: 1.5;
+}
+.pageHead-title, #page_head_center>h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.pageHead-description, #page_head_center>p {
+    font-size: 18px;
+    color: #989898;
+}
+#checkoutSteps {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 20px;
+}
+.checkoutStep {
+    position: relative;
+    color: #989898;
+    padding-right: 34px;
+    margin-right: 14px;
+}
+.checkoutStep:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 3px;
+    right: 0;
+    background: url(../images/arrow-active.png) no-repeat;
+    background-size: 24px;
+}
+ .checkoutStep.checkoutStep-bold:after {
+    background-image: url(../images/arrow-normal.png);
+} 
+.checkoutStep:last-child:after {
+    display: none;
+}
+.checkoutStep:last-child {
+    padding-right: 0;
+    margin-right: 0;
+}
+.checkoutStep.checkoutStep-bold {
+    color: #222;
+    font-weight: bold;
+}
+.order_detail {
+    display: block;
+    width: 206px;
+    line-height: 52px;
+    border: 0;
+    margin: 0 auto;
+    font-size: 18px;
+    color: #fff;
+    background: #222;
+    text-align: center;
+}
+a {
+    background: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+#checkout_body.complete {
+    margin: 0 auto;
+    max-width: 1152px;
+    width: 96%;
+    overflow: hidden;
+}
+.payment-title {
+    margin: 80px 0 48px;
+    background: #fafafa;
+    border: 1px solid #dfdfdf;
+    box-sizing: border-box;
+    letter-spacing: -0.5px;
+    text-align: center;
+    position: relative;
+}
+.payment-type {
+    display: none;
+}
+.payment-title-img {
+    margin: 60px auto 24px;
+    width: 96px;
+    height: 96px;
+    border: 1px solid #dfdfdf;
+    border-radius: 50%;
+    background: #fff url(/static/pages/img/service/checkout/complete-icon.png) no-repeat center;
+    background-size: 48px;
+}
+.payment-title-textbox {
+    line-height: 1.5;
+    margin-bottom: 60px;
+}
+.payment-title h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+.payment-title span {
+    color: #989898;
+    font-size: 15px;
+    word-break: keep-all;
+}
+.order-info {
+    margin-bottom: 36px;
+    line-height: 1.5;
+    letter-spacing: -0.5px;
+}
+.address-info {
+    margin-bottom: 48px;
+}
+.order-info h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+.address-info ul:nth-child(2) {
+    border-top: 1px solid #222;
+}
+.order-info ul {
+    border-bottom: 1px solid #eee;
+}
+ol, ul {
+    list-style: none;
+}
+#checkout_body ul li:nth-child(1) {
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    border-bottom: 0;
+    border-top: 0;
+    width: 140px;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+#checkout_body li {
+    width: calc(100% - 140px);
+    font-size: 14px;
+    padding: 14px 0 14px 20px;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+    min-height: 50px;
+}
+.subaddress, .subphone {
+    display: none;
+}
+.pay-info {
+    margin-bottom: 72px;
+}
+.cf {
+    display: block;
+}
+#checkout_body ul.first:nth-child(2) {
+    width: 51.736%;
+    float: left;
+    border-top: 1px solid #222;
+}
+#checkout_body ul.first:nth-child(3) {
+    width: 48.264%;
+    float: left;
+    border-top: 1px solid #222;
+}
+.cf:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}
