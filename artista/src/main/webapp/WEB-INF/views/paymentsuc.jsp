@@ -29,7 +29,7 @@
                 <div class="payment-type">구매</div>
                 <div class="payment-title-img"></div>
                 <div class="payment-title-textbox">
-                    <h3>주문이 성공적으로 완료되었습니다1.</h3>
+                    <h3>주문이 성공적으로 완료되었습니다.</h3>
                     
                         <span>담당자가 확인하여 전화(1668-1056)로 연락드립니다.</span>
                     
