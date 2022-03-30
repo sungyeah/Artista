@@ -3,16 +3,54 @@
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mulcam.artista.dao.SubPageDAO">
 	
-	<!-- mate and group전체게시물 조회 -->
-	<!-- <select id="postList" resultType="GroupAndMate" >
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="member" >
 		<![CDATA[
-			select * from 
-			((select group_articleNO as no,user_id as id, user_img as img, group_title as title,group_area as mapinfo,warning as warning,group_date as regdate,0 as likeno, 'g' as type from group1)
-			union
-			(select mate_articleNO as no,user_id as id, user_img as img, mate_title as title,mate_mapinfo as mapinfo,warning as warning,mate_date as regdate,mate_like as likeno, 'm' as type from mate)) temp
-			order by regdate desc;
+			insert into member(id, password, name, email, contact, address, address2,membertype) values(#{id}, #{password}, #{name},null,null,null,null,null)
 		]]>
-	</select> -->
+	</insert> 
+	
+	<!-- 회원가입 -->
+	<select id="queryMember" parameterType="string" resultType="member">
+		<![CDATA[
+			select * from member where id=#{id}
+		]]>
+	</select>
+	
+	<!-- 회원가입 -->
+	<update id="changePw" parameterType="map" >
+		<![CDATA[
+			update member set password=#{password} where id=#{id}
+		]]>
+	</update>
+	
+	<!-- 회원가입 -->
+	<update id="updateMember" parameterType="member" >
+		<![CDATA[
+			update member set email=#{email}, contact=#{contact}, address=#{address}, address2=#{address2}) where id=#{id}
+		]]>
+	</update>
+	
+	<!-- 회원가입 -->
+	<select id="checkPw" parameterType="string" resultType="string">
+		<![CDATA[
+			select password from member where id=#{id}
+		]]>
+	</select>
+	
+	<!-- 회원가입 -->
+	<select id="memberList" resultType="member">
+		<![CDATA[
+			select * from meber
+		]]>
+	</select>
+	
+	<!-- 회원가입 -->
+	<delete id="deleteId" parameterType="string">
+		<![CDATA[
+			delete from member where id=#{id}
+		]]>
+	</delete>
 	
 
 </mapper>
