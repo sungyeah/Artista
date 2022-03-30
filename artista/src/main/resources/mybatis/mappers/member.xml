@@ -16,4 +16,14 @@
 	
 
 </mapper>
-
+<!-- create table member(
+	id varchar(100) not null,
+    password varchar(255) not null,
+    name varchar(100) not null,
+    email varchar(255),
+    contact varchar(255),
+    address varchar(500),
+    address2 varchar(500),
+    membertype varchar(30),
+    primary key(id)
+); -->
