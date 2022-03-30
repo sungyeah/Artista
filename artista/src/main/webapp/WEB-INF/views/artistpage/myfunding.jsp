@@ -42,7 +42,7 @@
         </nav>
         
         <nav class="member-nav">
-            <a class="member-delete-btn" href="/account/delete/" >
+            <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyfunding">
        		 	펀딩 신청
         	</a>
         </nav>
@@ -73,7 +73,9 @@
                                         <p></p>
                                     </div>
                                     <div class="btn-wrap">
-                                        <button onclick="goEditRewardProject(143877)" class="btn-line div1">펀딩 내용 수정 요청</button>
+                                    	<a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/modifyfunding">
+       		 								펀딩 내용 수정 요청
+        								</a>
                                     </div>
                                 </div>
                             </div>

@@ -5,6 +5,7 @@
 	<mappers>
 		<mapper resource="mybatis/mappers/mypage.xml"/>
 		<mapper resource="mybatis/mappers/subpage.xml"/>
+		<mapper resource="mybatis/mappers/funding.xml"/>
 	</mappers>
 </configuration>
 
