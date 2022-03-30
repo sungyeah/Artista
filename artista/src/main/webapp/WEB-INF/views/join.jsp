@@ -39,13 +39,13 @@
                         <div class="snsLogin" title="준비중입니다...">
                             <a href="#" class="sns01" style="background: url(images/f.png) no-repeat center center #4d72b9;background-size: 24px;">Continue with Facebook</a>
                             <a href="#" class="sns02" style="background: url(images/g.png) no-repeat center center #4d72b9;background-size: 24px;">Continue with Google</a>
-                            
                         </div>
                         <div class="toLogin">
                             <span>Have an account? <a href="login.html">Login</a></span>
                         </div>
                     </div>
                 </div>
+                
             </div>
 		</div>
 		</form>
