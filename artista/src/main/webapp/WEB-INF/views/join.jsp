@@ -14,7 +14,7 @@
 </head>
 <body>
     <section style="min-height: 700px;padding-top: 80px;">
-		<form id="signupForm">
+		<form id="signupForm" action="join" method="post">
 		<input type="hidden" value="">
 		<div style="width: 100%;max-width: 1500px;margin: 0 auto;padding: 0px 20px;">
             <div class="lgBox">
@@ -26,14 +26,14 @@
                         <h3>Sign Up</h3>
                         <div class="formBox">
                             <div style="position:relative;">
-                            	<input type="text" class="borderform" style="width:95%;" placeholder="Id">
-                            	<div style="position:absolute;top:0;right:0;height:22px;width:22px;padding:5px;background:#5085d3;background-image:url('images/w.png');background-repeat:no-repeat;background-position:center center;color:white;cursor:pointer;user-select:none;">
+                            	<input type="text" class="borderform" style="width:95%;" placeholder="Id" id="id" name="id">
+                            	<div id="memidoverlap" style="position:absolute;top:0;right:0;height:22px;width:22px;padding:5px;background:#5085d3;background-image:url('images/w.png');background-repeat:no-repeat;background-position:center center;color:white;cursor:pointer;user-select:none;">
                             	</div>
                             </div>
-                            <input type="password" class="borderform" placeholder="Password" required="" reqmsg="비밀번호">
-                            <input type="password" class="borderform" placeholder="Confirm password">
-                            <input type="text" class="borderform" placeholder="Your name (shown to the public)" required="" reqmsg="이름(닉네임)">
-                            <div class="btn_signup">Register</div>
+                            <input type="password" class="borderform" placeholder="Password" id="password" name="password" >
+                            <input type="password" class="borderform" placeholder="Confirm password" id="password2" name="password2">
+                            <input type="text" class="borderform" placeholder="Your name (shown to the public)" id="name" name="name">
+                            <button id="submit" class="btn_signup" style="border: none;">Register</button>
                         </div>
                         <span>OR</span>
                         <div class="snsLogin" title="준비중입니다...">
@@ -50,5 +50,56 @@
 		</div>
 		</form>
 	</section>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	$('#signupForm').submit(function(){
+		
+		let password=$('#password').val();
+		if(password==''){
+			alert("비밀번호를 입력하세요.");
+			$('#password').focus();
+			return false;
+		}
+		let password2=$('#password2').val();
+		if(password!=password2){
+			alert("비밀번호 확인이 일치하지 않습니다.");
+			$('#password2').focus();
+			return false;
+		}
+		let name=$('#name').val();
+		if(name==''){
+			alert("이름을 입력하세요.");
+			$('#name').focus();
+			return false;
+		}
+	});
+	
+	$('#memidoverlap').click(function(){
+		let id=$('#id').val();
+		if(id==''){
+			alert("아이디를 입력하세요.");
+			$('#id').focus();
+			$('#submit').attr("disabled", true);
+			return false;
+		}
+		$.ajax({
+			type:"post",
+			dataType:"text", 
+			async:false, 
+			url:"http://localhost:8090/memidoverlap",
+			data:{id:$('#id').val()},
+			success: function(data, textStatus){
+				if(data=="true"){
+					alert("사용 불가능합니다.");
+					$('#submit').attr("disabled", true);
+				} else {
+					alert("사용 가능합니다.");
+					$('#submit').attr("disabled", false);
+				}
+			}
+		});
+	})
+	
+</script>
 </body>
 </html>

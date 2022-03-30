@@ -14,7 +14,7 @@
 </head>
 <body>
     <section style="min-height: 700px; padding-top: 80px;">
-        <form>
+        <form id="login" action="login" method="post">
             <div style="width: 100%;max-width: 1500px;margin: 0 auto;padding: 0px 20px;">
                 <div style="max-width: 800px;margin: 70px auto 0;width: 100%;box-shadow: 0 0 30px 0px rgb(0 0 0 / 7%);">
                     <div style="display: flex;">
@@ -24,11 +24,11 @@
                         <div class="signup" style="width: 45%;max-width: 380px;margin: 0 auto;padding: 30px 10px;">
                             <h3 style="font-size: 24px;text-align: center;margin-bottom: 10px;">Log In</h3>
                             <div class="formbox" style="width: 93%;margin: 0 auto;display: flex; flex-direction: column;">
-                                <input type="text" style="border: solid 1px #ddd;padding: 5px; font-size: 13px;line-height: 20px;margin-bottom: 10px;" placeholder="Id">
-                                <input type="password" style="border: solid 1px #ddd;padding: 5px; font-size: 13px;line-height: 20px;margin-bottom: 10px;" placeholder="Password">
-                                <div style="background: #222222; color: #fff;font-weight: bold;padding: 10px;margin: 10px 0px 20px;text-align: center;cursor: pointer; user-select: none;">
+                                <input type="text" style="border: solid 1px #ddd;padding: 5px; font-size: 13px;line-height: 20px;margin-bottom: 10px;" placeholder="Id" id="id" name="id">
+                                <input type="password" style="border: solid 1px #ddd;padding: 5px; font-size: 13px;line-height: 20px;margin-bottom: 10px;" placeholder="Password" id="password" name="password">
+                                <button id="submit" style="background: #222222; color: #fff;font-weight: bold;padding: 10px;margin: 10px 0px 20px;text-align: center;cursor: pointer; user-select: none;border: none;height: 41px;">
                                     Log In
-                                </div>
+                                </button>
                             </div>
                             <span style="display: block;text-align: center;font-size: 13px;">OR</span>
                             <div class="snsLogin" style="width: 80%;margin: 10px auto 20px;display: flex;max-width: 300px;justify-content: center;align-items: center;flex-direction: row;">
@@ -45,5 +45,37 @@
             </div>
         </form>
     </section>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>    
+<script>
+ $('#login').submit(function(){
+	 let id=$('#id').val();
+		if(id==''){
+			alert("아이디를 입력하세요.");
+			$('#id').focus();
+			return false;
+		}
+	let password=$('#password').val();
+	if(password==''){
+		alert("비밀번호를 입력하세요.");
+		$('#password').focus();
+		return false;
+	}
+	/* $.ajax({
+		type:"post",
+		dataType:"text", 
+		async:false, 
+		url:"http://localhost:8090/login",
+		data:{id:$('#id').val(),
+			  password:$('#password').val()},
+		success: function(data, textStatus){
+			if(data=="true"){
+				alert("환영합니다.");
+			} else {
+				alert("회원정보가 일치하지 않습니다.");
+			}
+		}
+	}); */
+}); 
+</script>
 </body>
 </html>
