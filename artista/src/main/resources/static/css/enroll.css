@@ -1,0 +1,331 @@
+.enroll-body{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 1;
+    padding: 0;
+    width: 96%;
+    max-width: 1152px;
+    margin: 36px auto 0;
+    margin-top: 20px;
+}
+.enroll-modify-form{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+.enroll-modify-form{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #222222;
+}
+.enroll-modify-form-row{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    margin: 0;
+    display: flex;
+    padding: 7px 10px;
+    border-bottom: 1px solid #eeeeee;
+    line-height: 2.25;
+}
+.enroll-modify-form-row-label{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 2.25;
+    margin: 0;
+    padding: 0;
+    width: 20%;
+    font-weight: bold;
+}
+.enroll-modify-form-row-value{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 2.25;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+    font-size: 14px;
+}
+.enroll-modify-form-input{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-family: inherit;
+    margin: 0;
+    vertical-align: middle;
+    line-height: normal;
+    height: 36px;
+    padding: 0 0 0 6px;
+    border: 1px solid #dfdfdf;
+    outline: 0;
+    font-size: 14px;
+    width: 200px;
+    margin-bottom: 7px;
+}
+.enroll-btn{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-family: inherit;
+    margin: 0;
+    vertical-align: middle;
+    line-height: normal;
+    width: 70px;
+    height: 36px;
+    padding: 0;
+    margin-left: 8px;
+    border: 1px solid #222222;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #222222;
+    text-align: center;
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+.password-not-set-description{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    padding: 0;
+    margin: 7px 0;
+    font-size: 14px;
+    color: #989898;
+    line-height: 1.5;
+}
+.red{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    line-height: 2.25;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    color: #f32123;
+}
+.certification-value{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 282px;
+    height: 36px;
+    font-size: 14px;
+    line-height: 34px;
+    padding-left: 0;
+    border: none;
+    background-color: transparent;
+}
+.recertify-btn{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    padding: 0;
+    font-family: inherit;
+    margin: 0;
+    line-height: normal;
+    -webkit-appearance: button;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    width: 76px;
+    border: 1px solid #222222;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #222222;
+}
+.allow-checkbox-container{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 2.25;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-pack: justify;
+    width: 378px;
+}
+.allow-checkbox-wrapper{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 2.25;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+.allow-checkbox{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    vertical-align: middle;
+    line-height: normal;
+    box-sizing: border-box;
+    padding: 0;
+}
+.allow-label{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 2.25;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: inline-block;
+    padding-left: 24px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.allow-checkbox-description{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    line-height: 2.25;
+    padding: 0;
+    margin: 8px 0;
+    font-size: 14px;
+    color: #989898;
+}
+
+.wrap * {
+    margin: 0;
+    padding: 0;
+}
+.wrap ul li,
+.wrap ol li {
+    list-style: none;
+}
+.select_box {
+    margin: 20px;
+}
+.select_box .box {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+}
+.select_box .box .select {
+    position: relative;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    padding: 0 10px;
+    height: 40px;
+    line-height: 35px;
+    font-size: 16px;
+    background-color: #fff;
+    cursor: pointer;
+}
+.select_box .box .select:after {
+    content: '▼';
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+.select_box.on .box .select:after {
+    content: '▲';
+}
+.select_box .box .list {
+    display: none;
+    overflow-y: auto;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    z-index: 10;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    padding: 10px 0;
+    width: 100%;
+    max-height: 200px;
+    background-color: #fff;
+}
+.select_box .box .list::-webkit-scrollbar {
+    width: 10px;
+    height: 0;
+}
+.select_box .box .list::-webkit-scrollbar-button:start:decrement,
+.select_box .box .list::-webkit-scrollbar-button:end:increment {
+    display: block;
+    height: 0;
+}
+.select_box .box .list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, .05);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+.select_box .box .list::-webkit-scrollbar-thumb {
+    height: 50px;
+    width: 50px;
+    background: rgba(0, 0, 0, .2);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.select_box .box .list>li {
+    box-sizing: border-box;
+    padding: 0 10px;
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+}
+.select_box .box .list>li:hover {
+    background-color: #ccc;
+}
+
+.yesNo-btn{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    padding: 0;
+    background: transparent;
+    text-decoration: none;
+    
+    width: 82px;
+    height: 36px;
+   
+    display: inline-block;
+    /*float: right;*/
+    margin: 0 auto;
+    border: 1px solid #dfdfdf;
+    font-size: 14px;
+    color: #989898;
+    line-height: 36px;
+    text-align: center;
+}

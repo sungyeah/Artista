@@ -42,7 +42,7 @@
         </nav>
                 
         <nav class="member-nav">
-            <a class="member-delete-btn" href="/account/delete/">
+            <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/enrollwork">
        		 	작품 등록
         	</a>
         </nav>
