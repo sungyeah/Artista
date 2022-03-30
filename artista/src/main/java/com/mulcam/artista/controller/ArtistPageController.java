@@ -8,10 +8,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ArtistPageController {
 
-	@GetMapping({"", "/", "/myworklist"})
+	@GetMapping({"", "/", "/mywork"})
 	public String artistpageMain() {
-		System.out.println("artistpage controller 추가");
-		return "artistpage/myworklist";
+		return "artistpage/mywork";
+	}
+	
+	@GetMapping("myproduct")
+	public String artistpageProduct() {
+		return "artistpage/myproduct";
+	}
+	@GetMapping("myproductsold")
+	public String artistpageProductSold() {
+		return "artistpage/myproductsold";
+	}
+	
+	@GetMapping("myfunding")
+	public String artistpageFunding() {
+		return "artistpage/myfunding";
+	}
+	@GetMapping("myexhibition")
+	public String artistpageExhibition() {
+		return "artistpage/myexhibition";
 	}
 	
 //	@GetMapping("mypagemodify")
