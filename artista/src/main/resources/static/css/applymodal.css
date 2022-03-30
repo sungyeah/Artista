@@ -1,0 +1,189 @@
+.modal-overlay{
+    width: 100%;
+	height: 100%;
+    z-index: 8;
+	position: fixed;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    display: flex;
+}
+
+.modal-window{
+    background: white;
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(50px);
+	-webkit-backdrop-filter: blur(13.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	width: 600px;
+    height: 550px;
+	top: 250px;
+	padding: 15px;
+    overflow: auto;
+}
+
+.modal-header{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 1;
+    padding: 0;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+   /* padding-bottom: 5px;
+    padding-top: 5px;*/
+}
+.modal-header-title{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    padding: 0;
+    display: block;
+    width: 96%;
+    line-height: 1.5;
+    margin: 24px auto 20px;
+}
+
+.modal-body{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 1;
+    padding: 0;
+    width: 96%;
+    max-width: 1152px;
+    margin: 36px auto 0;
+    margin-top: 20px;
+}
+.modal-modify-form{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+.modal-modify-form-border{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #222222;
+}
+.modal-modify-form-row{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    margin: 0;
+    display: flex;
+    padding: 7px 10px;
+    border-bottom: 1px solid #eeeeee;
+    line-height: 2.25;
+}
+.modal-modify-form-row-label{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 2.25;
+    margin: 0;
+    padding: 0;
+    width: 30%;
+    font-weight: bold;
+    margin-top:5px;
+}
+.modal-modify-form-row-value{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    color: #222;
+    line-height: 2.25;
+    margin: 0;
+    padding: 0;
+    width: 70%;
+    font-size: 14px;
+}
+.modal-modify-form-input{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-family: inherit;
+    margin: 0;
+    vertical-align: middle;
+    line-height: normal;
+    height: 36px;
+    padding: 0 0 0 6px;
+    border: 1px solid #dfdfdf;
+    outline: 0;
+    font-size: 14px;
+    width: 300px;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.modal-modify-form-date{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-family: inherit;
+    margin: 0;
+    vertical-align: middle;
+    line-height: normal;
+    height: 36px;
+    padding: 0 0 0 6px;
+    border: 1px solid #dfdfdf;
+    outline: 0;
+    font-size: 14px;
+    width: 120px;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.yesNo-btn{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    padding: 0;
+    background: transparent;
+    text-decoration: none;
+    
+    width: 82px;
+    height: 36px;
+   
+    display: inline-block;
+    /*float: right;*/
+    margin: 0 auto;
+    border: 1px solid #dfdfdf;
+    font-size: 14px;
+    color: #989898;
+    line-height: 36px;
+    text-align: center;
+}
+
+.red{
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    line-height: 2.25;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    color: #f32123;
+}
