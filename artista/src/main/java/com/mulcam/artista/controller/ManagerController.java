@@ -11,7 +11,6 @@ public class ManagerController {
 	/* 결제 작품 관리 */
 	@GetMapping("/paymentlist")
 	public String paymentList() {
-		System.out.println("hello");
 		return "manager/paymentlist";
 	}
 	@GetMapping("/paycompletelist")
