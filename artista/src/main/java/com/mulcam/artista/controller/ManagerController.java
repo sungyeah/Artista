@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ManagerController {
 
 	/* 결제 작품 관리 */
-	@GetMapping("/paymentlist")
+	@GetMapping({"", "/", "/paymentlist"})
 	public String paymentList() {
 		return "manager/paymentlist";
 	}
