@@ -1,0 +1,658 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+    #wrap {
+        position: relative;
+        min-width: 320px;
+    }
+        #contents {
+        padding-top: 60px;
+    }
+    #contents {
+        width: 100%;
+        margin: 0 auto;
+        background-color: #fff;
+        padding-bottom: 46px;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #contents:before {
+        content: '.';
+        display: block;
+        overflow: hidden;
+        visibility: hidden;
+        font-size: 0;
+        line-height: 0;
+        width: 0;
+        height: 0;
+    }
+    .pageHead {
+        position: relative;
+    }
+    .pageHead {
+        width: 96%;
+        max-width: 1152px;
+        margin: 78px auto 50px;
+        line-height: 1.5;
+    }
+    .pageHead-title, #page_head_center>h2 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .pageHead-description, #page_head_center>p {
+        font-size: 18px;
+        color: #989898;
+    }
+    #checkoutSteps {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 20px;
+    }
+    .checkoutStep {
+        position: relative;
+        color: #989898;
+        padding-right: 34px;
+        margin-right: 14px;
+    }
+    .checkoutStep:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 3px;
+        right: 0;
+        background: url(../images/arrow-normal.png) no-repeat;
+        background-size: 24px;
+    }
+    .checkoutStep.checkoutStep-bold {
+        color: #222;
+        font-weight: bold;
+    }
+    .checkoutStep.checkoutStep-bold:after {
+        background-image: url(../images/arrow-active.png);
+    }
+    .checkoutStep:last-child {
+        padding-right: 0;
+        margin-right: 0;
+    }
+    .checkoutStep:last-child:after {
+        display: none;
+    }
+    #checkout_body {
+        width: 96%;
+        position: relative;
+        max-width: 1152px;
+        margin: 80px auto 360px;
+        line-height: 1.5;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    #checkout_value {
+        float: left;
+        width: 65.972%;
+        margin-right: 2.084%;
+    }
+    .sect-header {
+        position: relative;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #222;
+    }
+    .sect-header>h3 {
+        display: inline-block;
+        margin-right: 10px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .sect-header>span {
+        vertical-align: unset;
+        color: #989898;
+        font-size: 12px;
+    }
+    #gift_step_2 .M-underline, .mbtn_more {
+        display: none;
+    }
+    #checkout-profile {
+        position: relative;
+    }
+    .sect-info {
+        margin-bottom: 58px;
+    }
+    .sect-body {
+        padding: 7px 0;
+        border-bottom: 1px solid #eee;
+    }
+    .cf {
+        display: block;
+    }
+    .cf:after {
+        content: " ";
+        display: block;
+        height: 0;
+        clear: both;
+        overflow: hidden;
+        visibility: hidden;
+    }
+    .sect-body-th {
+        width: 25.789%;
+        float: left;
+        font-weight: bold;
+        font-size: 15px;
+        padding-left: 20px;
+        box-sizing: border-box;
+        line-height: 2.4;
+    }
+    .sect-body-td {
+        position: relative;
+        width: 74.211%;
+        float: right;
+        min-height: 36px;
+    }
+    #checkout-profile.certified .checkout-profile-box {
+        border: none;
+        background-color: transparent;
+    }
+    .checkout-profile-box {
+        position: relative;
+        display: inline-block;
+        width: 263px;
+        height: 36px;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border: 1px solid #dfdfdf;
+        font-size: 14px;
+        line-height: 34px;
+        background-color: #eee;
+    }
+    .sect-body-td .address1 {
+        width: 300px;
+        margin-bottom: 7px;
+        margin-right: 1px;
+    }
+    input[readonly], select[readonly] {
+        background: #f0f0f0!important;
+        color: #989898!important;
+    }
+    .sect-body-td>input {
+        font-size: 14px;
+        vertical-align: top;
+        border: 1px solid #dfdfdf;
+        background: #fff;
+        padding: 8px 10px;
+        box-sizing: border-box;
+    }
+    .sect-body-td .address-btn {
+        width: 82px;
+        color: #222!important;
+        border-color: #222;
+        background-color: #fff!important;
+    }
+    button, html input[type="button"], input[type="reset"], input[type="submit"] {
+        -webkit-appearance: button;
+        cursor: pointer;
+    }
+    .sect-body-td .address2 {
+        width: 390px;
+    }
+    #checkout-profile.certified #checkout-profile-recertifyButton {
+        display: block;
+    }
+    #checkout-profile-recertifyButton {
+        display: none;
+        position: absolute;
+        width: 76px;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        border: 1px solid #222;
+        font-size: 14px;
+        color: #222;
+        background-color: #fff;
+    }
+    .sect-header {
+        position: relative;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #222;
+    }
+    .sect-info .sect-body:last-child {
+        border-bottom-color: #dfdfdf;
+    }
+    .sect-body {
+        padding: 7px 0;
+        border-bottom: 1px solid #eee;
+    }
+    #receive-innerContainer {
+        text-align: left;
+        font-size: 14px;
+    }
+    #receive .method.active {
+        margin-bottom: 212px;
+    }
+    #receive .method {
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+        box-sizing: border-box;
+        vertical-align: top;
+        margin: 0 36px 0 0;
+    }
+    .sect-body-td .method {
+        position: relative;
+        line-height: 36px;
+        display: inline-block;
+        font-size: 14px;
+        margin-right: 36px;
+        box-sizing: border-box;
+    }
+    #receive .method.checked label {
+        cursor: default;
+    }
+    #receive .method label {
+        padding-left: 22px;
+        cursor: pointer;
+    }
+    .sect-body-td .method label {
+        padding-left: 22px;
+    }
+
+    #receive .method label:before {
+        content: '';
+        display: block;
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        border: 1px solid #dfdfdf;
+        border-radius: 50%;
+        background-color: #eee;
+    }
+
+    #receive .method label:after {
+        content: '';
+        position: absolute;
+        top: 14px;
+        left: 4px;
+        background-color: #eee;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+    #receive .receive-card.active {
+        display: block;
+    }
+    #receive .receive-card {
+        display: none;
+        width: 400px;
+        height: 192px;
+        background: #fafafa;
+        margin: 10px 0 7px;
+        padding: 16px 15px;
+        border: 1px solid #dfdfdf;
+        box-sizing: border-box;
+    }
+    #receive-card-delivery {
+        position: absolute;
+        left: 0;
+    }
+    #receive .receive-card ul:first-child {
+        float: left;
+        width: 25%;
+    }
+    #receive .receive-card ul {
+        line-height: 1.5;
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    #receive .receive-card ul:nth-child(2) {
+        float: right;
+        text-align: right;
+        width: 75%;
+    }
+    #receive .receive-card ul {
+        line-height: 1.5;
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+    #receive .receive-card-desc {
+        display: inline-block;
+        width: 100%;
+        border-top: 1px solid #eee;
+        margin-top: 8px;
+        padding-top: 10px;
+        font-size: 12px;
+        color: #989898;
+        line-height: 1.5;
+    }
+    #receive .receive-card-desc span {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
+    }
+    #receive .receive-card-desc span:before {
+        content: '*';
+        position: absolute;
+        left: -8px;
+        top: 0;
+    }
+    #shipping-copy_button {
+        border: 1px solid #222;
+        border-radius: 3px;
+        font-size: 12px;
+        padding: 0 0 0 24px;
+        line-height: 34px;
+        width: 143px;
+        box-sizing: border-box;
+        background: #fff;
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 8px 8px;
+        background-image: url(../images/checkno.png);
+    }
+    .sect-body-td .phone-select {
+        display: inline-block;
+        overflow: hidden;
+        width: 80px;
+        height: 36px;
+        vertical-align: middle;
+        border: 1px solid rgb(223,223,223);
+        box-sizing: border-box;
+    }
+    .sect-body-td .phone-bar {
+        width: 5px;
+        display: inline-block;
+        margin: 0 10px;
+        font-size: 15px;
+        color: #989898;
+    }
+    .sect-body-td .phone-number {
+        width: 90px;
+    }
+    .sect-body-td .phone-select select {
+        width: 100%;
+        height: 100%;
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+        padding: 0 0 0 10px;
+        background-color: transparent;
+    }
+
+    .sect-body-td .method label:after {
+        content: '';
+        position: absolute;
+        top: 14px;
+        left: 4px;
+        background-color: #eee;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+    .method input[type="radio"] {
+        display: none;
+    }
+
+    
+    .sect-body-td .method label:before {
+        content: '';
+        display: block;
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        border: 1px solid #dfdfdf;
+        border-radius: 50%;
+        background-color: #eee;
+    }
+    #payment .sect-body-td.mprice {
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 36px;
+    }
+    #checkout_list {
+        width: 31.944%;
+        margin-left: 600px;
+        margin-top: 150px;
+    }
+    #artworks {
+        margin-top: 42px;
+        border: 1
+        px solid #222;
+        padding: 20px 30px;
+        box-sizing: border-box;
+    }
+    #artworks>h3 {
+        font-size: 15px;
+        font-weight: bold;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #dfdfdf;
+    }
+    .checkout-artwork-list {
+        margin: 5px 0;
+        position: relative;
+        max-height: 381px;
+        overflow-y: auto;
+    }
+    .checkout-artwork-list .checkout-item:last-child {
+        border-bottom: 0;
+    }
+    .checkout-item {
+        height: 111px;
+        padding-top: 15px;
+        position: relative;
+        border-bottom: 1px solid #dfdfdf;
+    }
+    .checkout-img {
+
+        width: 80px;
+        height: 80px;
+        position: relative;
+        background: #fafafa;
+        border: 1px solid #dfdfdf;
+        overflow: hidden;
+    }
+    .checkout-img>img {
+        display: block;
+        position: absolute;
+        max-width: 100%;
+        max-height: 100%;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    }
+    img {
+        border: 0;
+        max-width: 100%;
+        vertical-align: top;
+    }
+    .checkout-text {
+        right: 5px;
+        position: absolute;
+        top: 15px;
+        left: 92px;
+    }
+    .checkout-text .code {
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+    .checkout-text>li {
+        font-size: 13px;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .checkout-text .title {
+        margin-bottom: 2px;
+    }
+    .checkout-text>li {
+        font-size: 13px;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .checkout-billing-value {
+        padding: 12px 0 6px;
+        border-top: 1px solid #222;
+        font-size: 14px;
+    }
+    .checkout-billing-title {
+        color: #989898;
+        float: left;
+    }
+    .checkout-billing-value li {
+        margin-bottom: 6px;
+    }
+    .checkout-billing-info {
+        float: right;
+        text-align: right;
+    }
+    .checkout-artmoney-value {
+        padding: 12px 0;
+        border-top: 1px solid #eee;
+        font-size: 14px;
+    }
+    .checkout-artmoney-value li:first-child {
+        float: left;
+    }
+    .checkout-billing-total {
+        border-top: 1px solid #eee;
+        padding-top: 12px;
+        font-weight: bold;
+    }
+    .checkout-billing-total li:first-child {
+        line-height: 30px;
+        float: left;
+        font-size: 14px;
+    }
+    .checkout-billing-total li:last-child {
+        float: right;
+        font-size: 20px;
+    }
+    #payment.Type_p {
+        top: 250px;
+    }
+    #payment {
+        position: absolute;
+        top: 1900px;
+        left: 0;
+        width: 65.972%;
+    }
+    #checkout_submitRow {
+        margin: 12px 0 24px;
+    }
+    #go_checkout {
+        margin-top: 200px;
+        margin-left: 150px;
+        background: #222;
+        width: 40%;
+        height: 56px;
+        border: 0;
+        color: #fff;
+        font-size: 18px;
+    }
+    #receive-card-visited {
+        position: absolute;
+        left: -85px;
+    }
+    button, input, select, textarea {
+        font-family: inherit;
+        font-size: 100%;
+        margin: 0;
+        vertical-align: middle;
+    } 
+    .btnlist{
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    .Btn{
+        width: 80px;
+        height: 45px;
+        background-color: black;
+        color: white;
+        border: 0;
+        font-size: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 20px;
+    }
+    .accept{
+        margin-left:200px;
+    }
+    .acceptlist{
+        margin-top: 10px;
+    }
+    a:link {
+        color : blue;
+    }
+    a:visited {
+        color : blue;
+    } 
+    </style>
+<body>
+    <section id="checkout_list">
+        <section id="artworks">
+            <h3>후원 정보</h3>
+            <div class="mbtn_more martwork active">
+                <input type="button" id="artworks_more_btn" class="active">
+                <span class="active-hide-text">총 1점</span>
+            </div>
+            <div class="sect-list active">
+                <div class="checkout-artwork-list">
+                    
+                        <div class="checkout-item">
+                            <div class="checkout-img">
+                                <img src="https://og-data.s3.amazonaws.com/media/artworks/h_fixed/A0365/A0365-0017.jpg">
+                            </div>
+                            <ul class="checkout-text">
+                                <li class="code">프로젝트 이름</li>
+                                <li class="title">작가 이름</li>
+                            </ul>
+                        </div>
+                    
+                </div>
+                <ul class="checkout-billing-total cf">
+                    <li>결제금액</li>
+                    <li>
+                        <span id="artworks-totalPrice">50,000</span>원
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <div class="acceptlist">
+            <span class="accept">
+                <input id="payMethod_Card" class="checkbox" type="checkbox" value="ok1" checked="checked">
+                <label for="payMethod_Card">개인정보 사용 동의 <a href="https://naver.com">자세히</a></label>
+            </span><br>
+            <span class="accept">
+                <input id="payMethod_DirectBank" class="checkbox" type="checkbox" value="ok2">
+                <label for="payMethod_DirectBank">후원 유의사항 확인 <a href="https://naver.com">자세히</a></label>
+            </span>
+        </div>
+        <div class="btnlist">
+            <button class="Btn">결제</button>
+            <button class="Btn">취소</button>
+        </div>
+        </section>
+</body>
+</html>
