@@ -23,7 +23,7 @@
                 <input type="hidden" name="csrfmiddlewaretoken" value="8OgojRYOprkIqojoq6rJDIRZ5GySLqG97ZObqNAuZ7hU3OWjqtvuReHD9X6DBckA">
                 <div class="enroll-modify-form"></div>
                 
-                <div class="certification-container  certified">
+                <div class="certification-container certified">
                     <div class="enroll-modify-form-row">
                         <div class="enroll-modify-form-row-label">
                             <span class="red">*</span> 작품 이미지
@@ -75,7 +75,7 @@
                             <span class="red">*</span> 작품기법
                         </div>
                         <div class="enroll-modify-form-row-label">
-                            <input class="account-modify-form-input" type="text" name="new_password1" placeholder="작품기법을 입력하세요" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
+                            <input class="enroll-modify-form-input" type="text" name="new_password1" placeholder="작품기법을 입력하세요" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -95,11 +95,12 @@
                         </div>
                     </div>
                     
-                <div class="account-modify-form-border">
-                    <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        <a class="yesNo-btn" id="workenroll">작품 등록</a>                    
-                        <a class="yesNo-btn" id="cancel">등록 취소</a>      
-                    </div>
+                	<div class="account-modify-form-border">
+                    	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
+                        	<a class="yesNo-btn" id="workenroll">작품 등록</a>                    
+                        	<a class="yesNo-btn" id="cancel">등록 취소</a>      
+                    	</div>
+                	</div>
                 </div>
             </form>
         </article>

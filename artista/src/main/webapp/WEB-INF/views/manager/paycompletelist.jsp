@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
     <div class="contents">
@@ -41,10 +42,10 @@
                 결제 전체내역
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/paycompletelist">
-                판매 완료 작품
+                판매완료 작품
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/productapplylist">
-                판매 신청
+                판매작품 등록신청
             </a>
         </nav>
         <article class="member-body">
@@ -52,51 +53,56 @@
                 <table class="member-table">
                     <thead>
                     <tr>
-                        <th scope="col" class="artistNo">작품 번호</th>
-                        <th scope="col" class="id">작품 제목</th>
-                        <th scope="col" class="artistName">아티스트 필명</th>
-                        <th scope="col" class="artistType">작품 유형</th>
-                        <th scope="col" class="artistType">작품 가격</th>
-                        <th scope="col" class="artistType">구매자</th>
-                        <th scope="col" class="artistType">현재상태</th>
+                        <th scope="col">작품 번호</th>
+                        <th scope="col">작품 제목</th>
+                        <th scope="col">작품 가격</th>
+                        <th scope="col">결제 일자</th>
+                        <th scope="col">구매자</th>
+                        <th scope="col">현재상태</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="col" class="artistNo">작품 번호</th>
-                            <th scope="col" class="id">작품 제목</th>
-                            <th scope="col" class="artistName">아티스트 필명</th>
-                            <th scope="col" class="artistType">작품 유형</th>
-                            <th scope="col" class="artistType">작품 가격</th>
-                            <th scope="col" class="artistType">구매자</th>
-                            <th scope="col" class="artistType">배송완료</th>
-                            <th scope="col">
-                                <a class="artist-detail-btn" href="/account/modify/" onclick="gaClickAccount('account_modify');">
-                                    작가 송금하기
-                                </a>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th scope="col" class="artistNo">작품 번호</th>
-                            <th scope="col" class="id">작품 제목</th>
-                            <th scope="col" class="artistName">아티스트 필명</th>
-                            <th scope="col" class="artistType">작품 유형</th>
-                            <th scope="col" class="artistType">작품 가격</th>
-                            <th scope="col" class="artistType">구매자</th>
-                            <th scope="col" class="artistType">작가송금완료</th>
-                            <th scope="col">
-                                
-                            </th>
-                        </tr>
+                    <tr>
+                    	<th scope="col" class="workNo">작품 번호</th>
+                        <th scope="col" class="workName">작품 제목</th>
+                        <th scope="col" class="workPrice">작품 가격</th>
+                        <th scope="col" class="orderDate">결제 일자</th>
+                        <th scope="col" class="orderName">구매자</th>
+                        <th scope="col" class="orderState">현재상태</th>
+                        <th scope="col"><a class="artist-detail-btn">작가 송금하기</a></th>
+                     </tr>
+                     <tr>
+                    	<th scope="col" class="workNo">작품 번호</th>
+                        <th scope="col" class="workName">작품 제목</th>
+                        <th scope="col" class="workPrice">작품 가격</th>
+                        <th scope="col" class="orderDate">결제 일자</th>
+                        <th scope="col" class="orderName">구매자</th>
+                        <th scope="col" class="orderState">배송완료</th>
+                        <th scope="col"><a class="artist-detail-btn">작가 송금하기</a></th>
+                     </tr>
+                     <tr>
+                    	<th scope="col" class="workNo">작품 번호</th>
+                        <th scope="col" class="workName">작품 제목</th>
+                        <th scope="col" class="workPrice">작품 가격</th>
+                        <th scope="col" class="orderDate">결제 일자</th>
+                        <th scope="col" class="orderName">구매자</th>
+                        <th scope="col" class="orderState">송금완료</th>
+                        <th scope="col"></th>
+                     </tr>
                     </tbody>
                 </table>
             </section>
         </article>
-        
     </div>
-</body>
-</html>
-
+    
+    <script>
+    $(function(){
+    	$(".artist-detail-btn").click(function(){
+    		alert("작가 송금하기!");
+    	});
+    	
+    });
+    </script>
 </body>
 </html>
