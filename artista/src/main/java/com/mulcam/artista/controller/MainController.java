@@ -10,24 +10,5 @@ public class MainController {
 	public String main() {
 		return "main";
 	}
-	@GetMapping("join")
-	public String join() {
-		return "join";
-	}
-	@GetMapping("login")
-	public String login() {
-		return "login";
-	}
-	@GetMapping("cart")
-	public String cart() {
-		return "cart";
-	}
-	@GetMapping("payment")
-	public String payment() {
-		return "payment";
-	}
-	@GetMapping("paymentsuc")
-	public String paymentsuc() {
-		return "paymentsuc";
-	}
+	
 }
