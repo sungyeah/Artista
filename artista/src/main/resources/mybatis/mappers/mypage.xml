@@ -3,17 +3,46 @@
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mulcam.artista.dao.MyPageDAO">
 	
+	<!-- 회원가입 -->
+	<select id="orderList" parameterType="string" resultType="order">
+		<![CDATA[
+			select * from order where id=#{id} order by orderDate
+		]]>
+	</select> 
 	
+	<!-- 회원가입 -->
+	<select id="queryorder" parameterType="order" resultType="int">
+		<![CDATA[
+			select * from order where orderNo=#{orderNo}
+		]]>
+	</select>
+	
+		<!-- 회원가입 -->
+	<delete id="deleteOrder" parameterType="int" >
+		<![CDATA[
+			delete from order where orderNo=#{orderNo}
+		]]>
+	</delete>
 
 </mapper>
-<!-- create table member(
-	id varchar(100) not null,
-    password varchar(255) not null,
-    name varchar(100) not null,
-    email varchar(255),
-    contact varchar(255),
-    address varchar(500),
-    address2 varchar(500),
-    membertype varchar(30),
-    primary key(id)
+<!-- create table order1(
+	orderNo int(10) not null,
+    id varchar(100) not null,
+    workNo int(10) not null,
+    workName varchar(100) not null,
+    workPrice int(10) not null,
+    orderName varchar(100) not null,
+    orderAddress varchar(500) not null,
+    orderAddress2 varchar(500),
+    orderNum varchar(255) not null,
+    orderEmail varchar(255),
+    deliveryCharge int(10),
+    payment varchar(100) not null,
+    orderCost int(10) not null,
+    orderStatus varchar(100),
+    trackingNo varchar(100),
+    orderDate Datetime,
+    workImg varchar(255),
+    pickupAddress varchar(500),
+    primary key(orderNo)
 ); -->

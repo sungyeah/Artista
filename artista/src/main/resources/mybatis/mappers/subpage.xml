@@ -65,3 +65,15 @@
     membertype varchar(30),
     primary key(id)
 ); -->
+
+<!-- create table cart(
+	cartNo int(10) auto_increment not null,
+    id varchar(100) not null,
+    productName varchar(100) not null,
+    productCost int(10),
+    productStatus varchar(100),
+    workNo int(10) not null,
+    workImg varchar(255),
+    cartDate Datetime,
+    primary key(cartNo)
+); -->
