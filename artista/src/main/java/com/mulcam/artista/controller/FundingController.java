@@ -37,17 +37,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 			return "funding/fundingtmdetail";
 		}
 		
-		//펀딩 신청
-		@GetMapping("applyfunding")
-		public String applyfunding() {
-			return "funding/applyfunding";
-		}
-		
-		@GetMapping("modifyfunding")
-		public String modifyfunding() {
-			return "funding/modifyfunding";
-		}
-		
 		
 		//펀딩 결제
 		@GetMapping("fundingpay")

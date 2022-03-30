@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <title>Insert title here</title>
 </head>
 <style>
@@ -305,8 +307,13 @@
         	});
 	});
     $(function(){
-        $("#testDatepicker1").datepicker({
-        });
+    	$("#testDatepicker1").flatpickr({
+    		dateFormat:"Y-m-d",
+    		minDate: "today",
+    		maxDate: new Date().fp_incr(30)
+    	});
+        /*$("#testDatepicker1").datepicker({
+        });*/
     });
     $(function(){
         $("#testDatepicker2").datepicker({

@@ -37,6 +37,14 @@ public class ArtistPageController {
 	public String artistpageFunding() {
 		return "artistpage/myfunding";
 	}
+	@GetMapping("applyfunding")
+	public String applyfunding() {
+		return "artistpage/applyfunding";
+	}
+	@GetMapping("modifyfunding")
+	public String modifyfunding() {
+		return "artistpage/modifyfunding";
+	}
 	
 	// 아티스트의 전시
 	@GetMapping("myexhibition")

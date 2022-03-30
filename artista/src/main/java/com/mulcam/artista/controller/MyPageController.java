@@ -13,6 +13,12 @@ public class MyPageController {
 		return "mypage/mypage";
 	}
 	
+	/* 예선 : 작가등록 신청 */
+	@GetMapping("apply")
+	public String mypageApplyArtist() {
+		return "mypage/apply";
+	}
+	
 	@GetMapping("mypagemodify")
 	public String mypagemodify() {
 		return "mypage/mypagemodify";
