@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SubPageController {
 	
+	
+	
 	@GetMapping("join")
 	public String join() {
 		return "join";
