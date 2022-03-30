@@ -30,6 +30,8 @@
                 </a>
             </div>
         </section>
+         <article class="member-body">
+         </article>
         <article class="account-body">
             <section class="orders-in-progress">
                 <h3>주문 내역</h3>
