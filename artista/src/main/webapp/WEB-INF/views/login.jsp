@@ -36,7 +36,7 @@
                                 <a href="#" style="background: url(images/g.png) no-repeat center center #4d72b9;background-size: 20px;" >Continue with Google</a>
                             </div>
                             <div class="toLogin">
-                                <span style="display: block;text-align: center;font-size: 13px;">Have no account?<a href="join.html">Sign Up</a></span><br>
+                                <span style="display: block;text-align: center;font-size: 13px;">Have no account?<a href="join">Sign Up</a></span><br>
                                 <span><a href="#">Forgot password</a></span>
                             </div>
                         </div>
