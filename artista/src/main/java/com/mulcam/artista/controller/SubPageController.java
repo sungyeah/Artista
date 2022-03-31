@@ -47,6 +47,33 @@ public class SubPageController {
 		}
 		return mv;   //나중에 메인으로 변경
 	}
+	@GetMapping("naverlogin")
+	public String naverlogin() {
+		return "login";
+	}
+	
+	@ResponseBody
+	@PostMapping("naverlogin")
+	public String naverlogincheck(@RequestParam (value="id")String id,@RequestParam (value="name")String name,
+			@RequestParam (value="email")String email) {
+		try {
+			if(subPageService.memoverlap(id)) {
+				session.setAttribute("id",id);
+			}else {
+				subPageService.makemember2(id,name,email);
+				session.setAttribute("id",id);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "login";
+	}
+	
+	@GetMapping("callback")
+	public String callback(HttpSession session) {
+		return "mypage/mypage";
+	}
 	
 	@GetMapping("join")
 	public String joinForm() {
@@ -55,6 +82,7 @@ public class SubPageController {
 	@PostMapping("join")
 	public ModelAndView join(@ModelAttribute Member mem) {
 		ModelAndView mv = new ModelAndView("login");
+		System.out.println(mem);
 		try {
 			subPageService.makemember(mem);
 		}catch(Exception e) {

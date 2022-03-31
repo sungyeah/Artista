@@ -78,6 +78,4 @@ public class MyPageController {
 	public String paymentinfo() {
 		return "mypage/paymentinfo";
 	}
-	
-	
 }

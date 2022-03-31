@@ -1,6 +1,8 @@
 package com.mulcam.artista.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,6 +72,16 @@ public class SubPageServiceImpl implements SubPageService{
 		if(mem==null||id.equals(mem.getId())&&!password.equals(mem.getPassword())) 
 			return false;
 			return true;
+	}
+
+	@Override
+	public void makemember2(String id, String name, String email) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("name", name);
+		map.put("email", email);
+		subpageDAO.insertMember2(map);
+		
 	}
 
 }
