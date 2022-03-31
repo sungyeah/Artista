@@ -50,37 +50,37 @@
         
         <article class="member-body">
             <section class="member-list">
-                <table class="member-table">
+            	<table class="member-table">
                     <thead>
                     <tr>
-                        <th scope="col" class="memberNo">회원번호</th>
-                        <th scope="col" class="id">아이디</th>
-                        <th scope="col" class="name">이름</th>
-                        <th scope="col" class="email">이메일</th>
-                        <th scope="col" class="address">주소</th>
-                        <th scope="col" class="contact">연락처</th>
+                        <th scope="col">회원 아이디</th>
+                        <th scope="col">회원 이름</th>
+                        <th scope="col">이메일</th>
+                        <th scope="col">연락처</th>
+                        <th scope="col">주소</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="" class="memberNo">회원번호</th>
-                            <th scope="" class="id">아이디</th>
-                            <th scope="" class="name">이름</th>
-                            <th scope="" class="email">이메일</th>
-                            <th scope="" class="address">주소</th>
-                            <th scope="" class="contact">연락처</th>
-                            <th><input type="checkbox" name="xxx"></th>
-                        </tr>
-                        <tr>
-                            <th scope="" class="memberNo">회원번호</th>
-                            <th scope="" class="id">아이디</th>
-                            <th scope="" class="name">이름</th>
-                            <th scope="" class="email">이메일</th>
-                            <th scope="" class="address">주소</th>
-                            <th scope="" class="contact">연락처</th>
-                            <th><input type="checkbox" name="xxx"></th>
-                        </tr>
+                    <tr>
+                    	<th scope="col" class="id">회원 아이디</th>
+                        <th scope="col" class="name">회원 이름</th>
+                        <th scope="col" class="email">이메일</th>
+                        <th scope="col" class="contact">연락처</th>
+                        <th scope="col" class="address">주소</th>
+                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
+                        <th scope="col"><input type="checkbox" name="xxx"></th>
+                    </tr>
+                    <tr>
+                    	<th scope="col" class="id">회원 아이디</th>
+                        <th scope="col" class="name">회원 이름</th>
+                        <th scope="col" class="email">이메일</th>
+                        <th scope="col" class="contact">연락처</th>
+                        <th scope="col" class="address">주소</th>
+                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
+                        <th scope="col"><input type="checkbox" name="xxx"></th>
+                    </tr>
                     </tbody>
                 </table>
                 <a class="member-delete-btn" href="/account/delete/">

@@ -73,9 +73,7 @@
                                         <p></p>
                                     </div>
                                     <div class="btn-wrap">
-                                    	<a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/modifyfunding">
-       		 								펀딩 내용 수정 요청
-        								</a>
+                                        <button onClick="location.href=${pageContext.request.contextPath}/artistpage/modifyfunding" class="btn-line div1">펀딩 내용 수정 요청</button>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +100,7 @@
                                         <p></p>
                                     </div>
                                     <div class="btn-wrap">
-                                        <button onclick="goEditRewardProject(143877)" class="btn-line div1">펀딩 내용 수정 요청</button>
+                                        <button onClick="location.href=${pageContext.request.contextPath}/artistpage/modifyfunding" class="btn-line div1">펀딩 내용 수정 요청</button>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +127,7 @@
                                         <p></p>
                                     </div>
                                     <div class="btn-wrap">
-                                        <button onclick="goEditRewardProject(143877)" class="btn-line div1">펀딩 내용 수정 요청</button>
+                                        <button onClick="location.href=${pageContext.request.contextPath}/artistpage/modifyfunding" class="btn-line div1">펀딩 내용 수정 요청</button>
                                     </div>
                                 </div>
                             </div>
