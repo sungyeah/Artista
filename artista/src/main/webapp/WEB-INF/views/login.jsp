@@ -65,7 +65,7 @@
 		$('#password').focus();
 		return false;
 	}
-	/* $.ajax({
+	 /* $.ajax({
 		type:"post",
 		dataType:"text", 
 		async:false, 
@@ -73,13 +73,15 @@
 		data:{id:$('#id').val(),
 			  password:$('#password').val()},
 		success: function(data, textStatus){
+			alert(data);
 			if(data=="true"){
 				alert("환영합니다.");
+				location.href="mypage";
 			} else {
 				alert("회원정보가 일치하지 않습니다.");
 			}
 		}
-	}); */
+	}); */ 
 }); 
  var naver_id_login = new naver_id_login("2R257h5lNLRrx1vJnLgV", "http://localhost:8090/callback");
  var state = naver_id_login.getUniqState(); 
@@ -122,8 +124,8 @@
 					  "name":name,
 					  "email":email},
 				success: function(data, textStatus){
-					location.href="mypage";
-					console.log("success");
+ 					location.href="/mypage?check=naver";
+ 					console.log("success");
 					
 				},
 				error:function(data, textStatus){

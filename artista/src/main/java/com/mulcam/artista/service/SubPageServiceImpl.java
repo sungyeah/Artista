@@ -38,8 +38,8 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public Member queryId(String id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return subpageDAO.queryMember(id);
+		
 	}
 
 	@Override
@@ -83,5 +83,6 @@ public class SubPageServiceImpl implements SubPageService{
 		subpageDAO.insertMember2(map);
 		
 	}
+
 
 }
