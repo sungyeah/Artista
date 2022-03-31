@@ -25,7 +25,7 @@
     <ul style="height: 1000px; transition-duration: 300ms;">             
             
                 <li class="current" style="position: absolute; top: 0px; left: 0px; opacity: 1; width: 100%; transition-duration: 2000ms; z-index: 10;">
-                        <figure><img src="images/메인사진.jpg" alt="" style="padding-top: 40px;"></figure>
+                        <figure><img src="images/메인사진5.jpg" alt="" style="padding-top: 40px;"></figure>
                 </li>
             </ul>
 </section>
@@ -33,7 +33,6 @@
 
 
 <section id="season_section">
-    <div class="post-list column-3">
         
             <div class="season_top" style="margin-left: 20em;">
                                 <div class="season_keyword">
@@ -195,8 +194,7 @@
                                             <p>김보경</p>
                                         </div>
                                     </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"></button><button type="button" role="presentation" class="owl-next"></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
-        
-    </div>
+
 </section>
 
 
@@ -217,50 +215,50 @@
         <ul>
             <li class="video">
                 <a href="#">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회1.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a>
             </li>
             <li class=""><a href="/story/view/20000000200">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회2.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class=""><a href="/story/view/20000000198">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회3.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class=""><a href="/story/view/20000000197">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회4.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class=""><a href="/story/view/20000000193">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회5.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class=""><a href="/story/view/20000000191">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회6.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class=""><a href="/story/view/20000000189">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회7.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class="video"><a href="/story/view/20000000187">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회8.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
