@@ -105,7 +105,6 @@
 <script>
 	
 	$('#update').click(function(){
-		console.log($('#password2').val());
 		let password1 = $('#password1').val();
 		let password2 = $('#password2').val();
 		if(password1==password2){
@@ -119,10 +118,12 @@
 				success: function(data, textStatus){
 					if(data=='true'){
 						alert("비밀번호가 변경되었습니다.");
+						$('#password').val("");
+						$('#password1').val("");
+						$('#password2').val("");
 					}else{
 						alert("기존 비밀번호가 일치하지 않습니다.");
 					}
-					console.log("success");
 				},
 				error:function(data, textStatus){
 					alert("실패");
@@ -132,10 +133,7 @@
 			alert("비밀번호 확인이 일치하지 않습니다.");
 			return false;
 		}
-		
-		console.log($('#password').val());
-		
-	})
+	});
 </script>
 </body>
 </html>

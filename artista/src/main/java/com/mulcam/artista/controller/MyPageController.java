@@ -72,7 +72,6 @@ public class MyPageController {
 	@PostMapping("pwcheck")
 	public boolean pwcheck(@RequestParam(value="password")String password,
 			@RequestParam(value="password2")String password2) {
-		System.out.println(password2);
 		String id = (String) session.getAttribute("id");
 		boolean check = false;
 		try {
