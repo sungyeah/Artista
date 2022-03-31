@@ -6,61 +6,8 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="../css/fundingtm.css">
 <style>
-	.postbtn{
-	padding-left: 5px;
-	padding-right: 5px;
-	}
-    .postbtn a{
-        text-decoration-line: none;
-        color: black;
-    }
-    .flex-container{
-        display: flex;
-        justify-content: center;
-        height: 125px;
-        text-align: justify;
-        -ms-text-justify: distribute-all-lines;
-        text-justify: distribute-all-lines;
-        min-width: 612px;
-        margin-bottom: 160px;
-    }
-    .flex-item{
-        margin: 10px;
-        background-color: white;
-        width: 150px;
-        height: 125px;
-        vertical-align: top;
-        display: inline-block;
-        *display: inline;
-        zoom: 2;
-    }
-    .image-box{
-        width: 150px;
-        height: 80px;
-        overflow: hidden;
-        margin: 0 auto;
-    }
-
-    .image-thumb{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .printer{
-        font-size: 0.1em;
-    }
-    .Btn{
-        width: 206px;
-        height: 52px;
-        margin: auto;
-        display: block;
-        background-color: black;
-        color: white;
-        border: 0;
-        font-size: 1.7em;
-        margin-top: 180px;
-    }
 </style>
 <body>
 	<div>

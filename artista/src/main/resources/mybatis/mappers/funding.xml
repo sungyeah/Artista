@@ -3,7 +3,52 @@
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mulcam.artista.dao.FundingDAO">
 	
-
-	
-
 </mapper>
+
+<!-- 
+create table fundingApp(
+	fundingNo int(10) not null,
+    artistNo int(10) not null,
+    projTitle varchar(100) not null,
+    projIntro varchar(255) not null,
+    projBudget varchar(255) not null,
+    projArtist varchar(255) not null,
+    targetFunding int(100) not null,
+    fundingDate datetime,
+    thumbImg varchar(100) not null,
+    applyStatus int(10),
+    refusedContents varchar(500),
+    getplace varchar(500) not null,
+    primary key(fundingNo)
+);
+
+create table funding(
+	fundingNo int(10) not null,
+    artistNo int(10) not null,
+    projTitle varchar(100) not null,
+    projIntro varchar(255) not null,
+    projBudget varchar(255) not null,
+    projArtist varchar(255) not null,
+    targetFunding int(100) not null,
+    fundingDate datetime,
+    thumbImg varchar(100) not null,
+	sumAmount int(10),
+    fundingState int(10),
+    getplace varchar(500) not null,
+    primary key(fundingNo)
+);
+
+create table fundingSpon(
+	sponsorNo int(10) not null,
+    id varchar(100) not null,
+    fundingNo int(10) not null,
+    sponsorAmount int(10) not null,
+    email varchar(100) not null,
+    primary key(sponsorNo)
+);
+
+알림 테이블은 나중에
+
+ -->
+ 
+ 
