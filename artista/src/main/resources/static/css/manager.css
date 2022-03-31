@@ -264,16 +264,18 @@
 
 
 th, td {
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     text-align: center;
   }
+/*
 thead {
     border-bottom: 1px solid #444444;
 }
 tbody {
     background-color: white;
 }
-
+*/
 
 .mypage-project .project-list {
     margin-top:20px;

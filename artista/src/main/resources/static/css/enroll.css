@@ -226,89 +226,6 @@
     color: #989898;
 }
 
-.wrap * {
-    margin: 0;
-    padding: 0;
-}
-.wrap ul li,
-.wrap ol li {
-    list-style: none;
-}
-.select_box {
-    margin: 20px;
-}
-.select_box .box {
-    display: inline-block;
-    position: relative;
-    width: 150px;
-}
-.select_box .box .select {
-    position: relative;
-    border: 2px solid #ccc;
-    box-sizing: border-box;
-    padding: 0 10px;
-    height: 40px;
-    line-height: 35px;
-    font-size: 16px;
-    background-color: #fff;
-    cursor: pointer;
-}
-.select_box .box .select:after {
-    content: '▼';
-    position: absolute;
-    top: 0;
-    right: 10px;
-}
-.select_box.on .box .select:after {
-    content: '▲';
-}
-.select_box .box .list {
-    display: none;
-    overflow-y: auto;
-    position: absolute;
-    top: 45px;
-    left: 0;
-    z-index: 10;
-    border: 2px solid #ccc;
-    box-sizing: border-box;
-    padding: 10px 0;
-    width: 100%;
-    max-height: 200px;
-    background-color: #fff;
-}
-.select_box .box .list::-webkit-scrollbar {
-    width: 10px;
-    height: 0;
-}
-.select_box .box .list::-webkit-scrollbar-button:start:decrement,
-.select_box .box .list::-webkit-scrollbar-button:end:increment {
-    display: block;
-    height: 0;
-}
-.select_box .box .list::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, .05);
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-}
-.select_box .box .list::-webkit-scrollbar-thumb {
-    height: 50px;
-    width: 50px;
-    background: rgba(0, 0, 0, .2);
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-}
-.select_box .box .list>li {
-    box-sizing: border-box;
-    padding: 0 10px;
-    width: 100%;
-    height: 35px;
-    line-height: 35px;
-    cursor: pointer;
-}
-.select_box .box .list>li:hover {
-    background-color: #ccc;
-}
-
 .yesNo-btn{
     -webkit-text-size-adjust: 100%;
     font-family: 'Noto Sans KR', sans-serif;
@@ -329,4 +246,92 @@
     color: #989898;
     line-height: 36px;
     text-align: center;
+}
+
+input[type="file"] {
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+    padding: 0;
+    background: transparent;
+    text-decoration: none;
+    
+    width: 82px;
+    height: 36px;
+   
+    display: inline-block;
+    /*float: right;*/
+    margin: 0 auto;
+    border: 1px solid #dfdfdf;
+    font-size: 14px;
+    color: #989898;
+    line-height: 36px;
+    text-align: center;
+}
+
+
+
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.select {
+  	width: 120px;
+  	height: 36px;
+  	line-height: normal;
+  	font-size: 14px;
+  	border: 1px solid #dfdfdf;
+  	margin-top: 7px;
+	margin-bottom: 7px;
+  	display: inline-block;
+}
+
+.select .selected {
+  	display: flex;
+  	justify-content: space-between;
+  	padding: 8px 5px;
+}
+
+.select .selected .selected-value {
+  	max-width: 90px;
+}
+
+.select .selected .arrow {
+  	width: 24px;
+  	background: url("https://cdn-icons-png.flaticon.com/512/20/20972.png") no-repeat 70% 50%;
+  	background-size: 50% 50%;
+}
+
+.select ul li,
+.select .selected .selected-value {
+  	white-space: nowrap;
+  	/* 줄바꿈 안함 */
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	/* 말줄임 적용 */
+}
+
+.select ul {
+  	width: 120px;
+  	border: 1px solid #dfdfdf;
+  	display: none;
+  	position: absolute;
+  	background: #fff;
+  	border-top: none;
+  	margin: 1px 0 0 -1px;
+  	cursor: pointer;
+}
+
+.select.active ul {
+  	display: initial;
+}
+
+.select ul li {
+  	padding: 8px 5px;
+}
+
+.select ul li:hover {
+  	background: rgba(168, 156, 235, 0.35)
 }
