@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dto.Member;
@@ -56,11 +58,35 @@ public class MyPageController {
 	}
 	
 	@GetMapping("mypagemodify")
-	public String mypagemodify() {
+	public String mypagemodify(Model model) {
+		String id=(String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			model.addAttribute("mem",mem);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "mypage/mypagemodify";
 	}
-	@GetMapping("paymentinfo")
-	public String paymentinfo() {
-		return "mypage/paymentinfo";
+	@ResponseBody
+	@PostMapping("pwcheck")
+	public boolean pwcheck(@RequestParam(value="password")String password,
+			@RequestParam(value="password2")String password2) {
+		System.out.println(password2);
+		String id = (String) session.getAttribute("id");
+		boolean check = false;
+		try {
+			Member mem = subPageService.queryId(id);
+			if(password.equals(mem.getPassword())) {
+				subPageService.changePw(id, password2);
+				
+				check=true;
+			}else {
+				check=false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return check;
 	}
 }

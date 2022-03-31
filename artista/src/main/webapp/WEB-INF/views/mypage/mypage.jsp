@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<%@include file ="../header.jsp" %>
+ <%@include file ="../header.jsp" %>
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">마이 페이지</h2>
@@ -194,7 +194,7 @@
             </section>
         </article>
     </div>
-    <%@include file ="../footer.jsp" %>
+     <%@include file ="../footer.jsp" %>
    
 </body>
 </html>

@@ -56,8 +56,10 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public void changePw(String id, String password) throws Exception {
-		// TODO Auto-generated method stub
-		
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("password", password);
+		subpageDAO.changePw(map);
 	}
 
 	@Override

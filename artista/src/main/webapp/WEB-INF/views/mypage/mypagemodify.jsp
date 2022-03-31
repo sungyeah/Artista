@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<%@include file ="../header.jsp" %>
+<%-- <%@include file ="../header.jsp" %> --%>
     <div id="contents">
         
         <header class="account-header">
@@ -30,17 +30,17 @@
                         <span class="white">*</span> 아이디
                     </div>
                     <div class="account-modify-form-row-value">
-                        ghdtjdgh0810
+                        ${mem.id }
                     </div>
                 </div>
                 <div class="account-modify-form-row">
                     <div class="account-modify-form-row-label">
-                        <span class="red">*</span> 이메일
+                        <span class="white">*</span> 이메일
                     </div>
-                    <!-- <div class="account-modify-form-row-value">
-                        ghdtjdgh0810@nate.com
-                    </div> -->
-                    <input class="account-modify-form-input" type="email" name="email" placeholder="이메일" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
+                     <div class="account-modify-form-row-value">
+                         ${mem.email } 
+                    </div> 
+                   <!--  <input class="account-modify-form-input" type="email" name="email" placeholder="이메일" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br> -->
                 </div>
                 <div class="account-modify-form-row">
                     <div class="account-modify-form-row-label">
@@ -48,10 +48,10 @@
                     </div>
                     <div class="account-modify-form-row-value">
                         
-                            <input class="account-modify-form-input" type="password" name="password" placeholder="기존 비밀번호" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
-                            <input class="account-modify-form-input" type="password" name="new_password1" placeholder="새 비밀번호" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
-                            <input class="account-modify-form-input" type="password" name="new_password2" placeholder="새 비밀번호 확인" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off">
-                            <input class="change-password-btn" type="button" value="변경" data-mode="change">
+                            <input class="account-modify-form-input" type="password" name="password" id="password" placeholder="기존 비밀번호" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
+                            <input class="account-modify-form-input" type="password" name="new_password1" id="password1" placeholder="새 비밀번호" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
+                            <input class="account-modify-form-input" type="password" name="new_password2" id="password2" placeholder="새 비밀번호 확인" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off">
+                            <input class="change-password-btn" type="button" id="update" value="변경" data-mode="change">
                         
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="account-modify-form-row-value">
                             <div class="certification-value">
-                                <span class="certified_name">홍성호</span>
+                                <span class="certified_name">${mem.name }</span>
                             </div>
                         </div>
                     </div>
@@ -100,6 +100,42 @@
             </form>
         </article>
     </div>
-<%@include file ="../footer.jsp" %>
+<%-- <%@include file ="../footer.jsp" %> --%>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	
+	$('#update').click(function(){
+		console.log($('#password2').val());
+		let password1 = $('#password1').val();
+		let password2 = $('#password2').val();
+		if(password1==password2){
+			$.ajax({     
+				type:"post",
+				dataType:"text",
+				async:false,
+				url:"http://localhost:8090/mypage/pwcheck",
+				data:{"password":$('#password').val(),
+					  "password2":$('#password2').val()},
+				success: function(data, textStatus){
+					if(data=='true'){
+						alert("비밀번호가 변경되었습니다.");
+					}else{
+						alert("기존 비밀번호가 일치하지 않습니다.");
+					}
+					console.log("success");
+				},
+				error:function(data, textStatus){
+					alert("실패");
+				}
+			});
+		}else{
+			alert("비밀번호 확인이 일치하지 않습니다.");
+			return false;
+		}
+		
+		console.log($('#password').val());
+		
+	})
+</script>
 </body>
 </html>

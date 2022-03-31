@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,30 +16,30 @@
 <%@include file ="../header.jsp" %>
     <div id="contents">
         <header class="account-header">
-            <h2 class="account-header-title">ÁÖ¹® »ó¼¼Á¤º¸</h2>
-            <div class="account-header-description">ÁÖ¹®°ú °ü·ÃµÈ Á¤º¸ÀÔ´Ï´Ù.</div>
+            <h2 class="account-header-title">ì£¼ë¬¸ ìƒì„¸ì •ë³´</h2>
+            <div class="account-header-description">ì£¼ë¬¸ê³¼ ê´€ë ¨ëœ ì •ë³´ìž…ë‹ˆë‹¤.</div>
         </header>
         <article class="account-body">
     <section class="orders-in-progress">
         <div style="font-weight: bold; margin-bottom: 12px;">
-        <span class="span">ÁÖ¹®ÀÏÀÚ</span><span style="margin-right: 30px;">2022.03.22</span><span class="span">ÁÖ¹®¹øÈ£</span><span class="span">1111</span>
+        <span class="span">ì£¼ë¬¸ì¼ìž</span><span style="margin-right: 30px;">2022.03.22</span><span class="span">ì£¼ë¬¸ë²ˆí˜¸</span><span class="span">1111</span>
         </div>
-        <!-- <h3>ÁÖ¹® ÀÏÀÚ</h3> -->
+        <!-- <h3>ì£¼ë¬¸ ì¼ìž</h3> -->
         <table class="account-table">
             <thead>
             <tr>
-                <th scope="col" class="time-code">ÁÖ¹®¹øÈ£</th>
-                <th scope="col" class="type">»óÇ°¸í</th>
-                <th scope="col" class="artworks">»óÇ°±Ý¾×</th>
-                <th scope="col" class="start-date">¹è¼Ûºñ</th>
-                <th scope="col" class="status">¿î¼ÛÀå¹øÈ£</th>
-                <th scope="col" class="status">ÁøÇà»óÅÂ</th>
+                <th scope="col" class="time-code">ì£¼ë¬¸ë²ˆí˜¸</th>
+                <th scope="col" class="type">ìƒí’ˆëª…</th>
+                <th scope="col" class="artworks">ìƒí’ˆê¸ˆì•¡</th>
+                <th scope="col" class="start-date">ë°°ì†¡ë¹„</th>
+                <th scope="col" class="status">ìš´ì†¡ìž¥ë²ˆí˜¸</th>
+                <th scope="col" class="status">ì§„í–‰ìƒíƒœ</th>
             </tr>
             </thead>
             <tbody>
             
                 <tr>
-                    <td class="empty" colspan="6">Ç¥½ÃÇÒ ³»¿ªÀÌ ¾ø½À´Ï´Ù.</td>
+                    <td class="empty" colspan="6">í‘œì‹œí•  ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.</td>
                 </tr>
             
             </tbody>
@@ -50,13 +50,13 @@
             <section id="checkout_value">
                 <section id="billing_info">
                     <div class="sect-header">
-                        <h3>ÁÖ¹®ÀÚ Á¤º¸</h3>
-                        <!-- <span>°è¾à¼­¿¡ ±âÀçµÉ Á¤º¸ÀÔ´Ï´Ù. (ÀÔ·Â ³»¿ëÀº È¸¿ø Á¤º¸¿¡ ¹Ý¿µµË´Ï´Ù.)</span> -->
+                        <h3>ì£¼ë¬¸ìž ì •ë³´</h3>
+                        <!-- <span>ê³„ì•½ì„œì— ê¸°ìž¬ë  ì •ë³´ìž…ë‹ˆë‹¤. (ìž…ë ¥ ë‚´ìš©ì€ íšŒì› ì •ë³´ì— ë°˜ì˜ë©ë‹ˆë‹¤.)</span> -->
                     </div>
                     <div id="checkout-profile" class="sect-info active certified">
                         
                         <div class="sect-body cf">
-                            <div class="sect-body-th">»óÇ°±Ý¾×</div>
+                            <div class="sect-body-th">ìƒí’ˆê¸ˆì•¡</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="billing_name" name="billing_name" value="140,000">
@@ -65,30 +65,30 @@
                             </div>
                         </div>
                         <div class="sect-body cf">
-                            <div class="sect-body-th">¹è¼Ûºñ</div>
+                            <div class="sect-body-th">ë°°ì†¡ë¹„</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
-                                    <input type="hidden" id="billing_name" name="billing_name" value="È«¼ºÈ£">
+                                    <input type="hidden" id="billing_name" name="billing_name" value="í™ì„±í˜¸">
                                     <span>3,000</span>
                                 </div>
                             </div>
                         </div>
                         <div class="sect-body cf">
-                            <div class="sect-body-th">ÃÖÁ¾°áÁ¦±Ý</div>
+                            <div class="sect-body-th">ìµœì¢…ê²°ì œê¸ˆ</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="billing_phone1" name="billing_phone1" value="010-4012-9131">
                                     <span>143,000</span>
-                                    <!-- <input type="button" id="checkout-profile-recertifyButton" value="º¯°æ"> -->
+                                    <!-- <input type="button" id="checkout-profile-recertifyButton" value="ë³€ê²½"> -->
                                 </div>
                             </div>
                         </div>
                         <div class="sect-body cf">
-                            <div class="sect-body-th">°áÁ¦¼ö´Ü</div>
+                            <div class="sect-body-th">ê²°ì œìˆ˜ë‹¨</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="checkout-input-billing_email" name="billing_email" value="ghdtjdgh0810@nate.com">
-                                    <span>½Å¿ëÄ«µå</span>
+                                    <span>ì‹ ìš©ì¹´ë“œ</span>
                                 </div>
                             </div>
                         </div>
@@ -99,37 +99,37 @@
             <section id="checkout_value2">
             <section id="billing_info">
                 <div class="sect-header">
-                    <h3>¹è¼ÛÁö Á¤º¸</h3>
-                    <!-- <span>°è¾à¼­¿¡ ±âÀçµÉ Á¤º¸ÀÔ´Ï´Ù. (ÀÔ·Â ³»¿ëÀº È¸¿ø Á¤º¸¿¡ ¹Ý¿µµË´Ï´Ù.)</span> -->
+                    <h3>ë°°ì†¡ì§€ ì •ë³´</h3>
+                    <!-- <span>ê³„ì•½ì„œì— ê¸°ìž¬ë  ì •ë³´ìž…ë‹ˆë‹¤. (ìž…ë ¥ ë‚´ìš©ì€ íšŒì› ì •ë³´ì— ë°˜ì˜ë©ë‹ˆë‹¤.)</span> -->
                 </div>
                 <div id="checkout-profile" class="sect-info active certified">
                     
                     <div class="sect-body cf">
-                        <div class="sect-body-th">ÀÌ¸§</div>
+                        <div class="sect-body-th">ì´ë¦„</div>
                         <div class="sect-body-td">
                             <div class="checkout-profile-box">
                                 <input type="hidden" id="billing_name" name="billing_name" value="140,000">
-                                <span>È«±æµ¿</span>
+                                <span>í™ê¸¸ë™</span>
                             </div>
                         </div>
                     </div>
                     <div class="sect-body cf">
-                        <div class="sect-body-th">¿¬¶ôÃ³</div>
+                        <div class="sect-body-th">ì—°ë½ì²˜</div>
                         <div class="sect-body-td">
                             <div class="checkout-profile-box">
-                                <input type="hidden" id="billing_name" name="billing_name" value="È«¼ºÈ£">
+                                <input type="hidden" id="billing_name" name="billing_name" value="í™ì„±í˜¸">
                                 <span>010-1234-5678</span>
                             </div>
                         </div>
                     </div>
                     <div class="sect-body cf" style="height: 87px;">
-                        <div class="sect-body-th">¹è¼ÛÁöÁÖ¼Ò</div>
+                        <div class="sect-body-th">ë°°ì†¡ì§€ì£¼ì†Œ</div>
                         <div class="sect-body-td" style="margin-top: 9px;">
                             <div class="checkout-profile-box">
                                 <input type="hidden" id="billing_phone1" name="billing_phone1" value="010-4012-9131">
-                                <div>¼¼Á¾Æ¯º°ÀÚÄ¡½Ã ´ëÆò·Î</div>
-                                <div style="float: right;">00µ¿ 00È£</div>
-                                <!-- <input type="button" id="checkout-profile-recertifyButton" value="º¯°æ"> -->
+                                <div>ì„¸ì¢…íŠ¹ë³„ìžì¹˜ì‹œ ëŒ€í‰ë¡œ</div>
+                                <div style="float: right;">00ë™ 00í˜¸</div>
+                                <!-- <input type="button" id="checkout-profile-recertifyButton" value="ë³€ê²½"> -->
                             </div>
                         </div>
                     </div>
@@ -138,8 +138,8 @@
             </section>
         </section>
         <div style="text-align: center;font-size: 18px; margin-top: 20px;">
-            <input type="button" class="cartBottom-btn" id="toCheckoutBtn" value="È®ÀÎ" onclick="location.href='mypage.html'">
-            <input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="°áÁ¦Ãë¼Ò" onclick="location.href='mypage.html'">
+            <input type="button" class="cartBottom-btn" id="toCheckoutBtn" value="í™•ì¸" onclick="location.href='mypage.html'">
+            <input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="ê²°ì œì·¨ì†Œ" onclick="location.href='mypage.html'">
         </div>
         
     </div>
