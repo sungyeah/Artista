@@ -14,4 +14,5 @@ public interface SubPageService {
 	void changePw(String id, String password) throws Exception; //비밀번호 수정
 	List<Member> memberList() throws Exception;             //회원전체조회
 	boolean accessMember(String id, String password) throws Exception; //로그인 확인
+	void makemember2(String id,String name,String email) throws Exception;     //회원가입2
 }

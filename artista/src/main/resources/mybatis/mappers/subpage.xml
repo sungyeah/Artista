@@ -8,6 +8,13 @@
 		<![CDATA[
 			insert into member(id, password, name, email, contact, address, address2,membertype) values(#{id}, #{password}, #{name},null,null,null,null,null)
 		]]>
+	</insert>
+	
+	<!-- 회원가입 -->
+	<insert id="insertMember2" parameterType="map" >
+		<![CDATA[
+			insert into member(id, password, name, email, contact, address, address2,membertype) values(#{id},'1234', #{name},#{email},null,null,null,null)
+		]]>
 	</insert> 
 	
 	<!-- 회원가입 -->
