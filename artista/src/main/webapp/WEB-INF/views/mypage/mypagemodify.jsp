@@ -14,6 +14,7 @@
 </style>
 </head>
 <body>
+<%@include file ="../header.jsp" %>
     <div id="contents">
         
         <header class="account-header">
@@ -99,5 +100,6 @@
             </form>
         </article>
     </div>
+<%@include file ="../footer.jsp" %>
 </body>
 </html>

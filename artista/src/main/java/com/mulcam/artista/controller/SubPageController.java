@@ -40,8 +40,7 @@ public class SubPageController {
 			String password=info.get("password");
 			if(subPageService.accessMember(id, password)) {
 				session.setAttribute("id", id);
-				mv.addObject("check","normal");
-				mv.setViewName("redirect:/mypage");
+				mv.setViewName("redirect:/main");
 			}else {
 				mv.setViewName("login");
 			}
@@ -73,13 +72,12 @@ public class SubPageController {
 	@PostMapping("naverlogin")
 	public ModelAndView naverlogincheck(@RequestParam (value="id")String id,@RequestParam (value="name")String name,
 			@RequestParam (value="email")String email,Model model) {
-		ModelAndView mv = new ModelAndView("redirect:/mypage");
+		ModelAndView mv = new ModelAndView("redirect:/main");
 		try {
 			if(!subPageService.memoverlap(id)) {
 				subPageService.makemember2(id,name,email);
 			}
 			session.setAttribute("id",id);
-			mv.addObject("check", "naver");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -92,12 +90,13 @@ public class SubPageController {
 		try {
 			Member mem = subPageService.queryId(id);
 			model.addAttribute("name",mem.getName());
+			session.setAttribute("id",id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("check","naver");
 		
-		return "mypage/mypage";
+		return "main";
 	}
 	
 	@GetMapping("join")

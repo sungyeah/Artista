@@ -13,6 +13,7 @@
 </style>
 </head>
 <body>
+<%@include file ="../header.jsp" %>
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">주문 상세정보</h2>
@@ -142,5 +143,6 @@
         </div>
         
     </div>
+    <%@include file ="../footer.jsp" %>
 </body>
 </html>

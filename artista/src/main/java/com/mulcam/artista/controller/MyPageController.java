@@ -23,12 +23,25 @@ public class MyPageController {
 	@Autowired
 	HttpSession session;
 
+//	@GetMapping({"/", ""})
+//	public String mypageMain(@RequestParam("check") String check,  Model model) {
+//		String id = (String) session.getAttribute("id");
+//		try {
+//			Member mem = subPageService.queryId(id);
+//			model.addAttribute("check", check);
+//			model.addAttribute("name",mem.getName());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return "mypage/mypage";
+//	}
+	
 	@GetMapping({"/", ""})
-	public String mypageMain(@RequestParam("check") String check,  Model model) {
+	public String mypageMain(Model model) {
 		String id = (String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
-			model.addAttribute("check", check);
+//			model.addAttribute("check", check);
 			model.addAttribute("name",mem.getName());
 		} catch (Exception e) {
 			e.printStackTrace();

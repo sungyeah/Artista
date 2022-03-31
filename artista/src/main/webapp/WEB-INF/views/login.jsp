@@ -15,6 +15,7 @@
 </style>
 </head>
 <body>
+<%@include file ="header.jsp" %>
     <section style="min-height: 700px; padding-top: 80px;">
         <form id="login" action="login" method="post">
             <div style="width: 100%;max-width: 1500px;margin: 0 auto;padding: 0px 20px;">
@@ -47,6 +48,7 @@
             </div>
         </form>
     </section>
+<%@include file ="footer.jsp" %>
 <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
@@ -124,7 +126,7 @@
 					  "name":name,
 					  "email":email},
 				success: function(data, textStatus){
- 					location.href="/mypage?check=naver";
+ 					location.href="/main";
  					console.log("success");
 					
 				},

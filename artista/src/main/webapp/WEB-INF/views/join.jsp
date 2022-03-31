@@ -14,6 +14,7 @@
 </style>
 </head>
 <body>
+<%@include file ="header.jsp" %>
     <section style="min-height: 700px;padding-top: 80px;">
 		<form id="signupForm" action="join" method="post">
 		<input type="hidden" value="">
@@ -52,6 +53,7 @@
 		</div>
 		</form>
 	</section>
+<%@include file ="footer.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
