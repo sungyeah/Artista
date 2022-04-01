@@ -22,16 +22,17 @@
             <div class="account-header-description">고객님과 관련된 정보입니다.</div>
         </header>
         <article class="account-body">
-            <form class="account-modify-form" method="post">
+            <form class="account-modify-form" action="mypagemodify" method="post">
                 <input type="hidden" name="csrfmiddlewaretoken" value="dcplUxcJYAooMhenqOslHXteUyEiaCKfCaBaxao4yzsOS1mxKp697vPpt2Yzn2yl">
                 <div class="account-modify-form-border"></div>
                 <div class="account-modify-form-row">
                     <div class="account-modify-form-row-label">
                         <span class="white">*</span> 아이디
                     </div>
-                    <div class="account-modify-form-row-value">
+                     <div class="account-modify-form-row-value">
                         ${mem.id }
                     </div>
+                     <input type="hidden" id="id" name="id" value='${mem.id }'>
                 </div>
                 <div class="account-modify-form-row">
                     <div class="account-modify-form-row-label">
@@ -72,7 +73,7 @@
                         </div>
                         <div class="account-modify-form-row-value">
                             <div class="certification-value">
-                                <input class="account-modify-form-input" type="text" name="phone" placeholder="휴대폰" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off">
+                                <input class="account-modify-form-input" type="text" id="contact" name="contact" placeholder="휴대폰" maxlength="20" value='${mem.contact }'>
                             </div>
                         </div>
                     </div>
@@ -82,9 +83,9 @@
                         </div>
                         <div class="account-modify-form-row-value">
                             
-                                <input class="account-modify-form-input" type="text" name="address" id="address" placeholder="주소" maxlength="20" style="margin-bottom:7px;cursor:pointer" onClick=search3()>
+                                <input class="account-modify-form-input" type="text" name="address" id="address" placeholder="주소" maxlength="20" style="margin-bottom:7px;cursor:pointer" onClick=search3() value='${mem.address }'>
                                 <input class="change-password-btn" type="button" id="search" value="검색" data-mode="change" onClick=search3()><br>
-                                <input class="account-modify-form-input" type="text" name="address2" id="address2" placeholder="상세주소" maxlength="20" style="width: 284px;" ><br>
+                                <input class="account-modify-form-input" type="text" name="address2" id="address2" placeholder="상세주소" maxlength="20" style="width: 284px;" value='${mem.address2 }'><br>
                             
                         </div>
                     </div>
@@ -94,8 +95,8 @@
                 <!-- <a class="account-delete-btn" href="/account/delete/">
                     회원 탈퇴
                 </a> -->
-                <!-- <input class="account-modify-form-submit-btn" type="submit" value="저장" onclick="gaClickAccount('account_modify_completed');"> -->
-                <input class="account-modify-form-submit-btn" type="button" value="저장" onClick="location.href='/mypage'">
+                 <input class="account-modify-form-submit-btn" type="submit" value="저장">
+               <!--  <button class="account-modify-form-submit-btn" type="submit"  >저장</button> -->
             </form>
         </article>
     </div>

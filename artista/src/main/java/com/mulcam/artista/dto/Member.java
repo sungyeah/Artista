@@ -11,6 +11,12 @@ public class Member {
 	String memberType;
 	
 	public Member() {}
+	public Member(String id, String contact, String address, String address2) {
+		this.id=id;
+		this.contact=contact;
+		this.address=address;
+		this.address2=address2;
+	}
 	public Member(String id,String password,String name, String email, String contact,
 				String address, String address2,String memberType) {
 		this.id=id;

@@ -25,25 +25,11 @@ public class MyPageController {
 	@Autowired
 	HttpSession session;
 
-//	@GetMapping({"/", ""})
-//	public String mypageMain(@RequestParam("check") String check,  Model model) {
-//		String id = (String) session.getAttribute("id");
-//		try {
-//			Member mem = subPageService.queryId(id);
-//			model.addAttribute("check", check);
-//			model.addAttribute("name",mem.getName());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return "mypage/mypage";
-//	}
-	
 	@GetMapping({"/", ""})
 	public String mypageMain(Model model) {
 		String id = (String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
-//			model.addAttribute("check", check);
 			model.addAttribute("name",mem.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,15 +56,14 @@ public class MyPageController {
 	}
 	
 	@PostMapping("mypagemodify")
-	public String mypagemodify2() {
-		String id=(String) session.getAttribute("id");
+	public ModelAndView mypagemodify2(Member mem) {
+		ModelAndView mv = new ModelAndView("redirect:/mypage");
 		try {
-			Member mem = subPageService.queryId(id);
-//			model.addAttribute("mem",mem);
+			subPageService.updateMember(mem);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "mypage/mypagemodify";
+		return mv;
 	}
 	
 	@ResponseBody
