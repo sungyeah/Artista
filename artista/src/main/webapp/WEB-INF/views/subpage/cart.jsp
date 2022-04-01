@@ -39,19 +39,19 @@
                         <th scope="col" class="cartList-thRemove"></th>
                     </tr>
                     </thead>
-                    <c:forEach items="${carts }" var="cart">
                     <tbody>
-                    	<c:choose>
-                    	<c:when test="${empty carts}">
+                    	  <c:choose> 
+                    	<c:when test='${empty carts}'>
                     		<tr>
                             	<td class="cartList-tdDummy"></td>
                             	<td colspan="3" class="cartList-tdEmpty">렌탈 카트에 담겨있는 작품이 없습니다</td>
                         	</tr>
                     	</c:when>
-                    	<c:otherwise>
+                    	 <c:otherwise> 
+                    		<c:forEach items="${carts }" var="cart">
                         	<tr>
                             <td class="cartList-checkbox">
-                                <input type="checkbox" class="cartList-checkEach" id="cartList-checkEach-${cart.cartNo }" name="order_artwork" value="${cart.workPrice }"  onclick=getCheckedCnt(),itemSum(this.form)>
+                                <input type="checkbox" class="cartList-checkEach" id="cartList-checkEach-${cart.cartNo }" name="order_artwork" value="${cart.workPrice }"  onclick='itemSum(this.form),getCheckedCnt()'>
                                 <label for="cartList-checkEach-${cart.cartNo }"></label>
                             </td>
                             <td class="cartList-tdInfo">
@@ -77,10 +77,10 @@
                             </td>
                         </tr>
                         	
-                        </c:otherwise>
-                    	</c:choose>
+                    		 </c:forEach>
+                          </c:otherwise>
+                    	</c:choose>   
                     </tbody>
-                    </c:forEach>
                     <tfoot>
                     <!-- <tr>
                          <td class="cartList-checkbox">
@@ -106,7 +106,7 @@
                         <li class="cartBoard-li cf">
                             <span class="cartBoard-label">총 구매가격</span>
                             <span class="cartBoard-value">
-                                ￦ <span id="cartBoard-val-amount"></span>
+                                ￦ <span id="cartBoard-val-amount">0</span>
                             </span>
                         </li>
                         <li class="cartBoard-li cf">
@@ -130,7 +130,8 @@
     </div>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>    
 <script>
-
+	
+ 
 	function selectAll(selectAll)  {
 	  const checkboxes 
 	       = document.getElementsByName('order_artwork');
@@ -142,27 +143,49 @@
 	function getCheckedCnt()  {
 		  // 선택된 목록 가져오기
 		  const query = 'input[name="order_artwork"]:checked';
-		  const selectedElements = 
-		      document.querySelectorAll(query);
+		  const selectedElements = document.querySelectorAll(query);
 		  
 		  // 선택된 목록의 갯수 세기
-		  const selectedElementsCnt =
-		        selectedElements.length;
+		  const selectedElementsCnt = selectedElements.length;
 		  // 출력
 		  document.getElementById('cartBoard-val-artworkCount').innerText
 		    = selectedElementsCnt;
 		}
-	function itemSum(frm)
-	{
+	
+	 function itemSum(frm){
 	   var sum = 0;
 	   var count = frm.order_artwork.length;
+	   console.log(count)
 	   for(var i=0; i < count; i++ ){
-	       if( frm.order_artwork[i].checked == true ){
+	       if(frm.order_artwork[i].checked == true ){
 		    sum += parseInt(frm.order_artwork[i].value);
+		    console.log(parseInt(frm.order_artwork[i].value))
+		    
 	       }
 	   }
 	   document.getElementById('cartBoard-val-amount').innerText = sum.toLocaleString();
-	}
+	} 
+	
+	/* function itemSum(frm){
+		   var sum = 0;
+		   
+		// 선택된 목록 가져오기
+			  const query = 'input[name="order_artwork"]:checked';
+			  const selectedElements = document.querySelectorAll(query);
+			  // 선택된 목록의 갯수 세기
+			  const selectedElementsCnt = selectedElements.length;
+		   
+		   for(const i=0; i < selectedElementsCnt; i++ ){
+		       if(frm.order_artwork[i].checked == true ){
+		    	   console.log(frm.order_artwork.checked)
+			    sum += parseInt(frm.order_artwork[i].value);
+			    console.log(parseInt(frm.order_artwork[i].value))
+			    
+		       }
+		   }
+		   document.getElementById('cartBoard-val-amount').innerText = sum.toLocaleString();
+		} */
+	
 	function deleteCart(no){
 		$.ajax({     
 			type:"post",

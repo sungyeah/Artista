@@ -90,9 +90,10 @@
 <!-- create table cart(
 	cartNo int(10) auto_increment not null,
     id varchar(100) not null,
-    productName varchar(100) not null,
-    productCost int(10),
-    productStatus varchar(100),
+    workName varchar(100) not null,
+    workPrice int(10),
+    workArtist varchar(100)not null,
+    workSize varchar(255),
     workNo int(10) not null,
     workImg varchar(255),
     cartDate Datetime,
