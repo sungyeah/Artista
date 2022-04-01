@@ -50,11 +50,11 @@
     }
     .Btn{
         width: 80px;
-        height: 45px;
+        height: 38px;
         background-color: black;
         color: white;
         border: 0;
-        font-size: 20px;
+        font-size: 18px;
         margin-left: 20px;
         margin-right: 20px;
     }
@@ -126,6 +126,27 @@
         -webkit-box-sizing: border-box;
         height: 36px;
         width: 250px;
+        padding: 0 0 0 6px;
+        border: 1px solid #dfdfdf;
+        outline: 0;
+        font-size: 14px;
+    }
+    .account-modify-form-input-address1 {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        height: 36px;
+        width: 260px;
+        padding: 0 0 0 6px;
+        border: 1px solid #dfdfdf;
+        outline: 0;
+        font-size: 14px;
+    }
+    
+    .account-modify-form-input-address2 {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        height: 36px;
+        width: 150px;
         padding: 0 0 0 6px;
         border: 1px solid #dfdfdf;
         outline: 0;

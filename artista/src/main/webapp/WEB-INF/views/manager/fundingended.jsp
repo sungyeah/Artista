@@ -8,8 +8,114 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<link rel="stylesheet" href="../css/applymodal.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script	src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
 </head>
 <body>
+	<div id="fundingdetail" class="modal-overlay">
+        <div class="modal-window">
+            <header class="modal-header">
+            	<div id="apply_close" class="close-area">X</div>
+                <h2 class="modal-header-title">펀딩 내용</h2>
+            </header>
+            <article class="modal-body">
+                <form class="modal-modify-form" method="post">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="8OgojRYOprkIqojoq6rJDIRZ5GySLqG97ZObqNAuZ7hU3OWjqtvuReHD9X6DBckA">
+                    <div class="modal-modify-form-border"></div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 아이디
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" disabled />
+                        </div>
+                    </div>
+                    
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 아티스트 이름
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                        	<input class="modal-modify-form-input" type="text" disabled />
+                        </div>
+                    </div>    
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 이메일
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 목표 금액
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 펀딩 일정
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" style="width:140px;" type="text" disabled /> - <input class="modal-modify-form-input" style="width:140px;" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 대관장소
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 프로젝트 제목
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 프로젝트 소개
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                        	<!-- ckeditor -->
+                            <textarea id="projectIntro" style="width: 250px;;"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 예산정보
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                        	<!-- ckeditor -->
+                            <textarea id="projectBudgetInfo" style="width: 250px;;"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 작가소개
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                        	<!-- ckeditor -->
+                            <textarea id="projectArtistInfo" style="width: 250px;;"></textarea>
+                        </div>
+                    </div>        
+                    <div class="modal-modify-form-border">
+                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
+                            <a class="yesNo-btn" id="close">닫기</a>      
+                        </div>
+                    </div>
+                    </form>
+            </article>  
+        </div>
+    </div>
     <div class="contents">
         <header class="manager-header">
             <h2 class="manager-header-title">관리자 페이지</h2>
@@ -52,47 +158,111 @@
         </nav>
         <article class="member-body">
             <section class="member-list">
-                <table class="member-table">
+            	<table class="member-table">
                     <thead>
                     <tr>
-                        <th scope="col" class="exhibitionNo">펀딩번호</th>
-                        <th scope="col" class="exhibitionTitle">펀딩 제목</th>
-                        <th scope="col" class="artistName">아티스트 필명</th>
-                        <th scope="col" class="exhibitionstart">목표 금액</th>
-                        <th scope="col" class="exhibitionend">달성률</th>
-                        <th scope="col" class="exhibitionspot">펀딩결과 </th>
+                        <th scope="col">펀딩 신청번호</th>
+                        <th scope="col">프로젝트 제목</th>
+                        <th scope="col">아티스트 이름</th>
+                        <th scope="col">목표금액</th>
+                        <th scope="col">대관장소</th>
+                        <th scope="col">달성률</th>
+                        <th scope="col">펀딩결과</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="col" class="exhibitionNo">펀딩번호</th>
-                            <th scope="col" class="exhibitionTitle">펀딩 제목</th>
-                            <th scope="col" class="artistName">아티스트 필명</th>
-                            <th scope="col" class="exhibitionstart">목표 금액</th>
-                            <th scope="col" class="exhibitionend">달성률</th>
-                            <th scope="col" class="exhibitionspot">펀딩성공</th>
-                            <th scope="col">
-                                
-                            </th>
-                        </tr>
-                        <tr>
-                            <th scope="col" class="exhibitionNo">펀딩번호</th>
-                            <th scope="col" class="exhibitionTitle">펀딩 제목</th>
-                            <th scope="col" class="artistName">아티스트 필명</th>
-                            <th scope="col" class="exhibitionstart">목표 금액</th>
-                            <th scope="col" class="exhibitionend">달성률</th>
-                            <th scope="col" class="exhibitionspot">펀딩실패</th>
-                            <th scope="col">
-                                <a class="artist-detail-btn" href="/account/modify/" onclick="gaClickAccount('account_modify');">
-                                   환불완료 처리
-                                </a>
-                            </th>
-                        </tr>
+                    <tr>
+                        <th scope="col" class="fundingNo">펀딩 신청번호</th>
+                        <th scope="col" class="projTitle">프로젝트 제목</th>
+                        <th scope="col" class="artistName">아티스트 이름</th>
+                        <th scope="col" class="targetFunding">목표금액</th>
+                        <th scope="col" class="getplace">대관장소</th>
+                        <th scope="col" class="resultPercent">달성률</th>
+                        <th scope="col" class="fundingState">펀딩성공</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="fundingNo">펀딩 신청번호</th>
+                        <th scope="col" class="projTitle">프로젝트 제목</th>
+                        <th scope="col" class="artistName">아티스트 이름</th>
+                        <th scope="col" class="targetFunding">목표금액</th>
+                        <th scope="col" class="getplace">대관장소</th>
+                        <th scope="col" class="resultPercent">달성률</th>
+                        <th scope="col" class="fundingState">펀딩실패</th>
+                        <th scope="col"><a class="artist-detail-btn detail">상세보기</a></th>
+                        <th scope="col"><a class="artist-detail-btn refund">환불완료처리</a></th>
+                    </tr>
                     </tbody>
                 </table>
             </section>
         </article>
     </div>
+    
+    <script>
+    $(function(){
+    	$(document).on('click', '.refund', function(e){
+    		alert("환불 완료 처리되었습니다.");
+    	});
+    });
+    </script>
+    
+    <script>
+	//modal창
+    const fundingdetail = document.getElementById("fundingdetail");
+    
+    $(function(){
+    	$(document).on('click', '.detail', function(e){
+    		fundingdetail.style.display = "flex";
+    	});
+    	$(document).on('click', '#apply_close', function(e){
+    		fundingdetail.style.display = "none";
+    	});
+    	$(document).on('click', '#close', function(e){
+    		fundingdetail.style.display = "none";
+    	});
+    });
+    
+    //ckeditor
+    $(function(){
+    	ClassicEditor.create(document.querySelector("#projectIntro"))
+    	.then(editor=>{
+    		window.editor = editor;
+    	    editor.isReadOnly = true;
+    	    const toolbarElement = editor.ui.view.toolbar.element;
+    	    toolbarElement.style.display = 'none';
+        	editor.setData();
+        })
+	    .catch((error) => {
+    	   	console.error(error);
+	    });
+    	ClassicEditor.create(document.querySelector("#projectBudgetInfo"))
+    	.then(editor=>{
+    		window.editor = editor;
+    	    editor.isReadOnly = true;
+    	    const toolbarElement = editor.ui.view.toolbar.element;
+    	    toolbarElement.style.display = 'none';
+        	editor.setData();
+        })
+	    .catch((error) => {
+    	   	console.error(error);
+	    });
+    	ClassicEditor.create(document.querySelector("#projectArtistInfo"))
+    	.then(editor=>{
+    		window.editor = editor;
+    	    editor.isReadOnly = true;
+    	    const toolbarElement = editor.ui.view.toolbar.element;
+    	    toolbarElement.style.display = 'none';
+        	editor.setData();
+        })
+	    .catch((error) => {
+    	   	console.error(error);
+	    });
+    });
+    
+    
+    </script>
 </body>
 </html>

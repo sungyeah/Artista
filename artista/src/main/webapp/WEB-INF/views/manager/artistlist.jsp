@@ -52,39 +52,34 @@
                 <table class="member-table">
                     <thead>
                     <tr>
-                        <th scope="col" class="artistNo">아티스트 번호</th>
-                        <th scope="col" class="id">아이디</th>
-                        <th scope="col" class="artistName">아티스트 필명</th>
-                        <th scope="col" class="artistType">아티스트 유형</th>
+                    	<th scope="col">아티스트번호</th>
+                        <th scope="col">회원 아이디</th>
+                        <th scope="col">아티스트이름(필명)</th>
+                        <th scope="col">작가유형</th>
+                        <th scope="col">팔로워수</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="col" class="artistNo">아티스트 번호</th>
-                            <th scope="col" class="id">아이디</th>
-                            <th scope="col" class="artistName">아티스트 필명</th>
-                            <th scope="col" class="artistType">아티스트 유형</th>
-                            <th scope="col">
-                                <a class="artist-detail-btn" href="/account/modify/" onclick="gaClickAccount('account_modify');">
-                                    아티스트 정보확인
-                                </a>
-                            </th>
-                            <th><input type="checkbox" name="xxx"></th>
-                        </tr>
-                        <tr>
-                            <th scope="col" class="artistNo">아티스트 번호</th>
-                            <th scope="col" class="id">아이디</th>
-                            <th scope="col" class="artistName">아티스트 필명</th>
-                            <th scope="col" class="artistType">아티스트 유형</th>
-                            <th scope="col">
-                                <a class="artist-detail-btn" href="/account/modify/" onclick="gaClickAccount('account_modify');">
-                                    아티스트 정보확인
-                                </a>
-                            </th>
-                            <th><input type="checkbox" name="xxx"></th>
-                        </tr>
+                    <tr>
+                    	<th scope="col" class="artistNo">아티스트번호</th>
+                        <th scope="col" class="id">회원 아이디</th>
+                        <th scope="col" class="artistName">아티스트이름(필명)</th>
+                        <th scope="col" class="artistType">작가유형</th>
+                        <th scope="col" class="followerNum">팔로워수</th>
+                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
+                        <th scope="col"><input type="checkbox" name="xxx"></th>
+                    </tr>
+                    <tr>
+                    	<th scope="col" class="artistNo">아티스트번호</th>
+                        <th scope="col" class="id">회원 아이디</th>
+                        <th scope="col" class="artistName">아티스트이름(필명)</th>
+                        <th scope="col" class="artistType">작가유형</th>
+                        <th scope="col" class="followerNum">팔로워수</th>
+                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
+                        <th scope="col"><input type="checkbox" name="xxx"></th>
+                    </tr>
                     </tbody>
                 </table>
                 <a class="member-delete-btn" href="/account/delete/">
