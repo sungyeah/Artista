@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
 <link rel="stylesheet" href="../css/enroll.css">
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
     <div id="contents">
     	<header class="account-header">
             <h2 class="account-header-title">작품 등록하기</h2>
@@ -49,24 +51,21 @@
                         </div>
                         <div class="enroll-modify-form-row-value">
                             <div class="wrap">
-                                <div class="select_box">
-                                    <div class="box">
-                                        <div class="select">선택</div>
-                                        <ul class="list">
-                                            <li class="selected">선택</li>
-                                            <li>항목01</li>
-                                            <li>항목02</li>
-                                            <li>항목03</li>
-                                            <li>항목04</li>
-                                            <li>항목05</li>
-                                            <li>항목06</li>
-                                            <li>항목07</li>
-                                            <li>항목08</li>
-                                            <li>항목09</li>
-                                            <li>항목10</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <div class="select">
+  									<div class="selected">
+    									<div class="selected-value">none</div>
+    									<div class="arrow"></div>
+  									</div>
+  									<ul>
+  									    <li class="option">none</li>
+  									    <li class="option">회화</li>
+  									    <li class="option">조각</li>
+  									    <li class="option">사진</li>
+  									    <li class="option">소묘</li>
+  									    <li class="option">종이</li>
+  									    <li class="option">기타매체</li>
+  									</ul>
+  								</div>
                             </div>
                         </div>
                     </div>
@@ -91,7 +90,7 @@
                             <span class="red">*</span> 작품소개
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="textarea" name="new_password1" placeholder="작품사이즈를 입력하세요" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
+                            <textarea class="enroll-modify-form-input" id="artistIntroduce" name="artistIntroduce" style="width:750px; height: 120px; resize: none;"></textarea>
                         </div>
                     </div>
                     

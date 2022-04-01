@@ -49,24 +49,20 @@
                         </div>
                         <div class="enroll-modify-form-row-value">
                             <div class="wrap">
-                                <div class="select_box">
-                                    <div class="box">
-                                        <div class="select">선택</div>
-                                        <ul class="list">
-                                            <li class="selected">선택</li>
-                                            <li>항목01</li>
-                                            <li>항목02</li>
-                                            <li>항목03</li>
-                                            <li>항목04</li>
-                                            <li>항목05</li>
-                                            <li>항목06</li>
-                                            <li>항목07</li>
-                                            <li>항목08</li>
-                                            <li>항목09</li>
-                                            <li>항목10</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <div class="select">
+  									<div class="selected">
+    									<div class="selected-value">none</div>
+    									<div class="arrow"></div>
+  									</div>
+  									<ul>
+  									    <li class="option">none</li>
+  									    <li class="option">화가</li>
+  									    <li class="option">사진가</li>
+  									    <li class="option">조각가</li>
+  									    <li class="option">소묘화가</li>
+  									    <li class="option">Designer</li>
+  									</ul>
+  								</div>
                             </div>
                         </div>
                     </div>
@@ -103,15 +99,44 @@
                         </div>
                     </div>
                     
-                <div class="account-modify-form-border">
-                    <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        <a class="yesNo-btn" id="workenroll">작품 등록</a>                    
-                        <a class="yesNo-btn" id="cancel">등록 취소</a>      
-                    </div>
+                	<div class="account-modify-form-border">
+                    	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
+                        	<a class="yesNo-btn" id="workenroll">작품 등록</a>                    
+                        	<a class="yesNo-btn" id="cancel">등록 취소</a>      
+                    	</div>
+                	</div>
                 </div>
             </form>
         </article>
     </div>
-        
+
+
+	<script>
+	// selectbox 구현
+	$(document).on("click", ".select", function(e){
+		const selectBoxElements = document.querySelectorAll(".select");
+		function toggleSelectBox(selectBox) {
+			selectBox.classList.toggle("active");
+		}
+		function selectOption(optionElement) {
+			const selectBox = optionElement.closest(".select");
+		  	const selectedElement = selectBox.querySelector(".selected-value");
+		  	selectedElement.textContent = optionElement.textContent;
+		}
+		selectBoxElements.forEach(selectBoxElement => {
+			selectBoxElement.addEventListener("click", function (e) {
+		    	const targetElement = e.target;
+		    	const isOptionElement = targetElement.classList.contains("option");
+		    	if (isOptionElement) {
+		      		selectOption(targetElement);
+		    	}
+		    	toggleSelectBox(selectBoxElement);
+		  	});
+		});
+	});	
+    </script>
+
+
+
 </body>
 </html>

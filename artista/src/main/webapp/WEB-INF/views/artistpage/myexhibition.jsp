@@ -42,7 +42,7 @@
         </nav>
         
         <nav class="member-nav">
-            <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/enrollexhibition" style="width:120px;">
+            <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyexhibition" style="width:120px;">
        		 	전시등록 신청
         	</a>
         </nav>

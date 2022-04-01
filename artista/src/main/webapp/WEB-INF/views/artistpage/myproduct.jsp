@@ -42,7 +42,7 @@
         </nav>
         
         <nav class="member-nav">
-            <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/enrollproduct" style="width:120px;">
+            <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyproduct" style="width:120px;">
                 작품판매 신청
             </a>
         </nav>

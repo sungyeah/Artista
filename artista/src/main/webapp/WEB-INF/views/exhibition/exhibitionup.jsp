@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Artista</title>
     <link rel="stylesheet" href="https://og-data.s3.amazonaws.com/CACHE/css/output.4e774f3b4c87.css" type="text/css">
     <link rel="stylesheet" href="https://og-data.s3.amazonaws.com/CACHE/css/output.75d1aa7676f8.css" type="text/css">
     <script src="https://og-data.s3.amazonaws.com/static/common/js/jquery-1.12.4.min.js"></script>

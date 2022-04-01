@@ -4,16 +4,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("artistpage")
+//@RequestMapping("artistpage")
 @Controller
 public class ArtistPageController {
 
 	// 아티스트의 작품
-	@GetMapping({"", "/", "/mywork"})
+	@GetMapping({"", "/", "artistpage/mywork"})
 	public String artistpageMain() {
 		return "artistpage/mywork";
 	}
-	@GetMapping("enrollwork")
+	@GetMapping("artistpage/enrollwork")
 	public String artistpageEnrollWork() {
 		return "artistpage/enrollwork";
 	}
@@ -23,9 +23,9 @@ public class ArtistPageController {
 	public String artistpageProduct() {
 		return "artistpage/myproduct";
 	}
-	@GetMapping("enrollproduct")
+	@GetMapping("applyproduct")
 	public String artistpageEnrollProduct() {
-		return "artistpage/enrollproduct";
+		return "artistpage/applyproduct";
 	}
 	@GetMapping("myproductsold")
 	public String artistpageProductSold() {
@@ -51,9 +51,9 @@ public class ArtistPageController {
 	public String artistpageExhibition() {
 		return "artistpage/myexhibition";
 	}
-	@GetMapping("enrollexhibition")
+	@GetMapping("applyexhibition")
 	public String artistpageEnrollExhibition() {
-		return "artistpage/enrollexhibition";
+		return "artistpage/applyexhibition";
 	}
 	
 //	@GetMapping("mypagemodify")

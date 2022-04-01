@@ -18,6 +18,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.min.css" rel="stylesheet" type="text/css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/datepicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/i18n/datepicker.en.min.js"></script>
+
 <style>
 	.artistImg {
 		width:300px; height:300px; margin-top:7px; display:inline-block;
@@ -49,7 +50,7 @@
         </header>
 
         <article class="enroll-body">
-            <form class="enroll-modify-form" method="post" enctype="multipart/form-data">
+            <form class="enroll-modify-form" method="post" action="apply" enctype="multipart/form-data">
                 <div class="enroll-modify-form"></div>
                 <div class="certification-container  certified">
                     <div class="enroll-modify-form-row">
@@ -58,7 +59,7 @@
                         </div>
                         <div class="enroll-modify-form-row-value">
                             <img class="artistImg" id="artistThumb" name="artistImg" src="/artistprofile/" />
-                            <input type="file" id="artistImg" /><br>
+                            <input type="file" id="artistImg" name="artistImg" /><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -94,7 +95,7 @@
   									    <li class="option">사진가</li>
   									    <li class="option">조각가</li>
   									    <li class="option">소묘화가</li>
-  									    <li class="option">Designer</li>
+  									    <li class="option">Designers</li>
   									</ul>
   								</div>
                             </div>
@@ -147,7 +148,7 @@
                         	<span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br>
                             <div class="artistsWorld">
 	                        	<img class="artistsWorldImg"/>
-                            	<input type="file" class="fileselect" />
+                            	<input type="file" name="artistWorld" class="fileselect" />
                             </div>
                         </div>
                     </div>
@@ -164,6 +165,7 @@
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                     		<button class="yesNo-btn" id="workenroll" style="width:120px;">아티스트 신청</button>
+                    		<button class="yesNo-btn" id="cancel" type="reset" style="width:120px;">취소</button>
                         	<!--  <a class="yesNo-btn" id="workenroll" style="width:120px;">아티스트 신청</a>-->                    
                         	<a class="yesNo-btn" id="cancel">취소</a>      
                     	</div>
@@ -187,9 +189,7 @@
     	}
     	console.log(JSON.stringify(artistRecordList));
     	
-    	$(".artistRecord").val = JSON.stringify(artistRecordList);
-    	
-  
+    	$(".artistRecord").val = JSON.stringify(artistRecordList);  
     });
     </script>
 

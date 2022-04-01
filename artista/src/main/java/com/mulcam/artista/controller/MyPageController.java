@@ -15,11 +15,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.service.SubPageServiceImpl;
 
@@ -63,9 +67,11 @@ public class MyPageController {
 	@Autowired
 	private ServletContext servletContext;
 	
-	@GetMapping("apply")
-	public String mypageApplyArtist() {
-		return "mypage/apply";
+	@PostMapping("apply")
+	public String mypageApplyArtist(@ModelAttribute ArtistApply apply,
+			@RequestParam(value="artistImg") MultipartFile artistImg,
+			@RequestParam(value = "artistWorld") MultipartFile artistWorld) {
+		return "mypage/applysuccess";
 	}
 	
 	//프로필 프리뷰
@@ -86,7 +92,6 @@ public class MyPageController {
 			}
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("application/octet-stream; charest=UTF-8");
-//			response.setHeader("Content-Disposition", "attachment; filename="+sfilename);
 			OutputStream out=response.getOutputStream();
 			fis=new FileInputStream(file);
 			FileCopyUtils.copy(fis, out); 
