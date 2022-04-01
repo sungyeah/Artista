@@ -2,9 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script	src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -78,7 +75,7 @@
                 장소 대관
             </div>
             <div class="account-modify-form-row-value">
-                <input class="account-modify-form-input" type="text" name="getplace" id="getplace" placeholder="주소" maxlength="20" style="margin-bottom:7px;cursor:pointer" onClick=search3() >
+                <input class="account-modify-form-input" type="text" name="getplace" id="getplace" placeholder="주소" maxlength="20" style="margin-bottom:7px;cursor:pointer" onClick=search3()>
                 <input class="change-password-btn" type="button" id="search" value="검색" data-mode="change" onClick=search3()><br>
                 <input class="account-modify-form-input" type="text" name="getplace2" id="getplace2" placeholder="상세주소" maxlength="20"><br>
        		</div>
