@@ -15,4 +15,6 @@ public interface SubPageService {
 	List<Member> memberList() throws Exception;             //회원전체조회
 	boolean accessMember(String id, String password) throws Exception; //로그인 확인
 	void makemember2(String id,String name,String email) throws Exception;     //회원가입2
+
+	public void changeMemberType(String id, String memberType) throws Exception;	// 일반회원->아티스트변경
 }

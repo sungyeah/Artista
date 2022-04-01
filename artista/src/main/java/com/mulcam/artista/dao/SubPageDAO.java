@@ -19,4 +19,5 @@ public interface SubPageDAO {
 	public List<Member> memberList()throws Exception;      //회원목록 조회
 	public void deleteId(String id)throws Exception;       //아이디 삭제
 	public void insertMember2(Map map)throws Exception;    //회원가입
+	public void updateMemberType(Map map)throws Exception; //회원유형 변경
 }

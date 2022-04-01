@@ -59,6 +59,12 @@
 		]]>
 	</delete>
 	
+	<!-- 회원유형 변경 -->
+	<update id="updateMemberType" parameterType="map">
+		<![CDATA[
+			update member set membertype=#{membertype} where id=#{id}
+		]]>
+	</update>
 
 </mapper>
 <!-- create table member(
