@@ -34,7 +34,7 @@
 	<!-- 회원가입 -->
 	<update id="updateMember" parameterType="member" >
 		<![CDATA[
-			update member set email=#{email}, contact=#{contact}, address=#{address}, address2=#{address2}) where id=#{id}
+			update member set contact=#{contact}, address=#{address}, address2=#{address2} where id=#{id}
 		]]>
 	</update>
 	

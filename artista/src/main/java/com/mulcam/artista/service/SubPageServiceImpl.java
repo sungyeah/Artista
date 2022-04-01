@@ -49,15 +49,16 @@ public class SubPageServiceImpl implements SubPageService{
 	}
 
 	@Override
-	public Member updateMember(Member mem) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateMember(Member mem) throws Exception {
+		subpageDAO.updateMember(mem);
 	}
 
 	@Override
 	public void changePw(String id, String password) throws Exception {
-		// TODO Auto-generated method stub
-		
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("password", password);
+		subpageDAO.changePw(map);
 	}
 
 	@Override

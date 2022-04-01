@@ -2,6 +2,7 @@ package com.mulcam.artista.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 //@RequestMapping("artistpage")
@@ -41,10 +42,28 @@ public class ArtistPageController {
 	public String applyfunding() {
 		return "artistpage/applyfunding";
 	}
+	
+//	@PostMapping("applyfunding")
+//	public String fundingwrite() {
+//		return "artistpage/applyfunding";
+//	}
+//	
 	@GetMapping("modifyfunding")
 	public String modifyfunding() {
 		return "artistpage/modifyfunding";
 	}
+	
+	@GetMapping("search")
+	public String succes() {
+		return "artistpage/search";
+	}
+	
+	@PostMapping("search")
+	public String succesapply() {
+		return "artistpage/search";
+	}
+	
+
 	
 	// 아티스트의 전시
 	@GetMapping("myexhibition")

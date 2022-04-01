@@ -50,19 +50,6 @@ public class SubPageController {
 		return mv;   //나중에 메인으로 변경
 	}
 	
-//	@ResponseBody
-//	@PostMapping("login")
-//	public boolean login(@RequestParam Map<String,String> info,Model model) {
-//		boolean check = false;
-//		try {
-//			String id=info.get("id");
-//			String password=info.get("password");
-//			check = subPageService.accessMember(id, password);
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return check;
-//	}
 	
 //	@GetMapping("naverlogin")
 //	public String naverlogin() {
@@ -105,7 +92,7 @@ public class SubPageController {
 	}
 	@PostMapping("join")
 	public ModelAndView join(@ModelAttribute Member mem) {
-		ModelAndView mv = new ModelAndView("login");
+		ModelAndView mv = new ModelAndView("redirect:/login");
 		System.out.println(mem);
 		try {
 			subPageService.makemember(mem);
