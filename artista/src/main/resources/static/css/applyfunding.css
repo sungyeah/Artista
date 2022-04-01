@@ -5,12 +5,13 @@
     #faq-title {
       font-size: 25px;
     }
-    .faq-content {
+    .proj-content {
       border-bottom: 1px solid #e0e0e0;
     }
     .question {
+      display:inline-block;
       font-size: 19px;
-      padding: 30px 0;
+      padding: 20px 0;
       cursor: pointer;
       border: none;
       outline: none;
@@ -131,24 +132,17 @@
         outline: 0;
         font-size: 14px;
     }
-    .account-modify-form-input-address1 {
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        height: 36px;
-        width: 260px;
-        padding: 0 0 0 6px;
-        border: 1px solid #dfdfdf;
-        outline: 0;
-        font-size: 14px;
-    }
     
-    .account-modify-form-input-address2 {
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        height: 36px;
-        width: 150px;
-        padding: 0 0 0 6px;
-        border: 1px solid #dfdfdf;
-        outline: 0;
-        font-size: 14px;
-    }
+    .change-password-btn {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 70px;
+    height: 36px;
+    padding: 0;
+    margin-left: 8px;
+    border: 1px solid #222222;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #222222;
+    text-align: center;
+}

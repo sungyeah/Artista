@@ -1,5 +1,12 @@
 package com.mulcam.artista.dao;
 
-public class FundingDAO {
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import com.mulcam.artista.dto.Funding;
+
+@Mapper
+@Repository
+public interface FundingDAO {
+	public void insertApply(Funding funding) throws Exception; //작가가 펀딩 신청
 }

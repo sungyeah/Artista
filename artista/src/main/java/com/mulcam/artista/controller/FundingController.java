@@ -1,10 +1,16 @@
 package com.mulcam.artista.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.mulcam.artista.service.FundingServiceImpl;
+
 	@Controller
 	public class FundingController {
+	
 		
 		//펀딩 리스트
 		@GetMapping("fundinguc")
