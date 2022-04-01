@@ -51,7 +51,7 @@
                     		<c:forEach items="${carts }" var="cart">
                         	<tr>
                             <td class="cartList-checkbox">
-                                <input type="checkbox" class="cartList-checkEach" id="cartList-checkEach-${cart.cartNo }" name="order_artwork" value="${cart.workPrice }"  onclick='itemSum(this.form),getCheckedCnt()'>
+                                <input type="checkbox" class="cartList-checkEach" id="cartList-checkEach-${cart.cartNo }" name="order_artwork" value="${cart.workPrice }" onclick='itemSum(),getCheckedCnt()'>
                                 <label for="cartList-checkEach-${cart.cartNo }"></label>
                             </td>
                             <td class="cartList-tdInfo">
@@ -152,39 +152,19 @@
 		    = selectedElementsCnt;
 		}
 	
-	 function itemSum(frm){
-	   var sum = 0;
-	   var count = frm.order_artwork.length;
-	   console.log(count)
-	   for(var i=0; i < count; i++ ){
-	       if(frm.order_artwork[i].checked == true ){
-		    sum += parseInt(frm.order_artwork[i].value);
-		    console.log(parseInt(frm.order_artwork[i].value))
-		    
-	       }
-	   }
-	   document.getElementById('cartBoard-val-amount').innerText = sum.toLocaleString();
-	} 
-	
-	/* function itemSum(frm){
-		   var sum = 0;
+	  function itemSum(){
 		   
 		// 선택된 목록 가져오기
-			  const query = 'input[name="order_artwork"]:checked';
-			  const selectedElements = document.querySelectorAll(query);
-			  // 선택된 목록의 갯수 세기
-			  const selectedElementsCnt = selectedElements.length;
-		   
-		   for(const i=0; i < selectedElementsCnt; i++ ){
-		       if(frm.order_artwork[i].checked == true ){
-		    	   console.log(frm.order_artwork.checked)
-			    sum += parseInt(frm.order_artwork[i].value);
-			    console.log(parseInt(frm.order_artwork[i].value))
+		   var sum = 0;
+		   var count = document.getElementsByName("order_artwork").length;
+		   for(var i=0; i < count; i++ ){
+		       if(document.getElementsByName("order_artwork")[i].checked == true ){
+			    sum += parseInt(document.getElementsByName("order_artwork")[i].value);
 			    
 		       }
 		   }
 		   document.getElementById('cartBoard-val-amount').innerText = sum.toLocaleString();
-		} */
+		}   
 	
 	function deleteCart(no){
 		$.ajax({     

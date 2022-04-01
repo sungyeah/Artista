@@ -96,7 +96,14 @@ public class SubPageServiceImpl implements SubPageService{
 		subpageDAO.deleteCart(cartNo);
 		
 	}
-
-
+	
+	// 예선 : 일반회원 -> 아티스트
+	@Override
+	public void changeMemberType(String id, String memberType) throws Exception  {
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("membertype", memberType);
+		subpageDAO.updateMemberType(map);
+	}
 
 }

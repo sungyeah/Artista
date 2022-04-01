@@ -231,9 +231,6 @@ img {
 .cartList-info-price {
     display: none;
 }
-#cartList tr:last-child td {
-    border-color: #dfdfdf;
-}
 .cartList-tdPrice {
     text-align: center;
     font-size: 18px;
@@ -347,4 +344,10 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
     border: 1px solid #222;
     background: #222;
     color: #fff;
+}
+.cartList-tdEmpty {
+    height: 120px;
+    padding-right: 66px;
+    text-align: center;
+    font-size: 14px;
 }

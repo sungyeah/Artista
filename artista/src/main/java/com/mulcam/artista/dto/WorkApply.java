@@ -1,7 +1,7 @@
 package com.mulcam.artista.dto;
 
-public class Work {
-	int workNo;
+public class WorkApply {
+	int workapplyNo;
 	int artistNo;
 	String workName;
 	String workImg;
@@ -9,16 +9,17 @@ public class Work {
 	String workTech;
 	String workSize;
 	String workIntro;
-	String pickupAddress;
 	int workPrice;
-	boolean workForSale;
+	String pickupAddress;
+	int applyState;
+	String refusedContents;
 	
-	public Work() {} 
-	public int getWorkNo() {
-		return workNo;
+	public WorkApply() {}
+	public int getWorkapplyNo() {
+		return workapplyNo;
 	}
-	public void setWorkNo(int workNo) {
-		this.workNo = workNo;
+	public void setWorkapplyNo(int workapplyNo) {
+		this.workapplyNo = workapplyNo;
 	}
 	public int getArtistNo() {
 		return artistNo;
@@ -62,23 +63,29 @@ public class Work {
 	public void setWorkIntro(String workIntro) {
 		this.workIntro = workIntro;
 	}
-	public String getPickupAddress() {
-		return pickupAddress;
-	}
-	public void setPickupAddress(String pickupAddress) {
-		this.pickupAddress = pickupAddress;
-	}
 	public int getWorkPrice() {
 		return workPrice;
 	}
 	public void setWorkPrice(int workPrice) {
 		this.workPrice = workPrice;
 	}
-	public boolean isWorkForSale() {
-		return workForSale;
+	public String getPickupAddress() {
+		return pickupAddress;
 	}
-	public void setWorkForSale(boolean workForSale) {
-		this.workForSale = workForSale;
+	public void setPickupAddress(String pickupAddress) {
+		this.pickupAddress = pickupAddress;
 	}
+	public int getApplyState() {
+		return applyState;
+	}
+	public void setApplyState(int applyState) {
+		this.applyState = applyState;
+	}
+	public String getRefusedContents() {
+		return refusedContents;
+	}
+	public void setRefusedContents(String refusedContents) {
+		this.refusedContents = refusedContents;
+	} 
 	
 }

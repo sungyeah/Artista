@@ -24,6 +24,7 @@ public class Funding {
 		int sponsorAmount;
 		String email;
 		public Funding() {}
+		
 		public Funding(String projTitle, String projIntro, String projBudget,
 				String projArtist, int targetFunding, String fundingDate, String thumbImg,
 				String getplace, String getplace2) {
