@@ -59,12 +59,20 @@
 		]]>
 	</delete>
 	
-	<!-- 회원유형 변경 -->
-	<update id="updateMemberType" parameterType="map">
+	<!-- 회원가입 -->
+	<select id="cartList" resultType="cart" parameterType="string">
 		<![CDATA[
-			update member set membertype=#{membertype} where id=#{id}
+			select * from cart where id=#{id}
 		]]>
-	</update>
+	</select>
+	
+	<!-- 회원가입 -->
+	<delete id="deleteCart" parameterType="int">
+		<![CDATA[
+			delete from cart where cartNo=#{cartNo}
+		]]>
+	</delete>
+	
 
 </mapper>
 <!-- create table member(
@@ -82,9 +90,10 @@
 <!-- create table cart(
 	cartNo int(10) auto_increment not null,
     id varchar(100) not null,
-    productName varchar(100) not null,
-    productCost int(10),
-    productStatus varchar(100),
+    workName varchar(100) not null,
+    workPrice int(10),
+    workArtist varchar(100)not null,
+    workSize varchar(255),
     workNo int(10) not null,
     workImg varchar(255),
     cartDate Datetime,

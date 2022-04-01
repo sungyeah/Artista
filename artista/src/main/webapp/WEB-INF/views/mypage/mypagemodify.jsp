@@ -49,10 +49,11 @@
                     </div>
                     <div class="account-modify-form-row-value">
                         
-                            <input class="account-modify-form-input" type="password" name="password" id="password" placeholder="기존 비밀번호" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
-                            <input class="account-modify-form-input" type="password" name="new_password1" id="password1" placeholder="새 비밀번호" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
+                            <input class="account-modify-form-input" type="password" name="password" id="password" placeholder="기존 비밀번호" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><span style="margin-left:30px;color:gray;font-size:smaller;">SNS 로그인 시 첫 비밀번호는 1234입니다.</span><br>
+                            <input class="account-modify-form-input" type="password" name="new_password1" id="password1" placeholder="새 비밀번호" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br> 
                             <input class="account-modify-form-input" type="password" name="new_password2" id="password2" placeholder="새 비밀번호 확인" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off">
                             <input class="change-password-btn" type="button" id="update" value="변경" data-mode="change">
+                            
                         
                     </div>
                 </div>

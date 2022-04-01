@@ -273,9 +273,9 @@
 
 </div>
 <%@include file ="footer.jsp" %>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>  -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-    <script type="text/javascript">
+    <script>
  	if('${check}'=="naver"){
  		var naver_id_login = new naver_id_login("2R257h5lNLRrx1vJnLgV", "http://localhost:8090/callback");
  		 // 접근 토큰 값 출력 

@@ -114,7 +114,7 @@ public class ArtistPageController {
 
 	
 	@ResponseBody
-	@PostMapping("/fundingApp")
+	@PostMapping("fundingApp")
 	public Map<String, Object> fileupload(@RequestParam(value="fundingApp") MultipartFile file) {
 		System.out.println(file.getOriginalFilename()+"---------------------");
 		String path = servletContext.getRealPath("/fundingApp/");

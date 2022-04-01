@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.SubPageDAO;
+import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
 
 @Service
@@ -85,14 +86,17 @@ public class SubPageServiceImpl implements SubPageService{
 		
 	}
 
-	// 예선 : 일반회원 -> 아티스트
 	@Override
-	public void changeMemberType(String id, String memberType) throws Exception  {
-		Map<String,Object> map = new HashMap<>();
-		map.put("id", id);
-		map.put("membertype", memberType);
-		subpageDAO.updateMemberType(map);
+	public List<Cart> cartList(String id) throws Exception {
+		return subpageDAO.cartList(id);
 	}
+
+	@Override
+	public void deleteCart(int cartNo) throws Exception {
+		subpageDAO.deleteCart(cartNo);
+		
+	}
+
 
 
 }
