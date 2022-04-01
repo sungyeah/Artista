@@ -67,9 +67,9 @@ public class MyPageController {
 	private ServletContext servletContext;
 	
 	@GetMapping("apply")
-	public String mypageApplyArtist() {
-		//String id = (String) session.getAttribute("id");
-		//model.addAttribute("name",mem.getName());
+	public String mypageApplyArtist(Model model) {
+		String id = (String) session.getAttribute("id");
+		model.addAttribute("id", id);
 		return "mypage/apply";
 	}
 	
@@ -79,7 +79,7 @@ public class MyPageController {
 			@RequestParam(value="artistImgFile") MultipartFile artistImgFile,
 			MultipartHttpServletRequest mrequest) {
 		
-		/* 아티스트 대표이미지 업로드 */
+		/* 아티스트 대표이미지 저장 */
 		String path = servletContext.getRealPath("/imgupload/artistProfile/");
 		String[] mtypes = artistImgFile.getContentType().split("/");
 		File destFile = new File(path + apply.getArtistName() +"."+ mtypes[1]);
@@ -134,6 +134,7 @@ public class MyPageController {
 			e1.printStackTrace();
 		}		
 		
+		/*
 		String id = (String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
@@ -141,8 +142,8 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return "mypage/applysuccess";
+		*/
+		return "mypage/succesapply";
 	}
 	
 	//프로필 프리뷰
