@@ -10,11 +10,12 @@ public class Funding {
 		String projBudget;
 		String projArtist;
 		int targetFunding;
-		Date fundingDate;
+		String fundingDate;
 		String thumbImg;
 		int applyStatus;
 		String refusedContents;
 		String getplace;
+		String getplace2;
 		Date applydate;
 		int sumAmount;
 		int fundingState;
@@ -22,11 +23,10 @@ public class Funding {
 		String id;
 		int sponsorAmount;
 		String email;
-		public Funding(int fundingNo, int artistNo, String projTitle, String projIntro, String projBudget,
-				String projArtist, int targetFunding, Date fundingDate, String thumbImg, int applyStatus,
-				String refusedContents, String getplace, Date applydate) {
-			this.fundingNo = fundingNo;
-			this.artistNo = artistNo;
+		public Funding() {}
+		public Funding(String projTitle, String projIntro, String projBudget,
+				String projArtist, int targetFunding, String fundingDate, String thumbImg,
+				String getplace, String getplace2) {
 			this.projTitle = projTitle;
 			this.projIntro = projIntro;
 			this.projBudget = projBudget;
@@ -34,13 +34,11 @@ public class Funding {
 			this.targetFunding = targetFunding;
 			this.fundingDate = fundingDate;
 			this.thumbImg = thumbImg;
-			this.applyStatus = applyStatus;
-			this.refusedContents = refusedContents;
 			this.getplace = getplace;
-			this.applydate = applydate;
+			this.getplace2=getplace2;
 		}
 		public Funding(int fundingNo, int artistNo, String projTitle, String projIntro, String projBudget,
-				String projArtist, int targetFunding, Date fundingDate, String thumbImg, String getplace, int sumAmount,
+				String projArtist, int targetFunding, String fundingDate, String thumbImg, String getplace, int sumAmount,
 				int fundingState) {
 			this.fundingNo = fundingNo;
 			this.artistNo = artistNo;
@@ -105,10 +103,10 @@ public class Funding {
 		public void setTargetFunding(int targetFunding) {
 			this.targetFunding = targetFunding;
 		}
-		public Date getFundingDate() {
+		public String getFundingDate() {
 			return fundingDate;
 		}
-		public void setFundingDate(Date fundingDate) {
+		public void setFundingDate(String fundingDate) {
 			this.fundingDate = fundingDate;
 		}
 		public String getThumbImg() {
@@ -134,6 +132,13 @@ public class Funding {
 		}
 		public void setGetplace(String getplace) {
 			this.getplace = getplace;
+		}
+		
+		public String getGetplace2() {
+			return getplace2;
+		}
+		public void setGetplace2(String getplace2) {
+			this.getplace2 = getplace2;
 		}
 		public Date getApplydate() {
 			return applydate;

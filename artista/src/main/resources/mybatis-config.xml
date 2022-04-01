@@ -6,6 +6,8 @@
 		<mapper resource="mybatis/mappers/mypage.xml"/>
 		<mapper resource="mybatis/mappers/subpage.xml"/>
 		<mapper resource="mybatis/mappers/funding.xml"/>
+		<mapper resource="mybatis/mappers/artistapply.xml"/>
+		<mapper resource="mybatis/mappers/artistworld.xml"/>
 	</mappers>
 </configuration>
 

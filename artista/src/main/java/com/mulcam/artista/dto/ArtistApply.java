@@ -5,6 +5,7 @@ public class ArtistApply {
 	String id;
 	String artistName;
 	String artistImg;
+	String artistType;
 	String artistIntroduce;
 	String artistRecord;
 	String artistInstagram;
@@ -12,14 +13,14 @@ public class ArtistApply {
 	String refusedContents;
 	
 	ArtistApply(){}
-	ArtistApply(String id, String artistName, String artistImg, String artistIntroduce,
+	/*ArtistApply(String id, String artistName, String artistImg, String artistIntroduce,
 			String artistRecord, String artistInstagram){
 		this.id = id;
 		this.artistName = artistName;
 		this.artistImg = artistImg;
 		this.artistRecord = artistRecord;
 		this.artistInstagram = artistInstagram;
-	}
+	}*/
 	
 	public int getArtistNo() {
 		return artistNo;
@@ -44,6 +45,12 @@ public class ArtistApply {
 	}
 	public void setArtistImg(String artistImg) {
 		this.artistImg = artistImg;
+	}
+	public String getArtistType() {
+		return artistType;
+	}
+	public void setArtistType(String artistType) {
+		this.artistType = artistType;
 	}
 	public String getArtistIntroduce() {
 		return artistIntroduce;
