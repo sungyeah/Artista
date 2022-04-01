@@ -19,4 +19,6 @@ public interface SubPageService {
 	
 	List<Cart> cartList(String id) throws Exception; //카트리스트 조회
 	void deleteCart(int cartNo)throws Exception;
+	
+	public void changeMemberType(String id, String memberType) throws Exception;	// 일반회원->아티스트변경
 }
