@@ -30,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.Member;
+import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistWorldService;
 import com.mulcam.artista.service.SubPageServiceImpl;
 
@@ -39,6 +40,9 @@ public class MyPageController {
 	
 	@Autowired
 	SubPageServiceImpl subPageService;
+	
+	@Autowired
+	ArtistApplyService artistapplyService;
 	@Autowired
 	ArtistWorldService artistworldService;
 	
@@ -72,7 +76,7 @@ public class MyPageController {
 			@ModelAttribute ArtistApply apply,
 			@RequestParam(value="artistImgFile") MultipartFile artistImgFile,
 			MultipartHttpServletRequest mrequest) {
-	
+		
 		/* 아티스트 대표이미지 업로드 */
 		String path = servletContext.getRealPath("/imgupload/artistProfile/");
 		String[] mtypes = artistImgFile.getContentType().split("/");
@@ -118,6 +122,16 @@ public class MyPageController {
 				}
 			}
 		}
+		
+		try {
+			apply.setArtistNo(artistapplyService.getApplyArtistId());
+			System.out.println(apply.getArtistNo());
+			artistapplyService.insertArtistApply(apply);
+			
+		} catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}		
 		return "mypage/applysuccess";
 	}
 	

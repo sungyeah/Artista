@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,13 +38,11 @@
 	.artistsWorldImg {
 		width:300px; height:300px; margin-top:7px; display:inline-block; 
 	}
-	
-	
 </style>
 
 </head>
 <body>
-    <div id="contents">
+	<div id="contents">
     	<header class="account-header">
             <h2 class="account-header-title">작가등록 신청</h2>
             <div class="account-header-description">등록할 작가정보를 입력하세요.</div>
@@ -76,7 +75,7 @@
                             <span class="red">*</span> 필명
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="text" id="artistName" name="artistName" value="강호동" placeholder="필명을 입력하세요" autocomplete="off" autocapitalize="off"><br>
+                            <input class="enroll-modify-form-input" type="text" id="artistName" name="artistName" placeholder="필명을 입력하세요" autocomplete="off" autocapitalize="off"><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -176,7 +175,7 @@
     
     <script>
     $("#workenroll").click(function(){
-    	$("#artistType").val = $(".selected-value").eq(0).text();
+    	$("#artistType").attr("value", $(".selected-value").eq(0).text());
     	
     	var artistRecordList = new Array();
     	for(var i=0; i<record; i++){
