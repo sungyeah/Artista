@@ -2,6 +2,7 @@ package com.mulcam.artista.service;
 
 import java.util.List;
 
+import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
 
 public interface SubPageService {
@@ -15,4 +16,7 @@ public interface SubPageService {
 	List<Member> memberList() throws Exception;             //회원전체조회
 	boolean accessMember(String id, String password) throws Exception; //로그인 확인
 	void makemember2(String id,String name,String email) throws Exception;     //회원가입2
+	
+	List<Cart> cartList(String id) throws Exception; //카트리스트 조회
+	void deleteCart(int cartNo)throws Exception;
 }

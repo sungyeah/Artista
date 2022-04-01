@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,7 @@
                     <thead>
                     <tr>
                         <th scope="col" class="cartList-checkbox">
-                            <input type="checkbox" class="cartList-checkAll" id="cartList-checkAll-1">
+                            <input type="checkbox" class="cartList-checkAll" id="cartList-checkAll-1" onclick="selectAll(this),getCheckedCnt(),itemSum(this.form)">
                             <label for="cartList-checkAll-1"></label>
                         </th>
                         <th scope="col" class="cartList-thInfo">작품정보</th>
@@ -38,44 +39,48 @@
                         <th scope="col" class="cartList-thRemove"></th>
                     </tr>
                     </thead>
+                    <c:forEach items="${carts }" var="cart">
                     <tbody>
-                    
-                        <tr>
+                    	<c:choose>
+                    	<c:when test="${empty carts}">
+                    		<tr>
+                            	<td class="cartList-tdDummy"></td>
+                            	<td colspan="3" class="cartList-tdEmpty">렌탈 카트에 담겨있는 작품이 없습니다</td>
+                        	</tr>
+                    	</c:when>
+                    	<c:otherwise>
+                        	<tr>
                             <td class="cartList-checkbox">
-                                <input type="checkbox" class="cartList-checkEach" id="cartList-checkEach-1" name="order_artwork" value="14213" data-code="A0365-0017" data-amount="300000" checked="checked">
-                                <label for="cartList-checkEach-1"></label>
+                                <input type="checkbox" class="cartList-checkEach" id="cartList-checkEach-${cart.cartNo }" name="order_artwork" value="${cart.workPrice }"  onclick=getCheckedCnt(),itemSum(this.form)>
+                                <label for="cartList-checkEach-${cart.cartNo }"></label>
                             </td>
                             <td class="cartList-tdInfo">
                                 <a class="cartList-imageHolder" href="/artwork/A0365-0017/">
                                     <img class="cartList-image" src="https://og-data.s3.amazonaws.com/media/artworks/h_fixed/A0365/A0365-0017.jpg">
                                 </a>
                                 <div class="cartList-info">
-                                    <p class="cartList-info-code"><a href="/artwork/A0365-0017/">A0365-0017</a></p>
-                                    <p class="cartList-info-title"><a href="/artwork/A0365-0017/">송대공원</a></p>
+                                    <p class="cartList-info-code"><a href="/artwork/A0365-0017/">${cart.workNo }</a></p>
+                                    <p class="cartList-info-title"><a href="/artwork/A0365-0017/">${cart.workName }</a></p>
                                     <p class="cartList-info-extra">
-                                        <a href="/artist/A0365/#artworks">추연신</a>
+                                        <a href="/artist/A0365/#artworks">${cart.workArtist }</a>
                                         <span class="cartList-info-slash">/</span>
                                         <br class="cartList-info-br">
-                                        45x38cm (8호)
-                                    </p>
-                                    <p class="cartList-info-price">
-                                        
-                                            ￦ 300,000
-                                        
+                                        ${cart.workSize }
                                     </p>
                                 </div>
                             </td>
                             <td class="cartList-tdPrice">
-                                
-                                    ￦ 300,000
-                                
+                                ￦ <fmt:formatNumber value="${cart.workPrice }"/>
                             </td>
                             <td class="cartList-tdRemove">
-                                <input type="button" class="cartList-removeEach" value="삭제" onclick="opg.fn.remove_from_cart('p', 'A0365-0017');">
+                                <input type="button" class="cartList-removeEach" value="삭제" onclick="deleteCart('${cart.cartNo}')">
                             </td>
                         </tr>
-                    
+                        	
+                        </c:otherwise>
+                    	</c:choose>
                     </tbody>
+                    </c:forEach>
                     <tfoot>
                     <!-- <tr>
                          <td class="cartList-checkbox">
@@ -95,13 +100,13 @@
                         <li class="cartBoard-li cf">
                             <span class="cartBoard-label">총 작품수</span>
                             <span class="cartBoard-value">
-                                <span id="cartBoard-val-artworkCount">1</span> 점
+                                <span id="cartBoard-val-artworkCount">0</span> 점
                             </span>
                         </li>
                         <li class="cartBoard-li cf">
                             <span class="cartBoard-label">총 구매가격</span>
                             <span class="cartBoard-value">
-                                ￦ <span id="cartBoard-val-amount">300,000</span>
+                                ￦ <span id="cartBoard-val-amount"></span>
                             </span>
                         </li>
                         <li class="cartBoard-li cf">
@@ -123,5 +128,59 @@
             </form>
         </section>
     </div>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>    
+<script>
+
+	function selectAll(selectAll)  {
+	  const checkboxes 
+	       = document.getElementsByName('order_artwork');
+	  
+	  checkboxes.forEach((checkbox) => {
+	    checkbox.checked = selectAll.checked;
+	  })
+	}
+	function getCheckedCnt()  {
+		  // 선택된 목록 가져오기
+		  const query = 'input[name="order_artwork"]:checked';
+		  const selectedElements = 
+		      document.querySelectorAll(query);
+		  
+		  // 선택된 목록의 갯수 세기
+		  const selectedElementsCnt =
+		        selectedElements.length;
+		  // 출력
+		  document.getElementById('cartBoard-val-artworkCount').innerText
+		    = selectedElementsCnt;
+		}
+	function itemSum(frm)
+	{
+	   var sum = 0;
+	   var count = frm.order_artwork.length;
+	   for(var i=0; i < count; i++ ){
+	       if( frm.order_artwork[i].checked == true ){
+		    sum += parseInt(frm.order_artwork[i].value);
+	       }
+	   }
+	   document.getElementById('cartBoard-val-amount').innerText = sum.toLocaleString();
+	}
+	function deleteCart(no){
+		$.ajax({     
+			type:"post",
+			dataType:"text",
+			async:false,
+			url:"http://localhost:8090/delete",
+			data:{"no":no},
+			success: function(data, textStatus){
+				alert("삭제가 완료되었습니다.")
+				location.reload();
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		});
+	}
+	
+	
+</script>
 </body>
 </html>

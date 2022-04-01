@@ -1,5 +1,6 @@
 package com.mulcam.artista.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.service.SubPageServiceImpl;
 
@@ -114,9 +116,28 @@ public class SubPageController {
 	}
 	
 	@GetMapping("cart")
-	public String cart() {
-		return "subpage/cart";
+	public ModelAndView cart() {
+		ModelAndView mv = new ModelAndView("subpage/cart");
+		String id = (String) session.getAttribute("id");
+		try {
+			List<Cart> carts = subPageService.cartList(id);
+			mv.addObject("carts",carts);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mv;
 	}
+	
+	@ResponseBody
+	@PostMapping("delete")
+	public void deleteCart(@RequestParam(value="no")int cartNo) {
+		try {
+			subPageService.deleteCart(cartNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@GetMapping("payment")
 	public String payment() {
 		return "subpage/payment";

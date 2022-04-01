@@ -3,20 +3,22 @@ package com.mulcam.artista.dto;
 public class Cart {
 	int cartNo;
 	String id;
-	String productName;
-	int productCost;
-	String productStatus;
+	String workName;
+	int workPrice;
+	String workArtist;
+	String WorkSize;
 	int workNo;
 	String workImg;
 	String cartDate;
 	
 	public Cart() {}
-	public Cart(int cartNo,String id,String productName,int productCost,String productStatus,int workNo,String workImg,String cartDate) {
+	public Cart(int cartNo,String id,String workName,int workPrice,String workArtist, String WorkSize,int workNo,String workImg,String cartDate) {
 		this.cartNo=cartNo;
 		this.id=id;
-		this.productName=productName;
-		this.productCost=productCost;
-		this.productStatus=productStatus;
+		this.workName=workName;
+		this.workPrice=workPrice;
+		this.workArtist=workArtist;
+		this.WorkSize=WorkSize;
 		this.workNo=workNo;
 		this.workImg=workImg;
 		this.cartDate=cartDate;
@@ -33,23 +35,29 @@ public class Cart {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getProductName() {
-		return productName;
+	public String getWorkName() {
+		return workName;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setWorkName(String workName) {
+		this.workName = workName;
 	}
-	public int getProductCost() {
-		return productCost;
+	public int getWorkPrice() {
+		return workPrice;
 	}
-	public void setProductCost(int productCost) {
-		this.productCost = productCost;
+	public void setWorkPrice(int workPrice) {
+		this.workPrice = workPrice;
 	}
-	public String getProductStatus() {
-		return productStatus;
+	public String getWorkArtist() {
+		return workArtist;
 	}
-	public void setProductStatus(String productStatus) {
-		this.productStatus = productStatus;
+	public void setWorkArtist(String workArtist) {
+		this.workArtist = workArtist;
+	}
+	public String getWorkSize() {
+		return WorkSize;
+	}
+	public void setWorkSize(String workSize) {
+		WorkSize = workSize;
 	}
 	public int getWorkNo() {
 		return workNo;
@@ -69,4 +77,5 @@ public class Cart {
 	public void setCartDate(String cartDate) {
 		this.cartDate = cartDate;
 	}
+	
 }

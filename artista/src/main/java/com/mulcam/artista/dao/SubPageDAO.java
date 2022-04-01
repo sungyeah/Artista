@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
 
 @Mapper
@@ -19,4 +20,8 @@ public interface SubPageDAO {
 	public List<Member> memberList()throws Exception;      //회원목록 조회
 	public void deleteId(String id)throws Exception;       //아이디 삭제
 	public void insertMember2(Map map)throws Exception;    //회원가입
+	
+	public List<Cart> cartList(String id)throws Exception; //카트리스트 조회
+	public void deleteCart(int cartNo)throws Exception;
+
 }

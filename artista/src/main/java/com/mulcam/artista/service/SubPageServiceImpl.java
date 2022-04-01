@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.SubPageDAO;
+import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
 
 @Service
@@ -84,6 +85,18 @@ public class SubPageServiceImpl implements SubPageService{
 		subpageDAO.insertMember2(map);
 		
 	}
+
+	@Override
+	public List<Cart> cartList(String id) throws Exception {
+		return subpageDAO.cartList(id);
+	}
+
+	@Override
+	public void deleteCart(int cartNo) throws Exception {
+		subpageDAO.deleteCart(cartNo);
+		
+	}
+
 
 
 }

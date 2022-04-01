@@ -59,6 +59,20 @@
 		]]>
 	</delete>
 	
+	<!-- 회원가입 -->
+	<select id="cartList" resultType="cart" parameterType="string">
+		<![CDATA[
+			select * from cart where id=#{id}
+		]]>
+	</select>
+	
+	<!-- 회원가입 -->
+	<delete id="deleteCart" parameterType="int">
+		<![CDATA[
+			delete from cart where cartNo=#{cartNo}
+		]]>
+	</delete>
+	
 
 </mapper>
 <!-- create table member(
