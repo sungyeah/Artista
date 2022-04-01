@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,15 +24,15 @@
     <div id="contents">
         
         <header class="account-header">
-            <h2 class="account-header-title">ÆÝµù ½ÅÃ»</h2>
-            <div class="account-header-description">ÆÝµù ½ÅÃ»ÇØ º¸ÀÚ°í</div>
+            <h2 class="account-header-title">íŽ€ë”© ì‹ ì²­</h2>
+            <div class="account-header-description">íŽ€ë”© ì‹ ì²­í•´ ë³´ìžê³ </div>
         </header>
         <article class="account-body">
 
     <div class="account-modify-form-border"></div>
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                ¾ÆÀÌµð
+                ì•„ì´ë””
             </div>
             <div class="account-modify-form-row-value">
             	${mem.id }
@@ -41,7 +40,7 @@
         </div>
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                ÀÌ¸§
+                ì´ë¦„
             </div>
             <div class="account-modify-form-row-value">
                 <div class="certification-value">
@@ -51,7 +50,7 @@
         </div>
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                ÀÌ¸ÞÀÏ
+                ì´ë©”ì¼
             </div>
             <div class="account-modify-form-row-value">
             	${mem.email }
@@ -60,7 +59,7 @@
 
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                ¸ñÇ¥ ±Ý¾×
+                ëª©í‘œ ê¸ˆì•¡
             </div>
             <div class="account-modify-form-row-value">
                     <input class="account-modify-form-input" type="text" name="targetFunding" id="targetFunding" maxlength="20"><br>
@@ -68,7 +67,7 @@
         </div>
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                ¸ð±Ý ÀÏÁ¤ 
+                ëª¨ê¸ˆ ì¼ì • 
             </div>
             <div class="account-modify-form-row-value">
                     <input class="account-modify-form-input" type="text" name="fundingDate" id="fundingDate" />
@@ -76,17 +75,17 @@
         </div>
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                Àå¼Ò ´ë°ü
+                ìž¥ì†Œ ëŒ€ê´€
             </div>
             <div class="account-modify-form-row-value">
-                <input class="account-modify-form-input" type="text" name="getplace" id="getplace" placeholder="ÁÖ¼Ò" maxlength="20" style="margin-bottom:7px;cursor:pointer" onClick=search3() value='${funding.getplace }'>
-                <input class="change-password-btn" type="button" id="search" value="°Ë»ö" data-mode="change" onClick=search3()><br>
-                <input class="account-modify-form-input" type="text" name="getplace2" id="getplace2" placeholder="»ó¼¼ÁÖ¼Ò" maxlength="20" value='${funding.getplace2 }'><br>
+                <input class="account-modify-form-input" type="text" name="getplace" id="getplace" placeholder="ì£¼ì†Œ" maxlength="20" style="margin-bottom:7px;cursor:pointer" onClick=search3() >
+                <input class="change-password-btn" type="button" id="search" value="ê²€ìƒ‰" data-mode="change" onClick=search3()><br>
+                <input class="account-modify-form-input" type="text" name="getplace2" id="getplace2" placeholder="ìƒì„¸ì£¼ì†Œ" maxlength="20"><br>
        		</div>
        </div>
        <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                ´ëÇ¥ ÀÌ¹ÌÁö
+                ëŒ€í‘œ ì´ë¯¸ì§€
             </div>
             <div class="account-modify-form-row-value">
                     <input id="thumbImg" class="account-modify-form-input" type="file" name="thumbImg" ><br>
@@ -96,12 +95,12 @@
 
     <div class="account-modify-form-border"></div>
     <div class="proj-content">
-      <span class="question" id="que-1"><span id="que-1-toggle">+</span><span>ÇÁ·ÎÁ§Æ® ¼Ò°³</span></span>
+      <span class="question" id="que-1"><span id="que-1-toggle">+</span><span>í”„ë¡œì íŠ¸ ì†Œê°œ</span></span>
       <div class="answer" id="ans-1">
         <div class="writing_title">
             <input type="text" id="projTitle" name="projTitle"
-                placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä." onfocus="this.placeholder=''"
-                onblur="this.placeholder='Á¦¸ñÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä.'"
+                placeholder="ì œëª©ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”." onfocus="this.placeholder=''"
+                onblur="this.placeholder='ì œëª©ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”.'"
                 style="width: 99%; height: 30px; margin: 15px 0 15px 0;" />
         </div>
         <div class="board_detail">
@@ -110,7 +109,7 @@
     </div>
     </div>
     <div class="proj-content">
-      <span class="question" id="que-2"><span id="que-2-toggle">+</span><span>¿¹»ê Á¤º¸</span></span>
+      <span class="question" id="que-2"><span id="que-2-toggle">+</span><span>ì˜ˆì‚° ì •ë³´</span></span>
       <div class="answer" id="ans-2">
         <div class="board_detail">
             <textarea  id="projBudget" name="projBudget"></textarea>
@@ -118,7 +117,7 @@
       </div>
     </div>
     <div class="proj-content">
-      <span class="question" id="que-3"><span id="que-3-toggle">+</span><span>ÀÛ°¡ º»ÀÎ ¼Ò°³</span></span>
+      <span class="question" id="que-3"><span id="que-3-toggle">+</span><span>ìž‘ê°€ ë³¸ì¸ ì†Œê°œ</span></span>
       <div class="answer" id="ans-3">
         <div class="board_detail">
             <textarea  id="projArtist" name="projArtist"></textarea>
@@ -128,8 +127,8 @@
 </article>
 </div>
     <div class="a">
-        <button class="Btn" type="submit">È®ÀÎ</button>
-        <button class="Btn" type="button">Ãë¼Ò</button>
+        <button class="Btn" type="submit">í™•ì¸</button>
+        <button class="Btn" type="button">ì·¨ì†Œ</button>
     </div>
     </form>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

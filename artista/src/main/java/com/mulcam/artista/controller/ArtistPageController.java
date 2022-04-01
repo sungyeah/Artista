@@ -32,7 +32,7 @@ import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.service.ArtistPageServiceImpl;
 import com.mulcam.artista.service.SubPageServiceImpl;
 
-//@RequestMapping("artistpage")
+@RequestMapping("artistpage")
 @Controller
 public class ArtistPageController {
 	
@@ -49,7 +49,7 @@ public class ArtistPageController {
 	ServletContext servletContext;
 
 	// 아티스트의 작품
-	@GetMapping({"", "/", "artistpage/mywork"})
+	@GetMapping({"", "/", "mywork"})
 	public String artistpageMain() {
 		return "artistpage/mywork";
 	}
