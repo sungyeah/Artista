@@ -6,7 +6,7 @@
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="member" >
 		<![CDATA[
-			insert into member(id, password, name, email, contact, address, address2,membertype) values(#{id}, #{password}, #{name},null,null,null,null,null)
+			insert into member(id, password, name, email, contact, address, address2,membertype) values(#{id}, #{password}, #{name},#{email},null,null,null,null)
 		]]>
 	</insert>
 	

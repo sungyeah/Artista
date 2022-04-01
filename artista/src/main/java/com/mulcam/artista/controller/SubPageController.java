@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.SubselectExpression;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,15 +31,16 @@ public class SubPageController {
 	public String loginForm() {
 		return "login";
 	}
-	@ResponseBody
+
 	@PostMapping("login")
 	public ModelAndView login(@RequestParam Map<String,String> info) {
-		ModelAndView mv = new ModelAndView("mypage/mypage");
+		ModelAndView mv = new ModelAndView();
 		try {
 			String id=info.get("id");
 			String password=info.get("password");
 			if(subPageService.accessMember(id, password)) {
 				session.setAttribute("id", id);
+				mv.setViewName("redirect:/main");
 			}else {
 				mv.setViewName("login");
 			}
@@ -47,32 +49,54 @@ public class SubPageController {
 		}
 		return mv;   //나중에 메인으로 변경
 	}
-	@GetMapping("naverlogin")
-	public String naverlogin() {
-		return "login";
-	}
 	
-	@ResponseBody
+//	@ResponseBody
+//	@PostMapping("login")
+//	public boolean login(@RequestParam Map<String,String> info,Model model) {
+//		boolean check = false;
+//		try {
+//			String id=info.get("id");
+//			String password=info.get("password");
+//			check = subPageService.accessMember(id, password);
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		return check;
+//	}
+	
+//	@GetMapping("naverlogin")
+//	public String naverlogin() {
+//		return "login";
+//	}
+	
 	@PostMapping("naverlogin")
-	public String naverlogincheck(@RequestParam (value="id")String id,@RequestParam (value="name")String name,
-			@RequestParam (value="email")String email) {
+	public ModelAndView naverlogincheck(@RequestParam (value="id")String id,@RequestParam (value="name")String name,
+			@RequestParam (value="email")String email,Model model) {
+		ModelAndView mv = new ModelAndView("redirect:/main");
 		try {
-			if(subPageService.memoverlap(id)) {
-				session.setAttribute("id",id);
-			}else {
+			if(!subPageService.memoverlap(id)) {
 				subPageService.makemember2(id,name,email);
-				session.setAttribute("id",id);
 			}
+			session.setAttribute("id",id);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return "login";
+		return mv;
 	}
 	
 	@GetMapping("callback")
-	public String callback(HttpSession session) {
-		return "mypage/mypage";
+	public String callback(HttpSession session,Model model) {
+		String id = (String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			model.addAttribute("name",mem.getName());
+			session.setAttribute("id",id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("check","naver");
+		
+		return "main";
 	}
 	
 	@GetMapping("join")

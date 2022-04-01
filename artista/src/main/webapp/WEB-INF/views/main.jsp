@@ -273,5 +273,45 @@
 
 </div>
 <%@include file ="footer.jsp" %>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript">
+ 	if('${check}'=="naver"){
+ 		var naver_id_login = new naver_id_login("2R257h5lNLRrx1vJnLgV", "http://localhost:8090/callback");
+ 		 // 접근 토큰 값 출력 
+ 		 	/* alert(naver_id_login.oauthParams.access_token);  */
+ 		 // 네이버 사용자 프로필 조회 
+ 		 	naver_id_login.get_naver_userprofile("naverSignInCallback()"); 
+ 		 // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function 
+ 		 function naverSignInCallback() { 
+ 			 /* alert(naver_id_login.getProfileData('email')); 
+ 			 alert(naver_id_login.getProfileData('name'));
+ 			 alert(naver_id_login.getProfileData('id'));  */
+ 			 	let email = naver_id_login.getProfileData('email');
+ 			 	let id = naver_id_login.getProfileData('id');
+ 			 	let name = naver_id_login.getProfileData('name');
+ 			 	$.ajax({     
+ 					type:"post",
+ 					dataType:"text",
+ 					async:false,
+ 					url:"http://localhost:8090/naverlogin",
+ 					data:{"id":id,
+ 						  "name":name,
+ 						  "email":email},
+ 					success: function(data, textStatus){
+ 						console.log("success");
+ 						
+ 					},
+ 					error:function(data, textStatus){
+ 						alert("실패");
+ 					},
+ 					complete:function() {
+ 						var uid = '<%=(String)session.getAttribute("id")%>';
+ 					}
+ 				});
+ 			 } 
+ 	}
+ 
+ </script>  
 </body>
 </html>

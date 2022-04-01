@@ -15,6 +15,7 @@
 </style>
 </head>
 <body>
+<%@include file ="header.jsp" %>
     <section style="min-height: 700px; padding-top: 80px;">
         <form id="login" action="login" method="post">
             <div style="width: 100%;max-width: 1500px;margin: 0 auto;padding: 0px 20px;">
@@ -47,6 +48,7 @@
             </div>
         </form>
     </section>
+<%@include file ="footer.jsp" %>
 <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
@@ -65,7 +67,7 @@
 		$('#password').focus();
 		return false;
 	}
-	/* $.ajax({
+	 /* $.ajax({
 		type:"post",
 		dataType:"text", 
 		async:false, 
@@ -73,13 +75,15 @@
 		data:{id:$('#id').val(),
 			  password:$('#password').val()},
 		success: function(data, textStatus){
+			alert(data);
 			if(data=="true"){
 				alert("환영합니다.");
+				location.href="mypage";
 			} else {
 				alert("회원정보가 일치하지 않습니다.");
 			}
 		}
-	}); */
+	}); */ 
 }); 
  var naver_id_login = new naver_id_login("2R257h5lNLRrx1vJnLgV", "http://localhost:8090/callback");
  var state = naver_id_login.getUniqState(); 
@@ -122,8 +126,8 @@
 					  "name":name,
 					  "email":email},
 				success: function(data, textStatus){
-					location.href="mypage";
-					console.log("success");
+ 					location.href="/main";
+ 					console.log("success");
 					
 				},
 				error:function(data, textStatus){

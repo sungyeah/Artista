@@ -19,7 +19,7 @@
             </div>
         </div>
         <section id="about" class="section" >
-            <h1>Ayoung Kim </h1>
+            <h1>Hong-Sung Ho</h1>
             <nav class="page-nav sticky" >
                 <div class="inner">
                     <ul>
@@ -32,7 +32,7 @@
             </nav>
             <div class="detail" >
                 <div class="info">
-                    <figure><img src="img/인물사진.jpg"
+                    <figure><img src="images/인물사진2.png"
                             alt="Ayoung Kim "></figure>
                     <h3>Download</h3>
                     <ul>
@@ -88,6 +88,7 @@
                     팔로워 기능
 
             </div>
+            </div>
         </section>
         <section id="selected-works" class="section"">
             <h2>작가의 작품(마우스오버시 작품정보)</h2>
@@ -95,45 +96,45 @@
                 <ul>
                     <li><a href="/gallery/artist/20000000116/work/20000000540">
                             <figure><img
-                                    src="images/메인사진2.jpg"
+                                    src="images/작가의세계작품1.jpg"
                                     alt=""></figure> <span class="title">Petrogenesis, Petra
                                 Genetrix<br>2019-2021</span>
                         </a></li>
                     <li><a href="/gallery/artist/20000000116/work/20000000541">
                             <figure><img
-                                src="images/메인사진2.jpg"
+                                src="images/작가의세계작품2.jpg"
                                     alt=""></figure> <span class="title">Petrogenesis, Petra
                                 Genetrix<br>2019-2021</span>
                         </a></li>
                     <li><a href="/gallery/artist/20000000116/work/20000000542">
                             <figure><img
-                                src="images/메인사진2.jpg"
+                                src="images/작가의세계작품3.jpg"
                                     alt=""></figure> <span class="title">At the Surisol Underwater Lab<br>2020</span>
                         </a></li>
                     <li><a href="/gallery/artist/20000000116/work/20000000543">
                             <figure><img
-                                src="images/메인사진2.jpg"
+                                src="images/작가의세계작품4.jpg"
                                     alt=""></figure> <span class="title">At the Surisol Underwater Lab<br>2020</span>
                         </a></li>
                     <li><a href="/gallery/artist/20000000116/work/20000000544">
                             <figure><img
-                                src="images/메인사진2.jpg"
+                                src="images/작가의세계작품5.jpg"
                                     alt=""></figure> <span class="title">In Search of Petra Genetrix<br>2020</span>
                         </a></li>
                     <li><a href="/gallery/artist/20000000116/work/20000000545">
                             <figure><img
-                                src="images/메인사진2.jpg"
+                                src="images/작가의세계작품6.jpg"
                                     alt=""></figure> <span class="title">In Search of Petra Genetrix<br>2020</span>
                         </a></li>
                     <li><a href="/gallery/artist/20000000116/work/20000000546">
                             <figure><img
-                                src="images/메인사진2.jpg"
+                                src="images/작가의세계작품7.jpg"
                                     alt=""></figure> <span class="title">Porosity Valley 2: Tricksters’
                                 Plot<br>2019</span>
                         </a></li>
                     <li><a href="/gallery/artist/20000000116/work/20000000547">
                             <figure><img
-                                src="images/메인사진2.jpg"
+                                src="images/작가의세계작품8.jpg"
                                     alt=""></figure> <span class="title">Porosity Valley 2: Tricksters’
                                 Plot<br>2019</span>
                         </a></li>
@@ -147,50 +148,50 @@
         <ul>
             <li class="video">
                 <a href="#">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회1.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a>
             </li>
             <li class=""><a href="/story/view/20000000200">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회2.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class=""><a href="/story/view/20000000198">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회3.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class=""><a href="/story/view/20000000197">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회4.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class=""><a href="/story/view/20000000193">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회5.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class=""><a href="/story/view/20000000191">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회6.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class=""><a href="/story/view/20000000189">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회7.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>
             <li class="video"><a href="/story/view/20000000187">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
+                    <figure><img src="images/전시회8.jpg" alt=""></figure>
                     <span class="category">목표금액 : 10,000,000원</span>
                     <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
