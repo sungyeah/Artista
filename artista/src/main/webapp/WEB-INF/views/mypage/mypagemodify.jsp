@@ -72,8 +72,7 @@
                         </div>
                         <div class="account-modify-form-row-value">
                             <div class="certification-value">
-                                <input class="account-modify-form-input" type="text" name="phone" placeholder="휴대폰" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off"><br>
-                                <!-- <input class="recertify-btn" type="button" value="변경"> -->
+                                <input class="account-modify-form-input" type="text" name="phone" placeholder="휴대폰" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off">
                             </div>
                         </div>
                     </div>
@@ -83,9 +82,9 @@
                         </div>
                         <div class="account-modify-form-row-value">
                             
-                                <input class="account-modify-form-input" type="password" name="password" placeholder="주소" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off">
-                                <input class="change-password-btn" type="button" value="검색" data-mode="change"><br>
-                                <input class="account-modify-form-input" type="password" name="new_password1" placeholder="상세주소" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off" style="width: 284px;"><br>
+                                <input class="account-modify-form-input" type="text" name="address" id="address" placeholder="주소" maxlength="20" style="margin-bottom:7px;cursor:pointer" onClick=search3()>
+                                <input class="change-password-btn" type="button" id="search" value="검색" data-mode="change" onClick=search3()><br>
+                                <input class="account-modify-form-input" type="text" name="address2" id="address2" placeholder="상세주소" maxlength="20" style="width: 284px;" ><br>
                             
                         </div>
                     </div>
@@ -102,6 +101,7 @@
     </div>
 <%-- <%@include file ="../footer.jsp" %> --%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	
 	$('#update').click(function(){
@@ -134,6 +134,19 @@
 			return false;
 		}
 	});
+	
+	function search3(){
+		new daum.Postcode({
+	        oncomplete: function(data) {
+	        	$('#address').val(data.address);
+	        	$('#address').prop("readonly",true);
+	        	
+	            console.log(data.address);
+	            
+	        }
+	    }).open();
+	}
+		 
 </script>
 </body>
 </html>

@@ -68,6 +68,19 @@ public class MyPageController {
 		}
 		return "mypage/mypagemodify";
 	}
+	
+	@PostMapping("mypagemodify")
+	public String mypagemodify2() {
+		String id=(String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+//			model.addAttribute("mem",mem);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "mypage/mypagemodify";
+	}
+	
 	@ResponseBody
 	@PostMapping("pwcheck")
 	public boolean pwcheck(@RequestParam(value="password")String password,
@@ -87,5 +100,9 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		return check;
+	}
+	@PostMapping("confirm")
+	public String confirm(){
+	return "mypage/confirm";
 	}
 }
