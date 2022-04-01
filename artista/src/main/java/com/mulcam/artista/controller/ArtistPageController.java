@@ -79,64 +79,75 @@ public class ArtistPageController {
 	}
 	
 	//펀딩 신청
-	@GetMapping("applyfunding")
-	public String applyfunding(Model model) {
-		String id=(String) session.getAttribute("id");
-		try {
-			Member mem = subPageService.queryId(id);
-			model.addAttribute("mem", mem);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
-		return "artistpage/applyfunding";
-	}
-	
-	@PostMapping("applyfunding")
-	public String applyfunding1(@ModelAttribute Funding funding, Model model) {
-		String path = servletContext.getRealPath("/fundingApp/");
-//		 File destFile = new File(path+file.getOriginalFilename());
-		try {
-			System.out.println(funding.getFundingDate());
-			System.out.println(funding.getProjArtist());
-			System.out.println(funding.getProjTitle());
-			System.out.println(funding.getGetplace());
-			System.out.println(funding.getGetplace2());
-			System.out.println(funding.getProjIntro());
-			System.out.println(funding.getProjTitle());
-			System.out.println(funding.getTargetFunding());
-			System.out.println(funding.getThumbImg());
-			artistPageService.insertApply(funding);
-		} catch (Exception e) {
-			e.printStackTrace();
+		@GetMapping("applyfunding")
+		public String applyfunding(Model model) {
+			String id=(String) session.getAttribute("id");
+			try {
+				Member mem = subPageService.queryId(id);
+				model.addAttribute("mem", mem);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
+			return "artistpage/applyfunding";
 		}
-		return "artistpage/succesapply";
-	}
+		
+		@PostMapping("applyfunding")
+		public String applyfunding1(@ModelAttribute Funding funding, Model model) {
+			String path = servletContext.getRealPath("/fundingApp/");
+//			 File destFile = new File(path+file.getOriginalFilename());
+			try {
+				artistPageService.insertApply(funding);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "artistpage/succesapply";
+		}
 
-	
-	@ResponseBody
-	@PostMapping("fundingApp")
-	public Map<String, Object> fileupload(@RequestParam(value="fundingApp") MultipartFile file) {
-		System.out.println(file.getOriginalFilename()+"---------------------");
-		String path = servletContext.getRealPath("/fundingApp/");
-		String filename = file.getOriginalFilename();
-		File destFile = new File(path+filename);
-		Map<String, Object> json = new HashMap<>();
-		try {
-			file.transferTo(destFile);
-			json.put("uploaded", 1);
-			json.put("fileName", filename);
-			json.put("url", "/fileview/"+filename);
-		} catch(IOException e) {
-			e.printStackTrace();
-		} 
-		return json;
-	}
-	
-	
-	@GetMapping("modifyfunding")
-	public String modifyfunding() {
-		return "artistpage/modifyfunding";
-	}
+		
+		@ResponseBody
+		@PostMapping("fundingApp")
+		public Map<String, Object> fileupload(@RequestParam(value="fundingApp") MultipartFile file) {
+			System.out.println(file.getOriginalFilename()+"---------------------");
+			String path = servletContext.getRealPath("/fundingApp/");
+			String filename = file.getOriginalFilename();
+			File destFile = new File(path+filename);
+			Map<String, Object> json = new HashMap<>();
+			try {
+				file.transferTo(destFile);
+				json.put("uploaded", 1);
+				json.put("fileName", filename);
+				json.put("url", "/fileview/"+filename);
+			} catch(IOException e) {
+				e.printStackTrace();
+			} 
+			return json;
+		}
+		
+		
+		@GetMapping("modifyfunding")
+		public String modifyfunding(@ModelAttribute Funding funding, Model model) {
+			String id=(String) session.getAttribute("id");
+			try {
+				Member mem = subPageService.queryId(id);
+				model.addAttribute("mem", mem);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
+			return "artistpage/modifyfunding";
+		}
+		
+		@PostMapping("modifyfunding")
+		public String modifyfunding2(@ModelAttribute Funding funding, Model model) {
+			String path = servletContext.getRealPath("/fundingApp/");
+//			 File destFile = new File(path+file.getOriginalFilename());
+			try {
+				artistPageService.insertApply(funding);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "artistpage/succesapply";
+		}
+
 	
 
 	

@@ -13,19 +13,19 @@
 
 <!-- 
 create table fundingApp(
-	fundingNo int(10) not null,
-    artistNo int(10) not null,
+	fundingNo int(10) not null auto_increment,
     projTitle varchar(100) not null,
     projIntro varchar(255) not null,
     projBudget varchar(255) not null,
     projArtist varchar(255) not null,
     targetFunding int(100) not null,
-    fundingDate datetime,
+    fundingDate varchar(255),
     thumbImg varchar(100) not null,
     applyStatus int(10),
     refusedContents varchar(500),
     getplace varchar(500) not null,
     getplace2 varchar(255),
+    applydate date,
     primary key(fundingNo)
 );
 

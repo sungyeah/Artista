@@ -1,10 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<script type="text/javascript" src="js/main.js"></script>
     <script	src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -13,109 +10,139 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-	<link rel="stylesheet" href="../css/modifyfunding.css">
+	<link rel="stylesheet" href="../css/applyfunding.css">
 <title>Insert title here</title>
 </head>
+<style>
+
+  </style>
 <body>
+          <form method="post" action="applyfunding">
     <div id="contents">
         
         <header class="account-header">
-            <h2 class="account-header-title">Æİµù ½ÅÃ»</h2>
-            <div class="account-header-description">Æİµù ½ÅÃ»ÇØ º¸ÀÚ°í</div>
+            <h2 class="account-header-title">í€ë”© ì‹ ì²­</h2>
+            <div class="account-header-description">í€ë”© ì‹ ì²­í•´ ë³´ìê³ </div>
         </header>
         <article class="account-body">
+
     <div class="account-modify-form-border"></div>
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                ¾ÆÀÌµğ
+                ì•„ì´ë””
             </div>
             <div class="account-modify-form-row-value">
-                lalalal
+            	${mem.id }
             </div>
         </div>
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                ÀÌ¸§
+                ì´ë¦„
             </div>
             <div class="account-modify-form-row-value">
                 <div class="certification-value">
-                    <span class="certified_name">¾Æ¾Ó¾Æ¾Æ</span>
+                	${mem.name }
                 </div>
             </div>
         </div>
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                ÀÌ¸ŞÀÏ
+                ì´ë©”ì¼
             </div>
             <div class="account-modify-form-row-value">
-                test01@naver.com
+            	${mem.email }
         </div>
         </div>
+
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                ¸ñÇ¥ ±İ¾×
+                ëª©í‘œ ê¸ˆì•¡
             </div>
             <div class="account-modify-form-row-value">
-                    <input class="account-modify-form-input" type="text" name="money" maxlength="20"><br>
-            </div>
-        </div>
-        <div class="account-modify-form-row">
-            <div class="account-modify-form-row-label">
-                ¸ğ±İ ÀÏÁ¤ 
-            </div>
-            <div class="account-modify-form-row-value">
-                    <input class="account-modify-form-input" type="text" name="fundingdate" />
+                    <input class="account-modify-form-input" type="text" name="targetFunding" id="targetFunding" value="${funding.targetFunding }" maxlength="20"><br>
             </div>
         </div>
         <div class="account-modify-form-row">
             <div class="account-modify-form-row-label">
-                Àü½Ã ÀÏÁ¤
+                ëª¨ê¸ˆ ì¼ì • 
             </div>
             <div class="account-modify-form-row-value">
-					<input class="account-modify-form-input" type="text" name="exhibitiondate" />
+                    <input class="account-modify-form-input" type="text" name="fundingDate" id="fundingDate" value="${funding.fundingDate }" />
             </div>
         </div>
+        <div class="account-modify-form-row">
+            <div class="account-modify-form-row-label">
+                ì¥ì†Œ ëŒ€ê´€
+            </div>
+            <div class="account-modify-form-row-value">
+                <input class="account-modify-form-input" type="text" name="getplace" id="getplace" value="${funding.getplace}" maxlength="20" style="cursor:pointer" onClick=search3()>
+                <input class="change-password-btn" type="button" id="search" value="ê²€ìƒ‰" data-mode="change" onClick=search3()><br>
+                <input class="account-modify-form-input" type="text" name="getplace2" id="getplace2" value="${funding.getplace2}" placeholder="ìƒì„¸ì£¼ì†Œ" maxlength="20"><br>
+       		</div>
+       </div>
+       <div class="account-modify-form-row">
+            <div class="account-modify-form-row-label">
+                ëŒ€í‘œ ì´ë¯¸ì§€
+            </div>
+            <div class="account-modify-form-row-value">
+                    <input id="thumbImg" class="account-modify-form-input" value="${funding.thumbImg}"  type="file" name="thumbImg" ><br>
+            </div>
+        </div>
+
+
     <div class="account-modify-form-border"></div>
-    <div class="faq-content">
-      <button class="question" id="que-1"><span id="que-1-toggle">+</span><span>ÇÁ·ÎÁ§Æ® ¼Ò°³</span></button>
+    <div class="proj-content">
+      <span class="question" id="que-1"><span id="que-1-toggle">+</span><span>í”„ë¡œì íŠ¸ ì†Œê°œ</span></span>
       <div class="answer" id="ans-1">
-          <input type="hidden"name="user_img" id="user_img" value=''>
         <div class="writing_title">
-            <input type="text" id="title" name="fb_title"
-                placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä." onfocus="this.placeholder=''"
-                onblur="this.placeholder='Á¦¸ñÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä.'"
+            <input type="text" id="projTitle" name="projTitle"
+                value="${projTitle}" onfocus="this.placeholder=''"
+                onblur="this.placeholder='ì œëª©ì„ ì…ë ¥í•´ ì£¼ì„¸ìš”.'"
                 style="width: 99%; height: 30px; margin: 15px 0 15px 0;" />
         </div>
         <div class="board_detail">
-            <textarea  id="editor1" name="fb_content1"></textarea>
+            <textarea  id="projIntro" name="projIntro">${funding.projIntro}</textarea>
         </div>
     </div>
     </div>
-    <div class="faq-content">
-      <button class="question" id="que-2"><span id="que-2-toggle">+</span><span>¿¹»ê Á¤º¸</span></button>
+    <div class="proj-content">
+      <span class="question" id="que-2"><span id="que-2-toggle">+</span><span>ì˜ˆì‚° ì •ë³´</span></span>
       <div class="answer" id="ans-2">
         <div class="board_detail">
-            <textarea  id="editor2" name="fb_content2"></textarea>
+            <textarea  id="projBudget" name="projBudget">${funding.projBudget}</textarea>
         </div>
       </div>
     </div>
-    <div class="faq-content">
-      <button class="question" id="que-3"><span id="que-3-toggle">+</span><span>ÀÛ°¡ º»ÀÎ ¼Ò°³</span></button>
+    <div class="proj-content">
+      <span class="question" id="que-3"><span id="que-3-toggle">+</span><span>ì‘ê°€ ë³¸ì¸ ì†Œê°œ</span></span>
       <div class="answer" id="ans-3">
         <div class="board_detail">
-            <textarea  id="editor3" name="fb_content3"></textarea>
+            <textarea  id="projArtist" name="projArtist">${funding.projArtist}</textarea>
         </div>
       </div>
     </div>
 </article>
 </div>
     <div class="a">
-        <button class="Btn">È®ÀÎ</button>
-        <button class="Btn">Ãë¼Ò</button>
+        <button class="Btn" type="submit">í™•ì¸</button>
+        <button class="Btn" type="button">ì·¨ì†Œ</button>
     </div>
-
-    <input type="text" id="testDatepicker" placeholder="³¯Â¥¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä">
-    
+    </form>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	<script>
+	function search3(){
+		new daum.Postcode({
+	        oncomplete: function(data) {
+	        	$('#getplace').val(data.address);
+	        	$('#getplace').prop("readonly",true);
+	        	
+	            console.log(data.getplace);
+	            
+	        }
+	    }).open();
+	    }
+	</script>
     <script>
       const items = document.querySelectorAll('.question');
     
@@ -135,9 +162,9 @@
 
       $(function(){
         ClassicEditor
-        	.create(document.querySelector("#editor1"), {
+        	.create(document.querySelector("#projIntro"), {
         		ckfinder : {
-        			uploadUrl : "/upload"
+        			uploadUrl : "/fundingApp"
         		}
         	}).then(editor1=> {
         		window.editor1=editor1;
@@ -148,9 +175,9 @@
 	});
     $(function(){
         ClassicEditor
-        	.create(document.querySelector("#editor2"), {
+        	.create(document.querySelector("#projBudget"), {
         		ckfinder : {
-        			uploadUrl : "/upload"
+        			uploadUrl : "/fundingApp"
         		}
         	}).then(editor2=> {
         		window.editor2=editor2;
@@ -161,9 +188,9 @@
 	});
     $(function(){
         ClassicEditor
-        	.create(document.querySelector("#editor3"), {
+        	.create(document.querySelector("#projArtist"), {
         		ckfinder : {
-        			uploadUrl : "/upload"
+        			uploadUrl : "/fundingApp"
         		}
         	}).then(editor3=> {
         		window.editor3=editor3;
@@ -174,26 +201,16 @@
 	});
     
     $(function() {
-      $('input[name="fundingdate"]').daterangepicker({
+      $('input[name="fundingDate"]').daterangepicker({
         timePicker: true,
         startDate: moment().startOf('hour'),
         endDate: moment().startOf('hour').add(32, 'hour'),
         locale: {
-          format: 'YY-M-DD hh a'
+          format: 'YY-MM-DD hh a'
         }
       });
     });
-    
-    $(function() {
-        $('input[name="exhibitiondate"]').daterangepicker({
-          timePicker: true,
-          startDate: moment().startOf('hour'),
-          endDate: moment().startOf('hour').add(32, 'hour'),
-          locale: {
-            format: 'YY-M-DD hh a'
-          }
-        });
-      });
+   
     
     </script>    
 </body>
