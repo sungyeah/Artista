@@ -20,15 +20,18 @@
 	</insert>
 </mapper>
 <!-- 
-create table artist(
-	artistNo int(10) not null,
-    id varchar(100) not null,
-    artistName varchar(100) not null,
-    artistImg varchar(255) not null,
-    artistType varchar(100) not null,
-    artistIntroduce varchar(500),
-    artistRecord longtext,
-    artistInstagram varchar(500),
-    primary key(artistNo)
+create table work(
+	workNo int(10) not null,
+    artistNo int(10) not null,
+    workName varchar(255) not null,
+    workImg varchar(255) not null,
+    workType varchar(100) not null,
+    workTech varchar(255) not null,
+    workSize varchar(255) not null,
+    workIntro longtext not null,
+    pickupAddress varchar(500),
+    workPrice int(10),
+    workForSale boolean not null,
+    primary key(workNo)
 );
  -->
