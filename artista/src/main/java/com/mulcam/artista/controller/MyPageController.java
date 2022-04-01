@@ -68,6 +68,8 @@ public class MyPageController {
 	
 	@GetMapping("apply")
 	public String mypageApplyArtist() {
+		//String id = (String) session.getAttribute("id");
+		//model.addAttribute("name",mem.getName());
 		return "mypage/apply";
 	}
 	
@@ -129,9 +131,17 @@ public class MyPageController {
 			artistapplyService.insertArtistApply(apply);
 			
 		} catch (Exception e1) {
-			
 			e1.printStackTrace();
 		}		
+		
+		String id = (String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			subPageService.changeMemberType(id, "artist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return "mypage/applysuccess";
 	}
 	

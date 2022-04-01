@@ -49,7 +49,7 @@ public class ArtistPageController {
 	ServletContext servletContext;
 
 	// 아티스트의 작품
-	@GetMapping({"", "/", "artistpage/mywork"})
+	@GetMapping({"", "/", "mywork"})
 	public String artistpageMain() {
 		return "artistpage/mywork";
 	}
