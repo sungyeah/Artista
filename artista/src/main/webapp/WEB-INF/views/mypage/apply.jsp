@@ -50,7 +50,7 @@
         </header>
 
         <article class="enroll-body">
-            <form class="enroll-modify-form" method="post" action="apply" enctype="multipart/form-data">
+            <form class="enroll-modify-form" method="post" action="/mypage/artistapply" enctype="multipart/form-data">
                 <div class="enroll-modify-form"></div>
                 <div class="certification-container  certified">
                     <div class="enroll-modify-form-row">
@@ -58,8 +58,8 @@
                             <span class="red">*</span> 프로필 사진
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <img class="artistImg" id="artistThumb" name="artistImg" src="/artistprofile/" />
-                            <input type="file" id="artistImg" name="artistImg" /><br>
+                            <img class="artistImg" id="artistThumb" />
+                            <input type="file" id="artistImg" name="artistImgFile" /><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -67,7 +67,8 @@
                             <span class="red">*</span> 아이디
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="text" id="id" name="id" value="강호동" disabled><br>
+                            <input class="enroll-modify-form-input" type="text" value="강호동" disabled><br>
+                            <input type="hidden" id="id" name="id" value="강호동" >
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -75,7 +76,7 @@
                             <span class="red">*</span> 필명
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="text" id="artistName" name="artistName" placeholder="필명을 입력하세요" autocomplete="off" autocapitalize="off"><br>
+                            <input class="enroll-modify-form-input" type="text" id="artistName" name="artistName" value="강호동" placeholder="필명을 입력하세요" autocomplete="off" autocapitalize="off"><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -86,7 +87,7 @@
                             <div class="wrap">
                                 <div class="select">
   									<div class="selected">
-    									<div class="selected-value">none</div>
+    									<div class="selected-value" >none</div>
     									<div class="arrow"></div>
   									</div>
   									<ul>
@@ -100,7 +101,7 @@
   								</div>
                             </div>
   						</div>
-  						<input type="hidden" id="artistType" name="artistType" />
+  						<input type="hidden" id="artistType" name="artistType" value="none"/>
                     </div>
                     <div class="enroll-modify-form-row">
                         <div class="enroll-modify-form-row-label">
@@ -137,7 +138,7 @@
                         		<th><span class="plus" style="cursor: pointer;">+</span></th>
                     			</tr>
                     		</tbody></table>
-                    		<input type="hidden" id="artistRecord" name="artistRecord" />
+                    		<input type="hidden" id="artistRecord" name="artistRecord"/>
                 		</div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -148,7 +149,7 @@
                         	<span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br>
                             <div class="artistsWorld">
 	                        	<img class="artistsWorldImg"/>
-                            	<input type="file" name="artistWorld" class="fileselect" />
+                            	<input type="file" name="artistWorld1" class="fileselect" />
                             </div>
                         </div>
                     </div>
@@ -165,10 +166,8 @@
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                     		<button class="yesNo-btn" id="workenroll" style="width:120px;">아티스트 신청</button>
-                    		<button class="yesNo-btn" id="cancel" type="reset" style="width:120px;">취소</button>
-                        	<!--  <a class="yesNo-btn" id="workenroll" style="width:120px;">아티스트 신청</a>-->                    
-                        	<a class="yesNo-btn" id="cancel">취소</a>      
-                    	</div>
+                    		<button class="yesNo-btn" id="cancel" type="reset">취소</button>
+                        </div>
                 	</div>
                 </div>
             </form>
@@ -177,7 +176,7 @@
     
     <script>
     $("#workenroll").click(function(){
-    	$(".artistType").val = $(".selected-value").eq(0).text();
+    	$("#artistType").val = $(".selected-value").eq(0).text();
     	
     	var artistRecordList = new Array();
     	for(var i=0; i<record; i++){
@@ -187,9 +186,10 @@
     		data.recordText = $(".recordText").eq(i).val();
     		artistRecordList.push(data) ;
     	}
-    	console.log(JSON.stringify(artistRecordList));
-    	
-    	$(".artistRecord").val = JSON.stringify(artistRecordList);  
+    	$("#id").attr("value", "hodong");
+    	$("#artistRecord").attr("value", JSON.stringify(artistRecordList));
+    	alert(JSON.stringify(artistRecordList));
+		$("#route_write").submit();
     });
     </script>
 
@@ -266,8 +266,10 @@
 	
 	// 작품세계 이미지 추가하기
 	$(document).on("click", "#plusWorld", function(){
-		$('.artistsWorld:last-child').clone().insertAfter("div[class=artistsWorld]:last")
+		$('.artistsWorld:last-child').clone().insertAfter("div[class=artistsWorld]:last");
 		workNum++;
+		
+		$(".fileselect:last").prop("name","artistWorld"+workNum);
 	});
 	
 	$(document).on("click", "#minusWorld", function(){

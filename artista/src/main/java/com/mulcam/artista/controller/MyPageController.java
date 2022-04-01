@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +24,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dto.ArtistApply;
+import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.Member;
+import com.mulcam.artista.service.ArtistWorldService;
 import com.mulcam.artista.service.SubPageServiceImpl;
 
 @RequestMapping("mypage")
@@ -34,6 +39,8 @@ public class MyPageController {
 	
 	@Autowired
 	SubPageServiceImpl subPageService;
+	@Autowired
+	ArtistWorldService artistworldService;
 	
 	@Autowired
 	HttpSession session;
@@ -55,10 +62,62 @@ public class MyPageController {
 	@Autowired
 	private ServletContext servletContext;
 	
-	@PostMapping("apply")
-	public String mypageApplyArtist(@ModelAttribute ArtistApply apply,
-			@RequestParam(value="artistImg") MultipartFile artistImg,
-			@RequestParam(value = "artistWorld") MultipartFile artistWorld) {
+	@GetMapping("apply")
+	public String mypageApplyArtist() {
+		return "mypage/apply";
+	}
+	
+	@PostMapping("artistapply")
+	public String ApplyArtist(
+			@ModelAttribute ArtistApply apply,
+			@RequestParam(value="artistImgFile") MultipartFile artistImgFile,
+			MultipartHttpServletRequest mrequest) {
+	
+		/* 아티스트 대표이미지 업로드 */
+		String path = servletContext.getRealPath("/imgupload/artistProfile/");
+		String[] mtypes = artistImgFile.getContentType().split("/");
+		File destFile = new File(path + apply.getArtistName() +"."+ mtypes[1]);
+		System.out.println(path + apply.getArtistName()+"." + mtypes[1]);
+		try {			
+			artistImgFile.transferTo(destFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		apply.setArtistImg(apply.getArtistName() + "." + mtypes[1]);
+		
+		// 아티스트 작품세계 업로드
+		Iterator<String> fnames = mrequest.getFileNames();
+		while(fnames.hasNext()) {
+			String fileName = fnames.next();
+			//name이 artistImg인 파일은 생략!
+			if(!fileName.equals("artistImg")) {
+				MultipartFile mfile = mrequest.getFile(fileName);
+				if(mfile.getSize()>0) {
+					ArtistWorld worldImg = new ArtistWorld();
+					try {
+						//아티스트 작품세계 업로드 폴더 경로
+						String path_artistWorld = servletContext.getRealPath("/imgupload/artistWorlds/");
+						String[] imgtypes = mfile.getContentType().split("/");
+						System.out.println(artistworldService.getArtistWorldId());
+						File dest_artistWorld = new File(path_artistWorld+artistworldService.getArtistWorldId()+ "."+imgtypes[1]);
+						try {			
+							mfile.transferTo(dest_artistWorld);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						
+						// 아티스트 작품세계 이미지 DB 넣기
+						worldImg.setImgNo(artistworldService.getArtistWorldId());
+						worldImg.setId(apply.getId());
+						worldImg.setImgType("."+imgtypes[1]);
+						artistworldService.insertArtistWorldFile(worldImg);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				}
+			}
+		}
 		return "mypage/applysuccess";
 	}
 	
