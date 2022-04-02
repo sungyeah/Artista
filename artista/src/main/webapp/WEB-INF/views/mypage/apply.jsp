@@ -66,8 +66,8 @@
                             <span class="red">*</span> 아이디
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="text" value="강호동" disabled><br>
-                            <input type="hidden" id="id" name="id" value="강호동" >
+                            <input class="enroll-modify-form-input" type="text" value="${id}" disabled><br>
+                            <input type="hidden" id="id" name="id" value="${id}" >
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
