@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/cart.css">
 </head>
 <body>
+ <%@include file ="../header.jsp" %>
     <div id="contents">
         <section class="pageHead" id="checkout_head">
             <div class="pageHead-bar"></div>
@@ -44,7 +45,7 @@
                     	<c:when test='${empty carts}'>
                     		<tr>
                             	<td class="cartList-tdDummy"></td>
-                            	<td colspan="3" class="cartList-tdEmpty">렌탈 카트에 담겨있는 작품이 없습니다</td>
+                            	<td colspan="3" class="cartList-tdEmpty">카트에 담겨있는 작품이 없습니다</td>
                         	</tr>
                     	</c:when>
                     	 <c:otherwise> 
@@ -128,6 +129,7 @@
             </form>
         </section>
     </div>
+    <%@include file ="../footer.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>    
 <script>
 	
