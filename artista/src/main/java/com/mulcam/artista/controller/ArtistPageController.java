@@ -144,9 +144,7 @@ public class ArtistPageController {
 		}
 		
 		
-		//비교해서 가지고 가야 된다 무조건 넣으면 안 됨
-		//현재의 문제점은 지금 모든 걸 다 업데이트 하고 있음
-		//artistNo을 그냥 빈 칸으로 넣고 나중에 고치기
+
 		@PostMapping("applyfunding")
 		public String applyfunding1(@ModelAttribute Funding funding, Model model) {
 			String path = servletContext.getRealPath("/fundingApp/");
@@ -154,11 +152,6 @@ public class ArtistPageController {
 //			 File destFile = new File(path+file.getOriginalFilename());
 			try {
 				artistPageService.insertApply(funding);
-//				Integer artistNo = artistService.getArtistNo(id);
-//				System.out.println(artistNo);
-//				if(id.equals(id)) {
-//					artistService.updateArtistNo(artistNo, id);
-//				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
