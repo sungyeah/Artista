@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -170,7 +171,7 @@
                             <div class="sect-body cf">
                                 <div class="sect-body-th">휴대폰</div>
                                 <div class="sect-body-td">
-                                    <input type="text" id="shipping_phone" name="shipping_phone" placeholder="이름">
+                                    <input type="text" id="shipping_phone" name="shipping_phone" placeholder="휴대폰">
                                 </div>
                             </div>
                             <div class="sect-copy-address-mask"></div>
@@ -181,32 +182,32 @@
             </section>
             <section id="checkout_list">
                 <section id="artworks">
-                    <h3>주문 작품 정보<span> / <span>1</span>점</span></h3>
+                    <h3>주문 작품 정보<span> / <span>${count }</span>점</span></h3>
                     <div class="mbtn_more martwork active">
                         <input type="button" id="artworks_more_btn" class="active">
                         <span class="active-hide-text">총 1점</span>
                     </div>
                     <div class="sect-list active">
                         <div class="checkout-artwork-list">
-                           <%--  <c:forEach items="${carts }" var="cart"> --%>
+                             <c:forEach items="${carts }" var="cart"> 
                                 <div class="checkout-item">
                                     <div class="checkout-img">
-                                        <img src="https://og-data.s3.amazonaws.com/media/artworks/h_fixed/A0365/A0365-0017.jpg">
+                                        <img src="${cart.workImg }">
                                     </div>
                                     <ul class="checkout-text">
-                                        <li class="code">A0365-0017</li>
-                                        <li class="title">송대공원</li>
+                                        <li class="code">${cart.workNo }</li>
+                                        <li class="title">${cart.workName }</li>
                                         <li class="sub">
-                                            추연신 / 45x38cm (8호)
+                                            ${cart.workArtist } / ${cart.workSize }
                                         </li>
                                         <li class="value">
                                             
-                                                ￦ 300,000
+                                                ￦ <fmt:formatNumber value="${cart.workPrice }"/>
                                             
                                         </li>
                                     </ul>
                                 </div>
-                            <%-- </c:forEach> --%>
+                             </c:forEach> 
                         </div>
                         <div class="checkout-billing-value cf">
                             <ul class="checkout-billing-title">
@@ -217,11 +218,14 @@
                                 
                             </ul>
                             <ul class="checkout-billing-info">
-                                <li>1점</li>
+                                <li>${count }점</li>
                                 
-                                    <li>300,000원</li>
+                                    <li><fmt:formatNumber value="${total }"/>원
+                                    	<input type="hidden" id="total" value='${total }'>
+                                    </li>
                                     <li>
                                         <span id="artworks-shippingFee-purchase">40,000원</span>
+                                		<input type="hidden" id="shippingPrice" value='40000'>
                                     </li>
                                 
                             </ul>
@@ -230,6 +234,7 @@
                             <li>총 결제금액</li>
                             <li>
                                 <span id="artworks-totalPrice">340,000</span>원
+                                <input type="hidden" id="totalPrice" value=''>
                             </li>
                         </ul>
                     </div>
@@ -280,6 +285,13 @@
     </div>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
+    var total = +$('#total').val();
+    var ship = +$('#shippingPrice').val();
+    var tPrice = total+ship;
+    $('#totalPrice').attr('value',tPrice);
+    document.getElementById('artworks-totalPrice').innerText = tPrice.toLocaleString();
+    document.getElementById('payment-totalPrice').innerText = tPrice.toLocaleString();
+    
         function duplication(){
             if($("#shipping_name").is('[readonly]')===false){
                 $('input[name=shipping_name]').val($('#billing_name').val()); 
@@ -293,6 +305,7 @@
                 // $('input[name=shipping_phone12]').val(num1[1]);
                 // $('input[name=shipping_phone13]').val(num1[2]);
                 $('input[name=shipping_phone]').val($('#billing_phone1').val());
+                
 
                 $('#shipping-copy_button').css({
                     "background-image": "url(images/check-icon.png)"
@@ -320,6 +333,14 @@
             $('#receive-card-delivery').attr("class","receive-card cf active show")
             $('#method2').attr("class","method")
             $('#receive-card-visited').attr("class","receive-card cf")
+            document.getElementById('artworks-shippingFee-purchase').innerText = "40,000원";
+            $('#shippingPrice').attr('value',40000);
+            var total = +$('#total').val();
+            var ship = +$('#shippingPrice').val();
+            var tPrice = total+ship;
+            $('#totalPrice').attr('value',tPrice);
+            document.getElementById('artworks-totalPrice').innerText = tPrice.toLocaleString(); 
+            document.getElementById('payment-totalPrice').innerText = tPrice.toLocaleString(); 
 
                
         });
@@ -328,13 +349,21 @@
             $('#receive-card-delivery').attr("class","receive-card cf")
             $('#method2').attr("class","method checked active")
             $('#receive-card-visited').attr("class","receive-card cf active show")
+            document.getElementById('artworks-shippingFee-purchase').innerText = "무료(방문수령)";
+            $('#shippingPrice').attr('value',0);
+            var total = +$('#total').val();
+            var ship = +$('#shippingPrice').val();
+            var tPrice = total+ship;
+            $('#totalPrice').attr('value',tPrice);
+            document.getElementById('artworks-totalPrice').innerText = tPrice.toLocaleString();
+            document.getElementById('payment-totalPrice').innerText = tPrice.toLocaleString(); 
         });
         
             var str = $('#billing_phone1').val().trim();    
-			console.log(str)
             var phone = str.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
-            console.log(phone)
             document.getElementById('contact2').innerText = phone; 
+            
+           
 
 
 

@@ -106,4 +106,9 @@ public class SubPageServiceImpl implements SubPageService{
 		subpageDAO.updateMemberType(map);
 	}
 
+	@Override
+	public Cart cartInfo(int cartNo) throws Exception {
+		return subpageDAO.cartinfo(cartNo);
+	}
+
 }

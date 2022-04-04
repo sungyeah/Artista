@@ -80,6 +80,12 @@
 		]]>
 	</update>
 	
+	<!-- 회원가입 -->
+	<select id="cartinfo" resultType="cart" parameterType="int">
+		<![CDATA[
+			select * from cart where cartNo=#{cartNo}
+		]]>
+	</select>
 
 </mapper>
 <!-- create table member(

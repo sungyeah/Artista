@@ -59,7 +59,7 @@
                             </td>
                             <td class="cartList-tdInfo">
                                 <a class="cartList-imageHolder" href="/artwork/A0365-0017/">
-                                    <img class="cartList-image" src="https://og-data.s3.amazonaws.com/media/artworks/h_fixed/A0365/A0365-0017.jpg">
+                                    <img class="cartList-image" src="${cart.workImg }">
                                 </a>
                                 <div class="cartList-info">
                                     <p class="cartList-info-code"><a href="/artwork/A0365-0017/">${cart.workNo }</a></p>
@@ -104,12 +104,14 @@
                             <span class="cartBoard-label">총 작품수</span>
                             <span class="cartBoard-value">
                                 <span id="cartBoard-val-artworkCount">0</span> 점
+                                 <input id="count" name="count" type="hidden" value=''>
                             </span>
                         </li>
                         <li class="cartBoard-li cf">
                             <span class="cartBoard-label">총 구매가격</span>
                             <span class="cartBoard-value">
                                 ￦ <span id="cartBoard-val-amount">0</span>
+                                <input id="total" name="total" type="hidden" value=''>
                             </span>
                         </li>
                         <li class="cartBoard-li cf">
@@ -154,6 +156,9 @@
 		  // 출력
 		  document.getElementById('cartBoard-val-artworkCount').innerText
 		    = selectedElementsCnt;
+		  $('#count').attr('value',selectedElementsCnt);
+		   console.log($('#count').val());
+		   console.log(jQuery.type($('#count').val()));
 		}
 	
 	  function itemSum(){
@@ -171,6 +176,8 @@
 		       }
 		   }
 		   document.getElementById('cartBoard-val-amount').innerText = sum.toLocaleString();
+		   $('#total').attr('value',sum);
+		   console.log($('#total').val());
 		}   
 	
 	function deleteCart(no){

@@ -22,6 +22,7 @@ public interface SubPageDAO {
 	public void insertMember2(Map map)throws Exception;    //회원가입
 	
 	public List<Cart> cartList(String id)throws Exception; //카트리스트 조회
+	public Cart cartinfo(int cartNo)throws Exception; //카트번호로 카트조회
 	public void deleteCart(int cartNo)throws Exception;
 	
 	public void updateMemberType(Map map)throws Exception; //회원유형 변경

@@ -1,5 +1,6 @@
 package com.mulcam.artista.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.SubselectExpression;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -139,17 +141,28 @@ public class SubPageController {
 	}
 	
 	@PostMapping("payment")
-	public String payment(@RequestParam(value="order_artwork") List<Integer> cartNo,Model model) {
+	public String payment(@RequestParam(value="order_artwork") int[] cartNo,Model model,
+			@RequestParam(value="total")int total,@RequestParam(value="count")String count) {
 		String id = (String) session.getAttribute("id");
+		List<Cart> carts = new ArrayList<Cart>();
+		for( int i=0;i<cartNo.length;i++) {
+			int cartNo2 = cartNo[i];
+			try {
+				Cart cart = subPageService.cartInfo(cartNo2);
+				carts.add(cart);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		try {
 			Member mem = subPageService.queryId(id);
 			model.addAttribute("mem",mem);
+			model.addAttribute("carts",carts);
+			model.addAttribute("total",total);
+			model.addAttribute("count",count);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(cartNo);
-		System.out.println(cartNo);
 		return "subpage/payment";
 	}
 	@GetMapping("paymentinfo")
