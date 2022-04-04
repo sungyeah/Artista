@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
+import com.mulcam.artista.dto.Order;
 
 @Mapper
 @Repository
@@ -23,8 +24,11 @@ public interface SubPageDAO {
 	
 	public List<Cart> cartList(String id)throws Exception; //카트리스트 조회
 	public Cart cartinfo(int cartNo)throws Exception; //카트번호로 카트조회
-	public void deleteCart(int cartNo)throws Exception;
+	public void deleteCart(int cartNo)throws Exception; //카트삭제
+	
+	public Integer MaxOrderNum() throws Exception; //주문번호 조회
 	
 	public void updateMemberType(Map map)throws Exception; //회원유형 변경
+	public void insertPayment(Order order)throws Exception; //주문완료
 
 }

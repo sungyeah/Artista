@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
+import com.mulcam.artista.dto.Order;
 
 public interface SubPageService {
 	boolean memoverlap(String id) throws Exception;    //아이디 중복체크
@@ -21,4 +22,8 @@ public interface SubPageService {
 	void deleteCart(int cartNo)throws Exception;
 	Cart cartInfo(int cartNo)throws Exception; //카트번호로 카트조회
 	public void changeMemberType(String id, String memberType) throws Exception;	// 일반회원->아티스트변경
+
+	Integer MaxOrderNum() throws Exception; //주문번호 조회
+	void insertPayment(Order order) throws Exception;//주문완료
+	
 }

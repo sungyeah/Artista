@@ -4,44 +4,44 @@ public class Order {
 	int orderNo;
 	String id;
 	int workNo;
-	String workName;
+	int deliveryCharge;
 	int workPrice;
+	int orderCost;
 	String orderName;
-	String orderAddress;
-	String orderAddress2;
 	String orderNum;
 	String orderEmail;
-	int deliveryCharge;
+	String receiverName;
+	String receiverNum;
+	String receiverAddress;
+	String receiverAddress2;
 	String payment;
-	int orderCost;
 	String orderStatus;
 	String trackingNo;
 	String orderDate;
-	String workImg;
 	String pickupAddress;
 	
 	public Order() {}
-	public Order(int orderNo,String id,int workNo,String workName,int workPrice,String orderName,String orderAddress,String orderAddress2,String orderNum
-			,String orderEmail,int deliveryCharge,String payment,int orderCost,String orderStatus,String trackingNo,String orderDate,String workImg,String pickupAddress) {
-		this.orderNo=orderNo;
-		this.id=id;
-		this.workNo=workNo;
-		this.workName=workName;
-		this.workPrice=workPrice;
-		this.orderName=orderName;
-		this.orderAddress=orderAddress;
-		this.orderAddress2=orderAddress2;
-		this.orderNum=orderNum;
-		this.orderEmail=orderEmail;
-		this.deliveryCharge=deliveryCharge;
-		this.payment=payment;
-		this.orderCost=orderCost;
-		this.orderStatus=orderStatus;
-		this.trackingNo=trackingNo;
-		this.orderDate=orderDate;
-		this.workImg=workImg;
-		this.pickupAddress=pickupAddress;
-		
+	public Order(int orderNo, String id, int workNo,int deliveryCharge,int workPrice,int orderCost,
+			String orderName,String orderNum,String orderEmail,String receiverName,String receiverNum,String receiverAddress
+			,String receiverAddress2,String payment,String orderStatus,String trackingNo,String orderDate,String pickupAddress) {
+	this.orderNo=orderNo;
+	this.id=id;
+	this.workNo=workNo;
+	this.deliveryCharge=deliveryCharge;
+	this.workPrice=workPrice;
+	this.orderCost=orderCost;
+	this.orderName=orderName;
+	this.orderNum=orderNum;
+	this.orderEmail=orderEmail;
+	this.receiverName=receiverName;
+	this.receiverNum=receiverNum;
+	this.receiverAddress=receiverAddress;
+	this.receiverAddress2=receiverAddress2;
+	this.payment=payment;
+	this.orderStatus=orderStatus;
+	this.trackingNo=trackingNo;
+	this.orderDate=orderDate;
+	this.pickupAddress=pickupAddress;
 	}
 	public int getOrderNo() {
 		return orderNo;
@@ -61,11 +61,11 @@ public class Order {
 	public void setWorkNo(int workNo) {
 		this.workNo = workNo;
 	}
-	public String getWorkName() {
-		return workName;
+	public int getDeliveryCharge() {
+		return deliveryCharge;
 	}
-	public void setWorkName(String workName) {
-		this.workName = workName;
+	public void setDeliveryCharge(int deliveryCharge) {
+		this.deliveryCharge = deliveryCharge;
 	}
 	public int getWorkPrice() {
 		return workPrice;
@@ -73,23 +73,17 @@ public class Order {
 	public void setWorkPrice(int workPrice) {
 		this.workPrice = workPrice;
 	}
+	public int getOrderCost() {
+		return orderCost;
+	}
+	public void setOrderCost(int orderCost) {
+		this.orderCost = orderCost;
+	}
 	public String getOrderName() {
 		return orderName;
 	}
 	public void setOrderName(String orderName) {
 		this.orderName = orderName;
-	}
-	public String getOrderAddress() {
-		return orderAddress;
-	}
-	public void setOrderAddress(String orderAddress) {
-		this.orderAddress = orderAddress;
-	}
-	public String getOrderAddress2() {
-		return orderAddress2;
-	}
-	public void setOrderAddress2(String orderAddress2) {
-		this.orderAddress2 = orderAddress2;
 	}
 	public String getOrderNum() {
 		return orderNum;
@@ -103,23 +97,35 @@ public class Order {
 	public void setOrderEmail(String orderEmail) {
 		this.orderEmail = orderEmail;
 	}
-	public int getDeliveryCharge() {
-		return deliveryCharge;
+	public String getReceiverName() {
+		return receiverName;
 	}
-	public void setDeliveryCharge(int deliveryCharge) {
-		this.deliveryCharge = deliveryCharge;
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
+	public String getReceiverNum() {
+		return receiverNum;
+	}
+	public void setReceiverNum(String receiverNum) {
+		this.receiverNum = receiverNum;
+	}
+	public String getReceiverAddress() {
+		return receiverAddress;
+	}
+	public void setReceiverAddress(String receiverAddress) {
+		this.receiverAddress = receiverAddress;
+	}
+	public String getReceiverAddress2() {
+		return receiverAddress2;
+	}
+	public void setReceiverAddress2(String receiverAddress2) {
+		this.receiverAddress2 = receiverAddress2;
 	}
 	public String getPayment() {
 		return payment;
 	}
 	public void setPayment(String payment) {
 		this.payment = payment;
-	}
-	public int getOrderCost() {
-		return orderCost;
-	}
-	public void setOrderCost(int orderCost) {
-		this.orderCost = orderCost;
 	}
 	public String getOrderStatus() {
 		return orderStatus;
@@ -139,16 +145,11 @@ public class Order {
 	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
-	public String getWorkImg() {
-		return workImg;
-	}
-	public void setWorkImg(String workImg) {
-		this.workImg = workImg;
-	}
 	public String getPickupAddress() {
 		return pickupAddress;
 	}
 	public void setPickupAddress(String pickupAddress) {
 		this.pickupAddress = pickupAddress;
 	}
+	
 }

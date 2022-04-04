@@ -86,6 +86,20 @@
 			select * from cart where cartNo=#{cartNo}
 		]]>
 	</select>
+	
+	<!-- 회원가입 -->
+	<select id="MaxOrderNum" resultType="integer">
+		<![CDATA[
+			select max(orderNo) from order1
+		]]>
+	</select>
+
+	<insert id="insertPayment" parameterType="order" >
+		<![CDATA[
+			insert into order1(orderNo,id,workNo,deliveryCharge,workPrice,orderCost,orderName,orderNum,orderEmail,receiverName,receiverNum,receiverAddress,receiverAddress2,payment,orderStatus,trackingNo,orderDate,pickupAddress)
+			values(#{orderNo},#{id},#{workNo},#{deliveryCharge},#{workPrice},#{orderCost},#{orderName},#{orderNum},#{orderEmail},#{receiverName},#{receiverNum},#{receiverAddress},#{receiverAddress2},#{payment},'배송 준비중',null,now(),null)
+		]]>
+	</insert> 
 
 </mapper>
 <!-- create table member(

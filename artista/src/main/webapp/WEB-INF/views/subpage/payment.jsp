@@ -25,6 +25,7 @@
             </div>
         </section>
         <section id="checkout_body" class="cf">
+        	 <form id="payment21" action="paymentsuc" method="post">
             <section id="checkout_value">
                 <section id="billing_info">
                     <div class="sect-header">
@@ -43,7 +44,8 @@
                             <div class="sect-body-th">주문자명</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
-                                    <input type="hidden" id="billing_name" name="name" value="${mem.name }">
+                                    <input type="hidden" id="billing_name" name="orderName" value="${mem.name }">
+                                    <input type="hidden" id="id" name="id" value="${mem.id }">
                                     <span>${mem.name }</span>
                                 </div>
                             </div>
@@ -60,7 +62,7 @@
                             <div class="sect-body-th">휴대폰</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
-                                    <input type="hidden" id="billing_phone1" name="contact" value="${mem.contact }">
+                                    <input type="hidden" id="billing_phone1" name="orderNum" value="${mem.contact }">
                                     <span id="contact2">0</span>
                                     <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
                                 </div>
@@ -70,7 +72,7 @@
                             <div class="sect-body-th">이메일</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
-                                    <input type="hidden" id="checkout-input-billing_email" name="email" value="${mem.email }">
+                                    <input type="hidden" id="checkout-input-billing_email" name="orderEmail" value="${mem.email }">
                                     <span>${mem.email }</span>
                                 </div>
                             </div>
@@ -159,19 +161,21 @@
                             <div class="sect-body cf">
                                 <div class="sect-body-th">수취인명</div>
                                 <div class="sect-body-td">
-                                    <input type="text" id="shipping_name" name="shipping_name" placeholder="이름">
+                                    <input type="text" id="shipping_name" name="receiverName" placeholder="이름">
                                 </div>
                             </div>
                             <div class="sect-body cf">
                                 <div class="sect-body-th">주소</div>
                                 <div class="sect-body-td">
-                                    <input type="text" id="shipping_address1" class="address1" name="shipping_address1" placeholder="기본 주소"><input id="shipping_address_btn" class="address-btn" type="button" value="주소 찾기" readonly="readonly"><br><input type="text" id="shipping_address2" name="shipping_address2" class="address2" placeholder="상세 주소">
+                                    <input type="text" id="shipping_address1" class="address1" name="receiverAddress" placeholder="기본 주소" value="" onclick=search3() style="cursor:pointer;">
+                                    <input id="shipping_address_btn" class="address-btn" type="button" value="주소 찾기" readonly="readonly" onclick=search3()><br>
+                                    <input type="text" id="shipping_address2" name="receiverAddress2" class="address2" placeholder="상세 주소" value="">
                                 </div>
                             </div>
                             <div class="sect-body cf">
                                 <div class="sect-body-th">휴대폰</div>
                                 <div class="sect-body-td">
-                                    <input type="text" id="shipping_phone" name="shipping_phone" placeholder="휴대폰">
+                                    <input type="text" id="shipping_phone" name="receiverNum" placeholder="휴대폰">
                                 </div>
                             </div>
                             <div class="sect-copy-address-mask"></div>
@@ -195,8 +199,11 @@
                                         <img src="${cart.workImg }">
                                     </div>
                                     <ul class="checkout-text">
-                                        <li class="code">${cart.workNo }</li>
-                                        <li class="title">${cart.workName }</li>
+                                        <li class="code">${cart.workNo } <input type="hidden" id="workNo" name="workNo" value="${cart.workNo }"></li>
+                                       
+                                        <li class="title">${cart.workName }
+                                        <input type="hidden" value="${cart.workName }">
+                                        </li>
                                         <li class="sub">
                                             ${cart.workArtist } / ${cart.workSize }
                                         </li>
@@ -221,11 +228,11 @@
                                 <li>${count }점</li>
                                 
                                     <li><fmt:formatNumber value="${total }"/>원
-                                    	<input type="hidden" id="total" value='${total }'>
+                                    	<input type="hidden" id="total" name="workPrice" value='${total }'>
                                     </li>
                                     <li>
                                         <span id="artworks-shippingFee-purchase">40,000원</span>
-                                		<input type="hidden" id="shippingPrice" value='40000'>
+                                		<input type="hidden" id="shippingPrice" name="deliveryCharge" value='40000'>
                                     </li>
                                 
                             </ul>
@@ -234,7 +241,8 @@
                             <li>총 결제금액</li>
                             <li>
                                 <span id="artworks-totalPrice">340,000</span>원
-                                <input type="hidden" id="totalPrice" value=''>
+                                <input type="hidden" id="totalPrice" name="orderCost" value=''>
+                                <input type="hidden" id="nocheck" name="orderNo" value=''>
                             </li>
                         </ul>
                     </div>
@@ -254,7 +262,7 @@
                         <div class="sect-body-td">
                             
                                 <span class="method checked">
-                                    <input id="payMethod_Card" class="checkbox_payment" type="radio" name="pay_method" value="card" checked="checked">
+                                    <input id="payMethod_Card" class="checkbox_payment" type="radio" name="payment" value="신용/체크카드" checked="checked">
                                     <label for="payMethod_Card">신용/체크카드</label>
                                 </span>
                                 <span id="id-payMethod_DirectBank" class="method active">
@@ -278,12 +286,15 @@
                 <div id="checkout_submitRow">
                     <input id="input_tst" type="hidden" name="tst" value="1648449975.960295">
                     <!-- <input id="go_checkout" class="next_step" type="button" value="결제하기"> -->
-                    <input id="go_checkout" class="next_step" type="button" value="결제하기" onclick="location.href='paymentsuc'">
+                    <input id="go_checkout" class="next_step" type="button" value="결제하기">
                 </div>
             </section>
+             </form>
         </section>
     </div>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
     var total = +$('#total').val();
     var ship = +$('#shippingPrice').val();
@@ -291,12 +302,12 @@
     $('#totalPrice').attr('value',tPrice);
     document.getElementById('artworks-totalPrice').innerText = tPrice.toLocaleString();
     document.getElementById('payment-totalPrice').innerText = tPrice.toLocaleString();
-    
+    console.log($('#id').val());
         function duplication(){
             if($("#shipping_name").is('[readonly]')===false){
-                $('input[name=shipping_name]').val($('#billing_name').val()); 
-                $('input[name=shipping_address1]').val($('#billing_address1').val()); 
-                $('input[name=shipping_address2]').val($('#billing_address2').val());
+                $('#shipping_name').val($('#billing_name').val()); 
+                $('#shipping_address1').val($('#billing_address1').val()); 
+                $('#shipping_address2').val($('#billing_address2').val());
 
                 // var num = $('#billing_phone1').val();
                 // var num1 = num.split("-");
@@ -304,7 +315,7 @@
                 // $('#shipping_phone11').val(num1[0]).prop("selected",true);
                 // $('input[name=shipping_phone12]').val(num1[1]);
                 // $('input[name=shipping_phone13]').val(num1[2]);
-                $('input[name=shipping_phone]').val($('#billing_phone1').val());
+                $('#shipping_phone').val($('#billing_phone1').val());
                 
 
                 $('#shipping-copy_button').css({
@@ -362,10 +373,91 @@
             var str = $('#billing_phone1').val().trim();    
             var phone = str.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
             document.getElementById('contact2').innerText = phone; 
-            
+    
+            $(document).ready(function(){ 
+            	$("#go_checkout").click(function(){ 
+                	payment(); //버튼 클릭하면 호출 
+                }); 
+            })
+
+
+            //버튼 클릭하면 실행
+            function payment(data) {
+            	let name = $('#shipping_name').val();
+            	console.log(name);
+            	let address = $('#shipping_address1').val();
+            	let address2 = $('#shipping_address2').val();
+            	let num = $('#shipping_phone').val();
+            	if(name==''){
+            		alert("수취인명을 입력하세요")
+            		return false;
+            	}else if(address==''){
+            		alert("주소를 입력하세요")
+            		return false;
+            	}else if(address2==''){
+            		alert("상세주소를 입력하세요")
+            		return false;
+            	}else if(num==''){
+            		alert("연락처를 입력하세요")
+            		return false;
+            	}
+            	$.ajax({     
+        			type:"post",
+        			dataType:"text",
+        			async:false,
+        			url:"http://localhost:8090/nocheck",
+        			success: function(data, textStatus){
+        				$('#nocheck').attr('value',data);
+        				alert($('#nocheck').val());
+        				
+        			},
+        			error:function(data, textStatus){
+        				alert("실패");
+        			}
+        		});
+            	
+                IMP.init('imp30479474');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
+                IMP.request_pay({// param
+                    pg: "hi", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
+                    pay_method: "card", //지불 방법
+                   /*  merchant_uid: $('#nocheck').val(), */ //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                    merchant_uid:16, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                    name: $('#workName').val(), //결제창에 노출될 상품명
+                    amount: $('#totalPrice').val(), //금액
+                    buyer_email : $('#checkout-input-billing_email').val(), 
+                    buyer_name : $('#billing_name').val(),
+                    buyer_tel : phone
+                }, function (rsp) { // callback
+                    if (rsp.success) {
+                        alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
+                        payment21.submit();
+                    } else {
+                        alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+                    }
+                });
+                
+            }
            
-
-
+            var count = document.getElementsByName("workNo").length;
+            var arr = [];
+            for( var i=0; i< count; i++){
+            	var d = document.getElementsByName("workNo")[i].value;
+            	 arr.push(d);
+            }
+		$('#workNo').attr('value',d);
+		console.log($('#workNo').val());
+		
+		function search3(){
+			new daum.Postcode({
+		        oncomplete: function(data) {
+		        	$('#shipping_address1').val(data.address);
+		        	$('#shipping_address1').prop("readonly",true);
+		        	
+		            console.log(data.address);
+		            
+		        }
+		    }).open();
+		}
 
     </script>
     

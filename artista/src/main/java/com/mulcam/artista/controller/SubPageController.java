@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
+import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.service.SubPageServiceImpl;
 
 @Controller
@@ -165,12 +166,35 @@ public class SubPageController {
 		}
 		return "subpage/payment";
 	}
+	
+	@ResponseBody
+	@PostMapping("nocheck")
+	public Integer nocheck() {
+		Integer no = 0;
+		try {
+			no = subPageService.MaxOrderNum();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return no;
+	}
+	
 	@GetMapping("paymentinfo")
 	public String paymentinfo() {
 		return "mypage/paymentinfo";
 	}
 	@GetMapping("paymentsuc")
-	public String paymentsuc() {
+	public String paymentsuc1() {
+		return "subpage/paymentsuc";
+	}
+	@PostMapping("paymentsuc")
+	public String paymentsuc(Order order) {
+		try {
+			subPageService.insertPayment(order);
+			System.out.println(order.getWorkNo());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "subpage/paymentsuc";
 	}
 }
