@@ -142,6 +142,10 @@ public class SubPageController {
 	public String payment() {
 		return "subpage/payment";
 	}
+	@GetMapping("paymentinfo")
+	public String paymentinfo() {
+		return "mypage/paymentinfo";
+	}
 	@GetMapping("paymentsuc")
 	public String paymentsuc() {
 		return "subpage/paymentsuc";

@@ -14,9 +14,8 @@
 </style>
 </head>
 <body>
-<%-- <%@include file ="../header.jsp" %> --%>
+ <%@include file ="../header.jsp"%> 
     <div id="contents">
-        
         <header class="account-header">
             <h2 class="account-header-title">회원 정보</h2>
             <div class="account-header-description">고객님과 관련된 정보입니다.</div>
@@ -101,7 +100,7 @@
             </form>
         </article>
     </div>
-<%-- <%@include file ="../footer.jsp" %> --%>
+ <%@include file ="../footer.jsp"%> 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
