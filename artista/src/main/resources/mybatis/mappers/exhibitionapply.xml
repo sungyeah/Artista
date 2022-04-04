@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mulcam.artista.dao.ExhibitionApplyDAO">
+	
+	<!-- 전시등록신청 id 지정 -->
+	<select id="maxExhibitionApplyId" resultType="integer">
+		<![CDATA[
+			select max(exhibitapplyNo) from exhibitionapply
+		]]>
+	</select>
+	
+	<!-- 전시등록신청 내용 insert -->
+	<insert id="insertExhibitApply" parameterType="exhibitionapply">
+		<![CDATA[
+			insert into exhibitionapply 
+			(exhibitapplyNo, fundingNo, artistNo, exhibitTitle, exhibitPoster, exhibitArtist, 
+				exhibitStartDate, exhibitEndDate, exhibitPlace, reserveLink, applyStatus) 
+			values 
+			(#{exhibitapplyNo}, #{fundingNo}, #{artistNo}, #{exhibitTitle}, #{exhibitPoster}, #{exhibitArtist}, 
+				#{exhibitStartDate}, #{exhibitEndDate}, #{exhibitPlace}, #{reserveLink}, #{applyStatus})
+		]]>
+	</insert>
+
+	<!-- 전시등록신청 내용 delete -->
+	<delete id="deleteExhibitApply" parameterType="int">
+		<![CDATA[
+			delete from exhibitionapply where exhibitapplyNo=#{exhibitapplyNo}
+		]]>
+	</delete>
+</mapper>
+<!-- 
+create table exhibitionapply(
+	exhibitapplyNo int(10) not null,
+    fundingNo int(10) not null,
+    artistNo int(10) not null,
+    exhibitTitle varchar(100) not null,
+    exhibitPoster varchar(255) not null,
+    exhibitArtist varchar(100) not null,
+    exhibitStartDate Date not null,
+    exhibitEndDate Date not null,
+    exhibitPlace varchar(500) not null,
+    reserveLink varchar(500) not null,
+    applyStatus int,
+    refusedContents varchar(500) ,
+    primary key(exhibitapplyNo)
+);
+ -->

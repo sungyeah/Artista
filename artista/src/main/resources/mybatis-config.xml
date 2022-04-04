@@ -10,6 +10,7 @@
 		<mapper resource="mybatis/mappers/artistworld.xml"/>
 		<mapper resource="mybatis/mappers/artist.xml"/>
 		<mapper resource="mybatis/mappers/work.xml"/>
+		<mapper resource="mybatis/mappers/workapply.xml"/>
 	</mappers>
 </configuration>
 

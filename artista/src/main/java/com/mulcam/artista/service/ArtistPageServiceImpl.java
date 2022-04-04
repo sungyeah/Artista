@@ -24,9 +24,9 @@ public class ArtistPageServiceImpl implements ArtistPageService {
 	}
 
 	@Override
-	public Funding queryId(String id) {
-		// TODO Auto-generated method stub
-		return fundingDAO.queryId(id);
+	public void updateapplyStatus(Funding funding) {
+		fundingDAO.updateapplyStatus(funding);
+		
 	}
 
 }

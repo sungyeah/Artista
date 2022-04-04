@@ -17,4 +17,10 @@ public class FundingServiceImpl implements FundingService {
 		return fundingDAO.queryFunding(id);
 	}
 
+	@Override
+	public void insertfunding(Funding funding) {
+		fundingDAO.insertfunding(funding);
+		
+	}
+
 }

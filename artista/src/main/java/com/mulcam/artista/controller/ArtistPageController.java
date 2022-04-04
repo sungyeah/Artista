@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Work;
+import com.mulcam.artista.dto.WorkApply;
 import com.mulcam.artista.service.ArtistPageService;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.FundingService;
@@ -110,6 +112,9 @@ public class ArtistPageController {
 		return "artistpage/succesapply";
 	}
 	
+	
+	
+	
 	// 아티스트의 작품 판매
 	@GetMapping("myproduct")
 	public String artistpageProduct() {
@@ -119,6 +124,24 @@ public class ArtistPageController {
 	public String artistpageEnrollProduct() {
 		return "artistpage/applyproduct";
 	}
+	@PostMapping("workApplyComplete")
+	public String workApplyComplete(@ModelAttribute ExhibitionApply exhibitionapply, @RequestParam(value="postertImgFile") MultipartFile postertImgFile) {
+		
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		System.out.println(id);
+		try {
+			//work.setWorkNo(workService.getWorkMaxId());
+			artistNo = artistService.getArtistNo(id);
+			System.out.println(artistNo);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
+		
+		
+		return "artistpage/succesapply";
+	}
+	
 	@GetMapping("myproductsold")
 	public String artistpageProductSold() {
 		return "artistpage/myproductsold";
@@ -144,9 +167,7 @@ public class ArtistPageController {
 		}
 		
 		
-		//비교해서 가지고 가야 된다 무조건 넣으면 안 됨
-		//현재의 문제점은 지금 모든 걸 다 업데이트 하고 있음
-		//artistNo을 그냥 빈 칸으로 넣고 나중에 고치기
+
 		@PostMapping("applyfunding")
 		public String applyfunding1(@ModelAttribute Funding funding, Model model) {
 			String path = servletContext.getRealPath("/fundingApp/");
@@ -154,11 +175,6 @@ public class ArtistPageController {
 //			 File destFile = new File(path+file.getOriginalFilename());
 			try {
 				artistPageService.insertApply(funding);
-//				Integer artistNo = artistService.getArtistNo(id);
-//				System.out.println(artistNo);
-//				if(id.equals(id)) {
-//					artistService.updateArtistNo(artistNo, id);
-//				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -227,6 +243,24 @@ public class ArtistPageController {
 	@GetMapping("applyexhibition")
 	public String artistpageEnrollExhibition() {
 		return "artistpage/applyexhibition";
+	}
+	
+	@PostMapping("exhibitionApplyComplete")
+	public String exhibitionApplyComplete(@ModelAttribute WorkApply work, @RequestParam(value="posterImgFile") MultipartFile posterImgFile) {
+		
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		System.out.println(id);
+		try {
+			//work.setWorkNo(workService.getWorkMaxId());
+			artistNo = artistService.getArtistNo(id);
+			System.out.println(artistNo);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
+		
+		
+		return "artistpage/succesapply";
 	}
 	
 //	@GetMapping("mypagemodify")
