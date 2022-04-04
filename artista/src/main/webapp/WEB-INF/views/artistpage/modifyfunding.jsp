@@ -17,7 +17,7 @@
 
   </style>
 <body>
-          <form method="post" action="applyfunding">
+          <form method="post" action="modifyfunding">
     <div id="contents">
         
         <header class="account-header">
@@ -60,6 +60,7 @@
             </div>
             <div class="account-modify-form-row-value">
                     <input class="account-modify-form-input" type="text" name="targetFunding" id="targetFunding" value="${funding.targetFunding }" maxlength="20"><br>
+                    <input type = "hidden" name = "fundingNo" value = "${funding.fundingNo}">
             </div>
         </div>
         <div class="account-modify-form-row">
@@ -96,7 +97,7 @@
       <div class="answer" id="ans-1">
         <div class="writing_title">
             <input type="text" id="projTitle" name="projTitle"
-                value="${projTitle}" onfocus="this.placeholder=''"
+                value="${funding.projTitle}" onfocus="this.placeholder=''"
                 onblur="this.placeholder='제목을 입력해 주세요.'"
                 style="width: 99%; height: 30px; margin: 15px 0 15px 0;" />
         </div>

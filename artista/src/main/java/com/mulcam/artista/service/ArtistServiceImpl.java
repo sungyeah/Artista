@@ -4,12 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.ArtistDAO;
+import com.mulcam.artista.dao.FundingDAO;
 import com.mulcam.artista.dto.Artist;
 
 @Service
 public class ArtistServiceImpl implements ArtistService {
 	@Autowired
 	ArtistDAO artistDAO;
+	
+	@Autowired
+	FundingDAO fundingDAO;
 
 	@Override
 	public void insertArtist(Artist artist) throws Exception {
@@ -26,6 +30,7 @@ public class ArtistServiceImpl implements ArtistService {
 	@Override
 	public Integer getArtistNo(String id) throws Exception {
 		return artistDAO.selectArtistNo(id);
-	}	
+	}
+
 	
 }

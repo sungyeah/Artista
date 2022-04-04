@@ -27,7 +27,7 @@ public class Funding {
 		
 		public Funding(String projTitle, String projIntro, String projBudget,
 				String projArtist, int targetFunding, String fundingDate, String thumbImg,
-				String getplace, String getplace2) {
+				String getplace, String getplace2, String id) {
 			this.projTitle = projTitle;
 			this.projIntro = projIntro;
 			this.projBudget = projBudget;
@@ -37,9 +37,10 @@ public class Funding {
 			this.thumbImg = thumbImg;
 			this.getplace = getplace;
 			this.getplace2=getplace2;
+			this.id=id;
 		}
 		public Funding(int fundingNo, int artistNo, String projTitle, String projIntro, String projBudget,
-				String projArtist, int targetFunding, String fundingDate, String thumbImg, String getplace, int sumAmount,
+				String projArtist, int targetFunding, String fundingDate, String thumbImg, String getplace, int sumAmount, String id,
 				int fundingState) {
 			this.fundingNo = fundingNo;
 			this.artistNo = artistNo;
@@ -53,6 +54,7 @@ public class Funding {
 			this.getplace = getplace;
 			this.sumAmount = sumAmount;
 			this.fundingState = fundingState;
+			this.id=id;
 		}
 		
 		public Funding(int fundingNo, int sponsorNo, String id, int sponsorAmount, String email) {

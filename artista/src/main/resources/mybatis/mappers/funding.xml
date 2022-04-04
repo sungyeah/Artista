@@ -5,15 +5,30 @@
 	<!-- 작가가 펀딩 신청 -->
 	<insert id="insertApply" parameterType="funding" >
 		<![CDATA[
-			insert into fundingapp(projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, thumbImg, getplace, getplace2, applydate)
-			values(#{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{thumbImg}, #{getplace}, #{getplace2}, sysdate())
+			insert into fundingapp(artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, thumbImg, getplace, getplace2, applydate)
+			values(#{artistNo},#{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{thumbImg}, #{getplace}, #{getplace2}, sysdate())
 		]]>
 	</insert>
+	<select id="queryFunding" parameterType="string" resultType="Funding">
+		<![CDATA[
+			select * from fundingapp where id=#{id}
+		]]>
+	</select>
+	<update id="updatefundingapp" parameterType="Funding" >
+		<![CDATA[
+			update fundingapp set projTitle=#{projTitle}, projIntro=#{projIntro}, projBudget=#{projBudget}, projArtist=#{projArtist}, targetFunding=#{targetFunding},
+			fundingDate=#{fundingDate}, thumbImg=#{thumbImg}, getplace=#{getplace}, getplace2=#{getplace2} where id=#{id}
+		]]>
+	</update>
+
 </mapper>
 
 <!-- 
+updatefundingapp
 create table fundingApp(
 	fundingNo int(10) not null auto_increment,
+    artistNo int(10),
+    id varchar(100) not null,
     projTitle varchar(100) not null,
     projIntro varchar(255) not null,
     projBudget varchar(255) not null,
@@ -31,7 +46,8 @@ create table fundingApp(
 
 create table funding(
 	fundingNo int(10) not null,
-    artistNo int(10) not null,
+    artistNo int(10),
+    id varchar(100) not null,
     projTitle varchar(100) not null,
     projIntro varchar(255) not null,
     projBudget varchar(255) not null,

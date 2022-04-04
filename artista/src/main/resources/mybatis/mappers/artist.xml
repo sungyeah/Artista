@@ -23,6 +23,9 @@
 			select artistNo from artist where id=#{id} limit 1	
 		]]>
 	</select>
+
+	
+	
 </mapper>
 <!-- 
 create table artist(

@@ -17,4 +17,16 @@ public class ArtistPageServiceImpl implements ArtistPageService {
 		fundingDAO.insertApply(funding);		
 	}
 
+	@Override
+	public void updatefundingapp(Funding funding) {
+		// TODO Auto-generated method stub
+		fundingDAO.updatefundingapp(funding);
+	}
+
+	@Override
+	public Funding queryId(String id) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryId(id);
+	}
+
 }

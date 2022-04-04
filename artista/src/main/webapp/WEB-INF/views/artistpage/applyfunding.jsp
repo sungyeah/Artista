@@ -33,6 +33,7 @@
             </div>
             <div class="account-modify-form-row-value">
             	${mem.id }
+            	<input type="hidden" id="id" name="id" value='${mem.id }'>
             </div>
         </div>
         <div class="account-modify-form-row">
