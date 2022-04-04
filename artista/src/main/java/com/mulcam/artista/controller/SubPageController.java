@@ -188,10 +188,10 @@ public class SubPageController {
 		return "subpage/paymentsuc";
 	}
 	@PostMapping("paymentsuc")
-	public String paymentsuc(Order order) {
+	public String paymentsuc(Order order,Model model) {
 		try {
 			subPageService.insertPayment(order);
-			System.out.println(order.getWorkNo());
+			model.addAttribute("order",order);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

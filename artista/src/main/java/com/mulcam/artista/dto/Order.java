@@ -14,16 +14,17 @@ public class Order {
 	String receiverNum;
 	String receiverAddress;
 	String receiverAddress2;
-	String payment;
+	String pay_method;
 	String orderStatus;
 	String trackingNo;
 	String orderDate;
 	String pickupAddress;
+	String ordercount;
 	
 	public Order() {}
 	public Order(int orderNo, String id, int workNo,int deliveryCharge,int workPrice,int orderCost,
 			String orderName,String orderNum,String orderEmail,String receiverName,String receiverNum,String receiverAddress
-			,String receiverAddress2,String payment,String orderStatus,String trackingNo,String orderDate,String pickupAddress) {
+			,String receiverAddress2,String pay_method,String orderStatus,String trackingNo,String orderDate,String pickupAddress,String ordercount) {
 	this.orderNo=orderNo;
 	this.id=id;
 	this.workNo=workNo;
@@ -37,11 +38,18 @@ public class Order {
 	this.receiverNum=receiverNum;
 	this.receiverAddress=receiverAddress;
 	this.receiverAddress2=receiverAddress2;
-	this.payment=payment;
+	this.pay_method=pay_method;
 	this.orderStatus=orderStatus;
 	this.trackingNo=trackingNo;
 	this.orderDate=orderDate;
 	this.pickupAddress=pickupAddress;
+	this.ordercount=ordercount;
+	}
+	public String getOrdercount() {
+		return ordercount;
+	}
+	public void setOrdercount(String ordercount) {
+		this.ordercount = ordercount;
 	}
 	public int getOrderNo() {
 		return orderNo;
@@ -121,11 +129,11 @@ public class Order {
 	public void setReceiverAddress2(String receiverAddress2) {
 		this.receiverAddress2 = receiverAddress2;
 	}
-	public String getPayment() {
-		return payment;
+	public String getPay_method() {
+		return pay_method;
 	}
-	public void setPayment(String payment) {
-		this.payment = payment;
+	public void setPay_method(String pay_method) {
+		this.pay_method = pay_method;
 	}
 	public String getOrderStatus() {
 		return orderStatus;

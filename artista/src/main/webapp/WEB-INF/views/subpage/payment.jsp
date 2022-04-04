@@ -225,7 +225,7 @@
                                 
                             </ul>
                             <ul class="checkout-billing-info">
-                                <li>${count }점</li>
+                                <li>${count }점<input type="hidden" name="ordercount" value="${count }"></li>
                                 
                                     <li><fmt:formatNumber value="${total }"/>원
                                     	<input type="hidden" id="total" name="workPrice" value='${total }'>
@@ -262,15 +262,15 @@
                         <div class="sect-body-td">
                             
                                 <span class="method checked">
-                                    <input id="payMethod_Card" class="checkbox_payment" type="radio" name="payment" value="신용/체크카드" checked="checked">
+                                    <input id="payMethod_Card" class="checkbox_payment" type="radio" name="pay_method" value="신용/체크카드" checked="checked">
                                     <label for="payMethod_Card">신용/체크카드</label>
                                 </span>
                                 <span id="id-payMethod_DirectBank" class="method active">
-                                    <input id="payMethod_DirectBank" class="checkbox_payment" type="radio" name="pay_method" value="trans">
+                                    <input id="payMethod_DirectBank" class="checkbox_payment" type="radio" name="pay_method" value="실시간 계좌이체">
                                     <label for="payMethod_DirectBank">실시간 계좌이체</label>
                                 </span>
                                 <span class="method active">
-                                    <input id="payMethod_VBank" class="checkbox_payment" type="radio" name="pay_method" value="vbank">
+                                    <input id="payMethod_VBank" class="checkbox_payment" type="radio" name="pay_method" value="가상계좌(무통장입금)">
                                     <label for="payMethod_VBank">가상계좌(무통장입금)</label>
                                 </span>
                             
@@ -420,8 +420,8 @@
                 IMP.request_pay({// param
                     pg: "hi", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
                     pay_method: "card", //지불 방법
-                   /*  merchant_uid: $('#nocheck').val(), */ //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-                    merchant_uid:16, //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                    /* merchant_uid: $('#nocheck').val(), */   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                     merchant_uid:21,   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
                     name: $('#workName').val(), //결제창에 노출될 상품명
                     amount: $('#totalPrice').val(), //금액
                     buyer_email : $('#checkout-input-billing_email').val(), 
@@ -429,7 +429,8 @@
                     buyer_tel : phone
                 }, function (rsp) { // callback
                     if (rsp.success) {
-                        alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
+                        /* alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
+                        alert(rsp.apply_num); */
                         payment21.submit();
                     } else {
                         alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
@@ -444,6 +445,7 @@
             	var d = document.getElementsByName("workNo")[i].value;
             	 arr.push(d);
             }
+            
 		$('#workNo').attr('value',d);
 		console.log($('#workNo').val());
 		

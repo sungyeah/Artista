@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,18 +37,21 @@
                     
                 </div>
             </section>
-            <section class="order-info"><section class="address-info"><h3>수취인 정보</h3><ul><li>수취인명</li><li>홍성호<span class="subphone"></span></li></ul><ul><li>주소</li><li>
+            <section class="order-info"><section class="address-info">
+            <h3>수취인 정보</h3>
+            <ul>
+            <li>수취인명</li><li>${order.receiverName }<span class="subphone"></span></li></ul><ul><li>주소</li><li>
                                 
-                                    세종특별자치시 대평로 34(대평동, 해들마을4단지)<br class="subaddress"> 해들마을 420동1601호
+                                    ${order.receiverAddress }<br class="subaddress"> ${order.receiverAddress2 }
                                 
                             </li></ul></section>
-                            <section class="pay-info cf"><h3>결제 정보</h3><ul class="first"><li>주문작품</li><li>총 1점</li></ul><ul class="first"><li>결제방식</li><li>
+                            <section class="pay-info cf"><h3>결제 정보</h3><ul class="first"><li>주문작품</li><li>총 ${order.ordercount }점</li></ul><ul class="first"><li>결제방식</li><li>
                                 
                                     
-                                        신용/체크카드
+                                        ${order.pay_method }
                                     
                                 
-                            </li></ul><ul><li>결제카드</li><li>NH카드</li></ul><ul><li class="total">결제금액</li><li class="total">￦ 100,000</li></ul>
+                            </li></ul><ul><li>결제카드</li><li>NH카드</li></ul><ul><li class="total">결제금액</li><li class="total">￦ <fmt:formatNumber value="${order.orderCost }"/></li></ul>
                         </section></section>
         </section>
         <a href="mypage" class="order_detail">주문내역 확인</a>

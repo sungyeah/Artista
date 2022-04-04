@@ -25,24 +25,4 @@
 	</delete>
 
 </mapper>
-<!-- create table order1(
-	orderNo int(10) not null,
-    id varchar(100) not null,
-    workNo int(10) not null,
-    workName varchar(100) not null,
-    workPrice int(10) not null,
-    orderName varchar(100) not null,
-    orderAddress varchar(500) not null,
-    orderAddress2 varchar(500),
-    orderNum varchar(255) not null,
-    orderEmail varchar(255),
-    deliveryCharge int(10),
-    payment varchar(100) not null,
-    orderCost int(10) not null,
-    orderStatus varchar(100),
-    trackingNo varchar(100),
-    orderDate Datetime,
-    workImg varchar(255),
-    pickupAddress varchar(500),
-    primary key(orderNo)
-); -->
+
