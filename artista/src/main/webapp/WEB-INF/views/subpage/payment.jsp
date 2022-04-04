@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,25 +42,25 @@
                             <div class="sect-body-th">주문자명</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
-                                    <input type="hidden" id="billing_name" name="billing_name" value="홍성호">
-                                    <span>홍성호</span>
+                                    <input type="hidden" id="billing_name" name="name" value="${mem.name }">
+                                    <span>${mem.name }</span>
                                 </div>
                             </div>
                         </div>
                         <div class="sect-body cf">
                             <div class="sect-body-th">주소</div>
                             <div class="sect-body-td">
-                                <input type="text" id="billing_address1" class="address1" name="billing_address1" value="세종특별자치시 대평로 34(대평동, 해들마을4단지)" placeholder="기본 주소" readonly="readonly">
+                                <input type="text" id="billing_address1" class="address1" name="address" value="${mem.address }" placeholder="기본 주소" readonly="readonly">
                                 <input id="billing_address_btn" class="address-btn" type="button" value="주소 찾기" readonly="readonly"><br>
-                                <input type="text" id="billing_address2" class="address2" name="billing_address2" value="해들마을 420동1601호" placeholder="상세 주소">
+                                <input type="text" id="billing_address2" class="address2" name="address2" value="${mem.address2 }" placeholder="상세 주소" readonly="readonly">
                             </div>
                         </div>
                         <div class="sect-body cf">
                             <div class="sect-body-th">휴대폰</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
-                                    <input type="hidden" id="billing_phone1" name="billing_phone1" value="010-4012-9131">
-                                    <span>010-4012-9131</span>
+                                    <input type="hidden" id="billing_phone1" name="contact" value="${mem.contact }">
+                                    <span id="contact2">0</span>
                                     <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
                                 </div>
                             </div>
@@ -68,8 +69,8 @@
                             <div class="sect-body-th">이메일</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
-                                    <input type="hidden" id="checkout-input-billing_email" name="billing_email" value="ghdtjdgh0810@nate.com">
-                                    <span>ghdtjdgh0810@nate.com</span>
+                                    <input type="hidden" id="checkout-input-billing_email" name="email" value="${mem.email }">
+                                    <span>${mem.email }</span>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +188,7 @@
                     </div>
                     <div class="sect-list active">
                         <div class="checkout-artwork-list">
-                            
+                           <%--  <c:forEach items="${carts }" var="cart"> --%>
                                 <div class="checkout-item">
                                     <div class="checkout-img">
                                         <img src="https://og-data.s3.amazonaws.com/media/artworks/h_fixed/A0365/A0365-0017.jpg">
@@ -205,7 +206,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            
+                            <%-- </c:forEach> --%>
                         </div>
                         <div class="checkout-billing-value cf">
                             <ul class="checkout-billing-title">
@@ -328,6 +329,15 @@
             $('#method2').attr("class","method checked active")
             $('#receive-card-visited').attr("class","receive-card cf active show")
         });
+        
+            var str = $('#billing_phone1').val().trim();    
+			console.log(str)
+            var phone = str.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+            console.log(phone)
+            document.getElementById('contact2').innerText = phone; 
+
+
+
     </script>
     
 </body>

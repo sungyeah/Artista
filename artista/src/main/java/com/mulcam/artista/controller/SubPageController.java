@@ -138,8 +138,18 @@ public class SubPageController {
 		}
 	}
 	
-	@GetMapping("payment")
-	public String payment() {
+	@PostMapping("payment")
+	public String payment(@RequestParam(value="order_artwork") List<Integer> cartNo,Model model) {
+		String id = (String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			model.addAttribute("mem",mem);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(cartNo);
+		System.out.println(cartNo);
 		return "subpage/payment";
 	}
 	@GetMapping("paymentinfo")
