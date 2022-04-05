@@ -1,8 +1,12 @@
 package com.mulcam.artista.service;
 
+import java.util.List;
+
 import com.mulcam.artista.dto.Work;
 
 public interface WorkService {
 	public void insertWork(Work work) throws Exception;
-	public int getWorkMaxId() throws Exception;
+	public int getWorkMaxNo() throws Exception;
+	Work workinfo(int workNo) throws Exception;
+	public List<Work> getWorkinfo(String workNo) throws Exception ; //안쓸듯
 }

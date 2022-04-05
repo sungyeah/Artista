@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
     <div class="contents">
@@ -61,26 +63,23 @@
                         <th scope="col"></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                    	<th scope="col" class="artistNo">아티스트번호</th>
-                        <th scope="col" class="id">회원 아이디</th>
-                        <th scope="col" class="artistName">아티스트이름(필명)</th>
-                        <th scope="col" class="artistType">작가유형</th>
-                        <th scope="col" class="followerNum">팔로워수</th>
-                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
-                        <th scope="col"><input type="checkbox" name="xxx"></th>
-                    </tr>
-                    <tr>
-                    	<th scope="col" class="artistNo">아티스트번호</th>
-                        <th scope="col" class="id">회원 아이디</th>
-                        <th scope="col" class="artistName">아티스트이름(필명)</th>
-                        <th scope="col" class="artistType">작가유형</th>
-                        <th scope="col" class="followerNum">팔로워수</th>
-                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
-                        <th scope="col"><input type="checkbox" name="xxx"></th>
-                    </tr>
-                    </tbody>
+                    <c:choose>
+                    	<c:when test="${artistlist!=null && pageInfo.listCount>0 }">
+                    	<tbody>
+                    		<c:forEach items="${artistlist }" var="artist">
+								<tr>
+								<th scope="col" class="artistNo">${artist.artistNo }</th>
+                        		<th scope="col" class="id">${artist.id }</th>
+                        		<th scope="col" class="artistName">${artist.artistName }</th>
+                        		<th scope="col" class="artistType">${artist.artistType }</th>
+                        		<th scope="col" class="followerNum">${artist.followerNum }</th>
+                        		<th scope="col"><a class="artist-detail-btn">상세보기</a></th>
+                        		<th scope="col"><input type="checkbox" name="xxx"></th>
+                        		</tr>
+                        	</c:forEach>
+                        </tbody>
+                    	</c:when>
+                    </c:choose>
                 </table>
                 <a class="member-delete-btn" href="/account/delete/">
                     등록 취소

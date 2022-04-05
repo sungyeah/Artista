@@ -3,6 +3,7 @@ package com.mulcam.artista.dto;
 public class WorkApply {
 	int workapplyNo;
 	int artistNo;
+	String artistName;
 	String workName;
 	String workImg;
 	String workType;
@@ -26,6 +27,12 @@ public class WorkApply {
 	}
 	public void setArtistNo(int artistNo) {
 		this.artistNo = artistNo;
+	}
+	public String getArtistName() {
+		return artistName;
+	}
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
 	}
 	public String getWorkName() {
 		return workName;

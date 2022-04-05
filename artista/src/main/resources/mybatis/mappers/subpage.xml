@@ -46,9 +46,9 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<select id="memberList" resultType="member">
+	<select id="memberList" parameterType="int"  resultType="member">
 		<![CDATA[
-			select * from meber
+			select * from member limit #{startrow}, 9
 		]]>
 	</select>
 	
@@ -97,9 +97,19 @@
 	<insert id="insertPayment" parameterType="order" >
 		<![CDATA[
 			insert into order1(orderNo,id,workNo,deliveryCharge,workPrice,orderCost,orderName,orderNum,orderEmail,receiverName,receiverNum,receiverAddress,receiverAddress2,pay_method,orderStatus,trackingNo,orderDate,pickupAddress,ordercount,cartNo)
-			values(#{orderNo},#{id},#{workNo},#{deliveryCharge},#{workPrice},#{orderCost},#{orderName},#{orderNum},#{orderEmail},#{receiverName},#{receiverNum},#{receiverAddress},#{receiverAddress2},#{pay_method},'배송 준비중',null,now(),null,#{ordercount},#{cartNo})
+			values(#{orderNo},#{id},#{workNo},#{deliveryCharge},#{workPrice},#{orderCost},#{orderName},#{orderNum},#{orderEmail},#{receiverName},#{receiverNum},#{receiverAddress},#{receiverAddress2},#{pay_method},'상품 준비 중',null,now(),null,#{ordercount},#{cartNo})
 		]]>
 	</insert> 
+	
+	<!-- 예선 : 회원 목록 보기 -->
+	<!-- 회원수 -->
+	<select id="memberNum" resultType="int">
+		<![CDATA[
+			select count(*) from member
+		]]>
+	</select>
+	
+	
 
 </mapper>
 <!-- create table member(
@@ -144,7 +154,7 @@
     pay_method varchar(100) not null,
     orderStatus varchar(100),
     trackingNo varchar(100),
-    orderDate Datetime,
+    orderDate Date,
     pickupAddress varchar(500),
     ordercount varchar(100),
     cartNo varchar(100),

@@ -17,8 +17,8 @@ public class ArtistApplyServiceImpl implements ArtistApplyService {
 	ArtistApplyDAO artistapplyDAO;
 	
 	@Override
-	public int getApplyArtistId() throws Exception {
-		Integer id = artistapplyDAO.maxApplyId();
+	public int getApplyArtistNo() throws Exception {
+		Integer id = artistapplyDAO.maxApplyNo();
 		if(id==null) id = 0;
 		return id+1;
 	}

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,11 +32,13 @@ import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
+import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistWorldService;
 import com.mulcam.artista.service.MyPageServiceImpl;
 import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageServiceImpl;
+import com.mulcam.artista.service.WorkService;
 
 @RequestMapping("mypage")
 @Controller
@@ -55,6 +58,9 @@ public class MyPageController {
 	
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	WorkService workService;
 
 	@GetMapping({"/", ""})
 	public String mypageMain(Model model) {
@@ -64,6 +70,21 @@ public class MyPageController {
 //			model.addAttribute("check", check);
 			model.addAttribute("name",mem.getName());
 			List<Order> ord = myPageService.orderList(id);
+//			List<Work> ord2 = new ArrayList<Work>();
+			for(int i=0;i<ord.size();i++) {
+				Order order = ord.get(i);
+				String[] arr = order.getWorkNo().split(",");
+				List<Work> work = new ArrayList<Work>();
+					for(int j=0;j<arr.length;j++) {
+						int workno = Integer.parseInt(arr[j]);
+						System.out.println("workno"+workno);
+						Work work2 = workService.workinfo(workno);
+						work.add(work2);
+						model.addAttribute("works",work);
+					}
+				System.out.println("List<Work> work: "+work);
+//				ord2.add(work);
+			}
 			model.addAttribute("orders",ord);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,7 +155,7 @@ public class MyPageController {
 		}
 		
 		try {
-			apply.setArtistNo(artistapplyService.getApplyArtistId());
+			apply.setArtistNo(artistapplyService.getApplyArtistNo());
 			artistapplyService.insertArtistApply(apply);
 			
 		} catch (Exception e1) {

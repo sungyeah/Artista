@@ -3,7 +3,7 @@
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mulcam.artista.dao.WorkDAO">
 	
-	<select id="maxWorkId" resultType="integer">
+	<select id="maxWorkNo" resultType="integer">
 		<![CDATA[
 			select max(workNo) from work
 		]]>
@@ -12,18 +12,31 @@
 	<!-- 아티스트 등록신청 내용 insert -->
 	<insert id="insertWork" parameterType="work">
 		<![CDATA[
-			insert into work (workNo, artistNo, workName, workImg, workType, workTech, 
+			insert into work (workNo, artistNo, artistName, workName, workImg, workType, workTech, 
 				workSize, workIntro, pickupAddress, workPrice, workForSale) 
-			values (#{workNo}, #{artistNo}, #{workName}, #{workImg}, #{workType}, #{workTech}, 
+			values (#{workNo}, #{artistNo}, #{artistName}, #{workName}, #{workImg}, #{workType}, #{workTech}, 
 				#{workSize}, #{workIntro}, #{pickupAddress}, #{workPrice}, #{workForSale})
 		]]>
 	</insert>
+	
+	<select id="woriInfo" resultType="Work" parameterType="int">
+		<![CDATA[
+			select * from work where workNo=#{workNo}
+		]]>
+	</select>
+	
+	<select id="getMultiWorkinfo" resultType="Work" parameterType="String">
+		<![CDATA[
+			select * from work where workNo in (#{workNo})
+		]]>
+	</select>
 	
 </mapper>
 <!-- 
 create table work(
 	workNo int(10) not null,
     artistNo int(10) not null,
+    artistName varchar(100) not null,
     workName varchar(255) not null,
     workImg varchar(255) not null,
     workType varchar(100) not null,

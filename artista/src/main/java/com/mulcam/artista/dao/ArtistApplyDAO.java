@@ -12,7 +12,7 @@ import com.mulcam.artista.dto.ArtistApply;
 @Repository
 public interface ArtistApplyDAO {
 	
-	public Integer maxApplyId() throws Exception;
+	public Integer maxApplyNo() throws Exception;
 	public void insertArtistApply(ArtistApply artistApply) throws Exception;
 	
 	public ArtistApply selectArtistApplyByNo(int applyNo) throws Exception;
