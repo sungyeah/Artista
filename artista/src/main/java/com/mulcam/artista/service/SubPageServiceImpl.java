@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.mulcam.artista.dao.SubPageDAO;
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
+import com.mulcam.artista.dto.Order;
 
 @Service
 public class SubPageServiceImpl implements SubPageService{
@@ -104,6 +105,28 @@ public class SubPageServiceImpl implements SubPageService{
 		map.put("id", id);
 		map.put("membertype", memberType);
 		subpageDAO.updateMemberType(map);
+	}
+
+	@Override
+	public Cart cartInfo(int cartNo) throws Exception {
+		return subpageDAO.cartinfo(cartNo);
+	}
+
+	@Override
+	public Integer MaxOrderNum() throws Exception {
+		Integer no = subpageDAO.MaxOrderNum();
+		if(no==null) {
+			no = 0;
+		}else {
+			no +=1;
+		}
+		return no;
+	}
+
+	@Override
+	public void insertPayment(Order order) throws Exception {
+		subpageDAO.insertPayment(order);
+		
 	}
 
 }

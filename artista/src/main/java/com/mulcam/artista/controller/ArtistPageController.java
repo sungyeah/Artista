@@ -25,9 +25,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Work;
+import com.mulcam.artista.dto.WorkApply;
 import com.mulcam.artista.service.ArtistPageService;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.FundingService;
@@ -112,6 +114,9 @@ public class ArtistPageController {
 		return "artistpage/succesapply";
 	}
 	
+	
+	
+	
 	// 아티스트의 작품 판매
 	@GetMapping("myproduct")
 	public String artistpageProduct() {
@@ -121,6 +126,24 @@ public class ArtistPageController {
 	public String artistpageEnrollProduct() {
 		return "artistpage/applyproduct";
 	}
+	@PostMapping("workApplyComplete")
+	public String workApplyComplete(@ModelAttribute ExhibitionApply exhibitionapply, @RequestParam(value="postertImgFile") MultipartFile postertImgFile) {
+		
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		System.out.println(id);
+		try {
+			//work.setWorkNo(workService.getWorkMaxId());
+			artistNo = artistService.getArtistNo(id);
+			System.out.println(artistNo);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
+		
+		
+		return "artistpage/succesapply";
+	}
+	
 	@GetMapping("myproductsold")
 	public String artistpageProductSold() {
 		return "artistpage/myproductsold";
@@ -243,6 +266,24 @@ public class ArtistPageController {
 	@GetMapping("applyexhibition")
 	public String artistpageEnrollExhibition() {
 		return "artistpage/applyexhibition";
+	}
+	
+	@PostMapping("exhibitionApplyComplete")
+	public String exhibitionApplyComplete(@ModelAttribute WorkApply work, @RequestParam(value="posterImgFile") MultipartFile posterImgFile) {
+		
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		System.out.println(id);
+		try {
+			//work.setWorkNo(workService.getWorkMaxId());
+			artistNo = artistService.getArtistNo(id);
+			System.out.println(artistNo);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
+		
+		
+		return "artistpage/succesapply";
 	}
 	
 //	@GetMapping("mypagemodify")

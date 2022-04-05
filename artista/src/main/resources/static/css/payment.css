@@ -170,7 +170,7 @@
 .sect-body-td .address1 {
     width: 300px;
     margin-bottom: 7px;
-    margin-right: 1px;
+    margin-right: 8px;
 }
 input[readonly], select[readonly] {
     background: #f0f0f0!important;
@@ -578,4 +578,12 @@ button, input, select, textarea {
     font-size: 100%;
     margin: 0;
     vertical-align: middle;
+}
+.checkout-text .sub {
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: #989898;
+}
+#artworks>h3>span>span {
+    color: #df3b32;
 }

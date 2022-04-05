@@ -1,5 +1,6 @@
 package com.mulcam.artista.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.SubselectExpression;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
+import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.service.SubPageServiceImpl;
 
 @Controller
@@ -138,16 +141,60 @@ public class SubPageController {
 		}
 	}
 	
-	@GetMapping("payment")
-	public String payment() {
+	@PostMapping("payment")
+	public String payment(@RequestParam(value="order_artwork") int[] cartNo,Model model,
+			@RequestParam(value="total")int total,@RequestParam(value="count")String count) {
+		String id = (String) session.getAttribute("id");
+		List<Cart> carts = new ArrayList<Cart>();
+		for( int i=0;i<cartNo.length;i++) {
+			int cartNo2 = cartNo[i];
+			try {
+				Cart cart = subPageService.cartInfo(cartNo2);
+				carts.add(cart);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			Member mem = subPageService.queryId(id);
+			model.addAttribute("mem",mem);
+			model.addAttribute("carts",carts);
+			model.addAttribute("total",total);
+			model.addAttribute("count",count);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "subpage/payment";
 	}
+	
+	@ResponseBody
+	@PostMapping("nocheck")
+	public Integer nocheck() {
+		Integer no = 0;
+		try {
+			no = subPageService.MaxOrderNum();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return no;
+	}
+	
 	@GetMapping("paymentinfo")
 	public String paymentinfo() {
 		return "mypage/paymentinfo";
 	}
 	@GetMapping("paymentsuc")
-	public String paymentsuc() {
+	public String paymentsuc1() {
+		return "subpage/paymentsuc";
+	}
+	@PostMapping("paymentsuc")
+	public String paymentsuc(Order order,Model model) {
+		try {
+			subPageService.insertPayment(order);
+			model.addAttribute("order",order);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "subpage/paymentsuc";
 	}
 }

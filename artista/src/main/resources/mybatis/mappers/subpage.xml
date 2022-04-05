@@ -80,6 +80,26 @@
 		]]>
 	</update>
 	
+	<!-- 회원가입 -->
+	<select id="cartinfo" resultType="cart" parameterType="int">
+		<![CDATA[
+			select * from cart where cartNo=#{cartNo}
+		]]>
+	</select>
+	
+	<!-- 회원가입 -->
+	<select id="MaxOrderNum" resultType="integer">
+		<![CDATA[
+			select max(orderNo) from order1
+		]]>
+	</select>
+
+	<insert id="insertPayment" parameterType="order" >
+		<![CDATA[
+			insert into order1(orderNo,id,workNo,deliveryCharge,workPrice,orderCost,orderName,orderNum,orderEmail,receiverName,receiverNum,receiverAddress,receiverAddress2,pay_method,orderStatus,trackingNo,orderDate,pickupAddress,ordercount)
+			values(#{orderNo},#{id},#{workNo},#{deliveryCharge},#{workPrice},#{orderCost},#{orderName},#{orderNum},#{orderEmail},#{receiverName},#{receiverNum},#{receiverAddress},#{receiverAddress2},#{pay_method},'배송 준비중',null,now(),null,#{ordercount})
+		]]>
+	</insert> 
 
 </mapper>
 <!-- create table member(
@@ -105,4 +125,27 @@
     workImg varchar(255),
     cartDate Datetime,
     primary key(cartNo)
+); -->
+
+<!-- create table order1(
+	orderNo int(10) not null,
+    id varchar(100) not null,
+    workNo int(10) not null,
+	deliveryCharge int(10),
+    workPrice int(10) not null,
+    orderCost int(10) not null,
+    orderName varchar(100) not null,
+    orderNum varchar(255) not null,
+    orderEmail varchar(255),
+    receiverName varchar(100) not null,
+    receiverNum varchar(255) not null,
+    receiverAddress varchar(500) not null,
+    receiverAddress2 varchar(500),
+    pay_method varchar(100) not null,
+    orderStatus varchar(100),
+    trackingNo varchar(100),
+    orderDate Datetime,
+    pickupAddress varchar(500),
+    ordercount varchar(100),
+    primary key(orderNo)
 ); -->

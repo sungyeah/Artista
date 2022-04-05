@@ -25,7 +25,7 @@
             </div>
         </section>
         <section id="cartBody">
-            <form method="post" action="/checkout/" id="cartForm">
+            <form method="post" action="payment" id="cartForm">
                 <input type="hidden" name="csrfmiddlewaretoken" value="zEQTTX2dH04N75nRqOgUhc4WpKvEKXudYC2IwAeyhZ8ddPv1KpUIHKq7YePVXnij">
                 <input type="hidden" name="order_type" value="P">
                 <table id="cartList">
@@ -49,15 +49,17 @@
                         	</tr>
                     	</c:when>
                     	 <c:otherwise> 
+                    	 	<c:set var="tot" value="0"/>
                     		<c:forEach items="${carts }" var="cart">
                         	<tr>
                             <td class="cartList-checkbox">
-                                <input type="checkbox" class="cartList-checkEach" id="cartList-checkEach-${cart.cartNo }" name="order_artwork" value="${cart.workPrice }" onclick='itemSum(),getCheckedCnt()'>
-                                <label for="cartList-checkEach-${cart.cartNo }"></label>
+                                <input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.cartNo }" onclick='itemSum(),getCheckedCnt()'>
+                                <label for="${cart.cartNo }#${cart.workPrice }"></label>
+                              
                             </td>
                             <td class="cartList-tdInfo">
                                 <a class="cartList-imageHolder" href="/artwork/A0365-0017/">
-                                    <img class="cartList-image" src="https://og-data.s3.amazonaws.com/media/artworks/h_fixed/A0365/A0365-0017.jpg">
+                                    <img class="cartList-image" src="${cart.workImg }">
                                 </a>
                                 <div class="cartList-info">
                                     <p class="cartList-info-code"><a href="/artwork/A0365-0017/">${cart.workNo }</a></p>
@@ -102,12 +104,14 @@
                             <span class="cartBoard-label">총 작품수</span>
                             <span class="cartBoard-value">
                                 <span id="cartBoard-val-artworkCount">0</span> 점
+                                 <input id="count" name="count" type="hidden" value=''>
                             </span>
                         </li>
                         <li class="cartBoard-li cf">
                             <span class="cartBoard-label">총 구매가격</span>
                             <span class="cartBoard-value">
                                 ￦ <span id="cartBoard-val-amount">0</span>
+                                <input id="total" name="total" type="hidden" value=''>
                             </span>
                         </li>
                         <li class="cartBoard-li cf">
@@ -123,7 +127,7 @@
                 </div>
                 <div id="cartBottom">
                     <a href="/discover/"><input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="작품 더 고르기"></a>
-                    <a href="payment"><input type="button" class="cartBottom-btn" id="toCheckoutBtn" value="주문결제"></a>
+                    <input type="submit" class="cartBottom-btn" id="toCheckoutBtn" value="주문결제">
                     <!-- <a href="payment.html"><input type="submit" class="cartBottom-btn" id="toCheckoutBtn" value="주문결제"></a> -->
                 </div>
             </form>
@@ -152,6 +156,9 @@
 		  // 출력
 		  document.getElementById('cartBoard-val-artworkCount').innerText
 		    = selectedElementsCnt;
+		  $('#count').attr('value',selectedElementsCnt);
+		   console.log($('#count').val());
+		   console.log(jQuery.type($('#count').val()));
 		}
 	
 	  function itemSum(){
@@ -161,11 +168,16 @@
 		   var count = document.getElementsByName("order_artwork").length;
 		   for(var i=0; i < count; i++ ){
 		       if(document.getElementsByName("order_artwork")[i].checked == true ){
-			    sum += parseInt(document.getElementsByName("order_artwork")[i].value);
+		    	   var id = document.getElementsByName("order_artwork")[i].getAttribute("id");
+		    	   var price = +id.split("#")[1];
+		    	   sum += price;
+			    //sum += parseInt(document.getElementsByName("order_artwork")[i].getAttribute("id"));
 			    
 		       }
 		   }
 		   document.getElementById('cartBoard-val-amount').innerText = sum.toLocaleString();
+		   $('#total').attr('value',sum);
+		   console.log($('#total').val());
 		}   
 	
 	function deleteCart(no){
