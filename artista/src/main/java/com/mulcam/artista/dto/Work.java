@@ -3,6 +3,7 @@ package com.mulcam.artista.dto;
 public class Work {
 	int workNo;
 	int artistNo;
+	String artistName;
 	String workName;
 	String workImg;
 	String workType;
@@ -14,6 +15,21 @@ public class Work {
 	boolean workForSale;
 	
 	public Work() {} 
+	public Work(int workNo, int artistNo, String artistName, String workName, String workImg, String workType, String workTech,
+			String workSize, String workIntro, String pickupAddress, int workPrice, boolean workForSale) {
+		this.workNo = workNo;
+		this.artistName = artistName;
+		this.workName = workName;
+		this.workImg = workImg;
+		this.workType = workType;
+		this.workTech = workTech;
+		this.workSize = workSize;
+		this.workIntro = workIntro;
+		this.pickupAddress = pickupAddress;
+		this.workPrice = workPrice;
+		this.workForSale = workForSale;
+		
+	}
 	public int getWorkNo() {
 		return workNo;
 	}
@@ -26,6 +42,14 @@ public class Work {
 	public void setArtistNo(int artistNo) {
 		this.artistNo = artistNo;
 	}
+	
+	public String getArtistName() {
+		return artistName;
+	}
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
+	}
+	
 	public String getWorkName() {
 		return workName;
 	}

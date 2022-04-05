@@ -4,5 +4,5 @@ import com.mulcam.artista.dto.Work;
 
 public interface WorkService {
 	public void insertWork(Work work) throws Exception;
-	public int getWorkMaxId() throws Exception;
+	public int getWorkMaxNo() throws Exception;
 }

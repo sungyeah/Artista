@@ -7,7 +7,7 @@ import com.mulcam.artista.dto.PageInfo;
 
 public interface ArtistApplyService {
 	
-	public int getApplyArtistId() throws Exception;
+	public int getApplyArtistNo() throws Exception;
 	public void insertArtistApply(ArtistApply artistApply) throws Exception;
 	
 	public ArtistApply selectArtistApplyByNo(int applyNo) throws Exception;

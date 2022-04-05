@@ -3,32 +3,58 @@
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mulcam.artista.dao.WorkApplyDAO">
 	
+	<!-- 아티스트 작품 등록 신청하기 -->
+	<!-- workApplyNo 구하기 -->
 	<select id="maxWorkApplyId" resultType="integer">
 		<![CDATA[
 			select max(workapplyNo) from workapply
 		]]>
 	</select>
 	
-	<!-- 아티스트 등록신청 내용 insert -->
+	<!-- insert -->
 	<insert id="insertWorkApply" parameterType="workapply">
 		<![CDATA[
-			insert into workapply (workNo, artistNo, workName, workImg, workType, workTech, 
-				workSize, workIntro, pickupAddress, workPrice, workForSale) 
-			values (#{workNo}, #{artistNo}, #{workName}, #{workImg}, #{workType}, #{workTech}, 
-				#{workSize}, #{workIntro}, #{pickupAddress}, #{workPrice}, #{workForSale})
+			insert into workapply (workapplyNo, artistNo, artistName, workName, workImg, workType, workTech, 
+				workSize, workIntro, pickupAddress, workPrice) 
+			values (#{workapplyNo}, #{artistNo}, #{artistName}, #{workName}, #{workImg}, #{workType}, #{workTech}, 
+				#{workSize}, #{workIntro}, #{pickupAddress}, #{workPrice})
 		]]>
 	</insert>
 	
+	<!-- 아티스트 작품 등록 삭제하기 -->
 	<delete id="deleteWorkApply" parameterType="int">
 		<![CDATA[
 			delete from workapply where workapplyNo=#{workapplyNo}
 		]]>
 	</delete>
+	
+	<!-- 작품 등록 신청List 보기 -->
+	<!-- 신정 착품 수 -->
+	<select id="WorkApplyNum" resultType="int">
+		<![CDATA[
+			select count(*) from workapply
+		]]>
+	</select>
+	
+	<!-- 작품 선택하기 : listing 적용 -->
+	<select id="selectWorkApplyList" parameterType="int" resultType="workapply">
+		<![CDATA[
+			select * from workapply limit #{startrow}, 9
+		]]>
+	</select>
+	
+	<!-- workapplyNo로 아티스트 선택하기 -->
+	<select id="selectWorkApplyByNo" parameterType="int" resultType="workapply">
+		<![CDATA[
+			select * from workapply where workapplyNo=#{applyNo} limit 1
+		]]>
+	</select>
 </mapper>
 <!-- 
 create table workapply(
 	workapplyNo int(10) not null,
     artistNo int(10) not null,
+    artistName varchar(100) not null,
     workName varchar(255) not null,
     workImg varchar(255) not null,
     workType varchar(100) not null,
@@ -39,6 +65,6 @@ create table workapply(
     workPrice int(10),
 	applyState int,
     refusedContents varchar(500),
-    primary key(workNo)
+    primary key(workapplyNo)
 );
  -->

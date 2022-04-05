@@ -1,9 +1,12 @@
 package com.mulcam.artista.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.WorkApplyDAO;
+import com.mulcam.artista.dto.PageInfo;
 import com.mulcam.artista.dto.WorkApply;
 
 
@@ -29,4 +32,29 @@ public class WorkApplyServiceImpl implements WorkApplyService {
 	public void deleteWorkApply(int workapplyNo) throws Exception {
 		workapplyDAO.deleteWorkApply(workapplyNo);		
 	}
+
+	@Override
+	public List<WorkApply> getWorkApplyList(int page, PageInfo pageInfo) throws Exception {
+		int listCount = workapplyDAO.WorkApplyNum();
+		int maxPage = (int)Math.ceil((double)listCount/9);
+		int startPage=(((int) ((double)page/9+0.9))-1)*9+1;
+		int endPage=startPage+9-1;
+		
+		if(endPage>maxPage) endPage=maxPage;
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setPage(page);
+		pageInfo.setListCount(listCount);
+		int startrow = (page-1)*9;
+		
+		return workapplyDAO.selectWorkApplyList(startrow);
+	}
+
+	@Override
+	public WorkApply selectWorktApplyByNo(int applyNo) throws Exception {
+		return workapplyDAO.selectWorkApplyByNo(applyNo);
+	}
+	
+	
 }

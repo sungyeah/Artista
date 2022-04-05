@@ -259,6 +259,9 @@
     	$(document).on('click', '#refuse_close', function(e){
     		refuseapply.style.display = "none";
     	});
+    	$(document).on('click', '#cancel', function(e){
+    		refuseapply.style.display = "none";
+    	});
     });
     $(function(){
     	$(document).on('click', '#artistenroll', function(e){
@@ -276,8 +279,6 @@
     				alert("아티스트 등록이 실패했습니다.");
     			}
     		});
-    		
-    		
     	});
     	$(document).on('click', '#refuseenroll', function(e){
     		refuseapply.style.display = "flex";

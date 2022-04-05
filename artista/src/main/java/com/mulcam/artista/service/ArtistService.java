@@ -6,4 +6,5 @@ public interface ArtistService {
 	public void insertArtist(Artist artist) throws Exception;
 	public int getArtistMaxId() throws Exception;
 	public Integer getArtistNo(String id) throws Exception;
+	public String getArtistName(String id) throws Exception;
 }
