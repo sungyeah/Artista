@@ -12,8 +12,8 @@
 	<!-- 아티스트 등록신청 내용 insert -->
 	<insert id="insertArtist" parameterType="artist">
 		<![CDATA[
-			insert into artist (artistNo, id, artistName, artistImg, artistType, artistIntroduce, artistRecord, artistInstagram) 
-			values (#{artistNo}, #{id}, #{artistName}, #{artistImg}, #{artistType}, #{artistIntroduce}, #{artistRecord}, #{artistInstagram})
+			insert into artist (artistNo, id, artistName, artistImg, artistType, artistIntroduce, artistRecord, artistInstagram, followerNum) 
+			values (#{artistNo}, #{id}, #{artistName}, #{artistImg}, #{artistType}, #{artistIntroduce}, #{artistRecord}, #{artistInstagram}, #{followerNum})
 		]]>
 	</insert>
 	
@@ -31,6 +31,27 @@
 		]]>
 	</select>
 
+	<!-- 아티스트 List 보기 -->
+	<!-- 인원 -->
+	<select id="ArtistNum" resultType="int">
+		<![CDATA[
+			select count(*) from artist
+		]]>
+	</select>
+	
+	<!-- 아티스트 보기 : listing 적용 -->
+	<select id="selectArtistList" parameterType="int" resultType="artist">
+		<![CDATA[
+			select * from artist limit #{startrow}, 9
+		]]>
+	</select>
+	
+	<!-- artistNo로 아티스트 선택하기 -->
+	<select id="selectArtistByNo" parameterType="int" resultType="artist">
+		<![CDATA[
+			select * from artist where artistNo=#{artistNo} limit 1
+		]]>
+	</select>
 	
 	
 </mapper>
@@ -44,6 +65,7 @@ create table artist(
     artistIntroduce varchar(500),
     artistRecord longtext,
     artistInstagram varchar(500),
+    followerNum int,
     primary key(artistNo)
 );
  -->

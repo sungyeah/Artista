@@ -9,10 +9,11 @@ public class Artist {
 	String artistIntroduce;
 	String artistRecord;
 	String artistInstagram;
+	int followerNum;
 	
 	public Artist() {}
 	public Artist(int artistNo, String id, String artistName, String artistImg, String artistType, 
-			String artistIntroduce, String artistRecord, String artistInstagram) {
+			String artistIntroduce, String artistRecord, String artistInstagram, int followerNum) {
 		this.artistNo = artistNo;
 		this.id = id;
 		this.artistName = artistName;
@@ -21,6 +22,7 @@ public class Artist {
 		this.artistIntroduce = artistIntroduce;
 		this.artistRecord = artistRecord;
 		this.artistInstagram = artistInstagram;
+		this.followerNum = followerNum;
 	}
 	
 	public int getArtistNo() {
@@ -71,4 +73,11 @@ public class Artist {
 	public void setArtistInstagram(String artistInstagram) {
 		this.artistInstagram = artistInstagram;
 	}
+	public int getFollowerNum() {
+		return followerNum;
+	}
+	public void setFollowerNum(int followerNum) {
+		this.followerNum = followerNum;
+	}
+	
 }

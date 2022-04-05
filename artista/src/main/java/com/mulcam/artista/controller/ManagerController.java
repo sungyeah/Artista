@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.Funding;
+import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.PageInfo;
 import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.dto.WorkApply;
@@ -143,12 +144,34 @@ public class ManagerController {
 	
 	/* 회원 관리 */
 	@GetMapping("/memberlist")
-	public String memberList() {
-		return "manager/memberlist";
+	public ModelAndView memberList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+		ModelAndView mv = new ModelAndView("manager/memberlist");
+		PageInfo pageInfo = new PageInfo();
+		try {
+			List<Member> memberlist = subPageService.memberList(page, pageInfo);
+			mv.addObject("pageInfo", pageInfo);
+			mv.addObject("memberlist", memberlist);
+			mv.addObject("count", memberlist.size());
+		} catch(Exception e) {
+			e.printStackTrace();
+			mv.addObject("memberlist", null);
+		}
+		return mv;
 	}
 	@GetMapping("/artistlist")
-	public String artistList() {
-		return "manager/artistlist";
+	public ModelAndView artistList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+		ModelAndView mv = new ModelAndView("manager/artistlist");
+		PageInfo pageInfo = new PageInfo();
+		try {
+			List<Artist> artistlist = artistService.artistList(page, pageInfo);			
+			mv.addObject("pageInfo", pageInfo);
+			mv.addObject("artistlist", artistlist);
+			mv.addObject("count", artistlist.size());
+		} catch(Exception e) {
+			e.printStackTrace();
+			mv.addObject("artistlist", null);
+		}
+		return mv;
 	}
 	@GetMapping(value="/artistapplylist")
 	public ModelAndView artistApplyList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
@@ -199,7 +222,7 @@ public class ManagerController {
 			
 			//artist data에 artistapply 내용 옮기고 artist에 등록하기
 			Artist artist = new Artist(artistService.getArtistMaxId(), artistApply.getId(), artistApply.getArtistName(), artistApply.getArtistImg(),
-						artistApply.getArtistType(), artistApply.getArtistIntroduce(), artistApply.getArtistRecord(), artistApply.getArtistInstagram());
+						artistApply.getArtistType(), artistApply.getArtistIntroduce(), artistApply.getArtistRecord(), artistApply.getArtistInstagram(), 0);
 			artistService.insertArtist(artist);
 			System.out.println("hello" + artist.getId());
 			//artistapply에 내용 삭제
