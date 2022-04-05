@@ -192,6 +192,12 @@ public class SubPageController {
 		try {
 			subPageService.insertPayment(order);
 			model.addAttribute("order",order);
+			String str = order.getCartNo();
+			String[] cartNo = str.split(",");
+			for(int i=0;i<cartNo.length;i++) {
+				int cart = Integer.parseInt(cartNo[i]);
+				subPageService.deleteCart(cart);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

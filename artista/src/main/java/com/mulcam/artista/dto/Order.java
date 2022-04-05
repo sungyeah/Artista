@@ -3,7 +3,7 @@ package com.mulcam.artista.dto;
 public class Order {
 	int orderNo;
 	String id;
-	int workNo;
+	String workNo;
 	int deliveryCharge;
 	int workPrice;
 	int orderCost;
@@ -20,11 +20,12 @@ public class Order {
 	String orderDate;
 	String pickupAddress;
 	String ordercount;
+	String cartNo;
 	
 	public Order() {}
-	public Order(int orderNo, String id, int workNo,int deliveryCharge,int workPrice,int orderCost,
+	public Order(int orderNo, String id, String workNo,int deliveryCharge,int workPrice,int orderCost,
 			String orderName,String orderNum,String orderEmail,String receiverName,String receiverNum,String receiverAddress
-			,String receiverAddress2,String pay_method,String orderStatus,String trackingNo,String orderDate,String pickupAddress,String ordercount) {
+			,String receiverAddress2,String pay_method,String orderStatus,String trackingNo,String orderDate,String pickupAddress,String ordercount,String cartNo) {
 	this.orderNo=orderNo;
 	this.id=id;
 	this.workNo=workNo;
@@ -44,6 +45,13 @@ public class Order {
 	this.orderDate=orderDate;
 	this.pickupAddress=pickupAddress;
 	this.ordercount=ordercount;
+	this.cartNo=cartNo;
+	}
+	public String getCartNo() {
+		return cartNo;
+	}
+	public void setCartNo(String cartNo) {
+		this.cartNo = cartNo;
 	}
 	public String getOrdercount() {
 		return ordercount;
@@ -63,10 +71,10 @@ public class Order {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getWorkNo() {
+	public String getWorkNo() {
 		return workNo;
 	}
-	public void setWorkNo(int workNo) {
+	public void setWorkNo(String workNo) {
 		this.workNo = workNo;
 	}
 	public int getDeliveryCharge() {

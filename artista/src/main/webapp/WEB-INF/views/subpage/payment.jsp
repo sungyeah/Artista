@@ -193,16 +193,18 @@
                     </div>
                     <div class="sect-list active">
                         <div class="checkout-artwork-list">
-                             <c:forEach items="${carts }" var="cart"> 
+                        	 <input id="result" type="hidden" name="workNo">
+                        	 <input id="result2" type="hidden" name="cartNo">
+                             <c:forEach items="${carts }" var="cart" varStatus="status"> 
                                 <div class="checkout-item">
                                     <div class="checkout-img">
                                         <img src="${cart.workImg }">
                                     </div>
                                     <ul class="checkout-text">
-                                        <li class="code">${cart.workNo } <input type="hidden" id="workNo" name="workNo" value="${cart.workNo }"></li>
-                                       
+                                        <li class="code">${cart.workNo }</li>
                                         <li class="title">${cart.workName }
-                                        <input type="hidden" value="${cart.workName }">
+                                        <%-- <input type="hidden" value="${cart.workName }"> --%>
+                                        <input type="hidden" id="cartno2" name="cartno2" value="${cart.cartNo }">
                                         </li>
                                         <li class="sub">
                                             ${cart.workArtist } / ${cart.workSize }
@@ -378,6 +380,14 @@
             	$("#go_checkout").click(function(){ 
                 	payment(); //버튼 클릭하면 호출 
                 }); 
+            	 let arr = $('.code').get();
+                let strArr = [];
+                for(let a of arr) {
+                    /* console.log(a.textContent) */
+                    strArr.push(a.textContent)
+                }
+            	$('#result').val(strArr.toString()); 
+                console.log("강사님 "+$('#result').val())
             })
 
 
@@ -420,8 +430,8 @@
                 IMP.request_pay({// param
                     pg: "hi", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
                     pay_method: "card", //지불 방법
-                    /* merchant_uid: $('#nocheck').val(), */   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-                     merchant_uid:21,   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                     merchant_uid: $('#nocheck').val(),   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                    /*  merchant_uid:27, */   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
                     name: $('#workName').val(), //결제창에 노출될 상품명
                     amount: $('#totalPrice').val(), //금액
                     buyer_email : $('#checkout-input-billing_email').val(), 
@@ -439,15 +449,16 @@
                 
             }
            
-            var count = document.getElementsByName("workNo").length;
-            var arr = [];
-            for( var i=0; i< count; i++){
-            	var d = document.getElementsByName("workNo")[i].value;
-            	 arr.push(d);
-            }
+            var count = document.getElementsByName("cartno2").length;
+             var arr = [];
+             for( var i=0; i< count; i++){
+             	var d = document.getElementsByName("cartno2")[i].value;
+                console.log(d);
+             	 arr.push(d);
+             }
+		     $('#result2').attr('value',arr);
+		    console.log("카트번호 "+$('#result2').val());
             
-		$('#workNo').attr('value',d);
-		console.log($('#workNo').val());
 		
 		function search3(){
 			new daum.Postcode({
