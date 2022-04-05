@@ -30,8 +30,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.Member;
+import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistWorldService;
+import com.mulcam.artista.service.MyPageServiceImpl;
+import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageServiceImpl;
 
 @RequestMapping("mypage")
@@ -42,7 +45,11 @@ public class MyPageController {
 	SubPageServiceImpl subPageService;
 	
 	@Autowired
+	MypageService myPageService;
+	
+	@Autowired
 	ArtistApplyService artistapplyService;
+	
 	@Autowired
 	ArtistWorldService artistworldService;
 	
@@ -56,6 +63,8 @@ public class MyPageController {
 			Member mem = subPageService.queryId(id);
 //			model.addAttribute("check", check);
 			model.addAttribute("name",mem.getName());
+			List<Order> ord = myPageService.orderList(id);
+			model.addAttribute("orders",ord);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -83,7 +92,6 @@ public class MyPageController {
 		String path = servletContext.getRealPath("/imgupload/artistProfile/");
 		String[] mtypes = artistImgFile.getContentType().split("/");
 		File destFile = new File(path + apply.getArtistName() +"."+ mtypes[1]);
-		System.out.println(path + apply.getArtistName()+"." + mtypes[1]);
 		try {			
 			artistImgFile.transferTo(destFile);
 		} catch (Exception e) {
@@ -127,22 +135,11 @@ public class MyPageController {
 		
 		try {
 			apply.setArtistNo(artistapplyService.getApplyArtistId());
-			System.out.println(apply.getArtistNo());
 			artistapplyService.insertArtistApply(apply);
 			
 		} catch (Exception e1) {
 			e1.printStackTrace();
-		}		
-		
-		/*
-		String id = (String) session.getAttribute("id");
-		try {
-			Member mem = subPageService.queryId(id);
-			subPageService.changeMemberType(id, "artist");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		*/
+		}	
 		return "mypage/succesapply";
 	}
 	

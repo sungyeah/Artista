@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,11 +53,30 @@
                     </tr>
                     </thead>
                     <tbody>
-                    
-                        <tr>
+                    	<c:choose> 
+                    		<c:when test='${empty orders}'>
+                         <tr>
                             <td class="empty" colspan="6">표시할 내역이 없습니다.</td>
                         </tr>
-                    
+                        	</c:when>
+                        	<c:otherwise> 
+                        <c:forEach items="${orders }" var="order">
+                        <tr>
+                        	<td class="time-code"><a href="paymentinfo/${order.orderNo }">${order.orderNo }</a></td>
+                        	<td class="artworks">
+                        		 <c:forEach items="${order.workNo }" var="work"> 
+                        		<왜곡3> 김소명<br>
+                        		한지에 동양화 물감, 45x53cm<br>
+                        		 </c:forEach> 
+                        	</td>
+                        	
+                        	<td class="start-date">${order.orderDate }</td>
+                        	<td class="start-date" style="font-weight: bold;">￦ <fmt:formatNumber value="${order.orderCost }"/>원</td>
+                        	<td class="status">${order.orderStatus }</td>
+                        </tr>
+                        </c:forEach>
+                         </c:otherwise>
+                    	</c:choose>   
                     </tbody>
                 </table>
                 <!-- <div class="m-account-table">

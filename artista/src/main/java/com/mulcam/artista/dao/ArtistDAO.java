@@ -8,7 +8,7 @@ import com.mulcam.artista.dto.Artist;
 @Mapper
 @Repository
 public interface ArtistDAO {
-	public Integer maxArtistId() throws Exception;
+	public Integer maxArtistNo() throws Exception;
 	public void insertArtist(Artist artist) throws Exception;
 	public Integer selectArtistNo(String id) throws Exception;
 }

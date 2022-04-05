@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
+import com.mulcam.artista.service.MyPageServiceImpl;
+import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageServiceImpl;
 
 @Controller
@@ -28,6 +31,9 @@ public class SubPageController {
 	
 	@Autowired
 	SubPageServiceImpl subPageService;
+	
+	@Autowired
+	MypageService myPageService;
 	
 	@Autowired
 	HttpSession session;
@@ -179,8 +185,16 @@ public class SubPageController {
 		return no;
 	}
 	
-	@GetMapping("paymentinfo")
-	public String paymentinfo() {
+	@GetMapping("paymentinfo/{orderNo}")
+	public String paymentinfo(@PathVariable int orderNo,Model model) {
+		try {
+			Order order = myPageService.orderInfo(orderNo);
+			System.out.println(order);
+			model.addAttribute("order",order);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return "mypage/paymentinfo";
 	}
 	@GetMapping("paymentsuc")

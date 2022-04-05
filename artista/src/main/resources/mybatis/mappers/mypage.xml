@@ -6,21 +6,21 @@
 	<!-- 회원가입 -->
 	<select id="orderList" parameterType="string" resultType="order">
 		<![CDATA[
-			select * from order where id=#{id} order by orderDate
+			select * from order1 where id=#{id} order by orderDate
 		]]>
 	</select> 
 	
 	<!-- 회원가입 -->
-	<select id="queryorder" parameterType="order" resultType="int">
+	<select id="queryorder" parameterType="int" resultType="order">
 		<![CDATA[
-			select * from order where orderNo=#{orderNo}
+			select * from order1 where orderNo=#{orderNo}
 		]]>
 	</select>
 	
 		<!-- 회원가입 -->
 	<delete id="deleteOrder" parameterType="int" >
 		<![CDATA[
-			delete from order where orderNo=#{orderNo}
+			delete from order1 where orderNo=#{orderNo}
 		]]>
 	</delete>
 

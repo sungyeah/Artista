@@ -164,7 +164,7 @@
                     
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                    		<button class="yesNo-btn" id="workenroll" style="width:120px;">아티스트 신청</button>
+                    		<button class="yesNo-btn" id="applyartist" style="width:120px;">아티스트 신청</button>
                     		<button class="yesNo-btn" id="cancel" type="reset">취소</button>
                         </div>
                 	</div>
@@ -174,7 +174,7 @@
     </div>
     
     <script>
-    $("#workenroll").click(function(){
+    $("#applyartist").click(function(){
     	$("#artistType").attr("value", $(".selected-value").eq(0).text());
     	
     	var artistRecordList = new Array();
@@ -185,7 +185,7 @@
     		data.recordText = $(".recordText").eq(i).val();
     		artistRecordList.push(data) ;
     	}
-    	$("#id").attr("value", "hodong");
+    	$("#id").attr("value", $("#id").val());
     	$("#artistRecord").attr("value", JSON.stringify(artistRecordList));
     	alert(JSON.stringify(artistRecordList));
 		$("#route_write").submit();
