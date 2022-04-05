@@ -46,9 +46,9 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<select id="memberList" resultType="member">
+	<select id="memberList" parameterType="int"  resultType="member">
 		<![CDATA[
-			select * from meber
+			select * from member limit #{startrow}, 9
 		]]>
 	</select>
 	
@@ -102,11 +102,14 @@
 	</insert> 
 	
 	<!-- 예선 : 회원 목록 보기 -->
-	<select id="selectMemberList" parameterType="int" resultType="member">
+	<!-- 회원수 -->
+	<select id="memberNum" resultType="int">
 		<![CDATA[
-			select * from member limit #{startrow}, 9
+			select count(*) from member
 		]]>
 	</select>
+	
+	
 
 </mapper>
 <!-- create table member(

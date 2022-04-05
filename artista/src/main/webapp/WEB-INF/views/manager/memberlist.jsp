@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
     <div class="contents">
@@ -58,30 +60,27 @@
                         <th scope="col">이메일</th>
                         <th scope="col">연락처</th>
                         <th scope="col">주소</th>
-                        <th scope="col"></th>
+                        <th scope="col">회원 유형</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                    	<th scope="col" class="id">회원 아이디</th>
-                        <th scope="col" class="name">회원 이름</th>
-                        <th scope="col" class="email">이메일</th>
-                        <th scope="col" class="contact">연락처</th>
-                        <th scope="col" class="address">주소</th>
-                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
-                        <th scope="col"><input type="checkbox" name="xxx"></th>
-                    </tr>
-                    <tr>
-                    	<th scope="col" class="id">회원 아이디</th>
-                        <th scope="col" class="name">회원 이름</th>
-                        <th scope="col" class="email">이메일</th>
-                        <th scope="col" class="contact">연락처</th>
-                        <th scope="col" class="address">주소</th>
-                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
-                        <th scope="col"><input type="checkbox" name="xxx"></th>
-                    </tr>
-                    </tbody>
+                    <c:choose>
+                    	<c:when test="${memberlist!=null && pageInfo.listCount>0 }">
+                    	<tbody>
+                    		<c:forEach items="${memberlist }" var="member">
+								<tr>
+                            	<th scope="col" class="id">${member.id }</th>
+                            	<th scope="col" class="name">${member.name }</th>
+                            	<th scope="col" class="email">${member.email }</th>
+                            	<th scope="col" class="contact">${member.contact }</th>       
+                            	<th scope="col" class="address">${member.address } ${member.address2 }</th>    
+                            	<th scope="col" class="address">${member.memberType }</th>                            
+                           		<th scope="col"><input type="checkbox" name="xxx"></th>
+                        		</tr>
+                        		</c:forEach>
+                        </tbody>
+                    	</c:when>
+                    </c:choose>
                 </table>
                 <a class="member-delete-btn" href="/account/delete/">
                     회원 탈퇴
