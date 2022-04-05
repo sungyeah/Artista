@@ -24,6 +24,13 @@
 		]]>
 	</select>
 
+	<!-- 아티스트 이름 select -->
+	<select id="selectArtistName" parameterType="string" resultType="string">
+		<![CDATA[
+			select artistName from artist where id=#{id} limit 1	
+		]]>
+	</select>
+
 	
 	
 </mapper>

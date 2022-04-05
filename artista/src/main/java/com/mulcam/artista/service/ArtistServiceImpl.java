@@ -32,5 +32,10 @@ public class ArtistServiceImpl implements ArtistService {
 		return artistDAO.selectArtistNo(id);
 	}
 
+	@Override
+	public String getArtistName(String id) throws Exception {
+		return artistDAO.selectArtistName(id);
+	}
+
 	
 }

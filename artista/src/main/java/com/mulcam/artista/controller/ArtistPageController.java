@@ -32,6 +32,7 @@ import com.mulcam.artista.service.ArtistPageService;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.FundingService;
 import com.mulcam.artista.service.SubPageService;
+import com.mulcam.artista.service.WorkApplyService;
 import com.mulcam.artista.service.WorkService;
 
 @RequestMapping("artistpage")
@@ -51,6 +52,9 @@ public class ArtistPageController {
 	WorkService workService;
 	
 	@Autowired
+	WorkApplyService workapplyService;
+	
+	@Autowired
 	ArtistService artistService;
 	
 	@Autowired
@@ -61,7 +65,14 @@ public class ArtistPageController {
 
 	// 아티스트의 작품
 	@GetMapping({"", "/", "mywork"})
-	public String artistpageMain() {
+	public String artistpageMain(Model model) {
+		String id=(String) session.getAttribute("id");	
+		try {
+			String artistName = artistService.getArtistName(id);
+			model.addAttribute("artistName", artistName);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
 		return "artistpage/mywork";
 	}
 	@GetMapping("enrollwork")
@@ -71,10 +82,8 @@ public class ArtistPageController {
 	}
 	@PostMapping("enrollworkComplete")
 	public String enrollworkComplete(@ModelAttribute Work work, @RequestParam(value="workImgFile") MultipartFile artistImgFile) {
-		
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
-		System.out.println(id);
 		try {
 			work.setWorkNo(workService.getWorkMaxId());
 			artistNo = artistService.getArtistNo(id);
@@ -125,20 +134,41 @@ public class ArtistPageController {
 		return "artistpage/applyproduct";
 	}
 	@PostMapping("workApplyComplete")
-	public String workApplyComplete(@ModelAttribute ExhibitionApply exhibitionapply, @RequestParam(value="postertImgFile") MultipartFile postertImgFile) {
-		
+	public String workApplyComplete(@ModelAttribute WorkApply workapply, @RequestParam(value="workImgFile") MultipartFile workImgFile) {
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
-		System.out.println(id);
+		String artistName = null;
 		try {
-			//work.setWorkNo(workService.getWorkMaxId());
 			artistNo = artistService.getArtistNo(id);
-			System.out.println(artistNo);
+			artistName = artistService.getArtistName(id);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		};
 		
+		/* 작품 대표이미지 저장 */
+		String path = servletContext.getRealPath("/imgupload/artistWorks/");
+		String[] mtypes = workImgFile.getContentType().split("/");
 		
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");
+		Date time = new Date();
+		String workEnrollTime = simpleDate.format(time);
+		File destFile = new File(path + artistNo +"-"+ workEnrollTime +"."+ mtypes[1]);
+		try {			
+			workImgFile.transferTo(destFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String workImg = workapply.getArtistNo() + "-" + workEnrollTime +"."+ mtypes[1];
+		try {
+			workapply.setWorkapplyNo(workapplyService.getWorkApplyMaxId());
+			workapply.setArtistNo(artistNo);
+			workapply.setArtistName(artistName);
+			workapply.setWorkImg(workImg);
+			workapply.setApplyState(0);
+			workapplyService.insertWorkApply(workapply);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 		return "artistpage/succesapply";
 	}
 	

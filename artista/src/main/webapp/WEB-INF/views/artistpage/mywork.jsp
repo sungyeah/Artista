@@ -19,7 +19,7 @@
         <section class="account-guide">
             <div class="account-guide-inner">
                 <h3 class="account-guide-name">
-                    홍성호님 반갑습니다.
+                    ${artistName }님 반갑습니다.
                 </h3>
                 <a class="account-modify-btn" href="mypage/mypagemodify" onclick="gaClickAccount('account_modify');">
                     <p>작가 정보</p>
