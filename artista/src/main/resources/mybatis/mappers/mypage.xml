@@ -11,7 +11,7 @@
 	</select> 
 	
 	<!-- 회원가입 -->
-	<select id="queryorder" parameterType="order" resultType="int">
+	<select id="queryorder" parameterType="int" resultType="order">
 		<![CDATA[
 			select * from order1 where orderNo=#{orderNo}
 		]]>

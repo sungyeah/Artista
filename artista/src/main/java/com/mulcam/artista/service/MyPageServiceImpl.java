@@ -20,8 +20,7 @@ public class MyPageServiceImpl implements MypageService{
 
 	@Override
 	public Order orderInfo(int oderNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mypageDAO.queryorder(oderNo);
 	}
 
 	@Override

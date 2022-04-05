@@ -62,7 +62,7 @@
                         	<c:otherwise> 
                         <c:forEach items="${orders }" var="order">
                         <tr>
-                        	<td class="time-code">${order.orderNo }</td>
+                        	<td class="time-code"><a href="paymentinfo/${order.orderNo }">${order.orderNo }</a></td>
                         	<td class="artworks">
                         		 <c:forEach items="${order.workNo }" var="work"> 
                         		<왜곡3> 김소명<br>
@@ -75,13 +75,6 @@
                         	<td class="status">${order.orderStatus }</td>
                         </tr>
                         </c:forEach>
-                        <!-- <tr>
-                        	<td class="time-code">1</td>
-                        	<td class="type">2</td>
-                        	<td class="artworks">3</td>
-                        	<td class="start-date">4</td>
-                        	<td class="status">5</td>
-                        </tr> -->
                          </c:otherwise>
                     	</c:choose>   
                     </tbody>
