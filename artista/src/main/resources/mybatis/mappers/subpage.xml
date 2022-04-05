@@ -137,7 +137,7 @@
 <!-- create table order1(
 	orderNo int(10) not null,
     id varchar(100) not null,
-    workNo int(10) not null,
+    workNo varchar(100),
 	deliveryCharge int(10),
     workPrice int(10) not null,
     orderCost int(10) not null,
@@ -154,5 +154,6 @@
     orderDate Datetime,
     pickupAddress varchar(500),
     ordercount varchar(100),
+    cartNo varchar(100),
     primary key(orderNo)
 ); -->

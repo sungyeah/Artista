@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,13 +24,13 @@
         <article class="account-body">
     <section class="orders-in-progress">
         <div style="font-weight: bold; margin-bottom: 12px;">
-        <span class="span">주문일자</span><span style="margin-right: 30px;">2022.03.22</span><span class="span">주문번호</span><span class="span">1111</span>
+        <span class="span">주문일자</span><span style="margin-right: 30px;">${order.orderDate }</span><span class="span">주문번호</span><span class="span">${order.orderNo }</span>
         </div>
         <!-- <h3>주문 일자</h3> -->
         <table class="account-table">
             <thead>
             <tr>
-                <th scope="col" class="time-code">주문번호</th>
+                <!-- <th scope="col" class="time-code">주문번호</th> -->
                 <th scope="col" class="type">상품명</th>
                 <th scope="col" class="artworks">상품금액</th>
                 <th scope="col" class="start-date">배송비</th>
@@ -36,14 +38,30 @@
                 <th scope="col" class="status">진행상태</th>
             </tr>
             </thead>
-            <tbody>
-            
-                <tr>
-                    <td class="empty" colspan="6">표시할 내역이 없습니다.</td>
-                </tr>
-            
-            </tbody>
-        </table>
+					<tbody>
+						<c:choose>
+							<c:when test='${empty order}'>
+								<tr>
+									<td class="empty" colspan="6">표시할 내역이 없습니다.</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+									<tr>
+										<td class="artworks">
+											<c:forEach items="${order.workNo }" var="work">
+												<왜곡3> 김소명<br>
+												한지에 동양화 물감, 45x53cm<br>
+											</c:forEach>
+										</td>
+										<td class="start-date" style="font-weight: bold;">￦ <fmt:formatNumber value="${order.orderCost }" />원</td>
+										<td class="time-code">${order.deliveryCharge }</td>
+										<td class="start-date">${order.trackingNo }</td>
+										<td class="status">${order.orderStatus }</td>
+									</tr>
+							</c:otherwise>
+						</c:choose>
+					</tbody>
+				</table>
     </section>
         </article>
         <section id="checkout_body" class="cf">
@@ -60,7 +78,7 @@
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="billing_name" name="billing_name" value="140,000">
-                                    <span>140,000</span>
+                                    <span>${order.workPrice }</span>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +87,7 @@
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="billing_name" name="billing_name" value="홍성호">
-                                    <span>3,000</span>
+                                    <span>${order.deliveryCharge }</span>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +96,7 @@
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="billing_phone1" name="billing_phone1" value="010-4012-9131">
-                                    <span>143,000</span>
+                                    <span>${order.orderCost }</span>
                                     <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
                                 </div>
                             </div>
@@ -88,7 +106,7 @@
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="checkout-input-billing_email" name="billing_email" value="ghdtjdgh0810@nate.com">
-                                    <span>신용카드</span>
+                                    <span>${order.pay_method }</span>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +127,7 @@
                         <div class="sect-body-td">
                             <div class="checkout-profile-box">
                                 <input type="hidden" id="billing_name" name="billing_name" value="140,000">
-                                <span>홍길동</span>
+                                <span>${order.receiverName }</span>
                             </div>
                         </div>
                     </div>
@@ -118,7 +136,7 @@
                         <div class="sect-body-td">
                             <div class="checkout-profile-box">
                                 <input type="hidden" id="billing_name" name="billing_name" value="홍성호">
-                                <span>010-1234-5678</span>
+                                <span>${order.receiverNum }</span>
                             </div>
                         </div>
                     </div>
@@ -127,8 +145,8 @@
                         <div class="sect-body-td" style="margin-top: 9px;">
                             <div class="checkout-profile-box">
                                 <input type="hidden" id="billing_phone1" name="billing_phone1" value="010-4012-9131">
-                                <div>세종특별자치시 대평로</div>
-                                <div style="float: right;">00동 00호</div>
+                                <div>${order.receiverAddress }</div>
+                                <div style="float: right;">${order.receiverAddress2 }</div>
                                 <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
                             </div>
                         </div>

@@ -169,4 +169,12 @@ a {
     max-width: 1152px;
     padding: 10px 10px;
     margin: 0 auto;
-} 
+}
+.account-table td.artworks {
+    text-align: left;
+}
+.account-table td {
+    padding: 12px 6px;
+    background-color: #ffffff;
+    text-align: center;
+}
