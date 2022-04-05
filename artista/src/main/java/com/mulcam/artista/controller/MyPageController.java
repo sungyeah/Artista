@@ -92,7 +92,6 @@ public class MyPageController {
 		String path = servletContext.getRealPath("/imgupload/artistProfile/");
 		String[] mtypes = artistImgFile.getContentType().split("/");
 		File destFile = new File(path + apply.getArtistName() +"."+ mtypes[1]);
-		System.out.println(path + apply.getArtistName()+"." + mtypes[1]);
 		try {			
 			artistImgFile.transferTo(destFile);
 		} catch (Exception e) {
@@ -136,22 +135,11 @@ public class MyPageController {
 		
 		try {
 			apply.setArtistNo(artistapplyService.getApplyArtistId());
-			System.out.println(apply.getArtistNo());
 			artistapplyService.insertArtistApply(apply);
 			
 		} catch (Exception e1) {
 			e1.printStackTrace();
-		}		
-		
-		/*
-		String id = (String) session.getAttribute("id");
-		try {
-			Member mem = subPageService.queryId(id);
-			subPageService.changeMemberType(id, "artist");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		*/
+		}	
 		return "mypage/succesapply";
 	}
 	

@@ -13,13 +13,42 @@
 	<insert id="insertArtistApply" parameterType="artistapply">
 		<![CDATA[
 			insert into artistapply 
-			(artistNo, id, artistName, artistImg, artistType, artistIntroduce, 
-				artistRecord, artistInstagram, applyResult) 
+			(artistNo, id, artistName, artistImg, artistType, artistIntroduce, artistRecord, artistInstagram, applyResult) 
 			values 
-			(#{artistNo}, #{id}, #{artistName}, #{artistImg}, #{artistType}, #{artistIntroduce}, 
-				#{artistRecord}, #{artistInstagram}, #{applyResult})
+			(#{artistNo}, #{id}, #{artistName}, #{artistImg}, #{artistType}, #{artistIntroduce}, #{artistRecord}, #{artistInstagram}, 1)
 		]]>
 	</insert>
+	
+	<select id="ArtistApplyNum" resultType="int">
+		<![CDATA[
+			select count(*) from artistapply
+		]]>
+	</select>
+	
+	<select id="selectArtistApplyList" parameterType="int" resultType="artistapply">
+		<![CDATA[
+			select * from artistapply limit #{startrow}, 9
+		]]>
+	</select>
+	
+	<select id="selectArtistApplyByNo" parameterType="int" resultType="artistapply">
+		<![CDATA[
+			select * from artistapply where artistNo=#{applyNo} limit 1
+		]]>
+	</select>
+	
+	<delete id="deleteArtistApplyById" parameterType="int" >
+		<![CDATA[
+			delete from artistapply where artistNo=#{applyNo}
+		]]>
+	</delete>
+	
+	<update id="updateRefuseResults" parameterType="map" >
+		<![CDATA[
+			update artistapply set applyResult=false, refusedContents=#{refusedContents} where artistNo=#{applyNo }
+		]]>
+	</update>
+	
 </mapper>
 <!-- 
 create table artistapply(

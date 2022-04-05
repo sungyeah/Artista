@@ -13,14 +13,19 @@ public class ArtistApply {
 	String refusedContents;
 	
 	ArtistApply(){}
-	/*ArtistApply(String id, String artistName, String artistImg, String artistIntroduce,
-			String artistRecord, String artistInstagram){
+	ArtistApply(int artistNo, String id, String artistName, String artistImg, String artistType,
+			String artistIntroduce, String artistRecord, String artistInstagram, int applyResult, String refusedContents){
+		this.artistNo = artistNo;
 		this.id = id;
 		this.artistName = artistName;
 		this.artistImg = artistImg;
+		this.artistType = artistType;
+		this.artistIntroduce = artistIntroduce;
 		this.artistRecord = artistRecord;
 		this.artistInstagram = artistInstagram;
-	}*/
+		this.applyResult = applyResult;
+		this.refusedContents = refusedContents;
+	}
 	
 	public int getArtistNo() {
 		return artistNo;
