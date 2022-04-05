@@ -53,9 +53,9 @@
                         <div class="sect-body cf">
                             <div class="sect-body-th">주소</div>
                             <div class="sect-body-td">
-                                <input type="text" id="billing_address1" class="address1" name="address" value="${mem.address }" placeholder="기본 주소" readonly="readonly">
-                                <input id="billing_address_btn" class="address-btn" type="button" value="주소 찾기" readonly="readonly"><br>
-                                <input type="text" id="billing_address2" class="address2" name="address2" value="${mem.address2 }" placeholder="상세 주소" readonly="readonly">
+                                <input type="text" id="billing_address1" class="address1" name="address" value="${mem.address }" placeholder="기본 주소" onclick=search3() style="cursor:pointer;">
+                                <input id="billing_address_btn" class="address-btn" type="button" value="주소 찾기" readonly="readonly" onclick=search3()><br>
+                                <input type="text" id="billing_address2" class="address2" name="address2" value="${mem.address2 }" placeholder="상세 주소" >
                             </div>
                         </div>
                         <div class="sect-body cf">
@@ -63,7 +63,8 @@
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="billing_phone1" name="orderNum" value="${mem.contact }">
-                                    <span id="contact2">0</span>
+                                    <%--  <input type="text" id="billing_phone1" name="orderNum" placeholder="휴대폰" value="${mem.contact }"> --%>
+                                     <span id="contact2">0</span>
                                     <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
                                 </div>
                             </div>
@@ -267,14 +268,14 @@
                                     <input id="payMethod_Card" class="checkbox_payment" type="radio" name="pay_method" value="신용/체크카드" checked="checked">
                                     <label for="payMethod_Card">신용/체크카드</label>
                                 </span>
-                                <span id="id-payMethod_DirectBank" class="method active">
+                                <!-- <span id="id-payMethod_DirectBank" class="method active">
                                     <input id="payMethod_DirectBank" class="checkbox_payment" type="radio" name="pay_method" value="실시간 계좌이체">
                                     <label for="payMethod_DirectBank">실시간 계좌이체</label>
                                 </span>
                                 <span class="method active">
                                     <input id="payMethod_VBank" class="checkbox_payment" type="radio" name="pay_method" value="가상계좌(무통장입금)">
                                     <label for="payMethod_VBank">가상계좌(무통장입금)</label>
-                                </span>
+                                </span> -->
                             
                         </div>
                     </div>
@@ -430,8 +431,8 @@
                 IMP.request_pay({// param
                     pg: "hi", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
                     pay_method: "card", //지불 방법
-                     merchant_uid: $('#nocheck').val(),   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-                    /*  merchant_uid:27, */   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                     /* merchant_uid: $('#nocheck').val(), */   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                      merchant_uid:28,    //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
                     name: $('#workName').val(), //결제창에 노출될 상품명
                     amount: $('#totalPrice').val(), //금액
                     buyer_email : $('#checkout-input-billing_email').val(), 

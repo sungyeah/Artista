@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-<%@include file ="../header.jsp" %>
+<!-- <%@include file ="../header.jsp" %> -->
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">주문 상세정보</h2>
@@ -53,8 +53,8 @@
 												한지에 동양화 물감, 45x53cm<br>
 											</c:forEach>
 										</td>
-										<td class="start-date" style="font-weight: bold;">￦ <fmt:formatNumber value="${order.orderCost }" />원</td>
-										<td class="time-code">${order.deliveryCharge }</td>
+										<td class="start-date" ><fmt:formatNumber value="${order.workPrice }" />원</td>
+										<td class="time-code"><fmt:formatNumber value="${order.deliveryCharge }"/>원</td>
 										<td class="start-date">${order.trackingNo }</td>
 										<td class="status">${order.orderStatus }</td>
 									</tr>
@@ -74,39 +74,30 @@
                     <div id="checkout-profile" class="sect-info active certified">
                         
                         <div class="sect-body cf">
-                            <div class="sect-body-th">상품금액</div>
+                            <div class="sect-body-th">이름</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="billing_name" name="billing_name" value="140,000">
-                                    <span>${order.workPrice }</span>
+                                    <span>${order.orderName }</span>
                                 </div>
                             </div>
                         </div>
                         <div class="sect-body cf">
-                            <div class="sect-body-th">배송비</div>
+                            <div class="sect-body-th">연락처</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="billing_name" name="billing_name" value="홍성호">
-                                    <span>${order.deliveryCharge }</span>
+                                    <span>${order.orderNum }</span>
                                 </div>
                             </div>
                         </div>
                         <div class="sect-body cf">
-                            <div class="sect-body-th">최종결제금</div>
+                            <div class="sect-body-th">이메일</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
                                     <input type="hidden" id="billing_phone1" name="billing_phone1" value="010-4012-9131">
-                                    <span>${order.orderCost }</span>
+                                    <span>${order.orderEmail }</span>
                                     <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sect-body cf">
-                            <div class="sect-body-th">결제수단</div>
-                            <div class="sect-body-td">
-                                <div class="checkout-profile-box">
-                                    <input type="hidden" id="checkout-input-billing_email" name="billing_email" value="ghdtjdgh0810@nate.com">
-                                    <span>${order.pay_method }</span>
                                 </div>
                             </div>
                         </div>
@@ -115,9 +106,51 @@
                 
             </section>
             <section id="checkout_value2">
+                <c:choose>
+                    <c:when test="${order.deliveryCharge eq '0'}">
+                        <section id="billing_info">
+                            <div class="sect-header">
+                                <h3>픽업 정보</h3>
+                                <!-- <span>계약서에 기재될 정보입니다. (입력 내용은 회원 정보에 반영됩니다.)</span> -->
+                            </div>
+                            <div id="checkout-profile" class="sect-info active certified">
+                                
+                                <div class="sect-body cf">
+                                    <div class="sect-body-th">이름</div>
+                                    <div class="sect-body-td">
+                                        <div class="checkout-profile-box">
+                                            <input type="hidden" id="billing_name" name="billing_name" value="140,000">
+                                            <span>(주)아티스타</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sect-body cf">
+                                    <div class="sect-body-th">연락처</div>
+                                    <div class="sect-body-td">
+                                        <div class="checkout-profile-box">
+                                            <input type="hidden" id="billing_name" name="billing_name" value="홍성호">
+                                            <span>1544-9001</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sect-body cf" style="height: 87px;">
+                                    <div class="sect-body-th">픽업 주소</div>
+                                    <div class="sect-body-td" style="margin-top: 9px;">
+                                        <div class="checkout-profile-box">
+                                            <input type="hidden" id="billing_phone1" name="billing_phone1" value="010-4012-9131">
+                                            <div>서울특별시 강남구 언주로 508</div>
+                                            <div style="float: right;">서울상록빌딩 14층</div>
+                                            <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </c:when>
+                    <c:otherwise>
             <section id="billing_info">
                 <div class="sect-header">
-                    <h3>배송지 정보</h3>
+                    <h3>수취인 정보</h3>
                     <!-- <span>계약서에 기재될 정보입니다. (입력 내용은 회원 정보에 반영됩니다.)</span> -->
                 </div>
                 <div id="checkout-profile" class="sect-info active certified">
@@ -153,14 +186,63 @@
                     </div>
                 </div>
             </section>
+        </c:otherwise>
+        </c:choose>
+            <section id="billing_info">
+                <div class="sect-header">
+                    <h3>결제 정보</h3>
+                    <!-- <span>계약서에 기재될 정보입니다. (입력 내용은 회원 정보에 반영됩니다.)</span> -->
+                </div>
+                <div id="checkout-profile" class="sect-info active certified">
+                    
+                    <div class="sect-body cf">
+                        <div class="sect-body-th">상품금액</div>
+                        <div class="sect-body-td">
+                            <div class="checkout-profile-box">
+                                <input type="hidden" id="billing_name" name="billing_name" value="140,000">
+                                <span><fmt:formatNumber value="${order.workPrice }"/>원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sect-body cf">
+                        <div class="sect-body-th">배송비</div>
+                        <div class="sect-body-td">
+                            <div class="checkout-profile-box">
+                                <input type="hidden" id="billing_name" name="billing_name" value="홍성호">
+                                <span><fmt:formatNumber value="${order.deliveryCharge }"/>원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sect-body cf">
+                        <div class="sect-body-th">최종결제금</div>
+                        <div class="sect-body-td">
+                            <div class="checkout-profile-box">
+                                <input type="hidden" id="billing_phone1" name="billing_phone1" value="010-4012-9131">
+                                <span style="font-weight:bold;"><fmt:formatNumber value="${order.orderCost }"/>원</span>
+                                <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sect-body cf">
+                        <div class="sect-body-th">결제수단</div>
+                        <div class="sect-body-td">
+                            <div class="checkout-profile-box">
+                                <input type="hidden" id="checkout-input-billing_email" name="billing_email" value="ghdtjdgh0810@nate.com">
+                                <span>${order.pay_method }</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             </section>
         </section>
+ 
         <div style="text-align: center;font-size: 18px; margin-top: 20px;">
-            <input type="button" class="cartBottom-btn" id="toCheckoutBtn" value="확인" onclick="location.href='mypage.html'">
+            <input type="button" class="cartBottom-btn" id="toCheckoutBtn" value="확인" onclick="location.href='../mypage'">
             <input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="결제취소" onclick="location.href='mypage.html'">
         </div>
         
     </div>
-    <%@include file ="../footer.jsp" %>
+    <!-- <%@include file ="../footer.jsp" %> -->
 </body>
 </html>

@@ -71,7 +71,7 @@
                         	</td>
                         	
                         	<td class="start-date">${order.orderDate }</td>
-                        	<td class="start-date" style="font-weight: bold;">￦ <fmt:formatNumber value="${order.orderCost }"/>원</td>
+                        	<td class="start-date" style="font-weight: bold;"><fmt:formatNumber value="${order.orderCost }"/>원</td>
                         	<td class="status">${order.orderStatus }</td>
                         </tr>
                         </c:forEach>
