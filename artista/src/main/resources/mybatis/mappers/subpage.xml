@@ -96,8 +96,8 @@
 
 	<insert id="insertPayment" parameterType="order" >
 		<![CDATA[
-			insert into order1(orderNo,id,workNo,deliveryCharge,workPrice,orderCost,orderName,orderNum,orderEmail,receiverName,receiverNum,receiverAddress,receiverAddress2,pay_method,orderStatus,trackingNo,orderDate,pickupAddress,ordercount)
-			values(#{orderNo},#{id},#{workNo},#{deliveryCharge},#{workPrice},#{orderCost},#{orderName},#{orderNum},#{orderEmail},#{receiverName},#{receiverNum},#{receiverAddress},#{receiverAddress2},#{pay_method},'배송 준비중',null,now(),null,#{ordercount})
+			insert into order1(orderNo,id,workNo,deliveryCharge,workPrice,orderCost,orderName,orderNum,orderEmail,receiverName,receiverNum,receiverAddress,receiverAddress2,pay_method,orderStatus,trackingNo,orderDate,pickupAddress,ordercount,cartNo)
+			values(#{orderNo},#{id},#{workNo},#{deliveryCharge},#{workPrice},#{orderCost},#{orderName},#{orderNum},#{orderEmail},#{receiverName},#{receiverNum},#{receiverAddress},#{receiverAddress2},#{pay_method},'배송 준비중',null,now(),null,#{ordercount},#{cartNo})
 		]]>
 	</insert> 
 
