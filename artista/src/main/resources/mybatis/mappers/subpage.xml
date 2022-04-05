@@ -100,6 +100,13 @@
 			values(#{orderNo},#{id},#{workNo},#{deliveryCharge},#{workPrice},#{orderCost},#{orderName},#{orderNum},#{orderEmail},#{receiverName},#{receiverNum},#{receiverAddress},#{receiverAddress2},#{pay_method},'배송 준비중',null,now(),null,#{ordercount},#{cartNo})
 		]]>
 	</insert> 
+	
+	<!-- 예선 : 회원 목록 보기 -->
+	<select id="selectMemberList" parameterType="int" resultType="member">
+		<![CDATA[
+			select * from member limit #{startrow}, 9
+		]]>
+	</select>
 
 </mapper>
 <!-- create table member(
