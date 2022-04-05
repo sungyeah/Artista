@@ -1,6 +1,9 @@
 package com.mulcam.artista.service;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.FundingDAO;
@@ -22,5 +25,10 @@ public class FundingServiceImpl implements FundingService {
 		fundingDAO.insertfunding(funding);
 		
 	}
+	
+	@Scheduled(cron="0 0 0 * * ?") 
+	 public void updatefundingState(int fundingState){
+		fundingDAO.updatefundingState(fundingState);
+	 }
 
 }
