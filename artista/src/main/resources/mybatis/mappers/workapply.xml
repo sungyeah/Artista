@@ -3,13 +3,15 @@
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mulcam.artista.dao.WorkApplyDAO">
 	
+	<!-- 아티스트 작품 등록 신청하기 -->
+	<!-- workApplyNo 구하기 -->
 	<select id="maxWorkApplyId" resultType="integer">
 		<![CDATA[
 			select max(workapplyNo) from workapply
 		]]>
 	</select>
 	
-	<!-- 아티스트 작품 등록신청 내용 insert -->
+	<!-- insert -->
 	<insert id="insertWorkApply" parameterType="workapply">
 		<![CDATA[
 			insert into workapply (workapplyNo, artistNo, artistName, workName, workImg, workType, workTech, 
@@ -19,11 +21,34 @@
 		]]>
 	</insert>
 	
+	<!-- 아티스트 작품 등록 삭제하기 -->
 	<delete id="deleteWorkApply" parameterType="int">
 		<![CDATA[
 			delete from workapply where workapplyNo=#{workapplyNo}
 		]]>
 	</delete>
+	
+	<!-- 작품 등록 신청List 보기 -->
+	<!-- 신정 착품 수 -->
+	<select id="WorkApplyNum" resultType="int">
+		<![CDATA[
+			select count(*) from workapply
+		]]>
+	</select>
+	
+	<!-- 작품 선택하기 : listing 적용 -->
+	<select id="selectWorkApplyList" parameterType="int" resultType="workapply">
+		<![CDATA[
+			select * from workapply limit #{startrow}, 9
+		]]>
+	</select>
+	
+	<!-- workapplyNo로 아티스트 선택하기 -->
+	<select id="selectWorkApplyByNo" parameterType="int" resultType="workapply">
+		<![CDATA[
+			select * from workapply where workapplyNo=#{applyNo} limit 1
+		]]>
+	</select>
 </mapper>
 <!-- 
 create table workapply(

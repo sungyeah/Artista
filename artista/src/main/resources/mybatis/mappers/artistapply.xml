@@ -3,13 +3,15 @@
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mulcam.artista.dao.ArtistApplyDAO">
 	
-	<select id="maxApplyId" resultType="integer">
+	<!-- 아티스트 등록 신청하기 -->
+	<!-- artistNo 구하기 -->
+	<select id="maxApplyNo" resultType="integer">
 		<![CDATA[
-			select max(id) from artistapply
+			select max(artistNo) from artistapply
 		]]>
 	</select>
 	
-	<!-- 아티스트 등록신청 내용 insert -->
+	<!-- insert -->
 	<insert id="insertArtistApply" parameterType="artistapply">
 		<![CDATA[
 			insert into artistapply 
@@ -19,30 +21,36 @@
 		]]>
 	</insert>
 	
+	<!-- 아티스트 등록 신청List 보기 -->
+	<!-- 신정 인원 -->
 	<select id="ArtistApplyNum" resultType="int">
 		<![CDATA[
 			select count(*) from artistapply
 		]]>
 	</select>
 	
+	<!-- 아티스트 선택하기 : listing 적용 -->
 	<select id="selectArtistApplyList" parameterType="int" resultType="artistapply">
 		<![CDATA[
 			select * from artistapply limit #{startrow}, 9
 		]]>
 	</select>
 	
+	<!-- artistNo로 아티스트 선택하기 -->
 	<select id="selectArtistApplyByNo" parameterType="int" resultType="artistapply">
 		<![CDATA[
 			select * from artistapply where artistNo=#{applyNo} limit 1
 		]]>
 	</select>
 	
+	<!-- 아티스트 등록 삭제하기 -->
 	<delete id="deleteArtistApplyById" parameterType="int" >
 		<![CDATA[
 			delete from artistapply where artistNo=#{applyNo}
 		]]>
 	</delete>
 	
+	<!-- 아티스트 신청 거절 내용 update -->
 	<update id="updateRefuseResults" parameterType="map" >
 		<![CDATA[
 			update artistapply set applyResult=false, refusedContents=#{refusedContents} where artistNo=#{applyNo }

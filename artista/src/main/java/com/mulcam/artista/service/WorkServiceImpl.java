@@ -17,8 +17,8 @@ public class WorkServiceImpl implements WorkService {
 	}
 
 	@Override
-	public int getWorkMaxId() throws Exception {
-		Integer id = workDAO.maxWorkId();
+	public int getWorkMaxNo() throws Exception {
+		Integer id = workDAO.maxWorkNo();
 		if(id==null) id=0;
 		return id+1;
 	}

@@ -85,7 +85,7 @@ public class ArtistPageController {
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
 		try {
-			work.setWorkNo(workService.getWorkMaxId());
+			work.setWorkNo(workService.getWorkMaxNo());
 			artistNo = artistService.getArtistNo(id);
 			System.out.println(artistNo);
 		} catch (Exception e1) {

@@ -8,6 +8,6 @@ import com.mulcam.artista.dto.Work;
 @Mapper
 @Repository
 public interface WorkDAO {
-	public Integer maxWorkId() throws Exception;
+	public Integer maxWorkNo() throws Exception;
 	public void insertWork(Work work) throws Exception;
 }

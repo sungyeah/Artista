@@ -18,10 +18,14 @@ import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.PageInfo;
+import com.mulcam.artista.dto.Work;
+import com.mulcam.artista.dto.WorkApply;
 import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.FundingService;
 import com.mulcam.artista.service.SubPageServiceImpl;
+import com.mulcam.artista.service.WorkApplyService;
+import com.mulcam.artista.service.WorkService;
 
 @Controller
 @RequestMapping("manager")
@@ -32,9 +36,13 @@ public class ManagerController {
 	
 	@Autowired
 	ArtistApplyService artistapplyService;
-	
 	@Autowired
 	ArtistService artistService;
+	
+	@Autowired
+	WorkApplyService workapplyService;
+	@Autowired
+	WorkService workService;
 	
 	@Autowired
 	SubPageServiceImpl subPageService;
@@ -48,10 +56,53 @@ public class ManagerController {
 	public String paycompleteList() {
 		return "manager/paycompletelist";
 	}
+	
+	
+	/* 상품 등록 신청 */
 	@GetMapping("/productapplylist")
-	public String productApplyList() {
-		return "manager/productapplylist";
+	public ModelAndView productApplyList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+		ModelAndView mv = new ModelAndView("manager/productapplylist");
+		PageInfo pageInfo = new PageInfo();
+		try {
+			List<WorkApply> productapplylist = workapplyService.getWorkApplyList(page, pageInfo);
+			mv.addObject("pageInfo", pageInfo);
+			mv.addObject("productapplylist", productapplylist);
+			mv.addObject("count", productapplylist.size());
+		} catch(Exception e) {
+			mv.addObject("productapplylist", null);
+		}
+		return mv;
 	}
+	@ResponseBody
+	@PostMapping(value="productapplydetail")
+	public ResponseEntity<WorkApply> productapplyDetail(@RequestParam(value="applyNo",required = false) int productapplyNo, Model model) {
+		ResponseEntity<WorkApply> result = null;
+		try {
+			WorkApply workapply = workapplyService.selectWorktApplyByNo(productapplyNo);
+			result = new ResponseEntity<WorkApply>(workapply, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<WorkApply>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
+	
+	
+	/* 상품 등록 허락 */
+	@ResponseBody
+	@PostMapping(value="productapplysuccess")
+	public void productapplyㄴuccess(@RequestParam(value="applyNo",required = false) int workapplyNo) {
+		try {
+			WorkApply workapply = workapplyService.selectWorktApplyByNo(workapplyNo);
+			Work work = new Work(workService.getWorkMaxNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(), workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
+					workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getPickupAddress(), workapply.getWorkPrice(), true);
+			
+			System.out.println(workapplyNo);
+			workService.insertWork(work);
+			workapplyService.deleteWorkApply(workapplyNo);
+		}catch(Exception e) {
+		}
+	}
+	
 	
 	/* 펀딩 관리 */
 	@GetMapping({"/fundinglist", "/fundingapplylist" })

@@ -134,7 +134,7 @@ public class MyPageController {
 		}
 		
 		try {
-			apply.setArtistNo(artistapplyService.getApplyArtistId());
+			apply.setArtistNo(artistapplyService.getApplyArtistNo());
 			artistapplyService.insertArtistApply(apply);
 			
 		} catch (Exception e1) {
