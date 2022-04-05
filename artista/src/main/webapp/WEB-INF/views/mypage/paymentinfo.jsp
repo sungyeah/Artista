@@ -48,9 +48,9 @@
 							<c:otherwise>
 									<tr>
 										<td class="artworks">
-											<c:forEach items="${order.workNo }" var="work">
-												<왜곡3> 김소명<br>
-												한지에 동양화 물감, 45x53cm<br>
+											<c:forEach items="${works }" var="work">
+												<${work.workName }> ${work.artistName }<br>
+												${work.workTech }, ${work.workSize }<br>
 											</c:forEach>
 										</td>
 										<td class="start-date" ><fmt:formatNumber value="${order.workPrice }" />원</td>

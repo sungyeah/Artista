@@ -64,9 +64,9 @@
                         <tr>
                         	<td class="time-code"><a href="paymentinfo/${order.orderNo }">${order.orderNo }</a></td>
                         	<td class="artworks">
-                        		 <c:forEach items="${order.workNo }" var="work"> 
-                        		<왜곡3> 김소명<br>
-                        		한지에 동양화 물감, 45x53cm<br>
+                        		 <c:forEach items="${works }" var="work"> 
+                        		<${work.workName }> ${work.artistName }<br>
+                        		${work.workTech }, ${work.workSize }<br>
                         		 </c:forEach> 
                         	</td>
                         	

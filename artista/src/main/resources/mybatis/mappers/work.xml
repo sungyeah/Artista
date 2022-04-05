@@ -19,6 +19,18 @@
 		]]>
 	</insert>
 	
+	<select id="woriInfo" resultType="Work" parameterType="int">
+		<![CDATA[
+			select * from work where workNo=#{workNo}
+		]]>
+	</select>
+	
+	<select id="getMultiWorkinfo" resultType="Work" parameterType="String">
+		<![CDATA[
+			select * from work where workNo in (#{workNo})
+		]]>
+	</select>
+	
 </mapper>
 <!-- 
 create table work(

@@ -198,3 +198,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
     background: #fff;
     margin-right: 12px;
 }
+.account-table td.artworks {
+   /*  text-align: left; */
+}
