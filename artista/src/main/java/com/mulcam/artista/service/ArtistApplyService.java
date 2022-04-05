@@ -10,9 +10,11 @@ public interface ArtistApplyService {
 	public int getApplyArtistId() throws Exception;
 	public void insertArtistApply(ArtistApply artistApply) throws Exception;
 	
-	public ArtistApply selectArtistApplyById(int applyNo) throws Exception;
+	public ArtistApply selectArtistApplyByNo(int applyNo) throws Exception;
 	public List<ArtistApply> getArtistApplyList(int page, PageInfo pageInfo) throws Exception;
 	
 	public void deleteArtistApplyById(int applyNo) throws Exception;
+	public void refuseArtistApply(int applyNo, String refusedContents) throws Exception;	// 일반회원->아티스트변경
+
 	
 }

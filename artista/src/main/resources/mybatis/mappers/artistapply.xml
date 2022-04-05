@@ -15,7 +15,7 @@
 			insert into artistapply 
 			(artistNo, id, artistName, artistImg, artistType, artistIntroduce, artistRecord, artistInstagram, applyResult) 
 			values 
-			(#{artistNo}, #{id}, #{artistName}, #{artistImg}, #{artistType}, #{artistIntroduce}, #{artistRecord}, #{artistInstagram}, #{applyResult})
+			(#{artistNo}, #{id}, #{artistName}, #{artistImg}, #{artistType}, #{artistIntroduce}, #{artistRecord}, #{artistInstagram}, 1)
 		]]>
 	</insert>
 	
@@ -31,7 +31,7 @@
 		]]>
 	</select>
 	
-	<select id="selectArtistApplyById" parameterType="int" resultType="artistapply">
+	<select id="selectArtistApplyByNo" parameterType="int" resultType="artistapply">
 		<![CDATA[
 			select * from artistapply where artistNo=#{applyNo} limit 1
 		]]>
@@ -42,6 +42,12 @@
 			delete from artistapply where artistNo=#{applyNo}
 		]]>
 	</delete>
+	
+	<update id="updateRefuseResults" parameterType="map" >
+		<![CDATA[
+			update artistapply set applyResult=false, refusedContents=#{refusedContents} where artistNo=#{applyNo }
+		]]>
+	</update>
 	
 </mapper>
 <!-- 

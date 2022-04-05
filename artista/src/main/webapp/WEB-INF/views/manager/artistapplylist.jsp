@@ -117,7 +117,7 @@
                             <span class="red">*</span> 거절사유
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <textarea class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;"></textarea>
+                            <textarea id="refusedContents" class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;"></textarea>
                         </div>
                     </div>                                
                     <div class="modal-modify-form-border">
@@ -199,7 +199,7 @@
                 </table>
             </section>
             <c:choose>
-				<c:when test="${matelist!=null && pageInfo.listCount>0 }">
+				<c:when test="${artistapplylist!=null && pageInfo.listCount>0 }">
 					<div id="pageList" style="text-align: center; margin-top:30px; margin-bottom :30px;">
 					<c:choose>
 						<c:when test="${pageInfo.page<=1}">«&nbsp;</c:when>
@@ -262,13 +262,12 @@
     });
     $(function(){
     	$(document).on('click', '#artistenroll', function(e){
-    		alert("??");
     		$.ajax({
     			type:"post",
-    			dataType:"text",
     			async: false,
     			url:"http://localhost:8090/manager/artistapplysuccess",
     			data:{"applyNo":$('#artistNo').val()},
+    			dataType:"text",
     			success: function(data, textStatus){ 
     				alert("아티스트 등록이 성공했습니다");
     				location.reload();
@@ -283,6 +282,26 @@
     	$(document).on('click', '#refuseenroll', function(e){
     		refuseapply.style.display = "flex";
     	});
+    	
+    	$(document).on('click', '#refuse', function(e){
+    		alert("!!");
+    		$.ajax({
+    			type:"post",
+    			dataType:"text",
+    			async: false,
+    			url:"http://localhost:8090/manager/artistapplyfail",
+    			data:{"applyNo":$('#artistNo').val(), "refusedContents": $("#refusedContents").val()},
+    			success: function(data, textStatus){ 
+    				location.reload();
+    			},
+    			error:function(data, textStatus){
+    				alert("아티스트 등록이 실패했습니다.");
+    			}
+    		});
+    		
+    		
+    	});
+    	
     });    
     </script>
 </body>

@@ -22,7 +22,7 @@ public class ArtistServiceImpl implements ArtistService {
 
 	@Override
 	public int getArtistMaxId() throws Exception {
-		Integer id = artistDAO.maxArtistId();
+		Integer id = artistDAO.maxArtistNo();
 		if(id==null) id=0;
 		return id+1;
 	}
