@@ -27,7 +27,7 @@
                             <span class="red">*</span> 작품 이미지
                         </div>
                         <div class="modal-modify-form-row-value">
-                        	<img style="width:300px; height:300px; margin-top:10px;" id="workImg"/>
+                        	<img src="/workImg/${work.workImg }" style="width:300px; height:300px; margin-top:10px;" id="workImg"/>
                         </div>
                     </div>    
                     <div class="modal-modify-form-row">
@@ -245,12 +245,13 @@
 			success: function(data, textStatus){ 
 			 	var applyworkData = JSON.parse(data);
 			 	$('#workapplyNo').attr("value", applyworkData.workapplyNo);
- 			 	$('#workImg').attr("src", "/artistprofile/"+applyworkData.workImg);
+ 			 	$('#workImg').attr("src", "/artistpage/workImg/"+applyworkData.workImg);
  			 	$("#artistName").attr("value", applyworkData.artistName);
+ 			 	$("#workName").attr("value", applyworkData.workName);
  			 	$("#workType").attr("value", applyworkData.workType);
  			 	$("#workTech").attr("value", applyworkData.workTech);
  			 	$("#workSize").attr("value", applyworkData.workSize);
- 			 	$("#workIntro").attr("value", applyworkData.workIntro);
+ 			 	$("#workIntro").html(applyworkData.workIntro);    
  			 	$("#workPrice").attr("value", applyworkData.workPrice);
  			 	$("#pickupAddress").attr("value", applyworkData.pickupAddress);
 			},

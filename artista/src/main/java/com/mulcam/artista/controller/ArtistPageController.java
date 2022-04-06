@@ -1,23 +1,31 @@
 package com.mulcam.artista.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -65,55 +73,63 @@ public class ArtistPageController {
 	@Autowired
 	ServletContext servletContext;
 
-	// 아티스트의 작품
+	/* 아티스트 첫페이지 및 일반작품 전체 보기*/
 	@GetMapping({"", "/", "mywork"})
 	public String artistpageMain(Model model) {
 		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
 		try {
 			String artistName = artistService.getArtistName(id);
+			artistNo = artistService.getArtistNo(id);
 			model.addAttribute("artistName", artistName);
+			List<Work> worklist = workService.getWorkByNoList(artistNo);
+			model.addAttribute("worklist", worklist);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		};
 		return "artistpage/mywork";
 	}
+	
+	/* 아티스트 일반작품 등록 페이지 */
 	@GetMapping("enrollwork")
 	public String artistpageEnrollWork() {
-		//String id=(String) session.getAttribute("id");
 		return "artistpage/enrollwork";
 	}
+	/* 아티스트 일반작품 등록완료 */
 	@PostMapping("enrollworkComplete")
 	public String enrollworkComplete(@ModelAttribute Work work, @RequestParam(value="workImgFile") MultipartFile artistImgFile) {
+		// 회원 id로 아티스트 번호 조회 후, 작품번호 가져오기
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
+		String artistName = null;
 		try {
 			work.setWorkNo(workService.getWorkMaxNo());
 			artistNo = artistService.getArtistNo(id);
-			System.out.println(artistNo);
+			artistName = artistService.getArtistName(id);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		};
 		
-		/* 작품 대표이미지 저장 */
-		String path = servletContext.getRealPath("/imgupload/artistWorks/");
+		// 작품 대표이미지 저장
+		String path = servletContext.getRealPath("/imgupload/artistWorks/");	//실제 저장 위치
 		String[] mtypes = artistImgFile.getContentType().split("/");
 		
-		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
 		Date time = new Date();
 		String workEnrollTime = simpleDate.format(time);
-		System.out.println(workEnrollTime);
-		File destFile = new File(path + artistNo +"-"+ workEnrollTime +"."+ mtypes[1]);
+		File destFile = new File(path + artistNo +"-"+ workEnrollTime +"."+ mtypes[1]);	//이미지 타입
 		try {			
 			artistImgFile.transferTo(destFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String workImg = work.getArtistNo() + "-" + workEnrollTime +"."+ mtypes[1];
+		String workImg = artistNo + "-" + workEnrollTime +"."+ mtypes[1];
 		work.setArtistNo(artistNo);
+		work.setArtistName(artistName);
 		work.setWorkImg(workImg);
 		work.setWorkForSale(false); //판매용 아님
-		
-		// 작품 등록
+		System.out.println();
+		// 일반 작품 insert
 		try {
 			workService.insertWork(work);
 		} catch (Exception e) {
@@ -125,18 +141,31 @@ public class ArtistPageController {
 	
 	
 	
-	
-	// 아티스트의 작품 판매
+	/* 아티스트 판매작품 전체보기 */
 	@GetMapping("myproduct")
-	public String artistpageProduct() {
+	public String artistpageProduct(Model model) {
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		try {
+			String artistName = artistService.getArtistName(id);
+			artistNo = artistService.getArtistNo(id);
+			model.addAttribute("artistName", artistName);
+			List<Work> worklist = workService.getProductByNoList(artistNo);
+			model.addAttribute("worklist", worklist);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
 		return "artistpage/myproduct";
 	}
+	/* 아티스트 판매작품 등록 페이지 */
 	@GetMapping("applyproduct")
 	public String artistpageEnrollProduct() {
 		return "artistpage/applyproduct";
 	}
+	/* 아티스트 판매작품 등록완료 */
 	@PostMapping("workApplyComplete")
 	public String workApplyComplete(@ModelAttribute WorkApply workapply, @RequestParam(value="workImgFile") MultipartFile workImgFile) {
+		//
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
 		String artistName = null;
@@ -147,20 +176,23 @@ public class ArtistPageController {
 			e1.printStackTrace();
 		};
 		
-		/* 작품 대표이미지 저장 */
+		// 작품 대표이미지 저장
 		String path = servletContext.getRealPath("/imgupload/artistWorks/");
 		String[] mtypes = workImgFile.getContentType().split("/");
 		
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");
 		Date time = new Date();
 		String workEnrollTime = simpleDate.format(time);
+		System.out.println(artistNo);
 		File destFile = new File(path + artistNo +"-"+ workEnrollTime +"."+ mtypes[1]);
 		try {			
 			workImgFile.transferTo(destFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String workImg = workapply.getArtistNo() + "-" + workEnrollTime +"."+ mtypes[1];
+		String workImg = artistNo + "-" + workEnrollTime +"."+ mtypes[1];
+		
+		//작품 신청 insert
 		try {
 			workapply.setWorkapplyNo(workapplyService.getWorkApplyMaxId());
 			workapply.setArtistNo(artistNo);
@@ -173,10 +205,41 @@ public class ArtistPageController {
 		}
 		return "artistpage/succesapply";
 	}
-	
 	@GetMapping("myproductsold")
 	public String artistpageProductSold() {
 		return "artistpage/myproductsold";
+	}
+	
+	/* 작품 가져오기 경로 */
+	@GetMapping(value="/workImg/{filename}")
+	public void workImgView(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
+		String path= servletContext.getRealPath("/imgupload/artistWorks/");
+		File file=new File(path+filename); 
+		String sfilename=null;
+		FileInputStream fis=null;
+		try {
+			if(request.getHeader("User-Agent").indexOf("MSIE")>-1) {
+				sfilename=URLEncoder.encode(file.getName(), "UTF-8");
+			} else {
+				sfilename=new String(file.getName().getBytes("UTF-8"), "ISO-8859-1");
+			}
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/octet-stream; charest=UTF-8");
+			OutputStream out=response.getOutputStream();
+			fis=new FileInputStream(file);
+			FileCopyUtils.copy(fis, out); 
+			out.flush(); 
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(fis!=null) {
+				try{
+					fis.close(); 
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	// 아티스트의 펀딩
