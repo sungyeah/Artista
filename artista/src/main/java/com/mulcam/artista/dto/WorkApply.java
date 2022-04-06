@@ -11,7 +11,6 @@ public class WorkApply {
 	String workSize;
 	String workIntro;
 	int workPrice;
-	String pickupAddress;
 	int applyState;
 	String refusedContents;
 	
@@ -75,12 +74,6 @@ public class WorkApply {
 	}
 	public void setWorkPrice(int workPrice) {
 		this.workPrice = workPrice;
-	}
-	public String getPickupAddress() {
-		return pickupAddress;
-	}
-	public void setPickupAddress(String pickupAddress) {
-		this.pickupAddress = pickupAddress;
 	}
 	public int getApplyState() {
 		return applyState;

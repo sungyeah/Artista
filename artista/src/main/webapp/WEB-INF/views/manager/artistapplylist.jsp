@@ -236,7 +236,7 @@
 			success: function(data, textStatus){ 
 			 	var applyartistData = JSON.parse(data);
 			 	$('#artistNo').attr("value", applyartistData.artistNo);
- 			 	$('#artistThumb').attr("src", "/artistprofile/"+applyartistData.artistImg);
+ 			 	$('#artistThumb').attr("src", "/mypage/artistprofile/"+applyartistData.artistImg);
  			 	$("#id").attr("value", applyartistData.id);
  			 	$("#artistName").attr("value", applyartistData.artistName);
  			 	$("#artistType").attr("value", applyartistData.artistType);
@@ -299,8 +299,6 @@
     				alert("아티스트 등록이 실패했습니다.");
     			}
     		});
-    		
-    		
     	});
     	
     });    

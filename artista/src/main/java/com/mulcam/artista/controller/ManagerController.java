@@ -91,13 +91,12 @@ public class ManagerController {
 	/* 상품 등록 허락 */
 	@ResponseBody
 	@PostMapping(value="productapplysuccess")
-	public void productapplyㄴuccess(@RequestParam(value="applyNo",required = false) int workapplyNo) {
+	public void productapplySuccess(@RequestParam(value="applyNo",required = false) int workapplyNo) {
 		try {
 			WorkApply workapply = workapplyService.selectWorktApplyByNo(workapplyNo);
-			Work work = new Work(workService.getWorkMaxNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(), workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
-					workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getPickupAddress(), workapply.getWorkPrice(), true);
-			
-			System.out.println(workapplyNo);
+			Work work = new Work(workService.getWorkMaxNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(),
+					workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
+					workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getWorkPrice(), 1, -1);
 			workService.insertWork(work);
 			workapplyService.deleteWorkApply(workapplyNo);
 		}catch(Exception e) {

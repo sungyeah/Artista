@@ -107,17 +107,6 @@
                         	<textarea class="enroll-modify-form-input" name="workIntro" placeholder="최대 300자" maxlength="300" style="width:750px; height: 120px; resize: none;"></textarea>
                         </div>
                     </div>   
-                    <div class="enroll-modify-form-row">
-                        <div class="enroll-modify-form-row-label">
-                            <span class="red"></span> 픽업주소
-                        </div>
-                        <div class="enroll-modify-form-row-value">
-                        	<input class="enroll-modify-form-input" type="text" id="getplace" placeholder="주소" style="width:300px;" onClick=searchAddress()>
-                			<input class="enroll-modify-form-input" type="button" value="검색"  style="width:80px; padding-right:5px; " onClick=searchAddress()><br>
-                			<input class="enroll-modify-form-input" type="text" id="getplace2" placeholder="상세주소" maxlength="30"  style="width:300px;"><br>
-       						<input type="hidden" id="pickupAddress" name="pickupAddress" />
-       					</div>
-                    </div>
                     <div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                         	<button class="yesNo-btn" id="workApply" style="width:120px;">작품등록 신청</button>
@@ -142,7 +131,6 @@
 	// 작품등록 신청 또는 취소
 	$("#workApply").click(function (event) {
 		$("#workType").attr("value", $(".selected-value").text());
-		$("#pickupAddress").attr("value", $("#getplace").val() +" " + $("#getplace2").val());
 		$("#workApply").submit();
 	});
 	$("#cancel").click(function () {

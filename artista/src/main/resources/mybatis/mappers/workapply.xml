@@ -15,9 +15,9 @@
 	<insert id="insertWorkApply" parameterType="workapply">
 		<![CDATA[
 			insert into workapply (workapplyNo, artistNo, artistName, workName, workImg, workType, workTech, 
-				workSize, workIntro, pickupAddress, workPrice) 
+				workSize, workIntro, workPrice) 
 			values (#{workapplyNo}, #{artistNo}, #{artistName}, #{workName}, #{workImg}, #{workType}, #{workTech}, 
-				#{workSize}, #{workIntro}, #{pickupAddress}, #{workPrice})
+				#{workSize}, #{workIntro}, #{workPrice})
 		]]>
 	</insert>
 	
@@ -61,7 +61,6 @@ create table workapply(
     workTech varchar(255) not null,
     workSize varchar(255) not null,
     workIntro longtext not null,
-    pickupAddress varchar(500),
     workPrice int(10),
 	applyState int,
     refusedContents varchar(500),

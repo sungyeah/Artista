@@ -63,9 +63,10 @@ body {
     border-bottom: 1px solid #eeeeee;
 }
 .account-table td {
-    padding: 12px 6px;
+    /* padding: 12px 6px; */
     background-color: #ffffff;
     text-align: center;
+    font-size:16px;
 }
 .account-body {
     width: 96%;
@@ -200,4 +201,9 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 }
 .account-table td.artworks {
    /*  text-align: left; */
+   font-size:16px;
+}
+ .cartList-image {
+    width:100px;
+    height:100px;
 }

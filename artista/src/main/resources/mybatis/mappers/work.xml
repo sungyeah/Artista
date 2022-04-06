@@ -13,9 +13,9 @@
 	<insert id="insertWork" parameterType="work">
 		<![CDATA[
 			insert into work (workNo, artistNo, artistName, workName, workImg, workType, workTech, 
-				workSize, workIntro, pickupAddress, workPrice, workForSale) 
+				workSize, workIntro, workPrice, workForSale, orderNo) 
 			values (#{workNo}, #{artistNo}, #{artistName}, #{workName}, #{workImg}, #{workType}, #{workTech}, 
-				#{workSize}, #{workIntro}, #{pickupAddress}, #{workPrice}, #{workForSale})
+				#{workSize}, #{workIntro}, #{workPrice}, #{workForSale}, #{orderNo})
 		]]>
 	</insert>
 	
@@ -31,6 +31,26 @@
 		]]>
 	</select>
 	
+	<!-- artistNo로 아티스트 일반작품 보기 -->
+	<select id="selectWorkByNo" parameterType="int" resultType="work">
+		<![CDATA[
+			select * from work where artistNo=#{artistNo} and workForSale=0
+		]]>
+	</select>
+	
+	<!-- artistNo로 아티스트 판매중인 작품 보기 -->
+	<select id="selectProductByNo" parameterType="int" resultType="work">
+		<![CDATA[
+			select * from work where artistNo=#{artistNo} and workForSale=1
+		]]>
+	</select>
+	
+	<!-- artistNo로 아티스트 팬매완료 작품 보기 -->
+	<select id="selectSoldProductByNo" parameterType="int" resultType="work">
+		<![CDATA[
+			select * from work where artistNo=#{artistNo} and workForSale=2
+		]]>
+	</select>
 </mapper>
 <!-- 
 create table work(
@@ -43,9 +63,9 @@ create table work(
     workTech varchar(255) not null,
     workSize varchar(255) not null,
     workIntro longtext not null,
-    pickupAddress varchar(500),
     workPrice int(10),
     workForSale boolean not null,
+    orderNo int,
     primary key(workNo)
 );
  -->
