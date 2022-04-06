@@ -54,25 +54,33 @@
                     </thead>
                     <tbody>
                     	<c:choose> 
-                    		<c:when test='${empty orders}'>
+                    		<c:when test='${empty orderReports}'>
                          <tr>
                             <td class="empty" colspan="6">표시할 내역이 없습니다.</td>
                         </tr>
                         	</c:when>
                         	<c:otherwise> 
-                        <c:forEach items="${orders }" var="order">
+                        <c:forEach items="${orderReports }" var="orderReport">
                         <tr>
-                        	<td class="time-code"><a href="paymentinfo/${order.orderNo }">${order.orderNo }</a></td>
+                        	<td class="time-code"><a href="paymentinfo/${orderReport.order.orderNo }">${orderReport.order.orderNo }</a></td>
                         	<td class="artworks">
-                        		 <c:forEach items="${works }" var="work"> 
+                        		 <c:forEach items="${orderReport.works }" var="work"> 
                         		<${work.workName }> ${work.artistName }<br>
                         		${work.workTech }, ${work.workSize }<br>
                         		 </c:forEach> 
                         	</td>
                         	
-                        	<td class="start-date">${order.orderDate }</td>
-                        	<td class="start-date" style="font-weight: bold;"><fmt:formatNumber value="${order.orderCost }"/>원</td>
-                        	<td class="status">${order.orderStatus }</td>
+                        	<td class="start-date">${orderReport.order.orderDate }</td>
+                        	<td class="start-date" style="font-weight: bold;"><fmt:formatNumber value="${orderReport.order.orderCost }"/>원</td>
+                        	<td class="status">${orderReport.order.orderStatus }<br>
+                        		<%-- <c:choose>
+                        		<c:when test='${orderReport.order.orderStatus eq "배송중" }'> --%>
+                        			<button style="border: 1px solid gray;">배송조회</button>
+                        		<%-- </c:when>
+                        		<c:otherwise>
+                        		</c:otherwise>
+                        		</c:choose> --%>
+                        	</td>
                         </tr>
                         </c:forEach>
                          </c:otherwise>
