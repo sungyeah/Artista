@@ -127,7 +127,7 @@ public class ArtistPageController {
 		work.setArtistNo(artistNo);
 		work.setArtistName(artistName);
 		work.setWorkImg(workImg);
-		work.setWorkForSale(false); //판매용 아님
+		work.setWorkForSale(0); //판매용 아님
 		System.out.println();
 		// 일반 작품 insert
 		try {
@@ -177,7 +177,7 @@ public class ArtistPageController {
 	/* 아티스트 판매작품 등록완료 */
 	@PostMapping("workApplyComplete")
 	public String workApplyComplete(@ModelAttribute WorkApply workapply, @RequestParam(value="workImgFile") MultipartFile workImgFile) {
-		//
+
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
 		String artistName = null;
@@ -218,7 +218,18 @@ public class ArtistPageController {
 		return "artistpage/succesapply";
 	}
 	@GetMapping("myproductsold")
-	public String artistpageProductSold() {
+	public String artistpageProductSold(Model model) {
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		try {
+			String artistName = artistService.getArtistName(id);
+			artistNo = artistService.getArtistNo(id);
+			model.addAttribute("artistName", artistName);
+			List<Work> soldlist = workService.getSoldProductByNoList(artistNo);
+			model.addAttribute("soldlist", soldlist);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
 		return "artistpage/myproductsold";
 	}
 	

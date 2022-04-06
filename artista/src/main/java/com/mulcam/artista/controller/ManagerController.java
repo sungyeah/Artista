@@ -95,7 +95,7 @@ public class ManagerController {
 		try {
 			WorkApply workapply = workapplyService.selectWorktApplyByNo(workapplyNo);
 			Work work = new Work(workService.getWorkMaxNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(), workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
-					workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getPickupAddress(), workapply.getWorkPrice(), true);
+					workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getPickupAddress(), workapply.getWorkPrice(), 1);
 			
 			workService.insertWork(work);
 			workapplyService.deleteWorkApply(workapplyNo);
