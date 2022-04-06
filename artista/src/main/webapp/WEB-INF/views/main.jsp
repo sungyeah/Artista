@@ -352,16 +352,16 @@
  						  "email":email},
  					success: function(data, textStatus){
  						console.log("success");
- 						
  					},
  					error:function(data, textStatus){
  						alert("실패");
  					},
  					complete:function() {
- 						var uid = '<%=(String)session.getAttribute("id")%>';
+ 						<%-- var uid = '<%=(String)session.getAttribute("membertype")%>';
+ 						console.log(uid) --%>
  					}
  				});
- 			 } 
+ 			 }
  	}
  
  </script>  

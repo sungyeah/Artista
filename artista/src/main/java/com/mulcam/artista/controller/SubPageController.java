@@ -75,12 +75,6 @@ public class SubPageController {
 		return "login";
 	}
 	
-	
-//	@GetMapping("naverlogin")
-//	public String naverlogin() {
-//		return "login";
-//	}
-	
 	@PostMapping("naverlogin")
 	public ModelAndView naverlogincheck(@RequestParam (value="id")String id,@RequestParam (value="name")String name,
 			@RequestParam (value="email")String email,Model model) {
@@ -88,6 +82,8 @@ public class SubPageController {
 		try {
 			if(!subPageService.memoverlap(id)) {
 				subPageService.makemember2(id,name,email);
+				String membertype = subPageService.memTypeInfo(id);
+				session.setAttribute("membertype", membertype);
 			}
 			session.setAttribute("id",id);
 		}catch (Exception e) {
@@ -245,10 +241,17 @@ public class SubPageController {
 			subPageService.insertPayment(order);
 			model.addAttribute("order",order);
 			String str = order.getCartNo();
+			String workNo = order.getWorkNo();
+			String [] workNo2 = workNo.split(",");
 			String[] cartNo = str.split(",");
 			for(int i=0;i<cartNo.length;i++) {
 				int cart = Integer.parseInt(cartNo[i]);
 				subPageService.deleteCart(cart);
+			}
+			for(int i=0;i<workNo2.length;i++) {
+				int work = Integer.parseInt(workNo2[i]);
+				workService.updateSale(order.getOrderNo(), work);
+				System.out.println(work+" "+ order.getOrderNo());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

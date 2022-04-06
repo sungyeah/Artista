@@ -51,6 +51,12 @@
 			select * from work where artistNo=#{artistNo} and workForSale=2
 		]]>
 	</select>
+	
+	<update id="updateSale" parameterType="map" >
+		<![CDATA[
+			update work set workForSale=2, orderNo=#{orderNo} where workNo=#{workNo}
+		]]>
+	</update>
 </mapper>
 <!-- 
 create table work(
