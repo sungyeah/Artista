@@ -1,5 +1,6 @@
 package com.mulcam.artista.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +20,8 @@ import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
+import com.mulcam.artista.dto.Order;
+import com.mulcam.artista.dto.OrderReport;
 import com.mulcam.artista.dto.PageInfo;
 import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.dto.WorkApply;
@@ -50,8 +54,47 @@ public class ManagerController {
 
 	/* 결제 작품 관리 */
 	@GetMapping({"", "/", "/paymentlist"})
-	public String paymentList() {
-		return "manager/paymentlist";
+	public ModelAndView paymentList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+		ModelAndView mv = new ModelAndView("manager/paymentlist");
+		PageInfo pageInfo = new PageInfo();
+		try {
+			List<Order> orderlist = subPageService.orderList(page, pageInfo);
+			List<OrderReport> orderdetail = new ArrayList<OrderReport>(); 
+			for(int i=0; i<orderlist.size(); i++) {
+				OrderReport orderReport = new OrderReport();
+				Order order = orderlist.get(i);
+				orderReport.setOrder(order);
+				String[] workNos = order.getWorkNo().split(",");
+				List<Work> works = new ArrayList<Work>();
+				for (int j = 0; j < workNos.length; j++) {
+					int workno = Integer.parseInt(workNos[j]);
+					Work work = workService.workinfo(workno);
+					works.add(work);
+				}
+				orderReport.setWorks(works);
+				orderdetail.add(orderReport);
+			}
+			mv.addObject("pageInfo", pageInfo);
+			mv.addObject("count", orderlist.size());
+			mv.addObject("orderdetail", orderdetail);
+		} catch(Exception e) {
+			mv.addObject("orderlist", null);
+		}
+		return mv;
+	}
+	@GetMapping("/paymentInfo/{orderNo}")
+	public ModelAndView paymentInfo(@PathVariable(value="orderNo") int orderNo) {
+		ModelAndView mv = new ModelAndView("manager/productapplylist");
+		PageInfo pageInfo = new PageInfo();
+		try {
+//			List<WorkApply> productapplylist = workapplyService.getWorkApplyList(page, pageInfo);
+//			mv.addObject("pageInfo", pageInfo);
+//			mv.addObject("productapplylist", productapplylist);
+//			mv.addObject("count", productapplylist.size());
+		} catch(Exception e) {
+			mv.addObject("productapplylist", null);
+		}
+		return mv;
 	}
 	@GetMapping("/paycompletelist")
 	public String paycompleteList() {

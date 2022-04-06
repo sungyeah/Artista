@@ -27,4 +27,8 @@ public interface SubPageService {
 	Integer MaxOrderNum() throws Exception; //주문번호 조회
 	void insertPayment(Order order) throws Exception;//주문완료
 	String memTypeInfo(String id)throws Exception;
+	
+	public List<Order> orderList(int page, PageInfo pageInfo) throws Exception; //주문 내역 조회
+	public Order selectOrderByNo(int orderNo) throws Exception;
+	
 }

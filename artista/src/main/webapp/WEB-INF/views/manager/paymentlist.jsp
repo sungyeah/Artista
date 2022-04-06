@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<link rel="stylesheet" href="../css/mypage.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
@@ -49,40 +51,48 @@
             </a>
         </nav>
         <article class="member-body">
-            <section class="member-list">
-                <table class="member-table">
+            <section class="orders-in-progress">
+                <table class="account-table">
                     <thead>
                     <tr>
-                        <th scope="col">작품 번호</th>
-                        <th scope="col">작품 제목</th>
-                        <th scope="col">작품 가격</th>
-                        <th scope="col">결제 일자</th>
-                        <th scope="col">구매자</th>
-                        <th scope="col">현재상태</th>
+                        <th scope="col" class="time-code">주문번호</th>
+                        <th scope="col" class="type">주문작품</th>
+                        <th scope="col" class="artworks">주문일자</th>
+                        <th scope="col" class="start-date">상품금액</th>
+                        <th scope="col" class="status">현황</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                    	<th scope="col" id="workNo">작품 번호</th>
-                        <th scope="col" id="workName">작품 제목</th>
-                        <th scope="col" id="workPrice">작품 가격</th>
-                        <th scope="col" id="orderDate">결제 일자</th>
-                        <th scope="col" id="orderName">구매자</th>
-                        <th scope="col" id="orderState">현재상태</th>
-                     </tr>
-                     <tr>
-                    	<th scope="col" id="workNo">작품 번호</th>
-                        <th scope="col" id="workName">작품 제목</th>
-                        <th scope="col" id="workPrice">작품 가격</th>
-                        <th scope="col" id="orderDate">결제 일자</th>
-                        <th scope="col" id="orderName">구매자</th>
-                        <th scope="col" id="orderState">현재상태</th>
-                     </tr>
-                    </tbody>
+                    <c:choose>
+                    	<c:when test="${orderdetail!=null && pageInfo.listCount>0 }">
+                    	<tbody>
+                    		<c:forEach items="${orderdetail }" var="orderdetail">
+								<tr>
+                            	<td scope="col" class="artistNo">
+                            		<a href="/paymentinfo/${orderdetail.order.orderNo }">${orderdetail.order.orderNo }</a>
+                            	</td>
+                            	<td class="artworks">
+                            		<c:forEach items="${orderdetail.works }" var="work"> 
+                        				<${work.workName }> ${work.artistName }<br>
+                        				${work.workTech }, ${work.workSize }<br>
+                        		 </c:forEach> 
+                            	</td>
+                            	<th scope="col" class="id">${orderdetail.order.orderDate }</th>
+                            	<td scope="col" class="artistName">${orderdetail.order.orderCost }</td>
+                            	<td scope="col" class="artistType">${orderdetail.order.orderStatus }</td>                            
+                           		<td scope="col"><a class="artist-detail-btn" onclick="applyDetail('${orderdetail.order.orderNo }')">신청 상세보기</a></td>
+                        		</tr>
+                        		</c:forEach>
+                        </tbody>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<tr><td class="empty" colspan="6">표시할 내역이 없습니다.</td></tr>
+                    	</c:otherwise>
+                    </c:choose>
+					</tbody>
                 </table>
             </section>
         </article>
-        
     </div>
 </body>
 </html>

@@ -128,7 +128,6 @@ public class ArtistPageController {
 		work.setArtistName(artistName);
 		work.setWorkImg(workImg);
 		work.setWorkForSale(0); //판매용 아님
-		System.out.println();
 		// 일반 작품 insert
 		try {
 			workService.insertWork(work);
