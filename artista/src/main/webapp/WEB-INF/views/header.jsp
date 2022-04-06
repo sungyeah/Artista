@@ -47,9 +47,9 @@
             <a href="main"><img src="images/로고.png" style="height: 150px; width: auto;"></a>
 <nav id="gnb">
 <ul class="menu1">
-    <li class="navi"><a href="exhibitionview">Exhibition </a></li>
-    <li class="navi"><a href="artistslist">Artists</a></li>
-    <li class="navi"><a href="storelist">Store</a></li>
+    <li class="navi"><a href="http://localhost:8090/exhibitionview">Exhibition </a></li>
+    <li class="navi"><a href="http://localhost:8090/artistslist">Artists</a></li>
+    <li class="navi"><a href="http://localhost:8090/storelist">Store</a></li>
     <li class="navi"><a href="">Funding</a></li>
  </ul>
 

@@ -13,6 +13,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+	<%@include file="../header.jsp"%>
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">작가 페이지</h2>
@@ -44,6 +45,13 @@
         </nav>
         
         <nav class="member-nav">
+        	<a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproduct">
+                판매 중인 작품
+            </a>
+            <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductsold">
+                판매완료 작품
+            </a>
+        
             <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyproduct" style="width:120px;">
                 작품판매 신청
             </a>

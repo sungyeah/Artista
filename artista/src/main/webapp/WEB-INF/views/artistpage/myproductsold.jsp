@@ -10,16 +10,17 @@
 <link rel="stylesheet" href="../css/manager.css">
 <link rel="stylesheet" href="../css/mypage.css">
 <link rel="stylesheet" href="../css/applymodal.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<div id="modal" class="modal-overlay">
-        <div class="modal-window">
+        <div class="refusemodal-window">
             <header class="modal-header">
+            	<div id="refuse_close" class="close-area">X</div>
                 <h2 class="modal-header-title">송장번호 입력</h2>
             </header>
             <article class="modal-body">
                 <form class="modal-modify-form" method="post">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="8OgojRYOprkIqojoq6rJDIRZ5GySLqG97ZObqNAuZ7hU3OWjqtvuReHD9X6DBckA">
                     <div class="modal-modify-form-border"></div>
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
@@ -39,6 +40,7 @@
             </article>  
         </div>
     </div>
+   
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">작가 페이지</h2>
@@ -76,9 +78,6 @@
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductsold">
                 판매 완료 작품
             </a>
-            <a class="member-delete-btn" href="/account/delete/" style="width:120px;">
-       		 	판매작품 신청
-        	</a>
         </nav>
         
 		<article class="member-body">
@@ -106,7 +105,7 @@
                         	<th scope="col" class="artistType">송장번호</th>
                         	<th scope="col" class="artistType">배송준비중</th>
                         	<th scope="col" class="artistType">
-                        		<a class="artist-detail-btn" href="/account/modify/" onclick="gaClickAccount('account_modify');">
+                        		<a class="artist-detail-btn" onclick="applyDetail('')">
                                     송장번호 입력
                                 </a>
                         	</th>
@@ -141,7 +140,24 @@
                 </table>
             </section>
         </article>
-        
 	</div>
+	
+	<script>
+	function applyDetail(applyNo){
+		modal.style.display = "flex";
+		
+	}
+	$(function(){
+		$(document).on('click', '#workenroll', function(e){
+			modal.style.display = "flex";
+	    });
+	    $(document).on('click', '#cancel', function(e){
+	    	modal.style.display = "none";
+	    });
+	    $(document).on('click', '#refuse_close', function(e){
+	    	modal.style.display = "none";
+	    });
+	});
+	</script>
 </body>
 </html>

@@ -31,11 +31,12 @@
             <thead>
             <tr>
                 <!-- <th scope="col" class="time-code">주문번호</th> -->
-                <th scope="col" class="type">상품명</th>
-                <th scope="col" class="artworks">상품금액</th>
-                <th scope="col" class="start-date">배송비</th>
+                <th scope="col" class="type">작품 이미지</th>
+                <th scope="col" class="type">작품정보</th>
+                <th scope="col" class="artworks">구매금액</th>
+                <!-- <th scope="col" class="start-date">배송비</th>
                 <th scope="col" class="status">운송장번호</th>
-                <th scope="col" class="status">진행상태</th>
+                <th scope="col" class="status">진행상태</th> -->
             </tr>
             </thead>
 					<tbody>
@@ -46,18 +47,21 @@
 								</tr>
 							</c:when>
 							<c:otherwise>
-									<tr>
-										<td class="artworks">
 											<c:forEach items="${works }" var="work">
+									<tr>
+										 <td class="artworks">
+											<img class="cartList-image" src="${work.workImg }"><br>
+										</td> 
+										<td class="artworks">
 												<${work.workName }> ${work.artistName }<br>
 												${work.workTech }, ${work.workSize }<br>
-											</c:forEach>
 										</td>
-										<td class="start-date" ><fmt:formatNumber value="${order.workPrice }" />원</td>
-										<td class="time-code"><fmt:formatNumber value="${order.deliveryCharge }"/>원</td>
+										<td class="start-date" ><fmt:formatNumber value="${work.workPrice }" />원</td>
+										<%-- <td class="time-code"><fmt:formatNumber value="${order.deliveryCharge }"/>원</td>
 										<td class="start-date">${order.trackingNo }</td>
-										<td class="status">${order.orderStatus }</td>
+										<td class="status">${order.orderStatus }</td> --%>
 									</tr>
+											</c:forEach>
 							</c:otherwise>
 						</c:choose>
 					</tbody>

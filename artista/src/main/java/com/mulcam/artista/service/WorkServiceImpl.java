@@ -45,4 +45,11 @@ public class WorkServiceImpl implements WorkService {
 	public List<Work> getProductByNoList(int artistNo) throws Exception {
 		return workDAO.selectProductByNo(artistNo);
 	}
+
+	@Override
+	public List<Work> getSoldProductByNoList(int artistNo) throws Exception {
+		return workDAO.selectSoldProductByNo(artistNo);
+	}
+	
+	
 }
