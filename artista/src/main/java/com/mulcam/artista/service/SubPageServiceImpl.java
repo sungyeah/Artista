@@ -141,4 +141,9 @@ public class SubPageServiceImpl implements SubPageService{
 		
 	}
 
+	@Override
+	public String memTypeInfo(String id) throws Exception {
+		return subpageDAO.memTypeInfo(id);
+	}
+
 }

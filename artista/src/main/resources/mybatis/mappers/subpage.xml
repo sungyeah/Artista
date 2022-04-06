@@ -109,7 +109,11 @@
 		]]>
 	</select>
 	
-	
+	<select id="memTypeInfo" resultType="String" parameterType="string">
+		<![CDATA[
+			select membertype from member where id=#{id}
+		]]>
+	</select>
 
 </mapper>
 <!-- create table member(
