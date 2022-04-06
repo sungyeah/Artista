@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mulcam.artista.dao.StoreDAO">
+	
+	<select id="workList" resultType="work">
+		<![CDATA[
+			select * from work
+		]]>
+	</select>
+	
+</mapper>
+<!-- 
+create table work(
+	workNo int(10) not null,
+    artistNo int(10) not null,
+    artistName varchar(100) not null,
+    workName varchar(255) not null,
+    workImg varchar(255) not null,
+    workType varchar(100) not null,
+    workTech varchar(255) not null,
+    workSize varchar(255) not null,
+    workIntro longtext not null,
+    workPrice int(10),
+    workForSale boolean not null,
+    orderNo int,
+    primary key(workNo)
+);
+ -->

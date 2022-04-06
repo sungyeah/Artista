@@ -93,12 +93,14 @@ public class SubPageController {
 	}
 	
 	@GetMapping("callback")
-	public String callback(HttpSession session,Model model) {
+	public String callback(Model model) {
 		String id = (String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
 			model.addAttribute("name",mem.getName());
 			session.setAttribute("id",id);
+			String membertype = subPageService.memTypeInfo(id);
+			session.setAttribute("membertype", membertype);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -156,6 +158,18 @@ public class SubPageController {
 		}
 	}
 	
+	@GetMapping("payment")
+	public String payment(Model model) {
+		String id = (String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			model.addAttribute("mem",mem);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "subpage/payment";
+	}
+	
 	@PostMapping("payment")
 	public String payment(@RequestParam(value="order_artwork") int[] cartNo,Model model,
 			@RequestParam(value="total")int total,@RequestParam(value="count")String count) {
@@ -207,34 +221,16 @@ public class SubPageController {
 				wor.add(work);
 			}
 			model.addAttribute("works",wor);
-			
-			
-//			System.out.println(order.getWorkNo());
-//			List<Work> workList = workService.getWorkinfo(order.getWorkNo());
-//			System.out.println(workList.get(1));
-//			// 반복을 통한 테스트
-//			List<Work> wor = new ArrayList<Work>();
-//			for (Work w: workList) {
-//				wor.add(w);
-//				}
-//			System.out.println(wor);
-//			model.addAttribute("works",wor);
-			
-//			String[] workarr = order.getWorkNo().split(",");
-//			for(String a: workarr) {
-//				System.out.println(a);
-//				
-//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return "mypage/paymentinfo";
 	}
-	@GetMapping("paymentsuc")
-	public String paymentsuc1() {
-		return "subpage/paymentsuc";
-	}
+//	@GetMapping("paymentsuc")
+//	public String paymentsuc1() {
+//		return "subpage/paymentsuc";
+//	}
 	@PostMapping("paymentsuc")
 	public String paymentsuc(Order order,Model model) {
 		try {
@@ -251,7 +247,6 @@ public class SubPageController {
 			for(int i=0;i<workNo2.length;i++) {
 				int work = Integer.parseInt(workNo2[i]);
 				workService.updateSale(order.getOrderNo(), work);
-				System.out.println(work+" "+ order.getOrderNo());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
