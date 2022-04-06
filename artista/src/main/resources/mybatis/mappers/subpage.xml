@@ -109,8 +109,27 @@
 		]]>
 	</select>
 	
+	<!-- 예선 : 관리자 - 결제 내역 보기 -->
+	<!-- 인원 -->
+	<select id="totalOrderNum" resultType="int">
+		<![CDATA[
+			select count(*) from order1
+		]]>
+	</select>
 	
-
+	<!-- 결제 내역 보기 : listing 적용 -->
+	<select id="orderList" parameterType="int" resultType="order">
+		<![CDATA[
+			select * from order1 limit #{startrow}, 9
+		]]>
+	</select>
+	
+	<select id="selectOrderByNo" parameterType="int" resultType="order">
+		<![CDATA[
+			select * from order1 where orderNo=#{orderNo} limit 1
+		]]>
+	</select>
+	
 </mapper>
 <!-- create table member(
 	id varchar(100) not null,

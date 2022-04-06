@@ -32,5 +32,11 @@ public interface SubPageDAO {
 	public void insertPayment(Order order)throws Exception; //주문완료
 	
 	public int memberNum() throws Exception; // 회원 전체 수
+	
+	public int totalOrderNum() throws Exception;
+	public List<Order> orderList(int startrow) throws Exception;
+	public Order selectOrderByNo(int orderNo) throws Exception;
+	
+	
 
 }
