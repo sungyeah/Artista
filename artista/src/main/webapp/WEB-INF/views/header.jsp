@@ -61,15 +61,15 @@
 </ul>
 </c:when>
 
-<c:when test="${membertype == manager }">
+<c:when test="${membertype == manager}">
  <ul class="menu2">
-    <img src="images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 48px; right: 300px;">
     <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
     <li class="navi2"><a href="${pageContext.request.contextPath}/manager">mypage</a></li>
 </ul>
 </c:when>
 <c:otherwise>
  <ul class="menu2">
+     <img src="images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 48px; right: 300px;">
     <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
     <li class="navi2"><a href="${pageContext.request.contextPath}/mypage">mypage</a></li>
 </ul>

@@ -3,6 +3,8 @@ package com.mulcam.artista.dto;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Funding {
 		int fundingNo;
 		int artistNo;
@@ -27,6 +29,7 @@ public class Funding {
 		String id;
 		int sponsorAmount;
 		String email;
+		MultipartFile thumbFile;
 		public Funding() {}
 		
 		public String getStartDate() {
@@ -174,6 +177,14 @@ public class Funding {
 		}
 		public void setEmail(String email) {
 			this.email = email;
+		}
+
+		public MultipartFile getThumbFile() {
+			return thumbFile;
+		}
+
+		public void setThumbFile(MultipartFile thumbFile) {
+			this.thumbFile = thumbFile;
 		}
 		
 		

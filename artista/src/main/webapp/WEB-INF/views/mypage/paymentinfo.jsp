@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-<!-- <%@include file ="../header.jsp" %> -->
+ <%@include file ="../header.jsp" %> 
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">주문 상세정보</h2>
@@ -241,7 +241,7 @@
  
         <div style="text-align: center;font-size: 18px; margin-top: 20px;">
             <input type="button" class="cartBottom-btn" id="toCheckoutBtn" value="확인" onclick="location.href='../mypage'">
-            <input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="결제취소" onclick="location.href='mypage.html'">
+            <!-- <input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="결제취소" onclick="location.href='mypage.html'"> -->
         </div>
         
     </div>

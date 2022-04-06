@@ -1,6 +1,8 @@
 package com.mulcam.artista.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +51,14 @@ public class WorkServiceImpl implements WorkService {
 	@Override
 	public List<Work> getSoldProductByNoList(int artistNo) throws Exception {
 		return workDAO.selectSoldProductByNo(artistNo);
+	}
+
+	@Override
+	public void updateSale(int orderNo, int workNo) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("orderNo", orderNo);
+		map.put("workNo", workNo);
+		workDAO.updateSale(map);
 	}
 	
 	
