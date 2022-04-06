@@ -9,7 +9,6 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +18,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.service.FundingService;
-import com.mulcam.artista.service.FundingServiceImpl;
 
 @RequestMapping("funding")
 @Controller
@@ -43,7 +42,9 @@ public class FundingController {
 	}
 	
 	@GetMapping("/fundingucdetail")
-	public String fundingucdetail() {
+	public String fundingucdetail(@RequestParam("fundingNo") int fundingNo, Model model) {
+		Funding funding=fundingService.queryucdetail(fundingNo);
+		model.addAttribute("funding", funding);
 		return "funding/fundingucdetail";
 	}
 	
@@ -54,11 +55,13 @@ public class FundingController {
 		return "funding/fundingov";
 	}
 	
-	
 	@GetMapping("/fundingovdetail")
-	public String fundingovdetail() {
+	public String fundingovdetail(@RequestParam("fundingNo") int fundingNo, Model model) {
+		Funding funding=fundingService.queryovdetail(fundingNo);
+		model.addAttribute("funding", funding);
 		return	"funding/fundingovdetail";
 	}
+
 	
 	@GetMapping("/fundingtm")
 	public String fundingtm(@ModelAttribute Funding funding, Model model) {
@@ -69,7 +72,9 @@ public class FundingController {
 	}
 	
 	@GetMapping("/fundingtmdetail")
-	public String fundingtmdetail() {
+	public String fundingtmdetail(@RequestParam("fundingNo") int fundingNo, Model model) {
+		Funding funding=fundingService.querytmdetail(fundingNo);
+		model.addAttribute("funding", funding);
 		return "funding/fundingtmdetail";
 	}
 	

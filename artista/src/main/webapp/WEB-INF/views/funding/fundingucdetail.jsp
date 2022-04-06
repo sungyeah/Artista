@@ -12,10 +12,10 @@
 <body style="overflow-x: hidden">
     <div id="contents">
         <header class="account-header">
-            <h2 class="account-header-title">프로젝트 제목</h2>
+            <h2 class="account-header-title">${funding.projTitle}</h2>
         </header>
         <div class="image-box">
-            <img class="image-thumb">
+            <img class="image-thumb" src="/funding/thumbview/${funding.thumbImg}" />
         </div>
         <div class="fundingdetail">
             <div id="timealert">4/5(화) 13시 00분 오픈 예정</div><br>
@@ -28,12 +28,12 @@
         </div>
     </div>
     <div class="projcontent">
-        프로젝트 내용 쓸 곳
+        ${funding.projIntro} ${funding.projBudget}
     </div>
     <div class="artistIntro">
         <h2 class="artist">작가 소개</h2>
         <div class="artistContent">
-            나는 졸리다 배고프다 놀고 싶다
+            ${funding.projArtist }
         </div>
         <div class="artistContent">
             <button class="Btn2">작가 페이지 이동</button>

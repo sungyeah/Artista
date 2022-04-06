@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Work;
@@ -288,7 +287,7 @@ public class ArtistPageController {
 
 		@PostMapping("applyfunding")
 		public String applyfunding1(@ModelAttribute Funding funding, Model model) {
-			String path = servletContext.getRealPath("/fundingApp/");
+			
 			String id=(String) session.getAttribute("id");
 //			 File destFile = new File(path+file.getOriginalFilename());
 			String[] fundingDate = funding.getFundingDate().split(" ~ ");
@@ -302,6 +301,14 @@ public class ArtistPageController {
 			System.out.println(Timestamp.valueOf(localDateTime));
 			funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
 			try {
+				MultipartFile file = funding.getThumbFile();
+				if(file!=null && !file.isEmpty()) {
+					String path = servletContext.getRealPath("/fundingApp/");
+					String filename = file.getOriginalFilename();
+					File destFile = new File(path+filename);
+					file.transferTo(destFile);
+					funding.setThumbImg(filename);
+				}
 				artistPageService.insertApply(funding);
 			} catch (Exception e) {
 				e.printStackTrace();

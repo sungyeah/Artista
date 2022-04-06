@@ -54,4 +54,22 @@ public class FundingServiceImpl implements FundingService {
 		return fundingDAO.querytm(funding);
 	}
 
+	@Override
+	public Funding queryovdetail(int fundingNo) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryovdetail(fundingNo);
+	}
+
+	@Override
+	public Funding queryucdetail(int fundingNo) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryucdetail(fundingNo);
+	}
+
+	@Override
+	public Funding querytmdetail(int fundingNo) {
+		// TODO Auto-generated method stub
+		return fundingDAO.querytmdetail(fundingNo);
+	}
+
 }
