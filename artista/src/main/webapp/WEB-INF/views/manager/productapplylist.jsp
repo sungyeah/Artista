@@ -253,7 +253,6 @@
  			 	$("#workSize").attr("value", applyworkData.workSize);
  			 	$("#workIntro").html(applyworkData.workIntro);    
  			 	$("#workPrice").attr("value", applyworkData.workPrice);
- 			 	$("#pickupAddress").attr("value", applyworkData.pickupAddress);
 			},
 			error:function(data, textStatus){
 				alert("실패");

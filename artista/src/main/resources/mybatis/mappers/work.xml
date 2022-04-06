@@ -13,9 +13,9 @@
 	<insert id="insertWork" parameterType="work">
 		<![CDATA[
 			insert into work (workNo, artistNo, artistName, workName, workImg, workType, workTech, 
-				workSize, workIntro, pickupAddress, workPrice, workForSale) 
+				workSize, workIntro, workPrice, workForSale, orderNo) 
 			values (#{workNo}, #{artistNo}, #{artistName}, #{workName}, #{workImg}, #{workType}, #{workTech}, 
-				#{workSize}, #{workIntro}, #{pickupAddress}, #{workPrice}, #{workForSale})
+				#{workSize}, #{workIntro}, #{workPrice}, #{workForSale}, #{orderNo})
 		]]>
 	</insert>
 	
@@ -63,9 +63,9 @@ create table work(
     workTech varchar(255) not null,
     workSize varchar(255) not null,
     workIntro longtext not null,
-    pickupAddress varchar(500),
     workPrice int(10),
     workForSale boolean not null,
+    orderNo int,
     primary key(workNo)
 );
  -->

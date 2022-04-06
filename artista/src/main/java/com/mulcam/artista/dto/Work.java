@@ -10,13 +10,13 @@ public class Work {
 	String workTech;
 	String workSize;
 	String workIntro;
-	String pickupAddress;
 	int workPrice;
 	int workForSale;
+	int orderNo;
 	
 	public Work() {} 
 	public Work(int workNo, int artistNo, String artistName, String workName, String workImg, String workType, String workTech,
-			String workSize, String workIntro, String pickupAddress, int workPrice, int workForSale) {
+			String workSize, String workIntro, int workPrice, int workForSale, int orderNo) {
 		this.workNo = workNo;
 		this.artistNo = artistNo;
 		this.artistName = artistName;
@@ -26,10 +26,9 @@ public class Work {
 		this.workTech = workTech;
 		this.workSize = workSize;
 		this.workIntro = workIntro;
-		this.pickupAddress = pickupAddress;
 		this.workPrice = workPrice;
 		this.workForSale = workForSale;
-		
+		this.orderNo = orderNo;		
 	}
 	public int getWorkNo() {
 		return workNo;
@@ -87,12 +86,6 @@ public class Work {
 	public void setWorkIntro(String workIntro) {
 		this.workIntro = workIntro;
 	}
-	public String getPickupAddress() {
-		return pickupAddress;
-	}
-	public void setPickupAddress(String pickupAddress) {
-		this.pickupAddress = pickupAddress;
-	}
 	public int getWorkPrice() {
 		return workPrice;
 	}
@@ -102,8 +95,16 @@ public class Work {
 	public int isWorkForSale() {
 		return workForSale;
 	}
+	public int getWorkForSale() {
+		return workForSale;
+	}
 	public void setWorkForSale(int workForSale) {
 		this.workForSale = workForSale;
 	}
-	
+	public int getOrderNo() {
+		return orderNo;
+	}
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+	}
 }
