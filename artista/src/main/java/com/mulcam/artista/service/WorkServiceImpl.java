@@ -26,13 +26,12 @@ public class WorkServiceImpl implements WorkService {
 	}
 
 	@Override
-	public List<Work> getWorkByNoList(int artistNo) throws Exception {
-		return workDAO.selectWorkByNo(artistNo);
+	public Work workinfo(int workNo) throws Exception {
+		return workDAO.woriInfo(workNo);
 	}
 
 	@Override
-	public List<Work> getProductByNoList(int artistNo) throws Exception {
-		return workDAO.selectProductByNo(artistNo);
+	public List<Work> getWorkinfo(String workNo) throws Exception  {
+		return workDAO.getMultiWorkinfo(workNo);
 	}
-	
 }

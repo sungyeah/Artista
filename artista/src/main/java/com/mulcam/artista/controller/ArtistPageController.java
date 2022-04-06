@@ -5,7 +5,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +32,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
@@ -268,6 +270,16 @@ public class ArtistPageController {
 			String path = servletContext.getRealPath("/fundingApp/");
 			String id=(String) session.getAttribute("id");
 //			 File destFile = new File(path+file.getOriginalFilename());
+			String[] fundingDate = funding.getFundingDate().split(" ~ ");
+			System.out.println(fundingDate[0]);
+			System.out.println(fundingDate[1]);
+			DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+			LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
+			System.out.println(Timestamp.valueOf(localDateTime));
+			funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
+			localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
+			System.out.println(Timestamp.valueOf(localDateTime));
+			funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
 			try {
 				artistPageService.insertApply(funding);
 			} catch (Exception e) {
@@ -275,7 +287,8 @@ public class ArtistPageController {
 			}
 			return "artistpage/succesapply";
 		}
-
+		
+		//end - start 
 		
 		@ResponseBody
 		@PostMapping("fundingApp")
@@ -317,6 +330,16 @@ public class ArtistPageController {
 			String path = servletContext.getRealPath("/fundingApp/");
 			String id=(String) session.getAttribute("id");
 			funding.setId(id);
+			String[] fundingDate = funding.getFundingDate().split(" ~ ");
+			System.out.println(fundingDate[0]);
+			System.out.println(fundingDate[1]);
+			DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+			LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
+			System.out.println(Timestamp.valueOf(localDateTime));
+			funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
+			localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
+			System.out.println(Timestamp.valueOf(localDateTime));
+			funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
 			System.out.println(id);
 			try {			
 				System.out.println(funding.getId());

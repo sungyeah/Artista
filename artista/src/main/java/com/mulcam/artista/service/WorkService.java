@@ -7,6 +7,6 @@ import com.mulcam.artista.dto.Work;
 public interface WorkService {
 	public void insertWork(Work work) throws Exception;
 	public int getWorkMaxNo() throws Exception;
-	public List<Work> getWorkByNoList(int artistNo) throws Exception;
-	public List<Work> getProductByNoList(int artistNo) throws Exception;
+	Work workinfo(int workNo) throws Exception;
+	public List<Work> getWorkinfo(String workNo) throws Exception ; //안쓸듯
 }

@@ -14,6 +14,8 @@ public class ArtistPageServiceImpl implements ArtistPageService {
 
 	@Override
 	public void insertApply(Funding funding) throws Exception {
+		System.out.println(funding.getStartDate());
+		System.out.println(funding.getEndDate());
 		fundingDAO.insertApply(funding);		
 	}
 

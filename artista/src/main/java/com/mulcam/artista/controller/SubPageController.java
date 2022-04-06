@@ -7,10 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.SubselectExpression;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mulcam.artista.dao.WorkDAO;
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
-import com.mulcam.artista.service.MyPageServiceImpl;
+import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageServiceImpl;
+import com.mulcam.artista.service.WorkService;
 
 @Controller
 public class SubPageController {
@@ -34,6 +34,9 @@ public class SubPageController {
 	
 	@Autowired
 	MypageService myPageService;
+	
+	@Autowired
+	WorkService workService;
 	
 	@Autowired
 	HttpSession session;
@@ -104,7 +107,6 @@ public class SubPageController {
 	@PostMapping("join")
 	public ModelAndView join(@ModelAttribute Member mem) {
 		ModelAndView mv = new ModelAndView("redirect:/login");
-		System.out.println(mem);
 		try {
 			subPageService.makemember(mem);
 		}catch(Exception e) {
@@ -189,8 +191,33 @@ public class SubPageController {
 	public String paymentinfo(@PathVariable int orderNo,Model model) {
 		try {
 			Order order = myPageService.orderInfo(orderNo);
-			System.out.println(order);
 			model.addAttribute("order",order);
+			String[] arr = order.getWorkNo().split(",");
+			List<Work> wor = new ArrayList<Work>();
+			for(int i=0;i<arr.length;i++) {
+				int workno = Integer.parseInt(arr[i]);
+				Work work = workService.workinfo(workno);
+				wor.add(work);
+			}
+			model.addAttribute("works",wor);
+			
+			
+//			System.out.println(order.getWorkNo());
+//			List<Work> workList = workService.getWorkinfo(order.getWorkNo());
+//			System.out.println(workList.get(1));
+//			// 반복을 통한 테스트
+//			List<Work> wor = new ArrayList<Work>();
+//			for (Work w: workList) {
+//				wor.add(w);
+//				}
+//			System.out.println(wor);
+//			model.addAttribute("works",wor);
+			
+//			String[] workarr = order.getWorkNo().split(",");
+//			for(String a: workarr) {
+//				System.out.println(a);
+//				
+//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

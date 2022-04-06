@@ -1,6 +1,7 @@
 package com.mulcam.artista.dto;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Funding {
 		int fundingNo;
@@ -11,6 +12,8 @@ public class Funding {
 		String projArtist;
 		int targetFunding;
 		String fundingDate;
+		String startDate;
+		String endDate;
 		String thumbImg;
 		int applyStatus;
 		String refusedContents;
@@ -64,6 +67,25 @@ public class Funding {
 			this.sponsorAmount = sponsorAmount;
 			this.email = email;
 		}
+		
+		public String getStartDate() {
+			return startDate;
+		}
+
+		public void setStartDate(String startDate) {
+			this.startDate = startDate;
+		}
+
+
+
+		public String getEndDate() {
+			return endDate;
+		}
+
+		public void setEndDate(String endDate) {
+			this.endDate = endDate;
+		}
+
 		public int getFundingNo() {
 			return fundingNo;
 		}

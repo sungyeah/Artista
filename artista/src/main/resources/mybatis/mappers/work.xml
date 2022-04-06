@@ -19,17 +19,15 @@
 		]]>
 	</insert>
 	
-	<!-- artistNo로 아티스트 일반작품 보기 -->
-	<select id="selectWorkByNo" parameterType="int" resultType="work">
+	<select id="woriInfo" resultType="Work" parameterType="int">
 		<![CDATA[
-			select * from work where artistNo=#{artistNo} and workForSale=false;
+			select * from work where workNo=#{workNo}
 		]]>
 	</select>
 	
-	<!-- artistNo로 아티스트 판매작품 보기 -->
-	<select id="selectProductByNo" parameterType="int" resultType="work">
+	<select id="getMultiWorkinfo" resultType="Work" parameterType="String">
 		<![CDATA[
-			select * from work where artistNo=#{artistNo} and workForSale=true;
+			select * from work where workNo in (#{workNo})
 		]]>
 	</select>
 	
