@@ -9,4 +9,6 @@ public interface WorkService {
 	public int getWorkMaxNo() throws Exception;
 	Work workinfo(int workNo) throws Exception;
 	public List<Work> getWorkinfo(String workNo) throws Exception ; //안쓸듯
+	public List<Work> getWorkByNoList(int artistNo) throws Exception;
+	public List<Work> getProductByNoList(int artistNo) throws Exception;
 }

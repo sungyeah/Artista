@@ -141,7 +141,6 @@ public class ArtistPageController {
 	
 	
 	
-	
 	/* 아티스트 판매작품 전체보기 */
 	@GetMapping("myproduct")
 	public String artistpageProduct(Model model) {
@@ -206,7 +205,6 @@ public class ArtistPageController {
 		}
 		return "artistpage/succesapply";
 	}
-	
 	@GetMapping("myproductsold")
 	public String artistpageProductSold() {
 		return "artistpage/myproductsold";
