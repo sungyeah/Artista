@@ -32,10 +32,10 @@ import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
+import com.mulcam.artista.dto.OrderReport;
 import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistWorldService;
-import com.mulcam.artista.service.MyPageServiceImpl;
 import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageServiceImpl;
 import com.mulcam.artista.service.WorkService;
@@ -70,22 +70,22 @@ public class MyPageController {
 //			model.addAttribute("check", check);
 			model.addAttribute("name",mem.getName());
 			List<Order> ord = myPageService.orderList(id);
-//			List<Work> ord2 = new ArrayList<Work>();
+			List<OrderReport> orderReports = new ArrayList<OrderReport>();
 			for(int i=0;i<ord.size();i++) {
+				OrderReport or = new OrderReport();
 				Order order = ord.get(i);
-				String[] arr = order.getWorkNo().split(",");
-				List<Work> work = new ArrayList<Work>();
-					for(int j=0;j<arr.length;j++) {
-						int workno = Integer.parseInt(arr[j]);
-						System.out.println("workno"+workno);
-						Work work2 = workService.workinfo(workno);
-						work.add(work2);
-						model.addAttribute("works",work);
-					}
-				System.out.println("List<Work> work: "+work);
-//				ord2.add(work);
+				or.setOrder(order);
+				String[] workNos = order.getWorkNo().split(",");
+				List<Work> works = new ArrayList<Work>();
+				for (int j = 0; j < workNos.length; j++) {
+					int workno = Integer.parseInt(workNos[j]);
+					Work work = workService.workinfo(workno);
+					works.add(work);
+				}
+				or.setWorks(works);
+				orderReports.add(or);
 			}
-			model.addAttribute("orders",ord);
+			model.addAttribute("orderReports", orderReports);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 public class Funding {
 		int fundingNo;
 		int artistNo;
+		String artistName;
 		String projTitle;
 		String projIntro;
 		String projBudget;
@@ -28,46 +29,6 @@ public class Funding {
 		String email;
 		public Funding() {}
 		
-		public Funding(String projTitle, String projIntro, String projBudget,
-				String projArtist, int targetFunding, String fundingDate, String thumbImg,
-				String getplace, String getplace2, String id) {
-			this.projTitle = projTitle;
-			this.projIntro = projIntro;
-			this.projBudget = projBudget;
-			this.projArtist = projArtist;
-			this.targetFunding = targetFunding;
-			this.fundingDate = fundingDate;
-			this.thumbImg = thumbImg;
-			this.getplace = getplace;
-			this.getplace2=getplace2;
-			this.id=id;
-		}
-		public Funding(int fundingNo, int artistNo, String projTitle, String projIntro, String projBudget,
-				String projArtist, int targetFunding, String fundingDate, String thumbImg, String getplace, int sumAmount, String id,
-				int fundingState) {
-			this.fundingNo = fundingNo;
-			this.artistNo = artistNo;
-			this.projTitle = projTitle;
-			this.projIntro = projIntro;
-			this.projBudget = projBudget;
-			this.projArtist = projArtist;
-			this.targetFunding = targetFunding;
-			this.fundingDate = fundingDate;
-			this.thumbImg = thumbImg;
-			this.getplace = getplace;
-			this.sumAmount = sumAmount;
-			this.fundingState = fundingState;
-			this.id=id;
-		}
-		
-		public Funding(int fundingNo, int sponsorNo, String id, int sponsorAmount, String email) {
-			this.fundingNo = fundingNo;
-			this.sponsorNo = sponsorNo;
-			this.id = id;
-			this.sponsorAmount = sponsorAmount;
-			this.email = email;
-		}
-		
 		public String getStartDate() {
 			return startDate;
 		}
@@ -77,6 +38,13 @@ public class Funding {
 		}
 
 
+		public String getArtistName() {
+			return artistName;
+		}
+
+		public void setArtistName(String artistName) {
+			this.artistName = artistName;
+		}
 
 		public String getEndDate() {
 			return endDate;

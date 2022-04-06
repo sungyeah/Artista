@@ -364,7 +364,7 @@ public class ArtistPageController {
 			System.out.println(id);
 			try {			
 				System.out.println(funding.getId());
-				artistPageService.updatefundingapp(funding);				
+				artistPageService.insertupdate(funding);				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

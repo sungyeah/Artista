@@ -9,6 +9,13 @@
 			values((select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 0, #{getplace}, #{getplace2}, sysdate())
 		]]>
 	</insert>
+	<insert id="insertupdate" parameterType="funding" >
+		<![CDATA[
+			insert into fundingapp(artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate)
+			values((select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 1, #{getplace}, #{getplace2}, sysdate())
+		]]>
+	</insert>
+	
 	<select id="queryFunding" parameterType="string" resultType="Funding">
 		<![CDATA[
 			select * from fundingapp where id=#{id}
@@ -27,10 +34,31 @@
 	</update>
 	<insert id="insertfunding" parameterType="funding" >
 		<![CDATA[
-			insert into fundingapp(fundingNo, artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, sumAmount, fundingState, getplace)
+			insert into funding(fundingNo, artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, sumAmount, fundingState, getplace)
 			values(#{fundingNo}, #{artistNo},#{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, #{sumAmount}, 0, #{getplace})
 		]]>
 	</insert>
+	<update id="updatefundingState" parameterType="Funding" >
+		<![CDATA[
+			update funding set fundingState=(case when timestampdiff(hour, now(), startDate)>0 then 1 else 
+		(case when timestampdiff(hour, now(), endDate)>0 then 2 else 3 end) end)
+		]]>
+	</update>
+	<select id="queryuc" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingState=1
+		]]>
+	</select>
+	<select id="queryov" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingState=2
+		]]>
+	</select>
+	<select id="querytm" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingState=3
+		]]>
+	</select>
 </mapper>
 
 <!-- 
