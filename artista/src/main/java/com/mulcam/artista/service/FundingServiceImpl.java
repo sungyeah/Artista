@@ -2,6 +2,8 @@ package com.mulcam.artista.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -26,9 +28,30 @@ public class FundingServiceImpl implements FundingService {
 		
 	}
 	
-	@Scheduled(cron="0 0 0 * * ?") 
-	 public void updatefundingState(int fundingState){
-		fundingDAO.updatefundingState(fundingState);
-	 }
+//	@Scheduled(cron="0/5 * * * * *") 
+//	 public void updatefundingState(Funding fundingState){
+//		fundingDAO.updatefundingState(fundingState);
+//		System.out.println("dddd");
+//	 }
+
+
+
+	@Override
+	public List<Funding> queryuc(Funding funding) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryuc(funding);
+	}
+
+	@Override
+	public List<Funding> queryov(Funding funding) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryov(funding);
+	}
+
+	@Override
+	public List<Funding> querytm(Funding funding) {
+		// TODO Auto-generated method stub
+		return fundingDAO.querytm(funding);
+	}
 
 }

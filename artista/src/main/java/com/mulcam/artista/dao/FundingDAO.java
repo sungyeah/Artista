@@ -1,5 +1,7 @@
 package com.mulcam.artista.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +16,8 @@ public interface FundingDAO {
 	public void insertupdate(Funding funding);
 	public void updateapplyStatus(Funding funding);
 	public void insertfunding(Funding funding); //펀딩 등록
-	public void updatefundingState(int fundingState);
+	public void updatefundingState(Funding fundingState);
+	public List<Funding> queryuc(Funding funding);
+	public List<Funding> queryov(Funding funding);
+	public List<Funding> querytm(Funding funding);
 }

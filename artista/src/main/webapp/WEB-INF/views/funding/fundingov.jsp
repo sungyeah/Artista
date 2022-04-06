@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,131 +20,21 @@
             <span class="postbtn"><a href="fundingtm">펀딩 종료</a></span>
 	</div>
     <div class="flex-container">
+    	<c:forEach items="${list }" var="funding">
         <div class="flex-item">
-            <div class="image-box">
+            <div id="box" class="image-box">
                 <a href="fundingovdetail">
-                <img class="image-thumb">
+                <img src="/fundingApp/${funding.thumbImg}" class="image-thumb">
                 </a>
             </div>
-            <span class="printer">작가</span><br>
+            <span class="printer" id="artistName" >${funding.artistName}</span><br>
             <a href="fundingovdetail">
-            <span class="projname">프로젝트 이름</span>
+            <span class="projname" id="projName">${funding.projTitle }</span>
             </a>
         </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
+     </c:forEach>
     </div>
-
-    <div class="flex-container">
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-    </div>
-
-    <div class="flex-container">
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-    </div>
-    <div class="flex-container">
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-        <div class="flex-item">
-            <div class="image-box">
-                <img class="image-thumb">
-            </div>
-            <span class="printer">작가</span><br>
-            <span class="projname">프로젝트 이름</span>
-        </div>
-    </div>
-    <button class="Btn">load more</button>
+	
+    <button type="button" class="Btn" id="load">load more</button>
 </body>
 </html>

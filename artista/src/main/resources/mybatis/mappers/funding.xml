@@ -38,25 +38,25 @@
 			values(#{fundingNo}, #{artistNo},#{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, #{sumAmount}, 0, #{getplace})
 		]]>
 	</insert>
-	<update id="updatefundingState" parameterType="int" >
+	<update id="updatefundingState" parameterType="Funding" >
 		<![CDATA[
-			update funding set fundingState =(case when timestampdiff(day, now(), startDate)>0 then 1 else 
-			(case when timestampdiff(day, startDate, endDate)<0 then 2 else 3 end) end);
+			update funding set fundingState=(case when timestampdiff(hour, now(), startDate)>0 then 1 else 
+		(case when timestampdiff(hour, now(), endDate)>0 then 2 else 3 end) end)
 		]]>
 	</update>
-	<select id="queryUpcomming" parameterType="int" resultType="Funding">
+	<select id="queryuc" resultType="Funding">
 		<![CDATA[
-			select * from fundingapp where fundingState=1
+			select * from funding where fundingState=1
 		]]>
 	</select>
-	<select id="queryOnview" parameterType="int" resultType="Funding">
+	<select id="queryov" resultType="Funding">
 		<![CDATA[
-			select * from fundingapp where fundingState=2
+			select * from funding where fundingState=2
 		]]>
 	</select>
-	<select id="queryterm" parameterType="int" resultType="Funding">
+	<select id="querytm" resultType="Funding">
 		<![CDATA[
-			select * from fundingapp where fundingState=3
+			select * from funding where fundingState=3
 		]]>
 	</select>
 </mapper>
