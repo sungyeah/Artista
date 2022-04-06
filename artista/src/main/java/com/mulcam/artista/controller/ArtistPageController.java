@@ -138,6 +138,18 @@ public class ArtistPageController {
 		
 		return "artistpage/succesapply";
 	}
+	/* 아티스트 일반작품 등록 페이지 */
+	@GetMapping(value="workdetail/{workNo}")
+	public String workdetail(@PathVariable int workNo, Model model) {
+		Work work;
+		try {
+			work = workService.workinfo(workNo);
+			model.addAttribute("work", work);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "artistpage/workdetail";
+	}
 	
 	
 	
