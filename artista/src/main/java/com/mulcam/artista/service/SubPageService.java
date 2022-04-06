@@ -26,5 +26,5 @@ public interface SubPageService {
 
 	Integer MaxOrderNum() throws Exception; //주문번호 조회
 	void insertPayment(Order order) throws Exception;//주문완료
-	
+	String memTypeInfo(String id)throws Exception;
 }

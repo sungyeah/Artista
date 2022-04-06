@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,9 @@ public class SubPageController {
 			String id=info.get("id");
 			String password=info.get("password");
 			if(subPageService.accessMember(id, password)) {
+				String membertype = subPageService.memTypeInfo(id);
 				session.setAttribute("id", id);
+				session.setAttribute("membertype", membertype);
 				mv.setViewName("redirect:/main");
 			}else {
 				mv.setViewName("login");
@@ -62,6 +65,14 @@ public class SubPageController {
 			e.printStackTrace();
 		}
 		return mv;   //나중에 메인으로 변경
+	}
+	
+	@GetMapping(value="/logout")
+	public String logout(HttpServletRequest request, Model model) {
+		HttpSession session=request.getSession();
+		session.removeAttribute("id");
+		session.removeAttribute("membertype");
+		return "login";
 	}
 	
 	

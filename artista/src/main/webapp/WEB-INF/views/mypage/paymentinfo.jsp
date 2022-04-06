@@ -49,7 +49,7 @@
 							<c:otherwise>
 											<c:forEach items="${works }" var="work">
 									<tr>
-										 <td class="artworks">
+										 <td class="artworks2">
 											<img class="cartList-image" src="${work.workImg }"><br>
 										</td> 
 										<td class="artworks">
@@ -81,7 +81,6 @@
                             <div class="sect-body-th">이름</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
-                                    <input type="hidden" id="billing_name" name="billing_name" value="140,000">
                                     <span>${order.orderName }</span>
                                 </div>
                             </div>
@@ -90,8 +89,8 @@
                             <div class="sect-body-th">연락처</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
-                                    <input type="hidden" id="billing_name" name="billing_name" value="홍성호">
-                                    <span>${order.orderNum }</span>
+                                	<input id="contact" type="hidden" value="${order.orderNum }">
+                                    <span id="contact2"></span>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +98,6 @@
                             <div class="sect-body-th">이메일</div>
                             <div class="sect-body-td">
                                 <div class="checkout-profile-box">
-                                    <input type="hidden" id="billing_phone1" name="billing_phone1" value="010-4012-9131">
                                     <span>${order.orderEmail }</span>
                                     <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
                                 </div>
@@ -172,8 +170,8 @@
                         <div class="sect-body-th">연락처</div>
                         <div class="sect-body-td">
                             <div class="checkout-profile-box">
-                                <input type="hidden" id="billing_name" name="billing_name" value="홍성호">
-                                <span>${order.receiverNum }</span>
+                                <input type="hidden" id="receiverCon" value="${order.receiverNum }">
+                                <span id="receiverCon2"></span>
                             </div>
                         </div>
                     </div>
@@ -248,5 +246,17 @@
         
     </div>
     <!-- <%@include file ="../footer.jsp" %> -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>    
+<script>
+	var str = $('#contact').val().trim();    
+	var phone = str.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+	document.getElementById('contact2').innerText = phone; 
+	
+	var str = $('#receiverCon').val().trim();    
+	var phone = str.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+	document.getElementById('receiverCon2').innerText = phone; 
+	
+</script>
 </body>
+
 </html>

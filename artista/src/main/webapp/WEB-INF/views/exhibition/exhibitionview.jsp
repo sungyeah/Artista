@@ -97,7 +97,11 @@
                                             <h5>self-portrait05 autumn</h5>
                                             <p>남진숙</p>
                                         </div>
-                                    </div></div><div class="owl-item active" style="width: auto; margin-right: 50px;"><div class="season_artwork">
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="owl-item active" style="width: auto; margin-right: 50px;">
+                                    <div class="season_artwork">
                                         <a href="/artwork/A0231-0052/">
                                             <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0231/A0231-0052.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0231/A0231-0052.jpg" style="opacity: 1;">
                                         </a>
@@ -105,7 +109,10 @@
                                             <h5>Forest 2017#1</h5>
                                             <p>김보경</p>
                                         </div>
-                                    </div></div><div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
                                         <a href="/artwork/A0200-0012/">
                                             <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0200/A0200-0012.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0200/A0200-0012.jpg" style="opacity: 1;">
                                         </a>
@@ -190,7 +197,8 @@
                     </div>
                 </article>
 
-
+<script id="youtube-hd-fjdmkanbdloodhegphphhklnjfngoffa">var ythdlog = () => {};;var ythderror = () => {};</script>
 <%@include file ="../footer.jsp" %>
+
 </body>
 </html>

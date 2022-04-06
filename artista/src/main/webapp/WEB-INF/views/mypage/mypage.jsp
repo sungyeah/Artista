@@ -62,7 +62,7 @@
                         	<c:otherwise> 
                         <c:forEach items="${orderReports }" var="orderReport">
                         <tr>
-                        	<td class="time-code"><a href="paymentinfo/${orderReport.order.orderNo }">${orderReport.order.orderNo }</a></td>
+                        	<td class="time-code" style="font-weight:bold;"><a href="paymentinfo/${orderReport.order.orderNo }">${orderReport.order.orderNo }</a></td>
                         	<td class="artworks">
                         		 <c:forEach items="${orderReport.works }" var="work"> 
                         		<${work.workName }> ${work.artistName }<br>

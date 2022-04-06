@@ -100,7 +100,13 @@
 			values(#{orderNo},#{id},#{workNo},#{deliveryCharge},#{workPrice},#{orderCost},#{orderName},#{orderNum},#{orderEmail},#{receiverName},#{receiverNum},#{receiverAddress},#{receiverAddress2},#{pay_method},'상품 준비 중',null,now(),null,#{ordercount},#{cartNo})
 		]]>
 	</insert> 
-	
+
+	<select id="memTypeInfo" resultType="String" parameterType="string">
+		<![CDATA[
+			select membertype from member where id=#{id}
+		]]>
+	</select>
+
 	<!-- 예선 : 회원 목록 보기 -->
 	<!-- 회원수 -->
 	<select id="memberNum" resultType="int">
@@ -108,7 +114,6 @@
 			select count(*) from member
 		]]>
 	</select>
-	
 	<!-- 예선 : 관리자 - 결제 내역 보기 -->
 	<!-- 인원 -->
 	<select id="totalOrderNum" resultType="int">
@@ -129,7 +134,6 @@
 			select * from order1 where orderNo=#{orderNo} limit 1
 		]]>
 	</select>
-	
 </mapper>
 <!-- create table member(
 	id varchar(100) not null,
