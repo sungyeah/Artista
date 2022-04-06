@@ -18,6 +18,7 @@ public class Work {
 	public Work(int workNo, int artistNo, String artistName, String workName, String workImg, String workType, String workTech,
 			String workSize, String workIntro, String pickupAddress, int workPrice, boolean workForSale) {
 		this.workNo = workNo;
+		this.artistNo = artistNo;
 		this.artistName = artistName;
 		this.workName = workName;
 		this.workImg = workImg;

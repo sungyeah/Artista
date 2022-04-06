@@ -1,5 +1,7 @@
 package com.mulcam.artista.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +24,15 @@ public class WorkServiceImpl implements WorkService {
 		if(id==null) id=0;
 		return id+1;
 	}
+
+	@Override
+	public List<Work> getWorkByNoList(int artistNo) throws Exception {
+		return workDAO.selectWorkByNo(artistNo);
+	}
+
+	@Override
+	public List<Work> getProductByNoList(int artistNo) throws Exception {
+		return workDAO.selectProductByNo(artistNo);
+	}
+	
 }

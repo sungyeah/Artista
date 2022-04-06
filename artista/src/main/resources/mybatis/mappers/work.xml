@@ -19,6 +19,20 @@
 		]]>
 	</insert>
 	
+	<!-- artistNo로 아티스트 일반작품 보기 -->
+	<select id="selectWorkByNo" parameterType="int" resultType="work">
+		<![CDATA[
+			select * from work where artistNo=#{artistNo} and workForSale=false;
+		]]>
+	</select>
+	
+	<!-- artistNo로 아티스트 판매작품 보기 -->
+	<select id="selectProductByNo" parameterType="int" resultType="work">
+		<![CDATA[
+			select * from work where artistNo=#{artistNo} and workForSale=true;
+		]]>
+	</select>
+	
 </mapper>
 <!-- 
 create table work(

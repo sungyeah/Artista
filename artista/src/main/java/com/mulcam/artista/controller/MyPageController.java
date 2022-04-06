@@ -104,7 +104,7 @@ public class MyPageController {
 		while(fnames.hasNext()) {
 			String fileName = fnames.next();
 			//name이 artistImg인 파일은 생략!
-			if(!fileName.equals("artistImg")) {
+			if(!fileName.equals("artistImgFile")) {
 				MultipartFile mfile = mrequest.getFile(fileName);
 				if(mfile.getSize()>0) {
 					ArtistWorld worldImg = new ArtistWorld();
@@ -112,7 +112,6 @@ public class MyPageController {
 						//아티스트 작품세계 업로드 폴더 경로
 						String path_artistWorld = servletContext.getRealPath("/imgupload/artistWorlds/");
 						String[] imgtypes = mfile.getContentType().split("/");
-						System.out.println(artistworldService.getArtistWorldId());
 						File dest_artistWorld = new File(path_artistWorld+artistworldService.getArtistWorldId()+ "."+imgtypes[1]);
 						try {			
 							mfile.transferTo(dest_artistWorld);
@@ -146,11 +145,9 @@ public class MyPageController {
 	//프로필 프리뷰
 	@GetMapping(value="/artistprofile/{filename}")
 	public void fileview(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
-		/*현재 /fileview/board/${file.originalFilename } 경로로 요청이 들어왔는데,
-		${file.originalFilename }은 URL에 변수를 담은 템플릿변수에 해당한다. 이를 filename이라는 변수로 받은 것이고
-		요청을 처리하는 메서드에서 이를 파라미터로 받아서 처리해야하기 때문에 PathVaribale이라는 어노테이션을 사용한다. */
-		String path= servletContext.getRealPath("imgupload/artistProfile/");
+		String path= servletContext.getRealPath("/imgupload/artistProfile/");
 		File file=new File(path+filename); 
+		System.out.println(filename);
 		String sfilename=null;
 		FileInputStream fis=null;
 		try {
