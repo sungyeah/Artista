@@ -188,9 +188,28 @@
                                     </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"></button><button type="button" role="presentation" class="owl-next"></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
                         </section>
                     </div>
+                    
+				<button class="btn btn-primary" id='test'>테스트 버튼</button>
+                    
+                    
+                    
                 </article>
 
 
 <%@include file ="../footer.jsp" %>
 </body>
+<script>
+	$(document).ready(function() {
+		$('#test').click(function() {
+			$.ajax({
+				type:"get",
+				data: {},
+				url: 'http://localhost:8090/test',
+				success: function(data) {
+					console.log(typeof(data)))
+				}
+			})
+		})
+	})
+</script>
 </html>

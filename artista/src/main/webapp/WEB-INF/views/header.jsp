@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" async="" src=""></script>
     <link rel="stylesheet" type="text/css" href="css/content.css">
     <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
@@ -47,17 +46,35 @@
             <a href="main"><img src="images/로고.png" style="height: 150px; width: auto;"></a>
 <nav id="gnb">
 <ul class="menu1">
-    <li class="navi"><a href="exhibitionview">Exhibition </a></li>
-    <li class="navi"><a href="artistslist">Artists</a></li>
-    <li class="navi"><a href="storelist">Store</a></li>
+    <li class="navi"><a href="${pageContext.request.contextPath}/exhibitionview">Exhibition </a></li>
+    <li class="navi"><a href="${pageContext.request.contextPath}/artistslist">Artists</a></li>
+    <li class="navi"><a href="${pageContext.request.contextPath}/storelist">Store</a></li>
     <li class="navi"><a href="">Funding</a></li>
  </ul>
 
+<c:choose>
+<c:when test="${empty id}">
  <ul class="menu2">
     <img src="images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 48px; right: 300px;">
     <li class="navi2"><a href="login">Login</a></li>
     <li class="navi2"><a href="join">SignUp</a></li>
 </ul>
+</c:when>
+
+<c:when test="${membertype == manager }">
+ <ul class="menu2">
+    <img src="images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 48px; right: 300px;">
+    <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+    <li class="navi2"><a href="${pageContext.request.contextPath}/manager">mypage</a></li>
+</ul>
+</c:when>
+<c:otherwise>
+ <ul class="menu2">
+    <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+    <li class="navi2"><a href="${pageContext.request.contextPath}/mypage">mypage</a></li>
+</ul>
+</c:otherwise>
+</c:choose>
 </nav>
         </div>
     </header>
