@@ -14,4 +14,7 @@ public interface WorkDAO {
 	public void insertWork(Work work) throws Exception;
 	public Work woriInfo(int workNo) throws Exception;
 	public List<Work> getMultiWorkinfo(String workNo) throws Exception; //안쓸듯
+	public List<Work> selectWorkByNo(int artistNo) throws Exception;
+	public List<Work> selectProductByNo(int artistNo) throws Exception;
+	public List<Work> selectSoldProductByNo(int artistNo) throws Exception;
 }

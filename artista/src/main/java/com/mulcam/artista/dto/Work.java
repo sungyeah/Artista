@@ -12,12 +12,13 @@ public class Work {
 	String workIntro;
 	String pickupAddress;
 	int workPrice;
-	boolean workForSale;
+	int workForSale;
 	
 	public Work() {} 
 	public Work(int workNo, int artistNo, String artistName, String workName, String workImg, String workType, String workTech,
-			String workSize, String workIntro, String pickupAddress, int workPrice, boolean workForSale) {
+			String workSize, String workIntro, String pickupAddress, int workPrice, int workForSale) {
 		this.workNo = workNo;
+		this.artistNo = artistNo;
 		this.artistName = artistName;
 		this.workName = workName;
 		this.workImg = workImg;
@@ -98,10 +99,10 @@ public class Work {
 	public void setWorkPrice(int workPrice) {
 		this.workPrice = workPrice;
 	}
-	public boolean isWorkForSale() {
+	public int isWorkForSale() {
 		return workForSale;
 	}
-	public void setWorkForSale(boolean workForSale) {
+	public void setWorkForSale(int workForSale) {
 		this.workForSale = workForSale;
 	}
 	

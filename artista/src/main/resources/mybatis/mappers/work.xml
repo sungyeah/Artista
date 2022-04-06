@@ -31,6 +31,26 @@
 		]]>
 	</select>
 	
+	<!-- artistNo로 아티스트 일반작품 보기 -->
+	<select id="selectWorkByNo" parameterType="int" resultType="work">
+		<![CDATA[
+			select * from work where artistNo=#{artistNo} and workForSale=0
+		]]>
+	</select>
+	
+	<!-- artistNo로 아티스트 판매중인 작품 보기 -->
+	<select id="selectProductByNo" parameterType="int" resultType="work">
+		<![CDATA[
+			select * from work where artistNo=#{artistNo} and workForSale=1
+		]]>
+	</select>
+	
+	<!-- artistNo로 아티스트 팬매완료 작품 보기 -->
+	<select id="selectSoldProductByNo" parameterType="int" resultType="work">
+		<![CDATA[
+			select * from work where artistNo=#{artistNo} and workForSale=2
+		]]>
+	</select>
 </mapper>
 <!-- 
 create table work(
