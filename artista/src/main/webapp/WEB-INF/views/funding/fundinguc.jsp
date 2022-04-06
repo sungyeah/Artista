@@ -25,12 +25,12 @@
     	<c:forEach items="${list}" var="funding">
         <div class="flex-item">
             <div id="box" class="image-box">
-                <a href="fundingovdetail">
-                <img src="/fundingApp/${funding.thumbImg}" class="image-thumb">
+                <a href="${path}/funding/fundingucdetail?fundingNo=${funding.fundingNo}">
+                <img src="/funding/thumbview/${funding.thumbImg}" class="image-thumb">
                 </a>
             </div>
             <span class="printer" id="artistName" >${funding.artistName}</span><br>
-            <a href="fundingovdetail">
+            <a href="${path}/funding/fundingucdetail?fundingNo=${funding.fundingNo}">
             <span class="projname" id="projName">${funding.projTitle }</span>
             </a>
         </div>

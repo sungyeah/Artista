@@ -20,4 +20,7 @@ public interface FundingDAO {
 	public List<Funding> queryuc(Funding funding);
 	public List<Funding> queryov(Funding funding);
 	public List<Funding> querytm(Funding funding);
+	public Funding queryovdetail(int fundingNo);
+	public Funding queryucdetail(int fundingNo);
+	public Funding querytmdetail(int fundingNo);
 }

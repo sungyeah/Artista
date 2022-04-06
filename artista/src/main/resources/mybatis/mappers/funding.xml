@@ -59,6 +59,21 @@
 			select * from funding where fundingState=3
 		]]>
 	</select>
+	<select id="queryovdetail" parameterType="int" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	<select id="queryucdetail" parameterType="int" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	<select id="querytmdetail" parameterType="int" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingNo=#{fundingNo}
+		]]>
+	</select>
 </mapper>
 
 <!-- 

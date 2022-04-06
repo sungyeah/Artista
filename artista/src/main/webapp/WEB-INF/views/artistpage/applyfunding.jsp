@@ -17,7 +17,7 @@
 
   </style>
 <body>
-          <form method="post" action="applyfunding">
+          <form method="post" action="applyfunding" enctype="multipart/form-data" >
     <div id="contents">
         
         <header class="account-header">
@@ -86,7 +86,7 @@
                 대표 이미지
             </div>
             <div class="account-modify-form-row-value">
-                    <input id="thumbImg" class="account-modify-form-input" type="file" name="thumbImg" ><br>
+                    <input id="thumbImg" class="account-modify-form-input" type="file" name="thumbFile" ><br>
             </div>
         </div>
 
