@@ -92,9 +92,6 @@ public class Work {
 	public void setWorkPrice(int workPrice) {
 		this.workPrice = workPrice;
 	}
-	public int isWorkForSale() {
-		return workForSale;
-	}
 	public int getWorkForSale() {
 		return workForSale;
 	}

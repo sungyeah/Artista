@@ -2,6 +2,7 @@ package com.mulcam.artista.service;
 
 import java.util.List;
 
+import com.mulcam.artista.dto.PageInfo;
 import com.mulcam.artista.dto.Work;
 
 public interface WorkService {
@@ -12,6 +13,8 @@ public interface WorkService {
 	public List<Work> getWorkByNoList(int artistNo) throws Exception;
 	public List<Work> getProductByNoList(int artistNo) throws Exception;
 	public List<Work> getSoldProductByNoList(int artistNo) throws Exception;
+	
+	public List<Work> SoldProductList(int page, PageInfo pageInfo) throws Exception;
 	
 	void updateSale(int orderNo,int workNo)throws Exception;
 }

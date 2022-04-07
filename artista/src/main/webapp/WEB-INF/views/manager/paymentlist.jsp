@@ -68,9 +68,7 @@
                     	<tbody>
                     		<c:forEach items="${orderdetail }" var="orderdetail">
 								<tr>
-                            	<td scope="col" class="artistNo">
-                            		<a href="/paymentinfo/${orderdetail.order.orderNo }">${orderdetail.order.orderNo }</a>
-                            	</td>
+                            	<td scope="col" class="artistNo">${orderdetail.order.orderNo }</td>
                             	<td class="artworks">
                             		<c:forEach items="${orderdetail.works }" var="work"> 
                         				<${work.workName }> ${work.artistName }<br>
@@ -80,7 +78,7 @@
                             	<th scope="col" class="id">${orderdetail.order.orderDate }</th>
                             	<td scope="col" class="artistName">${orderdetail.order.orderCost }</td>
                             	<td scope="col" class="artistType">${orderdetail.order.orderStatus }</td>                            
-                           		<td scope="col"><a class="artist-detail-btn" onclick="applyDetail('${orderdetail.order.orderNo }')">신청 상세보기</a></td>
+                           		<td scope="col"><a class="artist-detail-btn" href="/manager/paymentInfo/${orderdetail.order.orderNo }">신청 상세보기</a></td>
                         		</tr>
                         		</c:forEach>
                         </tbody>

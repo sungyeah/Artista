@@ -9,16 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/paymentinfo.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/../css/paymentinfo.css">
 <style>
 
 </style>
 </head>
 <body>
-<!-- <%@include file ="../header.jsp" %> -->
     <div id="contents">
         <header class="account-header">
-            <h2 class="account-header-title">주문 상세정보</h2>
+            <h2 class="account-header-title">관리자주문 상세정보</h2>
             <div class="account-header-description">주문과 관련된 정보입니다.</div>
         </header>
         <article class="account-body">
@@ -50,16 +49,13 @@
 											<c:forEach items="${works }" var="work">
 									<tr>
 										 <td class="artworks2">
-											<img class="cartList-image" src="${work.workImg }"><br>
+											<img class="cartList-image" src="/artistpage/workImg/${work.workImg }"><br>
 										</td> 
 										<td class="artworks">
 												<${work.workName }> ${work.artistName }<br>
 												${work.workTech }, ${work.workSize }<br>
 										</td>
 										<td class="start-date" ><fmt:formatNumber value="${work.workPrice }" />원</td>
-										<%-- <td class="time-code"><fmt:formatNumber value="${order.deliveryCharge }"/>원</td>
-										<td class="start-date">${order.trackingNo }</td>
-										<td class="status">${order.orderStatus }</td> --%>
 									</tr>
 											</c:forEach>
 							</c:otherwise>
@@ -240,8 +236,7 @@
         </section>
  
         <div style="text-align: center;font-size: 18px; margin-top: 20px;">
-            <input type="button" class="cartBottom-btn" id="toCheckoutBtn" value="확인" onclick="location.href='../mypage'">
-            <input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="결제취소" onclick="location.href='mypage.html'">
+            <input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="뒤로가기" onclick="window.history.back()">
         </div>
         
     </div>

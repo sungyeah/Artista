@@ -85,15 +85,7 @@
                         <div class="modal-modify-form-row-value">
                             <textarea class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;" id="workIntro" disabled></textarea>
                         </div>
-                    </div>      
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 픽업주소
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" id="pickupAddress" disabled />
-                        </div>
-                    </div>                                 
+                    </div>                       
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                             <a class="yesNo-btn" id="enroll">등록</a>                    

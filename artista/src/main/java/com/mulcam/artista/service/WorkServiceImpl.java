@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.WorkDAO;
+import com.mulcam.artista.dto.PageInfo;
 import com.mulcam.artista.dto.Work;
 
 @Service
@@ -59,6 +60,23 @@ public class WorkServiceImpl implements WorkService {
 		map.put("orderNo", orderNo);
 		map.put("workNo", workNo);
 		workDAO.updateSale(map);
+	}
+
+	@Override
+	public List<Work> SoldProductList(int page, PageInfo pageInfo) throws Exception {
+		int listCount = workDAO.soldProductNum();
+		int maxPage = (int)Math.ceil((double)listCount/9);
+		int startPage=(((int) ((double)page/9+0.9))-1)*9+1;
+		int endPage=startPage+9-1;
+		
+		if(endPage>maxPage) endPage=maxPage;
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setPage(page);
+		pageInfo.setListCount(listCount);
+		int startrow = (page-1)*9;
+		return workDAO.soldProductList(startrow);
 	}
 	
 	

@@ -25,9 +25,11 @@ import com.mulcam.artista.dto.OrderReport;
 import com.mulcam.artista.dto.PageInfo;
 import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.dto.WorkApply;
+import com.mulcam.artista.dto.WorkReport;
 import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.FundingService;
+import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageServiceImpl;
 import com.mulcam.artista.service.WorkApplyService;
 import com.mulcam.artista.service.WorkService;
@@ -51,6 +53,9 @@ public class ManagerController {
 	
 	@Autowired
 	SubPageServiceImpl subPageService;
+	
+	@Autowired
+	MypageService myPageService;
 
 	/* 결제 작품 관리 */
 	@GetMapping({"", "/", "/paymentlist"})
@@ -84,20 +89,44 @@ public class ManagerController {
 	}
 	@GetMapping("/paymentInfo/{orderNo}")
 	public ModelAndView paymentInfo(@PathVariable(value="orderNo") int orderNo) {
-		ModelAndView mv = new ModelAndView("manager/productapplylist");
-		PageInfo pageInfo = new PageInfo();
+		ModelAndView mv = new ModelAndView("manager/paymentinfo");
 		try {
-//			List<WorkApply> productapplylist = workapplyService.getWorkApplyList(page, pageInfo);
-//			mv.addObject("pageInfo", pageInfo);
-//			mv.addObject("productapplylist", productapplylist);
-//			mv.addObject("count", productapplylist.size());
+			Order order = myPageService.orderInfo(orderNo);
+			mv.addObject("order",order);
+			String[] arr = order.getWorkNo().split(",");
+			List<Work> wor = new ArrayList<Work>();
+			for(int i=0;i<arr.length;i++) {
+				int workno = Integer.parseInt(arr[i]);
+				Work work = workService.workinfo(workno);
+				wor.add(work);
+			}
+			mv.addObject("works",wor);
 		} catch(Exception e) {
-			mv.addObject("productapplylist", null);
+			mv.addObject("works", null);
 		}
 		return mv;
 	}
 	@GetMapping("/paycompletelist")
-	public String paycompleteList() {
+	public String paycompleteList(@RequestParam(value="page",required=false, defaultValue = "1") int page, Model model) {
+		
+		PageInfo pageInfo = new PageInfo();
+		try {
+			List<Work> completelist = workService.SoldProductList(page, pageInfo);
+			List<WorkReport> workReportList = new ArrayList<WorkReport>();
+			for(int i=0; i<completelist.size(); i++) {
+				WorkReport workreport = new WorkReport();
+				Work work = completelist.get(i);
+				Order order = subPageService.selectOrderByNo(work.getOrderNo());
+				workreport.setWork(work);
+				workreport.setOrder(order);
+				workReportList.add(workreport);
+			}
+			model.addAttribute("pageInfo", pageInfo);
+			model.addAttribute("count", completelist.size());
+			model.addAttribute("workreport", workReportList);
+		}catch(Exception e) {
+			model.addAttribute("workreport", null);
+		}		
 		return "manager/paycompletelist";
 	}
 	
@@ -135,9 +164,11 @@ public class ManagerController {
 	@ResponseBody
 	@PostMapping(value="productapplysuccess")
 	public void productapplySuccess(@RequestParam(value="applyNo",required = false) int workapplyNo) {
-		try {
+		try {			
 			WorkApply workapply = workapplyService.selectWorktApplyByNo(workapplyNo);
-			Work work = new Work(workService.getWorkMaxNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(),
+				
+			Work work = null;
+			work = new Work(workService.getWorkMaxNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(),
 					workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
 					workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getWorkPrice(), 1, -1);
 			workService.insertWork(work);

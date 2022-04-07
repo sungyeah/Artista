@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,6 +63,24 @@
                         <th scope="col"></th>
                     </tr>
                     </thead>
+                    <c:choose>
+                    	<c:when test="${workreport!=null && pageInfo.listCount>0 }">
+                    	<tbody>
+                    		<c:forEach items="${workreport }" var="workreport">
+								<tr>
+                            	<th scope="col">${workreport.work.workNo }</th>
+                            	<th scope="col">${workreport.work.workName }</th>
+                            	<th scope="col"">${workreport.work.workPrice }</th>
+                            	<th scope="col">${workreport.order.orderDate }</th>
+                            	<th scope="col">${workreport.order.receiverName }</th>     
+                            	<th scope="col">${workreport.order.orderDate }</th>    
+                            	<th scope="col">${workreport.order.orderStatus }</th>                                 
+                           		<th scope="col"><a class="artist-detail-btn" onclick="applyDetail('${artistapply.artistNo }')">신청 상세보기</a></th>
+                        		</tr>
+                        		</c:forEach>
+                        </tbody>
+                    	</c:when>
+                    </c:choose>
                     <tbody>
                     <tr>
                     	<th scope="col" class="workNo">작품 번호</th>

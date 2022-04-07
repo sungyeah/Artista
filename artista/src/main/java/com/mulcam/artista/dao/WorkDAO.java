@@ -18,6 +18,8 @@ public interface WorkDAO {
 	public List<Work> selectWorkByNo(int artistNo) throws Exception;
 	public List<Work> selectProductByNo(int artistNo) throws Exception;
 	public List<Work> selectSoldProductByNo(int artistNo) throws Exception;
+	public int soldProductNum() throws Exception;
+	public List<Work> soldProductList(int startrow) throws Exception;
 	
 	public void updateSale(Map map)throws Exception;
 }

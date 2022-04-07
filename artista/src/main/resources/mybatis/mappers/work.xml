@@ -57,6 +57,20 @@
 			update work set workForSale=2, orderNo=#{orderNo} where workNo=#{workNo}
 		]]>
 	</update>
+	
+	
+	<!-- 관리자 판매완료 작품 보기 -->
+	<select id="soldProductNum" resultType="int">
+		<![CDATA[
+			select count(*) from work where workForSale=2 
+		]]>
+	</select>
+	
+	<select id="soldProductList" parameterType="int" resultType="work">
+		<![CDATA[
+			select * from work where  workForSale=2 limit #{startrow}, 9
+		]]>
+	</select>
 </mapper>
 <!-- 
 create table work(
