@@ -34,8 +34,8 @@ public class MainController {
 	}
 	
 	@ResponseBody
-	@GetMapping("test")
-	public String test() {
+	@GetMapping("exhibitionapi")
+	public String exhibitionapi() {
 		System.out.println("테스트 버튼 클릭 됨");
 		String result = null;
 		
@@ -80,6 +80,10 @@ public class MainController {
 		
 		JSONArray response = xmlJSONObj.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
 		
+		for (Object item : response) {
+			System.out.println(((JSONObject)item).getString("title"));
+		}
+		
 		result = response.toString();
 		// String xmlJSONObjString = xmlJSONObj.toString();
 	    
@@ -90,5 +94,10 @@ public class MainController {
 		}
 		
 		return result;
+	}
+	
+	@GetMapping("test")
+	public String test() {
+		return "test";
 	}
 }

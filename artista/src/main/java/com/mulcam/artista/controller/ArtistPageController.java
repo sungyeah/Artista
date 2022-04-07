@@ -1,5 +1,6 @@
 package com.mulcam.artista.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
@@ -186,6 +189,18 @@ public class ArtistPageController {
 	@PostMapping("workApplyComplete")
 	public String workApplyComplete(@ModelAttribute WorkApply workapply, @RequestParam(value="workImgFile") MultipartFile workImgFile) {
 
+		BufferedImage inputImage;
+		try {
+			inputImage = ImageIO.read(workImgFile.getInputStream());
+			// 이미지 세로 가로 측정
+	        int originWidth = inputImage.getWidth();
+	        int originHeight = inputImage.getHeight();
+	        System.out.println(originHeight);
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+	
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
 		String artistName = null;
