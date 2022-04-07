@@ -18,7 +18,7 @@
             <img class="image-thumb" src="/funding/thumbview/${funding.thumbImg}" />
         </div>
         <div class="fundingdetail">
-            <div id="timealert">4/5(화) 13시 00분 오픈 예정</div><br>
+            <div id="timealert">${funding.startDate } 오픈 예정</div><br>
             <div class="amountdetail">
                 <button class="Btn1">알림 신청 100명 신청 중</button>
             </div>

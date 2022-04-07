@@ -11,6 +11,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/fundingovdetail.css">
+<script src="../js/fundingovdetail"></script>
 <style>
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
@@ -22,6 +23,22 @@
 		$("#rate").text(rate);
 		$("#pro").val(rate);
 	})
+	
+	$(function(){
+		var endDate = new Date('${funding.endDate}').getTime();
+		var currDate = new Date().getTime();
+		var remainTime = (endDate-currDate)/1000;
+		var remain_day=Math.floor(remainTime/(60*60*24));
+		$("#remain_day").text(remain_day);
+		remainTime=remainTime%(60*60*24);
+		var remain_hour=Math.floor(remainTime/(60*60));
+		$("#remain_hour").text(remain_hour);
+		remainTime=remainTime%(60*60*24);
+		var remain_minute=Math.floor(remainTime/60);
+		$("#remain_minute").text(remain_minute);
+	})
+
+
 </script>	
 <body style="overflow-x: hidden">
     <div id="contents">
@@ -32,7 +49,13 @@
             <img class="image-thumb" src="/funding/thumbview/${funding.thumbImg}" />
         </div>
         <div class="fundingdetail">
-            <div id="time">22:59:59 남음</div><br>
+            <div id="time">
+			<jsp:useBean id="toDate" class="java.util.Date" />
+			<span id="remain_day"></span><span style="font-size:15px;">일</span>
+			<span id="remain_hour"></span><span style="font-size:15px;">시간</span>
+			<span id="remain_minute"></span><span style="font-size:15px;">분 남음</span>
+  
+            </div><br>
             <div id="amount">${funding.targetFunding} 목표 금액</div><br>
             <div id="amount"><span id="remainAmount"></span> 남은 금액</div><br>
             <div id="amount">20명 서포터</div><br>
@@ -58,4 +81,5 @@
         <button class="Btn3">목록</button>
     </div>
 </body>
+
 </html>
