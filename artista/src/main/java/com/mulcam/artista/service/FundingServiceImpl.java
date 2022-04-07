@@ -28,14 +28,6 @@ public class FundingServiceImpl implements FundingService {
 		
 	}
 	
-//	@Scheduled(cron="0/5 * * * * *") 
-//	 public void updatefundingState(Funding fundingState){
-//		fundingDAO.updatefundingState(fundingState);
-//		System.out.println("dddd");
-//	 }
-
-
-
 	@Override
 	public List<Funding> queryuc(Funding funding) {
 		// TODO Auto-generated method stub
