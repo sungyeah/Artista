@@ -38,12 +38,6 @@
 			values(#{fundingNo}, #{artistNo},#{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, #{sumAmount}, 0, #{getplace})
 		]]>
 	</insert>
-	<update id="updatefundingState" parameterType="Funding" >
-		<![CDATA[
-			update funding set fundingState=(case when timestampdiff(hour, now(), startDate)>0 then 1 else 
-		(case when timestampdiff(hour, now(), endDate)>0 then 2 else 3 end) end)
-		]]>
-	</update>
 	<select id="queryuc" resultType="Funding">
 		<![CDATA[
 			select * from funding where fundingState=1
@@ -127,7 +121,15 @@ create table fundingSpon(
     primary key(sponsorNo)
 );
 
-알림 테이블은 나중에
+CREATE EVENT IF NOT EXISTS updateFundingState
+    ON SCHEDULE
+           EVERY 1 DAY
+    ON COMPLETION NOT PRESERVE
+    ENABLE
+    COMMENT 'fundingState 업데이트'
+    DO 
+    	update funding set fundingState=(case when timestampdiff(hour, now(), startDate)>0 then 1 else 
+		(case when timestampdiff(hour, now(), endDate)>0 then 2 else 3 end) end);
 
  -->
  
