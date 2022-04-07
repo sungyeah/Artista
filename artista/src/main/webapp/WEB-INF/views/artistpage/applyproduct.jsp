@@ -24,6 +24,7 @@
 </style>
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
     <div id="contents">
     	<header class="account-header">
             <h2 class="account-header-title">판매작품 등록하기</h2>

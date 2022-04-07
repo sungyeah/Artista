@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -33,12 +36,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
+import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.dto.WorkApply;
+import com.mulcam.artista.dto.WorkReport;
 import com.mulcam.artista.service.ArtistPageService;
 import com.mulcam.artista.service.ArtistService;
+import com.mulcam.artista.service.ExhibitService;
 import com.mulcam.artista.service.FundingService;
 import com.mulcam.artista.service.SubPageService;
 import com.mulcam.artista.service.WorkApplyService;
@@ -67,13 +74,16 @@ public class ArtistPageController {
 	ArtistService artistService;
 	
 	@Autowired
+	ExhibitService exhibitService;
+	
+	@Autowired
 	HttpSession session;
 	
 	@Autowired
 	ServletContext servletContext;
 
 	/* 아티스트 첫페이지 및 일반작품 전체 보기*/
-	@GetMapping({"", "/", "mywork"})
+	@GetMapping("mywork")
 	public String artistpageMain(Model model) {
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
@@ -224,11 +234,34 @@ public class ArtistPageController {
 			artistNo = artistService.getArtistNo(id);
 			model.addAttribute("artistName", artistName);
 			List<Work> soldlist = workService.getSoldProductByNoList(artistNo);
-			model.addAttribute("soldlist", soldlist);
+			List<WorkReport> workReportList = new ArrayList<WorkReport>();
+			for(int i=0; i<soldlist.size(); i++) {
+				WorkReport workreport = new WorkReport();
+				Work work = soldlist.get(i);
+				Order order = subPageService.selectOrderByNo(work.getOrderNo());
+				workreport.setWork(work);
+				workreport.setOrder(order);
+				workReportList.add(workreport);
+			}
+			
+			model.addAttribute("soldlist", workReportList);
 		} catch (Exception e1) {
+			model.addAttribute("soldlist", null);
 			e1.printStackTrace();
 		};
 		return "artistpage/myproductsold";
+	}
+	@ResponseBody
+	@PostMapping("productdetail")
+	public ResponseEntity<Work> productDetail(@RequestParam(value="workNo",required = false) int workNo, Model model) {
+		ResponseEntity<Work> result = null;
+		try {
+			Work work = workService.workinfo(workNo);
+			result = new ResponseEntity<Work>(work, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<Work>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
 	}
 	
 	/* 작품 가져오기 경로 */
@@ -391,20 +424,47 @@ public class ArtistPageController {
 	}
 	
 	@PostMapping("exhibitionApplyComplete")
-	public String exhibitionApplyComplete(@ModelAttribute WorkApply work, @RequestParam(value="posterImgFile") MultipartFile posterImgFile) {
+	public String exhibitionApplyComplete(@ModelAttribute ExhibitionApply exhibitapply, @RequestParam(value="posterImgFile") MultipartFile posterImgFile) {
 		
-		String id=(String) session.getAttribute("id");	
-		Integer artistNo = null;
-		System.out.println(id);
+		//포스터 이미지 등록
+		String path = servletContext.getRealPath("/imgupload/exhibition/");
+		String[] mtypes = posterImgFile.getContentType().split("/");
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
+		Date time = new Date();
+		String exhibitEnrollTime = simpleDate.format(time);
+		System.out.println("try 이전");
+		int exhibitapplyNo;
 		try {
-			//work.setWorkNo(workService.getWorkMaxId());
-			artistNo = artistService.getArtistNo(id);
-			System.out.println(artistNo);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		};
+			exhibitapplyNo = exhibitService.maxExhibitApplyId();
+			File destFile = new File(path + exhibitEnrollTime +"."+ mtypes[1]);	//이미지 타입
+			posterImgFile.transferTo(destFile);
+			
+			String exhibitposterImg = exhibitEnrollTime +"."+ mtypes[1];
+			exhibitapply.setExhibitapplyNo(exhibitapplyNo);
+			exhibitapply.setExhibitPoster(exhibitposterImg);
+			System.out.println("poseter : " + exhibitposterImg);
+			System.out.println(exhibitapply.getExhibitPoster());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+		String[] exhibitDate = exhibitapply.getExhibitDate().split(" ~ ");
+		System.out.println(exhibitDate[0]);
+		System.out.println(exhibitDate[1]);
+		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(exhibitDate[0]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		exhibitapply.setStartDate(Timestamp.valueOf(localDateTime).toString());
+		localDateTime = LocalDateTime.from(formatDateTime.parse(exhibitDate[1]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		exhibitapply.setEndDate(Timestamp.valueOf(localDateTime).toString());
+		exhibitapply.setApplyStatus(0);
 		
+		try {
+			exhibitService.insertExhibitApply(exhibitapply);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "artistpage/succesapply";
 	}
 	

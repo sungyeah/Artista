@@ -20,6 +20,7 @@
 </style>
 </head>
 <body>
+	
 	<div id="applymodal" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">

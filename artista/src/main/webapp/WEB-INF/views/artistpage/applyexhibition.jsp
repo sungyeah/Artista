@@ -7,13 +7,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
 <link rel="stylesheet" href="../css/manager.css">
 <link rel="stylesheet" href="../css/mypage.css">
 <link rel="stylesheet" href="../css/enroll.css">
+<link rel="stylesheet" href="../css/applyfunding.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
 	.posterImg {
 		width:300px; height:300px; margin-top:7px; display:inline-block;
@@ -22,6 +25,7 @@
 
 </head>
 <body>
+
     <div id="contents">
     	<header class="account-header">
             <h2 class="account-header-title">전시등록 신청하기</h2>
@@ -70,7 +74,7 @@
                             <span class="red">*</span> 전시일정
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input id="datepickerstart" class="enroll-modify-form-input" name="exhibitStartDate" style="display:inline-block;" /> - <input id="datepickerend" class="enroll-modify-form-input" name="exhibitEndDate" style="display:inline-block;" />
+                            <input id="exhibitDate" class="enroll-modify-form-input" name="exhibitDate" style="width:250px;" />
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -128,8 +132,8 @@
 	
 	// 전시등록 신청 또는 취소
 	$("#exhibitApply").click(function (event) {
-		//$("#workType").attr("value", $(".selected-value").text());
-		$("#"exhibitPlace"").attr("value", $("#getplace").val() +" " + $("#getplace2").val());
+		$("#workType").attr("value", $(".selected-value").text());
+		$("#exhibitPlace").attr("value", $("#getplace").val() +" " + $("#getplace2").val());
 		$("#exhibitApply").submit();
 	});
 	$("#cancel").click(function () {
@@ -146,6 +150,22 @@
 	        }
 	    }).open();
 	}
+	$(function() {
+	      $("#exhibitDate").daterangepicker({
+	    	    locale: {
+	    	        "separator": " ~ ",                     // 시작일시와 종료일시 구분자
+	    	        "format": 'YYYY-MM-DD HH',     // 일시 노출 포맷
+	    	        "applyLabel": "확인",                    // 확인 버튼 텍스트
+	    	        "cancelLabel": "취소",                   // 취소 버튼 텍스트
+	    	        "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
+	    	        "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
+	    	        },
+	    	        timePicker: true,                        // 시간 노출 여부
+	    	        showDropdowns: true,                     // 년월 수동 설정 여부
+	    	        autoApply: true,                         // 확인/취소 버튼 사용여부
+	    	        timePicker24Hour: true,                  // 24시간 노출 여부(ex> true : 23:50, false : PM 11:50)
+	    	    });
+	    });
 	</script>
 	
 </body>
