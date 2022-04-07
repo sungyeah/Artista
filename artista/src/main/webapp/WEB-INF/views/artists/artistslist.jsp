@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <script type="text/javascript" async="" src=""></script>
+
 </head>
 <style>
 /* 여기부터 아티스트 목록 */
@@ -31,11 +31,16 @@
         <article id="content" class="vuelayer">
             <div class="artist-list">
                 
-                <ul class="list">
+                <ul>
                     <!-- <li><a href="artistdetail.html" data-image="img/">Ayoung Kim </a></li> -->
-                    <li><a href="artistdetail" data-image="/public/2020/03/31/15/1/24/f21bbdc1-b2c9-420e-98fc-ad69ac690d64.resize_large.jpg">Bernar Venet </a></li>
-                    <li><a href="/artist/view/20000000121" data-image="/public/2020/09/4/15/14/36/6be6a72e-c1d6-4e09-8855-5be477fb0e76.resize_large.jpg">Choi Minhwa </a></li>
-                    <li><a href="/artist/view/20000000112" data-image="/public/2020/03/31/15/4/46/d32e26f9-39f8-483a-8804-13121a180b62.resize_large.jpg">Chung Sang-Hwa</a></li>
+                    <%--
+                    <c:forEach items="${artistList }" var="artist">
+                    	<li><a href="artistdetail/artist.artistno" data-image="${artist.artistImg}">${artist.artistName } </a></li>
+                    </c:forEach>
+                     --%>
+                    <li><a class="list" href="artistdetail" data-image="메인사진2.jpg">Bernar Venet </a></li>
+                    <li><a class="list" href="/artist/view/20000000121" data-image="/public/2020/09/4/15/14/36/6be6a72e-c1d6-4e09-8855-5be477fb0e76.resize_large.jpg">Choi Minhwa </a></li>
+                    <li><a class="list" href="/artist/view/20000000112" data-image="/public/2020/03/31/15/4/46/d32e26f9-39f8-483a-8804-13121a180b62.resize_large.jpg">Chung Sang-Hwa</a></li>
                     <li><a href="/artist/view/20000000111" data-image="/public/2020/04/4/10/38/3/95acec03-42f6-4b15-bebb-943c8d82e1bb.resize_large.jpg">Chung Zuyoung </a></li>
                     <li><a href="/artist/view/20000000109" data-image="/public/2020/03/31/15/8/22/2ca4ee09-83a8-40e5-b512-e2f0e2f83ccd.resize_large.jpg">Fred Sandback </a></li>
                     <li><a href="/artist/view/20000000105" data-image="/public/2020/03/31/15/13/8/3bb65f0e-a90a-4133-85cc-58856ea88d62.resize_large.jpg">Ik-Joong Kang </a></li>
@@ -82,8 +87,9 @@
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-    $('.list').mouseenter(function(){
-        var html="<figure class='landscape'><div class='portrait'><img src='images/메인사진2.jpg'></div></figure>"
+    $('.list').mouseenter(function(e){
+    	let imagePath = e.currentTarget.dataset.image;
+        var html="<figure class='landscape'><div class='portrait'><img src='images/" + imagePath + "'></div></figure>"
         $('.artist-list').append(html);
        
     });

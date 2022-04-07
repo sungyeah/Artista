@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link rel="stylesheet" type="text/css" href="css/content.css">
-    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/content.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css">
+    
+    
 </head>
 <style>
     /* 네비바 */
@@ -43,7 +45,7 @@
 <div id="wrap2">
     <header id="header2">
         <div class="inner">
-            <a href="main"><img src="images/로고.png" style="height: 150px; width: auto;"></a>
+            <a href="main"><img src="${pageContext.request.contextPath}/images/로고.png" style="height: 150px; width: auto;"></a>
 <nav id="gnb">
 <ul class="menu1">
     <li class="navi"><a href="${pageContext.request.contextPath}/exhibitionview">Exhibition </a></li>
@@ -55,21 +57,22 @@
 <c:choose>
 <c:when test="${empty id}">
  <ul class="menu2">
-    <img src="images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 48px; right: 300px;">
+    <img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 48px; right: 300px;">
     <li class="navi2"><a href="login">Login</a></li>
     <li class="navi2"><a href="join">SignUp</a></li>
 </ul>
 </c:when>
 
-<c:when test="${membertype == manager}">
+<c:when test="${membertype eq 'manager'}">
  <ul class="menu2">
     <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
     <li class="navi2"><a href="${pageContext.request.contextPath}/manager">mypage</a></li>
+    
 </ul>
 </c:when>
 <c:otherwise>
  <ul class="menu2">
-     <img src="images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 48px; right: 300px;">
+     <img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 48px; right: 300px;">
     <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
     <li class="navi2"><a href="${pageContext.request.contextPath}/mypage">mypage</a></li>
 </ul>
@@ -81,5 +84,10 @@
 
     
 </div>
+<script>
+var uid = '<%=(String)session.getAttribute("membertype")%>';
+	console.log(uid)
+
+</script>
 </body>
 </html>
