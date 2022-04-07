@@ -48,7 +48,7 @@
 	<!-- artistNo로 아티스트 팬매완료 작품 보기 -->
 	<select id="selectSoldProductByNo" parameterType="int" resultType="work">
 		<![CDATA[
-			select * from work where artistNo=#{artistNo} and workForSale=2
+			select * from work where artistNo=#{artistNo} and (workForSale=2 or workForSale =3)
 		]]>
 	</select>
 	
@@ -62,15 +62,20 @@
 	<!-- 관리자 판매완료 작품 보기 -->
 	<select id="soldProductNum" resultType="int">
 		<![CDATA[
-			select count(*) from work where workForSale=2 
+			select count(*) from work where workForSale=2 or workForSale=3
 		]]>
 	</select>
 	
 	<select id="soldProductList" parameterType="int" resultType="work">
 		<![CDATA[
-			select * from work where  workForSale=2 limit #{startrow}, 9
+			select * from work where  workForSale=2 or workForSale=3 limit #{startrow}, 9
 		]]>
 	</select>
+	<update id="updateSalePayed" parameterType="int" >
+		<![CDATA[
+			update work set workForSale=3 where workNo=#{workNo}
+		]]>
+	</update>
 </mapper>
 <!-- 
 create table work(

@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.ArtistApply;
+import com.mulcam.artista.dto.Exhibition;
+import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
@@ -28,6 +30,7 @@ import com.mulcam.artista.dto.WorkApply;
 import com.mulcam.artista.dto.WorkReport;
 import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistService;
+import com.mulcam.artista.service.ExhibitService;
 import com.mulcam.artista.service.FundingService;
 import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageServiceImpl;
@@ -50,6 +53,9 @@ public class ManagerController {
 	WorkApplyService workapplyService;
 	@Autowired
 	WorkService workService;
+	
+	@Autowired
+	ExhibitService exhibitService;
 	
 	@Autowired
 	SubPageServiceImpl subPageService;
@@ -108,7 +114,6 @@ public class ManagerController {
 	}
 	@GetMapping("/paycompletelist")
 	public String paycompleteList(@RequestParam(value="page",required=false, defaultValue = "1") int page, Model model) {
-		
 		PageInfo pageInfo = new PageInfo();
 		try {
 			List<Work> completelist = workService.SoldProductList(page, pageInfo);
@@ -128,6 +133,15 @@ public class ManagerController {
 			model.addAttribute("workreport", null);
 		}		
 		return "manager/paycompletelist";
+	}
+	@ResponseBody
+	@PostMapping(value="artistpaycomplete")
+	public void artistpayComplete(@RequestParam(value="workNo",required = false) int workNo) {
+		try {
+			workService.workPayed(workNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -207,13 +221,38 @@ public class ManagerController {
 	
 	/* 전시 관리 */
 	@GetMapping("/exhibitionlist")
-	public String exhibitiontList() {
+	public String exhibitiontList(Model model) {
+		try {
+			List<Exhibition> exhibitlist = exhibitService.ExhibiList();
+			model.addAttribute("exhibitlist", exhibitlist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "manager/exhibitionlist";
 	}
 	@GetMapping("/exhibitionapplylist")
-	public String exhibitiontApplyList() {
+	public String exhibitiontApplyList(Model model) {
+		try {
+			List<ExhibitionApply> applylist = exhibitService.ExhibitApplyList();
+			model.addAttribute("applylist", applylist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "manager/exhibitionapplylist";
 	}
+	@ResponseBody
+	@PostMapping(value="exhibitapplydetail")
+	public ResponseEntity<ExhibitionApply> exhibitapplyDetail(@RequestParam(value="applyNo",required = false) int applyNo, Model model) {
+		ResponseEntity<ExhibitionApply> result = null;
+		try {
+			ExhibitionApply exhibitapply = exhibitService.selectExhibitApply(applyNo);
+			result = new ResponseEntity<ExhibitionApply>(exhibitapply, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<ExhibitionApply>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
+	
 	
 	/* 회원 관리 */
 	@GetMapping("/memberlist")

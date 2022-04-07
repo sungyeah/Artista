@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
                             <span class="red">*</span> 전시포스터
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <img style="width:300px; height:300px;"/>
+                            <img style="width:300px; height:300px;" id="exhibitPoster"/>
                         </div>
                     </div>
                     
@@ -37,7 +38,7 @@
                             <span class="red">*</span> 펀딩번호
                         </div>
                         <div class="modal-modify-form-row-value">
-                        	<input class="modal-modify-form-input" type="text" disabled />
+                        	<input class="modal-modify-form-input" id="fundingNo" type="text" disabled />
                         </div>
                     </div>    
                     <div class="modal-modify-form-row">
@@ -45,7 +46,7 @@
                             <span class="red">*</span> 전시명
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="exhibitTitle" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -53,7 +54,7 @@
                             <span class="red">*</span> 아티스트 이름
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="exhibitArtist" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -61,7 +62,7 @@
                             <span class="red">*</span> 전시일정
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" style="width:140px;" type="text" disabled /> - <input class="modal-modify-form-input" style="width:140px;" type="text" disabled />
+                            <input class="modal-modify-form-input" id="exhibitDate" style="width:140px;" type="text" disabled /> - <input class="modal-modify-form-input" style="width:140px;" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -69,7 +70,7 @@
                             <span class="red">*</span> 전시장소
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="exhibitPlace" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -77,7 +78,7 @@
                             <span class="red">*</span> 예매링크
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="reserveLink" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-border">
@@ -160,46 +161,38 @@
             	<table class="member-table">
                     <thead>
                     <tr>
-                        <th scope="col">전시등록번호</th>
+                        <th scope="col">전시신청번호</th>
                         <th scope="col">전시 제목</th>
                         <th scope="col">아티스트 이름</th>
                         <th scope="col">전시시작일</th>
                         <th scope="col">전시종료일</th>
                         <th scope="col">대관장소</th>
-                        <th scope="col">신청유형</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="col" class="exhibitNo">전시등록번호</th>
-                        <th scope="col" class="exhibitTitle">전시 제목</th>
-                        <th scope="col" class="artinstName">아티스트 이름</th>
-                        <th scope="col" class="exhibitStartDate">전시시작일</th>
-                        <th scope="col" class="exhibitEndDate">전시종료일</th>
-                        <th scope="col" class="exhibitPlace">대관장소</th>
-                        <th scope="col" class="applyStatus">수정요청</th>
-                        <th scope="col"><a class="artist-detail-btn">신청 상세보기</a></th>
-                    </tr>
-                    <tr>
-                        <th scope="col" class="exhibitNo">전시등록번호</th>
-                        <th scope="col" class="exhibitTitle">전시 제목</th>
-                        <th scope="col" class="artinstName">아티스트 이름</th>
-                        <th scope="col" class="exhibitStartDate">전시시작일</th>
-                        <th scope="col" class="exhibitEndDate">전시종료일</th>
-                        <th scope="col" class="exhibitPlace">대관장소</th>
-                        <th scope="col" class="applyStatus">등록요청</th>
-                        <th scope="col"><a class="artist-detail-btn">신청 상세보기</a></th>
-                    </tr>
-                    
-                    </tbody>
+                    <c:choose>
+                    	<c:when test="${applylist!=null }">
+                    	<tbody>
+                    		<c:forEach items="${applylist }" var="applylist">
+								<tr>
+                            	<th scope="col">${applylist.exhibitapplyNo }</th>
+                            	<th scope="col">${applylist.exhibitTitle }</th>
+                            	<th scope="col">${applylist.exhibitArtist }</th>
+                            	<th scope="col">${applylist.startDate }</th>
+                            	<th scope="col">${applylist.endDate }</th>
+                            	<th scope="col">${applylist.exhibitPlace }</th>                       
+                           		<th scope="col"><a class="artist-detail-btn" onclick="exhibitlist('${applylist.exhibitapplyNo }')">신청 상세보기</a></th>
+                        		</tr>
+                        		</c:forEach>
+                        </tbody>
+                    	</c:when>
+                    </c:choose>
                 </table>                
             </section>
         </article>
     </div>
     
     <script>
-	
 	//modal창
     const applyexhibition = document.getElementById("applyexhibition");
     const refuseapply = document.getElementById("refuseapply");
@@ -223,6 +216,31 @@
     		refuseapply.style.display = "none";
     	});
     });
+    
+    function applyDetail(applyNo){
+		applymodal.style.display = "flex";
+		$.ajax({
+			type:"post",
+			dataType:"text",
+			async: false,
+			url:"http://localhost:8090/manager/exhibitapplydetail",
+			data:{"applyNo":applyNo},
+			success: function(data, textStatus){ 
+			 	var exhibitData = JSON.parse(data);
+			 	$('#fundingNo').attr("value", exhibitData.fundingNo);
+ 			 	$('#exhibitPoster').attr("src", "/mypage/artistprofile/"+exhibitData.exhibitPoster);
+ 			 	$("#exhibitTitle").attr("value", exhibitData.exhibitTitle);
+ 			 	$("#exhibitArtist").attr("value", exhibitData.exhibitArtist);
+ 			 	$("#exhibitDate").attr("value", exhibitData.startDate + " ~ " + exhibitData.endDate);
+ 			 	$("#exhibitPlace").attr("value", exhibitData.exhibitPlace);
+ 			 	$("#reserveLink").attr("value", exhibitData.reserveLink);
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		});
+		
+	}
     
     </script>
 </body>

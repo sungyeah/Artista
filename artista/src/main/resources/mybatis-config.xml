@@ -12,6 +12,7 @@
 		<mapper resource="mybatis/mappers/work.xml"/>
 		<mapper resource="mybatis/mappers/workapply.xml"/>
 		<mapper resource="mybatis/mappers/store.xml"/>
+		<mapper resource="mybatis/mappers/exhibit.xml"/>
 	</mappers>
 </configuration>
 

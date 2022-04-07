@@ -13,6 +13,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">작가 페이지</h2>

@@ -1,28 +1,25 @@
 package com.mulcam.artista.dto;
 
-public class ExhibitionApply {
-	int exhibitapplyNo;
+public class Exhibition {
+	int exhibitNo;
 	int fundingNo;
 	int artistNo;
 	String exhibitTitle;
 	String exhibitPoster;
 	String exhibitArtist;
-	String exhibitDate;
 	String startDate;
 	String endDate;
 	String exhibitPlace;
 	String reserveLink;
-	int applyStatus;
-	String refusedContents;
 	
-	ExhibitionApply(){ }
+	Exhibition(){ }
 
-	public int getExhibitapplyNo() {
-		return exhibitapplyNo;
+	public int getExhibitNo() {
+		return exhibitNo;
 	}
 
-	public void setExhibitapplyNo(int exhibitapplyNo) {
-		this.exhibitapplyNo = exhibitapplyNo;
+	public void setExhibitNo(int exhibitNo) {
+		this.exhibitNo = exhibitNo;
 	}
 
 	public int getFundingNo() {
@@ -65,14 +62,6 @@ public class ExhibitionApply {
 		this.exhibitArtist = exhibitArtist;
 	}
 
-	public String getExhibitDate() {
-		return exhibitDate;
-	}
-
-	public void setExhibitDate(String exhibitDate) {
-		this.exhibitDate = exhibitDate;
-	}
-
 	public String getStartDate() {
 		return startDate;
 	}
@@ -103,22 +92,6 @@ public class ExhibitionApply {
 
 	public void setReserveLink(String reserveLink) {
 		this.reserveLink = reserveLink;
-	}
-
-	public int getApplyStatus() {
-		return applyStatus;
-	}
-
-	public void setApplyStatus(int applyStatus) {
-		this.applyStatus = applyStatus;
-	}
-
-	public String getRefusedContents() {
-		return refusedContents;
-	}
-
-	public void setRefusedContents(String refusedContents) {
-		this.refusedContents = refusedContents;
 	}
 	
 }

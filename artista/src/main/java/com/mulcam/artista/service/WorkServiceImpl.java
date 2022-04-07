@@ -78,6 +78,11 @@ public class WorkServiceImpl implements WorkService {
 		int startrow = (page-1)*9;
 		return workDAO.soldProductList(startrow);
 	}
+
+	@Override
+	public void workPayed(int workNo) throws Exception {
+		workDAO.updateSalePayed(workNo);
+	}
 	
 	
 }

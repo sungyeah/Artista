@@ -59,7 +59,6 @@
                         <th scope="col">작품 가격</th>
                         <th scope="col">결제 일자</th>
                         <th scope="col">구매자</th>
-                        <th scope="col">현재상태</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -72,50 +71,42 @@
                             	<th scope="col">${workreport.work.workName }</th>
                             	<th scope="col"">${workreport.work.workPrice }</th>
                             	<th scope="col">${workreport.order.orderDate }</th>
-                            	<th scope="col">${workreport.order.receiverName }</th>     
-                            	<th scope="col">${workreport.order.orderDate }</th>    
-                            	<th scope="col">${workreport.order.orderStatus }</th>                                 
-                           		<th scope="col"><a class="artist-detail-btn" onclick="applyDetail('${artistapply.artistNo }')">신청 상세보기</a></th>
+                            	<th scope="col">${workreport.order.receiverName }</th>                                
+                           		<th scope="col" colspan="1">
+                           			<c:choose>
+                           			<c:when test="${workreport.work.workForSale eq 2}">
+                           				<a class="artist-detail-btn" onclick="transfer('${workreport.work.workNo }')">작가 송금하기</a>
+                           			</c:when>
+                           			</c:choose>
+                           		</th>
                         		</tr>
                         		</c:forEach>
                         </tbody>
                     	</c:when>
                     </c:choose>
-                    <tbody>
-                    <tr>
-                    	<th scope="col" class="workNo">작품 번호</th>
-                        <th scope="col" class="workName">작품 제목</th>
-                        <th scope="col" class="workPrice">작품 가격</th>
-                        <th scope="col" class="orderDate">결제 일자</th>
-                        <th scope="col" class="orderName">구매자</th>
-                        <th scope="col" class="orderState">현재상태</th>
-                        <th scope="col"><a class="artist-detail-btn">작가 송금하기</a></th>
-                     </tr>
-                     <tr>
-                    	<th scope="col" class="workNo">작품 번호</th>
-                        <th scope="col" class="workName">작품 제목</th>
-                        <th scope="col" class="workPrice">작품 가격</th>
-                        <th scope="col" class="orderDate">결제 일자</th>
-                        <th scope="col" class="orderName">구매자</th>
-                        <th scope="col" class="orderState">배송완료</th>
-                        <th scope="col"><a class="artist-detail-btn">작가 송금하기</a></th>
-                     </tr>
-                     <tr>
-                    	<th scope="col" class="workNo">작품 번호</th>
-                        <th scope="col" class="workName">작품 제목</th>
-                        <th scope="col" class="workPrice">작품 가격</th>
-                        <th scope="col" class="orderDate">결제 일자</th>
-                        <th scope="col" class="orderName">구매자</th>
-                        <th scope="col" class="orderState">송금완료</th>
-                        <th scope="col"></th>
-                     </tr>
-                    </tbody>
                 </table>
             </section>
         </article>
     </div>
     
     <script>
+    function transfer(workNo){
+    	$.ajax({
+			type:"post",
+			dataType:"text",
+			async: false,
+			url:"http://localhost:8090/manager/artistpaycomplete",
+			data:{"workNo":workNo},
+			success: function(data, textStatus){ 
+				alert("송금완료처리에 성공했습니다");
+				location.reload();
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		});
+    }
+    
     $(function(){
     	$(".artist-detail-btn").click(function(){
     		alert("작가 송금하기!");

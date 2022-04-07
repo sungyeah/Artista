@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,7 +128,7 @@
                 <table class="member-table">
                     <thead>
                     <tr>
-                        <th scope="col">전시등록번호</th>
+                        <th scope="col">전시신청번호</th>
                         <th scope="col">전시 제목</th>
                         <th scope="col">아티스트 이름</th>
                         <th scope="col">전시시작일</th>
@@ -138,6 +139,7 @@
                     </tr>
                     
                     </thead>
+                   
                     <tbody>
                     <tr>
                         <th scope="col" class="exhibitNo">전시등록번호</th>
