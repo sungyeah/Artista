@@ -32,10 +32,16 @@
 				<div class="hgroup">
 					<div class="topInfoBtns">
 						<button id="purchaseBtn" class="btnPurchase "
-							style="background: #222; color: #fff; width: 50%; font-size: 1.2rem; padding: 0 0 7px 0; vertical-align: middle; border-radius: 100px; height: 50px; border: solid 1px #000; margin-bottom: 30px;"><a href="payment">
+							style="color: black; width: 25%; font-size: 1.2rem; padding: 0 0 7px 0; vertical-align: middle; border-radius: 100px; height: 50px; border: solid 1px #000; margin-bottom: 30px;"><a href="cart">
+							<span class="fd-icon"
+								style="background-image: url('/images/symbol-eth.svg'); background-color: black; border-radius: 50%; margin-right: 10px;"></span>
+							<span style="vertical-align: middle;">카트 추가</span>
+						</a></button>
+						<button id="purchaseBtn" class="btnPurchase "
+							style="background: #222; color: #fff; width: 25%; font-size: 1.2rem; padding: 0 0 7px 0; vertical-align: middle; border-radius: 100px; height: 50px; border: solid 1px #000; margin-bottom: 30px;"><a href="payment">
 							<span class="fd-icon"
 								style="background-image: url('/images/symbol-eth.svg'); background-color: white; border-radius: 50%; margin-right: 10px;"></span>
-							<span style="vertical-align: middle;">Buy Now</span>
+							<span style="vertical-align: middle;">작품 구매</span>
 						</a></button>
 
 					</div>

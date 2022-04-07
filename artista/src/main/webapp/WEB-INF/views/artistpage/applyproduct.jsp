@@ -14,7 +14,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 	.workImg {
-		width:300px; height:300px; margin-top:7px; display:inline-block;
+		width:300px; min-height:200px; margin-top:7px; display:inline-block;
 	}
 	input[type="number"]::-webkit-outer-spin-button,
 	input[type="number"]::-webkit-inner-spin-button {

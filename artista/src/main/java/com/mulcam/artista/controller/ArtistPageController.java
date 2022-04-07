@@ -193,11 +193,10 @@ public class ArtistPageController {
 		try {
 			inputImage = ImageIO.read(workImgFile.getInputStream());
 			// 이미지 세로 가로 측정
-	        int originWidth = inputImage.getWidth();
 	        int originHeight = inputImage.getHeight();
+	        workapply.setWorkHeight(originHeight);
 	        System.out.println(originHeight);
 		} catch (IOException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 	
