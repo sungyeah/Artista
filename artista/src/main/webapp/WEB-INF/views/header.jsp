@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link rel="stylesheet" type="text/css" href="css/content.css">
-    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/content.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css">
 </head>
 <style>
     /* 네비바 */
