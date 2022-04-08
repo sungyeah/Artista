@@ -10,10 +10,97 @@
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
 <link rel="stylesheet" href="../css/mypage.css">
+<link rel="stylesheet" href="../css/applymodal.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	<%@include file="../header.jsp"%>
+	<div id="productdetail" class="modal-overlay">
+        <div class="modal-window">
+            <header class="modal-header">
+            	<div class="close-area">X</div>
+                <h2 class="modal-header-title">작품 상세내용</h2>
+            </header>
+            <article class="modal-body">
+            	<form class="modal-modify-form" method="post" action="/artistpage/workModify">
+                    <div class="modal-modify-form-border"></div>
+                        
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 작품 이미지
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                        	<img src="/workImg/${work.workImg }" style="width:300px; height:300px; margin-top:10px;" id="workImg"/>
+                        </div>
+                    </div>    
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 작품명
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" id="workName" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 아티스트 이름
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" id="artistName" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 작품유형
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" id="workType" disabled />
+                        </div>
+                    </div>  
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 작품기법
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" id="workTech" disabled />
+                        </div>
+                    </div>  
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 작품사이즈
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" id="workSize" disabled />
+                        </div>
+                    </div>  
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 작품가격
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" type="text" id="workPrice" disabled />
+                        </div>
+                    </div>  
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 작품소개
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <textarea class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;" id="workIntro" disabled></textarea>
+                        </div>
+                    </div>                       
+                    <div class="modal-modify-form-border">
+                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
+                            <button class="yesNo-btn" id="modify" style="width:120px;">수정 요청하기</button>                    
+                            <button type="reset" class="yesNo-btn close-area" id="refusemodal">닫기</button>      
+                        </div>
+                    </div>
+                    <input type="hidden" id="workNo" name="workNo" />
+            	</form>
+            </article>  
+        </div>
+    </div>
+    
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">작가 페이지</h2>
@@ -67,7 +154,7 @@
            	<c:when test="${worklist!=null }">
             	<c:forEach items="${worklist }" var="work">
             		<div class="discoverCard" >
-            		 <a class="discoverCard-a" href="${pageContext.request.contextPath}/storedetail/${work.workNo }">
+            		<a class="discoverCard-a" onclick="showDetail('${work.workNo }')">
             		 	<div class="discoverCard-imageWrap" style="padding-bottom: 50.0%; ">
             		 		<img class="discoverCard-image" src="/artistpage/workImg/${work.workImg }">
                    			<div class="card-imageMask"></div>
@@ -77,7 +164,7 @@
                        		<div class="discoverCard-artist">${work.artistName }</div>
                        		<div class="discoverCard-info">${work.workSize }</div>
        					 </div>
-          			 </a>
+          			</a>
            			</div>
        			</c:forEach>
             </c:when>
@@ -87,5 +174,40 @@
     </div>
     
     <%@include file ="../footer.jsp" %>
+    
+    
+    
+    <script>
+    function showDetail(workNo){
+		productdetail.style.display = "flex";
+		$.ajax({
+			type:"post",
+			dataType:"text",
+			async: false,
+			url:"http://localhost:8090/artistpage/productdetail",
+			data:{"workNo":workNo},
+			success: function(data, textStatus){ 
+			 	var workData = JSON.parse(data);
+			 	$('#workNo').attr("value", workData.workNo);
+ 			 	$('#workImg').attr("src", "/artistpage/workImg/"+workData.workImg);
+ 			 	$("#artistName").attr("value", workData.artistName);
+ 			 	$("#workName").attr("value", workData.workName);
+ 			 	$("#workType").attr("value", workData.workType);
+ 			 	$("#workTech").attr("value", workData.workTech);
+ 			 	$("#workSize").attr("value", workData.workSize);
+ 			 	$("#workIntro").html(workData.workIntro);    
+ 			 	$("#workPrice").attr("value", workData.workPrice);
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		});		
+	}
+    $(function(){
+	    $(document).on('click', '.close-area', function(e){
+	    	productdetail.style.display = "none";
+	    });
+	});
+    </script>
 </body>
 </html>

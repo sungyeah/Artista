@@ -15,9 +15,9 @@
 	<insert id="insertWorkApply" parameterType="workapply">
 		<![CDATA[
 			insert into workapply (workapplyNo, artistNo, artistName, workName, workImg, workType, workTech, 
-				workSize, workIntro, workPrice, workHeight) 
+				workSize, workIntro, workPrice, applyState, workHeight) 
 			values (#{workapplyNo}, #{artistNo}, #{artistName}, #{workName}, #{workImg}, #{workType}, #{workTech}, 
-				#{workSize}, #{workIntro}, #{workPrice} ,#{workHeight})
+				#{workSize}, #{workIntro}, #{workPrice}, #{applyState} ,#{workHeight})
 		]]>
 	</insert>
 	
