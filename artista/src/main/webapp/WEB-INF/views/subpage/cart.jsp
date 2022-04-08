@@ -59,7 +59,7 @@
                             </td>
                             <td class="cartList-tdInfo">
                                 <a class="cartList-imageHolder" href="/artwork/A0365-0017/">
-                                    <img class="cartList-image" src="${cart.workImg }">
+                                    <img class="cartList-image" src="/artistpage/workImg/${cart.workImg }">
                                 </a>
                                 <div class="cartList-info">
                                     <p class="cartList-info-code"><a href="/artwork/A0365-0017/">${cart.workNo }</a></p>

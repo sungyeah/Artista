@@ -802,9 +802,9 @@ figcaption {
 }
 
 .artworkInfoWrap .w50per .topInfo .topInfoBtns .btnPurchase:hover {
-    background: #222;
+    /* background: #222;
     border: solid 1px #222;
-    color: #fff;
+    color: #fff; */
 }
 
 .artworkInfoWrap .w50per .topInfo .btnMakeOffer {

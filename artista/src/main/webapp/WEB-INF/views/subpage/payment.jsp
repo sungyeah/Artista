@@ -199,7 +199,7 @@
                              <c:forEach items="${carts }" var="cart" varStatus="status"> 
                                 <div class="checkout-item">
                                     <div class="checkout-img">
-                                        <img src="${cart.workImg }">
+                                        <img src="/artistpage/workImg/${cart.workImg }">
                                     </div>
                                     <ul class="checkout-text">
                                         <li class="code">${cart.workNo }</li>

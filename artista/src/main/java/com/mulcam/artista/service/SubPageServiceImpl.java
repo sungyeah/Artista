@@ -28,14 +28,12 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public void makemember(Member mem) throws Exception {
-		// TODO Auto-generated method stub
 		subpageDAO.insertMember(mem);
 		
 	}
 
 	@Override
 	public String checkPw(String id) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -47,7 +45,6 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public void deleteId(String id) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -168,5 +165,6 @@ public class SubPageServiceImpl implements SubPageService{
 	public Order selectOrderByNo(int orderNo) throws Exception {
 		return subpageDAO.selectOrderByNo(orderNo);
 	}
+
 	
 }

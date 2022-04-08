@@ -134,6 +134,8 @@
 			select * from order1 where orderNo=#{orderNo} limit 1
 		]]>
 	</select>
+	
+	
 </mapper>
 <!-- create table member(
 	id varchar(100) not null,

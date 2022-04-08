@@ -50,7 +50,7 @@
 											<c:forEach items="${works }" var="work">
 									<tr>
 										 <td class="artworks2">
-											<img class="cartList-image" src="${work.workImg }"><br>
+											<img class="cartList-image" src="/artistpage/workImg/${work.workImg }"><br>
 										</td> 
 										<td class="artworks">
 												<${work.workName }> ${work.artistName }<br>

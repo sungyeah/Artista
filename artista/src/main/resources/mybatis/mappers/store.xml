@@ -21,6 +21,25 @@
 		]]>
 	</select>
 	
+	<select id="artistImg" resultType="string" parameterType="int">
+		<![CDATA[
+			select artistImg from artist where artistNo=#{artistNo}
+		]]>
+	</select>
+	
+	<insert id="insertCart" parameterType="map" >
+		<![CDATA[
+			insert into cart(cartNo, id, workName, workPrice, workArtist, workSize, workNo, workImg, cartDate) 
+			values(null,#{id},#{workName}, #{workPrice}, #{workArtist},#{workSize},#{workNo},#{workImg},now())
+		]]>
+	</insert>
+	
+	<select  id="checkCart" parameterType="map" resultType="boolean">
+		<![CDATA[
+		select EXISTS (select * from cart where id= #{id} and workName=#{workName} limit 1) as success
+		 ]]>
+	</select>
+	
 </mapper>
 <!-- 
 create table work(

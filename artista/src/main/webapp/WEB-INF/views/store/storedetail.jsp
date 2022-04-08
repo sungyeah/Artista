@@ -114,7 +114,7 @@
                             <a href="/user?memberId=389" class="img">
                                 <div class="user-thumbnail-div slv">
                                     <img class="user-thumbnail" style="width:50px !important;height:50px !important;"
-                                        src="/contents/user/389/thumbnail.jpg" alt="">
+                                        src="/mypage/artistprofile/${artist.artistImg }" alt="">
                                 </div>
                             </a>
                             <div class="personInfo" style="margin-top: 20px;">
@@ -233,14 +233,11 @@
                                         <span class="howmuch"><span name="price">￦4,500,000</span></span>
                                     </div> -->
                                     <div class="topInfoBtns">
-                                        <button id="purchaseBtn" class="btnPurchase disabled"
-                                            style="
-                                                    width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;">
-                                            <span class="fd-icon"
-                                                style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;"></span><span
-                                                style="vertical-align:middle;">카트 추가</span>
+                                        <button id="purchaseBtn" class="btnPurchase" style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;cursor:pointer;">
+                                            <span class="fd-icon" style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;cursor:pointer;"></span>
+                                                <span style="vertical-align:middle;cursor:pointer;">카트 추가</span>
                                         </button>
-                                        <button id="purchaseBtn" class="btnPurchase disabled"
+                                        <button id="purchaseBtn2" class="btnPurchase"
                                             style="
                                                     width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;margin-left: 5px;background: #222;color: white;">
                                             <span class="fd-icon"
@@ -271,6 +268,45 @@
         </div>
 
     </div>
+    <input type="hidden" id="id" name="id" value="">
+    <input type="hidden" id="workName" name="workName" value="${work.workName }">
+    <input type="hidden" id="workPrice" name="workPrice" value="${work.workPrice }">
+    <input type="hidden" id="artistName" name="artistName" value="${work.artistName }">
+    <input type="hidden" id="workSize" name="workSize" value="${work.workSize }">
+    <input type="hidden" id="workNo" name="workNo" value="${work.workNo }">
+    <input type="hidden" id="workImg" name="workImg" value="${work.workImg }">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+var id = '<%=(String)session.getAttribute("id")%>';
+$('#id').attr('value',id);
+var workName = $('#workName').val()
+var workPrice = $('#workPrice').val()
+var artistName = $('#artistName').val()
+var workSize = $('#workSize').val()
+var workNo = $('#workNo').val()
+var workImg = $('#workImg').val()
+var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistName,"workSize":workSize,"workNo":workNo,"workImg":workImg} 
+
+	$('#purchaseBtn').click(function(){
+		  $.ajax({     
+				type:"post",
+				url:"http://localhost:8090/addCart",
+				contentType : "application/json",
+				data:JSON.stringify(Cart),
+				success: function(data, textStatus){
+					if(data=="true"){
+						alert("이미 카트에 담긴 작품입니다.")
+					}else{
+						alert("카트에 작품이 담겼습니다.")
+					}
+				},
+				error:function(data, textStatus){
+					alert("실패");
+				}
+			}); 
+	});
+	
+</script>
 </body>
 
 </html>

@@ -36,4 +36,5 @@ public interface SubPageDAO {
 	public int totalOrderNum() throws Exception;
 	public List<Order> orderList(int startrow) throws Exception;
 	public Order selectOrderByNo(int orderNo) throws Exception;
+	
 }
