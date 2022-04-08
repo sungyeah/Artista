@@ -13,10 +13,11 @@ public class Work {
 	int workPrice;
 	int workForSale;
 	int orderNo;
+	int workHeight;
 	
 	public Work() {} 
 	public Work(int workNo, int artistNo, String artistName, String workName, String workImg, String workType, String workTech,
-			String workSize, String workIntro, int workPrice, int workForSale, int orderNo) {
+			String workSize, String workIntro, int workPrice, int workForSale, int orderNo, int workHeight) {
 		this.workNo = workNo;
 		this.artistNo = artistNo;
 		this.artistName = artistName;
@@ -28,7 +29,14 @@ public class Work {
 		this.workIntro = workIntro;
 		this.workPrice = workPrice;
 		this.workForSale = workForSale;
-		this.orderNo = orderNo;		
+		this.orderNo = orderNo;
+		this.workHeight = workHeight;
+	}
+	public int getWorkHeight() {
+		return workHeight;
+	}
+	public void setWorkHeight(int workHeight) {
+		this.workHeight = workHeight;
 	}
 	public int getWorkNo() {
 		return workNo;

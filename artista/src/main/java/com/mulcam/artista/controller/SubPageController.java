@@ -159,11 +159,13 @@ public class SubPageController {
 	}
 	
 	@GetMapping("payment")
-	public String payment(Model model) {
+	public String payment(@RequestParam(value="workNo")int workNo,Model model) {
 		String id = (String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
+			
 			model.addAttribute("mem",mem);
+			model.addAttribute("count",1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
