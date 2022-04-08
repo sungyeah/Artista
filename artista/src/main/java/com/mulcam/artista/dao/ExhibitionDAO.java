@@ -1,6 +1,7 @@
 package com.mulcam.artista.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,7 @@ public interface ExhibitionDAO {
 	public ExhibitionApply queryExhibitApply(int applyNo) throws Exception;
 	public List<ExhibitionApply> selectExhibitApplyList() throws Exception;
 	public void deleteExhibitApply(int exhibitapplyNo) throws Exception;
+	public void updateExhibitApplyRefuse(Map map) throws Exception;
 	
 	public Integer maxExhibitionId() throws Exception;
 	public void insertExhibit(Exhibition exhibition) throws Exception;

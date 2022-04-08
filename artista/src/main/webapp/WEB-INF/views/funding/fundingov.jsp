@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,16 +8,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 	<link rel="stylesheet" href="../css/fundingov.css">
 <title>Insert title here</title>
 </head>
 
 <body>
 	<div>
-            <span class="postbtn"><a href="fundinguc">ÆÝµù ¿¹Á¤</a></span>
-            <span class="postbtn"><a href="fundingov"><b>ÆÝµù ÁøÇà</b></a></span>
-            <span class="postbtn"><a href="fundingtm">ÆÝµù Á¾·á</a></span>
+            <span class="postbtn"><a href="fundinguc">íŽ€ë”© ì˜ˆì •</a></span>
+            <span class="postbtn"><a href="fundingov"><b>íŽ€ë”© ì§„í–‰</b></a></span>
+            <span class="postbtn"><a href="fundingtm">íŽ€ë”© ì¢…ë£Œ</a></span>
 	</div>
     <div class="flex-container">
     	<c:forEach items="${list }" var="funding">
@@ -38,12 +38,12 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script>
 $(function(){
-	$("div").slice(0, 10).show(); // ÃÖÃÊ 10°³ ¼±ÅÃ
-	$("#load").click(function(e){ // Load More¸¦ À§ÇÑ Å¬¸¯ ÀÌº¥Æ®e
+	$("div").slice(0, 10).show(); // ìµœì´ˆ 10ê°œ ì„ íƒ
+	$("#load").click(function(e){ // Load Moreë¥¼ ìœ„í•œ í´ë¦­ ì´ë²¤íŠ¸e
 	e.preventDefault();
-	$("div:hidden").slice(0, 10).show(); // ¼û±è ¼³Á¤µÈ ´ÙÀ½ 10°³¸¦ ¼±ÅÃÇÏ¿© Ç¥½Ã
-	if($("div:hidden").length == 0){ // ¼û°ÜÁø DIV°¡ ÀÖ´ÂÁö Ã¼Å©
-	alert("´õ ÀÌ»ó Ç×¸ñÀÌ ¾ø½À´Ï´Ù"); // ´õ ÀÌ»ó ·ÎµåÇÒ Ç×¸ñÀÌ ¾ø´Â °æ¿ì °æ°í
+	$("div:hidden").slice(0, 10).show(); // ìˆ¨ê¹€ ì„¤ì •ëœ ë‹¤ìŒ 10ê°œë¥¼ ì„ íƒí•˜ì—¬ í‘œì‹œ
+	if($("div:hidden").length == 0){ // ìˆ¨ê²¨ì§„ DIVê°€ ìžˆëŠ”ì§€ ì²´í¬
+	alert("ë” ì´ìƒ í•­ëª©ì´ ì—†ìŠµë‹ˆë‹¤"); // ë” ì´ìƒ ë¡œë“œí•  í•­ëª©ì´ ì—†ëŠ” ê²½ìš° ê²½ê³ 
 	}
 	});
 	});

@@ -204,9 +204,9 @@
 			$.ajax({
 				type:"get",
 				data: {},
-				url: 'http://localhost:8090/test',
+				url: 'http://localhost:8090/exhibitionapi',
 				success: function(data) {
-					console.log(typeof(data)))
+					console.log(typeof(data))
 				}
 			})
 		})

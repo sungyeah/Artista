@@ -12,6 +12,7 @@ import com.mulcam.artista.dto.Funding;
 public interface FundingDAO {
 	public void insertApply(Funding funding) throws Exception; //작가가 펀딩 신청
 	public Funding queryFunding(String id);
+	public List<Funding> queryMyFunding(String id);
 	public void updatefundingapp(Funding funding);
 	public void insertupdate(Funding funding);
 	public void updateapplyStatus(Funding funding);

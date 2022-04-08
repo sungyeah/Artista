@@ -51,6 +51,9 @@
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductsold">
                 판매완료 작품
             </a>
+            <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductapply">
+                판매신청내역
+            </a>
         
             <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyproduct" style="width:120px;">
                 작품판매 신청
@@ -64,7 +67,7 @@
            	<c:when test="${worklist!=null }">
             	<c:forEach items="${worklist }" var="work">
             		<div class="discoverCard" >
-            		 <a class="discoverCard-a" href="">
+            		 <a class="discoverCard-a" href="${pageContext.request.contextPath}/storedetail/${work.workNo }">
             		 	<div class="discoverCard-imageWrap" style="padding-bottom: 50.0%; ">
             		 		<img class="discoverCard-image" src="/artistpage/workImg/${work.workImg }">
                    			<div class="card-imageMask"></div>

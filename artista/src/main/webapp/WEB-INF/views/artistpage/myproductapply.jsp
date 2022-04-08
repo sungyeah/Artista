@@ -14,7 +14,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-	<div id="applyproduct" class="modal-overlay">
+	<div id="productdetail" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
             	<div id="apply_close" class="close-area">X</div>
@@ -98,27 +98,26 @@
         </div>
     </div>
     
-	<div id="modal" class="modal-overlay">
+	<div id="refuseReason" class="modal-overlay">
         <div class="refusemodal-window">
             <header class="modal-header">
-            	<div id="refuse_close" class="close-area">X</div>
-                <h2 class="modal-header-title">송장번호 입력</h2>
+            	<div class="close-area">X</div>
+                <h2 class="modal-header-title">거절 사유</h2>
             </header>
             <article class="modal-body">
                 <form class="modal-modify-form" method="post">
                     <div class="modal-modify-form-border"></div>
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 송장번호
+                            <span class="red">*</span> 거절사유
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" name="new_password1" placeholder="" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off" ><br>
+                            <textarea id="refusedContents" class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;" readonly></textarea>
                         </div>
                     </div>
                     <div class="modal-modify-form-border">
-                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <a class="yesNo-btn" id="workenroll">송장등록</a>                    
-                            <a class="yesNo-btn" id="cancel">취소</a>      
+                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">               
+                            <a class="yesNo-btn close-area">닫기</a>      
                         </div>
                     </div>
                 </form>
@@ -134,7 +133,7 @@
         <section class="account-guide">
             <div class="account-guide-inner">
                 <h3 class="account-guide-name">
-                    홍성호님 반갑습니다.
+                    ${artistName} 님 반갑습니다.
                 </h3>
                 <a class="account-modify-btn" href="mypage/mypagemodify" onclick="gaClickAccount('account_modify');">
                     <p>작가 정보</p>
@@ -166,6 +165,10 @@
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductapply">
                 판매신청내역
             </a>
+            
+            <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyproduct" style="width:120px;">
+                작품판매 신청
+            </a>
         </nav>
         
 		<article class="member-body">
@@ -173,30 +176,36 @@
                 <table class="member-table">
                     <thead>
                     <tr>
-                        <th scope="col" class="artistNo">작품 번호</th>
-                        <th scope="col" class="id">작품 이미지</th>
-                        <th scope="col" class="id">작품제목</th>
-                        <th scope="col" class="artistType">구매자</th>
-                        <th scope="col" class="artistName">주문일자</th>
-                        <th scope="col" class="artistType">작품 가격</th>
-                        <th scope="col" class="artistType"></th>
+                        <th scope="col">작품신청번호</th>
+                        <th scope="col">작품 이미지</th>
+                        <th scope="col">작품제목</th>
+                        <th scope="col">작품 가격</th>
+                        <th scope="col">신청현황</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <c:choose>
-                    	<c:when test="${soldlist!=null }">
+                    	<c:when test="${worklist!=null }">
                     	<tbody>
-                    		<c:forEach items="${soldlist }" var="soldlist">
+                    		<c:forEach items="${worklist }" var="worklist">
 								<tr>
-                            	<th scope="col">${soldlist.work.workNo }</th>
+                            	<th scope="col">${worklist.workapplyNo }</th>
                             	<th scope="col">
-                            		<img src="/artistpage/workImg/${soldlist.work.workImg }" style="width:100px; height:100px;">	
+                            		<img src="/artistpage/workImg/${worklist.workImg }" style="width:100px; height:100px;">	
                             	</th>
-                            	<th scope="col"">${soldlist.work.workName }</th>
-                            	<th scope="col"">${soldlist.order.receiverName }</th>
-                            	<th scope="col">${soldlist.order.orderDate }</th>
-                            	<th scope="col">${soldlist.order.workPrice }</th>                                
+                            	<th scope="col"">${worklist.workName }</th>
+                            	<th scope="col">${worklist.workPrice }</th>              
+                            	<th scope="col">
+                            		<c:if test="${worklist.applyState eq 0}">작품등록 요청 중</c:if>
+                            		<c:if test="${worklist.applyState eq 1}">작품등록 거절</c:if>
+                            		<c:if test="${worklist.applyState eq 2}">작품수정 요청 중</c:if>
+                            		<c:if test="${worklist.applyState eq 3}">작품수정 거절</c:if>
+                            	</th>                  
                            		<th scope="col" colspan="1">
-                           			<a class="artist-detail-btn" onclick="showDetail('${workreport.work.workNo }')">작품상세보기</a>
+                           			<c:if test="${worklist.applyState eq 0}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">신청내용보기</a></c:if>
+                            		<c:if test="${worklist.applyState eq 1}"><a class="artist-detail-btn" onclick="showReason('${worklist.workapplyNo }')">거절사유보기</a></c:if>
+                            		<c:if test="${worklist.applyState eq 2}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">신청내용보기</a></c:if>
+                            		<c:if test="${worklist.applyState eq 3}"><a class="artist-detail-btn" onclick="showReason('${worklist.workapplyNo }')">거절사유보기</a></c:if>
                            		</th>
                         		</tr>
                         		</c:forEach>
@@ -209,17 +218,17 @@
 	</div>
 	
 	<script>
-	function showDetail(workNo){
-		applyproduct.style.display = "flex";
+	function showDetail(workapplyNo){
+		productdetail.style.display = "flex";
 		$.ajax({
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/productdetail",
-			data:{"workNo":workNo},
+			url:"http://localhost:8090/artistpage/productapplydetail",
+			data:{"workNo":workapplyNo},
 			success: function(data, textStatus){ 
 			 	var workData = JSON.parse(data);
-			 	$('#workapplyNo').attr("value", workData.workNo);
+			 	$('#workapplyNo').attr("value", workData.workapplyNo);
  			 	$('#workImg').attr("src", "/artistpage/workImg/"+workData.workImg);
  			 	$("#artistName").attr("value", workData.artistName);
  			 	$("#workName").attr("value", workData.workName);
@@ -232,19 +241,29 @@
 			error:function(data, textStatus){
 				alert("실패");
 			}
-		});
-		
-		
+		});		
+	}
+	function showReason(workapplyNo){
+		refuseReason.style.display = "flex";
+		$.ajax({
+			type:"post",
+			dataType:"text",
+			async: false,
+			url:"http://localhost:8090/artistpage/refuseReason",
+			data:{"workNo":workapplyNo},
+			success: function(data, textStatus){ 
+				console.log(data);
+				$("#refusedContents").html(data);   
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		});		
 	}
 	$(function(){
-		$(document).on('click', '#workenroll', function(e){
-			modal.style.display = "flex";
-	    });
-	    $(document).on('click', '#cancel', function(e){
-	    	applyproduct.style.display = "none";
-	    });
-	    $(document).on('click', '#refuse_close', function(e){
-	    	applyproduct.style.display = "none";
+	    $(document).on('click', '.close-area', function(e){
+	    	refuseReason.style.display = "none";
+	    	productdetail.style.display = "none";
 	    });
 	});
 	</script>

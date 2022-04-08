@@ -16,7 +16,7 @@ public class ArtistsController {
 	@Autowired
 	ArtistService artistservice;
 	
-	@GetMapping("artistlist")
+	@GetMapping("artistslist")
 	public String artistslist(Model model) throws Exception {
 		List<Artist> Artistlist = artistservice.artists();
 		try {

@@ -21,6 +21,12 @@ public class FundingServiceImpl implements FundingService {
 		// TODO Auto-generated method stub
 		return fundingDAO.queryFunding(id);
 	}
+	
+	@Override
+	public List<Funding> queryMyFunding(String id) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryMyFunding(id);
+	}
 
 	@Override
 	public void insertfunding(Funding funding) {

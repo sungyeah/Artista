@@ -172,8 +172,6 @@ public class ManagerController {
 		}
 		return result;
 	}
-	
-	
 	/* 상품 등록 허락 */
 	@ResponseBody
 	@PostMapping(value="productapplysuccess")
@@ -188,6 +186,19 @@ public class ManagerController {
 			workService.insertWork(work);
 			workapplyService.deleteWorkApply(workapplyNo);
 		}catch(Exception e) {
+		}
+	}
+	
+	/* 상품 등록 거절 */
+	@ResponseBody
+	@PostMapping(value="productapplyfail")
+	public void productapplyFail(@RequestParam(value="applyNo",required = false) int workapplyNo, @RequestParam(value="refusedContents",required = false) String refusedContents) {
+		try {
+			//exhibitapplyNo로 전시등록신청 내용 가져오기
+			WorkApply workapply = workapplyService.selectWorktApplyByNo(workapplyNo);
+			workapplyService.refuseWorkApply(workapplyNo, refusedContents);
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -230,6 +241,19 @@ public class ManagerController {
 		}
 		return "manager/exhibitionlist";
 	}
+	@ResponseBody
+	@PostMapping(value="exhibitdetail")
+	public ResponseEntity<Exhibition> exhibitDetail(@RequestParam(value="exhibitNo",required = false) int exhibitNo, Model model) {
+		ResponseEntity<Exhibition> result = null;
+		try {
+			Exhibition exhibit = exhibitService.selectExhibit(exhibitNo);
+			result = new ResponseEntity<Exhibition>(exhibit, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<Exhibition>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
+	
 	@GetMapping("/exhibitionapplylist")
 	public String exhibitiontApplyList(Model model) {
 		try {
@@ -253,7 +277,38 @@ public class ManagerController {
 		return result;
 	}
 	
-	
+	/* 전시 등록 허락 */
+	@ResponseBody
+	@PostMapping(value="exhibitapplysuccess")
+	public void exhibitapplySuccess(@RequestParam(value="applyNo",required = false) int exhibitapplyNo) {
+		try {
+			//exhibitapplyNo로 전시등록신청 내용 가져오기
+			ExhibitionApply exhibitApply = exhibitService.selectExhibitApply(exhibitapplyNo);
+			
+			//exhibit data에 artistapply 내용 옮기고 artist에 등록하기
+			Exhibition exhibit = new Exhibition(exhibitService.maxExhibitNo(), exhibitApply.getFundingNo(), exhibitApply.getArtistNo(), exhibitApply.getExhibitTitle(),
+					exhibitApply.getExhibitPoster(), exhibitApply.getExhibitArtist() , exhibitApply.getStartDate(), exhibitApply.getEndDate(), exhibitApply.getExhibitPlace(), exhibitApply.getReserveLink());
+			
+			exhibitService.insertExhibit(exhibit);
+			exhibitService.deleteExhibitApply(exhibitapplyNo);
+			System.out.println("전시 등록 성공");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/* 전시 등록 거절 */
+	@ResponseBody
+	@PostMapping(value="exhibitapplyfail")
+	public void exhibitapplyFail(@RequestParam(value="applyNo",required = false) int exhibitapplyNo, @RequestParam(value="refusedContents",required = false) String refusedContents) {
+		try {
+			//exhibitapplyNo로 전시등록신청 내용 가져오기
+			ExhibitionApply exhibitApply = exhibitService.selectExhibitApply(exhibitapplyNo);
+			exhibitService.refuseExhibitApply(exhibitapplyNo, refusedContents);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+		
 	/* 회원 관리 */
 	@GetMapping("/memberlist")
 	public ModelAndView memberList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
