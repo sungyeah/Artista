@@ -208,7 +208,7 @@
                             <div class="w50per card_rt">
                                 <div class="topInfo">
                                     <h3 style="margin-bottom: 32px;">${work.workName }</h3>
-                                    <div style="padding-left: 60px;margin-top: 25px;">
+                                    <div style="padding-left: 60px;margin-top: 25px;margin-bottom: 25px;">
                                         <div style="display: flex;margin-bottom: 20px;text-align: start;margin-left: 20px;">
                                             <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;">작가</div>
                                             <div style="flex-grow: 1;font-size: 15px;">${work.artistName }</div>
@@ -237,13 +237,10 @@
                                             <span class="fd-icon" style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;cursor:pointer;"></span>
                                                 <span style="vertical-align:middle;cursor:pointer;">카트 추가</span>
                                         </button>
-                                        <button id="purchaseBtn2" class="btnPurchase"
-                                            style="
-                                                    width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;margin-left: 5px;background: #222;color: white;">
-                                            <span class="fd-icon"
-                                                style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;"></span><span
-                                                style="vertical-align:middle;">작품 구매</span>
-                                        </button>
+                                        <button id="purchaseBtn2" class="btnPurchase"style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;margin-left: 5px;background: #222;color: white;"><a href="../payment">
+                                            <span class="fd-icon"style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;"></span>
+                                            <span style="vertical-align:middle;">작품 구매</span>
+                                        </a></button>
 
 
 

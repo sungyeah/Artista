@@ -431,8 +431,8 @@
                 IMP.request_pay({// param
                     pg: "hi", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
                     pay_method: "card", //지불 방법
-                     /* merchant_uid: $('#nocheck').val(), */   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-                      merchant_uid:34,    //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                      merchant_uid: $('#nocheck').val(),    //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                      /* merchant_uid:34,  */   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
                     name: $('#workName').val(), //결제창에 노출될 상품명
                     amount: $('#totalPrice').val(), //금액
                     buyer_email : $('#checkout-input-billing_email').val(), 

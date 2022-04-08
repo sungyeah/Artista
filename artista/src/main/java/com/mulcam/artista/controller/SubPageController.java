@@ -162,8 +162,8 @@ public class SubPageController {
 		}
 	}
 	
-	@GetMapping("payment")
-	public String payment(@RequestParam(value="workNo")int workNo,Model model) {
+	@GetMapping("directpayment")
+	public String directpayment(@RequestParam(value="workNo")int workNo,Model model) {
 		String id = (String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
