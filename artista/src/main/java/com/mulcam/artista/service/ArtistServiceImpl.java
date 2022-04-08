@@ -62,4 +62,8 @@ public class ArtistServiceImpl implements ArtistService {
 		return artistDAO.selectArtistByNo(artistNo);
 	}
 
+	@Override
+	public List<Artist> artists() throws Exception {
+		return artistDAO.nameartist();
+	}
 }

@@ -257,7 +257,6 @@ public class ArtistPageController {
 				workreport.setOrder(order);
 				workReportList.add(workreport);
 			}
-			
 			model.addAttribute("soldlist", workReportList);
 		} catch (Exception e1) {
 			model.addAttribute("soldlist", null);
@@ -267,13 +266,56 @@ public class ArtistPageController {
 	}
 	@ResponseBody
 	@PostMapping("productdetail")
-	public ResponseEntity<Work> productDetail(@RequestParam(value="workNo",required = false) int workNo, Model model) {
+	public ResponseEntity<Work> productDetail(@RequestParam(value="workNo",required = false) int workNo) {
 		ResponseEntity<Work> result = null;
 		try {
 			Work work = workService.workinfo(workNo);
 			result = new ResponseEntity<Work>(work, HttpStatus.OK);
 		}catch(Exception e) {
 			result = new ResponseEntity<Work>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
+	
+	/* 아티스트 판매작품 신청내역보기 */
+	@GetMapping("myproductapply")
+	public String artistproductApply(Model model) {
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		try {
+			String artistName = artistService.getArtistName(id);
+			artistNo = artistService.getArtistNo(id);
+			List<WorkApply> workapplylist = workapplyService.getWorkApplyListbyArtist(artistNo);
+			model.addAttribute("artistName", artistName);
+			model.addAttribute("worklist", workapplylist);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
+		return "artistpage/myproductapply";
+	}
+	@ResponseBody
+	@PostMapping("productapplydetail")
+	public ResponseEntity<WorkApply> productapplyDetail(@RequestParam(value="workNo",required = false) int workNo) {
+		ResponseEntity<WorkApply> result = null;
+		try {
+			WorkApply workapply = workapplyService.selectWorktApplyByNo(workNo);
+			result = new ResponseEntity<WorkApply>(workapply, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<WorkApply>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
+	
+	/* 아티스트 판매작품 신청 거절 사유 보기 */
+	@ResponseBody
+	@PostMapping("refuseReason")
+	public ResponseEntity<String> refuseReason(@RequestParam(value="workNo",required = false) int workapplyNo) {
+		ResponseEntity<String> result = null;
+		try {
+			String refusedContents = workapplyService.selectWorktApplyByNo(workapplyNo).getRefusedContents();
+			result = new ResponseEntity<String>(refusedContents, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
 		return result;
 	}
@@ -471,7 +513,7 @@ public class ArtistPageController {
 		System.out.println("try 이전");
 		int exhibitapplyNo;
 		try {
-			exhibitapplyNo = exhibitService.maxExhibitApplyId();
+			exhibitapplyNo = exhibitService.maxExhibitApplyNo();
 			File destFile = new File(path + exhibitEnrollTime +"."+ mtypes[1]);	//이미지 타입
 			posterImgFile.transferTo(destFile);
 			
@@ -502,6 +544,38 @@ public class ArtistPageController {
 			e.printStackTrace();
 		}
 		return "artistpage/succesapply";
+	}
+	
+	/* 포스터 가져오기 경로 */
+	@GetMapping(value="/posterImg/{filename}")
+	public void posterImgView(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
+		String path= servletContext.getRealPath("/imgupload/exhibition/");
+		File file=new File(path+filename); 
+		String sfilename=null;
+		FileInputStream fis=null;
+		try {
+			if(request.getHeader("User-Agent").indexOf("MSIE")>-1) {
+				sfilename=URLEncoder.encode(file.getName(), "UTF-8");
+			} else {
+				sfilename=new String(file.getName().getBytes("UTF-8"), "ISO-8859-1");
+			}
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/octet-stream; charest=UTF-8");
+			OutputStream out=response.getOutputStream();
+			fis=new FileInputStream(file);
+			FileCopyUtils.copy(fis, out); 
+			out.flush(); 
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(fis!=null) {
+				try{
+					fis.close(); 
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 //	@GetMapping("mypagemodify")

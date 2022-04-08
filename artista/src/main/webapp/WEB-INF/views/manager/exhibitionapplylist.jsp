@@ -21,9 +21,7 @@
                 <h2 class="modal-header-title">전시 상세보기</h2>
             </header>
             <article class="modal-body">
-                <form class="modal-modify-form" method="post">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="8OgojRYOprkIqojoq6rJDIRZ5GySLqG97ZObqNAuZ7hU3OWjqtvuReHD9X6DBckA">
-                    <div class="modal-modify-form-border"></div>
+                   	<div class="modal-modify-form-border"></div>
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
                             <span class="red">*</span> 전시포스터
@@ -51,7 +49,7 @@
                     </div>
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 아티스트 이름
+                            <span class="red">*</span> 전시작가
                         </div>
                         <div class="modal-modify-form-row-value">
                             <input class="modal-modify-form-input" id="exhibitArtist" type="text" disabled />
@@ -62,7 +60,7 @@
                             <span class="red">*</span> 전시일정
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" id="exhibitDate" style="width:140px;" type="text" disabled /> - <input class="modal-modify-form-input" style="width:140px;" type="text" disabled />
+                            <input class="modal-modify-form-input" id="exhibitDate" style="width:250px;" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -81,13 +79,13 @@
                             <input class="modal-modify-form-input" id="reserveLink" type="text" disabled />
                         </div>
                     </div>
+                    <input type="hidden" id="exhibitapplyNo" disabled/>
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                             <a class="yesNo-btn" id="accept">등록</a>                    
                             <a class="yesNo-btn" id="refusemodal">거절</a>      
                         </div>
                     </div>
-                    </form>
             </article>  
         </div>
     </div>
@@ -99,16 +97,13 @@
                 <h4 class="modal-header-title">거절 사유</h4>
             </header>
             <article class="modal-body">
-                <form class="modal-modify-form" method="post">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="8OgojRYOprkIqojoq6rJDIRZ5GySLqG97ZObqNAuZ7hU3OWjqtvuReHD9X6DBckA">
                     <div class="modal-modify-form-border"></div>
-                        
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
                             <span class="red">*</span> 거절사유
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <textarea class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;"></textarea>
+                            <textarea class="modal-modify-form-input" id="refusedContents" style="width:300px; height: 120px; resize: none;"></textarea>
                         </div>
                     </div>                                
                     <div class="modal-modify-form-border">
@@ -117,7 +112,6 @@
                             <a class="yesNo-btn" id="cancel">취소</a>      
                         </div>
                     </div>
-                    </form>
             </article>  
         </div>
     </div>
@@ -217,8 +211,8 @@
     	});
     });
     
-    function applyDetail(applyNo){
-		applymodal.style.display = "flex";
+    function exhibitlist(applyNo){
+    	applyexhibition.style.display = "flex";
 		$.ajax({
 			type:"post",
 			dataType:"text",
@@ -227,8 +221,10 @@
 			data:{"applyNo":applyNo},
 			success: function(data, textStatus){ 
 			 	var exhibitData = JSON.parse(data);
+			 	console.log(exhibitData);
+			 	$("#exhibitapplyNo").attr("value", exhibitData.exhibitapplyNo);
 			 	$('#fundingNo').attr("value", exhibitData.fundingNo);
- 			 	$('#exhibitPoster').attr("src", "/mypage/artistprofile/"+exhibitData.exhibitPoster);
+ 			 	$('#exhibitPoster').attr("src", "/artistpage/posterImg/"+exhibitData.exhibitPoster);
  			 	$("#exhibitTitle").attr("value", exhibitData.exhibitTitle);
  			 	$("#exhibitArtist").attr("value", exhibitData.exhibitArtist);
  			 	$("#exhibitDate").attr("value", exhibitData.startDate + " ~ " + exhibitData.endDate);
@@ -239,8 +235,44 @@
 				alert("실패");
 			}
 		});
-		
 	}
+    
+    $(function(){
+    	$(document).on('click', '#accept', function(e){
+    		alert($('#exhibitapplyNo').val());
+    		$.ajax({
+    			type:"post",
+    			async: false,
+    			url:"http://localhost:8090/manager/exhibitapplysuccess",
+    			data:{"applyNo":$('#exhibitapplyNo').val()},
+    			dataType:"text",
+    			success: function(data, textStatus){ 
+    				alert("전시 등록이 성공했습니다");
+    				location.reload();
+    			},
+    			error:function(data, textStatus){
+    				alert("아티스트 등록이 실패했습니다.");
+    			}
+    		});
+    	});
+    	$(document).on('click', '#refuse', function(e){
+    		alert($("#refusedContents").val());
+    		$.ajax({
+    			type:"post",
+    			async: false,
+    			url:"http://localhost:8090/manager/exhibitapplyfail",
+    			data:{"applyNo":$('#exhibitapplyNo').val(), "refusedContents" : $("#refusedContents").val()},
+    			dataType:"text",
+    			success: function(data, textStatus){ 
+    				alert("전시등록 거절이 성공했습니다");
+    				location.reload();
+    			},
+    			error:function(data, textStatus){
+    				alert("전시등록 거절이 실패했습니다.");
+    			}
+    		});
+    	});
+    });
     
     </script>
 </body>

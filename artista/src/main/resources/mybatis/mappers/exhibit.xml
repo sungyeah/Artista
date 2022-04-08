@@ -29,10 +29,17 @@
 		]]>
 	</select>
 	
+	<!-- 전시신청 거절 update -->
+	<select id="updateExhibitApplyRefuse" parameterType="map">
+		<![CDATA[
+			update exhibitionapply set  applyStatus=1, refusedContents=#{refusedContents} where exhibitapplyNo=#{applyNo}
+		]]>
+	</select>
+	
 	<!-- 전시등록신청 List 보기 -->
 	<select id="selectExhibitApplyList" parameterType="int" resultType="exhibitionapply">
 		<![CDATA[
-			select * from exhibitionapply
+			select * from exhibitionapply where applyStatus=0 or applyStatus=3
 		]]>
 	</select>
 
