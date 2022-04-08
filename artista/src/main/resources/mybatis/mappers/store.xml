@@ -9,6 +9,18 @@
 		]]>
 	</select>
 	
+	<select id="artistName" resultType="string" parameterType="int">
+		<![CDATA[
+			select artistName from work where workNo=#{workNo}
+		]]>
+	</select>
+	
+	<select id="artistInfo" resultType="artist" parameterType="string">
+		<![CDATA[
+			select * from artist where artistName=#{artistName}
+		]]>
+	</select>
+	
 </mapper>
 <!-- 
 create table work(

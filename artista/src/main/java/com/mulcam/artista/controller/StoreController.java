@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.service.StoreService;
-import com.mulcam.artista.service.WorkApplyService;
 import com.mulcam.artista.service.WorkService;
 
 @Controller
@@ -43,19 +43,6 @@ public class StoreController {
 		return "store/storelist";
 	}
 	
-	@GetMapping("storelist2")
-	public String storelist2(Model model) {
-		try {
-			List<Work> work = storeService.workList();
-			model.addAttribute("works",work);
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "store/storelist2";
-	}
-	
 	@GetMapping("storedetail")
 	public String storedetail() {
 		return "store/storedetail";
@@ -65,6 +52,9 @@ public class StoreController {
 	public String storedetail(@PathVariable int workNo,Model model) {
 		try {
 			Work work = workService.workinfo(workNo);
+			String artistName=storeService.artistName(workNo);
+			Artist artist = storeService.artistInfo(artistName);
+			model.addAttribute("artist", artist);
 			model.addAttribute("work", work);
 		} catch (Exception e) {
 			e.printStackTrace();
