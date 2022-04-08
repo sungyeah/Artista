@@ -70,4 +70,10 @@ public class FundingServiceImpl implements FundingService {
 		return fundingDAO.querytmdetail(fundingNo);
 	}
 
+	@Override
+	public List<Funding> queryappfunding(String id) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryappfunding(id);
+	}
+
 }

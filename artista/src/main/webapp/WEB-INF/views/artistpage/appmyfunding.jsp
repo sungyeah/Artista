@@ -14,6 +14,7 @@
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
 <link rel="stylesheet" href="../css/mypage.css">
+<link rel="stylesheet" href="../css/applymodal.css">
 </head>
 <body>
 	<div id="contents">
@@ -56,60 +57,53 @@
 		</nav>
 
 		<div class="mypage-project bg">
-			<div class="project-list">
-				<div id="projectCardList" class="card-list">
-					<ul>
-						<c:forEach items="${list }" var="funding">
-							<li class="reward">
-								<div class="visibility-control">
-									<button type="button" class="btn-more">
-										<i class="wadizicon wa-more-vert"></i>
-									</button>
-									<button type="button" class="btn-control"
-										onclick="deletePrjt(143877)">삭제</button>
-								</div>
-								<div class="project-card-wrap">
-									<div class="project-card">
-										<div class="card-img-section">
-											<div class="image-box">
-												<em class="project-img"> <img
-													src="/funding/thumbview/${funding.thumbImg}"
-													class="image-thumb">
-												</em>
-											</div>
-
-											<c:choose>
-												<c:when test="${funding.fundingState == 1}">
-													<em class="project-type reward">예정</em>
-												</c:when>
-												<c:when test="${funding.fundingState==2}">
-													<em class="project-type reward">진행</em>
-												</c:when>
-												<c:otherwise>
-													<em class="project-type reward">종료</em>
-												</c:otherwise>
-											</c:choose>
-										</div>
-										<div class="card-info-section making-project">
-											<h4>${funding.projTitle }</h4>
-											<h5>${funding.fundingDate }</h5>
-											<p class="status confirm">
-												<i></i>으아아앙악
-											</p>
-											<p></p>
-										</div>
-										<div class="btn-wrap">
-											<button
-												onClick="location.href=${pageContext.request.contextPath}/artistpage/modifyfunding"
-												class="btn-line div1">펀딩 내용 수정 요청</button>
-										</div>
-									</div>
-								</div>
-							</li>
-						</c:forEach>
-					</ul>
-				</div>
-			</div>
+			
+		<article class="member-body">
+            <section class="member-list">
+                <table class="member-table">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="fundingNo">fundingNO</th>
+                        <th scope="col" class="projTitle">projTitle</th>
+                        <th scope="col" class="applyStatus">applyStatus</th>
+                        <th scope="col" class="refusedContents">refusedContents</th>
+                    </tr>
+                    </thead>
+                    <c:choose>
+                    	<c:when test="${list!=null }">
+                    	<tbody>
+                    		<c:forEach items="${list }" var="funding">
+								<tr>
+                            	<th scope="col">${funding.fundingNo }</th>
+                            	<th scope="col">${funding.projTitle }</th>
+                            	<c:choose>
+                            		<c:when test="${funding.applyStatus ==0}">
+                            			<th scope="col">신청 요청</th>
+                            		</c:when>
+                            		<c:when test="${funding.applyStatus ==1}">
+                            			<th scope="col">신청 거절</th>
+                            		</c:when>
+                            		<c:when test="${funding.applyStatus ==2}">
+                            			<th scope="col">신청 완료</th>
+                            		</c:when>
+                            		<c:when test="${funding.applyStatus ==3}">
+                            			<th scope="col">수정 요청</th>
+                            		</c:when>
+                            		<c:when test="${funding.applyStatus ==4}">
+                            			<th scope="col">수정 거절</th>
+                            		</c:when>
+                            		<c:otherwise>
+                            			<th scope="col">수정 완료</th>
+									</c:otherwise>
+                            	</c:choose>
+                            	<th scope="col">${funding.refusedContents }</th>
+                        		</c:forEach>
+                        </tbody>
+                    	</c:when>
+                    </c:choose>
+                </table>
+            </section>
+        </article>
 		</div>
 	</div>
 
