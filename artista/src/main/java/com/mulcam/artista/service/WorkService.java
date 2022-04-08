@@ -18,4 +18,5 @@ public interface WorkService {
 	
 	public void updateSale(int orderNo,int workNo)throws Exception;
 	public void workPayed(int workNo)throws Exception;
+	
 }

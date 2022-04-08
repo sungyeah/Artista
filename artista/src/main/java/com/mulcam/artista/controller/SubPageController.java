@@ -84,7 +84,11 @@ public class SubPageController {
 				subPageService.makemember2(id,name,email);
 				String membertype = subPageService.memTypeInfo(id);
 				session.setAttribute("membertype", membertype);
+				session.setAttribute("id",id);
+				System.out.println(id);
 			}
+			String membertype = subPageService.memTypeInfo(id);
+			session.setAttribute("membertype", membertype);
 			session.setAttribute("id",id);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -106,7 +110,7 @@ public class SubPageController {
 		}
 		model.addAttribute("check","naver");
 		
-		return "main";
+		return "redirect:/main";
 	}
 	
 	@GetMapping("join")

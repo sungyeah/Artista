@@ -83,6 +83,7 @@ public class WorkServiceImpl implements WorkService {
 	public void workPayed(int workNo) throws Exception {
 		workDAO.updateSalePayed(workNo);
 	}
+
 	
 	
 }
