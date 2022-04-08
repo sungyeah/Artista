@@ -32,6 +32,7 @@
         </header>
 
         <article class="enroll-body">
+        	<form class="enroll-modify-form" method="post" action="/artistpage/workApplyComplete" enctype="multipart/form-data">
             	<div class="enroll-modify-form"></div>
                 <div class="certification-container certified">
                     <div class="enroll-modify-form-row">
@@ -114,6 +115,7 @@
                     	</div>
                 	</div>
                 </div>
+        	</form>
         </article>
     </div>
 

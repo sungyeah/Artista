@@ -69,8 +69,7 @@ public class WorkApplyServiceImpl implements WorkApplyService {
 
 	@Override
 	public List<WorkApply> getWorkApplyListbyArtist(int artistNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return workapplyDAO.selectWorkApplyListByNo(artistNo);
 	}
 
 }

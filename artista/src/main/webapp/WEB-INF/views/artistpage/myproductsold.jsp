@@ -210,7 +210,7 @@
 	
 	<script>
 	function showDetail(workNo){
-		applymodal.style.display = "flex";
+		applyproduct.style.display = "flex";
 		$.ajax({
 			type:"post",
 			dataType:"text",
@@ -219,7 +219,7 @@
 			data:{"workNo":workNo},
 			success: function(data, textStatus){ 
 			 	var workData = JSON.parse(data);
-			 	$('#workapplyNo').attr("value", workData.workapplyNo);
+			 	$('#workapplyNo').attr("value", workData.workNo);
  			 	$('#workImg').attr("src", "/artistpage/workImg/"+workData.workImg);
  			 	$("#artistName").attr("value", workData.artistName);
  			 	$("#workName").attr("value", workData.workName);
@@ -241,10 +241,10 @@
 			modal.style.display = "flex";
 	    });
 	    $(document).on('click', '#cancel', function(e){
-	    	modal.style.display = "none";
+	    	applyproduct.style.display = "none";
 	    });
 	    $(document).on('click', '#refuse_close', function(e){
-	    	modal.style.display = "none";
+	    	applyproduct.style.display = "none";
 	    });
 	});
 	</script>

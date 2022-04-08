@@ -67,7 +67,7 @@
            	<c:when test="${worklist!=null }">
             	<c:forEach items="${worklist }" var="work">
             		<div class="discoverCard" >
-            		 <a class="discoverCard-a" href="">
+            		 <a class="discoverCard-a" href="${pageContext.request.contextPath}/storedetail/${work.workNo }">
             		 	<div class="discoverCard-imageWrap" style="padding-bottom: 50.0%; ">
             		 		<img class="discoverCard-image" src="/artistpage/workImg/${work.workImg }">
                    			<div class="card-imageMask"></div>

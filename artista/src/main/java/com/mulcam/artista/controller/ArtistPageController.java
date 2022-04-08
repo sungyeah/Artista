@@ -257,7 +257,6 @@ public class ArtistPageController {
 				workreport.setOrder(order);
 				workReportList.add(workreport);
 			}
-			
 			model.addAttribute("soldlist", workReportList);
 		} catch (Exception e1) {
 			model.addAttribute("soldlist", null);
@@ -267,7 +266,7 @@ public class ArtistPageController {
 	}
 	@ResponseBody
 	@PostMapping("productdetail")
-	public ResponseEntity<Work> productDetail(@RequestParam(value="workNo",required = false) int workNo, Model model) {
+	public ResponseEntity<Work> productDetail(@RequestParam(value="workNo",required = false) int workNo) {
 		ResponseEntity<Work> result = null;
 		try {
 			Work work = workService.workinfo(workNo);
@@ -281,20 +280,44 @@ public class ArtistPageController {
 	/* 아티스트 판매작품 신청내역보기 */
 	@GetMapping("myproductapply")
 	public String artistproductApply(Model model) {
-		/*
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
 		try {
 			String artistName = artistService.getArtistName(id);
 			artistNo = artistService.getArtistNo(id);
+			List<WorkApply> workapplylist = workapplyService.getWorkApplyListbyArtist(artistNo);
 			model.addAttribute("artistName", artistName);
-			List<WorkApply> workapplylist = 
-			model.addAttribute("worklist", worklist);
+			model.addAttribute("worklist", workapplylist);
 		} catch (Exception e1) {
 			e1.printStackTrace();
-		};*/
-		
+		};
 		return "artistpage/myproductapply";
+	}
+	@ResponseBody
+	@PostMapping("productapplydetail")
+	public ResponseEntity<WorkApply> productapplyDetail(@RequestParam(value="workNo",required = false) int workNo) {
+		ResponseEntity<WorkApply> result = null;
+		try {
+			WorkApply workapply = workapplyService.selectWorktApplyByNo(workNo);
+			result = new ResponseEntity<WorkApply>(workapply, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<WorkApply>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
+	
+	/* 아티스트 판매작품 신청 거절 사유 보기 */
+	@ResponseBody
+	@PostMapping("refuseReason")
+	public ResponseEntity<String> refuseReason(@RequestParam(value="workNo",required = false) int workapplyNo) {
+		ResponseEntity<String> result = null;
+		try {
+			String refusedContents = workapplyService.selectWorktApplyByNo(workapplyNo).getRefusedContents();
+			result = new ResponseEntity<String>(refusedContents, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
 	}
 	
 	/* 작품 가져오기 경로 */
