@@ -373,12 +373,7 @@ public class ArtistPageController {
 		model.addAttribute("list", list);
 		return "artistpage/appmyfunding";
 	}
-	/*
-	 * fundingapp에서 가지고 와야 됨
-	 * 아이디를 통해서 가지고 옴
-	 * select * from fundingapp where id = ?
-	 * 신청
-	 * */
+
 	
 	//펀딩 신청
 	@GetMapping("applyfunding")

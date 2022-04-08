@@ -79,9 +79,21 @@
 			select * from funding where fundingNo=#{fundingNo}
 		]]>
 	</select>
+	<insert id="insertfundingspon" parameterType="map" >
+		<![CDATA[
+			insert into fundingSpon(sponsorNo, id, fundingNo, sponsorAmount, email)
+			values(null, #{id}, #{fundingNo}, #{sponsorAmount}, #{email})
+		]]>
+	</insert>
+	<select id="queryFundingNo" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingNo=#{fundingNo}
+		]]>
+	</select>
 </mapper>
 
 <!-- 
+
 create table fundingApp(
 	fundingNo int(10) not null auto_increment,
     artistNo int(10),
@@ -130,6 +142,15 @@ create table fundingSpon(
     fundingNo int(10) not null,
     sponsorAmount int(10) not null,
     email varchar(100) not null,
+    primary key(sponsorNo)
+);
+
+create table fundingSpon(
+	sponsorNo int(10) not null,
+    id varchar(100) not null,
+    fundingNo int(10) not null,
+    sponsorAmount int(10) not null,
+    email varchar(100),
     primary key(sponsorNo)
 );
 
