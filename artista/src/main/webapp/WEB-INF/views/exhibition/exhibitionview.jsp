@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Artista</title>
+<title>Insert title here</title>
     <link rel="stylesheet" href="https://og-data.s3.amazonaws.com/CACHE/css/output.4e774f3b4c87.css" type="text/css">
     <link rel="stylesheet" href="https://og-data.s3.amazonaws.com/CACHE/css/output.75d1aa7676f8.css" type="text/css">
     <script src="https://og-data.s3.amazonaws.com/static/common/js/jquery-1.12.4.min.js"></script>
     <script src="https://og-data.s3.amazonaws.com/CACHE/js/output.bd018f02f86b.js"></script>
-    <script type="text/javascript" src="js/output.85320f581d39.js"></script>
+    <script src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script>
 </head>
 <body>
 <%@include file ="../header.jsp" %>
@@ -26,178 +26,118 @@
                         <li><a href="/exhibitionterm">Terminated</a></li> 
                     </ul></div></nav> 
                     <div class="container_full">
-                        <section id="season_section">
-                            <div class="season_top" style="margin-left: 20em;">
-                                <div class="season_keyword">
-                                    <span id="season_tag">겨울</span>
-                                    <span class="season_key">#적막한</span>
-                                    <span class="season_key">#잊혀진</span>
-                                    <span class="season_key">#서리꽃</span>
-                                </div>
-                                    <h4>허공에 쓰는 겨울의 시</h4>
-                            </div>
-                            <div id="owl_season" class="owl-carousel owl-theme owl-loaded owl-drag" onclick="gaClickHome('season_artwork_list_190227');" style="opacity: 1; margin: 0;">
-                                
-                            <div class="owl-stage-outer">
-                               <div class="owl-stage" style="transform: translate3d(-4118px, 0px, 0px); transition: all 0s ease 0s; width: 11452px;"><div class="owl-item cloned" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A1056-0039/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1056/A1056-0039.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1056/A1056-0039.jpg" style="opacity: 1;">
+            <section id="season_section">
+                <div class="season_top"><div class="season_keyword"><span id="season_tag">봄</span><span class="season_key">#생동감</span><span class="season_key">#꽃빛발</span><span class="season_key">#움트는</span></div><h4>어느새 또다시 눈부신 봄</h4></div>
+                <div id="owl_season" class="owl-carousel owl-theme" onclick="gaClickHome('season_artwork_list_190227');">
+                    
+                        <div class="season_artwork">
+                            <a href="/artwork/A0285-0038/">
+                                <img class="owl-lazy" data-src="images/사월의 눈.jpg"/>
                             </a>
                             <div class="season_artwork_info">
-                                <h5>LOGOS</h5>
-                                <p>장영은</p>
+                                <h5>사월의눈</h5>
+                                <p>정은주</p>
                             </div>
-                        </div></div><div class="owl-item cloned" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0029-0004/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0029/A0029-0004.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0029/A0029-0004.jpg" style="opacity: 1;">
+                        </div>
+                    
+                        <div class="season_artwork">
+                            <a href="/artwork/A0126-0080/">
+                                <img class="owl-lazy" data-src="images/색으로 짓는 표정.jpg"/>
                             </a>
                             <div class="season_artwork_info">
-                                <h5>bau-4976</h5>
-                                <p>조세진</p>
+                                <h5>색으로 짓는 표정 2019 no4</h5>
+                                <p>남학현</p>
                             </div>
-                        </div></div><div class="owl-item cloned" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0210-0009/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0210/A0210-0009.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0210/A0210-0009.jpg" style="opacity: 1;">
+                        </div>
+                    
+                        <div class="season_artwork">
+                            <a href="/artwork/A1416-0008/">
+                                <img class="owl-lazy" data-src="images/장미보다 엉겅퀴.jpg"/>
                             </a>
                             <div class="season_artwork_info">
-                                <h5>설송(雪松) / Pine tree in the snow</h5>
-                                <p>유윤빈</p>
+                                <h5>장미보다 엉겅퀴</h5>
+                                <p>정솔미</p>
                             </div>
-                        </div></div><div class="owl-item cloned" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0222-0071/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0222/A0222-0071.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0222/A0222-0071.jpg" style="opacity: 1;">
+                        </div>
+                    
+                        <div class="season_artwork">
+                            <a href="/artwork/A1544-0012/">
+                                <img class="owl-lazy" data-src="images/풍경속으로-4.jpg"/>
                             </a>
                             <div class="season_artwork_info">
-                                <h5>He-story</h5>
-                                <p>박용일</p>
+                                <h5>풍경속으로-4</h5>
+                                <p>류효선</p>
                             </div>
-                        </div></div><div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A1420-0006/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1420/A1420-0006.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1420/A1420-0006.jpg" style="opacity: 1;">
+                        </div>
+                    
+                        <div class="season_artwork">
+                            <a href="/artwork/A0965-0001/">
+                                <img class="owl-lazy" data-src="images/BMW.jpg"/>
                             </a>
                             <div class="season_artwork_info">
-                                <h5>낙하될 찰나 Ⅱ</h5>
-                                <p>정혜원</p>
+                                <h5>BMW am11:20</h5>
+                                <p>김길숙</p>
                             </div>
-                        </div></div><div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0692-0029/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0692/A0692-0029.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0692/A0692-0029.jpg" style="opacity: 1;">
+                        </div>
+                    
+                        <div class="season_artwork">
+                            <a href="/artwork/A1334-0001/">
+                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1334/A1334-0001.jpg"/>
                             </a>
                             <div class="season_artwork_info">
-                                <h5>아름다운순간-눈꽃</h5>
-                                <p>김명희</p>
+                                <h5>봄의 교향곡</h5>
+                                <p>최정미</p>
                             </div>
-                        </div></div><div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0676-0035/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0676/A0676-0035.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0676/A0676-0035.jpg" style="opacity: 1;">
+                        </div>
+                    
+                        <div class="season_artwork">
+                            <a href="/artwork/A1456-0007/">
+                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1456/A1456-0007.jpg"/>
                             </a>
                             <div class="season_artwork_info">
-                                <h5>self-portrait05 autumn</h5>
-                                <p>남진숙</p>
+                                <h5>Serotonin</h5>
+                                <p>Seul</p>
                             </div>
-                        </div></div><div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0231-0052/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0231/A0231-0052.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0231/A0231-0052.jpg" style="opacity: 1;">
+                        </div>
+                    
+                        <div class="season_artwork">
+                            <a href="/artwork/A0690-0037/">
+                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0690/A0690-0037.jpg"/>
                             </a>
                             <div class="season_artwork_info">
-                                <h5>Forest 2017#1</h5>
-                                <p>김보경</p>
+                                <h5>Garden (series.2)</h5>
+                                <p>한채린</p>
                             </div>
-                        </div></div><div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0200-0012/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0200/A0200-0012.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0200/A0200-0012.jpg" style="opacity: 1;">
+                        </div>
+                    
+                        <div class="season_artwork">
+                            <a href="/artwork/A1464-0026/">
+                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1464/A1464-0026.jpg"/>
                             </a>
                             <div class="season_artwork_info">
-                                <h5>Bus stop</h5>
-                                <p>유민</p>
+                                <h5>봄 나들이</h5>
+                                <p>김나령</p>
                             </div>
-                        </div></div><div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0891-0088/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0891/A0891-0088.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0891/A0891-0088.jpg" style="opacity: 1;">
+                        </div>
+                    
+                        <div class="season_artwork">
+                            <a href="/artwork/A1369-0012/">
+                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1369/A1369-0012.jpg"/>
                             </a>
                             <div class="season_artwork_info">
-                                <h5>trace 16</h5>
-                                <p>조상근</p>
+                                <h5>너와 봄(프리지아)</h5>
+                                <p>이재영</p>
                             </div>
-                        </div></div><div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A1056-0039/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1056/A1056-0039.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1056/A1056-0039.jpg" style="opacity: 1;">
-                            </a>
-                            <div class="season_artwork_info">
-                                <h5>LOGOS</h5>
-                                <p>장영은</p>
-                            </div>
-                        </div></div><div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0029-0004/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0029/A0029-0004.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0029/A0029-0004.jpg" style="opacity: 1;">
-                            </a>
-                            <div class="season_artwork_info">
-                                <h5>bau-4976</h5>
-                                <p>조세진</p>
-                            </div>
-                        </div></div><div class="owl-item" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0210-0009/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0210/A0210-0009.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0210/A0210-0009.jpg" style="opacity: 1;">
-                            </a>
-                            <div class="season_artwork_info">
-                                <h5>설송(雪松) / Pine tree in the snow</h5>
-                                <p>유윤빈</p>
-                            </div>
-                        </div></div><div class="owl-item active" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0222-0071/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0222/A0222-0071.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0222/A0222-0071.jpg" style="opacity: 1;">
-                            </a>
-                            <div class="season_artwork_info">
-                                <h5>He-story</h5>
-                                <p>박용일</p>
-                            </div>
-                        </div></div><div class="owl-item cloned active" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A1420-0006/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1420/A1420-0006.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1420/A1420-0006.jpg" style="opacity: 1;">
-                            </a>
-                            <div class="season_artwork_info">
-                                <h5>낙하될 찰나 Ⅱ</h5>
-                                <p>정혜원</p>
-                            </div>
-                        </div></div><div class="owl-item cloned active" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0692-0029/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0692/A0692-0029.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0692/A0692-0029.jpg" style="opacity: 1;">
-                            </a>
-                            <div class="season_artwork_info">
-                                <h5>아름다운순간-눈꽃</h5>
-                                <p>김명희</p>
-                            </div>
-                        </div></div><div class="owl-item cloned" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0676-0035/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0676/A0676-0035.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0676/A0676-0035.jpg" style="opacity: 1;">
-                            </a>
-                            <div class="season_artwork_info">
-                                <h5>self-portrait05 autumn</h5>
-                                <p>남진숙</p>
-                            </div>
-                        </div></div><div class="owl-item cloned" style="width: auto; margin-right: 50px;"><div class="season_artwork">
-                            <a href="/artwork/A0231-0052/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0231/A0231-0052.jpg" src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0231/A0231-0052.jpg" style="opacity: 1;">
-                            </a>
-                            <div class="season_artwork_info">
-                                <h5>Forest 2017#1</h5>
-                                <p>김보경</p>
-                            </div>
-                        </div></div></div>
-                                    </div>
-                                    <div class="owl-nav">
-                                    <button type="button" role="presentation" class="owl-prev"></button>
-                                    <button type="button" role="presentation" class="owl-next"></button>
-                                    </div>
-                                    <div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button>
-                                    </div>
-                                    </div>
-                        </section>
-                    </div>
+                        </div>
+                    
+                </div>
+            </section>                   
+        </div>
+          
                 </article>
 
 
 <%@include file ="../footer.jsp" %>
-
 </body>
+
 </html>

@@ -15,7 +15,7 @@
     <article id="content" class="vuelayer">
         <div class="page-cover">
             <div class="image"
-                style="background-image: url(images/메인사진2.jpg); opacity: 1;">
+                style="background-image: url(${images/메인사진2.jpg }); opacity: 1;">
             </div>
         </div>
         <section id="about" class="section" >
