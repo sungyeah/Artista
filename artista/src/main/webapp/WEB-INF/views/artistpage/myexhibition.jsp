@@ -89,6 +89,7 @@
             </section>
         </article>
         
+        <%@include file ="../footer.jsp" %>
 
     </div>
 </body>

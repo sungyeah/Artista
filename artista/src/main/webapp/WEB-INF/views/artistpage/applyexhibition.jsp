@@ -106,6 +106,8 @@
             </form>
         </article>
     </div>
+    
+    <%@include file ="../footer.jsp" %>
    
     <script type="text/javascript">
     	$("#datepickerstart").flatpickr({

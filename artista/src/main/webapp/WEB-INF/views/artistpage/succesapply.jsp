@@ -30,7 +30,9 @@
 </style>
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
     <div class="align1">신청이 완료되었습니다.</div>
     <div class="align2"><button class="Btn2">메인으로 가기</button></div>
+    <%@include file ="../footer.jsp" %>
 </body>
 </html>

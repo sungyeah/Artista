@@ -241,7 +241,7 @@
         </div>
         
     </div>
-    <!-- <%@include file ="../footer.jsp" %> -->
+    <%@include file ="../footer.jsp" %>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>    
 <script>
 	var str = $('#contact').val().trim();    

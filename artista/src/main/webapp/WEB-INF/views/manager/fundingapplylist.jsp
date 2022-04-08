@@ -228,7 +228,7 @@
             </section>
         </article>
     </div>
-
+	<%@include file ="../footer.jsp" %>
 	<script>
 	
 	//modal창

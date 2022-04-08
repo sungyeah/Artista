@@ -224,7 +224,7 @@
 			</c:choose>
         </article>
 	</div>
-	
+	<%@include file ="../footer.jsp" %>
 	<script>
 	function applyDetail(applyNo){
 		applymodal.style.display = "flex";

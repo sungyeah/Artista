@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
 	<div id="container">
 		<!-- Content -->
 		<article id="content">
@@ -28,5 +29,6 @@
 			</div>
 			</article>
 	</div>
+	<%@include file ="../footer.jsp" %>
 </body>
 </html>

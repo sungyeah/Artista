@@ -209,6 +209,8 @@
         </article>
 	</div>
 	
+	<%@include file ="../footer.jsp" %>
+	
 	<script>
 	function showDetail(workNo){
 		applyproduct.style.display = "flex";

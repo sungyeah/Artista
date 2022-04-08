@@ -186,7 +186,7 @@
             </section>
         </article>
     </div>
-    
+    <%@include file ="../footer.jsp" %>
     <script>
 	//modal창
     const applyexhibition = document.getElementById("applyexhibition");

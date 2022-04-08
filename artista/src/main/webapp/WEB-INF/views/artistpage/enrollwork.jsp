@@ -106,6 +106,8 @@
         </article>
     </div>
     
+    <%@include file ="../footer.jsp" %>
+    
     <script>
 	// 작품 대표이미지 show
 	$("#workImg").change(function (event) {

@@ -160,7 +160,7 @@
         </article>
         
     </div>
-
+	<%@include file ="../footer.jsp" %>
 	<script>
 	//modal창
     const exhibitiondetail = document.getElementById("exhibitiondetail");

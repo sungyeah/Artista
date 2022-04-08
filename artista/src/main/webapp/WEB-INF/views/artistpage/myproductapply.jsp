@@ -218,6 +218,8 @@
         </article>
 	</div>
 	
+	<%@include file ="../footer.jsp" %>
+	
 	<script>
 	function showDetail(workapplyNo){
 		productdetail.style.display = "flex";
