@@ -30,22 +30,10 @@
         <!-- Content -->
         <article id="content" class="vuelayer">
             <div class="artist-list">
-                
-                <ul>
-
-                    
+                <ul>                   
                     <c:forEach items="${atistList }" var="artist">
                     	<li><a class="list" href="artistdetail/${artist.artistNo }" data-image="${artist.artistImg }">${artist.artistName } </a></li>
                     </c:forEach>
-                  
-
-                    <!-- <li><a href="artistdetail.html" data-image="img/">Ayoung Kim </a></li> -->
-                    <%--
-                    <c:forEach items="${artistList }" var="artist">
-                    	<li><a href="artistdetail/artist.artistno" data-image="${artist.artistImg}">${artist.artistName } </a></li>
-                    </c:forEach>
-                     --%>
-                    
                 </ul>
             </div>
         </article>
