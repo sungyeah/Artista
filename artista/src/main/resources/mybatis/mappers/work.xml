@@ -13,9 +13,9 @@
 	<insert id="insertWork" parameterType="work">
 		<![CDATA[
 			insert into work (workNo, artistNo, artistName, workName, workImg, workType, workTech, 
-				workSize, workIntro, workPrice, workForSale, orderNo) 
+				workSize, workIntro, workPrice, workForSale, orderNo, workHeight) 
 			values (#{workNo}, #{artistNo}, #{artistName}, #{workName}, #{workImg}, #{workType}, #{workTech}, 
-				#{workSize}, #{workIntro}, #{workPrice}, #{workForSale}, #{orderNo})
+				#{workSize}, #{workIntro}, #{workPrice}, #{workForSale}, #{orderNo}, #{workHeight})
 		]]>
 	</insert>
 	
@@ -78,8 +78,7 @@
 	</update>
 </mapper>
 <!-- 
-create table work(
-	workNo int(10) not null,
+workNo int(10) not null,
     artistNo int(10) not null,
     artistName varchar(100) not null,
     workName varchar(255) not null,
@@ -91,6 +90,7 @@ create table work(
     workPrice int(10),
     workForSale boolean not null,
     orderNo int,
+    workHeight int(10) not null,
     primary key(workNo)
 );
  -->

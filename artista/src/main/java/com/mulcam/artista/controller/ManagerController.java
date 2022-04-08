@@ -182,7 +182,7 @@ public class ManagerController {
 			Work work = null;
 			work = new Work(workService.getWorkMaxNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(),
 					workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
-					workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getWorkPrice(), 1, -1);
+					workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getWorkPrice(), 1, -1,workapply.getWorkHeight());
 			workService.insertWork(work);
 			workapplyService.deleteWorkApply(workapplyNo);
 		}catch(Exception e) {
