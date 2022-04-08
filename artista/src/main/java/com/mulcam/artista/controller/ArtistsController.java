@@ -31,6 +31,7 @@ public class ArtistsController {
 	
 	@GetMapping("artistdetail")
 	public String artistdetail() {
-		return "artists/artistsdetail";
+		
+		return "artists/artistdetail";
 	}
 }
