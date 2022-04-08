@@ -21,6 +21,13 @@
 		]]>
 	</insert>
 	
+	<!-- 작품등록 거절 update -->
+	<select id="updateWorkApplyRefuse" parameterType="map">
+		<![CDATA[
+			update workapply set applyState=1, refusedContents=#{refusedContents} where workapplyNo=#{applyNo}
+		]]>
+	</select>
+	
 	<!-- 아티스트 작품 등록 삭제하기 -->
 	<delete id="deleteWorkApply" parameterType="int">
 		<![CDATA[
@@ -32,14 +39,14 @@
 	<!-- 신정 착품 수 -->
 	<select id="WorkApplyNum" resultType="int">
 		<![CDATA[
-			select count(*) from workapply
+			select count(*) from workapply where applyState=0 or applyState=3
 		]]>
 	</select>
 	
 	<!-- 작품 선택하기 : listing 적용 -->
 	<select id="selectWorkApplyList" parameterType="int" resultType="workapply">
 		<![CDATA[
-			select * from workapply limit #{startrow}, 9
+			select * from workapply where applyState=0 or applyState=3 limit #{startrow}, 9
 		]]>
 	</select>
 	
@@ -47,6 +54,13 @@
 	<select id="selectWorkApplyByNo" parameterType="int" resultType="workapply">
 		<![CDATA[
 			select * from workapply where workapplyNo=#{applyNo} limit 1
+		]]>
+	</select>
+	
+	<!-- 아티스트 번호로 아티스트의 신청 내역 가져오기 -->
+	<select id="selectWorkApplyListByNo" parameterType="int" resultType="workapply">
+		<![CDATA[
+			select * from workapply where artistNo=#{artistNo}
 		]]>
 	</select>
 </mapper>

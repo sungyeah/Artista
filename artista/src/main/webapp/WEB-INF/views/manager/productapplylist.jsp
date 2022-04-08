@@ -85,7 +85,7 @@
                         <div class="modal-modify-form-row-value">
                             <textarea class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;" id="workIntro" disabled></textarea>
                         </div>
-                    </div>                       
+                    </div>                    
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                             <a class="yesNo-btn" id="enroll">등록</a>                    
@@ -104,8 +104,6 @@
                 <h4 class="modal-header-title">거절 사유</h4>
             </header>
             <article class="modal-body">
-                <form class="modal-modify-form" method="post">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="8OgojRYOprkIqojoq6rJDIRZ5GySLqG97ZObqNAuZ7hU3OWjqtvuReHD9X6DBckA">
                     <div class="modal-modify-form-border"></div>
                         
                     <div class="modal-modify-form-row">
@@ -113,7 +111,7 @@
                             <span class="red">*</span> 거절사유
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <textarea class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;"></textarea>
+                            <textarea class="modal-modify-form-input" id="refusedContents" style="width:300px; height: 120px; resize: none;"></textarea>
                         </div>
                     </div>                                
                     <div class="modal-modify-form-border">
@@ -122,7 +120,6 @@
                             <a class="yesNo-btn" id="cancel">취소</a>      
                         </div>
                     </div>
-                    </form>
             </article>  
         </div>
     </div>
@@ -274,6 +271,23 @@
     		});
     	});
     	
+    	$(document).on('click', '#refuse', function(e){
+    		alert($("#refusedContents").val());
+    		$.ajax({
+    			type:"post",
+    			async: false,
+    			url:"http://localhost:8090/manager/productapplyfail",
+    			data:{"applyNo":$('#workapplyNo').val(), "refusedContents" : $("#refusedContents").val()},
+    			dataType:"text",
+    			success: function(data, textStatus){ 
+    				alert("작품 등록 거절이 성공했습니다");
+    				location.reload();
+    			},
+    			error:function(data, textStatus){
+    				alert("작품 등록 거절이 실패했습니다.");
+    			}
+    		});
+    	});
     });
     
     $(function(){

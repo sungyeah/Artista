@@ -257,7 +257,6 @@ public class ArtistPageController {
 				workreport.setOrder(order);
 				workReportList.add(workreport);
 			}
-			
 			model.addAttribute("soldlist", workReportList);
 		} catch (Exception e1) {
 			model.addAttribute("soldlist", null);
@@ -267,13 +266,56 @@ public class ArtistPageController {
 	}
 	@ResponseBody
 	@PostMapping("productdetail")
-	public ResponseEntity<Work> productDetail(@RequestParam(value="workNo",required = false) int workNo, Model model) {
+	public ResponseEntity<Work> productDetail(@RequestParam(value="workNo",required = false) int workNo) {
 		ResponseEntity<Work> result = null;
 		try {
 			Work work = workService.workinfo(workNo);
 			result = new ResponseEntity<Work>(work, HttpStatus.OK);
 		}catch(Exception e) {
 			result = new ResponseEntity<Work>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
+	
+	/* 아티스트 판매작품 신청내역보기 */
+	@GetMapping("myproductapply")
+	public String artistproductApply(Model model) {
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		try {
+			String artistName = artistService.getArtistName(id);
+			artistNo = artistService.getArtistNo(id);
+			List<WorkApply> workapplylist = workapplyService.getWorkApplyListbyArtist(artistNo);
+			model.addAttribute("artistName", artistName);
+			model.addAttribute("worklist", workapplylist);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
+		return "artistpage/myproductapply";
+	}
+	@ResponseBody
+	@PostMapping("productapplydetail")
+	public ResponseEntity<WorkApply> productapplyDetail(@RequestParam(value="workNo",required = false) int workNo) {
+		ResponseEntity<WorkApply> result = null;
+		try {
+			WorkApply workapply = workapplyService.selectWorktApplyByNo(workNo);
+			result = new ResponseEntity<WorkApply>(workapply, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<WorkApply>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
+	
+	/* 아티스트 판매작품 신청 거절 사유 보기 */
+	@ResponseBody
+	@PostMapping("refuseReason")
+	public ResponseEntity<String> refuseReason(@RequestParam(value="workNo",required = false) int workapplyNo) {
+		ResponseEntity<String> result = null;
+		try {
+			String refusedContents = workapplyService.selectWorktApplyByNo(workapplyNo).getRefusedContents();
+			result = new ResponseEntity<String>(refusedContents, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
 		return result;
 	}
@@ -312,117 +354,122 @@ public class ArtistPageController {
 	
 	// 아티스트의 펀딩
 	@GetMapping("myfunding")
-	public String artistpageFunding() {
+	public String artistpageFunding(@ModelAttribute Funding funding, Model model) throws Exception {
+		String id=(String) session.getAttribute("id");
+		List<Funding> list = fundingService.queryMyFunding(id);
+		Member mem = subPageService.queryId(id);
+		model.addAttribute("mem", mem);
+		model.addAttribute("list", list);
 		return "artistpage/myfunding";
 	}
 	
 	//펀딩 신청
-		@GetMapping("applyfunding")
-		public String applyfunding(Model model) {
-			String id=(String) session.getAttribute("id");
-			try {
-				Member mem = subPageService.queryId(id);
-				model.addAttribute("mem", mem);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}		
-			return "artistpage/applyfunding";
-		}
-		
-		
+	@GetMapping("applyfunding")
+	public String applyfunding(Model model) {
+		String id=(String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			model.addAttribute("mem", mem);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return "artistpage/applyfunding";
+	}
+	
+	
 
-		@PostMapping("applyfunding")
-		public String applyfunding1(@ModelAttribute Funding funding, Model model) {
-			
-			String id=(String) session.getAttribute("id");
+	@PostMapping("applyfunding")
+	public String applyfunding1(@ModelAttribute Funding funding, Model model) {
+		
+		String id=(String) session.getAttribute("id");
 //			 File destFile = new File(path+file.getOriginalFilename());
-			String[] fundingDate = funding.getFundingDate().split(" ~ ");
-			System.out.println(fundingDate[0]);
-			System.out.println(fundingDate[1]);
-			DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
-			LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
-			System.out.println(Timestamp.valueOf(localDateTime));
-			funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
-			localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
-			System.out.println(Timestamp.valueOf(localDateTime));
-			funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
-			try {
-				MultipartFile file = funding.getThumbFile();
-				if(file!=null && !file.isEmpty()) {
-					String path = servletContext.getRealPath("/fundingApp/");
-					String filename = file.getOriginalFilename();
-					File destFile = new File(path+filename);
-					file.transferTo(destFile);
-					funding.setThumbImg(filename);
-				}
-				artistPageService.insertApply(funding);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return "artistpage/succesapply";
-		}
-		
-		//end - start 
-		
-		@ResponseBody
-		@PostMapping("fundingApp")
-		public Map<String, Object> fileupload(@RequestParam(value="fundingApp") MultipartFile file) {
-			System.out.println(file.getOriginalFilename()+"---------------------");
-			String path = servletContext.getRealPath("/fundingApp/");
-			String filename = file.getOriginalFilename();
-			File destFile = new File(path+filename);
-			Map<String, Object> json = new HashMap<>();
-			try {
+		String[] fundingDate = funding.getFundingDate().split(" ~ ");
+		System.out.println(fundingDate[0]);
+		System.out.println(fundingDate[1]);
+		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
+		localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
+		try {
+			MultipartFile file = funding.getThumbFile();
+			if(file!=null && !file.isEmpty()) {
+				String path = servletContext.getRealPath("/fundingApp/");
+				String filename = file.getOriginalFilename();
+				File destFile = new File(path+filename);
 				file.transferTo(destFile);
-				json.put("uploaded", 1);
-				json.put("fileName", filename);
-				json.put("url", "/fileview/"+filename);
-			} catch(IOException e) {
-				e.printStackTrace();
-			} 
-			return json;
-		}
-		
-		
-		@GetMapping("modifyfunding")
-		public String modifyfunding(Model model) {
-			String id=(String) session.getAttribute("id");
-			try {
-				Member mem = subPageService.queryId(id);
-				model.addAttribute("mem", mem);
-				Funding funding = fundingService.queryFunding(id);
-				model.addAttribute("funding", funding);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}		
-			return "artistpage/modifyfunding";
-		}
-		
-		
-		@RequestMapping(value="modifyfunding", method= {RequestMethod.POST})
-		public String modifyfunding2(@ModelAttribute Funding funding) {
-			String path = servletContext.getRealPath("/fundingApp/");
-			String id=(String) session.getAttribute("id");
-			funding.setId(id);
-			String[] fundingDate = funding.getFundingDate().split(" ~ ");
-			System.out.println(fundingDate[0]);
-			System.out.println(fundingDate[1]);
-			DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
-			LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
-			System.out.println(Timestamp.valueOf(localDateTime));
-			funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
-			localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
-			System.out.println(Timestamp.valueOf(localDateTime));
-			funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
-			System.out.println(id);
-			try {			
-				System.out.println(funding.getId());
-				artistPageService.insertupdate(funding);				
-			} catch (Exception e) {
-				e.printStackTrace();
+				funding.setThumbImg(filename);
 			}
-			return "artistpage/succesapply";
+			artistPageService.insertApply(funding);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return "artistpage/succesapply";
+	}
+	
+	//end - start 
+	
+	@ResponseBody
+	@PostMapping("fundingApp")
+	public Map<String, Object> fileupload(@RequestParam(value="fundingApp") MultipartFile file) {
+		System.out.println(file.getOriginalFilename()+"---------------------");
+		String path = servletContext.getRealPath("/fundingApp/");
+		String filename = file.getOriginalFilename();
+		File destFile = new File(path+filename);
+		Map<String, Object> json = new HashMap<>();
+		try {
+			file.transferTo(destFile);
+			json.put("uploaded", 1);
+			json.put("fileName", filename);
+			json.put("url", "/fileview/"+filename);
+		} catch(IOException e) {
+			e.printStackTrace();
+		} 
+		return json;
+	}
+	
+	
+	@GetMapping("modifyfunding")
+	public String modifyfunding(Model model) {
+		String id=(String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			model.addAttribute("mem", mem);
+			Funding funding = fundingService.queryFunding(id);
+			model.addAttribute("funding", funding);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return "artistpage/modifyfunding";
+	}
+	
+	
+	@RequestMapping(value="modifyfunding", method= {RequestMethod.POST})
+	public String modifyfunding2(@ModelAttribute Funding funding) {
+		String path = servletContext.getRealPath("/fundingApp/");
+		String id=(String) session.getAttribute("id");
+		funding.setId(id);
+		String[] fundingDate = funding.getFundingDate().split(" ~ ");
+		System.out.println(fundingDate[0]);
+		System.out.println(fundingDate[1]);
+		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
+		localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
+		System.out.println(id);
+		try {			
+			System.out.println(funding.getId());
+			artistPageService.insertupdate(funding);				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "artistpage/succesapply";
+	}
 	
 	
 
@@ -449,7 +496,7 @@ public class ArtistPageController {
 		System.out.println("try 이전");
 		int exhibitapplyNo;
 		try {
-			exhibitapplyNo = exhibitService.maxExhibitApplyId();
+			exhibitapplyNo = exhibitService.maxExhibitApplyNo();
 			File destFile = new File(path + exhibitEnrollTime +"."+ mtypes[1]);	//이미지 타입
 			posterImgFile.transferTo(destFile);
 			
@@ -480,6 +527,38 @@ public class ArtistPageController {
 			e.printStackTrace();
 		}
 		return "artistpage/succesapply";
+	}
+	
+	/* 포스터 가져오기 경로 */
+	@GetMapping(value="/posterImg/{filename}")
+	public void posterImgView(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
+		String path= servletContext.getRealPath("/imgupload/exhibition/");
+		File file=new File(path+filename); 
+		String sfilename=null;
+		FileInputStream fis=null;
+		try {
+			if(request.getHeader("User-Agent").indexOf("MSIE")>-1) {
+				sfilename=URLEncoder.encode(file.getName(), "UTF-8");
+			} else {
+				sfilename=new String(file.getName().getBytes("UTF-8"), "ISO-8859-1");
+			}
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/octet-stream; charest=UTF-8");
+			OutputStream out=response.getOutputStream();
+			fis=new FileInputStream(file);
+			FileCopyUtils.copy(fis, out); 
+			out.flush(); 
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(fis!=null) {
+				try{
+					fis.close(); 
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 //	@GetMapping("mypagemodify")

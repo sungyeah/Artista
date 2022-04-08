@@ -1,6 +1,8 @@
 package com.mulcam.artista.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,15 @@ public class WorkApplyServiceImpl implements WorkApplyService {
 	public void deleteWorkApply(int workapplyNo) throws Exception {
 		workapplyDAO.deleteWorkApply(workapplyNo);		
 	}
+	
+
+	@Override
+	public void refuseWorkApply(int workapplyNo, String refusedContents) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("applyNo", workapplyNo);
+		map.put("refusedContents", refusedContents);
+		workapplyDAO.updateWorkApplyRefuse(map);
+	}
 
 	@Override
 	public List<WorkApply> getWorkApplyList(int page, PageInfo pageInfo) throws Exception {
@@ -55,6 +66,10 @@ public class WorkApplyServiceImpl implements WorkApplyService {
 	public WorkApply selectWorktApplyByNo(int applyNo) throws Exception {
 		return workapplyDAO.selectWorkApplyByNo(applyNo);
 	}
-	
-	
+
+	@Override
+	public List<WorkApply> getWorkApplyListbyArtist(int artistNo) throws Exception {
+		return workapplyDAO.selectWorkApplyListByNo(artistNo);
+	}
+
 }

@@ -677,3 +677,13 @@ i.wadizicon.wa-more-vert:before {
     cursor: pointer;
     border-radius: 0;
 }
+    .image-box{
+        height: 230px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+        .image-thumb{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }

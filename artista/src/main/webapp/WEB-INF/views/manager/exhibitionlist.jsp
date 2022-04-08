@@ -16,19 +16,17 @@
 	<div id="exhibitiondetail" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
-            	<div id="apply_close" class="close-area">X</div>
+            	<div class="close-area">X</div>
                 <h2 class="modal-header-title">전시 상세보기</h2>
             </header>
             <article class="modal-body">
-                <form class="modal-modify-form" method="post">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="8OgojRYOprkIqojoq6rJDIRZ5GySLqG97ZObqNAuZ7hU3OWjqtvuReHD9X6DBckA">
-                    <div class="modal-modify-form-border"></div>
+                   	<div class="modal-modify-form-border"></div>
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
                             <span class="red">*</span> 전시포스터
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <img style="width:300px; height:300px;"/>
+                            <img style="width:300px; height:300px;" id="exhibitPoster"/>
                         </div>
                     </div>
                     
@@ -37,7 +35,7 @@
                             <span class="red">*</span> 펀딩번호
                         </div>
                         <div class="modal-modify-form-row-value">
-                        	<input class="modal-modify-form-input" type="text" disabled />
+                        	<input class="modal-modify-form-input" id="fundingNo" type="text" disabled />
                         </div>
                     </div>    
                     <div class="modal-modify-form-row">
@@ -45,15 +43,15 @@
                             <span class="red">*</span> 전시명
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="exhibitTitle" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 아티스트 이름
+                            <span class="red">*</span> 전시작가
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="exhibitArtist" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -61,7 +59,7 @@
                             <span class="red">*</span> 전시일정
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" style="width:140px;" type="text" disabled /> - <input class="modal-modify-form-input" style="width:140px;" type="text" disabled />
+                            <input class="modal-modify-form-input" id="exhibitDate" style="width:250px;" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -69,7 +67,7 @@
                             <span class="red">*</span> 전시장소
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="exhibitPlace" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -77,15 +75,15 @@
                             <span class="red">*</span> 예매링크
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="reserveLink" type="text" disabled />
                         </div>
                     </div>
+                    <input type="hidden" id="exhibitapplyNo" disabled/>
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <a class="yesNo-btn" id="close">닫기</a>      
+                            <button class="yesNo-btn close-area">닫기</button>      
                         </div>
                     </div>
-                    </form>
             </article>  
         </div>
     </div>
@@ -137,31 +135,24 @@
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
-                    
                     </thead>
-                   
-                    <tbody>
-                    <tr>
-                        <th scope="col" class="exhibitNo">전시등록번호</th>
-                        <th scope="col" class="exhibitTitle">전시 제목</th>
-                        <th scope="col" class="artinstName">아티스트 이름</th>
-                        <th scope="col" class="exhibitStartDate">전시시작일</th>
-                        <th scope="col" class="exhibitEndDate">전시종료일</th>
-                        <th scope="col" class="exhibitPlace">대관장소</th>
-                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
-                        <th scope="col"><input type="checkbox" name="xxx"></th>
-                    </tr>
-                    <tr>
-                        <th scope="col" class="exhibitNo">전시등록번호</th>
-                        <th scope="col" class="exhibitTitle">전시 제목</th>
-                        <th scope="col" class="artinstName">아티스트 이름</th>
-                        <th scope="col" class="exhibitStartDate">전시시작일</th>
-                        <th scope="col" class="exhibitEndDate">전시종료일</th>
-                        <th scope="col" class="exhibitPlace">대관장소</th>
-                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
-                        <th scope="col"><input type="checkbox" name="xxx"></th>
-                    </tr>
-                    </tbody>
+                   	<c:choose>
+                    	<c:when test="${exhibitlist!=null }">
+                    	<tbody>
+                    		<c:forEach items="${exhibitlist }" var="exhibitlist">
+								<tr>
+                            	<th scope="col">${exhibitlist.exhibitNo }</th>
+                            	<th scope="col">${exhibitlist.exhibitTitle }</th>
+                            	<th scope="col">${exhibitlist.exhibitArtist }</th>
+                            	<th scope="col">${exhibitlist.startDate }</th>
+                            	<th scope="col">${exhibitlist.endDate }</th>
+                            	<th scope="col">${exhibitlist.exhibitPlace }</th>                       
+                           		<th scope="col"><a class="artist-detail-btn" onclick="exhibitDetail('${exhibitlist.exhibitNo }')">신청 상세보기</a></th>
+                        		</tr>
+                        		</c:forEach>
+                        </tbody>
+                    	</c:when>
+                    </c:choose>
                 </table>
                 <a class="member-delete-btn">전시 삭제</a>
             </section>
@@ -177,13 +168,35 @@
     	$(document).on('click', '.artist-detail-btn', function(e){
     		exhibitiondetail.style.display = "flex";
     	});
-    	$(document).on('click', '#apply_close', function(e){
-    		exhibitiondetail.style.display = "none";
-    	});
-    	$(document).on('click', '#close', function(e){
+    	$(document).on('click', '.close-area', function(e){
     		exhibitiondetail.style.display = "none";
     	});
     });
+    
+    function exhibitDetail(exhibitNo){
+    	exhibitiondetail.style.display = "flex";
+		$.ajax({
+			type:"post",
+			dataType:"text",
+			async: false,
+			url:"http://localhost:8090/manager/exhibitdetail",
+			data:{"exhibitNo":exhibitNo},
+			success: function(data, textStatus){ 
+			 	var exhibitData = JSON.parse(data);
+			 	$("#exhibitapplyNo").attr("value", exhibitData.exhibitNo);
+			 	$('#fundingNo').attr("value", exhibitData.fundingNo);
+ 			 	$('#exhibitPoster').attr("src", "/artistpage/posterImg/"+exhibitData.exhibitPoster);
+ 			 	$("#exhibitTitle").attr("value", exhibitData.exhibitTitle);
+ 			 	$("#exhibitArtist").attr("value", exhibitData.exhibitArtist);
+ 			 	$("#exhibitDate").attr("value", exhibitData.startDate + " ~ " + exhibitData.endDate);
+ 			 	$("#exhibitPlace").attr("value", exhibitData.exhibitPlace);
+ 			 	$("#reserveLink").attr("value", exhibitData.reserveLink);
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		});
+    }
     </script>
 
 </body>
