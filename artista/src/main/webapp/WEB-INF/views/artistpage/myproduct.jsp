@@ -51,6 +51,9 @@
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductsold">
                 판매완료 작품
             </a>
+            <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductapply">
+                판매신청내역
+            </a>
         
             <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyproduct" style="width:120px;">
                 작품판매 신청

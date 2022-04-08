@@ -163,6 +163,9 @@
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductsold">
                 판매 완료 작품
             </a>
+            <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductapply">
+                판매신청내역
+            </a>
         </nav>
         
 		<article class="member-body">

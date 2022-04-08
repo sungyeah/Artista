@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<link rel="stylesheet" href="../css/mypage.css">
 <link rel="stylesheet" href="../css/applymodal.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -17,7 +18,7 @@
         <div class="modal-window">
             <header class="modal-header">
             	<div id="apply_close" class="close-area">X</div>
-                <h2 class="modal-header-title">작품판매 신청</h2>
+                <h2 class="modal-header-title">작품 상세내용</h2>
             </header>
             <article class="modal-body">
                     <div class="modal-modify-form-border"></div>
@@ -85,7 +86,7 @@
                         <div class="modal-modify-form-row-value">
                             <textarea class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;" id="workIntro" disabled></textarea>
                         </div>
-                    </div>                    
+                    </div>                       
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                             <a class="yesNo-btn" id="enroll">등록</a>                    
@@ -97,94 +98,108 @@
         </div>
     </div>
     
-    <div id="refuseapply" class="modal-overlay">
+	<div id="modal" class="modal-overlay">
         <div class="refusemodal-window">
             <header class="modal-header">
             	<div id="refuse_close" class="close-area">X</div>
-                <h4 class="modal-header-title">거절 사유</h4>
+                <h2 class="modal-header-title">송장번호 입력</h2>
             </header>
             <article class="modal-body">
+                <form class="modal-modify-form" method="post">
                     <div class="modal-modify-form-border"></div>
-                        
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 거절사유
+                            <span class="red">*</span> 송장번호
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <textarea class="modal-modify-form-input" id="refusedContents" style="width:300px; height: 120px; resize: none;"></textarea>
+                            <input class="modal-modify-form-input" type="text" name="new_password1" placeholder="" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off" ><br>
                         </div>
-                    </div>                                
+                    </div>
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <a class="yesNo-btn" id="refuse">거절</a>                    
+                            <a class="yesNo-btn" id="workenroll">송장등록</a>                    
                             <a class="yesNo-btn" id="cancel">취소</a>      
                         </div>
                     </div>
+                </form>
             </article>  
         </div>
     </div>
-    <div class="contents">
-        <header class="manager-header">
-            <h2 class="manager-header-title">관리자 페이지</h2>
+   
+    <div id="contents">
+        <header class="account-header">
+            <h2 class="account-header-title">작가 페이지</h2>
+            <div class="account-header-description">고객님과 관련된 정보입니다.</div>
         </header>
-        <section class="manager-guide">
-            <div class="manager-guide-inner">
-                <h3 class="manager-guide-name">
-                    관리자님 반갑습니다.
+        <section class="account-guide">
+            <div class="account-guide-inner">
+                <h3 class="account-guide-name">
+                    홍성호님 반갑습니다.
                 </h3>
+                <a class="account-modify-btn" href="mypage/mypagemodify" onclick="gaClickAccount('account_modify');">
+                    <p>작가 정보</p>
+                </a>
             </div>
         </section>
         <nav class="manager-nav">
-            <a class="manager-nav-btn current"  href="${pageContext.request.contextPath}/manager/paymentlist">
-                작품 관리
+            <a class="manager-nav-btn current" href="${pageContext.request.contextPath}/artistpage/mywork">
+                전체 작품
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/fundinglist">
-                펀딩 관리
+            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproduct">
+                판매 작품
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionlist">
-                전시 관리
+            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myfunding">
+                나의 펀딩
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/memberlist">
-                회원 관리
+            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myexhibition">
+                나의 전시
             </a>
         </nav>
-
+        
         <nav class="member-nav">
-            <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/paymentlist">
-                결제 전체내역
+            <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproduct">
+                판매 중인 작품
             </a>
-            <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/paycompletelist">
-                판매완료 작품
+            <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductsold">
+                판매 완료 작품
             </a>
-            <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/productapplylist">
-                판매작품 등록신청
+            <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductapply">
+                판매신청내역
+            </a>
+            
+            <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyproduct" style="width:120px;">
+                작품판매 신청
             </a>
         </nav>
-   
+        
 		<article class="member-body">
             <section class="member-list">
                 <table class="member-table">
                     <thead>
                     <tr>
-                    	<th scope="col">작품 번호</th>
-                        <th scope="col">작품 제목</th>
-                        <th scope="col">아티스트 이름</th>
-                        <th scope="col">작품 유형</th>
-                        <th scope="col">신청유형</th>
+                        <th scope="col">작품신청번호</th>
+                        <th scope="col">작품 이미지</th>
+                        <th scope="col">작품제목</th>
+                        <th scope="col">작품 가격</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <c:choose>
-                    	<c:when test="${productapplylist !=null && pageInfo.listCount>0 }">
+                    	<c:when test="${soldlist!=null }">
                     	<tbody>
-                    		<c:forEach items="${productapplylist }" var="workapply">
+                    		<c:forEach items="${soldlist }" var="soldlist">
 								<tr>
-                            	<th scope="col" class="workapplyNo">${workapply.workapplyNo }</th>
-                            	<th scope="col" class="artistName">${workapply.artistName }</th>
-                            	<th scope="col" class="workName">${workapply.workName }</th>
-                            	<th scope="col" class="workType">${workapply.workType }</th>  
-                            	<th scope="col" class="applyState">${workapply.applyState }</th>                            
-                           		<th scope="col"><a class="artist-detail-btn" onclick="applyDetail('${workapply.workapplyNo }')">신청 상세보기</a></th>
+                            	<th scope="col">${soldlist.work.workNo }</th>
+                            	<th scope="col">
+                            		<img src="/artistpage/workImg/${soldlist.work.workImg }" style="width:100px; height:100px;">	
+                            	</th>
+                            	<th scope="col"">${soldlist.work.workName }</th>
+                            	<th scope="col"">${soldlist.order.receiverName }</th>
+                            	<th scope="col">${soldlist.order.orderDate }</th>
+                            	<th scope="col">${soldlist.order.workPrice }</th>                                
+                           		<th scope="col" colspan="1">
+                           			<a class="artist-detail-btn" onclick="showDetail('${workreport.work.workNo }')">작품상세보기</a>
+                           		</th>
                         		</tr>
                         		</c:forEach>
                         </tbody>
@@ -192,120 +207,48 @@
                     </c:choose>
                 </table>
             </section>
-            <c:choose>
-				<c:when test="${productapplylist!=null && pageInfo.listCount>0 }">
-					<div id="pageList" style="text-align: center; margin-top:30px; margin-bottom :30px;">
-					<c:choose>
-						<c:when test="${pageInfo.page<=1}">«&nbsp;</c:when>
-						<c:otherwise><a href="matelist?page=${pageInfo.page-1}">«&nbsp;</a></c:otherwise>
-					</c:choose>
-					<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-						<c:choose>
-							<c:when test="${pageInfo.page==i }">${i }&nbsp;</c:when>
-							<c:otherwise><a href="matelist?page=${i}">${i }&nbsp;</a></c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${pageInfo.page>=pageInfo.maxPage }">»&nbsp;</c:when>
-						<c:otherwise><a href="matelist?page=${pageInfo.page+1}">»&nbsp;</a></c:otherwise>
-					</c:choose>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<tr><td colspan="3"><b>신청 내역이 없습니다.</b></td></tr>
-				</c:otherwise>
-			</c:choose>
-        </article>   
-   
-   
-    </div>
-   
-
-    
-    <script>
-    function applyDetail(applyNo){
+        </article>
+	</div>
+	
+	<script>
+	function showDetail(workNo){
 		applymodal.style.display = "flex";
 		$.ajax({
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/manager/productapplydetail",
-			data:{"applyNo":applyNo},
+			url:"http://localhost:8090/artistpage/productdetail",
+			data:{"workNo":workNo},
 			success: function(data, textStatus){ 
-			 	var applyworkData = JSON.parse(data);
-			 	$('#workapplyNo').attr("value", applyworkData.workapplyNo);
- 			 	$('#workImg').attr("src", "/artistpage/workImg/"+applyworkData.workImg);
- 			 	$("#artistName").attr("value", applyworkData.artistName);
- 			 	$("#workName").attr("value", applyworkData.workName);
- 			 	$("#workType").attr("value", applyworkData.workType);
- 			 	$("#workTech").attr("value", applyworkData.workTech);
- 			 	$("#workSize").attr("value", applyworkData.workSize);
- 			 	$("#workIntro").html(applyworkData.workIntro);    
- 			 	$("#workPrice").attr("value", applyworkData.workPrice);
+			 	var workData = JSON.parse(data);
+			 	$('#workapplyNo').attr("value", workData.workapplyNo);
+ 			 	$('#workImg').attr("src", "/artistpage/workImg/"+workData.workImg);
+ 			 	$("#artistName").attr("value", workData.artistName);
+ 			 	$("#workName").attr("value", workData.workName);
+ 			 	$("#workType").attr("value", workData.workType);
+ 			 	$("#workTech").attr("value", workData.workTech);
+ 			 	$("#workSize").attr("value", workData.workSize);
+ 			 	$("#workIntro").html(workData.workIntro);    
+ 			 	$("#workPrice").attr("value", workData.workPrice);
 			},
 			error:function(data, textStatus){
 				alert("실패");
 			}
 		});
 		
+		
 	}
-    const applymodal = document.getElementById("applyproduct");
-    const refuseapply = document.getElementById("refuseapply");
-    
-    
-    $(function(){
-    	$(document).on('click', '#enroll', function(e){
-    		$.ajax({
-    			type:"post",
-    			async: false,
-    			url:"http://localhost:8090/manager/productapplysuccess",
-    			data:{"applyNo":$('#workapplyNo').val()},
-    			dataType:"text",
-    			success: function(data, textStatus){ 
-    				alert("작품 등록이 성공했습니다");
-    				location.reload();
-    			},
-    			error:function(data, textStatus){
-    				alert("아티스트 등록이 실패했습니다.");
-    			}
-    		});
-    	});
-    	
-    	$(document).on('click', '#refuse', function(e){
-    		alert($("#refusedContents").val());
-    		$.ajax({
-    			type:"post",
-    			async: false,
-    			url:"http://localhost:8090/manager/productapplyfail",
-    			data:{"applyNo":$('#workapplyNo').val(), "refusedContents" : $("#refusedContents").val()},
-    			dataType:"text",
-    			success: function(data, textStatus){ 
-    				alert("작품 등록 거절이 성공했습니다");
-    				location.reload();
-    			},
-    			error:function(data, textStatus){
-    				alert("작품 등록 거절이 실패했습니다.");
-    			}
-    		});
-    	});
-    });
-    
-    $(function(){
-    	$(document).on('click', '#apply_close', function(e){
-    		applymodal.style.display = "none";
-    	});
-    	$(document).on('click', '#refusemodal', function(e){
-    		refuseapply.style.display = "flex";
-    	});
-    	$(document).on('click', '#refuse_close', function(e){
-    		refuseapply.style.display = "none";
-    	});
-    	$(document).on('click', '#cancel', function(e){
-    		refuseapply.style.display = "none";
-    	});
-    });
-    
-    
-    </script>
+	$(function(){
+		$(document).on('click', '#workenroll', function(e){
+			modal.style.display = "flex";
+	    });
+	    $(document).on('click', '#cancel', function(e){
+	    	modal.style.display = "none";
+	    });
+	    $(document).on('click', '#refuse_close', function(e){
+	    	modal.style.display = "none";
+	    });
+	});
+	</script>
 </body>
 </html>

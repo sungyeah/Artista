@@ -12,7 +12,20 @@ public class Exhibition {
 	String exhibitPlace;
 	String reserveLink;
 	
-	Exhibition(){ }
+	public Exhibition(){ }
+	public Exhibition(int exhibitNo, int fundingNo, int artistNo, String exhibitTitle, String exhibitPoster, String exhibitArtist, 
+			String startDate, String endDate, String exhibitPlace, String reserveLink){
+		this.exhibitNo = exhibitNo;
+		this.fundingNo = fundingNo;
+		this.artistNo = artistNo;
+		this.exhibitTitle = exhibitTitle;
+		this.exhibitPoster = exhibitPoster;
+		this.exhibitArtist = exhibitArtist;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.exhibitPlace = exhibitPlace;
+		this.reserveLink = reserveLink;
+	}
 
 	public int getExhibitNo() {
 		return exhibitNo;

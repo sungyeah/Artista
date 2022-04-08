@@ -279,6 +279,25 @@ public class ArtistPageController {
 		return result;
 	}
 	
+	/* 아티스트 판매작품 신청내역보기 */
+	@GetMapping("myproductapply")
+	public String artistproductApply(Model model) {
+		/*
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		try {
+			String artistName = artistService.getArtistName(id);
+			artistNo = artistService.getArtistNo(id);
+			model.addAttribute("artistName", artistName);
+			List<WorkApply> workapplylist = 
+			model.addAttribute("worklist", worklist);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};*/
+		
+		return "artistpage/myproductapply";
+	}
+	
 	/* 작품 가져오기 경로 */
 	@GetMapping(value="/workImg/{filename}")
 	public void workImgView(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
@@ -450,7 +469,7 @@ public class ArtistPageController {
 		System.out.println("try 이전");
 		int exhibitapplyNo;
 		try {
-			exhibitapplyNo = exhibitService.maxExhibitApplyId();
+			exhibitapplyNo = exhibitService.maxExhibitApplyNo();
 			File destFile = new File(path + exhibitEnrollTime +"."+ mtypes[1]);	//이미지 타입
 			posterImgFile.transferTo(destFile);
 			
@@ -481,6 +500,38 @@ public class ArtistPageController {
 			e.printStackTrace();
 		}
 		return "artistpage/succesapply";
+	}
+	
+	/* 포스터 가져오기 경로 */
+	@GetMapping(value="/posterImg/{filename}")
+	public void posterImgView(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
+		String path= servletContext.getRealPath("/imgupload/exhibition/");
+		File file=new File(path+filename); 
+		String sfilename=null;
+		FileInputStream fis=null;
+		try {
+			if(request.getHeader("User-Agent").indexOf("MSIE")>-1) {
+				sfilename=URLEncoder.encode(file.getName(), "UTF-8");
+			} else {
+				sfilename=new String(file.getName().getBytes("UTF-8"), "ISO-8859-1");
+			}
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/octet-stream; charest=UTF-8");
+			OutputStream out=response.getOutputStream();
+			fis=new FileInputStream(file);
+			FileCopyUtils.copy(fis, out); 
+			out.flush(); 
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(fis!=null) {
+				try{
+					fis.close(); 
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 //	@GetMapping("mypagemodify")

@@ -1,6 +1,8 @@
 package com.mulcam.artista.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ public class ExhibitServiceImpl implements ExhibitService {
 	ExhibitionDAO exhibitDAO;
 	
 	@Override
-	public int maxExhibitApplyId() throws Exception {
+	public int maxExhibitApplyNo() throws Exception {
 		Integer id = exhibitDAO.maxExhibitionApplyId();
 		if(id==null) id = 0;
 		return id+1;
@@ -36,9 +38,23 @@ public class ExhibitServiceImpl implements ExhibitService {
 	public List<ExhibitionApply> ExhibitApplyList() throws Exception {
 		return exhibitDAO.selectExhibitApplyList();
 	}
+	
+	@Override
+	public void deleteExhibitApply(int applyNo) throws Exception {
+		exhibitDAO.deleteExhibitApply(applyNo);
+	}
+	
+	
+	@Override
+	public void refuseExhibitApply(int applyNo, String refusedContents) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("applyNo", applyNo);
+		map.put("refusedContents", refusedContents);
+		exhibitDAO.updateExhibitApplyRefuse(map);
+	}
 
 	@Override
-	public int maxExhibitId() throws Exception {
+	public int maxExhibitNo() throws Exception {
 		Integer id = exhibitDAO.maxExhibitionId();
 		if(id==null) id = 0;
 		return id+1;
@@ -58,6 +74,14 @@ public class ExhibitServiceImpl implements ExhibitService {
 	public List<Exhibition> ExhibiList() throws Exception {
 		return exhibitDAO.selectExhibitList();
 	}
+
+	@Override
+	public void deleteExhibit(int exhibitNo) throws Exception {
+		exhibitDAO.deleteExhibit(exhibitNo);
+	}
+
+
+
 
 	
 
