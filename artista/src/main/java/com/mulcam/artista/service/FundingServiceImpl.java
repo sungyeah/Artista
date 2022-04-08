@@ -2,10 +2,11 @@ package com.mulcam.artista.service;
 
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.FundingDAO;
@@ -68,6 +69,28 @@ public class FundingServiceImpl implements FundingService {
 	public Funding querytmdetail(int fundingNo) {
 		// TODO Auto-generated method stub
 		return fundingDAO.querytmdetail(fundingNo);
+	}
+
+	@Override
+	public List<Funding> queryappfunding(String id) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryappfunding(id);
+	}
+
+	@Override
+	public void insertfundingspon(int sponsorAmount,int fundingNo,String email,String id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("sponsorAmount", sponsorAmount);
+		map.put("fundingNo", fundingNo);
+		map.put("email", email);
+		map.put("id", id);
+		fundingDAO.insertfundingspon(map);
+	}
+
+	@Override
+	public Funding queryFundingNo(int fundingNo) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryFundingNo(fundingNo);
 	}
 
 }

@@ -33,7 +33,7 @@
 		remainTime=remainTime%(60*60*24);
 		var remain_hour=Math.floor(remainTime/(60*60));
 		$("#remain_hour").text(remain_hour);
-		remainTime=remainTime%(60*60*24);
+		remainTime=remainTime%(60*60);
 		var remain_minute=Math.floor(remainTime/60);
 		$("#remain_minute").text(remain_minute);
 	})
@@ -64,8 +64,11 @@
                 <progress id="pro" value="30" max="100"></progress>
             </div><br>
             <div class="amountdetail">
-                <input class="account-modify-form-input" type="text" name="Sfundingdate" maxlength="20" id="testDatepicker1" placeholder="최소 금액">
-                <button class="Btn1">후원하기</button>
+            <form action="fundingpay" id="fundingpay" method="post">
+                <input class="account-modify-form-input" type="text" name="sponsorAmount" maxlength="20" id="sponsorAmount" placeholder="최소 금액">
+                <input type="hidden" id="fundingNo" name="fundingNo" value="${funding.fundingNo }">
+                <input class="Btn1" type="submit" id="sponsor" value="후원하기">
+            </form>
             </div>
         </div>
     </div>

@@ -352,9 +352,9 @@ public class ArtistPageController {
 		}
 	}
 	
-	// 아티스트의 펀딩
+	// 아티스트의 펀딩 리스트
 	@GetMapping("myfunding")
-	public String artistpageFunding(@ModelAttribute Funding funding, Model model) throws Exception {
+	public String myfunding(@ModelAttribute Funding funding, Model model) throws Exception {
 		String id=(String) session.getAttribute("id");
 		List<Funding> list = fundingService.queryMyFunding(id);
 		Member mem = subPageService.queryId(id);
@@ -362,6 +362,18 @@ public class ArtistPageController {
 		model.addAttribute("list", list);
 		return "artistpage/myfunding";
 	}
+	
+	// 아티스트의 펀딩 신청 내역
+	@GetMapping("appmyfunding")
+	public String appmyfunding(@ModelAttribute Funding funding, Model model) throws Exception {
+		String id=(String) session.getAttribute("id");
+		List<Funding> list = fundingService.queryappfunding(id);
+		Member mem = subPageService.queryId(id);
+		model.addAttribute("mem", mem);
+		model.addAttribute("list", list);
+		return "artistpage/appmyfunding";
+	}
+
 	
 	//펀딩 신청
 	@GetMapping("applyfunding")

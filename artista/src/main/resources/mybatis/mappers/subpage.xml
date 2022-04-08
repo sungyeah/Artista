@@ -184,4 +184,14 @@
     ordercount varchar(100),
     cartNo varchar(100),
     primary key(orderNo)
-); -->
+);
+
+create table alarm(
+	alarmNo int(10) not null,
+    id varchar(100) not null,
+    fundingNo int(10) not null,
+    readSign boolean not null,
+    primary key(alarmNo)
+);
+
+-->

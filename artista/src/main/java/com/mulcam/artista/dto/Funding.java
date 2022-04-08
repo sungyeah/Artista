@@ -8,6 +8,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class Funding {
 		int fundingNo;
 		int artistNo;
+		int sponsorNo;
+		int alarmNo;
+		boolean readSign;
 		String artistName;
 		String projTitle;
 		String projIntro;
@@ -25,11 +28,12 @@ public class Funding {
 		Date applydate;
 		int sumAmount;
 		int fundingState;
-		int sponsorNo;
 		String id;
 		int sponsorAmount;
 		String email;
 		MultipartFile thumbFile;
+		
+		
 		public Funding() {}
 		
 		public String getStartDate() {
@@ -185,6 +189,22 @@ public class Funding {
 
 		public void setThumbFile(MultipartFile thumbFile) {
 			this.thumbFile = thumbFile;
+		}
+
+		public int getAlarmNo() {
+			return alarmNo;
+		}
+
+		public void setAlarmNo(int alarmNo) {
+			this.alarmNo = alarmNo;
+		}
+
+		public boolean isReadSign() {
+			return readSign;
+		}
+
+		public void setReadSign(boolean readSign) {
+			this.readSign = readSign;
 		}
 		
 		
