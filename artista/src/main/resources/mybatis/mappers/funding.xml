@@ -18,7 +18,13 @@
 	
 	<select id="queryFunding" parameterType="string" resultType="Funding">
 		<![CDATA[
-			select * from fundingapp where id=#{id}
+			select * from funding where id =#{id}
+		]]>
+	</select>
+	
+	<select id="queryMyFunding" parameterType="string" resultType="Funding">
+		<![CDATA[
+			select * from funding where artistNo = (select artistNo from artist where id = #{id})
 		]]>
 	</select>
 	<update id="updatefundingapp" parameterType="Funding" >

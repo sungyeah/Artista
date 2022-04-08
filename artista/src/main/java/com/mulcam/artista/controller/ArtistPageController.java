@@ -313,117 +313,122 @@ public class ArtistPageController {
 	
 	// 아티스트의 펀딩
 	@GetMapping("myfunding")
-	public String artistpageFunding() {
+	public String artistpageFunding(@ModelAttribute Funding funding, Model model) throws Exception {
+		String id=(String) session.getAttribute("id");
+		List<Funding> list = fundingService.queryMyFunding(id);
+		Member mem = subPageService.queryId(id);
+		model.addAttribute("mem", mem);
+		model.addAttribute("list", list);
 		return "artistpage/myfunding";
 	}
 	
 	//펀딩 신청
-		@GetMapping("applyfunding")
-		public String applyfunding(Model model) {
-			String id=(String) session.getAttribute("id");
-			try {
-				Member mem = subPageService.queryId(id);
-				model.addAttribute("mem", mem);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}		
-			return "artistpage/applyfunding";
-		}
-		
-		
+	@GetMapping("applyfunding")
+	public String applyfunding(Model model) {
+		String id=(String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			model.addAttribute("mem", mem);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return "artistpage/applyfunding";
+	}
+	
+	
 
-		@PostMapping("applyfunding")
-		public String applyfunding1(@ModelAttribute Funding funding, Model model) {
-			
-			String id=(String) session.getAttribute("id");
+	@PostMapping("applyfunding")
+	public String applyfunding1(@ModelAttribute Funding funding, Model model) {
+		
+		String id=(String) session.getAttribute("id");
 //			 File destFile = new File(path+file.getOriginalFilename());
-			String[] fundingDate = funding.getFundingDate().split(" ~ ");
-			System.out.println(fundingDate[0]);
-			System.out.println(fundingDate[1]);
-			DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
-			LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
-			System.out.println(Timestamp.valueOf(localDateTime));
-			funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
-			localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
-			System.out.println(Timestamp.valueOf(localDateTime));
-			funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
-			try {
-				MultipartFile file = funding.getThumbFile();
-				if(file!=null && !file.isEmpty()) {
-					String path = servletContext.getRealPath("/fundingApp/");
-					String filename = file.getOriginalFilename();
-					File destFile = new File(path+filename);
-					file.transferTo(destFile);
-					funding.setThumbImg(filename);
-				}
-				artistPageService.insertApply(funding);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return "artistpage/succesapply";
-		}
-		
-		//end - start 
-		
-		@ResponseBody
-		@PostMapping("fundingApp")
-		public Map<String, Object> fileupload(@RequestParam(value="fundingApp") MultipartFile file) {
-			System.out.println(file.getOriginalFilename()+"---------------------");
-			String path = servletContext.getRealPath("/fundingApp/");
-			String filename = file.getOriginalFilename();
-			File destFile = new File(path+filename);
-			Map<String, Object> json = new HashMap<>();
-			try {
+		String[] fundingDate = funding.getFundingDate().split(" ~ ");
+		System.out.println(fundingDate[0]);
+		System.out.println(fundingDate[1]);
+		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
+		localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
+		try {
+			MultipartFile file = funding.getThumbFile();
+			if(file!=null && !file.isEmpty()) {
+				String path = servletContext.getRealPath("/fundingApp/");
+				String filename = file.getOriginalFilename();
+				File destFile = new File(path+filename);
 				file.transferTo(destFile);
-				json.put("uploaded", 1);
-				json.put("fileName", filename);
-				json.put("url", "/fileview/"+filename);
-			} catch(IOException e) {
-				e.printStackTrace();
-			} 
-			return json;
-		}
-		
-		
-		@GetMapping("modifyfunding")
-		public String modifyfunding(Model model) {
-			String id=(String) session.getAttribute("id");
-			try {
-				Member mem = subPageService.queryId(id);
-				model.addAttribute("mem", mem);
-				Funding funding = fundingService.queryFunding(id);
-				model.addAttribute("funding", funding);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}		
-			return "artistpage/modifyfunding";
-		}
-		
-		
-		@RequestMapping(value="modifyfunding", method= {RequestMethod.POST})
-		public String modifyfunding2(@ModelAttribute Funding funding) {
-			String path = servletContext.getRealPath("/fundingApp/");
-			String id=(String) session.getAttribute("id");
-			funding.setId(id);
-			String[] fundingDate = funding.getFundingDate().split(" ~ ");
-			System.out.println(fundingDate[0]);
-			System.out.println(fundingDate[1]);
-			DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
-			LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
-			System.out.println(Timestamp.valueOf(localDateTime));
-			funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
-			localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
-			System.out.println(Timestamp.valueOf(localDateTime));
-			funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
-			System.out.println(id);
-			try {			
-				System.out.println(funding.getId());
-				artistPageService.insertupdate(funding);				
-			} catch (Exception e) {
-				e.printStackTrace();
+				funding.setThumbImg(filename);
 			}
-			return "artistpage/succesapply";
+			artistPageService.insertApply(funding);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return "artistpage/succesapply";
+	}
+	
+	//end - start 
+	
+	@ResponseBody
+	@PostMapping("fundingApp")
+	public Map<String, Object> fileupload(@RequestParam(value="fundingApp") MultipartFile file) {
+		System.out.println(file.getOriginalFilename()+"---------------------");
+		String path = servletContext.getRealPath("/fundingApp/");
+		String filename = file.getOriginalFilename();
+		File destFile = new File(path+filename);
+		Map<String, Object> json = new HashMap<>();
+		try {
+			file.transferTo(destFile);
+			json.put("uploaded", 1);
+			json.put("fileName", filename);
+			json.put("url", "/fileview/"+filename);
+		} catch(IOException e) {
+			e.printStackTrace();
+		} 
+		return json;
+	}
+	
+	
+	@GetMapping("modifyfunding")
+	public String modifyfunding(Model model) {
+		String id=(String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			model.addAttribute("mem", mem);
+			Funding funding = fundingService.queryFunding(id);
+			model.addAttribute("funding", funding);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return "artistpage/modifyfunding";
+	}
+	
+	
+	@RequestMapping(value="modifyfunding", method= {RequestMethod.POST})
+	public String modifyfunding2(@ModelAttribute Funding funding) {
+		String path = servletContext.getRealPath("/fundingApp/");
+		String id=(String) session.getAttribute("id");
+		funding.setId(id);
+		String[] fundingDate = funding.getFundingDate().split(" ~ ");
+		System.out.println(fundingDate[0]);
+		System.out.println(fundingDate[1]);
+		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
+		localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
+		System.out.println(id);
+		try {			
+			System.out.println(funding.getId());
+			artistPageService.insertupdate(funding);				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "artistpage/succesapply";
+	}
 	
 	
 
