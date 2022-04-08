@@ -13,4 +13,6 @@ public interface ArtistService {
 	
 	public List<Artist> artistList(int page, PageInfo pageInfo) throws Exception;
 	public Artist selectArtistByNo(int artistNo) throws Exception;
+	
+	List<Artist> artists() throws Exception;
 }
