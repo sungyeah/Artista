@@ -14,6 +14,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
 	<div id="productdetail" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">

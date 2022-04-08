@@ -17,6 +17,7 @@
 
   </style>
 <body>
+	<%@include file ="../header.jsp" %>
           <form method="post" action="applyfunding" enctype="multipart/form-data" >
     <div id="contents">
         
