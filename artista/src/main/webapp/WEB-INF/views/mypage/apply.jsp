@@ -42,6 +42,7 @@
 
 </head>
 <body>
+	 <%@include file ="../header.jsp" %>
 	<div id="contents">
     	<header class="account-header">
             <h2 class="account-header-title">작가등록 신청</h2>
@@ -172,6 +173,8 @@
             </form>
         </article>
     </div>
+    
+     <%@include file ="../footer.jsp" %>
     
     <script>
     $("#applyartist").click(function(){
