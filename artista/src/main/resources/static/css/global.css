@@ -246,7 +246,7 @@ a:active {text-decoration: none;}
 	right: 0;
 	width: 48px;
 	height: 60px;
-	background: url(../images/ico_package.png) no-repeat 9px 15px;
+	background: url(${pageContext.request.contextPath}/images/ico_package.png) no-repeat 9px 15px;
 	text-indent: -999em;
 }
 .search-form .close {
@@ -256,7 +256,7 @@ a:active {text-decoration: none;}
 	right: 0;
 	width: 20px;
 	height: 20px;
-	background: url(../images/ico_package.png) no-repeat -50px 0;
+	background: url(${pageContext.request.contextPath}/images/ico_package.png) no-repeat -50px 0;
 	text-indent: -999em;
 }
 .search-form .page-nav .inner {padding-top: 39px;}
@@ -355,7 +355,7 @@ a:active {text-decoration: none;}
 	display: inline-block;
 	height: 16px;
 	margin-right: 10px;
-	background: url(../images/ico_package.png) no-repeat;
+	background: url(${pageContext.request.contextPath}/images/ico_package.png) no-repeat;
 	vertical-align: top;
 }
 #footer2 .social-channel ul li.instagram a:before {
@@ -445,7 +445,7 @@ a:active {text-decoration: none;}
 	width: 19px;
 	height: 13px;
 	margin: -6px 0 0 -9px;
-	background: url(../images/ico_package.png) no-repeat -100px 0;
+	background: url(${pageContext.request.contextPath}/images/ico_package.png) no-repeat -100px 0;
 }
 #footer2 .newsletter-form .box input:valid+button:before,
 #footer2 .newsletter-form .box input:focus+button:before {background-position-y: -13px;}
@@ -466,7 +466,7 @@ a:active {text-decoration: none;}
 }
 #footer2 .newsletter-form input[type=checkbox]:checked+label:before {
 	border-color: #333;
-	background: url(../images/ico_package.png) no-repeat -148px 3px;
+	background: url(${pageContext.request.contextPath}/images/ico_package.png) no-repeat -148px 3px;
 }
 #footer2 .newsletter-form .close {
 	position: absolute;
@@ -474,7 +474,7 @@ a:active {text-decoration: none;}
 	right: 0;
 	width: 18px;
 	height: 18px;
-	background: url(../images/ico_package.png) -49px 0;
+	background: url(${pageContext.request.contextPath}/images/ico_package.png) -49px 0;
 	background-size: 196px auto;
 	text-indent: -999em;
 }
@@ -502,7 +502,7 @@ a:active {text-decoration: none;}
 	#footer2 .newsletter-form .box button:before,
 	#footer2 .newsletter-form input[type=checkbox]:checked+label:before,
 	#footer2 .newsletter-form .close {
-		background-image: url(../images/ico_package_2x.png);
+		background-image: url(${pageContext.request.contextPath}/images/ico_package_2x.png);
 		background-size: 200px auto;
 	}
 }
@@ -574,7 +574,7 @@ a:active {text-decoration: none;}
 		top: 21px;
 		width: 19px;
 		height: 19px;
-		background: url(../images/ico_package_2x.png) no-repeat 0 0;
+		background: url(${pageContext.request.contextPath}/images/ico_package_2x.png) no-repeat 0 0;
 		background-size: 120px auto;
 		text-indent: -999em;
 	}
