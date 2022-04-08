@@ -14,6 +14,7 @@
 <script	src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
 	<div id="applyexhibition" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">

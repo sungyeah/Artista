@@ -20,7 +20,7 @@
 </style>
 </head>
 <body>
-	
+	<%@include file ="../header.jsp" %>
 	<div id="applymodal" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">

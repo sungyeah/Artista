@@ -15,6 +15,7 @@
 </style>
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">관리자주문 상세정보</h2>
