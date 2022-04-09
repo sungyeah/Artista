@@ -168,7 +168,7 @@ public class MyPageController {
 	public void fileview(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
 		String path= servletContext.getRealPath("/imgupload/artistProfile/");
 		File file=new File(path+filename); 
-		System.out.println(filename);
+//		System.out.println(filename);
 		String sfilename=null;
 		FileInputStream fis=null;
 		try {

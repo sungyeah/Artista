@@ -206,8 +206,12 @@
                             </div>
                             <div class="w50per card_rt">
                                 <div class="topInfo">
-                                    <h3 style="margin-bottom: 32px;">${work.workName }</h3>
+                                    <h3 style="margin-bottom: 25px;">${work.workName }</h3>
                                     <div style="padding-left: 60px;margin-top: 25px;margin-bottom: 25px;">
+                                      <div style="display: flex;margin-bottom: 20px;text-align: start;margin-left: 20px;">
+                                        <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;">작품번호</div>
+                                        <div style="flex-grow: 1;font-size: 15px;">${work.workNo }</div>
+                                    </div>
                                         <div style="display: flex;margin-bottom: 20px;text-align: start;margin-left: 20px;">
                                             <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;">작가</div>
                                             <div style="flex-grow: 1;font-size: 15px;">${work.artistName }</div>
@@ -217,13 +221,15 @@
                                         <div style="flex-grow: 1;font-size: 15px;">${work.workTech }<br>${work.workSize }</div>
                                     </div>
                                     <div style="display: flex;margin-bottom: 20px;text-align: start;margin-left: 20px;">
-                                        <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;">작품번호</div>
-                                        <div style="flex-grow: 1;font-size: 15px;">${work.workNo }</div>
+                                        <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;">작품타입</div>
+                                        <div style="flex-grow: 1;font-size: 15px;">${work.workType }</div>
                                     </div>
+                                  
                                     <div style="display: flex;margin-bottom: 20px;text-align: start;margin-left: 20px;">
                                         <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;margin-top: 3px;">작품가격</div>
                                         <div style="flex-grow: 1;font-size: 18px;"><b>￦<fmt:formatNumber value="${work.workPrice }"/></b></div>
                                     </div>
+                                    
                                     </div>
                                      <!-- <div class="price">
                                         <span class="howmuch"><span name="price">￦4,500,000</span></span>

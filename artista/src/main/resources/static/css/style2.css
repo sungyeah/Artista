@@ -786,7 +786,7 @@ figcaption {
 .artworkInfoWrap .w50per .topInfo .topInfoBtns {
     display: flex;
     flex-wrap: wrap;
-    padding-top: 50px;
+    padding-top: 33px;
     justify-content: center;
     align-items: center;
 }
