@@ -50,7 +50,7 @@
                 나의 리스트
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/appmyfunding">
-                펀딩 내역
+                <b>펀딩 내역</b>
             </a>
 			<a class="member-delete-btn"
 				href="${pageContext.request.contextPath}/artistpage/applyfunding">
