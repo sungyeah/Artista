@@ -86,7 +86,10 @@
                 대표 이미지
             </div>
             <div class="account-modify-form-row-value">
-                    <input id="thumbImg" class="account-modify-form-input" type="file" name="thumbFile" ><br>
+            	<input class="upload-name" value="파일선택" disabled="disabled">
+				<label for="thumbImg">업로드</label>
+            	<!-- <input id="thumbImg" class="account-modify-form-input" type="file" name="thumbFile" ><br> -->
+            	<input id="thumbImg" type="file" name="thumbFile" class="upload-hidden" ><br>
             </div>
         </div>
 
@@ -125,8 +128,8 @@
 </article>
 </div>
     <div class="a">
-        <button class="Btn" type="submit">확인</button>
-        <button class="Btn" type="button">취소</button>
+        <button class="yesNo-btn" style="background-color:#222;color:white;" type="submit">확인</button>
+        <button class="yesNo-btn" style="background-color:white;color:#222;margin-left:10px" type="button">취소</button>
     </div>
     </form>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -218,7 +221,19 @@
     	    });
     });
    
-    
+    $(document).ready(function(){ 
+    	var fileTarget = $('.account-modify-form-row-value .upload-hidden'); 
+    	fileTarget.on('change', function(){ // 값이 변경되면 
+    		if(window.FileReader){ // modern browser 
+    		var filename = $(this)[0].files[0].name; 
+    	} else { // old IE 
+    		var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+    		} 
+    	// 추출한 파일명 삽입 
+    		$(this).siblings('.upload-name').val(filename); 
+    		}); 
+    	});
+
     </script>    
 </body>
 </html>

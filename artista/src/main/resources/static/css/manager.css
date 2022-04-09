@@ -230,7 +230,8 @@
     height: 36px;
     margin: 10px 20px 0 0;
     float: right;
-    border: 1px solid #dfdfdf;
+    border: 1px solid #222;
+/*     border: 1px solid #dfdfdf; */
     font-size: 14px;
     color: #222;
     line-height: 36px;

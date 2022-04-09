@@ -14,7 +14,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <style>
 	.workImg {
-		width:300px; height:300px; margin-top:7px; display:inline-block;
+		width:308px; height:300px; margin-top:7px; display:inline-block;
 	}
 </style>
 </head>
@@ -36,6 +36,7 @@
                         </div>
                         <div class="enroll-modify-form-row-value">
                             <img class="workImg" id="workThumb" />
+                            <label for="workImg">파일 선택</label>
                             <input type="file" id="workImg" name="workImgFile" /><br>
                         </div>
                     </div>
@@ -97,8 +98,8 @@
                     </div>                    
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        	<button class="yesNo-btn" id="workenroll" style="width:120px;">작품등록</button>
-                    		<button class="yesNo-btn" id="cancel" type="reset">취소</button>      
+                        	<button class="yesNo-btn" id="workenroll" style="background-color:#222;color:white;">작품등록</button>
+                    		<button class="yesNo-btn" id="cancel" style="background-color:white;color:#222;margin-left:10px" type="reset">취소</button>      
                     	</div>
                 	</div>
                 </div>
