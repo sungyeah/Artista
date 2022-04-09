@@ -14,6 +14,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+<%@include file="../header.jsp"%>
 	<div id="productdetail" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
@@ -144,7 +145,7 @@
             <a class="manager-nav-btn current" href="${pageContext.request.contextPath}/artistpage/mywork">
                 전체 작품
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproduct">
+            <a class="manager-nav-btn" style="background-color: black;color: white;" href="${pageContext.request.contextPath}/artistpage/myproduct">
                 판매 작품
             </a>
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myfunding">
@@ -163,7 +164,7 @@
                 판매 완료 작품
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductapply">
-                판매신청내역
+                <b>판매신청내역</b>
             </a>
             
             <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyproduct" style="width:120px;">

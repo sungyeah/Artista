@@ -33,7 +33,7 @@
             <a class="manager-nav-btn current" href="${pageContext.request.contextPath}/artistpage/mywork">
                 전체 작품
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproduct">
+            <a class="manager-nav-btn" style="background-color: black;color: white;" href="${pageContext.request.contextPath}/artistpage/myproduct">
                 판매 작품
             </a>
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myfunding">
@@ -46,7 +46,7 @@
         
         <nav class="member-nav">
         	<a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproduct">
-                판매 중인 작품
+                <b>판매 중인 작품</b>
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductsold">
                 판매완료 작품

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="../css/mypage.css">
 </head>
 <body>
+<%@include file="../header.jsp"%>
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">작가 페이지</h2>
@@ -36,7 +37,7 @@
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myfunding">
                 나의 펀딩
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myexhibition">
+            <a class="manager-nav-btn" style="background-color: black;color: white;" href="${pageContext.request.contextPath}/artistpage/myexhibition">
                 나의 전시
             </a>
         </nav>

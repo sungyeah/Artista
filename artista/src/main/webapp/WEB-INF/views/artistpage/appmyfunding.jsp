@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../css/applymodal.css">
 </head>
 <body>
+<%@include file="../header.jsp"%>
 	<div id="contents">
 		<header class="account-header">
 			<h2 class="account-header-title">작가 페이지</h2>
