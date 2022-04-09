@@ -15,6 +15,7 @@
         color: white;
         border: 0;
         font-size: 1.3em;
+        
     }
     .align1{
         display: flex;

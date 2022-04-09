@@ -40,7 +40,7 @@ public class StoreController {
 				} else {
 					height = work.get(i-4).getWorkHeight() + work.get(i).getWorkHeight();
 				}
-				work.get(i).setWorkPrice(height);
+				work.get(i).setWorkHeight(height);
 			}
 			for(int i=0;i<work.size();i++) {
 				int artistNo=work.get(i).getArtistNo();

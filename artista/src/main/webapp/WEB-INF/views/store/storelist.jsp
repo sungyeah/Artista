@@ -113,7 +113,7 @@
                                                     <div class="p_top">
                                                         <h5>${work.workName }</h5>
                                                         <span class="artist artist3">${work.artistName }</span>
-                                                        <span class="artist">￦<fmt:formatNumber value="${work.workPrice }"/></span>
+                                                       <span class="artist">￦<fmt:formatNumber value="${work.workPrice }"/></span>
                                                     </div>
                                                     <div class="p_btm">
 

@@ -48,6 +48,7 @@
 </head>
 
 <body>
+	
     <div id="wrap">
         <div id="container">
             <style>
@@ -106,15 +107,17 @@
             </style>
 
             <section class="detail">
+            	<form id="form2" action="payment" method="post">
                 <!--상세페이지에만 들어가는 클래스입니다.-->
+                	<input type="hidden" id="workNo" name="workNo" value="${work.workNo }">
                 <div class="container">
+                	
                     <input type="hidden" id="walletAddress">
                     <div class="person pc" style="padding:50px 0px;">
                         <div class="left">
                             <a href="/user?memberId=389" class="img">
                                 <div class="user-thumbnail-div slv">
-                                    <img class="user-thumbnail" style="width:50px !important;height:50px !important;"
-                                        src="/mypage/artistprofile/${artist.artistImg }" alt="">
+                                    <img class="user-thumbnail" style="width:50px !important;height:50px !important;"src="/mypage/artistprofile/${artist.artistImg }" alt="">
                                 </div>
                             </a>
                             <div class="personInfo" style="margin-top: 20px;">
@@ -122,7 +125,6 @@
                                 <ul>
                                     <li><a href="#"><span id="spanFollowers">5</span>followers</a></li>
                                     <li><a href="#"><span>0</span>following</a></li>
-
                                 </ul>
                                 <a href="javascript:;" name="btnFollow" class="">Follow 
                                 <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
@@ -132,11 +134,8 @@
                         </div>
                         <div class="right">
                             <ul>
-
                                 <li><a href="/user?memberId=389&amp;tab=cr">CREATIONS</a></li>
                                 <li><a href="/user?memberId=389&amp;tab=co">COLLECTION</a></li>
-
-
                             </ul>
                         </div>
                     </div>
@@ -237,13 +236,10 @@
                                             <span class="fd-icon" style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;cursor:pointer;"></span>
                                                 <span style="vertical-align:middle;cursor:pointer;">카트 추가</span>
                                         </button>
-                                        <button id="purchaseBtn2" class="btnPurchase"style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;margin-left: 5px;background: #222;color: white;"><a href="../payment">
+                                        <button id="purchaseBtn2" type="submit" class="btnPurchase" style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;margin-left: 5px;background: #222;color: white;">
                                             <span class="fd-icon"style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;"></span>
                                             <span style="vertical-align:middle;">작품 구매</span>
-                                        </a></button>
-
-
-
+                                        </button>
                                     </div>
                                 </div>
                                 <!-- <div class="description">
@@ -261,10 +257,9 @@
                     <p style="max-width: 710px;margin: 0 auto 1.75em;font-weight: 300;line-height: 1.75;letter-spacing: 0.05em;color: #666;margin-bottom: 200px;">
                         ${work.workIntro }
                     </p>
+                   </form>
             </section>
-        </div>
-
-    </div>
+    	
     <input type="hidden" id="id" name="id" value="">
     <input type="hidden" id="workName" name="workName" value="${work.workName }">
     <input type="hidden" id="workPrice" name="workPrice" value="${work.workPrice }">
@@ -272,6 +267,11 @@
     <input type="hidden" id="workSize" name="workSize" value="${work.workSize }">
     <input type="hidden" id="workNo" name="workNo" value="${work.workNo }">
     <input type="hidden" id="workImg" name="workImg" value="${work.workImg }">
+        </div>
+
+    </div>
+    
+    	
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 var id = '<%=(String)session.getAttribute("id")%>';

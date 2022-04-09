@@ -196,28 +196,26 @@
                         <div class="checkout-artwork-list">
                         	 <input id="result" type="hidden" name="workNo">
                         	 <input id="result2" type="hidden" name="cartNo">
-                             <c:forEach items="${carts }" var="cart" varStatus="status"> 
+                             <c:forEach items="${works }" var="work" varStatus="status"> 
                                 <div class="checkout-item">
                                     <div class="checkout-img">
-                                        <img src="/artistpage/workImg/${cart.workImg }">
+                                        <img src="/artistpage/workImg/${work.workImg }">
                                     </div>
                                     <ul class="checkout-text">
-                                        <li class="code">${cart.workNo }</li>
-                                        <li class="title">${cart.workName }
-                                        <%-- <input type="hidden" value="${cart.workName }"> --%>
-                                        <input type="hidden" id="cartno2" name="cartno2" value="${cart.cartNo }">
+                                        <li class="code">${work.workNo }</li>
+                                        <li class="title">${work.workName }
                                         </li>
                                         <li class="sub">
-                                            ${cart.workArtist } / ${cart.workSize }
+                                            ${work.artistName } / ${work.workSize }
                                         </li>
                                         <li class="value">
                                             
-                                                ￦ <fmt:formatNumber value="${cart.workPrice }"/>
+                                                ￦ <fmt:formatNumber value="${work.workPrice }"/>
                                             
                                         </li>
                                     </ul>
-                                </div>
-                             </c:forEach> 
+                                	</div>
+                             </c:forEach>
                         </div>
                         <div class="checkout-billing-value cf">
                             <ul class="checkout-billing-title">
