@@ -181,6 +181,29 @@ public class SubPageController {
 		return "subpage/payment";
 	}
 	
+	@PostMapping("/storedetail/paymentsuc")
+	public String paymentsuc2(Order order,Model model) {
+		try {
+			subPageService.insertPayment(order);
+			model.addAttribute("order",order);
+			String str = order.getCartNo();
+			String workNo = order.getWorkNo();
+			String [] workNo2 = workNo.split(",");
+			String[] cartNo = str.split(",");
+			for(int i=0;i<cartNo.length;i++) {
+				int cart = Integer.parseInt(cartNo[i]);
+				subPageService.deleteCart(cart);
+			}
+			for(int i=0;i<workNo2.length;i++) {
+				int work = Integer.parseInt(workNo2[i]);
+				workService.updateSale(order.getOrderNo(), work);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "subpage/paymentsuc";
+	}
+	
 	@PostMapping("payment")
 	public String payment(@RequestParam(value="order_artwork") int[] workNo,Model model,
 			@RequestParam(value="total")int total,@RequestParam(value="count")String count) {

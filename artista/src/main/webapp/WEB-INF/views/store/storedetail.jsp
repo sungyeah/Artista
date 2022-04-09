@@ -48,7 +48,7 @@
 </head>
 
 <body>
-	
+<%@include file ="../header.jsp" %>
     <div id="wrap">
         <div id="container">
             <style>
@@ -304,6 +304,7 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 	});
 	
 </script>
+<%@include file ="../footer.jsp" %>
 </body>
 
 </html>

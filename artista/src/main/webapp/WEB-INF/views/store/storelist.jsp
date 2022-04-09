@@ -124,7 +124,6 @@
                                     </a>
                             	</div>	
                             	</c:forEach>
-                               
                             </div>
                         </div>
                     </div>
