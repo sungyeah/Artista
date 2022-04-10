@@ -45,7 +45,7 @@
 <div id="wrap2">
     <header id="header2">
         <div class="inner">
-            <a href="main"><img src="${pageContext.request.contextPath}/images/로고.png" style="height: 150px; width: auto;"></a>
+            <a href="${pageContext.request.contextPath}/main"><img src="${pageContext.request.contextPath}/images/로고.png" style="height: 150px; width: auto;"></a>
 <nav id="gnb">
 <ul class="menu1">
     <li class="navi"><a href="${pageContext.request.contextPath}/exhibitionview">Exhibition </a></li>

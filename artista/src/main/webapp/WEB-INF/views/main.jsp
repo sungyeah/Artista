@@ -16,8 +16,10 @@
     <script src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script>
 </head>
 <body>
+
 <%@include file ="header.jsp" %>
     <div id="container">
+		
 			
         <!-- Content -->
         <article id="content" class="test">
@@ -30,8 +32,6 @@
             </ul>
 </section>
 
-
-
 <div class="container_full">
             <section id="season_section">
                 <div class="season_top"><div class="season_keyword"><span id="season_tag">봄</span><span class="season_key">#생동감</span><span class="season_key">#꽃빛발</span><span class="season_key">#움트는</span></div><h4>어느새 또다시 눈부신 봄</h4></div>
@@ -43,7 +43,7 @@
                             </a>
                             <div class="season_artwork_info">
                                 <h5>사월의눈</h5>
-                                <p>정은주</p>
+                                <p>정은주/p>
                             </div>
                         </div>
                     

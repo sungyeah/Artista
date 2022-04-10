@@ -82,7 +82,7 @@
                     
                         <div class="season_artwork">
                             <a href="/artwork/A1334-0001/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1334/A1334-0001.jpg"/>
+                                <img class="owl-lazy" data-src="images/봄의 교향곡.jpg"/>
                             </a>
                             <div class="season_artwork_info">
                                 <h5>봄의 교향곡</h5>
@@ -92,7 +92,7 @@
                     
                         <div class="season_artwork">
                             <a href="/artwork/A1456-0007/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1456/A1456-0007.jpg"/>
+                                <img class="owl-lazy" data-src="images/Serotonin.jpg"/>
                             </a>
                             <div class="season_artwork_info">
                                 <h5>Serotonin</h5>
@@ -102,7 +102,7 @@
                     
                         <div class="season_artwork">
                             <a href="/artwork/A0690-0037/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A0690/A0690-0037.jpg"/>
+                                <img class="owl-lazy" data-src="images/Garden.jpg"/>
                             </a>
                             <div class="season_artwork_info">
                                 <h5>Garden (series.2)</h5>
@@ -112,7 +112,7 @@
                     
                         <div class="season_artwork">
                             <a href="/artwork/A1464-0026/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1464/A1464-0026.jpg"/>
+                                <img class="owl-lazy" data-src="images/봄 나들이.jpg"/>
                             </a>
                             <div class="season_artwork_info">
                                 <h5>봄 나들이</h5>
@@ -122,7 +122,7 @@
                     
                         <div class="season_artwork">
                             <a href="/artwork/A1369-0012/">
-                                <img class="owl-lazy" data-src="https://og-data.s3.amazonaws.com/media/artworks/w_fixed/A1369/A1369-0012.jpg"/>
+                                <img class="owl-lazy" data-src="images/너와 봄.jpg"/>
                             </a>
                             <div class="season_artwork_info">
                                 <h5>너와 봄(프리지아)</h5>
