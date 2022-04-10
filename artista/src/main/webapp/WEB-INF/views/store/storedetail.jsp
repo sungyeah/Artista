@@ -248,7 +248,7 @@
                                         <span class="howmuch"><span name="price">￦4,500,000</span></span>
                                     </div> -->
                                     <div class="topInfoBtns">
-                                        <button id="purchaseBtn" class="btnPurchase" style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;cursor:pointer;">
+                                        <button id="purchaseBtn1" type="button" class="btnPurchase" style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;cursor:pointer;">
                                             <span class="fd-icon" style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;cursor:pointer;"></span>
                                                 <span style="vertical-align:middle;cursor:pointer;">카트 추가</span>
                                         </button>
@@ -300,7 +300,7 @@ var workNo = $('#workNo').val()
 var workImg = $('#workImg').val()
 var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistName,"workSize":workSize,"workNo":workNo,"workImg":workImg} 
 
-	$('#purchaseBtn').click(function(){
+	$('#purchaseBtn1').click(function(){
 		  $.ajax({     
 				type:"post",
 				url:"http://localhost:8090/addCart",
