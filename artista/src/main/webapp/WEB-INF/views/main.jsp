@@ -270,7 +270,7 @@
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>  -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script>
-    console.log(${check});
+    /* console.log(${check}); */
     var uid = '<%=(String)session.getAttribute("id")%>';
 		console.log(uid) ;
  	if('${check}'=='naver'){
@@ -302,7 +302,6 @@
  						alert("실패");
  					},
  					complete:function() {
- 						
  					}
  				});
  			 }

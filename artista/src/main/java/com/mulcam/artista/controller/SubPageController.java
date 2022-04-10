@@ -86,7 +86,6 @@ public class SubPageController {
 				String membertype = subPageService.memTypeInfo(id);
 				session.setAttribute("membertype", membertype);
 				session.setAttribute("id",id);
-				System.out.println(id);
 			}
 			String membertype = subPageService.memTypeInfo(id);
 			session.setAttribute("membertype", membertype);
@@ -99,19 +98,12 @@ public class SubPageController {
 	
 	@GetMapping("callback")
 	public String callback(Model model) {
-		String id = (String) session.getAttribute("id");
 		try {
-			Member mem = subPageService.queryId(id);
-			model.addAttribute("name",mem.getName());
-			session.setAttribute("id",id);
-			String membertype = subPageService.memTypeInfo(id);
-			session.setAttribute("membertype", membertype);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("check","naver");
-		
-		return "redirect:/main";
+		return "main";
 	}
 	
 	@GetMapping("join")

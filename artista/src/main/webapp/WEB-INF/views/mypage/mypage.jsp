@@ -141,12 +141,13 @@
             <section class="orders-completed">
                 <h3>팔로우한 작가</h3>
                 <div class="container1">
+                <c:forEach items="${followLists }" var="followList">
                 <div class="register">
                     <div
                         style="margin: 5px; padding: 5px; display: flex; align-items: flex-start; justify-content: space-between;">
-                        <span><img class="profile" src='images/profile.png' onerror="this.src='/profile/profile.png'"></span>
+                        <span><img class="profile" src='/mypage/artistprofile/${followList.artistImg }' onerror="this.src='/profile/profile.png'"></span>
                         <div style="width: 140px">
-                            <span><input type="text" id="title" value='아이디'
+                            <span><input type="text" id="title" value='${followList.artistName }'
                                     style="width:130px;height: 30px; vertical-align: middle; font-weight: bold; font-size: 15px; border: none; background-color: white;text-overflow: ellipsis;"
                                     disabled> </span>
                         </div>
@@ -158,7 +159,7 @@
                             <span>
                                 <div class="heart" style="height: 30px;margin-bottom:17px;margin-top: 1px;">작품수</div>
                             </span>
-                            <span><input type="text" id="like" value='13'
+                            <span><input type="text" id="like" value='${followList.workcnt }'
                                     style="width: 30px; display: inline-block; vertical-align: middle; margin-bottom: 20px; font-size: 15px; font-weight: bold; border: none; background-color: white;margin-left: 5px;"
                                     disabled></span>
                         </div>
@@ -166,74 +167,13 @@
                             <span>
                                 <div class="heart" style="height: 30px;margin-bottom:17px;margin-top: 1px;">팔로워</div>
                             </span>
-                            <span><input type="text" id="like" value='13'
+                            <span><input type="text" id="like" value='${followList.followercnt }'
                                     style="width: 30px; display: inline-block; vertical-align: middle; margin-bottom: 20px; font-size: 15px; font-weight: bold; border: none; background-color: white;margin-left: 5px;"
                                     disabled></span>
                         </div>
                     </div>
                 </div>
-                <div class="register">
-                    <div
-                        style="margin: 5px; padding: 5px; display: flex; align-items: flex-start; justify-content: space-between;">
-                        <span><img class="profile" src='images/profile.png' onerror="this.src='/profile/profile.png'"></span>
-                        <div style="width: 140px">
-                            <span><input type="text" id="title" value='아이디'
-                                    style="width:130px;height: 30px; vertical-align: middle; font-weight: bold; font-size: 15px; border: none; background-color: white;text-overflow: ellipsis;"
-                                    disabled> </span>
-                        </div>
-                        <div style="display: inline-block;line-height: 30px;font-size: small;">팔로우 취소</div>
-                    </div>
-                    <div
-                        style="margin: 5px; margin-top: 30px; padding: 5px; vertical-align: middle;display: flex;justify-content: space-between;">
-                        <div style="display: flex; margin-left: 20px;">
-                            <span>
-                                <div class="heart" style="height: 30px;margin-bottom:17px;margin-top: 1px;">작품수</div>
-                            </span>
-                            <span><input type="text" id="like" value='13'
-                                    style="width: 30px; display: inline-block; vertical-align: middle; margin-bottom: 20px; font-size: 15px; font-weight: bold; border: none; background-color: white;margin-left: 5px;"
-                                    disabled></span>
-                        </div>
-                        <div style="display: flex;margin-right: 20px;">
-                            <span>
-                                <div class="heart" style="height: 30px;margin-bottom:17px;margin-top: 1px;">팔로워</div>
-                            </span>
-                            <span><input type="text" id="like" value='13'
-                                    style="width: 30px; display: inline-block; vertical-align: middle; margin-bottom: 20px; font-size: 15px; font-weight: bold; border: none; background-color: white;margin-left: 5px;"
-                                    disabled></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="register">
-                    <div
-                        style="margin: 5px; padding: 5px; display: flex; align-items: flex-start; justify-content: space-between;">
-                        <span><img class="profile" src='images/profile.png' onerror="this.src='/profile/profile.png'"></span>
-                        <div style="width: 140px">
-                            <span><input type="text" id="title" value='아이디'
-                                    style="width:130px;height: 30px; vertical-align: middle; font-weight: bold; font-size: 15px; border: none; background-color: white;text-overflow: ellipsis;"
-                                    disabled> </span>
-                        </div>
-                        <div style="display: inline-block;line-height: 30px;font-size: small;">팔로우 취소</div>
-                    </div>
-                    <div
-                        style="margin: 5px; margin-top: 30px; padding: 5px; vertical-align: middle;display: flex;justify-content: space-between;">
-                        <div style="display: flex; margin-left: 20px;">
-                            <span>
-                                <div class="heart" style="height: 30px;margin-bottom:17px;margin-top: 1px;">작품수</div>
-                            </span>
-                            <span><input type="text" id="like" value='13'
-                                    style="width: 30px; display: inline-block; vertical-align: middle; margin-bottom: 20px; font-size: 15px; font-weight: bold; border: none; background-color: white;margin-left: 5px;"
-                                    disabled></span>
-                        </div>
-                        <div style="display: flex;margin-right: 20px;">
-                            <span>
-                                <div class="heart" style="height: 30px;margin-bottom:17px;margin-top: 1px;">팔로워</div>
-                            </span>
-                            <span><input type="text" id="like" value='13'
-                                    style="width: 30px; display: inline-block; vertical-align: middle; margin-bottom: 20px; font-size: 15px; font-weight: bold; border: none; background-color: white;margin-left: 5px;"
-                                    disabled></span>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
             </section>
         </article>

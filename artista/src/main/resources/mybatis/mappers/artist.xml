@@ -59,6 +59,13 @@
 			select * from artist order by artistName asc
 		]]>
 	</select>
+	
+	<select id="artistInfo" resultType="Artist" parameterType="string">
+		<![CDATA[
+			SELECT * FROM artista.artist where id=#{id}
+		]]>
+	</select>
+	
 </mapper>
 <!-- 
 create table artist(

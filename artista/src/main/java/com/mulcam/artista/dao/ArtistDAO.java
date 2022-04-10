@@ -19,4 +19,5 @@ public interface ArtistDAO {
 	public Artist selectArtistByNo(int artistNo) throws Exception;
 	
 	public List<Artist> nameartist() throws Exception;
+	public Artist artistInfo(String id)throws Exception;
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.SubPageDAO;
 import com.mulcam.artista.dto.Cart;
+import com.mulcam.artista.dto.Follow;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.PageInfo;
@@ -199,6 +200,16 @@ public class SubPageServiceImpl implements SubPageService{
 	@Override
 	public int followingcnt(String id) throws Exception {
 		return subpageDAO.followingcnt(id);
+	}
+
+	@Override
+	public List<Follow> followInfo(String following) throws Exception {
+		return subpageDAO.followInfo(following);
+	}
+
+	@Override
+	public int workcnt(String artistName) throws Exception {
+		return subpageDAO.workcnt(artistName);
 	}
 
 	
