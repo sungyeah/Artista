@@ -16,8 +16,10 @@
     <script src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script>
 </head>
 <body>
+
 <%@include file ="header.jsp" %>
     <div id="container">
+		
 			
         <!-- Content -->
         <article id="content" class="test">
@@ -30,8 +32,6 @@
             </ul>
 </section>
 
-
-
 <div class="container_full">
             <section id="season_section">
                 <div class="season_top"><div class="season_keyword"><span id="season_tag">봄</span><span class="season_key">#생동감</span><span class="season_key">#꽃빛발</span><span class="season_key">#움트는</span></div><h4>어느새 또다시 눈부신 봄</h4></div>
@@ -43,7 +43,7 @@
                             </a>
                             <div class="season_artwork_info">
                                 <h5>사월의눈</h5>
-                                <p>정은주</p>
+                                <p>정은주/p>
                             </div>
                         </div>
                     
@@ -270,7 +270,7 @@
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>  -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script>
-    console.log(${check});
+    /* console.log(${check}); */
     var uid = '<%=(String)session.getAttribute("id")%>';
 		console.log(uid) ;
  	if('${check}'=='naver'){
@@ -302,7 +302,6 @@
  						alert("실패");
  					},
  					complete:function() {
- 						
  					}
  				});
  			 }

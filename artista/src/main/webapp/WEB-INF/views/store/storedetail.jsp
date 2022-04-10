@@ -123,13 +123,23 @@
                             <div class="personInfo" style="margin-top: 20px;">
                                 <h4>${artist.artistName }</h4>
                                 <ul>
-                                    <li><a href="#"><span id="spanFollowers">5</span>followers</a></li>
-                                    <li><a href="#"><span>0</span>following</a></li>
+                                    <li><a href="#"><span id="spanFollowers">${follower }</span>followers</a></li>
+                                    <li><a href="#"><span>${following }</span>following</a></li>
                                 </ul>
-                                <a href="javascript:;" name="btnFollow" class="">Follow 
-                                <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
-                                <img class="1" style="width:17.6px !important;height:17.6px !important;" src="../images/하트.png" alt="">
-                                </a>
+                                <c:choose>
+                                	<c:when test="${check eq false }">
+                                		<a name="btnFollow" class="follow" id="a" onclick="follow('${artist.id}')" style="background:white;color:#222;">Follow 
+                                		<!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
+                                		<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/하트2.png" alt="">
+                                		</a>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<a name="btnFollow" class="follow" id="a" onclick="follow('${artist.id}')" style="background:#222;color:white;">UnFollow 
+                                		<!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
+                                		<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/white.png" alt="">
+                                		</a>
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                         <div class="right">
@@ -238,7 +248,7 @@
                                         <span class="howmuch"><span name="price">￦4,500,000</span></span>
                                     </div> -->
                                     <div class="topInfoBtns">
-                                        <button id="purchaseBtn" class="btnPurchase" style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;cursor:pointer;">
+                                        <button id="purchaseBtn1" type="button" class="btnPurchase" style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;cursor:pointer;">
                                             <span class="fd-icon" style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;cursor:pointer;"></span>
                                                 <span style="vertical-align:middle;cursor:pointer;">카트 추가</span>
                                         </button>
@@ -290,7 +300,7 @@ var workNo = $('#workNo').val()
 var workImg = $('#workImg').val()
 var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistName,"workSize":workSize,"workNo":workNo,"workImg":workImg} 
 
-	$('#purchaseBtn').click(function(){
+	$('#purchaseBtn1').click(function(){
 		  $.ajax({     
 				type:"post",
 				url:"http://localhost:8090/addCart",
@@ -309,6 +319,31 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 			}); 
 	});
 	
+	function follow(follower){
+		var color=document.getElementById("a");
+		
+		$.ajax({     
+			type:"post",
+			dataType:"text",
+			async:false,
+			url:"http://localhost:8090/follow",
+			data:{"follower":follower},
+			success: function(data, textStatus){
+				if(data=='true'){
+					 color.style.color="white";
+					 color.style.background="#222";
+					 location.reload();
+				}else{
+					color.style.color="#222";
+					color.style.background="white";
+					location.reload();
+				}
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		}); 
+	}
 </script>
 <%@include file ="../footer.jsp" %>
 </body>

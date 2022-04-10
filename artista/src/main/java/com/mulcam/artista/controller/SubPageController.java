@@ -86,7 +86,6 @@ public class SubPageController {
 				String membertype = subPageService.memTypeInfo(id);
 				session.setAttribute("membertype", membertype);
 				session.setAttribute("id",id);
-				System.out.println(id);
 			}
 			String membertype = subPageService.memTypeInfo(id);
 			session.setAttribute("membertype", membertype);
@@ -99,19 +98,12 @@ public class SubPageController {
 	
 	@GetMapping("callback")
 	public String callback(Model model) {
-		String id = (String) session.getAttribute("id");
 		try {
-			Member mem = subPageService.queryId(id);
-			model.addAttribute("name",mem.getName());
-			session.setAttribute("id",id);
-			String membertype = subPageService.memTypeInfo(id);
-			session.setAttribute("membertype", membertype);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("check","naver");
-		
-		return "redirect:/main";
+		return "main";
 	}
 	
 	@GetMapping("join")
@@ -311,5 +303,24 @@ public class SubPageController {
 			e.printStackTrace();
 		}
 		return "subpage/paymentsuc";
+	}
+	
+	@ResponseBody
+	@PostMapping("follow")
+	public boolean follow(@RequestParam(value="follower")String follower) {
+		String following = (String) session.getAttribute("id");
+		boolean followcheck = false;
+		try {
+			if(subPageService.checkFollow(follower, following)) {
+				subPageService.unfollow(follower, following);
+				followcheck = false;
+			}else {
+				subPageService.follow(follower, following);
+				followcheck = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return followcheck;
 	}
 }

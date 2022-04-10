@@ -135,6 +135,48 @@
 		]]>
 	</select>
 	
+	<select  id="checkFollow" parameterType="map" resultType="boolean">
+		<![CDATA[
+			select EXISTS (select * from follow 
+				where follower= #{follower} and following=#{following} limit 1) as success
+		 ]]>
+	</select>
+	
+	<insert id="follow" parameterType="map" >
+		<![CDATA[
+			insert into follow(follower,following)values(#{follower},#{following})
+		]]>
+	</insert>
+	
+	<delete id="unfollow" parameterType="map" >
+		<![CDATA[
+			delete from follow where follower=#{follower} and following=#{following}
+		]]>
+	</delete>
+	
+	<select  id="followercnt" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(follower) from follow where follower=#{follower}
+		 ]]>
+	</select>
+	
+	<select  id="followingcnt" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(following) from follow where following=#{following}
+		 ]]>
+	</select>
+	
+	<select  id="followInfo" parameterType="string" resultType="Follow">
+		<![CDATA[
+			select * from follow where following=#{following};
+		 ]]>
+	</select>
+	
+	<select  id="workcnt" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(workNo) from work where artistName=#{artistName}
+		 ]]>
+	</select>
 	
 </mapper>
 <!-- create table member(
@@ -195,3 +237,10 @@ create table alarm(
 );
 
 -->
+
+<!-- create table follow(
+	followNo int(10) auto_increment not null,
+    follower varchar(100) not null,
+    following varchar(100) not null,
+    primary key(followNo)
+); -->

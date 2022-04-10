@@ -8,4 +8,6 @@ public interface ArtistWorldService {
 	 int getArtistWorldId() throws Exception;
 	 void insertArtistWorldFile(ArtistWorld worldImg) throws Exception;
 	 List<ArtistWorld> getArtistWorlds(String id) throws Exception;
+	 
+//	 List<Worlds> worlds() throws Exception;
 }
