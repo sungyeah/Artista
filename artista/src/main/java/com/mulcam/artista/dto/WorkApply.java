@@ -13,6 +13,7 @@ public class WorkApply {
 	int workPrice;
 	int applyState;
 	String refusedContents;
+	int workNo;
 	int workHeight;
 	
 	public WorkApply() {}
@@ -93,6 +94,11 @@ public class WorkApply {
 	}
 	public void setWorkHeight(int workHeight) {
 		this.workHeight = workHeight;
+	}
+	public int getWorkNo() {
+		return workNo;
+	}
+	public void setWorkNo(int workNo) {
+		this.workNo = workNo;
 	} 
-	
 }

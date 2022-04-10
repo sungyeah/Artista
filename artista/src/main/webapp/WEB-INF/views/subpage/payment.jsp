@@ -196,28 +196,26 @@
                         <div class="checkout-artwork-list">
                         	 <input id="result" type="hidden" name="workNo">
                         	 <input id="result2" type="hidden" name="cartNo">
-                             <c:forEach items="${carts }" var="cart" varStatus="status"> 
+                             <c:forEach items="${works }" var="work" varStatus="status"> 
                                 <div class="checkout-item">
                                     <div class="checkout-img">
-                                        <img src="${cart.workImg }">
+                                        <img src="/artistpage/workImg/${work.workImg }">
                                     </div>
                                     <ul class="checkout-text">
-                                        <li class="code">${cart.workNo }</li>
-                                        <li class="title">${cart.workName }
-                                        <%-- <input type="hidden" value="${cart.workName }"> --%>
-                                        <input type="hidden" id="cartno2" name="cartno2" value="${cart.cartNo }">
+                                        <li class="code">${work.workNo }</li>
+                                        <li class="title">${work.workName }
                                         </li>
                                         <li class="sub">
-                                            ${cart.workArtist } / ${cart.workSize }
+                                            ${work.artistName } / ${work.workSize }
                                         </li>
                                         <li class="value">
                                             
-                                                ￦ <fmt:formatNumber value="${cart.workPrice }"/>
+                                                ￦ <fmt:formatNumber value="${work.workPrice }"/>
                                             
                                         </li>
                                     </ul>
-                                </div>
-                             </c:forEach> 
+                                	</div>
+                             </c:forEach>
                         </div>
                         <div class="checkout-billing-value cf">
                             <ul class="checkout-billing-title">
@@ -431,8 +429,8 @@
                 IMP.request_pay({// param
                     pg: "hi", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
                     pay_method: "card", //지불 방법
-                     /* merchant_uid: $('#nocheck').val(), */   //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-                      merchant_uid:34,    //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                      /* merchant_uid: $('#nocheck').val(), */    //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                    merchant_uid:38,     //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
                     name: $('#workName').val(), //결제창에 노출될 상품명
                     amount: $('#totalPrice').val(), //금액
                     buyer_email : $('#checkout-input-billing_email').val(), 

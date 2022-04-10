@@ -63,7 +63,7 @@
                                                         <span data-brackets-id="2451" class="img user-thumbnail-div gld"
                                                             style="max-width:100px;border:3px solid transparent;"><img
                                                                 class="user-thumbnail" data-brackets-id="2452"
-                                                                src="/contents/user/831/thumbnail.jpg" alt=""></span>
+                                                                src="/mypage/artistprofile/${img[status.index] } " alt=""></span>
                                                         <b data-brackets-id="2453">${work.artistName }</b>
                                                     </a>
                                                 </div>
@@ -108,12 +108,12 @@
                                                     <div class="img user-thumbnail-div gld">
                                                         <img class="user-thumbnail"
                                                             style="width:50px !important;height:50px !important;"
-                                                            src="/contents/user/831/thumbnail.jpg" alt="">
+                                                            src="/mypage/artistprofile/${img[status.index] } " alt="">
                                                     </div>
                                                     <div class="p_top">
                                                         <h5>${work.workName }</h5>
                                                         <span class="artist artist3">${work.artistName }</span>
-                                                        <span class="artist">￦<fmt:formatNumber value="${work.workPrice }"/></span>
+                                                       <span class="artist">￦<fmt:formatNumber value="${work.workPrice }"/></span>
                                                     </div>
                                                     <div class="p_btm">
 
@@ -124,7 +124,6 @@
                                     </a>
                             	</div>	
                             	</c:forEach>
-                               
                             </div>
                         </div>
                     </div>

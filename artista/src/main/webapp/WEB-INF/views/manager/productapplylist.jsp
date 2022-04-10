@@ -13,6 +13,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
 	<div id="applyproduct" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
@@ -93,6 +94,7 @@
                         </div>
                     </div>
                     <input type="hidden" id="workapplyNo" />
+                    <input type="hidden" id="applyState" />
             </article>  
         </div>
     </div>
@@ -183,8 +185,11 @@
                             	<th scope="col" class="artistName">${workapply.artistName }</th>
                             	<th scope="col" class="workName">${workapply.workName }</th>
                             	<th scope="col" class="workType">${workapply.workType }</th>  
-                            	<th scope="col" class="applyState">${workapply.applyState }</th>                            
-                           		<th scope="col"><a class="artist-detail-btn" onclick="applyDetail('${workapply.workapplyNo }')">신청 상세보기</a></th>
+                            	<th scope="col" class="applyState">
+                            		<c:if test="${workapply.applyState eq 0}">작품등록 요청</c:if>
+                            		<c:if test="${workapply.applyState eq 2}">작품수정 요청</c:if>
+                            	</th>                            
+                           		<th scope="col"><a class="artist-detail-btn" onclick="applyDetail('${workapply.workapplyNo }', '${workapply.applyState }')">신청 상세보기</a></th>
                         		</tr>
                         		</c:forEach>
                         </tbody>
@@ -220,10 +225,18 @@
    
     </div>
    
-
+	<%@include file ="../footer.jsp" %>
     
     <script>
-    function applyDetail(applyNo){
+    function applyDetail(applyNo, applyState){  
+    	applymodal.style.display = "flex";
+        if(applyState==0){
+        	$("#enroll").html("등록");
+        	$("#refusemodal").html("등록 거절");
+        }else if(applyState==2){
+        	$("#enroll").html("수정");
+        	$("#refusemodal").html("수정 거절");
+        }
 		applymodal.style.display = "flex";
 		$.ajax({
 			type:"post",
@@ -242,6 +255,7 @@
  			 	$("#workSize").attr("value", applyworkData.workSize);
  			 	$("#workIntro").html(applyworkData.workIntro);    
  			 	$("#workPrice").attr("value", applyworkData.workPrice);
+ 			 	$("#applyState").attr("value", applyworkData.applyState);
 			},
 			error:function(data, textStatus){
 				alert("실패");
@@ -259,7 +273,7 @@
     			type:"post",
     			async: false,
     			url:"http://localhost:8090/manager/productapplysuccess",
-    			data:{"applyNo":$('#workapplyNo').val()},
+    			data:{"applyNo":$('#workapplyNo').val(), "applyState":$('#applyState').val()},
     			dataType:"text",
     			success: function(data, textStatus){ 
     				alert("작품 등록이 성공했습니다");
@@ -277,7 +291,7 @@
     			type:"post",
     			async: false,
     			url:"http://localhost:8090/manager/productapplyfail",
-    			data:{"applyNo":$('#workapplyNo').val(), "refusedContents" : $("#refusedContents").val()},
+    			data:{"applyNo":$('#workapplyNo').val(), "applyState":$('#applyState').val(), "refusedContents" : $("#refusedContents").val()},
     			dataType:"text",
     			success: function(data, textStatus){ 
     				alert("작품 등록 거절이 성공했습니다");

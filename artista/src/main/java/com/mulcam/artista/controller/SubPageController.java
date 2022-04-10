@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -85,7 +86,6 @@ public class SubPageController {
 				String membertype = subPageService.memTypeInfo(id);
 				session.setAttribute("membertype", membertype);
 				session.setAttribute("id",id);
-				System.out.println(id);
 			}
 			String membertype = subPageService.memTypeInfo(id);
 			session.setAttribute("membertype", membertype);
@@ -98,19 +98,12 @@ public class SubPageController {
 	
 	@GetMapping("callback")
 	public String callback(Model model) {
-		String id = (String) session.getAttribute("id");
 		try {
-			Member mem = subPageService.queryId(id);
-			model.addAttribute("name",mem.getName());
-			session.setAttribute("id",id);
-			String membertype = subPageService.memTypeInfo(id);
-			session.setAttribute("membertype", membertype);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("check","naver");
-		
-		return "redirect:/main";
+		return "main";
 	}
 	
 	@GetMapping("join")
@@ -162,12 +155,16 @@ public class SubPageController {
 		}
 	}
 	
-	@GetMapping("payment")
-	public String payment(@RequestParam(value="workNo")int workNo,Model model) {
+	@PostMapping("/storedetail/payment")
+	public String directpayment(@RequestParam(value="workNo")int workNo,Model model) {
 		String id = (String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
-			
+			Work work = workService.workinfo(workNo);
+			List<Work> workList = new ArrayList<>();
+			workList.add(work);
+			model.addAttribute("total",work.getWorkPrice());
+			model.addAttribute("works",workList);
 			model.addAttribute("mem",mem);
 			model.addAttribute("count",1);
 		} catch (Exception e) {
@@ -176,16 +173,39 @@ public class SubPageController {
 		return "subpage/payment";
 	}
 	
+	@PostMapping("/storedetail/paymentsuc")
+	public String paymentsuc2(Order order,Model model) {
+		try {
+			subPageService.insertPayment(order);
+			model.addAttribute("order",order);
+			String str = order.getCartNo();
+			String workNo = order.getWorkNo();
+			String [] workNo2 = workNo.split(",");
+			String[] cartNo = str.split(",");
+			for(int i=0;i<cartNo.length;i++) {
+				int cart = Integer.parseInt(cartNo[i]);
+				subPageService.deleteCart(cart);
+			}
+			for(int i=0;i<workNo2.length;i++) {
+				int work = Integer.parseInt(workNo2[i]);
+				workService.updateSale(order.getOrderNo(), work);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "subpage/paymentsuc";
+	}
+	
 	@PostMapping("payment")
-	public String payment(@RequestParam(value="order_artwork") int[] cartNo,Model model,
+	public String payment(@RequestParam(value="order_artwork") int[] workNo,Model model,
 			@RequestParam(value="total")int total,@RequestParam(value="count")String count) {
 		String id = (String) session.getAttribute("id");
-		List<Cart> carts = new ArrayList<Cart>();
-		for( int i=0;i<cartNo.length;i++) {
-			int cartNo2 = cartNo[i];
+		List<Work> works = new ArrayList<Work>();
+		for( int i=0;i<workNo.length;i++) {
+			int workNo2 = workNo[i];
 			try {
-				Cart cart = subPageService.cartInfo(cartNo2);
-				carts.add(cart);
+				Work work = workService.workinfo(workNo2);
+				works.add(work);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -193,7 +213,7 @@ public class SubPageController {
 		try {
 			Member mem = subPageService.queryId(id);
 			model.addAttribute("mem",mem);
-			model.addAttribute("carts",carts);
+			model.addAttribute("works",works);
 			model.addAttribute("total",total);
 			model.addAttribute("count",count);
 		} catch (Exception e) {
@@ -201,6 +221,31 @@ public class SubPageController {
 		}
 		return "subpage/payment";
 	}
+//	@PostMapping("payment")
+//	public String payment(@RequestParam(value="order_artwork") int[] cartNo,Model model,
+//			@RequestParam(value="total")int total,@RequestParam(value="count")String count) {
+//		String id = (String) session.getAttribute("id");
+//		List<Cart> carts = new ArrayList<Cart>();
+//		for( int i=0;i<cartNo.length;i++) {
+//			int cartNo2 = cartNo[i];
+//			try {
+//				Cart cart = subPageService.cartInfo(cartNo2);
+//				carts.add(cart);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		try {
+//			Member mem = subPageService.queryId(id);
+//			model.addAttribute("mem",mem);
+//			model.addAttribute("carts",carts);
+//			model.addAttribute("total",total);
+//			model.addAttribute("count",count);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return "subpage/payment";
+//	}
 	
 	@ResponseBody
 	@PostMapping("nocheck")
@@ -258,5 +303,24 @@ public class SubPageController {
 			e.printStackTrace();
 		}
 		return "subpage/paymentsuc";
+	}
+	
+	@ResponseBody
+	@PostMapping("follow")
+	public boolean follow(@RequestParam(value="follower")String follower) {
+		String following = (String) session.getAttribute("id");
+		boolean followcheck = false;
+		try {
+			if(subPageService.checkFollow(follower, following)) {
+				subPageService.unfollow(follower, following);
+				followcheck = false;
+			}else {
+				subPageService.follow(follower, following);
+				followcheck = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return followcheck;
 	}
 }

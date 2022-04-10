@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../css/manager.css">
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
     <div class="contents">
         <header class="manager-header">
             <h2 class="manager-header-title">관리자 페이지</h2>
@@ -132,7 +133,7 @@
         </div>
     </div>
 
-
+	<%@include file ="../footer.jsp" %>
 
 </body>
 </html>

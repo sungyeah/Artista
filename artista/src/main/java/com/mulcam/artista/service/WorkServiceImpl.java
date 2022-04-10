@@ -84,6 +84,9 @@ public class WorkServiceImpl implements WorkService {
 		workDAO.updateSalePayed(workNo);
 	}
 
-	
+	@Override
+	public void updateWork(Work work) throws Exception{
+		workDAO.updateWork(work);
+	}
 	
 }

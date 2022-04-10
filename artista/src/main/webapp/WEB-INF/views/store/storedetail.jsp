@@ -48,6 +48,7 @@
 </head>
 
 <body>
+<%@include file ="../header.jsp" %>
     <div id="wrap">
         <div id="container">
             <style>
@@ -106,37 +107,45 @@
             </style>
 
             <section class="detail">
+            	<form id="form2" action="payment" method="post">
                 <!--상세페이지에만 들어가는 클래스입니다.-->
+                	<input type="hidden" id="workNo" name="workNo" value="${work.workNo }">
                 <div class="container">
+                	
                     <input type="hidden" id="walletAddress">
                     <div class="person pc" style="padding:50px 0px;">
                         <div class="left">
                             <a href="/user?memberId=389" class="img">
                                 <div class="user-thumbnail-div slv">
-                                    <img class="user-thumbnail" style="width:50px !important;height:50px !important;"
-                                        src="/contents/user/389/thumbnail.jpg" alt="">
+                                    <img class="user-thumbnail" style="width:50px !important;height:50px !important;"src="/mypage/artistprofile/${artist.artistImg }" alt="">
                                 </div>
                             </a>
                             <div class="personInfo" style="margin-top: 20px;">
                                 <h4>${artist.artistName }</h4>
                                 <ul>
-                                    <li><a href="#"><span id="spanFollowers">5</span>followers</a></li>
-                                    <li><a href="#"><span>0</span>following</a></li>
-
+                                    <li><a href="#"><span id="spanFollowers">${follower }</span>followers</a></li>
+                                    <li><a href="#"><span>${following }</span>following</a></li>
                                 </ul>
-                                <a href="javascript:;" name="btnFollow" class="">Follow 
-                                <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
-                                <img class="1" style="width:17.6px !important;height:17.6px !important;" src="../images/하트.png" alt="">
-                                </a>
+                                <c:choose>
+                                	<c:when test="${check eq false }">
+                                		<a name="btnFollow" class="follow" id="a" onclick="follow('${artist.id}')" style="background:white;color:#222;">Follow 
+                                		<!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
+                                		<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/하트2.png" alt="">
+                                		</a>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<a name="btnFollow" class="follow" id="a" onclick="follow('${artist.id}')" style="background:#222;color:white;">UnFollow 
+                                		<!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
+                                		<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/white.png" alt="">
+                                		</a>
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                         <div class="right">
                             <ul>
-
                                 <li><a href="/user?memberId=389&amp;tab=cr">CREATIONS</a></li>
                                 <li><a href="/user?memberId=389&amp;tab=co">COLLECTION</a></li>
-
-
                             </ul>
                         </div>
                     </div>
@@ -207,8 +216,12 @@
                             </div>
                             <div class="w50per card_rt">
                                 <div class="topInfo">
-                                    <h3 style="margin-bottom: 32px;">${work.workName }</h3>
-                                    <div style="padding-left: 60px;margin-top: 25px;">
+                                    <h3 style="margin-bottom: 25px;">${work.workName }</h3>
+                                    <div style="padding-left: 60px;margin-top: 25px;margin-bottom: 25px;">
+                                      <div style="display: flex;margin-bottom: 20px;text-align: start;margin-left: 20px;">
+                                        <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;">작품번호</div>
+                                        <div style="flex-grow: 1;font-size: 15px;">${work.workNo }</div>
+                                    </div>
                                         <div style="display: flex;margin-bottom: 20px;text-align: start;margin-left: 20px;">
                                             <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;">작가</div>
                                             <div style="flex-grow: 1;font-size: 15px;">${work.artistName }</div>
@@ -218,13 +231,15 @@
                                         <div style="flex-grow: 1;font-size: 15px;">${work.workTech }<br>${work.workSize }</div>
                                     </div>
                                     <div style="display: flex;margin-bottom: 20px;text-align: start;margin-left: 20px;">
-                                        <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;">작품번호</div>
-                                        <div style="flex-grow: 1;font-size: 15px;">${work.workNo }</div>
+                                        <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;">작품타입</div>
+                                        <div style="flex-grow: 1;font-size: 15px;">${work.workType }</div>
                                     </div>
+                                  
                                     <div style="display: flex;margin-bottom: 20px;text-align: start;margin-left: 20px;">
                                         <div style="color: rgba(34,34,34,0.4); flex-shrink: 0;width: 76px;font-size: 15px;margin-top: 3px;">작품가격</div>
                                         <div style="flex-grow: 1;font-size: 18px;"><b>￦<fmt:formatNumber value="${work.workPrice }"/></b></div>
                                     </div>
+                                    
                                     </div>
                                      <!-- <div class="price">
                                         <span class="howmuch"><span name="price">￦4,500,000</span></span>
@@ -233,23 +248,14 @@
                                         <span class="howmuch"><span name="price">￦4,500,000</span></span>
                                     </div> -->
                                     <div class="topInfoBtns">
-                                        <button id="purchaseBtn" class="btnPurchase disabled"
-                                            style="
-                                                    width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;">
-                                            <span class="fd-icon"
-                                                style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;"></span><span
-                                                style="vertical-align:middle;">카트 추가</span>
+                                        <button id="purchaseBtn1" type="button" class="btnPurchase" style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;cursor:pointer;">
+                                            <span class="fd-icon" style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;cursor:pointer;"></span>
+                                                <span style="vertical-align:middle;cursor:pointer;">카트 추가</span>
                                         </button>
-                                        <button id="purchaseBtn" class="btnPurchase disabled"
-                                            style="
-                                                    width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;margin-left: 5px;background: #222;color: white;">
-                                            <span class="fd-icon"
-                                                style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;"></span><span
-                                                style="vertical-align:middle;">작품 구매</span>
+                                        <button id="purchaseBtn2" type="submit" class="btnPurchase" style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;margin-left: 5px;background: #222;color: white;">
+                                            <span class="fd-icon"style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;"></span>
+                                            <span style="vertical-align:middle;">작품 구매</span>
                                         </button>
-
-
-
                                     </div>
                                 </div>
                                 <!-- <div class="description">
@@ -267,10 +273,79 @@
                     <p style="max-width: 710px;margin: 0 auto 1.75em;font-weight: 300;line-height: 1.75;letter-spacing: 0.05em;color: #666;margin-bottom: 200px;">
                         ${work.workIntro }
                     </p>
+                   </form>
             </section>
+    	
+    <input type="hidden" id="id" name="id" value="">
+    <input type="hidden" id="workName" name="workName" value="${work.workName }">
+    <input type="hidden" id="workPrice" name="workPrice" value="${work.workPrice }">
+    <input type="hidden" id="artistName" name="artistName" value="${work.artistName }">
+    <input type="hidden" id="workSize" name="workSize" value="${work.workSize }">
+    <input type="hidden" id="workNo" name="workNo" value="${work.workNo }">
+    <input type="hidden" id="workImg" name="workImg" value="${work.workImg }">
         </div>
 
     </div>
+    
+    	
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+var id = '<%=(String)session.getAttribute("id")%>';
+$('#id').attr('value',id);
+var workName = $('#workName').val()
+var workPrice = $('#workPrice').val()
+var artistName = $('#artistName').val()
+var workSize = $('#workSize').val()
+var workNo = $('#workNo').val()
+var workImg = $('#workImg').val()
+var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistName,"workSize":workSize,"workNo":workNo,"workImg":workImg} 
+
+	$('#purchaseBtn1').click(function(){
+		  $.ajax({     
+				type:"post",
+				url:"http://localhost:8090/addCart",
+				contentType : "application/json",
+				data:JSON.stringify(Cart),
+				success: function(data, textStatus){
+					if(data=="true"){
+						alert("이미 카트에 담긴 작품입니다.")
+					}else{
+						alert("카트에 작품이 담겼습니다.")
+					}
+				},
+				error:function(data, textStatus){
+					alert("실패");
+				}
+			}); 
+	});
+	
+	function follow(follower){
+		var color=document.getElementById("a");
+		
+		$.ajax({     
+			type:"post",
+			dataType:"text",
+			async:false,
+			url:"http://localhost:8090/follow",
+			data:{"follower":follower},
+			success: function(data, textStatus){
+				if(data=='true'){
+					 color.style.color="white";
+					 color.style.background="#222";
+					 location.reload();
+				}else{
+					color.style.color="#222";
+					color.style.background="white";
+					location.reload();
+				}
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		}); 
+	}
+</script>
+<%@include file ="../footer.jsp" %>
 </body>
 
 </html>

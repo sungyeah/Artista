@@ -28,13 +28,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.ArtistWorld;
+import com.mulcam.artista.dto.Follow;
+import com.mulcam.artista.dto.FollowingInfo;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.OrderReport;
 import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.service.ArtistApplyService;
+import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.ArtistWorldService;
 import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageServiceImpl;
@@ -57,6 +61,9 @@ public class MyPageController {
 	ArtistWorldService artistworldService;
 	
 	@Autowired
+	ArtistService artistService;
+	
+	@Autowired
 	HttpSession session;
 	
 	@Autowired
@@ -71,6 +78,8 @@ public class MyPageController {
 			model.addAttribute("name",mem.getName());
 			List<Order> ord = myPageService.orderList(id);
 			List<OrderReport> orderReports = new ArrayList<OrderReport>();
+			List<Follow> follow = subPageService.followInfo(id);
+			List<FollowingInfo> followList = new ArrayList<FollowingInfo>();
 			for(int i=0;i<ord.size();i++) {
 				OrderReport or = new OrderReport();
 				Order order = ord.get(i);
@@ -85,7 +94,23 @@ public class MyPageController {
 				or.setWorks(works);
 				orderReports.add(or);
 			}
+			for(int i=0;i<follow.size();i++) {
+				Follow follow2 = follow.get(i);
+				String followerId = follow2.getFollower();
+				Artist artist = artistService.artistInfo(followerId);
+				String artistName=artist.getArtistName();
+				String artistImg=artist.getArtistImg();
+				int followercnt = subPageService.followercnt(followerId);
+				int workcnt = subPageService.workcnt(artistName);
+				FollowingInfo followingInfo= new FollowingInfo();
+				followingInfo.setArtistName(artistName);
+				followingInfo.setArtistImg(artistImg);
+				followingInfo.setFollowercnt(followercnt);
+				followingInfo.setWorkcnt(workcnt);
+				followList.add(followingInfo);
+			}
 			model.addAttribute("orderReports", orderReports);
+			model.addAttribute("followLists",followList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -168,7 +193,7 @@ public class MyPageController {
 	public void fileview(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
 		String path= servletContext.getRealPath("/imgupload/artistProfile/");
 		File file=new File(path+filename); 
-		System.out.println(filename);
+//		System.out.println(filename);
 		String sfilename=null;
 		FileInputStream fis=null;
 		try {

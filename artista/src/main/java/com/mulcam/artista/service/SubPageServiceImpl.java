@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.SubPageDAO;
 import com.mulcam.artista.dto.Cart;
+import com.mulcam.artista.dto.Follow;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.PageInfo;
@@ -28,14 +29,12 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public void makemember(Member mem) throws Exception {
-		// TODO Auto-generated method stub
 		subpageDAO.insertMember(mem);
 		
 	}
 
 	@Override
 	public String checkPw(String id) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -47,7 +46,6 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public void deleteId(String id) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -168,5 +166,51 @@ public class SubPageServiceImpl implements SubPageService{
 	public Order selectOrderByNo(int orderNo) throws Exception {
 		return subpageDAO.selectOrderByNo(orderNo);
 	}
+
+	@Override
+	public boolean checkFollow(String follower, String following) throws Exception {
+		Map <String,String> map = new HashMap<>();
+		map.put("follower", follower);
+		map.put("following", following);
+		return subpageDAO.checkFollow(map);
+	}
+
+	@Override
+	public void follow(String follower, String following) throws Exception {
+		Map <String,String> map = new HashMap<>();
+		map.put("follower", follower);
+		map.put("following", following);
+		subpageDAO.follow(map);
+	}
+
+	@Override
+	public void unfollow(String follower, String following) throws Exception {
+		Map <String,String> map = new HashMap<>();
+		map.put("follower", follower);
+		map.put("following", following);
+		subpageDAO.unfollow(map);
+		
+	}
+
+	@Override
+	public int followercnt(String id) throws Exception {
+		return subpageDAO.followercnt(id);
+	}
+
+	@Override
+	public int followingcnt(String id) throws Exception {
+		return subpageDAO.followingcnt(id);
+	}
+
+	@Override
+	public List<Follow> followInfo(String following) throws Exception {
+		return subpageDAO.followInfo(following);
+	}
+
+	@Override
+	public int workcnt(String artistName) throws Exception {
+		return subpageDAO.workcnt(artistName);
+	}
+
 	
 }

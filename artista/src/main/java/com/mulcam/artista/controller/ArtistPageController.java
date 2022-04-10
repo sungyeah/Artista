@@ -86,7 +86,7 @@ public class ArtistPageController {
 	ServletContext servletContext;
 
 	/* 아티스트 첫페이지 및 일반작품 전체 보기*/
-	@GetMapping("mywork")
+	@GetMapping({"","/","/mywork"})
 	public String artistpageMain(Model model) {
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
@@ -232,13 +232,95 @@ public class ArtistPageController {
 			workapply.setArtistNo(artistNo);
 			workapply.setArtistName(artistName);
 			workapply.setWorkImg(workImg);
-			workapply.setApplyState(0);
+			workapply.setApplyState(0); //작품 등록 요청
 			workapplyService.insertWorkApply(workapply);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		return "artistpage/succesapply";
 	}
+	/* 아티스트 판매작품 수정 페이지 */
+	@PostMapping("workModify")
+	public String workModify(@RequestParam(value="workNo") int workNo, Model model) {
+		try {
+			Work work = workService.workinfo(workNo);
+			model.addAttribute("work", work);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "artistpage/modifyproduct";
+	}
+	/* 아티스트 판매작품 수정완료 */
+	@PostMapping("workModifyComplete")
+	public String workModifyComplete( @RequestParam(value="workNo") int workNo, 
+			@ModelAttribute WorkApply workapply, @RequestParam(value="workImgFile") MultipartFile workImgFile,
+			@RequestParam(value="fileChange") String file) {
+
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		String artistName = null;
+		String workImg = null;
+		
+		try {
+			artistNo = artistService.getArtistNo(id);
+			artistName = artistService.getArtistName(id);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
+		
+		//이미지 변경
+		if(file.equals("0")) {
+			BufferedImage inputImage;
+			try {
+				inputImage = ImageIO.read(workImgFile.getInputStream());
+				// 이미지 세로 가로 측정
+		        int originHeight = inputImage.getHeight();
+		        workapply.setWorkHeight(originHeight);
+		        System.out.println(originHeight);
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+			
+			// 작품 대표이미지 저장
+			String path = servletContext.getRealPath("/imgupload/artistWorks/");
+			String[] mtypes = workImgFile.getContentType().split("/");
+			
+			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");
+			Date time = new Date();
+			String workEnrollTime = simpleDate.format(time);
+			File destFile = new File(path + artistNo +"-"+ workEnrollTime +"."+ mtypes[1]);
+			try {			
+				workImgFile.transferTo(destFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			workImg = artistNo + "-" + workEnrollTime +"."+ mtypes[1];
+			workapply.setWorkImg(workImg);
+		} else {
+			Work work;
+			try {
+				work = workService.workinfo(workNo);
+				workapply.setWorkHeight(work.getWorkHeight());
+				workapply.setWorkImg(work.getWorkImg());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}			
+		}
+		
+		//작품 신청 insert
+		try {
+			workapply.setWorkapplyNo(workapplyService.getWorkApplyMaxId());
+			workapply.setArtistNo(artistNo);
+			workapply.setArtistName(artistName);
+			workapply.setApplyState(2); //수정요청
+			workapply.setWorkNo(workNo);
+			workapplyService.insertWorkApply(workapply);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		return "artistpage/succesapply";
+	}
+	
 	@GetMapping("myproductsold")
 	public String artistpageProductSold(Model model) {
 		String id=(String) session.getAttribute("id");	
@@ -352,9 +434,9 @@ public class ArtistPageController {
 		}
 	}
 	
-	// 아티스트의 펀딩
+	// 아티스트의 펀딩 리스트
 	@GetMapping("myfunding")
-	public String artistpageFunding(@ModelAttribute Funding funding, Model model) throws Exception {
+	public String myfunding(@ModelAttribute Funding funding, Model model) throws Exception {
 		String id=(String) session.getAttribute("id");
 		List<Funding> list = fundingService.queryMyFunding(id);
 		Member mem = subPageService.queryId(id);
@@ -362,6 +444,18 @@ public class ArtistPageController {
 		model.addAttribute("list", list);
 		return "artistpage/myfunding";
 	}
+	
+	// 아티스트의 펀딩 신청 내역
+	@GetMapping("appmyfunding")
+	public String appmyfunding(@ModelAttribute Funding funding, Model model) throws Exception {
+		String id=(String) session.getAttribute("id");
+		List<Funding> list = fundingService.queryappfunding(id);
+		Member mem = subPageService.queryId(id);
+		model.addAttribute("mem", mem);
+		model.addAttribute("list", list);
+		return "artistpage/appmyfunding";
+	}
+
 	
 	//펀딩 신청
 	@GetMapping("applyfunding")

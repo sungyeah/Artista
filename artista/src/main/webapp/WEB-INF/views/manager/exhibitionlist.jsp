@@ -13,6 +13,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
 	<div id="exhibitiondetail" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
@@ -159,7 +160,7 @@
         </article>
         
     </div>
-
+	<%@include file ="../footer.jsp" %>
 	<script>
 	//modal창
     const exhibitiondetail = document.getElementById("exhibitiondetail");

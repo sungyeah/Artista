@@ -13,6 +13,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+	<%@include file ="../header.jsp" %>
     <div class="contents">
         <header class="manager-header">
             <h2 class="manager-header-title">관리자 페이지</h2>
@@ -92,5 +93,7 @@
             </section>
         </article>
     </div>
+    
+    <%@include file ="../footer.jsp" %>
 </body>
 </html>

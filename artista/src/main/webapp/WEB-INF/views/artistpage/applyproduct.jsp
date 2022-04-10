@@ -14,7 +14,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 	.workImg {
-		width:300px; min-height:200px; margin-top:7px; display:inline-block;
+		width:308px; min-height:200px; margin-top:7px; display:inline-block;
 	}
 	input[type="number"]::-webkit-outer-spin-button,
 	input[type="number"]::-webkit-inner-spin-button {
@@ -41,6 +41,7 @@
                         </div>
                         <div class="enroll-modify-form-row-value">
                             <img class="workImg" id="workThumb" />
+                            <label for="workImg">파일 선택</label>
                             <input type="file" id="workImg" name="workImgFile" /><br>
                         </div>
                     </div>
@@ -110,14 +111,16 @@
                     </div>   
                     <div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        	<button class="yesNo-btn" id="workApply" style="width:120px;">작품등록 신청</button>
-                    		<button class="yesNo-btn" id="cancel" type="reset">취소</button>      
+                        	<button class="yesNo-btn" id="workApply" style="background-color:#222;color:white;">작품등록 신청</button>
+                    		<button class="yesNo-btn" id="cancel" style="background-color:white;color:#222;margin-left:10px" type="reset">취소</button>      
                     	</div>
                 	</div>
                 </div>
         	</form>
         </article>
     </div>
+    
+    <%@include file ="../footer.jsp" %>
 
     <script>
 	// 작품 대표이미지 show

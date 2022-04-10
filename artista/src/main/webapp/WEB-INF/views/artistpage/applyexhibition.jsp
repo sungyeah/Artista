@@ -7,6 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
+<link rel="stylesheet" href="../css/global.css">
 <link rel="stylesheet" href="../css/manager.css">
 <link rel="stylesheet" href="../css/mypage.css">
 <link rel="stylesheet" href="../css/enroll.css">
@@ -19,13 +20,13 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
 	.posterImg {
-		width:300px; height:300px; margin-top:7px; display:inline-block;
+		width:308px; height:300px; margin-top:7px; display:inline-block;
 	}
 </style>
 
 </head>
 <body>
-
+	<%@include file ="../header.jsp" %>
     <div id="contents">
     	<header class="account-header">
             <h2 class="account-header-title">전시등록 신청하기</h2>
@@ -42,6 +43,7 @@
                         </div>
                         <div class="enroll-modify-form-row-value">
                             <img class="posterImg" id="posterThumb" />
+                            <label for="posterImg">파일 선택</label>
                             <input type="file" id="posterImg" name="posterImgFile" /><br>
                         </div>
                     </div>
@@ -74,7 +76,7 @@
                             <span class="red">*</span> 전시일정
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input id="exhibitDate" class="enroll-modify-form-input" name="exhibitDate" style="width:250px;" />
+                            <input id="exhibitDate" class="enroll-modify-form-input" name="exhibitDate" style="width:300px;" />
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -83,7 +85,7 @@
                         </div>
                         <div class="enroll-modify-form-row-value">
                         	<input class="enroll-modify-form-input" type="text" id="getplace" placeholder="주소" style="width:300px;" onClick=searchAddress()>
-                			<input class="enroll-modify-form-input" type="button" value="검색"  style="width:80px; padding-right:5px; " onClick=searchAddress()><br>
+                			<input class="change-password-btn" type="button" value="검색"  style="width:84px;margin-top:7px" onClick=searchAddress()><br>
                 			<input class="enroll-modify-form-input" type="text" id="getplace2" placeholder="상세주소" maxlength="30"  style="width:300px;"><br>
        						<input type="hidden" id="exhibitPlace" name="exhibitPlace" />
        					</div>
@@ -98,14 +100,16 @@
                     </div>
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        	<button class="yesNo-btn" id="exhibitApply" style="width:120px;">전시등록 신청</button>
-                    		<button class="yesNo-btn" id="cancel" type="reset">취소</button>      
+                        	<button class="yesNo-btn" id="exhibitApply" style="background-color:#222;color:white;">전시등록 신청</button>
+                    		<button class="yesNo-btn" id="cancel" style="background-color:white;color:#222;margin-left:10px" type="reset">취소</button>      
                     	</div>
                 	</div>
                 </div>
             </form>
         </article>
     </div>
+    
+    <%@include file ="../footer.jsp" %>
    
     <script type="text/javascript">
     	$("#datepickerstart").flatpickr({

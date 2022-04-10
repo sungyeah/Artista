@@ -76,7 +76,7 @@
            		</c:otherwise>
            </c:choose>
         </section>
-        <a href="mypage" class="order_detail">주문내역 확인</a>
+        <a href="${pageContext.request.contextPath}/mypage" class="order_detail">주문내역 확인</a>
         <!-- <a href="/account/orders/6366NS823022/" class="order_detail">주문내역 확인</a> -->
     </div>
 </body>

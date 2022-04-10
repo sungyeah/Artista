@@ -53,13 +53,14 @@
                     		<c:forEach items="${carts }" var="cart">
                         	<tr>
                             <td class="cartList-checkbox">
-                                <input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.cartNo }" onclick='itemSum(),getCheckedCnt()'>
+                                <input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.workNo }" onclick='itemSum(),getCheckedCnt()'>
+<%--                                 <input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.cartNo }" onclick='itemSum(),getCheckedCnt()'> --%>
                                 <label for="${cart.cartNo }#${cart.workPrice }"></label>
                               
                             </td>
                             <td class="cartList-tdInfo">
                                 <a class="cartList-imageHolder" href="/artwork/A0365-0017/">
-                                    <img class="cartList-image" src="${cart.workImg }">
+                                    <img class="cartList-image" src="/artistpage/workImg/${cart.workImg }">
                                 </a>
                                 <div class="cartList-info">
                                     <p class="cartList-info-code"><a href="/artwork/A0365-0017/">${cart.workNo }</a></p>

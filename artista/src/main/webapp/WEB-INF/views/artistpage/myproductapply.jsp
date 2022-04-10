@@ -14,6 +14,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+<%@include file="../header.jsp"%>
 	<div id="productdetail" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
@@ -86,13 +87,7 @@
                         <div class="modal-modify-form-row-value">
                             <textarea class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;" id="workIntro" disabled></textarea>
                         </div>
-                    </div>                       
-                    <div class="modal-modify-form-border">
-                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <a class="yesNo-btn" id="enroll">등록</a>                    
-                            <a class="yesNo-btn" id="refusemodal">등록 거절</a>      
-                        </div>
-                    </div>
+                    </div> 
                     <input type="hidden" id="workapplyNo" />
             </article>  
         </div>
@@ -144,7 +139,7 @@
             <a class="manager-nav-btn current" href="${pageContext.request.contextPath}/artistpage/mywork">
                 전체 작품
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproduct">
+            <a class="manager-nav-btn" style="background-color: black;color: white;" href="${pageContext.request.contextPath}/artistpage/myproduct">
                 판매 작품
             </a>
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myfunding">
@@ -163,7 +158,7 @@
                 판매 완료 작품
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductapply">
-                판매신청내역
+                <b>신청내역</b>
             </a>
             
             <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyproduct" style="width:120px;">
@@ -216,6 +211,8 @@
             </section>
         </article>
 	</div>
+	
+	<%@include file ="../footer.jsp" %>
 	
 	<script>
 	function showDetail(workapplyNo){

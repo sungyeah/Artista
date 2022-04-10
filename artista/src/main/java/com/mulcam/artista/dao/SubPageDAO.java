@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.mulcam.artista.dto.Cart;
+import com.mulcam.artista.dto.Follow;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 
@@ -36,4 +37,12 @@ public interface SubPageDAO {
 	public int totalOrderNum() throws Exception;
 	public List<Order> orderList(int startrow) throws Exception;
 	public Order selectOrderByNo(int orderNo) throws Exception;
+	
+	public boolean checkFollow(Map map)throws Exception;
+	public void follow(Map map)throws Exception;
+	public void unfollow(Map map)throws Exception;
+	public int followercnt(String id)throws Exception;
+	public int followingcnt(String id)throws Exception;
+	public List<Follow> followInfo(String following)throws Exception;
+	public int workcnt(String artistName)throws Exception;
 }

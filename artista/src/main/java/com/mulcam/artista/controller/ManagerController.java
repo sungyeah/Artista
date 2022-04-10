@@ -145,7 +145,7 @@ public class ManagerController {
 	}
 	
 	
-	/* 상품 등록 신청 */
+	/* 상품 등록 or 수정 신청 */
 	@GetMapping("/productapplylist")
 	public ModelAndView productApplyList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
 		ModelAndView mv = new ModelAndView("manager/productapplylist");
@@ -175,16 +175,30 @@ public class ManagerController {
 	/* 상품 등록 허락 */
 	@ResponseBody
 	@PostMapping(value="productapplysuccess")
-	public void productapplySuccess(@RequestParam(value="applyNo",required = false) int workapplyNo) {
+	public void productapplySuccess(@RequestParam(value="applyNo",required = false) int workapplyNo, 
+			@RequestParam(value="applyState",required = false) int applyState) {
 		try {			
 			WorkApply workapply = workapplyService.selectWorktApplyByNo(workapplyNo);
-				
-			Work work = null;
-			work = new Work(workService.getWorkMaxNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(),
-					workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
-					workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getWorkPrice(), 1, -1,workapply.getWorkHeight());
-			workService.insertWork(work);
-			workapplyService.deleteWorkApply(workapplyNo);
+			
+			// 상품 등록 허락
+			if(applyState==0) {
+				Work work = null;
+				work = new Work(workService.getWorkMaxNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(),
+						workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
+						workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getWorkPrice(), 1, -1,workapply.getWorkHeight());
+				workService.insertWork(work);
+				workapplyService.deleteWorkApply(workapplyNo);
+			}
+			// 상품 수정 허락
+			else if(applyState==2) {
+				Work work = null;
+				work = new Work(workapply.getWorkNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(),
+						workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
+						workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getWorkPrice(), 1, -1,workapply.getWorkHeight());
+				workService.updateWork(work);
+				workapplyService.deleteWorkApply(workapplyNo);
+			}
+			
 		}catch(Exception e) {
 		}
 	}
@@ -192,11 +206,13 @@ public class ManagerController {
 	/* 상품 등록 거절 */
 	@ResponseBody
 	@PostMapping(value="productapplyfail")
-	public void productapplyFail(@RequestParam(value="applyNo",required = false) int workapplyNo, @RequestParam(value="refusedContents",required = false) String refusedContents) {
+	public void productapplyFail(@RequestParam(value="applyNo",required = false) int workapplyNo,
+			@RequestParam(value="applyState",required = false) int applyState, 
+			@RequestParam(value="refusedContents",required = false) String refusedContents) {
 		try {
 			//exhibitapplyNo로 전시등록신청 내용 가져오기
 			WorkApply workapply = workapplyService.selectWorktApplyByNo(workapplyNo);
-			workapplyService.refuseWorkApply(workapplyNo, refusedContents);
+			workapplyService.refuseWorkApply(workapplyNo, applyState+1, refusedContents);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
