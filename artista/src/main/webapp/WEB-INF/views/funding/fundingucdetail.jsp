@@ -20,7 +20,7 @@
         <div class="fundingdetail">
             <div id="timealert">${funding.startDate } 오픈 예정</div><br>
             <div class="amountdetail">
-                <button class="Btn1">알림 신청 100명 신청 중</button>
+                <button type="button" class="Btn1" id="Btn1">알림 신청 100명 신청 중</button>
             </div>
             <div>
                 지금 바로 알림 신청하고 미리 연락 받으세요.
@@ -42,5 +42,16 @@
     <div>
         <button class="Btn3">목록</button>
     </div>
+    
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
+    <script>
+    $('.Btn1').click(function(){
+    	  if($(this).hasClass("Btn")){
+    	    $(this).removeClass("Btn");
+    	  }else{
+    	    $(this).addClass("Btn");  
+    	  }
+    	});
+    </script>
 </body>
 </html>

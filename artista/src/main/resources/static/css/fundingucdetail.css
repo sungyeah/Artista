@@ -57,6 +57,17 @@
         font-size: 1.4em;
         margin-bottom: 15px;
     }
+    
+    .Btn{
+        width: 310px;
+        height: 80px;
+        display: block;
+        background-color: black;
+        color: white;
+        border: 1px solid black;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
     .Btn2{
         width: 206px;
         height: 45px;

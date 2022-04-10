@@ -98,7 +98,7 @@
 </mapper>
 
 <!-- 
-
+펀딩 등록/수정
 create table fundingApp(
 	fundingNo int(10) not null auto_increment,
     artistNo int(10),
@@ -120,6 +120,7 @@ create table fundingApp(
     primary key(fundingNo)
 );
 
+펀딩 예정, 진행, 종료
 create table funding(
 	fundingNo int(10) not null,
     artistNo int(10),
@@ -140,7 +141,7 @@ create table funding(
     primary key(fundingNo)
 );
 
-
+펀딩 결제
 create table fundingSpon(
 	sponsorNo int(10) not null,
     id varchar(100) not null,
@@ -150,14 +151,6 @@ create table fundingSpon(
     primary key(sponsorNo)
 );
 
-create table fundingSpon(
-	sponsorNo int(10) not null,
-    id varchar(100) not null,
-    fundingNo int(10) not null,
-    sponsorAmount int(10) not null,
-    email varchar(100),
-    primary key(sponsorNo)
-);
 
 CREATE EVENT IF NOT EXISTS updateFundingState
     ON SCHEDULE
