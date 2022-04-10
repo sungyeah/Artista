@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.service.StoreService;
+import com.mulcam.artista.service.SubPageService;
 import com.mulcam.artista.service.WorkService;
 
 @Controller
@@ -26,6 +29,12 @@ public class StoreController {
 	
 	@Autowired
 	WorkService workService;
+	
+	@Autowired
+	SubPageService subPageService;
+	
+	@Autowired
+	HttpSession session;
 	
 	@GetMapping("storelist")
 	public String storelist(Model model	) {
@@ -62,9 +71,14 @@ public class StoreController {
 	@GetMapping("storedetail/{workNo}")
 	public String storedetail(@PathVariable int workNo,Model model) {
 		try {
+			String id=(String) session.getAttribute("id");
 			Work work = workService.workinfo(workNo);
 			String artistName=storeService.artistName(workNo);
 			Artist artist = storeService.artistInfo(artistName);
+			String artistId= artist.getId();
+			System.out.println(artistId);
+			boolean check=subPageService.checkFollow(artistId, id);
+			model.addAttribute("check", check);
 			model.addAttribute("artist", artist);
 			model.addAttribute("work", work);
 		} catch (Exception e) {

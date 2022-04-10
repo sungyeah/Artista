@@ -37,4 +37,9 @@ public interface SubPageDAO {
 	public List<Order> orderList(int startrow) throws Exception;
 	public Order selectOrderByNo(int orderNo) throws Exception;
 	
+	public boolean checkFollow(Map map)throws Exception;
+	public void follow(Map map)throws Exception;
+	public void unfollow(Map map)throws Exception;
+	public int followercnt(String id)throws Exception;
+	public int followingcnt(String id)throws Exception;
 }

@@ -48,7 +48,7 @@
 </head>
 
 <body>
-<%@include file ="../header.jsp" %>
+<%-- <%@include file ="../header.jsp" %> --%>
     <div id="wrap">
         <div id="container">
             <style>
@@ -126,10 +126,20 @@
                                     <li><a href="#"><span id="spanFollowers">5</span>followers</a></li>
                                     <li><a href="#"><span>0</span>following</a></li>
                                 </ul>
-                                <a href="javascript:;" name="btnFollow" class="">Follow 
-                                <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
-                                <img class="1" style="width:17.6px !important;height:17.6px !important;" src="../images/하트.png" alt="">
-                                </a>
+                                <c:choose>
+                                	<c:when test="${check eq false }">
+                                		<a name="btnFollow" class="follow" id="a" onclick="follow('${artist.id}')" style="background:white;color:#222;">Follow 
+                                		<!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
+                                		<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/하트2.png" alt="">
+                                		</a>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<a name="btnFollow" class="follow" id="a" onclick="follow('${artist.id}')" style="background:#222;color:white;">UnFollow 
+                                		<!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
+                                		<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/white.png" alt="">
+                                		</a>
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                         <div class="right">
@@ -309,6 +319,33 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 			}); 
 	});
 	
+	function follow(follower){
+		var color=document.getElementById("a");
+		
+		$.ajax({     
+			type:"post",
+			dataType:"text",
+			async:false,
+			url:"http://localhost:8090/follow",
+			data:{"follower":follower},
+			success: function(data, textStatus){
+				if(data=='true'){
+					alert("팔로우 했습니다.");
+					 $('.follow').html('UnFollow<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/white.png" alt="">');
+					 color.style.color="white";
+					 color.style.background="#222";
+				}else{
+					alert("팔로우 취소 했습니다.");
+					$('.follow').html('Follow<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/하트2.png" alt="">');
+					color.style.color="#222";
+					color.style.background="white";
+				}
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		}); 
+	}
 </script>
 <%@include file ="../footer.jsp" %>
 </body>

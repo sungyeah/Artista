@@ -312,4 +312,23 @@ public class SubPageController {
 		}
 		return "subpage/paymentsuc";
 	}
+	
+	@ResponseBody
+	@PostMapping("follow")
+	public boolean follow(@RequestParam(value="follower")String follower) {
+		String following = (String) session.getAttribute("id");
+		boolean followcheck = false;
+		try {
+			if(subPageService.checkFollow(follower, following)) {
+				subPageService.unfollow(follower, following);
+				followcheck = false;
+			}else {
+				subPageService.follow(follower, following);
+				followcheck = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return followcheck;
+	}
 }

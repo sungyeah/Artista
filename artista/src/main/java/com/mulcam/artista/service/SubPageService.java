@@ -1,6 +1,7 @@
 package com.mulcam.artista.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Member;
@@ -31,4 +32,9 @@ public interface SubPageService {
 	public List<Order> orderList(int page, PageInfo pageInfo) throws Exception; //주문 내역 조회
 	public Order selectOrderByNo(int orderNo) throws Exception;
 	
+	boolean checkFollow(String follower,String following)throws Exception;
+	void follow(String follower,String following)throws Exception;
+	void unfollow(String follower,String following)throws Exception;
+	int followercnt(String id)throws Exception;
+	int followingcnt(String id)throws Exception;
 }

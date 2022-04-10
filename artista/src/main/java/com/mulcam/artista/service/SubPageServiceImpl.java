@@ -166,5 +166,40 @@ public class SubPageServiceImpl implements SubPageService{
 		return subpageDAO.selectOrderByNo(orderNo);
 	}
 
+	@Override
+	public boolean checkFollow(String follower, String following) throws Exception {
+		Map <String,String> map = new HashMap<>();
+		map.put("follower", follower);
+		map.put("following", following);
+		return subpageDAO.checkFollow(map);
+	}
+
+	@Override
+	public void follow(String follower, String following) throws Exception {
+		Map <String,String> map = new HashMap<>();
+		map.put("follower", follower);
+		map.put("following", following);
+		subpageDAO.follow(map);
+	}
+
+	@Override
+	public void unfollow(String follower, String following) throws Exception {
+		Map <String,String> map = new HashMap<>();
+		map.put("follower", follower);
+		map.put("following", following);
+		subpageDAO.unfollow(map);
+		
+	}
+
+	@Override
+	public int followercnt(String id) throws Exception {
+		return subpageDAO.followercnt(id);
+	}
+
+	@Override
+	public int followingcnt(String id) throws Exception {
+		return subpageDAO.followingcnt(id);
+	}
+
 	
 }
