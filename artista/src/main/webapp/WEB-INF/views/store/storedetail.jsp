@@ -48,7 +48,7 @@
 </head>
 
 <body>
-<%-- <%@include file ="../header.jsp" %> --%>
+<%@include file ="../header.jsp" %>
     <div id="wrap">
         <div id="container">
             <style>
@@ -123,8 +123,8 @@
                             <div class="personInfo" style="margin-top: 20px;">
                                 <h4>${artist.artistName }</h4>
                                 <ul>
-                                    <li><a href="#"><span id="spanFollowers">5</span>followers</a></li>
-                                    <li><a href="#"><span>0</span>following</a></li>
+                                    <li><a href="#"><span id="spanFollowers">${follower }</span>followers</a></li>
+                                    <li><a href="#"><span>${following }</span>following</a></li>
                                 </ul>
                                 <c:choose>
                                 	<c:when test="${check eq false }">
@@ -334,11 +334,13 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 					 $('.follow').html('UnFollow<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/white.png" alt="">');
 					 color.style.color="white";
 					 color.style.background="#222";
+					 location.reload();
 				}else{
 					alert("팔로우 취소 했습니다.");
 					$('.follow').html('Follow<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/하트2.png" alt="">');
 					color.style.color="#222";
 					color.style.background="white";
+					location.reload();
 				}
 			},
 			error:function(data, textStatus){
