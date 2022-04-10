@@ -158,7 +158,7 @@
                 판매 완료 작품
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductapply">
-                <b>판매신청내역</b>
+                <b>신청내역</b>
             </a>
             
             <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyproduct" style="width:120px;">

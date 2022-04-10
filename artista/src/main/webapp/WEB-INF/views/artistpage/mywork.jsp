@@ -29,8 +29,8 @@
                 </a>
             </div>
         </section>
-        <nav class="manager-nav">
-            <a class="manager-nav-btn current" href="${pageContext.request.contextPath}/artistpage/mywork">
+        <nav class="manager-nav" >
+            <a class="manager-nav-btn current" style="background-color: black;color: white;" href="${pageContext.request.contextPath}/artistpage/mywork">
                 전체 작품
             </a>
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproduct">

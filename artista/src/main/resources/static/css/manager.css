@@ -98,7 +98,7 @@
     font-family: 'Noto Sans KR', sans-serif;
     -webkit-font-smoothing: antialiased;
     letter-spacing: -0.5px;
-    font-size: 14px;
+    font-size: 16px;
     margin: 0;
     padding: 0;
     background: transparent;
@@ -110,8 +110,8 @@
     background-color: #fafafa;
     color: #989898;
     text-align: center;
-    height: 36px;
-    line-height: 34px;
+    height: 40px;
+    line-height: 40px;
     cursor: pointer;
 }
 .member-nav{
@@ -125,7 +125,7 @@
     width: 96%;
     max-width: 1152px;
     margin: 20px auto 0;
-    font-size: 14px;
+    font-size: 15px;
     height: 60px;
 }
 .member-nav-btn{
@@ -230,9 +230,10 @@
     height: 36px;
     margin: 10px 20px 0 0;
     float: right;
-    border: 1px solid #dfdfdf;
+    border: 1px solid #222;
+/*     border: 1px solid #dfdfdf; */
     font-size: 14px;
-    color: #989898;
+    color: #222;
     line-height: 36px;
     text-align: center;
     cursor: pointer;

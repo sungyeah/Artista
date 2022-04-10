@@ -165,7 +165,7 @@
                 <b>판매 완료 작품</b>
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproductapply">
-                판매신청내역
+                신청내역
             </a>
         </nav>
         

@@ -12,7 +12,7 @@
 	<insert id="insertupdate" parameterType="funding" >
 		<![CDATA[
 			insert into fundingapp(artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate)
-			values((select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 1, #{getplace}, #{getplace2}, sysdate())
+			values((select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 2, #{getplace}, #{getplace2}, sysdate())
 		]]>
 	</insert>
 	
@@ -25,6 +25,11 @@
 	<select id="queryMyFunding" parameterType="string" resultType="Funding">
 		<![CDATA[
 			select * from funding where artistNo = (select artistNo from artist where id = #{id})
+		]]>
+	</select>
+	<select id="queryappfunding" parameterType="string" resultType="Funding">
+		<![CDATA[
+			select * from fundingapp where id =#{id}
 		]]>
 	</select>
 	<update id="updatefundingapp" parameterType="Funding" >
@@ -74,9 +79,26 @@
 			select * from funding where fundingNo=#{fundingNo}
 		]]>
 	</select>
+	<insert id="insertfundingspon" parameterType="map" >
+		<![CDATA[
+			insert into fundingSpon(sponsorNo, id, fundingNo, sponsorAmount, email)
+			values(null, #{id}, #{fundingNo}, #{sponsorAmount}, #{email})
+		]]>
+	</insert>
+	<select id="querySponCount" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from fundingSpon where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	<select id="queryFundingNo" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingNo=#{fundingNo}
+		]]>
+	</select>
 </mapper>
 
 <!-- 
+펀딩 등록/수정
 create table fundingApp(
 	fundingNo int(10) not null auto_increment,
     artistNo int(10),
@@ -98,10 +120,11 @@ create table fundingApp(
     primary key(fundingNo)
 );
 
+펀딩 예정, 진행, 종료
 create table funding(
 	fundingNo int(10) not null,
-    artistNo int(10) not null,
-	id varchar(100) not null,
+    artistNo int(10),
+	artistName varchar(100),
     projTitle varchar(100) not null,
     projIntro varchar(255) not null,
     projBudget varchar(255) not null,
@@ -118,6 +141,7 @@ create table funding(
     primary key(fundingNo)
 );
 
+펀딩 결제
 create table fundingSpon(
 	sponsorNo int(10) not null,
     id varchar(100) not null,
@@ -126,6 +150,7 @@ create table fundingSpon(
     email varchar(100) not null,
     primary key(sponsorNo)
 );
+
 
 CREATE EVENT IF NOT EXISTS updateFundingState
     ON SCHEDULE

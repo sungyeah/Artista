@@ -57,7 +57,7 @@
 <c:choose>
 <c:when test="${empty id}">
  <ul class="menu2">
-    <img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 48px; right: 300px;">
+    <a style="cursor:pointer;" href="${pageContext.request.contextPath}/login"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 45px; right: 330px;"></a>
     <li class="navi2"><a href="login">Login</a></li>
     <li class="navi2"><a href="join">SignUp</a></li>
 </ul>
@@ -72,7 +72,7 @@
 </c:when>
 <c:otherwise>
  <ul class="menu2">
-     <img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 48px; right: 300px;">
+      <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 45px; right: 330px;"></a>
     <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
     <li class="navi2"><a href="${pageContext.request.contextPath}/mypage">mypage</a></li>
 </ul>

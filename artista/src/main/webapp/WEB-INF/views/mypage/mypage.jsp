@@ -21,12 +21,28 @@
             <h2 class="account-header-title">마이 페이지</h2>
             <div class="account-header-description">고객님과 관련된 정보입니다.</div>
         </header>
-        <div class="register2" style="display: flex;align-items: center; flex-direction: row-reverse;">
+        <c:choose>
+        <c:when test="${membertype eq 'artist' }">
+        	<div class="register2" style="display: flex;align-items: center; flex-direction: row-reverse;">
+        	<img style="width: 24px;height: 24px;" src="images/rightarrow2.png">
+            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/mywork">
+                작가 페이지
+            </a>
+        </div>
+        </c:when>
+        <c:otherwise>
+        	<div class="register2" style="display: flex;align-items: center; flex-direction: row-reverse;">
         	<img style="width: 24px;height: 24px;" src="images/rightarrow2.png">
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/mypage/apply">
                 작가 등록
             </a>
         </div>
+        </c:otherwise>
+        </c:choose>
+        
+        
+        
+        
         <section class="account-guide">
             <div class="account-guide-inner">
                 <h3 class="account-guide-name">

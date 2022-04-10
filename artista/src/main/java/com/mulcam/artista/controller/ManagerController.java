@@ -145,7 +145,7 @@ public class ManagerController {
 	}
 	
 	
-	/* 상품 등록 신청 */
+	/* 상품 등록 or 수정 신청 */
 	@GetMapping("/productapplylist")
 	public ModelAndView productApplyList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
 		ModelAndView mv = new ModelAndView("manager/productapplylist");
@@ -189,9 +189,10 @@ public class ManagerController {
 				workService.insertWork(work);
 				workapplyService.deleteWorkApply(workapplyNo);
 			}
+			// 상품 수정 허락
 			else if(applyState==2) {
 				Work work = null;
-				work = new Work(workService.getWorkMaxNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(),
+				work = new Work(workapply.getWorkNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(),
 						workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
 						workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getWorkPrice(), 1, -1,workapply.getWorkHeight());
 				workService.updateWork(work);

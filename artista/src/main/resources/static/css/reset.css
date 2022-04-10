@@ -1,0 +1,176 @@
+@charset "utf-8";
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+button,
+select {
+  text-transform: none;
+  vertical-align: baseline;
+}
+button,
+input {
+  overflow: visible;
+}
+
+
+button span {
+  position: relative;
+  top: 1px;
+}
+
+input[type=text]::-ms-clear {
+  display:none;
+}
+
+body, div, ul, li, ol, dl, dt, dd, p, span, a, h1, h2, h3, h4, h5, h6, form, legend, label, input, textarea, table, thead, tfoot, tbody, th, td, address, strong, em, pre, q, abbr, cite {
+  margin: 0;
+  padding: 0;
+    font-family: 'S-CoreDream';
+}
+.ul_col_list::after {
+  content:'';
+  display:block;
+  clear:both;
+}
+.li_col_list {
+  float:left;
+  min-width:150px;
+text-align:left;
+}
+input::placeholder {
+    font-weight:normal;
+    font-family: 'S-CoreDream';
+}
+input::-webkit-input-placeholder {
+    font-weight:normal;
+    font-family: 'S-CoreDream';
+}
+/* IE */
+input:-ms-input-placeholder {
+    font-weight:normal;
+    font-family: 'S-CoreDream';
+}
+/* Firefox */
+input:-mos-input-placeholder {
+    font-weight:normal;
+    font-family: 'S-CoreDream';
+}
+
+body, a {
+  font-family: 'S-CoreDream';
+  color: #000;
+  letter-spacing: 0.03em;
+}
+
+label, select, input, textarea {
+  vertical-align: middle;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+ul, ol {
+  list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+fieldset, hr {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+label, select, input, textarea {
+  vertical-align: middle;
+}
+
+table {
+  border-collapse: collapse;
+	border-spacing: 0;
+}
+table td img {
+  vertical-align: middle;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+}
+
+a:hover, a:active, a:focus {
+  text-decoration: none;
+}
+a {
+  background-color: transparent;
+}
+
+hr {
+  clear: both;
+  display: none;
+}
+
+caption, legend {
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+}
+
+input[type="text"] {
+  line-height: normal;
+}
+
+a, select, input[type=radio], input[type=checkbox], input[type=button], button {
+  cursor: pointer;
+}
+
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+header, section, nav, article, footer, main {
+  display: block;
+}
+
+button {
+    cursor:pointer;
+    border:none;
+    background:none;
+}
+button:focus {
+    outline:none;
+}
+
+.clear::after, .container::after {
+    display:block;
+    clear:both;
+    content:'';
+}
+
+
+
+

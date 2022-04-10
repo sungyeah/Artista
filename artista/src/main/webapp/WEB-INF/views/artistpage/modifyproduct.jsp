@@ -134,6 +134,11 @@
 		reader.readAsDataURL(event.target.files[0]);
 	});
 	
+	// 작품수정 신청 또는 취소
+	$("#workApply").click(function (event) {
+		$("#workType").attr("value", $(".selected-value").text());
+		$("#workApply").submit();
+	});
 	$("#cancel").click(function () {
 		window.history.back();
 	});

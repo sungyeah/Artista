@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +19,7 @@
             <h2 class="pageHead-title">후원하기</h2>
         </section>
         <section id="checkout_body" class="cf">
+        <form action="fundingpay2" id="fundingpay2" method="post">
             <section id="billing_info">
                 <div class="sect-header">
                     <h3>후원자 정보</h3>
@@ -34,16 +37,16 @@
                         <div class="sect-body-td">
                             <div class="checkout-profile-box">
                                 <input type="hidden" id="billing_name" name="billing_name">
-                                <span>밥줘</span>
+                                <span>${mem.name }</span>
                             </div>
                         </div>
                     </div>
                     <div class="sect-body cf">
-                        <div class="sect-body-th">전화번호</div>
+                        <div class="sect-body-th">휴대폰</div>
                         <div class="sect-body-td">
                             <div class="checkout-profile-box">
                                 <input type="hidden" id="billing_phone1" name="billing_phone1">
-                                <span>010-0210-1231</span>
+                                <span>${mem.contact }</span>
                             </div>
                         </div>
                     </div>
@@ -52,7 +55,7 @@
                         <div class="sect-body-td">
                             <div class="checkout-profile-box">
                                 <input type="hidden" id="checkout-input-billing_email" name="billing_email">
-                                <span>test01@naver.com</span>
+                                <span>${mem.email}</span>
                             </div>
                         </div>
                     </div>
@@ -63,9 +66,7 @@
                         <h3>결제 정보</h3>
                         <div class="mbtn_more active">
                             <input type="button" id="payment_more_btn" class="active">
-                            <span class="active-hide-text">
-                                총 <span id="payment-header-totalPrice">340,000</span>원
-                            </span>
+							
                         </div>
                     </div>
                     <div class="sect-info active certified">
@@ -91,16 +92,23 @@
                                             <div class="sect-body cf">
                                                 <div class="sect-body-th mpaytotal">결제금액</div>
                                                 <div class="sect-body-td mprice">
-                                                    <span id="payment-totalPrice">50,000</span>원
+                                                    <span id="payment-totalPrice"><fmt:formatNumber value="${sponsorAmount}" /></span>원
+                               							<input type="hidden" id="sponsorAmount" name="sponsorAmount" value='${sponsorAmount}'>
+                               							<input type="hidden" id="fundingNo" name="fundingNo" value="${fundingNo }">
                                                 </div>
                                             </div>
                 </div>
                 </section>
                 <div id="checkout_submitRow">
-                    <input id="go_checkout" class="next_step" type="button" value="다음">
+                    <input id="go_checkout" class="next_step" type="submit" value="다음">
                 </div>
+                </form>
             </section>
     </div>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     
+    <script>
+    console.log($('#fundingNo').val());
+    </script>
 </body>
 </html>

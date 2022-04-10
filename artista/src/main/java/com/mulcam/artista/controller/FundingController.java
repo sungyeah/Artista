@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -20,15 +21,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mulcam.artista.dto.Funding;
+import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.service.FundingService;
+import com.mulcam.artista.service.SubPageService;
 
 @RequestMapping("funding")
 @Controller
 public class FundingController {
+	
+	@Autowired
+	HttpSession session;
+	
+	@Autowired
+	SubPageService subPageService;
 	
 	@Autowired
 	FundingService fundingService;
@@ -62,7 +72,10 @@ public class FundingController {
 	@GetMapping("/fundingovdetail")
 	public String fundingovdetail(@RequestParam("fundingNo") int fundingNo, Model model) {
 		Funding funding=fundingService.queryovdetail(fundingNo);
+		System.out.println(fundingNo);
+		int count = fundingService.querySponCount(fundingNo);
 		model.addAttribute("funding", funding);
+		model.addAttribute("count", count);
 		return	"funding/fundingovdetail";
 	}
 	
@@ -83,20 +96,49 @@ public class FundingController {
 	
 	
 	//펀딩 결제
-	@GetMapping("/fundingpay")
-	public String fundingpay() {
+	//가격 
+	@PostMapping("/fundingpay")
+	public String fundingpay(@RequestParam(value="sponsorAmount") int sponsorAmount, Model model,
+			@RequestParam(value="fundingNo") int fundingNo) {
+		String id=(String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			model.addAttribute("mem", mem);
+			model.addAttribute("sponsorAmount", sponsorAmount);
+			model.addAttribute("fundingNo", fundingNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+
 		return "funding/fundingpay";
 	}
+
 	
-	@GetMapping("/fundingpay2")
-	public String fundingpay2 () {
+	@PostMapping("/fundingpay2")
+	public String fundingpay2(Model model, @RequestParam(value="fundingNo") int fundingNo, @RequestParam(value="sponsorAmount") int sponsorAmount) {
+		String id=(String) session.getAttribute("id");
+		try {
+			Member mem = subPageService.queryId(id);
+			Funding funding=fundingService.queryFundingNo(fundingNo);
+			model.addAttribute("mem", mem);
+			model.addAttribute("funding", funding);
+			System.out.println(funding);
+			model.addAttribute("sponsorAmount", sponsorAmount);
+			model.addAttribute("fundingNo", fundingNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "funding/fundingpay2";
 	}
 	
 	
-	//완료페이지
-	@GetMapping("/succesamount")
-	public String succesamount() {
+	//완료페이지 action, post
+	@PostMapping("/succesamount")
+	public String succesamount(@RequestParam(value="sponsorAmount")String sponsorAmount,
+			@RequestParam(value="fundingNo")int fundingNo,@RequestParam(value="email")String email) {
+		String id=(String) session.getAttribute("id");
+		int sponsAmount = Integer.parseInt(sponsorAmount);
+		fundingService.insertfundingspon(sponsAmount, fundingNo, email, id);
 		return "funding/succesamount";
 	}
 	
@@ -138,60 +180,6 @@ public class FundingController {
 			}
 		}		
 	}	
-	
-	/*
-	 * ck에디터 사진 올리는 거
-	 * @ResponseBody
-@PostMapping("/fb_upload")
-public Map<String, Object> fileupload(@RequestParam(value="upload") MultipartFile file) {
-	String path = servletContext.getRealPath("/upload/");
-	String filename = file.getOriginalFilename();
-	File destFile = new File(path+filename);
-	Map<String, Object> json = new HashMap<>();
-	try {
-		file.transferTo(destFile);
-		json.put("uploaded", 1);
-		json.put("fileName", filename);
-		json.put("url", "/fileview/"+filename);
-	} catch(IOException e) {
-		e.printStackTrace();
-	} 
-	return json;
-}	
-	@GetMapping(value="/routethumbfileview/{filename}")
-public void thumbfileview(@PathVariable String filename, 
-		HttpServletRequest request, HttpServletResponse response)
-{			
-	String path = servletContext.getRealPath("/thumb/route/");
-	File file = new File(path+filename);
-	String sfilename = null;
-	FileInputStream fis = null;
-	
-	try {
-		if(request.getHeader("User-Agent").indexOf("MSIE")>-1) {
-			sfilename = URLEncoder.encode(file.getName(), "utf-8");
-		} else {
-			sfilename = new String(file.getName().getBytes("utf-8"), "ISO-8859-1");
-		}
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/octet-stream;charset=utf-8");
-		response.setHeader("Content-Disposition", "attachment; filename="+sfilename);
-		OutputStream out = response.getOutputStream();
-		fis= new FileInputStream(file);
-		FileCopyUtils.copy(fis, out);
-		out.flush();
-	} catch(Exception e) {
-		e.printStackTrace();
-	} finally {
-		if(fis!=null) {
-			try {
-				fis.close();
-			} catch(Exception e) {}
-		}
-	}		
-*
-*/
-
-	
+		
 }
 
