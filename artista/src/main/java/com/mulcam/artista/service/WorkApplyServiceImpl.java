@@ -37,9 +37,10 @@ public class WorkApplyServiceImpl implements WorkApplyService {
 	
 
 	@Override
-	public void refuseWorkApply(int workapplyNo, String refusedContents) throws Exception {
+	public void refuseWorkApply(int workapplyNo, int applyState, String refusedContents) throws Exception {
 		Map<String,Object> map = new HashMap<>();
 		map.put("applyNo", workapplyNo);
+		map.put("applyState", applyState);
 		map.put("refusedContents", refusedContents);
 		workapplyDAO.updateWorkApplyRefuse(map);
 	}

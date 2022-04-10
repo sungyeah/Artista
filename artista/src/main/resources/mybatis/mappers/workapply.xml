@@ -24,7 +24,7 @@
 	<!-- 작품등록 거절 update -->
 	<select id="updateWorkApplyRefuse" parameterType="map">
 		<![CDATA[
-			update workapply set applyState=1, refusedContents=#{refusedContents} where workapplyNo=#{applyNo}
+			update workapply set applyState=#{applyState}, refusedContents=#{refusedContents} where workapplyNo=#{applyNo}
 		]]>
 	</select>
 	
@@ -39,14 +39,14 @@
 	<!-- 신정 착품 수 -->
 	<select id="WorkApplyNum" resultType="int">
 		<![CDATA[
-			select count(*) from workapply where applyState=0 or applyState=3
+			select count(*) from workapply where applyState=0 or applyState=2
 		]]>
 	</select>
 	
 	<!-- 작품 선택하기 : listing 적용 -->
 	<select id="selectWorkApplyList" parameterType="int" resultType="workapply">
 		<![CDATA[
-			select * from workapply where applyState=0 or applyState=3 limit #{startrow}, 9
+			select * from workapply where applyState=0 or applyState=2 limit #{startrow}, 9
 		]]>
 	</select>
 	

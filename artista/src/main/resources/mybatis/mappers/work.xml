@@ -76,6 +76,13 @@
 			update work set workForSale=3 where workNo=#{workNo}
 		]]>
 	</update>
+	
+	<update id="updateWork" parameterType="work" >
+		<![CDATA[
+			update work set workName=#{workName}, workImg=#{workImg}, workType=#{workType}, workTech=#{workTech}, 
+				workSize=#{workSize}, workIntro=#{workIntro}, workPrice=#{workPrice}, workHeight=#{workHeight} where workNo=#{workNo}
+		]]>
+	</update>
 </mapper>
 <!-- 
 create table work(

@@ -296,7 +296,7 @@ public class ArtistPageController {
 			}
 			workImg = artistNo + "-" + workEnrollTime +"."+ mtypes[1];
 			workapply.setWorkImg(workImg);
-		}else {
+		} else {
 			Work work;
 			try {
 				work = workService.workinfo(workNo);
