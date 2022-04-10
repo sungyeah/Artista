@@ -307,7 +307,6 @@ public class ManagerController {
 			
 			exhibitService.insertExhibit(exhibit);
 			exhibitService.deleteExhibitApply(exhibitapplyNo);
-			System.out.println("전시 등록 성공");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

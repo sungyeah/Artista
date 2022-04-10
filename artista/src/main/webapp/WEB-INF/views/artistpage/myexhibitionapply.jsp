@@ -9,9 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<link rel="stylesheet" href="../css/mypage.css">
 <link rel="stylesheet" href="../css/applymodal.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script	src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
 </head>
 <body>
 	<%@include file ="../header.jsp" %>
@@ -83,141 +83,153 @@
                     <input type="hidden" id="exhibitapplyNo" disabled/>
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <a class="yesNo-btn" id="accept">등록</a>                    
-                            <a class="yesNo-btn" id="refusemodal">거절</a>      
+                            <a class="yesNo-btn close-area">닫기</a>           
                         </div>
                     </div>
             </article>  
         </div>
     </div>
-    
-    <div id="refuseapply" class="modal-overlay">
+    <div id="refuseReason" class="modal-overlay">
         <div class="refusemodal-window">
             <header class="modal-header">
-            	<div id="refuse_close" class="close-area">X</div>
-                <h4 class="modal-header-title">거절 사유</h4>
+            	<div class="close-area">X</div>
+                <h2 class="modal-header-title">거절 사유</h2>
             </header>
             <article class="modal-body">
+                <form class="modal-modify-form" method="post">
                     <div class="modal-modify-form-border"></div>
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
                             <span class="red">*</span> 거절사유
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <textarea class="modal-modify-form-input" id="refusedContents" style="width:300px; height: 120px; resize: none;"></textarea>
-                        </div>
-                    </div>                                
-                    <div class="modal-modify-form-border">
-                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <a class="yesNo-btn" id="refuse">거절</a>                    
-                            <a class="yesNo-btn" id="cancel">취소</a>      
+                            <textarea id="refusedContents" class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;" readonly></textarea>
                         </div>
                     </div>
+                    <div class="modal-modify-form-border">
+                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">               
+                            <a class="yesNo-btn close-area">닫기</a>      
+                        </div>
+                    </div>
+                </form>
             </article>  
         </div>
     </div>
-
-    <div class="contents">
-        <header class="manager-header">
-            <h2 class="manager-header-title">관리자 페이지</h2>
+    
+    <div id="contents">
+        <header class="account-header">
+            <h2 class="account-header-title">작가 페이지</h2>
+            <div class="account-header-description">고객님과 관련된 정보입니다.</div>
         </header>
-        <section class="manager-guide">
-            <div class="manager-guide-inner">
-                <h3 class="manager-guide-name">
-                    관리자님 반갑습니다.
+        <section class="account-guide">
+            <div class="account-guide-inner">
+                <h3 class="account-guide-name">
+                    홍성호님 반갑습니다.
                 </h3>
+                <a class="account-modify-btn" href="mypage/mypagemodify" onclick="gaClickAccount('account_modify');">
+                    <p>작가 정보</p>
+                </a>
             </div>
         </section>
         <nav class="manager-nav">
-            <a class="manager-nav-btn current"  href="${pageContext.request.contextPath}/manager/paymentlist">
-                작품 관리
+            <a class="manager-nav-btn current" href="${pageContext.request.contextPath}/artistpage/mywork">
+                전체 작품
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/fundinglist">
-                펀딩 관리
+            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myproduct">
+                판매 작품
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionlist">
-                전시 관리
+            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/artistpage/myfunding">
+                나의 펀딩
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/memberlist">
-                회원 관리
+            <a class="manager-nav-btn" style="background-color: black;color: white;" href="${pageContext.request.contextPath}/artistpage/myexhibition">
+                나의 전시
             </a>
         </nav>
-
+        
         <nav class="member-nav">
-            <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionlist">
-                전시 목록 관리
+            <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myexhibition">
+                나의 전시
             </a>
-            <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionapplylist">
-                전시 등록 신청
+            <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myexhibitionapply">
+            	신청 내역
             </a>
+            
+            <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyexhibition" style="width:120px;">
+       		 	전시등록 신청
+        	</a>
         </nav>
-    	<article class="member-body">
+        
+        <article class="member-body">
             <section class="member-list">
-            	<table class="member-table">
+                <table class="member-table">
                     <thead>
                     <tr>
-                        <th scope="col">전시신청번호</th>
-                        <th scope="col">전시 제목</th>
-                        <th scope="col">아티스트 이름</th>
-                        <th scope="col">전시시작일</th>
-                        <th scope="col">전시종료일</th>
-                        <th scope="col">대관장소</th>
-                        <th scope="col">신청유형</th>
+                        <th scope="col" class="artistNo">전시 번호</th>
+                        <th scope="col" class="id">전시 제목</th>
+                        <th scope="col" class="artistName">전시 시작일</th>
+                        <th scope="col" class="artistType">전시 종료일</th>
+                        <th scope="col" class="artistType">펀딩번호</th>
+                        <th scope="col" class="artistType">결과</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <c:choose>
-                    	<c:when test="${applylist!=null }">
+                    	<c:when test="${exhibitlist!=null }">
                     	<tbody>
-                    		<c:forEach items="${applylist }" var="applylist">
+                    		<c:forEach items="${exhibitlist }" var="exhibitlist">
 								<tr>
-                            	<th scope="col">${applylist.exhibitapplyNo }</th>
-                            	<th scope="col">${applylist.exhibitTitle }</th>
-                            	<th scope="col">${applylist.exhibitArtist }</th>
-                            	<th scope="col">${applylist.startDate }</th>
-                            	<th scope="col">${applylist.endDate }</th>
-                            	<th scope="col">${applylist.exhibitPlace }</th> 
-                            	<th scope="col" class="applyState">
-                            		<c:if test="${applylist.applyStatus eq 0}">등록 요청</c:if>
-                            		<c:if test="${applylist.applyStatus eq 2}">수정 요청</c:if>
-                            	</th>                         
-                           		<th scope="col"><a class="artist-detail-btn" onclick="exhibitlist('${applylist.exhibitapplyNo }')">신청 상세보기</a></th>
+                            	<th scope="col">${exhibitlist.exhibitapplyNo }</th>
+                            	<th scope="col">${exhibitlist.exhibitTitle }</th>
+                            	<th scope="col"">${exhibitlist.startDate }</th>
+                            	<th scope="col"">${exhibitlist.endDate }</th>
+                            	<th scope="col">${exhibitlist.fundingNo }</th>  
+                            	<th scope="col">
+                            		<c:if test="${exhibitlist.applyStatus eq 0}">전시등록 요청 중</c:if>
+                            		<c:if test="${exhibitlist.applyStatus eq 1}">전시등록 거절</c:if>
+                            		<c:if test="${exhibitlist.applyStatus eq 2}">전시수정 요청 중</c:if>
+                            		<c:if test="${exhibitlist.applyStatus eq 3}">전시수정 거절</c:if>
+                            	</th>         
+                            	<th scope="col" colspan="1">
+                           			<a class="artist-detail-btn" id="showDetail" onclick="showDetail('${exhibitlist.exhibitapplyNo }')">신청내용보기</a>
+                            	</th>                  
+                           		<th scope="col" colspan="1">
+                           			<c:if test="${exhibitlist.applyStatus eq 1}"><a class="artist-detail-btn" id="showReason" onclick="showReason('${exhibitlist.exhibitapplyNo }')">거절사유보기</a></c:if>
+                            		<c:if test="${exhibitlist.applyStatus eq 3}"><a class="artist-detail-btn" id="showReason" onclick="showReason('${exhibitlist.exhibitapplyNo }')">거절사유보기</a></c:if>
+                           		</th>    
                         		</tr>
                         		</c:forEach>
                         </tbody>
                     	</c:when>
                     </c:choose>
-                </table>                
+                </table>
+                <a class="member-delete-btn" href="/account/delete/">
+                    내용 삭제
+                </a>
             </section>
         </article>
+        
+        <%@include file ="../footer.jsp" %>
+
     </div>
-    <%@include file ="../footer.jsp" %>
+    
     <script>
 	//modal창
     const applyexhibition = document.getElementById("applyexhibition");
-    const refuseapply = document.getElementById("refuseapply");
-    
     $(function(){
-    	$(document).on('click', '.artist-detail-btn', function(e){
+    	$(document).on('click', '#showDetail', function(e){
     		applyexhibition.style.display = "flex";
     	});
-    	$(document).on('click', '#apply_close', function(e){
+    	$(document).on('click', '#showReason', function(e){
+    		refuseReason.style.display = "flex";
+    	});
+    	$(document).on('click', '.close-area', function(e){
     		applyexhibition.style.display = "none";
+    		refuseReason.style.display = "none";
     	});
-    });
-    $(function(){
-    	$(document).on('click', '#refusemodal', function(e){
-    		refuseapply.style.display = "flex";
-    	});
-    	$(document).on('click', '#cancel', function(e){
-    		refuseapply.style.display = "none";
-    	});
-    	$(document).on('click', '#refuse_close', function(e){
-    		refuseapply.style.display = "none";
-    	});
-    });
+    ;});
     
-    function exhibitlist(applyNo){
+    function showDetail(applyNo){
     	applyexhibition.style.display = "flex";
 		$.ajax({
 			type:"post",
@@ -242,44 +254,22 @@
 			}
 		});
 	}
-    
-    $(function(){
-    	$(document).on('click', '#accept', function(e){
-    		alert($('#exhibitapplyNo').val());
-    		$.ajax({
-    			type:"post",
-    			async: false,
-    			url:"http://localhost:8090/manager/exhibitapplysuccess",
-    			data:{"applyNo":$('#exhibitapplyNo').val()},
-    			dataType:"text",
-    			success: function(data, textStatus){ 
-    				alert("전시 등록이 성공했습니다");
-    				location.reload();
-    			},
-    			error:function(data, textStatus){
-    				alert("아티스트 등록이 실패했습니다.");
-    			}
-    		});
-    	});
-    	$(document).on('click', '#refuse', function(e){
-    		alert($("#refusedContents").val());
-    		$.ajax({
-    			type:"post",
-    			async: false,
-    			url:"http://localhost:8090/manager/exhibitapplyfail",
-    			data:{"applyNo":$('#exhibitapplyNo').val(), "refusedContents" : $("#refusedContents").val()},
-    			dataType:"text",
-    			success: function(data, textStatus){ 
-    				alert("전시등록 거절이 성공했습니다");
-    				location.reload();
-    			},
-    			error:function(data, textStatus){
-    				alert("전시등록 거절이 실패했습니다.");
-    			}
-    		});
-    	});
-    });
-    
+    function showReason(applyNo){
+		refuseReason.style.display = "flex";
+		$.ajax({
+			type:"post",
+			dataType:"text",
+			async: false,
+			url:"http://localhost:8090/artistpage/exhibitrefuseReason",
+			data:{"exhibitapplyNo":applyNo},
+			success: function(data, textStatus){ 
+				$("#refusedContents").html(data);   
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		});		
+	}
     </script>
 </body>
 </html>
