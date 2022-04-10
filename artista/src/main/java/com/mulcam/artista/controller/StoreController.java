@@ -78,7 +78,6 @@ public class StoreController {
 			int follower = subPageService.followercnt(artist.getId());
 			int following = subPageService.followingcnt(artist.getId());
 			String artistId= artist.getId();
-			System.out.println(artistId);
 			boolean check=subPageService.checkFollow(artistId, id);
 			model.addAttribute("following", following);
 			model.addAttribute("follower", follower);

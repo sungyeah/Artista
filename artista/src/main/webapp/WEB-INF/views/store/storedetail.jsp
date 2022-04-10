@@ -330,14 +330,10 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 			data:{"follower":follower},
 			success: function(data, textStatus){
 				if(data=='true'){
-					alert("팔로우 했습니다.");
-					 $('.follow').html('UnFollow<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/white.png" alt="">');
 					 color.style.color="white";
 					 color.style.background="#222";
 					 location.reload();
 				}else{
-					alert("팔로우 취소 했습니다.");
-					$('.follow').html('Follow<img class="1" id="heart" style="width:17.6px !important;height:17.6px !important;margin-left:5px;" src="../images/하트2.png" alt="">');
 					color.style.color="#222";
 					color.style.background="white";
 					location.reload();
