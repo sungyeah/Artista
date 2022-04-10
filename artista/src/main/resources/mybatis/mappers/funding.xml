@@ -85,6 +85,11 @@
 			values(null, #{id}, #{fundingNo}, #{sponsorAmount}, #{email})
 		]]>
 	</insert>
+	<select id="querySponCount" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from fundingSpon where fundingNo=#{fundingNo}
+		]]>
+	</select>
 	<select id="queryFundingNo" resultType="Funding">
 		<![CDATA[
 			select * from funding where fundingNo=#{fundingNo}

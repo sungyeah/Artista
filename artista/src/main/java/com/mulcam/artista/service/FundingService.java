@@ -18,4 +18,5 @@ public interface FundingService {
 	public Funding querytmdetail(int fundingNo);
 	public void insertfundingspon(int sponsorAmount,int fundingNo,String email,String id);
 	public Funding queryFundingNo(int fundingNo);
+	public int querySponCount(int fundingNo);
 }

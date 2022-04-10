@@ -27,4 +27,5 @@ public interface FundingDAO {
 	public Funding querytmdetail(int fundingNo);
 	public void insertfundingspon(Map map);
 	public Funding queryFundingNo(int fundingNo);
+	public int querySponCount(int fundingNo);
 }

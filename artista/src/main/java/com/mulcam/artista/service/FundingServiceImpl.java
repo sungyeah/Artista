@@ -93,4 +93,10 @@ public class FundingServiceImpl implements FundingService {
 		return fundingDAO.queryFundingNo(fundingNo);
 	}
 
+	@Override
+	public int querySponCount(int fundingNo) {
+		// TODO Auto-generated method stub
+		return fundingDAO.querySponCount(fundingNo);
+	}
+
 }

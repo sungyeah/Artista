@@ -58,7 +58,7 @@
             </div><br>
             <div id="amount">${funding.targetFunding} 목표 금액</div><br>
             <div id="amount"><span id="remainAmount"></span> 남은 금액</div><br>
-            <div id="amount">20명 서포터</div><br>
+            <div id="amount">${count} 서포터</div><br>
             <div id="promain">
                 <span id="rate"></span><span>%</span>
                 <progress id="pro" value="30" max="100"></progress>

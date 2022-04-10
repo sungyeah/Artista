@@ -73,7 +73,9 @@ public class FundingController {
 	public String fundingovdetail(@RequestParam("fundingNo") int fundingNo, Model model) {
 		Funding funding=fundingService.queryovdetail(fundingNo);
 		System.out.println(fundingNo);
+		int count = fundingService.querySponCount(fundingNo);
 		model.addAttribute("funding", funding);
+		model.addAttribute("count", count);
 		return	"funding/fundingovdetail";
 	}
 	
