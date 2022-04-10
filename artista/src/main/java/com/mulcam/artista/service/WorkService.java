@@ -17,6 +17,7 @@ public interface WorkService {
 	public List<Work> SoldProductList(int page, PageInfo pageInfo) throws Exception;
 	
 	public void updateSale(int orderNo,int workNo)throws Exception;
-	public void workPayed(int workNo) throws Exception;
+	public void workPayed(int workNo)throws Exception;
+	
 	public void updateWork(Work work) throws Exception;
 }

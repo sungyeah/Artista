@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="../css/mypage.css">
 </head>
 <body>
-	<%@include file ="../header.jsp" %>
+<%@include file="../header.jsp"%>
 	<div id="contents">
 		<header class="account-header">
 			<h2 class="account-header-title">작가 페이지</h2>
@@ -27,7 +27,7 @@
 				<h3 class="account-guide-name">${mem.name }님반갑습니다.</h3>
 				<a class="account-modify-btn" href="mypage/mypagemodify"
 					onclick="gaClickAccount('account_modify');">
-					작가 정보
+					<p>작가 정보</p>
 				</a>
 			</div>
 		</section>
@@ -36,14 +36,21 @@
 				href="${pageContext.request.contextPath}/artistpage/mywork"> 전체
 				작품 </a> <a class="manager-nav-btn"
 				href="${pageContext.request.contextPath}/artistpage/myproduct">
-				판매 작품 </a> <a class="manager-nav-btn"
+				판매 작품 </a> <a class="manager-nav-btn" style="background-color: black;color: white;"
 				href="${pageContext.request.contextPath}/artistpage/myfunding">
 				나의 펀딩 </a> <a class="manager-nav-btn"
 				href="${pageContext.request.contextPath}/artistpage/myexhibition">
 				나의 전시 </a>
 		</nav>
 
+
 		<nav class="member-nav">
+			<a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myfunding">
+                <b>나의 리스트</b>
+            </a>
+            <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/appmyfunding">
+                펀딩 내역
+            </a>
 			<a class="member-delete-btn"
 				href="${pageContext.request.contextPath}/artistpage/applyfunding">
 				펀딩 신청 </a>

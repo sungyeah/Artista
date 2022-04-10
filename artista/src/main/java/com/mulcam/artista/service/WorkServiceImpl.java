@@ -89,5 +89,4 @@ public class WorkServiceImpl implements WorkService {
 		workDAO.updateWork(work);
 	}
 	
-	
 }
