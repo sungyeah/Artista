@@ -18,4 +18,6 @@ public interface ExhibitService {
 	public Exhibition selectExhibit(int exhibitNo) throws Exception;
 	public List<Exhibition> ExhibiList() throws Exception;
 	public void deleteExhibit(int exhibitNo) throws Exception;
+	
+	public List<Exhibition> exhibits() throws Exception;	// 전시회 리스트
 }

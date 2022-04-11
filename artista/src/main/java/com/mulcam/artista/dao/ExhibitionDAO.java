@@ -25,4 +25,6 @@ public interface ExhibitionDAO {
 	public Exhibition queryExhibit(int exhibitNo) throws Exception;
 	public List<Exhibition> selectExhibitList() throws Exception;
 	public void deleteExhibit(int exhibitNo) throws Exception;
+	
+	public List<Exhibition> exhibitlist() throws Exception; //전시회 리스트
 }
