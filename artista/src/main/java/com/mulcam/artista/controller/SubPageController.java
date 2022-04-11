@@ -25,6 +25,7 @@ import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.Work;
+import com.mulcam.artista.service.FundingService;
 import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageServiceImpl;
 import com.mulcam.artista.service.WorkService;
@@ -40,6 +41,9 @@ public class SubPageController {
 	
 	@Autowired
 	WorkService workService;
+	
+	@Autowired
+	FundingService fundingService;
 	
 	@Autowired
 	HttpSession session;

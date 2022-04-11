@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Follow;
+import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 

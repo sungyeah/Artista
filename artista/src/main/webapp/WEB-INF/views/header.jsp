@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +44,12 @@
     
 }
 
+.box {
+      display: none;
+      padding-bottom: 30px;
+    }
+
+
 </style>
 <body>
 <div id="wrap2">
@@ -51,15 +61,15 @@
     <li class="navi"><a href="${pageContext.request.contextPath}/exhibition/view">Exhibition </a></li>
     <li class="navi"><a href="${pageContext.request.contextPath}/artistslist">Artists</a></li>
     <li class="navi"><a href="${pageContext.request.contextPath}/storelist">Store</a></li>
-    <li class="navi"><a href="">Funding</a></li>
+    <li class="navi"><a href="${pageContext.request.contextPath}/funding/fundingov">Funding</a></li>
  </ul>
 
 <c:choose>
 <c:when test="${empty id}">
  <ul class="menu2">
-    <a style="cursor:pointer;" href="${pageContext.request.contextPath}/login"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 45px; right: 330px;"></a>
     <li class="navi2"><a href="login">Login</a></li>
     <li class="navi2"><a href="join">SignUp</a></li>
+    <!-- z-index position ab width -->
 </ul>
 </c:when>
 
@@ -72,7 +82,13 @@
 </c:when>
 <c:otherwise>
  <ul class="menu2">
-      <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 45px; right: 330px;"></a>
+ 	  <span style="cursor:pointer;" id="toggleBtn"><img src="${pageContext.request.contextPath}/images/bellyes.png"
+	 style="width: 25px; height: 25px; width: auto; position: absolute; top: 48px; right: 330px; opacity:0.6;"></span>
+	 
+	 <c:forEach items="${list}" var="alarm">
+	 	<li><div style="z-index: auto; position:absolute;" class="box">${alarm.projTitle} ${alarm.fundingMsg}</div></li>
+	 </c:forEach>
+      <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="width: 25px; height: 25px; position: absolute; top: 48px; right: 375px;  opacity:0.6;"></a>
     <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
     <li class="navi2"><a href="${pageContext.request.contextPath}/mypage">mypage</a></li>
 </ul>
@@ -84,9 +100,20 @@
 
     
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	$("#toggleBtn").on("click", function(){
+	    //$(".box").toggle(1000);
+		 $(".box").fadeToggle(1000);
+		  //$(".box").slideToggle(1000);
+	 });
+</script>
 <script>
 var uid = '<%=(String)session.getAttribute("membertype")%>';
-	console.log(uid)
+	console.log(uid);
+	
+	
+	
 </script>
 </body>
 </html>

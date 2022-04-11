@@ -99,4 +99,26 @@ public class FundingServiceImpl implements FundingService {
 		return fundingDAO.querySponCount(fundingNo);
 	}
 
+	@Override
+	public boolean checkAlarm(int fundingNo, String id) {
+		Map <String, Object> map = new HashMap<>();
+		map.put("fundingNo", fundingNo);
+		map.put("id", id);
+		return fundingDAO.checkAlarm(map);
+	}
+
+	@Override
+	public void deleteAlarm(String id) {
+		fundingDAO.deleteAlarm(id);
+		
+	}
+
+	@Override
+	public void insertAlarm(int fundingNo, String id) {
+		Map <String, Object> map = new HashMap<>();
+		map.put("fundingNo", fundingNo);
+		map.put("id", id);
+		fundingDAO.insertAlarm(map);
+	}
+
 }

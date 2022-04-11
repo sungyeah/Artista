@@ -61,6 +61,26 @@ public class FundingController {
 		return "funding/fundingucdetail";
 	}
 	
+	@ResponseBody
+	@PostMapping("alarm")
+	public boolean alarm(@RequestParam(value="fundingNo") int fundingNo) {
+		String id = (String) session.getAttribute("id");
+		System.out.println(fundingNo);
+		boolean checkAlarm = false;
+		try {
+			if(fundingService.checkAlarm(fundingNo, id)) {
+				fundingService.deleteAlarm(id);
+				checkAlarm = false;
+			}else {
+				fundingService.insertAlarm(fundingNo, id);
+				checkAlarm = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return checkAlarm;
+	}
+	
 	@GetMapping("/fundingov")
 	public String fundingov (@ModelAttribute Funding funding, Model model){
 		List<Funding> list=fundingService.queryov(funding);
