@@ -8,13 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.ArtistApplyDAO;
+import com.mulcam.artista.dao.ArtistWorldDAO;
 import com.mulcam.artista.dto.ArtistApply;
+import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.PageInfo;
 
 @Service
 public class ArtistApplyServiceImpl implements ArtistApplyService {
 	@Autowired
 	ArtistApplyDAO artistapplyDAO;
+	
+	@Autowired
+	ArtistWorldDAO artistworldDAO;
 	
 	@Override
 	public int getApplyArtistNo() throws Exception {
@@ -62,6 +67,16 @@ public class ArtistApplyServiceImpl implements ArtistApplyService {
 		map.put("applyNo", applyNo);
 		map.put("refusedContents", refusedContents);
 		artistapplyDAO.updateRefuseResults(map);
+	}
+	
+	@Override
+	public void deleteArtistWorld(String artistId) throws Exception{
+		artistworldDAO.deleteArtistWorld(artistId);
+	}
+	
+	@Override
+	public List<ArtistWorld> selectArtistWorldApplyByNo(String id) throws Exception {
+		return artistworldDAO.artistWorld(id);
 	}
 	
 }
