@@ -15,7 +15,7 @@
     <article id="content" class="vuelayer">
         <div class="page-cover">
             <div class="image"
-                style="background-image: url(/mypage/artistprofile/${artist.artistImg }); opacity: 1;">
+                style="background-image: url(/mypage/artistprofile/${atistList.artistImg }); opacity: 1;">
             </div>
         </div>
         <section id="about" class="section" >
@@ -32,7 +32,7 @@
             </nav>
             <div class="detail" >
                 <div class="info">
-                    <figure><img src="images/인물사진2.png"
+                    <figure><img src="${artist.artistImg }"
                             alt="Ayoung Kim "></figure>
                     <h3>Download</h3>
                     <ul>

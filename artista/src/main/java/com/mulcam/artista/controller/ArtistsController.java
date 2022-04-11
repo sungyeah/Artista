@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mulcam.artista.dto.Artist;
+import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.ArtistWorldService;
 
@@ -24,9 +25,10 @@ public class ArtistsController {
 	@GetMapping("artistslist")
 	public String artistslist(Model model) throws Exception {
 		List<Artist> Artistlist = artistservice.artists();
-		/* List<Worlds> Wldlist = artistworldservice.worlds(); */
+		/* List<ArtistWorld> Wldlist = artistworldservice.worlds(); */
 		try {
 			model.addAttribute("atistList", Artistlist);
+			/* model.addAttribute("wldList", Wldlist); */
 			System.out.println(Artistlist);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,9 +39,11 @@ public class ArtistsController {
 	
 	@GetMapping("artistdetail/{artistNo}")
 	public String artistdetail(@PathVariable int artistNo, Model model) throws Exception {
+		/* List<ArtistWorld> Wldlist = artistworldservice.worlds(); */
 		try {
 			Artist artist = artistservice.Artistinfo(artistNo);
 			model.addAttribute("artist", artist);
+			/* model.addAttribute("wldList", Wldlist); */
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -24,6 +24,13 @@
 		]]>
 	</select>
 
+		<!-- 작가 세계 -->
+<!-- 	<select id="Wlds" resultType="Worlds">
+		<![CDATA[
+			select * from artistworld where id=#{id} limit 1;
+		]]>
+	</select> -->
+	
 </mapper>
 <!-- 
 create table artistworld (
