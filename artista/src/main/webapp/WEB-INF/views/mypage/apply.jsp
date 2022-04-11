@@ -152,8 +152,8 @@
                         	<span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br>
                             <div class="artistsWorld">
 	                        	<img class="artistsWorldImg"/>
-                            	<label for="artistWorld1">파일 선택</label>
-                            	<input type="file" id="artistWorld1" name="artistWorld1" class="fileselect" />
+                            	<label for="artistWorld1" class="labelselect">파일 선택</label>
+                            	<input type="file" id="artistWorld1" class="fileselect" name="artistWorld1" />
                             </div>
                         </div>
                     </div>
@@ -264,7 +264,6 @@
 		var reader = new FileReader();
 		const img = $(this).prev();
 		const img2 = img.prev();
-		console.log(img2);
 		reader.onload = function(e) {
 			img2.attr("src", e.target.result);	
 		};
