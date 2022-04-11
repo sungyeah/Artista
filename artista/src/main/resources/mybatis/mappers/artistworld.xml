@@ -13,7 +13,7 @@
 	<!-- 작가세계 이미지 insert -->
 	<insert id="insertFile" parameterType="artistworld">
 		<![CDATA[
-			insert into artistworld (imgNo, imgType, id) values (#{imgNo}, #{imgType}, #{id})
+			insert into artistworld (imgNo, imgName, id, isDoor) values (#{imgNo}, #{imgName}, #{id}, #{isDoor})
 		]]>
 	</insert>
 	
@@ -28,8 +28,9 @@
 <!-- 
 create table artistworld (
 	imgNo int(10) not null,
-    imgType varchar(20) not null,
+    imgName varchar(100) not null,
 	id varchar(100) not null,
+    isDoor tinyint not null,
 	primary key(imgNo)
 );
  -->
