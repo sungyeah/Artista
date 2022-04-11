@@ -34,6 +34,8 @@
 		width:350px;  margin-bottom:12px; 
 		float:left;
 		display:inline-block;
+		align-items: flex-end;
+		display: flex;
 	}
 	.artistsWorldImg {
 		width:300px; height:300px; margin-top:7px; display:inline-block; 
@@ -151,7 +153,7 @@
                             <div class="artistsWorld">
 	                        	<img class="artistsWorldImg"/>
                             	<label for="artistWorld1">파일 선택</label>
-                            	<input type="file" name="artistWorld1" class="fileselect" />
+                            	<input type="file" id="artistWorld1" name="artistWorld1" class="fileselect" />
                             </div>
                         </div>
                     </div>
