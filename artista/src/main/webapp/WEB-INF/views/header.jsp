@@ -63,12 +63,9 @@
 <c:choose>
 <c:when test="${empty id}">
  <ul class="menu2">
-	 <span style="cursor:pointer;" id="toggleBtn"><img src="${pageContext.request.contextPath}/images/bellno.png" style="height: 30px; width: auto; position: absolute; top: 45px; right: 375px;"></span>
-	 <div class="box">div1</div>
-    <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 45px; right: 330px;"></a>
     <li class="navi2"><a href="login">Login</a></li>
     <li class="navi2"><a href="join">SignUp</a></li>
-    
+    <!-- z-index position ab width -->
 </ul>
 </c:when>
 
@@ -81,7 +78,13 @@
 </c:when>
 <c:otherwise>
  <ul class="menu2">
-      <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 45px; right: 330px;"></a>
+ 	  <span style="cursor:pointer;" id="toggleBtn"><img src="${pageContext.request.contextPath}/images/bellyes.png"
+	 style="width: 25px; height: 25px; width: auto; position: absolute; top: 48px; right: 330px; opacity:0.6;"></span>
+	 
+	 <c:forEach items="${list }" var="alarm">
+	 	<li><div class="box">${alarm.projTitle} ${alarm.fundingMsg}</div></li>
+	 </c:forEach>
+      <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="width: 25px; height: 25px; position: absolute; top: 48px; right: 375px;  opacity:0.6;"></a>
     <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
     <li class="navi2"><a href="${pageContext.request.contextPath}/mypage">mypage</a></li>
 </ul>

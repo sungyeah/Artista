@@ -9,7 +9,6 @@ public class Funding {
 		int fundingNo;
 		int artistNo;
 		int sponsorNo;
-		int alarmNo;
 		boolean readSign;
 		String artistName;
 		String projTitle;
@@ -32,7 +31,7 @@ public class Funding {
 		int sponsorAmount;
 		String email;
 		MultipartFile thumbFile;
-		
+		String fundingMsg;
 		
 		public Funding() {}
 		
@@ -191,12 +190,14 @@ public class Funding {
 			this.thumbFile = thumbFile;
 		}
 
-		public int getAlarmNo() {
-			return alarmNo;
+		
+		
+		public String getFundingMsg() {
+			return fundingMsg;
 		}
 
-		public void setAlarmNo(int alarmNo) {
-			this.alarmNo = alarmNo;
+		public void setFundingMsg(String fundingMsg) {
+			this.fundingMsg = fundingMsg;
 		}
 
 		public boolean isReadSign() {

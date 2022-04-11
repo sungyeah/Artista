@@ -21,9 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dao.WorkDAO;
 import com.mulcam.artista.dto.Cart;
+import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.Work;
+import com.mulcam.artista.service.FundingService;
 import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageServiceImpl;
 import com.mulcam.artista.service.WorkService;
@@ -39,6 +41,9 @@ public class SubPageController {
 	
 	@Autowired
 	WorkService workService;
+	
+	@Autowired
+	FundingService fundingService;
 	
 	@Autowired
 	HttpSession session;
@@ -323,6 +328,9 @@ public class SubPageController {
 	
 	@GetMapping("header")
 	public String header() {
+		String id = (String) session.getAttribute("id");
+		List<Funding> list=subPageService.queryAlarmlist(id);
+		System.out.println(list);
 		return "header";
 	}
 }

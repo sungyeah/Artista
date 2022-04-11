@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.mulcam.artista.dao.SubPageDAO;
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Follow;
+import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.PageInfo;
@@ -210,6 +211,11 @@ public class SubPageServiceImpl implements SubPageService{
 	@Override
 	public int workcnt(String artistName) throws Exception {
 		return subpageDAO.workcnt(artistName);
+	}
+
+	public List<Funding> queryAlarmlist(String id) {
+		// TODO Auto-generated method stub
+		return subpageDAO.queryAlarmlist(id);
 	}
 
 	

@@ -178,8 +178,15 @@
 		 ]]>
 	</select>
 	
+	<select  id="queryAlarmlist" parameterType="string" resultType="Funding">
+		<![CDATA[
+			select * from alarm where id =#{id}
+		 ]]>
+	</select>
+	
 </mapper>
 <!-- create table member(
+
 	id varchar(100) not null,
     password varchar(255) not null,
     name varchar(100) not null,
