@@ -145,7 +145,7 @@
                 <div class="register">
                     <div
                         style="margin: 5px; padding: 5px; display: flex; align-items: flex-start; justify-content: space-between;">
-                        <span><img class="profile" src='/mypage/artistprofile/${followList.artistImg }' onerror="this.src='/profile/profile.png'"></span>
+                        <span style="background-image: linear-gradient(#444444, #444444), linear-gradient(to right, #dddddd 0%, #999999 100%);"><img class="profile" src='/mypage/artistprofile/${followList.artistImg }' onerror="this.src='/profile/profile.png'"></span>
                         <div style="width: 140px">
                             <span><input type="text" id="title" value='${followList.artistName }'
                                     style="width:130px;height: 30px; vertical-align: middle; font-weight: bold; font-size: 15px; border: none; background-color: white;text-overflow: ellipsis;"

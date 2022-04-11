@@ -59,6 +59,7 @@
                         </div>
                         <div class="enroll-modify-form-row-value">
                             <img class="artistImg" id="artistThumb" />
+                            <label for="artistImg">파일 선택</label>
                             <input type="file" id="artistImg" name="artistImgFile" /><br>
                         </div>
                     </div>
