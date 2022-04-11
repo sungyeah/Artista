@@ -7,6 +7,76 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+	section.palmares {
+    background: #000;
+    padding-bottom: 50px;
+    padding-top: 30px;
+    font-family: Manrope,sans-serif;
+    box-sizing: border-box;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+.container2 {
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+section.palmares .row {
+    text-align: center;
+}
+section.palmares .title2 {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+section.palmares .col-md-3 {
+    display: inline-block;
+    float: none;
+    margin: 30px;
+    vertical-align: top;
+    width: 25%;
+}
+section.palmares .prize-type {
+    min-height: 40px;
+        color: #fff;
+    font-size: 20px;
+    margin-top: 30px;
+    text-align: left;
+}
+section.palmares .prize-type div {
+    font-size: 20px;
+}
+section.palmares .prize-type span {
+    color: #d5a770;
+}
+section.palmares .prize-list {
+    margin-top: 20px;
+    text-align: left;
+}
+section.palmares .prize-list li {
+    color: #9d9d9d;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    padding: 0;
+    list-style: none;
+}
+section.palmares .prize-list li span {
+    color: #d5a770;
+}
+</style>
 <body>
 <%@include file ="../header.jsp" %>
 <div id="container">
@@ -15,7 +85,7 @@
     <article id="content" class="vuelayer">
         <div class="page-cover">
             <div class="image"
-                style="background-image: url(/mypage/artistprofile/${atistList.artistImg }); opacity: 1;">
+                style="background-image: url(/mypage/artistprofile/${artistworld.artistImg }); opacity: 1;">
             </div>
         </div>
         <section id="about" class="section" >
@@ -24,15 +94,13 @@
                 <div class="inner">
                     <ul>
                         <li class="current"><a href="#about">작가 정보</a></li>
-                        <li class=""><a href="#selected-works">작가의 작품</a></li>
-                        <!---->
-                        <li class=""><a href="#stories">진행중인 펀딩</a></li>
+                        <li class=""><a href="#selected-works">작가의 작품 및 펀딩</a></li>
                     </ul>
                 </div>
             </nav>
             <div class="detail" >
                 <div class="info">
-                    <figure><img src="${artist.artistImg }"
+                    <figure><img src="${artistworld.artistImg }"
                             alt="Ayoung Kim "></figure>
                     <h3>Download</h3>
                     <ul>
@@ -90,6 +158,67 @@
             </div>
             </div>
         </section>
+        
+            <section class="palmares">
+        <a name="palmares"></a>
+        <div class="container2">
+            <div class="row">
+                <div class="title2">작가 이력</div>
+                <div class="col-md-3 col-sm-6">
+                        <div class="prize-type">
+                            <div>개인전</div>
+                            <span> </span>
+                        </div>
+                        <ul class="prize-list">
+                        <li><span>2017</span><br>solo show  / Koelsch gallery - Houston - Texas, 미국</li>
+                        <li><span>2015</span><br>Expo solo &quot;Minimal&quot; / Espace 40 mile end - Montréal, 캐나다</li>
+                        <li><span>2007</span><br>Expo solo &quot; Contrastes&quot; / Galerie Desja - Montréal, 캐나다</li>
+                        <li><span>2006</span><br>Expo solo &quot; Se sentir pousser des ailes&quot; / Galerie desja - Montréal, 캐나다</li>
+                        <li><span>2005</span><br>Expo solo &quot;Nuit de Chine&quot; / Cirque du soleil - Montréal, 캐나다</li>
+                        <li><span>2003</span><br>Expo Solo &quot;A chacun son Zen&quot; / Galerie  [sas] - Montréal, 캐나다</li>
+                        <li><span>2002</span><br>expo solo / Galerie  [sas] - Montréal, 캐나다</li>
+                        <li><span>2001</span><br>solo show  / China Tee Club - Hong Kong, 중국</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="prize-type">
+                            <div>그룹전</div>
+                            <span> </span>
+                        </div>
+                        <ul class="prize-list"><li><span>2021</span><br>Exposition collective / Sybil Frank Gallery - Wellington - Ontario, 캐나다</li>
+                        <li><span>2021</span><br>Exposition   collective / Galeries Beauchamp - Montréal + Québec, 캐나다</li>
+                        <li><span>2021</span><br>Exposition   collective / Galerie Saint Laurent+Hill - Ottawa, 캐나다</li>
+                        <li><span>2021</span><br>Exposition collective / Artêria Gallery - Bromont - Québec, 캐나다</li>
+                        <li><span>2020</span><br>Exposition collective / Sybil Frank Gallery - Wellington - Ontario, 캐나다</li>
+                        <li><span>2020</span><br>Exposition collective / Galerie St Laurent+Hill - Ottawa, 캐나다</li>
+                        <li><span>2020</span><br>Exposition collective / Artêria Gallery - Bromont - Québec, 캐나다</li>
+                        <li><span>2020</span><br>Exposition collective / Galerie Beauchamp - Montréal &amp; Québec, 캐나다</li>
+                        <li><span>2019</span><br>Exposition collective / Galerie St Laurent+Hill - Ottawa, 캐나다</li>
+                        <li><span>2019</span><br>Exposition collective / Galerie Beauchamp - Montréal &amp; Québec, 캐나다</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="prize-type">
+                            <div>작품 소장</div>
+                            <span> </span>
+                        </div>
+                        <ul class="prize-list"><li><span>2005</span><br>Cirque du Soleil , 캐나다</li>
+                        <li><span></span><br>Mercuri International, 중국</li>
+                        <li><span></span><br>Restaurant Coco-Canelle, 프랑스</li>
+                        <li><span></span><br>Bank Nova Scotia, 캐나다</li>
+                        <li><span></span><br>PSP Investissement, 캐나다</li>
+                        <li><span></span><br>Reebook, 캐나다</li>
+                        <li><span></span><br>UBS gestion globale, 캐나다</li>
+                        <li><span></span><br>Mercuri International, 캐나다</li>
+                        <li><span></span><br>Merill Lunch, 캐나다</li>
+                        <li><span></span><br>Groupe Messier, 캐나다</li>
+                        <li><span></span><br>Fiducie Desjardins, 캐나다</li>
+                        </ul>
+                    </div>
+                    </div>
+        </div>
+    </section>
+    
         <section id="selected-works" class="section"">
             <h2>작가의 작품(마우스오버시 작품정보)</h2>
             <div class="post-list flex-box">

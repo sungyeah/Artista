@@ -1,32 +1,48 @@
 package com.mulcam.artista.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.UUID;
+import java.io.Console;
+import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.XML;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.mulcam.artista.dto.Artist;
+import com.mulcam.artista.dto.Exhibition;
+import com.mulcam.artista.service.ArtistService;
+import com.mulcam.artista.service.ExhibitService;
 
 @Controller
 public class MainController {
+	
+//	String uuid = UUID.randomUUID().toString(); //랜덤 값
+	
+	@Autowired
+	ExhibitService exhibitservice;
+	
+	@Autowired
+	ArtistService artistservice;
 
-	@GetMapping({ "main", "/" })
-	public String main() {
-
-//		String uuid = UUID.randomUUID().toString();
-
+	@GetMapping("main")
+	public String main(Model model) {
+		try {
+		List<Exhibition> Exhibitlist = exhibitservice.exhibits("view");
+		/* Artist artist = artistservice.Artistinfo(artistNo); */
+		Artist artist = artistservice.Artistmain();
+		model.addAttribute("exhibitList", Exhibitlist);
+		model.addAttribute("status", "ing");
+		/* model.addAttribute("artist", artist); */
+		model.addAttribute("artist", artist);
+		System.out.println(Exhibitlist);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
 		return "main";
 	}
 
-	@GetMapping("artista")
+	@GetMapping({"artista", "/"})
 	public String index() {
 		return "index";
 	}

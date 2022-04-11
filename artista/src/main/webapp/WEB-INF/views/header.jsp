@@ -48,7 +48,7 @@
             <a href="${pageContext.request.contextPath}/main"><img src="${pageContext.request.contextPath}/images/로고.png" style="height: 150px; width: auto;"></a>
 <nav id="gnb">
 <ul class="menu1">
-    <li class="navi"><a href="${pageContext.request.contextPath}/exhibitionview">Exhibition </a></li>
+    <li class="navi"><a href="${pageContext.request.contextPath}/exhibition/view">Exhibition </a></li>
     <li class="navi"><a href="${pageContext.request.contextPath}/artistslist">Artists</a></li>
     <li class="navi"><a href="${pageContext.request.contextPath}/storelist">Store</a></li>
     <li class="navi"><a href="">Funding</a></li>

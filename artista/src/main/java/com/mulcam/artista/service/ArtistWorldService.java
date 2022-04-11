@@ -2,6 +2,7 @@ package com.mulcam.artista.service;
 
 import java.util.List;
 
+import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.ArtistWorld;
 
 public interface ArtistWorldService {
@@ -9,5 +10,6 @@ public interface ArtistWorldService {
 	 void insertArtistWorldFile(ArtistWorld worldImg) throws Exception;
 	 List<ArtistWorld> getArtistWorlds(String id) throws Exception;
 	 
-//	 List<Worlds> worlds() throws Exception;
+	 
+	 public ArtistWorld worlds(int artistNo) throws Exception;
 }

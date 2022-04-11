@@ -31,10 +31,10 @@ public class ArtistWorldServiceImpl implements ArtistWorldService {
 		return artistworldDAO.artistWorld(id);
 	}
 
-	/*
-	 * @Override public List<ArtistWorld> worlds() throws Exception { return
-	 * artistworldDAO.Wlds(); }
-	 */
-	
+	@Override
+	public ArtistWorld worlds(int artistNo) throws Exception {
+		return artistworldDAO.worlds(artistNo);
+	}
+
 	
 }
