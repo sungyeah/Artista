@@ -31,11 +31,12 @@
 		padding-left:10px; 
 	}
 	.artistsWorld {
-		width:350px;  margin-bottom:12px; 
+		margin-bottom:12px; 
 		float:left;
 		display:inline-block;
 		align-items: flex-end;
 		display: flex;
+		margin-right: 10px;
 	}
 	.artistsWorldImg {
 		width:300px; height:300px; margin-top:7px; display:inline-block; 
@@ -138,7 +139,7 @@
                         					placeholder="연도" style="display:inline-block; width:60px;" /></th>
                         		<th><input class="enroll-modify-form-input recordText" placeholder="내용을 입력하세요" 
                         					autocomplete="off" autocapitalize="off" style="width:500px;"></th>
-                        		<th><span class="plus" style="cursor: pointer;">+</span></th>
+                        		<th><span class="plus" style="cursor: pointer;font-size:20px;">+</span></th>
                     			</tr>
                     		</tbody></table>
                     		<input type="hidden" id="artistRecord" name="artistRecord"/>
@@ -149,7 +150,7 @@
                             <span class="red"> </span> 아티스트의 작업세계 
                         </div>
                         <div class="enroll-modify-form-row-value">
-                        	<span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br>
+                        	<span id="plusWorld" class="topadd_delete" style="font-size:20px;font-weight:bold;">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete" style="font-size:20px;">-</span><br>
                             <div class="artistsWorld">
 	                        	<img class="artistsWorldImg"/>
                             	<label for="artistWorld1" class="labelselect">파일 선택</label>
@@ -169,8 +170,8 @@
                     
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                    		<button class="yesNo-btn" id="applyartist" style="width:120px;">아티스트 신청</button>
-                    		<button class="yesNo-btn" id="cancel" type="reset">취소</button>
+                    		<button class="yesNo-btn" id="applyartist" style="background-color:#222;color:white;">아티스트 신청</button>
+                    		<button class="yesNo-btn" id="cancel" style="background-color:white;color:#222;margin-left:10px" type="reset">취소</button>
                         </div>
                 	</div>
                 </div>
@@ -264,6 +265,7 @@
 		var reader = new FileReader();
 		const img = $(this).prev();
 		const img2 = img.prev();
+		console.log(img2)
 		reader.onload = function(e) {
 			img2.attr("src", e.target.result);	
 		};

@@ -20,4 +20,5 @@ public interface WorkService {
 	public void workPayed(int workNo)throws Exception;
 	
 	public void updateWork(Work work) throws Exception;
+	
 }

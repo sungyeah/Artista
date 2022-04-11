@@ -124,7 +124,7 @@
         
         <nav class="member-nav">
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myexhibition">
-                나의 전시
+                <b>나의 전시</b>
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myexhibitionapply">
             	신청 내역

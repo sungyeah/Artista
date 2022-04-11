@@ -71,7 +71,7 @@
                                         ${order.pay_method }
                                     
                                 
-                            </li></ul><ul><li>결제카드</li><li>NH카드</li></ul><ul><li class="total">결제금액</li><li class="total">￦ <fmt:formatNumber value="${order.orderCost }"/></li></ul>
+                            </li></ul><ul><li>결제카드</li><li>국민카드</li></ul><ul><li class="total">결제금액</li><li class="total">￦ <fmt:formatNumber value="${order.orderCost }"/></li></ul>
                         </section></section>
            		</c:otherwise>
            </c:choose>

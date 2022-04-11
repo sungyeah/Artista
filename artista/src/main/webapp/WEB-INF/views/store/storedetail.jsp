@@ -144,8 +144,7 @@
                         </div>
                         <div class="right">
                             <ul>
-                                <li><a href="/user?memberId=389&amp;tab=cr">CREATIONS</a></li>
-                                <li><a href="/user?memberId=389&amp;tab=co">COLLECTION</a></li>
+                                <li><a href="${pageContext.request.contextPath}/artistdetail/${artist.artistNo}">COLLECTION</a></li>
                             </ul>
                         </div>
                     </div>
@@ -252,7 +251,7 @@
                                             <span class="fd-icon" style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;cursor:pointer;"></span>
                                                 <span style="vertical-align:middle;cursor:pointer;">카트 추가</span>
                                         </button>
-                                        <button id="purchaseBtn2" type="submit" class="btnPurchase" style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;margin-left: 5px;background: #222;color: white;">
+                                        <button id="purchaseBtn2" type="button" class="btnPurchase" style="width: 35%;font-size:1.2rem;padding:0 0 7px 0;vertical-align:middle;margin-left: 5px;background: #222;color: white;">
                                             <span class="fd-icon"style="background-image:url('/images/symbol-eth.svg');background-color:white;border-radius:50%;"></span>
                                             <span style="vertical-align:middle;">작품 구매</span>
                                         </button>
@@ -291,6 +290,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 var id = '<%=(String)session.getAttribute("id")%>';
+console.log(id);
 $('#id').attr('value',id);
 var workName = $('#workName').val()
 var workPrice = $('#workPrice').val()
@@ -301,6 +301,10 @@ var workImg = $('#workImg').val()
 var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistName,"workSize":workSize,"workNo":workNo,"workImg":workImg} 
 
 	$('#purchaseBtn1').click(function(){
+		if(id=='null'){
+			alert("로그인이 필요한 서비스입니다.")
+			return false;
+		}
 		  $.ajax({     
 				type:"post",
 				url:"http://localhost:8090/addCart",
@@ -319,9 +323,21 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 			}); 
 	});
 	
+	$('#purchaseBtn2').click(function(){
+		if(id=='null'){
+			alert("로그인이 필요한 서비스입니다.")
+			return false;
+		}
+		var form = document.getElementById("form2");
+		form.submit();
+	});
+	
 	function follow(follower){
 		var color=document.getElementById("a");
-		
+		if(id=='null'){
+			alert("로그인이 필요한 서비스입니다.")
+			return false;
+		}
 		$.ajax({     
 			type:"post",
 			dataType:"text",

@@ -11,7 +11,24 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/mypage.css">
 <style>
-
+.user-thumbnail-div {
+    display: inline-block;
+    width: fit-content;
+    border-radius: 50%;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    border: 4px solid transparent;
+}
+.trackingBtn{
+	border: 1px solid gray;
+    /* margin-top: 5px; */
+    width: 78px;
+    height: 24px;
+    border: 1px solid #e5e5e5;
+}
+.trackingBtn:hover{
+	border: 1px solid #222;
+}
 </style>
 </head>
 <body>
@@ -81,7 +98,7 @@
                         	<td class="time-code" style="font-weight:bold;"><a href="paymentinfo/${orderReport.order.orderNo }">${orderReport.order.orderNo }</a></td>
                         	<td class="artworks">
                         		 <c:forEach items="${orderReport.works }" var="work"> 
-                        		<${work.workName }> ${work.artistName }<br>
+                        		<a href="${pageContext.request.contextPath}/storedetail/${work.workNo}"><b><${work.workName }></b></a> ${work.artistName }<br>
                         		${work.workTech }, ${work.workSize }<br>
                         		 </c:forEach> 
                         	</td>
@@ -89,13 +106,19 @@
                         	<td class="start-date">${orderReport.order.orderDate }</td>
                         	<td class="start-date" style="font-weight: bold;"><fmt:formatNumber value="${orderReport.order.orderCost }"/>원</td>
                         	<td class="status">${orderReport.order.orderStatus }<br>
-                        		<%-- <c:choose>
-                        		<c:when test='${orderReport.order.orderStatus eq "배송중" }'> --%>
-                        			<button style="border: 1px solid gray;">배송조회</button>
-                        		<%-- </c:when>
+                        		 <c:choose>
+                        		<c:when test='${empty orderReport.order.trackingNo}'> 
+                        		 </c:when>
                         		<c:otherwise>
+                        		<form action="http://info.sweettracker.co.kr/tracking/4" method="post" style="margin-top:6px;">
+                        			 <input type="hidden" class="form-control" id="t_key" name="t_key" value="bNly32iRmzS23mWeYOuvIw">
+                        			 <input type="hidden" class="form-control" name="t_code" id="t_code" value="04">
+                        			  <input type="hidden" class="form-control" name="t_invoice" id="t_invoice" value="${orderReport.order.trackingNo }"> 
+                        			<button class="trackingBtn" >배송조회</button>
+                        			<%-- <button type="button" style="border: 1px solid gray;"><a href="https://tracker.delivery/#/kr.cjlogistics/${orderReport.order.trackingNo }" target="_blank">배송조회</a></button> --%>
+                        		 </form> 
                         		</c:otherwise>
-                        		</c:choose> --%>
+                        		</c:choose> 
                         	</td>
                         </tr>
                         </c:forEach>
@@ -141,17 +164,24 @@
             <section class="orders-completed">
                 <h3>팔로우한 작가</h3>
                 <div class="container1">
-                <c:forEach items="${followLists }" var="followList">
+                <c:choose>
+                	<c:when test="${empty followLists }">
+                		<span style="height:145px;display: flex;align-items: center;justify-content: center;font-size: 14px;-webkit-box-sizing: border-box;border-right: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;">표시할 내역이 없습니다.</span>
+                	</c:when>
+                	<c:otherwise>
+                		           <c:forEach items="${followLists }" var="followList">
                 <div class="register">
                     <div
                         style="margin: 5px; padding: 5px; display: flex; align-items: flex-start; justify-content: space-between;">
-                        <span style="background-image: linear-gradient(#444444, #444444), linear-gradient(to right, #dddddd 0%, #999999 100%);"><img class="profile" src='/mypage/artistprofile/${followList.artistImg }' onerror="this.src='/profile/profile.png'"></span>
+                        <a href="${pageContext.request.contextPath}/artistdetail/${followList.artistNo}">
+                        <span class="user-thumbnail-div slv" style="background-image: linear-gradient(#444444, #444444), linear-gradient(to right, #dddddd 0%, #999999 100%);cursor:pointer"><img class="profile" src='/mypage/artistprofile/${followList.artistImg }' onerror="this.src='/profile/profile.png'"></span>
+                        </a>
                         <div style="width: 140px">
-                            <span><input type="text" id="title" value='${followList.artistName }'
-                                    style="width:130px;height: 30px; vertical-align: middle; font-weight: bold; font-size: 15px; border: none; background-color: white;text-overflow: ellipsis;"
-                                    disabled> </span>
+                            <a href="${pageContext.request.contextPath}/artistdetail/${followList.artistNo}"><span><input type="text" id="title" value='${followList.artistName }'
+                                    style="width:130px;height: 30px; vertical-align: middle; font-weight: bold; font-size: 15px; border: none; background-color: white;text-overflow: ellipsis;margin-left:9px;margin-top:10px;cursor:pointer"
+                                    disabled> </span></a>
                         </div>
-                        <div style="display: inline-block;line-height: 30px;font-size: small;">팔로우 취소</div>
+                        <div style="display: inline-block;line-height: 30px;font-size: small;cursor:pointer;" onclick="unfollow('${followList.artistId}')">팔로우 취소</div>
                     </div>
                     <div
                         style="margin: 5px; margin-top: 30px; padding: 5px; vertical-align: middle;display: flex;justify-content: space-between;">
@@ -173,12 +203,33 @@
                         </div>
                     </div>
                 </div>
-                </c:forEach>
+                </c:forEach> 
+                	</c:otherwise>
+                </c:choose>
             </div>
             </section>
         </article>
     </div>
-     <%@include file ="../footer.jsp" %>
-   
+     
+<%@include file ="../footer.jsp" %>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	function unfollow(follower){
+		$.ajax({     
+			type:"post",
+			dataType:"text",
+			async:false,
+			url:"http://localhost:8090/follow",
+			data:{"follower":follower},
+			success: function(data, textStatus){
+				alert("팔로우 취소되었습니다.");
+				location.reload();
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		}); 
+	}
+</script>
 </body>
 </html>

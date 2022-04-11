@@ -115,19 +115,20 @@
 	</select>
 </mapper>
 <!-- 
-create table exhibitionapply(
+create table exhibition(
 	exhibitapplyNo int(10) not null,
     fundingNo int(10) not null,
     artistNo int(10) not null,
     exhibitTitle varchar(100) not null,
     exhibitPoster varchar(255) not null,
     exhibitArtist varchar(100) not null,
-    StartDate Date not null,
-    EndDate Date not null,
+    startDate Date not null,
+    endDate Date not null,
     exhibitPlace varchar(500) not null,
     reserveLink varchar(500) not null,
     applyStatus int,
     refusedContents varchar(500) ,
     primary key(exhibitapplyNo)
 );
+
  -->

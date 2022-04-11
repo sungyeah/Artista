@@ -83,6 +83,9 @@
 				workSize=#{workSize}, workIntro=#{workIntro}, workPrice=#{workPrice}, workHeight=#{workHeight} where workNo=#{workNo}
 		]]>
 	</update>
+	
+	
+	
 </mapper>
 <!-- 
 create table work(

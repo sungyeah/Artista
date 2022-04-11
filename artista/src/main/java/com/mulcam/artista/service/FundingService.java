@@ -19,4 +19,7 @@ public interface FundingService {
 	public void insertfundingspon(int sponsorAmount,int fundingNo,String email,String id);
 	public Funding queryFundingNo(int fundingNo);
 	public int querySponCount(int fundingNo);
+	boolean checkAlarm(int fundingNo, String id);
+	public void deleteAlarm(String id);
+	public void insertAlarm(int fundingNo, String id);
 }
