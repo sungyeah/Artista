@@ -63,6 +63,7 @@ public class MainController {
 		String id = (String) session.getAttribute("id");
 		List<Funding> list=subPageService.queryAlarmlist(id);
 		model.addAttribute("list", list);
+		System.out.println(id);
 		return "header";
 	}
 
