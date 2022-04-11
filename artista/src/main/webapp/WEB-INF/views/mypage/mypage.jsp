@@ -105,7 +105,7 @@
                         			 <input type="hidden" class="form-control" name="t_code" id="t_code" value="04">
                         			  <input type="hidden" class="form-control" name="t_invoice" id="t_invoice" value="${orderReport.order.trackingNo }"> 
                         			<button style="border: 1px solid gray;">배송조회</button>
-                        			<button type="button" style="border: 1px solid gray;"><a href="https://tracker.delivery/#/kr.cjlogistics/${orderReport.order.trackingNo }" target="_blank">배송조회</a></button>
+                        			<%-- <button type="button" style="border: 1px solid gray;"><a href="https://tracker.delivery/#/kr.cjlogistics/${orderReport.order.trackingNo }" target="_blank">배송조회</a></button> --%>
                         		 </form> 
                         		</c:otherwise>
                         		</c:choose> 

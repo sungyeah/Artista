@@ -36,10 +36,10 @@
                                 <a id="naver_id_login" style="background: url(images/n.png) no-repeat center center #4d72b9;background-size: 24px;" >Continue with Facebook</a>
                                 <a href="#" style="background: url(images/g.png) no-repeat center center #4d72b9;background-size: 20px;" >Continue with Google</a>
                             </div>
-                            <div class="toLogin">
+                            <!-- <div class="toLogin">
                                 <span style="display: block;text-align: center;font-size: 13px;">Have no account?<a href="join">Sign Up</a></span><br>
                                 <span><a href="#">Forgot password</a></span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

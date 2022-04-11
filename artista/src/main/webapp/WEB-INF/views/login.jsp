@@ -38,9 +38,9 @@
                                 <a id="naver_id_login" style="background: url(images/n.png) no-repeat center center #4d72b9;background-size: 24px;" ></a>
                                 <a id="GgCustomLogin" style="background: url(images/g.png) no-repeat center center #4d72b9;background-size: 20px;cursor:pointer;" ></a>
                             </div>
-                            <div class="toLogin">
+                            <div class="toLogin" style="display: flex;justify-content: center;align-items: center;">
                                 <span style="display: block;text-align: center;font-size: 13px;">Have no account?<a href="join">Sign Up</a></span><br>
-                                <span><a href="#">Forgot password</a></span>
+                                <!-- <span><a href="#">Forgot password</a></span> -->
                             </div>
                         </div>
                     </div>
