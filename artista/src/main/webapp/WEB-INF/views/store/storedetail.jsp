@@ -144,8 +144,7 @@
                         </div>
                         <div class="right">
                             <ul>
-                                <li><a href="/user?memberId=389&amp;tab=cr">CREATIONS</a></li>
-                                <li><a href="/user?memberId=389&amp;tab=co">COLLECTION</a></li>
+                                <li><a href="${pageContext.request.contextPath}/artistdetail/${artist.artistNo}">COLLECTION</a></li>
                             </ul>
                         </div>
                     </div>

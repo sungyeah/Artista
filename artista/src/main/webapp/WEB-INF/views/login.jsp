@@ -40,7 +40,6 @@
                             </div>
                             <div class="toLogin" style="display: flex;justify-content: center;align-items: center;">
                                 <span style="display: block;text-align: center;font-size: 13px;">Have no account?<a href="join">Sign Up</a></span><br>
-                                <!-- <span><a href="#">Forgot password</a></span> -->
                             </div>
                         </div>
                     </div>

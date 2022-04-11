@@ -19,6 +19,16 @@
     background-clip: content-box, border-box;
     border: 4px solid transparent;
 }
+.trackingBtn{
+	border: 1px solid gray;
+    /* margin-top: 5px; */
+    width: 78px;
+    height: 24px;
+    border: 1px solid #e5e5e5;
+}
+.trackingBtn:hover{
+	border: 1px solid #222;
+}
 </style>
 </head>
 <body>
@@ -88,7 +98,7 @@
                         	<td class="time-code" style="font-weight:bold;"><a href="paymentinfo/${orderReport.order.orderNo }">${orderReport.order.orderNo }</a></td>
                         	<td class="artworks">
                         		 <c:forEach items="${orderReport.works }" var="work"> 
-                        		<${work.workName }> ${work.artistName }<br>
+                        		<a href="${pageContext.request.contextPath}/storedetail/${work.workNo}"><b><${work.workName }></b></a> ${work.artistName }<br>
                         		${work.workTech }, ${work.workSize }<br>
                         		 </c:forEach> 
                         	</td>
@@ -100,11 +110,11 @@
                         		<c:when test='${empty orderReport.order.trackingNo}'> 
                         		 </c:when>
                         		<c:otherwise>
-                        		<form action="http://info.sweettracker.co.kr/tracking/4" method="post">
+                        		<form action="http://info.sweettracker.co.kr/tracking/4" method="post" style="margin-top:6px;">
                         			 <input type="hidden" class="form-control" id="t_key" name="t_key" value="bNly32iRmzS23mWeYOuvIw">
                         			 <input type="hidden" class="form-control" name="t_code" id="t_code" value="04">
                         			  <input type="hidden" class="form-control" name="t_invoice" id="t_invoice" value="${orderReport.order.trackingNo }"> 
-                        			<button style="border: 1px solid gray;">배송조회</button>
+                        			<button class="trackingBtn" >배송조회</button>
                         			<%-- <button type="button" style="border: 1px solid gray;"><a href="https://tracker.delivery/#/kr.cjlogistics/${orderReport.order.trackingNo }" target="_blank">배송조회</a></button> --%>
                         		 </form> 
                         		</c:otherwise>
@@ -163,11 +173,13 @@
                 <div class="register">
                     <div
                         style="margin: 5px; padding: 5px; display: flex; align-items: flex-start; justify-content: space-between;">
-                        <span class="user-thumbnail-div slv" style="background-image: linear-gradient(#444444, #444444), linear-gradient(to right, #dddddd 0%, #999999 100%);"><img class="profile" src='/mypage/artistprofile/${followList.artistImg }' onerror="this.src='/profile/profile.png'"></span>
+                        <a href="${pageContext.request.contextPath}/artistdetail/${followList.artistNo}">
+                        <span class="user-thumbnail-div slv" style="background-image: linear-gradient(#444444, #444444), linear-gradient(to right, #dddddd 0%, #999999 100%);cursor:pointer"><img class="profile" src='/mypage/artistprofile/${followList.artistImg }' onerror="this.src='/profile/profile.png'"></span>
+                        </a>
                         <div style="width: 140px">
-                            <span><input type="text" id="title" value='${followList.artistName }'
-                                    style="width:130px;height: 30px; vertical-align: middle; font-weight: bold; font-size: 15px; border: none; background-color: white;text-overflow: ellipsis;margin-left:9px;margin-top:10px;"
-                                    disabled> </span>
+                            <a href="${pageContext.request.contextPath}/artistdetail/${followList.artistNo}"><span><input type="text" id="title" value='${followList.artistName }'
+                                    style="width:130px;height: 30px; vertical-align: middle; font-weight: bold; font-size: 15px; border: none; background-color: white;text-overflow: ellipsis;margin-left:9px;margin-top:10px;cursor:pointer"
+                                    disabled> </span></a>
                         </div>
                         <div style="display: inline-block;line-height: 30px;font-size: small;cursor:pointer;" onclick="unfollow('${followList.artistId}')">팔로우 취소</div>
                     </div>

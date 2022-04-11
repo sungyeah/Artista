@@ -6,6 +6,7 @@ public class FollowingInfo {
 	int workcnt;
 	int followercnt;
 	String artistImg;
+	int artistNo;
 	public String getArtistName() {
 		return artistName;
 	}
@@ -35,6 +36,12 @@ public class FollowingInfo {
 	}
 	public void setArtistId(String artistId) {
 		this.artistId = artistId;
+	}
+	public int getArtistNo() {
+		return artistNo;
+	}
+	public void setArtistNo(int artistNo) {
+		this.artistNo = artistNo;
 	}
 	
 }

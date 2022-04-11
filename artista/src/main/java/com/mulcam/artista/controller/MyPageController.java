@@ -75,7 +75,6 @@ public class MyPageController {
 		String id = (String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
-//			model.addAttribute("check", check);
 			model.addAttribute("name",mem.getName());
 			List<Order> ord = myPageService.orderList(id);
 			List<OrderReport> orderReports = new ArrayList<OrderReport>();
@@ -92,8 +91,6 @@ public class MyPageController {
 					String status = subPageService.getDeliveryStatus(trackingNo);
 					subPageService.updateStatus(status, orderNo);
 				}
-				System.out.println("hi");
-				System.out.println(order);
 				or.setOrder(order);
 				String[] workNos = order.getWorkNo().split(",");
 				List<Work> works = new ArrayList<Work>();
@@ -111,6 +108,7 @@ public class MyPageController {
 				Artist artist = artistService.artistInfo(followerId);
 				String artistName=artist.getArtistName();
 				String artistImg=artist.getArtistImg();
+				int artistNo=artist.getArtistNo();
 				int followercnt = subPageService.followercnt(followerId);
 				int workcnt = subPageService.workcnt(artistName);
 				FollowingInfo followingInfo= new FollowingInfo();
@@ -119,6 +117,7 @@ public class MyPageController {
 				followingInfo.setArtistImg(artistImg);
 				followingInfo.setFollowercnt(followercnt);
 				followingInfo.setWorkcnt(workcnt);
+				followingInfo.setArtistNo(artistNo);
 				followList.add(followingInfo);
 			}
 			model.addAttribute("orderReports", orderReports);
