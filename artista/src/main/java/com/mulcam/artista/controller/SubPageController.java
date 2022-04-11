@@ -77,10 +77,10 @@ public class SubPageController {
 	}
 	
 	@PostMapping("naverlogin")
-	public ModelAndView naverlogincheck(@RequestParam (value="id")String id,@RequestParam (value="name")String name,
+	public String naverlogincheck(@RequestParam (value="id")String id,@RequestParam (value="name")String name,
 			@RequestParam (value="email")String email,Model model) {
-		ModelAndView mv = new ModelAndView("redirect:/main");
 		try {
+			System.out.println("네이버");
 			if(!subPageService.memoverlap(id)) {
 				subPageService.makemember2(id,name,email);
 				String membertype = subPageService.memTypeInfo(id);
@@ -93,17 +93,14 @@ public class SubPageController {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return mv;
+		return "main";
 	}
 	
 	@GetMapping("callback")
 	public String callback(Model model) {
-		try {
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println("콜백이");
 		model.addAttribute("check","naver");
-		return "main";
+		return "temp";
 	}
 	
 	@GetMapping("join")

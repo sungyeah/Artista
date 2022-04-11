@@ -152,8 +152,7 @@
                         	<span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br>
                             <div class="artistsWorld">
 	                        	<img class="artistsWorldImg"/>
-                            	<label for="artistWorld1">파일 선택</label>
-                            	<input type="file" id="artistWorld1" name="artistWorld1" class="fileselect" />
+                            	<input type="file" name="artistWorld1" class="fileselect" />
                             </div>
                         </div>
                     </div>

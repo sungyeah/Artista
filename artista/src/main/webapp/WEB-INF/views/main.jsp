@@ -273,39 +273,8 @@
     /* console.log(${check}); */
     var uid = '<%=(String)session.getAttribute("id")%>';
 		console.log(uid) ;
- 	if('${check}'=='naver'){
- 		var naver_id_login = new naver_id_login("2R257h5lNLRrx1vJnLgV", "http://localhost:8090/callback");
- 		 // 접근 토큰 값 출력 
- 		 	/* alert(naver_id_login.oauthParams.access_token);  */
- 		 // 네이버 사용자 프로필 조회 
- 		 	naver_id_login.get_naver_userprofile("naverSignInCallback()"); 
- 		 // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function 
- 		 function naverSignInCallback() { 
- 			 /* alert(naver_id_login.getProfileData('email')); 
- 			 alert(naver_id_login.getProfileData('name'));
- 			 alert(naver_id_login.getProfileData('id'));  */
- 			 	let email = naver_id_login.getProfileData('email');
- 			 	let id = naver_id_login.getProfileData('id');
- 			 	let name = naver_id_login.getProfileData('name');
- 			 	$.ajax({     
- 					type:"post",
- 					dataType:"text",
- 					async:false,
- 					url:"http://localhost:8090/naverlogin",
- 					data:{"id":id,
- 						  "name":name,
- 						  "email":email},
- 					success: function(data, textStatus){
- 						console.log("success");
- 					},
- 					error:function(data, textStatus){
- 						alert("실패");
- 					},
- 					complete:function() {
- 					}
- 				});
- 			 }
- 	}
+		
+ 
  
  </script>  
 </body>
