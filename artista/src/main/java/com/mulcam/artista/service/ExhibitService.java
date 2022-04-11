@@ -18,4 +18,7 @@ public interface ExhibitService {
 	public Exhibition selectExhibit(int exhibitNo) throws Exception;
 	public List<Exhibition> ExhibiList() throws Exception;
 	public void deleteExhibit(int exhibitNo) throws Exception;
+	
+	public List<Exhibition> ExhibitListByArtist(int artistNo) throws Exception;
+	public List<ExhibitionApply> ExhibitApplyListByArtist(int artistNo) throws Exception;
 }

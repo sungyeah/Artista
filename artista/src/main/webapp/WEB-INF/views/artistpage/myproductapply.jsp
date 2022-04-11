@@ -177,6 +177,7 @@
                         <th scope="col">작품 가격</th>
                         <th scope="col">신청현황</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <c:choose>
@@ -195,7 +196,11 @@
                             		<c:if test="${worklist.applyState eq 1}">작품등록 거절</c:if>
                             		<c:if test="${worklist.applyState eq 2}">작품수정 요청 중</c:if>
                             		<c:if test="${worklist.applyState eq 3}">작품수정 거절</c:if>
-                            	</th>                  
+                            	</th>
+                            	<th scope="col" colspan="1">
+                           			<c:if test="${worklist.applyState eq 1}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">신청내용보기</a></c:if>
+                            		<c:if test="${worklist.applyState eq 3}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">신청내용보기</a></c:if>
+                           		</th>                  
                            		<th scope="col" colspan="1">
                            			<c:if test="${worklist.applyState eq 0}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">신청내용보기</a></c:if>
                             		<c:if test="${worklist.applyState eq 1}"><a class="artist-detail-btn" onclick="showReason('${worklist.workapplyNo }')">거절사유보기</a></c:if>

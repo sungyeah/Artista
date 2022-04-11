@@ -39,6 +39,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.mulcam.artista.dto.Exhibition;
 import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
@@ -566,20 +567,56 @@ public class ArtistPageController {
 	}
 	
 	
-
+	@Autowired
+	ExhibitService exhibiService;
+	
 	
 	// 아티스트의 전시
 	@GetMapping("myexhibition")
-	public String artistpageExhibition() {
+	public String artistpageExhibition(Model model) {
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		try {
+			String artistName = artistService.getArtistName(id);
+			artistNo = artistService.getArtistNo(id);
+			model.addAttribute("artistName", artistName);
+			List<Exhibition> exhibitlist = exhibiService.ExhibitListByArtist(artistNo);
+			model.addAttribute("exhibitlist", exhibitlist);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
 		return "artistpage/myexhibition";
 	}
+	@ResponseBody
+	@PostMapping("exhibitdetail")
+	public ResponseEntity<Exhibition> exhibitDetail(@RequestParam(value="exhibitNo",required = false) int exhibitNo) {
+		ResponseEntity<Exhibition> result = null;
+		try {
+			Exhibition exhibit = exhibiService.selectExhibit(exhibitNo);
+			result = new ResponseEntity<Exhibition>(exhibit, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<Exhibition>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
+	
 	@GetMapping("applyexhibition")
 	public String artistpageEnrollExhibition() {
 		return "artistpage/applyexhibition";
 	}
 	
 	@PostMapping("exhibitionApplyComplete")
-	public String exhibitionApplyComplete(@ModelAttribute ExhibitionApply exhibitapply, @RequestParam(value="posterImgFile") MultipartFile posterImgFile) {
+	public String exhibitionApplyComplete(@ModelAttribute ExhibitionApply exhibitapply, @RequestParam(value="posterImgFile") MultipartFile posterImgFile, Model model) {
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		try {
+			String artistName = artistService.getArtistName(id);
+			artistNo = artistService.getArtistNo(id);
+			exhibitapply.setArtistNo(artistNo);
+			model.addAttribute("artistName", artistName);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
 		
 		//포스터 이미지 등록
 		String path = servletContext.getRealPath("/imgupload/exhibition/");
@@ -615,12 +652,119 @@ public class ArtistPageController {
 		exhibitapply.setEndDate(Timestamp.valueOf(localDateTime).toString());
 		exhibitapply.setApplyStatus(0);
 		
+		
 		try {
 			exhibitService.insertExhibitApply(exhibitapply);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "artistpage/succesapply";
+	}
+	
+	/* 아티스트 전시 수정 페이지 */
+	@PostMapping("exhibitModify")
+	public String exhibitModify(@RequestParam(value="exhibitNo") int exhibitNo, Model model) {
+		try {
+			Exhibition exhibit = exhibitService.selectExhibit(exhibitNo);
+			model.addAttribute("exhibit", exhibit);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "artistpage/modifyexhibit";
+	}
+	
+	@PostMapping("exhibitModifyComplete")
+	public String exhibitModifyComplete(@RequestParam(value="exhibitNo") int exhibitNo,
+			@ModelAttribute ExhibitionApply exhibitapply, @RequestParam(value="posterImgFile") MultipartFile posterImgFile, 
+			@RequestParam(value="fileChange") String file) 
+	{
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		String workImg = null;
+		int exhibitapplyNo;
+		
+		try {
+			artistNo = artistService.getArtistNo(id);
+			exhibitapply.setArtistNo(artistNo);
+			exhibitapplyNo = exhibitService.maxExhibitApplyNo();
+			exhibitapply.setExhibitapplyNo(exhibitapplyNo);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
+		
+		//포스터 이미지 등록
+		if(file.equals("0")) {
+			String path = servletContext.getRealPath("/imgupload/exhibition/");
+			String[] mtypes = posterImgFile.getContentType().split("/");
+			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
+			Date time = new Date();
+			String exhibitEnrollTime = simpleDate.format(time);
+			
+			try {
+				File destFile = new File(path + exhibitEnrollTime +"."+ mtypes[1]);	//이미지 타입
+				posterImgFile.transferTo(destFile);
+				
+				String exhibitposterImg = exhibitEnrollTime +"."+ mtypes[1];
+				exhibitapply.setExhibitPoster(exhibitposterImg);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else {
+			Exhibition exhibit;
+			try {
+				exhibit = exhibitService.selectExhibit(exhibitNo);
+				exhibitapply.setExhibitPoster(exhibit.getExhibitPoster());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		String[] exhibitDate = exhibitapply.getExhibitDate().split(" ~ ");
+		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(exhibitDate[0]));
+		exhibitapply.setStartDate(Timestamp.valueOf(localDateTime).toString());
+		localDateTime = LocalDateTime.from(formatDateTime.parse(exhibitDate[1]));
+		exhibitapply.setEndDate(Timestamp.valueOf(localDateTime).toString());
+		exhibitapply.setApplyStatus(2); //수정요청
+		
+		try {
+			exhibitService.insertExhibitApply(exhibitapply);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "artistpage/succesapply";
+	}
+	
+	// 아티스트의 전시
+	@GetMapping("myexhibitionapply")
+	public String artistpageExhibitionApply(Model model) {
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		try {
+			String artistName = artistService.getArtistName(id);
+			artistNo = artistService.getArtistNo(id);
+			model.addAttribute("artistName", artistName);
+			List<ExhibitionApply> exhibitlist = exhibiService.ExhibitApplyListByArtist(artistNo);
+			model.addAttribute("exhibitlist", exhibitlist);
+		} catch (Exception e1) {
+		e1.printStackTrace();
+		};
+		return "artistpage/myexhibitionapply";
+	}
+	
+	/* 전시 신청 거절 사유 보기 */
+	@ResponseBody
+	@PostMapping("exhibitrefuseReason")
+	public ResponseEntity<String> exhibitRefuseReason(@RequestParam(value="exhibitapplyNo",required = false) int exhibitapplyNo) {
+		ResponseEntity<String> result = null;
+		try {
+			String refusedContents = exhibitService.selectExhibitApply(exhibitapplyNo).getRefusedContents();
+			result = new ResponseEntity<String>(refusedContents, HttpStatus.OK);
+		}catch(Exception e) {
+			result = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
 	}
 	
 	/* 포스터 가져오기 경로 */

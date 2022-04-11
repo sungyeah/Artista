@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="../css/applyfunding.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
@@ -22,28 +21,29 @@
 		width:308px; height:300px; margin-top:7px; display:inline-block;
 	}
 </style>
-
 </head>
 <body>
 	<%@include file ="../header.jsp" %>
     <div id="contents">
     	<header class="account-header">
-            <h2 class="account-header-title">전시등록 신청하기</h2>
-            <div class="account-header-description">등록할 젼시 정보를 입력하세요.</div>
+            <h2 class="account-header-title">전시 내용수정 요청하기</h2>
+            <div class="account-header-description">전시 정보를 입력하세요.</div>
         </header>
 
         <article class="enroll-body">
-            <form class="enroll-modify-form" method="post" action="/artistpage/exhibitionApplyComplete" enctype="multipart/form-data">
-                <div class="enroll-modify-form"></div>
-                <div class="certification-container  certified">
+        	<form class="enroll-modify-form" method="post" action="/artistpage/exhibitModifyComplete" enctype="multipart/form-data">
+            	<div class="enroll-modify-form"></div>
+                <div class="certification-container certified">
                     <div class="enroll-modify-form-row">
                         <div class="enroll-modify-form-row-label">
                             <span class="red">*</span> 전시포스터
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <img class="posterImg" id="posterThumb" />
+                        	<input type="hidden" value="1" id="fileChange" name="fileChange" />
+                        	<img class="posterImg" id="posterThumb" src="/artistpage/posterImg/${exhibit.exhibitPoster }" />
                             <label for="posterImg">파일 선택</label>
                             <input type="file" id="posterImg" name="posterImgFile" /><br>
+                       
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -51,23 +51,24 @@
                             <span class="red">*</span> 펀딩번호
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="number" name="fundingNo" placeholder="연결 펀딩번호를 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
-                        </div>
+                            <input class="enroll-modify-form-input" type="number" id="fundingNo" name="fundingNo" value="${exhibit.fundingNo }" placeholder="연결 펀딩번호를 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
+                       	</div>
                     </div>
                     <div class="enroll-modify-form-row">
                         <div class="enroll-modify-form-row-label">
                             <span class="red">*</span> 전시명
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="text" name="exhibitTitle" placeholder="전시 제목을 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
+                        	<input class="enroll-modify-form-input" type="text" id="exhibitTitle" name="exhibitTitle" value="${exhibit.exhibitTitle }" placeholder="전시 제목을 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
                         <div class="enroll-modify-form-row-label">
                             <span class="red">*</span> 전시작가
                         </div>
-                        <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="text" name="exhibitArtist" placeholder="전시에 참여한 작가 이름을 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
+                        <div class="enroll-modify-form-row-label">
+                        	<input class="enroll-modify-form-input" type="text" id="exhibitArtist" name="exhibitArtist" value="${exhibit.exhibitArtist }" placeholder="전시에 참여한 작가 이름을 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
+                        
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -75,67 +76,55 @@
                             <span class="red">*</span> 전시일정
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input id="exhibitDate" class="enroll-modify-form-input" name="exhibitDate" style="width:300px;" />
-                        </div>
+                        	<input class="enroll-modify-form-input" id="exhibitDate" name="exhibitDate" value="${exhibit.startDate }-${exhibit.endDate }" style="width:300px;" />
+                       	</div>
                     </div>
                     <div class="enroll-modify-form-row">
                         <div class="enroll-modify-form-row-label">
                             <span class="red">*</span> 전시장소
                         </div>
                         <div class="enroll-modify-form-row-value">
-                        	<input class="enroll-modify-form-input" type="text" id="getplace" placeholder="주소" style="width:300px;" onClick=searchAddress()>
+                        	<input class="enroll-modify-form-input" type="text" id="getplace" value="${exhibit.exhibitPlace }" placeholder="주소" style="width:300px;" onClick=searchAddress()>
                 			<input class="change-password-btn" type="button" value="검색"  style="width:84px;margin-top:7px" onClick=searchAddress()><br>
                 			<input class="enroll-modify-form-input" type="text" id="getplace2" placeholder="상세주소" maxlength="30"  style="width:300px;"><br>
        						<input type="hidden" id="exhibitPlace" name="exhibitPlace" />
-       					</div>
+       					
+                        </div>
                     </div>
                     <div class="enroll-modify-form-row">
                         <div class="enroll-modify-form-row-label">
                             <span class="red">*</span> 예매링크
                         </div>
                         <div class="enroll-modify-form-row-value">
-                        	<textarea class="enroll-modify-form-input" name="reserveLink" placeholder="최대 300자" maxlength="300" style="width:750px; height: 120px; resize: none;"></textarea>
+                        	<textarea class="enroll-modify-form-input" id="reserveLink" name="reserveLink" placeholder="최대 300자" maxlength="300" style="width:750px; height: 120px; resize: none;">${exhibit.reserveLink }</textarea>
                         </div>
-                    </div>
-                	<div class="account-modify-form-border">
+                    </div>   
+                    <div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        	<button class="yesNo-btn" id="exhibitApply" style="background-color:#222;color:white;">전시등록 신청</button>
-                    		<button class="yesNo-btn" id="cancel" style="background-color:white;color:#222;margin-left:10px" type="reset">취소</button>      
+                        	<button class="yesNo-btn" id="exhibitApply" style="width:120px;">작품수정 신청</button>
+                    		<button class="yesNo-btn" id="cancel" type="reset">취소</button>      
                     	</div>
                 	</div>
+                	<input type="hidden" name="exhibitNo" value="${exhibit.exhibitNo }"/>
                 </div>
-            </form>
+        	</form>
         </article>
     </div>
     
     <%@include file ="../footer.jsp" %>
-   
-    <script type="text/javascript">
-    	$("#datepickerstart").flatpickr({
-    		dateFormat:"Y-m-d",
-    		minDate: "today",
-    		maxDate: new Date().fp_incr(30)
-    	});
-    	$("#datepickerend").flatpickr({
-    		dateFormat:"Y-m-d",
-    		minDate: "today",
-    		maxDate: new Date().fp_incr(30)
-    	});
-    </script>
-    
+
     <script>
-	// 전시 포스터이미지 show
+	// 작품 대표이미지 show
 	$("#posterImg").change(function (event) {
 		var reader = new FileReader();
 		reader.onload = function(e) {
 			$("#posterThumb").attr("src", e.target.result);	
 		};
+		$("#fileChange").val("0");
 		reader.readAsDataURL(event.target.files[0]);
 	});
-	
 	// 전시등록 신청 또는 취소
 	$("#exhibitApply").click(function (event) {
-		$("#workType").attr("value", $(".selected-value").text());
 		$("#exhibitPlace").attr("value", $("#getplace").val() +" " + $("#getplace2").val());
 		$("#exhibitApply").submit();
 	});
@@ -143,6 +132,32 @@
 		window.history.back();
 	});
 	</script>
+
+	<script>
+	// selectbox 구현
+	$(document).on("click", ".select", function(e){
+		const selectBoxElements = document.querySelectorAll(".select");
+		function toggleSelectBox(selectBox) {
+			selectBox.classList.toggle("active");
+		}
+		function selectOption(optionElement) {
+			const selectBox = optionElement.closest(".select");
+		  	const selectedElement = selectBox.querySelector(".selected-value");
+		  	selectedElement.textContent = optionElement.textContent;
+		}
+		selectBoxElements.forEach(selectBoxElement => {
+			selectBoxElement.addEventListener("click", function (e) {
+		    	const targetElement = e.target;
+		    	const isOptionElement = targetElement.classList.contains("option");
+		    	if (isOptionElement) {
+		      		selectOption(targetElement);
+		    	}
+		    	toggleSelectBox(selectBoxElement);
+		  	});
+		});
+	});	
+    </script>
+
 	<script>
 	// 다음 주소 api
 	function searchAddress(){
@@ -168,8 +183,11 @@
 	    	        autoApply: true,                         // 확인/취소 버튼 사용여부
 	    	        timePicker24Hour: true,                  // 24시간 노출 여부(ex> true : 23:50, false : PM 11:50)
 	    	    });
-	    });
+	   });
 	</script>
-	
+
+
+
+
 </body>
 </html>

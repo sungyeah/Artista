@@ -32,14 +32,14 @@
 	<!-- 전시신청 거절 update -->
 	<select id="updateExhibitApplyRefuse" parameterType="map">
 		<![CDATA[
-			update exhibitionapply set  applyStatus=1, refusedContents=#{refusedContents} where exhibitapplyNo=#{applyNo}
+			update exhibitionapply set  applyStatus=applyStatus+1, refusedContents=#{refusedContents} where exhibitapplyNo=#{applyNo}
 		]]>
 	</select>
 	
 	<!-- 전시등록신청 List 보기 -->
 	<select id="selectExhibitApplyList" parameterType="int" resultType="exhibitionapply">
 		<![CDATA[
-			select * from exhibitionapply where applyStatus=0 or applyStatus=3
+			select * from exhibitionapply where applyStatus=0 or applyStatus=2
 		]]>
 	</select>
 
@@ -90,6 +90,20 @@
 			delete from exhibition where exhibitNo=#{exhibitNo}
 		]]>
 	</delete>
+	
+	<!-- 아티스트의 전시 List 보기 -->
+	<select id="selectExhibitListByArtistNo" parameterType="int" resultType="exhibition">
+		<![CDATA[
+			select * from exhibition where artistNo=#{artistNo}
+		]]>
+	</select>
+	
+	<!-- 아티스트의 전시신청 List 보기 -->
+	<select id="selectExhibitApplyListByArtistNo" parameterType="int" resultType="exhibitionapply">
+		<![CDATA[
+			select * from exhibitionapply where artistNo=#{artistNo}
+		]]>
+	</select>
 </mapper>
 <!-- 
 create table exhibitionapply(

@@ -15,5 +15,6 @@ public interface ArtistService {
 	public Artist selectArtistByNo(int artistNo) throws Exception;
 	
 	List<Artist> artists() throws Exception;
+	public Artist Artistinfo(int artistNo) throws Exception;
 	Artist artistInfo(String id)throws Exception;
 }

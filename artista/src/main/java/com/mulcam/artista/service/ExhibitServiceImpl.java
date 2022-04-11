@@ -80,7 +80,17 @@ public class ExhibitServiceImpl implements ExhibitService {
 		exhibitDAO.deleteExhibit(exhibitNo);
 	}
 
+	@Override
+	public List<Exhibition> ExhibitListByArtist(int artistNo) throws Exception {
+		return exhibitDAO.selectExhibitListByArtistNo(artistNo);
+	}
 
+	@Override
+	public List<ExhibitionApply> ExhibitApplyListByArtist(int artistNo) throws Exception {
+		return exhibitDAO.selectExhibitApplyListByArtistNo(artistNo);
+	}
+
+	
 
 
 	
