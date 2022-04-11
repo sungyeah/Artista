@@ -36,6 +36,7 @@
 		display:inline-block;
 		align-items: flex-end;
 		display: flex;
+		margin-right: 10px;
 	}
 	.artistsWorldImg {
 		width:300px; height:300px; margin-top:7px; display:inline-block; 
@@ -149,9 +150,10 @@
                             <span class="red"> </span> 아티스트의 작업세계 
                         </div>
                         <div class="enroll-modify-form-row-value">
-                        	<span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br>
+                        	<span id="plusWorld" class="topadd_delete">추가</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">삭제</span><br>
                             <div class="artistsWorld">
 	                        	<img class="artistsWorldImg"/>
+                            	<input type="file" name="artistWorld1" class="fileselect" />
                             	<label for="artistWorld1" class="labelselect">파일 선택</label>
                             	<input type="file" id="artistWorld1" class="fileselect" name="artistWorld1" />
                             </div>
@@ -169,8 +171,8 @@
                     
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                    		<button class="yesNo-btn" id="applyartist" style="width:120px;">아티스트 신청</button>
-                    		<button class="yesNo-btn" id="cancel" type="reset">취소</button>
+                    		<button class="yesNo-btn" id="applyartist" style="background-color:#222;color:white;">아티스트 신청</button>
+                    		<button class="yesNo-btn" id="cancel" style="background-color:white;color:#222;margin-left:10px" type="reset">취소</button>
                         </div>
                 	</div>
                 </div>

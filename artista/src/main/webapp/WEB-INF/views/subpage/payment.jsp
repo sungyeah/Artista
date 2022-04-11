@@ -58,17 +58,25 @@
                                 <input type="text" id="billing_address2" class="address2" name="address2" value="${mem.address2 }" placeholder="상세 주소" >
                             </div>
                         </div>
-                        <div class="sect-body cf">
-                            <div class="sect-body-th">휴대폰</div>
-                            <div class="sect-body-td">
-                                <div class="checkout-profile-box">
-                                    <input type="hidden" id="billing_phone1" name="orderNum" value="${mem.contact }">
-                                    <%--  <input type="text" id="billing_phone1" name="orderNum" placeholder="휴대폰" value="${mem.contact }"> --%>
-                                     <span id="contact2">0</span>
+                        <c:choose>
+                        	<c:when test="${empty mem.contact }">
+                        	</c:when>
+                        	<c:otherwise>
+                        	<div class="sect-body cf">
+                            	<div class="sect-body-th">휴대폰</div>
+                            		<div class="sect-body-td">
+                                		<div class="checkout-profile-box">
+                                    	<input type="hidden" id="billing_phone1" name="orderNum" value="${mem.contact }">
+                                    	<%--  <input type="text" id="billing_phone1" name="orderNum" placeholder="휴대폰" value="${mem.contact }"> --%>
+                                     	<span id="contact2">0</span>
                                     <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
-                                </div>
-                            </div>
-                        </div>
+                                	</div>
+                            	</div>
+                        	</div>
+                        	</c:otherwise>
+                        </c:choose>
+                        
+                        
                         <div class="sect-body cf">
                             <div class="sect-body-th">이메일</div>
                             <div class="sect-body-td">
@@ -320,7 +328,7 @@
                 
 
                 $('#shipping-copy_button').css({
-                    "background-image": "url(images/check-icon.png)"
+                    "background-image": "url(/images/check-icon.png)"
                 });
                 $("#shipping_name").prop("readonly",true);
                 $("#shipping_address1").prop("readonly",true);
@@ -336,7 +344,7 @@
                 // $("#shipping_phone12").prop("readonly",false);
                 // $("#shipping_phone13").prop("readonly",false);
                 $('#shipping-copy_button').css({
-                    "background-image": "url(images/checkno.png)"
+                    "background-image": "url(/images/checkno.png)"
                 });
             }
         }

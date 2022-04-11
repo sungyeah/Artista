@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dao.WorkDAO;
 import com.mulcam.artista.dto.Cart;
+import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.Work;

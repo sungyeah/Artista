@@ -151,7 +151,7 @@
                 나의 전시
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/artistpage/myexhibitionapply">
-            	신청 내역
+            	<b>신청 내역</b>
             </a>
             
             <a class="member-delete-btn" href="${pageContext.request.contextPath}/artistpage/applyexhibition" style="width:120px;">

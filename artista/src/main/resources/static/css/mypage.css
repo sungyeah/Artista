@@ -143,8 +143,8 @@ a {
     margin-bottom: 36px;
 }
 .register {
-	width: 260px;
-	height: 120px;
+	width: 280px;
+	height: 135px;
 	padding: 8px 8px;
 	background: white;
 	color: #2b2e4a;
@@ -154,12 +154,9 @@ a {
 	display: inline-block;
 }
 .profile {
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 	border-radius: 70%;
-}
-.container1{
-    margin-left: 38px;
 }
  .register2{
     box-sizing: border-box;

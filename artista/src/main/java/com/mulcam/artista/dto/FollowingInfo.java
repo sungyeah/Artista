@@ -1,6 +1,7 @@
 package com.mulcam.artista.dto;
 
 public class FollowingInfo {
+	String artistId;
 	String artistName;
 	int workcnt;
 	int followercnt;
@@ -28,6 +29,12 @@ public class FollowingInfo {
 	}
 	public void setArtistImg(String artistImg) {
 		this.artistImg = artistImg;
+	}
+	public String getArtistId() {
+		return artistId;
+	}
+	public void setArtistId(String artistId) {
+		this.artistId = artistId;
 	}
 	
 }

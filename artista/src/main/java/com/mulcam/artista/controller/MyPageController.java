@@ -98,14 +98,13 @@ public class MyPageController {
 			for(int i=0;i<follow.size();i++) {
 				Follow follow2 = follow.get(i);
 				String followerId = follow2.getFollower();
-				System.out.println(followerId);
 				Artist artist = artistService.artistInfo(followerId);
-				System.out.println(artist);
 				String artistName=artist.getArtistName();
 				String artistImg=artist.getArtistImg();
 				int followercnt = subPageService.followercnt(followerId);
 				int workcnt = subPageService.workcnt(artistName);
 				FollowingInfo followingInfo= new FollowingInfo();
+				followingInfo.setArtistId(followerId);
 				followingInfo.setArtistName(artistName);
 				followingInfo.setArtistImg(artistImg);
 				followingInfo.setFollowercnt(followercnt);
