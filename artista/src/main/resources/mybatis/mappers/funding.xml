@@ -113,6 +113,11 @@
 			delete from alarm where id=#{id}
 		]]>
 	</delete>
+	<select  id="queryAlarmlist" parameterType="string" resultType="Funding">
+		<![CDATA[
+			select * from alarm where id =#{id}
+		 ]]>
+	</select>
 </mapper>
 
 <!-- 

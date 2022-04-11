@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,8 +85,8 @@
  	  <span style="cursor:pointer;" id="toggleBtn"><img src="${pageContext.request.contextPath}/images/bellyes.png"
 	 style="width: 25px; height: 25px; width: auto; position: absolute; top: 48px; right: 330px; opacity:0.6;"></span>
 	 
-	 <c:forEach items="${list }" var="alarm">
-	 	<li><div class="box">${alarm.projTitle} ${alarm.fundingMsg}</div></li>
+	 <c:forEach items="${list}" var="alarm">
+	 	<li><div style="z-index: auto; position:absolute;" class="box">${alarm.projTitle} ${alarm.fundingMsg}</div></li>
 	 </c:forEach>
       <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="width: 25px; height: 25px; position: absolute; top: 48px; right: 375px;  opacity:0.6;"></a>
     <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
@@ -106,7 +110,7 @@
 </script>
 <script>
 var uid = '<%=(String)session.getAttribute("membertype")%>';
-	console.log(uid)
+	console.log(uid);
 	
 	
 	

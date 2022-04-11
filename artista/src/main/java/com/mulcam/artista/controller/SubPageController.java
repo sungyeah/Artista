@@ -325,12 +325,4 @@ public class SubPageController {
 		}
 		return followcheck;
 	}
-	
-	@GetMapping("header")
-	public String header() {
-		String id = (String) session.getAttribute("id");
-		List<Funding> list=subPageService.queryAlarmlist(id);
-		System.out.println(list);
-		return "header";
-	}
 }

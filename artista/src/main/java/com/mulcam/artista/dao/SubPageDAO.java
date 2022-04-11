@@ -46,5 +46,4 @@ public interface SubPageDAO {
 	public int followingcnt(String id)throws Exception;
 	public List<Follow> followInfo(String following)throws Exception;
 	public int workcnt(String artistName)throws Exception;
-	public List<Funding> queryAlarmlist(String id);
 }

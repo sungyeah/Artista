@@ -31,4 +31,5 @@ public interface FundingDAO {
 	public boolean checkAlarm(Map map);
 	public void deleteAlarm(String id);
 	public void insertAlarm(Map map);
+	public List<Funding> queryAlarmlist(String id);
 }

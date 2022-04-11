@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Follow;
+import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.PageInfo;
@@ -39,4 +40,5 @@ public interface SubPageService {
 	int followingcnt(String id)throws Exception;
 	List<Follow> followInfo(String following)throws Exception;
 	int workcnt(String artistName)throws Exception;
+	public List<Funding> queryAlarmlist(String id);
 }

@@ -3,21 +3,32 @@ package com.mulcam.artista.controller;
 import java.io.Console;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.Exhibition;
+import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.ExhibitService;
+import com.mulcam.artista.service.SubPageService;
 
 @Controller
 public class MainController {
 	
 //	String uuid = UUID.randomUUID().toString(); //랜덤 값
+	
+	@Autowired
+	HttpSession session;
+	
+	@Autowired
+	SubPageService subPageService;
 	
 	@Autowired
 	ExhibitService exhibitservice;
@@ -45,6 +56,14 @@ public class MainController {
 	@GetMapping({"artista", "/"})
 	public String index() {
 		return "index";
+	}
+	
+	@GetMapping("header")
+	public String header(@ModelAttribute Funding funding, Model model) {
+		String id = (String) session.getAttribute("id");
+		List<Funding> list=subPageService.queryAlarmlist(id);
+		model.addAttribute("list", list);
+		return "header";
 	}
 
 	/*

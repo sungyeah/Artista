@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mulcam.artista.dao.FundingDAO;
 import com.mulcam.artista.dao.SubPageDAO;
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Follow;
@@ -20,6 +21,9 @@ public class SubPageServiceImpl implements SubPageService{
 	
 	@Autowired
 	SubPageDAO subpageDAO;
+	
+	@Autowired
+	FundingDAO fundingDAO;
 
 	@Override
 	public boolean memoverlap(String id) throws Exception {
@@ -215,7 +219,7 @@ public class SubPageServiceImpl implements SubPageService{
 
 	public List<Funding> queryAlarmlist(String id) {
 		// TODO Auto-generated method stub
-		return subpageDAO.queryAlarmlist(id);
+		return fundingDAO.queryAlarmlist(id);
 	}
 
 	
