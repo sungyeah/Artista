@@ -15,4 +15,5 @@ public interface ArtistWorldDAO {
 	public List<ArtistWorld> artistWorld(String id) throws Exception;
 	public void deleteArtistWorld(String artistId) throws Exception;
 	/* public List<ArtistWorld> Wlds() throws Exception; */
+	public ArtistWorld worlds(int artistNo) throws Exception;
 }

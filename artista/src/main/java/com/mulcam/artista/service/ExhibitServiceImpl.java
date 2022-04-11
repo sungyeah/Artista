@@ -83,8 +83,20 @@ public class ExhibitServiceImpl implements ExhibitService {
 
 	/* 전시회 리스트 */
 	@Override
-	public List<Exhibition> exhibits() throws Exception {
-		return exhibitDAO.exhibitlist();
+	public List<Exhibition> exhibits(String status) throws Exception {
+		String condition = null;
+		switch (status) {
+			case "view":
+				condition = "startDate < now() and endDate > now()";
+				break;
+			case "up":
+				condition = "startDate > now()";
+				break;
+			case "term":
+				condition = "endDate < now()";
+				break;
+		}
+		return exhibitDAO.exhibitlist(condition);
 	}
 	@Override
 	public List<Exhibition> ExhibitListByArtist(int artistNo) throws Exception {
