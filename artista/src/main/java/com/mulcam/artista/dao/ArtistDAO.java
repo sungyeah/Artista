@@ -20,8 +20,10 @@ public interface ArtistDAO {
 	
 	public List<Artist> nameartist() throws Exception;
 
-	public Artist artistInfo(int artistNo)throws Exception;
+	public Artist artistinfo(int artistNo)throws Exception;
 
 	public Artist artistInfo(String id)throws Exception;
+	
+	public Artist artistMain();	// 메인화면 아티스트 정보
 
 }

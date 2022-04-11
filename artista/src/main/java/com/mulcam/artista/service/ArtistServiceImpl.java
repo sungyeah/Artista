@@ -70,13 +70,18 @@ public class ArtistServiceImpl implements ArtistService {
 	@Override
 
 	public Artist Artistinfo(int artistNo) throws Exception {
-		return artistDAO.artistInfo(artistNo);
+		return artistDAO.artistinfo(artistNo);
 	}
 	
 	
 
 	public Artist artistInfo(String id) throws Exception {
 		return artistDAO.artistInfo(id);
+	}
+
+	@Override
+	public Artist Artistmain() throws Exception {
+		return artistDAO.artistMain();
 	}
 
 }

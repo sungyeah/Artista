@@ -13,5 +13,7 @@ public interface ArtistWorldDAO {
 	public Integer getFileId() throws Exception;
 	public void insertFile(ArtistWorld worldImg) throws Exception;
 	public List<ArtistWorld> artistWorld(String id) throws Exception;
+	public void deleteArtistWorld(String artistId) throws Exception;
 	/* public List<ArtistWorld> Wlds() throws Exception; */
+	public ArtistWorld worlds(int artistNo) throws Exception;
 }

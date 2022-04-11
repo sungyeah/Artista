@@ -93,9 +93,9 @@
 	
 
 		<!-- 전시 리스트 -->
-	<select id="exhibitlist" resultType="Exhibition">
+	<select id="exhibitlist" resultType="Exhibition" parameterType="String">
 		<![CDATA[
-			select * from exhibition
+			select * from exhibition where ${condition }
 		]]>
 	</select>
 	
@@ -122,8 +122,8 @@ create table exhibitionapply(
     exhibitTitle varchar(100) not null,
     exhibitPoster varchar(255) not null,
     exhibitArtist varchar(100) not null,
-    exhibitStartDate Date not null,
-    exhibitEndDate Date not null,
+    StartDate Date not null,
+    EndDate Date not null,
     exhibitPlace varchar(500) not null,
     reserveLink varchar(500) not null,
     applyStatus int,

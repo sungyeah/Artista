@@ -23,6 +23,13 @@
 			select * from artistworld where id=#{id}
 		]]>
 	</select>
+	
+	<!-- 작가 id값으로 작가세계 이미지 지우기 -->
+	<select id="deleteArtistWorld" parameterType="string" >
+		<![CDATA[
+			delete from artistworld where id=#{artistId}
+		]]>
+	</select>
 
 		<!-- 작가 세계 -->
 <!-- 	<select id="Wlds" resultType="Worlds">

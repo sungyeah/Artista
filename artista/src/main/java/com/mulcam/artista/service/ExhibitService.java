@@ -20,7 +20,7 @@ public interface ExhibitService {
 	public void deleteExhibit(int exhibitNo) throws Exception;
 	
 
-	public List<Exhibition> exhibits() throws Exception;	// 전시회 리스트
+	public List<Exhibition> exhibits(String status) throws Exception;	// 전시회 리스트
 
 	public List<Exhibition> ExhibitListByArtist(int artistNo) throws Exception;
 	public List<ExhibitionApply> ExhibitApplyListByArtist(int artistNo) throws Exception;
