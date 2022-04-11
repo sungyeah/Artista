@@ -31,7 +31,7 @@
 		padding-left:10px; 
 	}
 	.artistsWorld {
-		width:350px;  margin-bottom:12px; 
+		margin-bottom:12px; 
 		float:left;
 		display:inline-block;
 		align-items: flex-end;
@@ -139,7 +139,7 @@
                         					placeholder="연도" style="display:inline-block; width:60px;" /></th>
                         		<th><input class="enroll-modify-form-input recordText" placeholder="내용을 입력하세요" 
                         					autocomplete="off" autocapitalize="off" style="width:500px;"></th>
-                        		<th><span class="plus" style="cursor: pointer;">+</span></th>
+                        		<th><span class="plus" style="cursor: pointer;font-size:20px;">+</span></th>
                     			</tr>
                     		</tbody></table>
                     		<input type="hidden" id="artistRecord" name="artistRecord"/>
@@ -150,10 +150,9 @@
                             <span class="red"> </span> 아티스트의 작업세계 
                         </div>
                         <div class="enroll-modify-form-row-value">
-                        	<span id="plusWorld" class="topadd_delete">추가</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">삭제</span><br>
+                        	<span id="plusWorld" class="topadd_delete" style="font-size:20px;font-weight:bold;">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete" style="font-size:20px;">-</span><br>
                             <div class="artistsWorld">
 	                        	<img class="artistsWorldImg"/>
-                            	<input type="file" name="artistWorld1" class="fileselect" />
                             	<label for="artistWorld1" class="labelselect">파일 선택</label>
                             	<input type="file" id="artistWorld1" class="fileselect" name="artistWorld1" />
                             </div>
@@ -266,6 +265,7 @@
 		var reader = new FileReader();
 		const img = $(this).prev();
 		const img2 = img.prev();
+		console.log(img2)
 		reader.onload = function(e) {
 			img2.attr("src", e.target.result);	
 		};
