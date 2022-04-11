@@ -3,6 +3,7 @@ package com.mulcam.artista.service;
 import java.util.List;
 
 import com.mulcam.artista.dto.ArtistApply;
+import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.PageInfo;
 
 public interface ArtistApplyService {
@@ -15,6 +16,8 @@ public interface ArtistApplyService {
 	
 	public void deleteArtistApplyById(int applyNo) throws Exception;
 	public void refuseArtistApply(int applyNo, String refusedContents) throws Exception;	// 일반회원->아티스트변경
-
+	public void deleteArtistWorld(String artistId) throws Exception;
+	
+	public List<ArtistWorld> selectArtistWorldApplyByNo(String id) throws Exception;
 	
 }
