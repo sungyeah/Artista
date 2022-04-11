@@ -177,6 +177,13 @@
 			select count(workNo) from work where artistName=#{artistName}
 		 ]]>
 	</select>
+	
+	<update id="updateStatus" parameterType="map" >
+		<![CDATA[
+			update order1 set orderStatus=#{orderStatus} where orderNo=#{orderNo}
+		]]>
+	</update>
+	
 </mapper>
 <!-- create table member(
 
