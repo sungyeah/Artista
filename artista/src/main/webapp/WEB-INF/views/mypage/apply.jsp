@@ -34,6 +34,8 @@
 		width:350px;  margin-bottom:12px; 
 		float:left;
 		display:inline-block;
+		align-items: flex-end;
+		display: flex;
 	}
 	.artistsWorldImg {
 		width:300px; height:300px; margin-top:7px; display:inline-block; 
@@ -59,6 +61,7 @@
                         </div>
                         <div class="enroll-modify-form-row-value">
                             <img class="artistImg" id="artistThumb" />
+                            <label for="artistImg">파일 선택</label>
                             <input type="file" id="artistImg" name="artistImgFile" /><br>
                         </div>
                     </div>
@@ -149,7 +152,8 @@
                         	<span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br>
                             <div class="artistsWorld">
 	                        	<img class="artistsWorldImg"/>
-                            	<input type="file" name="artistWorld1" class="fileselect" />
+                            	<label for="artistWorld1" class="labelselect">파일 선택</label>
+                            	<input type="file" id="artistWorld1" class="fileselect" name="artistWorld1" />
                             </div>
                         </div>
                     </div>
@@ -254,14 +258,14 @@
 	
 	<script>
 	//아티스트 작품세계 이미지 수
-	var workNum=1;
-	
+	var workNum=1;		
 	// 아티스트 작품세계 이미지 show
-	$(document).on("change", '.fileselect', function(event) {
+	$(document).on("change", ".fileselect", function(event) {
 		var reader = new FileReader();
 		const img = $(this).prev();
+		const img2 = img.prev();
 		reader.onload = function(e) {
-			img.attr("src", e.target.result);	
+			img2.attr("src", e.target.result);	
 		};
 		reader.readAsDataURL(event.target.files[0]);
 	});
@@ -271,6 +275,8 @@
 		$('.artistsWorld:last-child').clone().insertAfter("div[class=artistsWorld]:last");
 		workNum++;
 		
+		$(".labelselect:last").prop("for","artistWorld"+workNum);
+		$(".fileselect:last").prop("id","artistWorld"+workNum);
 		$(".fileselect:last").prop("name","artistWorld"+workNum);
 	});
 	

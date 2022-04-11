@@ -87,7 +87,6 @@
 <script>
 var uid = '<%=(String)session.getAttribute("membertype")%>';
 	console.log(uid)
-
 </script>
 </body>
 </html>
