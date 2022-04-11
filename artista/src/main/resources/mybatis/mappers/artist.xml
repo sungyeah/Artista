@@ -72,9 +72,9 @@
 		]]>
 	</select>
 	
-	<select id="artistMain" resultType="Artist" parameterType="int">
+	<select id="artistMain" resultType="Artist">
 		<![CDATA[
-			select * from artist
+			select * from artist order by rand() limit 1;
 		]]>
 	</select>
 
