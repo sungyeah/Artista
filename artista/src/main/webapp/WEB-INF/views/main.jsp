@@ -59,10 +59,10 @@
 
     <section class="sticky-post " style="margin-top: -100px;">
         <a href="#">
-            <figure><img src="images/${artist.artistImg }" alt=""></figure>
+            <figure><img src="../imgupload/artistProfile/${artist.artistImg }" alt=""></figure>
             <div class="text">
                 <span class="category">작가 소개</span>
-                <span class="title">${artist.artistName } Joins Artista</span>
+                <span class="title"><b>${artist.artistName }</b> <br>Joins Artista</span>
                 <span class="excerpt">${artist.artistIntroduce } </span>
             </div>
         </a>
