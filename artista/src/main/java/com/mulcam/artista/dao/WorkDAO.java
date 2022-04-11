@@ -24,4 +24,6 @@ public interface WorkDAO {
 	public void updateSale(Map map) throws Exception;
 	public void updateSalePayed(int workNo) throws Exception;
 	public void updateWork(Work work) throws Exception;
+	
+	
 }

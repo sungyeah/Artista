@@ -39,4 +39,6 @@ public interface SubPageService {
 	int followingcnt(String id)throws Exception;
 	List<Follow> followInfo(String following)throws Exception;
 	int workcnt(String artistName)throws Exception;
+	String getDeliveryStatus(String trackingNo) throws Exception;
+	void updateStatus(String orderStatus,int orderNo)throws Exception;
 }

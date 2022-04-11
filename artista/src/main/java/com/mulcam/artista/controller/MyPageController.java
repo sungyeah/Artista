@@ -42,7 +42,7 @@ import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.ArtistWorldService;
 import com.mulcam.artista.service.MypageService;
-import com.mulcam.artista.service.SubPageServiceImpl;
+import com.mulcam.artista.service.SubPageService;
 import com.mulcam.artista.service.WorkService;
 
 @RequestMapping("mypage")
@@ -50,7 +50,7 @@ import com.mulcam.artista.service.WorkService;
 public class MyPageController {
 	
 	@Autowired
-	SubPageServiceImpl subPageService;
+	SubPageService subPageService;
 	
 	@Autowired
 	MypageService myPageService;
@@ -84,6 +84,16 @@ public class MyPageController {
 			for(int i=0;i<ord.size();i++) {
 				OrderReport or = new OrderReport();
 				Order order = ord.get(i);
+				String trackingNo = order.getTrackingNo();
+				int orderNo = order.getOrderNo();
+				if(trackingNo==null) {
+					subPageService.updateStatus("배송 준비 중", orderNo);
+				}else {
+					String status = subPageService.getDeliveryStatus(trackingNo);
+					subPageService.updateStatus(status, orderNo);
+				}
+				System.out.println("hi");
+				System.out.println(order);
 				or.setOrder(order);
 				String[] workNos = order.getWorkNo().split(",");
 				List<Work> works = new ArrayList<Work>();

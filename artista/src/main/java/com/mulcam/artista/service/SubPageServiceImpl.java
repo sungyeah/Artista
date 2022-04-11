@@ -1,9 +1,17 @@
 package com.mulcam.artista.service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,22 +23,23 @@ import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.PageInfo;
 
 @Service
-public class SubPageServiceImpl implements SubPageService{
-	
+public class SubPageServiceImpl implements SubPageService {
+
 	@Autowired
 	SubPageDAO subpageDAO;
 
 	@Override
 	public boolean memoverlap(String id) throws Exception {
-		Member mem=subpageDAO.queryMember(id);
-		if(mem==null) return false;
+		Member mem = subpageDAO.queryMember(id);
+		if (mem == null)
+			return false;
 		return true;
 	}
 
 	@Override
 	public void makemember(Member mem) throws Exception {
 		subpageDAO.insertMember(mem);
-		
+
 	}
 
 	@Override
@@ -41,12 +50,12 @@ public class SubPageServiceImpl implements SubPageService{
 	@Override
 	public Member queryId(String id) throws Exception {
 		return subpageDAO.queryMember(id);
-		
+
 	}
 
 	@Override
 	public void deleteId(String id) throws Exception {
-		
+
 	}
 
 	@Override
@@ -56,7 +65,7 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public void changePw(String id, String password) throws Exception {
-		Map<String,Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("password", password);
 		subpageDAO.changePw(map);
@@ -64,37 +73,38 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public List<Member> memberList(int page, PageInfo pageInfo) throws Exception {
-		int listCount =  subpageDAO.memberNum();
-		int maxPage = (int)Math.ceil((double)listCount/9);
-		int startPage=(((int) ((double)page/9+0.9))-1)*9+1;
-		int endPage=startPage+9-1;
-		
-		if(endPage>maxPage) endPage=maxPage;
+		int listCount = subpageDAO.memberNum();
+		int maxPage = (int) Math.ceil((double) listCount / 9);
+		int startPage = (((int) ((double) page / 9 + 0.9)) - 1) * 9 + 1;
+		int endPage = startPage + 9 - 1;
+
+		if (endPage > maxPage)
+			endPage = maxPage;
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
 		pageInfo.setMaxPage(maxPage);
 		pageInfo.setPage(page);
 		pageInfo.setListCount(listCount);
-		int startrow = (page-1)*9;
+		int startrow = (page - 1) * 9;
 		return subpageDAO.memberList(startrow);
 	}
 
 	@Override
 	public boolean accessMember(String id, String password) throws Exception {
-		Member mem=subpageDAO.queryMember(id);
-		if(mem==null||id.equals(mem.getId())&&!password.equals(mem.getPassword())) 
+		Member mem = subpageDAO.queryMember(id);
+		if (mem == null || id.equals(mem.getId()) && !password.equals(mem.getPassword()))
 			return false;
-			return true;
+		return true;
 	}
 
 	@Override
 	public void makemember2(String id, String name, String email) throws Exception {
-		Map<String,Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("name", name);
 		map.put("email", email);
 		subpageDAO.insertMember2(map);
-		
+
 	}
 
 	@Override
@@ -105,13 +115,13 @@ public class SubPageServiceImpl implements SubPageService{
 	@Override
 	public void deleteCart(int cartNo) throws Exception {
 		subpageDAO.deleteCart(cartNo);
-		
+
 	}
-	
+
 	// 예선 : 일반회원 -> 아티스트
 	@Override
-	public void changeMemberType(String id, String memberType) throws Exception  {
-		Map<String,Object> map = new HashMap<>();
+	public void changeMemberType(String id, String memberType) throws Exception {
+		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("membertype", memberType);
 		subpageDAO.updateMemberType(map);
@@ -125,10 +135,10 @@ public class SubPageServiceImpl implements SubPageService{
 	@Override
 	public Integer MaxOrderNum() throws Exception {
 		Integer no = subpageDAO.MaxOrderNum();
-		if(no==null) {
+		if (no == null) {
 			no = 0;
-		}else {
-			no +=1;
+		} else {
+			no += 1;
 		}
 		return no;
 	}
@@ -136,7 +146,7 @@ public class SubPageServiceImpl implements SubPageService{
 	@Override
 	public void insertPayment(Order order) throws Exception {
 		subpageDAO.insertPayment(order);
-		
+
 	}
 
 	@Override
@@ -144,21 +154,21 @@ public class SubPageServiceImpl implements SubPageService{
 		return subpageDAO.memTypeInfo(id);
 	}
 
-
 	@Override
 	public List<Order> orderList(int page, PageInfo pageInfo) throws Exception {
-		int listCount =  subpageDAO.totalOrderNum();
-		int maxPage = (int)Math.ceil((double)listCount/9);
-		int startPage=(((int) ((double)page/9+0.9))-1)*9+1;
-		int endPage=startPage+9-1;
-		
-		if(endPage>maxPage) endPage=maxPage;
+		int listCount = subpageDAO.totalOrderNum();
+		int maxPage = (int) Math.ceil((double) listCount / 9);
+		int startPage = (((int) ((double) page / 9 + 0.9)) - 1) * 9 + 1;
+		int endPage = startPage + 9 - 1;
+
+		if (endPage > maxPage)
+			endPage = maxPage;
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
 		pageInfo.setMaxPage(maxPage);
 		pageInfo.setPage(page);
 		pageInfo.setListCount(listCount);
-		int startrow = (page-1)*9;
+		int startrow = (page - 1) * 9;
 		return subpageDAO.orderList(startrow);
 	}
 
@@ -169,7 +179,7 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public boolean checkFollow(String follower, String following) throws Exception {
-		Map <String,String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>();
 		map.put("follower", follower);
 		map.put("following", following);
 		return subpageDAO.checkFollow(map);
@@ -177,7 +187,7 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public void follow(String follower, String following) throws Exception {
-		Map <String,String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>();
 		map.put("follower", follower);
 		map.put("following", following);
 		subpageDAO.follow(map);
@@ -185,11 +195,11 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public void unfollow(String follower, String following) throws Exception {
-		Map <String,String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>();
 		map.put("follower", follower);
 		map.put("following", following);
 		subpageDAO.unfollow(map);
-		
+
 	}
 
 	@Override
@@ -212,5 +222,44 @@ public class SubPageServiceImpl implements SubPageService{
 		return subpageDAO.workcnt(artistName);
 	}
 
-	
+	public String getDeliveryStatus(String trackingNo) throws Exception {
+		StringBuilder urlBuilder = new StringBuilder("http://info.sweettracker.co.kr/tracking/4");
+		
+		urlBuilder.append("?" + URLEncoder.encode("t_key", "UTF-8") + "=bNly32iRmzS23mWeYOuvIw"); /* Service Key */
+		urlBuilder.append("&" + URLEncoder.encode("t_code", "UTF-8") + "=04");
+		urlBuilder.append("&" + URLEncoder.encode("t_invoice", "UTF-8") + "="
+				+ URLEncoder.encode(trackingNo, "UTF-8")); 
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Content-type", "application/html");
+//		System.out.println("Response code: " + conn.getResponseCode());
+		BufferedReader rd;
+		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+		}
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			sb.append(line);
+		}
+		rd.close();
+		conn.disconnect();
+//		System.out.println(sb.toString());
+		String a = sb.toString();
+		Document doc = Jsoup.parse(a);
+		String e = doc.getElementsByClass("title-notice").html();
+		System.out.println(e);
+		return e;
+	}
+
+	@Override
+	public void updateStatus(String orderStatus, int orderNo) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("orderStatus", orderStatus);
+		map.put("orderNo", orderNo);
+		subpageDAO.updateStatus(map);
+	}
 }
