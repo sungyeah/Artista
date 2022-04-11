@@ -39,11 +39,11 @@ public class ArtistsController {
 	
 	@GetMapping("artistdetail/{artistNo}")
 	public String artistdetail(@PathVariable int artistNo, Model model) throws Exception {
-		/* List<ArtistWorld> Wldlist = artistworldservice.worlds(); */
 		try {
 			Artist artist = artistservice.Artistinfo(artistNo);
+			ArtistWorld artistworld = artistworldservice.worlds(artistNo);
 			model.addAttribute("artist", artist);
-			/* model.addAttribute("wldList", Wldlist); */
+			model.addAttribute("artistworld", artistworld); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

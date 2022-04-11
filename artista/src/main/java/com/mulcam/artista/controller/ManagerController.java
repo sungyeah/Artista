@@ -1,7 +1,9 @@
 package com.mulcam.artista.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.ArtistApply;
+import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.Exhibition;
 import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
@@ -375,15 +378,18 @@ public class ManagerController {
 	
 	@ResponseBody
 	@PostMapping(value="artistapplydetail")
-	public ResponseEntity<ArtistApply> artistapplyDetail(@RequestParam(value="applyNo",required = false) int artistapplyNo, Model model) {
-		ResponseEntity<ArtistApply> result = null;
+	public ResponseEntity<Map<String,Object>> artistapplyDetail(@RequestParam(value="applyNo",required = false) int artistapplyNo, Model model) {
+		//ResponseEntity<ArtistApply> result = null;
+		Map<String,Object> result = new HashMap<>();
 		try {
 			ArtistApply artistApply = artistapplyService.selectArtistApplyByNo(artistapplyNo);
-			result = new ResponseEntity<ArtistApply>(artistApply, HttpStatus.OK);
+			List<ArtistWorld> artistworld = artistapplyService.selectArtistWorldApplyByNo(artistApply.getId());
+			result.put("artistApply", artistApply);
+			result.put("artistworld", artistworld);
 		}catch(Exception e) {
-			result = new ResponseEntity<ArtistApply>(HttpStatus.BAD_REQUEST);
+			result.put("null", "null");
 		}
-		return result;
+		return ResponseEntity.ok().body(result);
 	}
 	
 	/* 아티스트 등록 허락 */
@@ -393,28 +399,17 @@ public class ManagerController {
 		try {
 			//artistapplyNo로 작가신청 내용 가져오기
 			ArtistApply artistApply = artistapplyService.selectArtistApplyByNo(artistapplyNo);
-			System.out.println(artistApply.getId());
-			
-			System.out.println(artistService.getArtistMaxId());
-			System.out.println(artistApply.getArtistNo());
-			System.out.println(artistApply.getArtistName());
-			System.out.println(artistApply.getArtistImg());
-			System.out.println(artistApply.getArtistIntroduce());
-			
 			
 			//artist data에 artistapply 내용 옮기고 artist에 등록하기
 			Artist artist = new Artist(artistService.getArtistMaxId(), artistApply.getId(), artistApply.getArtistName(), artistApply.getArtistImg(),
 						artistApply.getArtistType(), artistApply.getArtistIntroduce(), artistApply.getArtistRecord(), artistApply.getArtistInstagram(), 0);
 			artistService.insertArtist(artist);
-			System.out.println("hello" + artist.getId());
+			
 			//artistapply에 내용 삭제
 			artistapplyService.deleteArtistApplyById(artistapplyNo);
 			
 			//member type "artist"로 변경
 			subPageService.changeMemberType(artist.getId(), "artist");
-			System.out.println(artist.getId());
-			
-			System.out.println("작가 등록 성공");
 		}catch(Exception e) {
 		}
 	}
@@ -424,8 +419,9 @@ public class ManagerController {
 	@PostMapping(value="artistapplyfail")
 	public void artistapplyFail(@RequestParam(value="applyNo") int artistapplyNo, @RequestParam(value="refusedContents") String refusedContents) {
 		try {
+			String artistId = artistapplyService.selectArtistApplyByNo(artistapplyNo).getId();
 			artistapplyService.refuseArtistApply(artistapplyNo, refusedContents);
-			System.out.println("작가 등록 실패");
+			artistapplyService.deleteArtistWorld(artistId);
 		}catch(Exception e) {
 		}
 	}
