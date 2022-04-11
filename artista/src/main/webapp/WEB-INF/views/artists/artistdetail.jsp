@@ -170,14 +170,9 @@ section.palmares .prize-list li span {
                             <span> </span>
                         </div>
                         <ul class="prize-list">
+                        <c:forEach items="${atistList }" var="artist">
                         <li><span>2017</span><br>solo show  / Koelsch gallery - Houston - Texas, 미국</li>
-                        <li><span>2015</span><br>Expo solo &quot;Minimal&quot; / Espace 40 mile end - Montréal, 캐나다</li>
-                        <li><span>2007</span><br>Expo solo &quot; Contrastes&quot; / Galerie Desja - Montréal, 캐나다</li>
-                        <li><span>2006</span><br>Expo solo &quot; Se sentir pousser des ailes&quot; / Galerie desja - Montréal, 캐나다</li>
-                        <li><span>2005</span><br>Expo solo &quot;Nuit de Chine&quot; / Cirque du soleil - Montréal, 캐나다</li>
-                        <li><span>2003</span><br>Expo Solo &quot;A chacun son Zen&quot; / Galerie  [sas] - Montréal, 캐나다</li>
-                        <li><span>2002</span><br>expo solo / Galerie  [sas] - Montréal, 캐나다</li>
-                        <li><span>2001</span><br>solo show  / China Tee Club - Hong Kong, 중국</li>
+                        </c:forEach>
                         </ul>
                     </div>
                     <div class="col-md-3 col-sm-6">
