@@ -34,20 +34,20 @@
                     
                     <!-- 반복문 -->
                     
-                    <%-- <c:forEach items="${exhibitList }" var="exhibit">
+                    <c:forEach items="${exhibitList }" var="exhibit">
                     	<div class="season_artwork">
                             <a href="${exhibit.reserveLink }">
                                 <img class="owl-lazy" data-src="${exhibit.exhibitPoster }"/>
                             </a>
                             <div class="season_artwork_info">
                                 <h5>${exhibit.exhibitTitle }</h5>
-                                <p>'${exhibit.exhibitStartDate }' + '${exhibit.exhibitEndDate }'</p>
+                                <p>'${exhibit.startDate }' + '${exhibit.endDate }'</p>
                                 <p>${exhibit.exhibitArtist }</p>
                             </div>
                         </div>
-                    </c:forEach> --%>
+                    </c:forEach>
                     
-                        <div class="season_artwork">
+                        <!-- <div class="season_artwork">
                             <a href="/artwork/A0285-0038/">
                                 <img class="owl-lazy" data-src="images/사월의 눈.jpg"/>
                             </a>
@@ -145,7 +145,7 @@
                                 <h5>너와 봄(프리지아)</h5>
                                 <p>이재영</p>
                             </div>
-                        </div>
+                        </div> -->
                     
                 </div>
             </section>                   

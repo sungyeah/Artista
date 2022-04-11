@@ -95,8 +95,10 @@
 		<!-- 전시 리스트 -->
 	<select id="exhibitlist" resultType="Exhibition">
 		<![CDATA[
-			select * from exhibition order by artistName asc
-
+			select * from exhibition
+		]]>
+	</select>
+	
 	<!-- 아티스트의 전시 List 보기 -->
 	<select id="selectExhibitListByArtistNo" parameterType="int" resultType="exhibition">
 		<![CDATA[
@@ -108,7 +110,7 @@
 	<select id="selectExhibitApplyListByArtistNo" parameterType="int" resultType="exhibitionapply">
 		<![CDATA[
 			select * from exhibitionapply where artistNo=#{artistNo}
->>>>>>> branch 'backup' of https://github.com/sungyeah/finalProj.git
+
 		]]>
 	</select>
 </mapper>
