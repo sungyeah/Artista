@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -145,20 +146,23 @@ public class MyPageController {
 		}
 		apply.setArtistImg(apply.getArtistName() + "." + mtypes[1]);
 		
-		// 아티스트 작품세계 업로드
 		Iterator<String> fnames = mrequest.getFileNames();
+		int i=0;
 		while(fnames.hasNext()) {
 			String fileName = fnames.next();
+			System.out.println(fileName);
 			//name이 artistImg인 파일은 생략!
 			if(!fileName.equals("artistImgFile")) {
 				MultipartFile mfile = mrequest.getFile(fileName);
 				if(mfile.getSize()>0) {
+					i++;
 					ArtistWorld worldImg = new ArtistWorld();
 					try {
 						//아티스트 작품세계 업로드 폴더 경로
 						String path_artistWorld = servletContext.getRealPath("/imgupload/artistWorlds/");
 						String[] imgtypes = mfile.getContentType().split("/");
-						File dest_artistWorld = new File(path_artistWorld+artistworldService.getArtistWorldId()+ "."+imgtypes[1]);
+						String imgName = UUID.randomUUID().toString();
+						File dest_artistWorld = new File(path_artistWorld + imgName + "." + imgtypes[1]);
 						try {			
 							mfile.transferTo(dest_artistWorld);
 						} catch (Exception e) {
@@ -168,12 +172,16 @@ public class MyPageController {
 						// 아티스트 작품세계 이미지 DB 넣기
 						worldImg.setImgNo(artistworldService.getArtistWorldId());
 						worldImg.setId(apply.getId());
-						worldImg.setImgType("."+imgtypes[1]);
+						worldImg.setImgName(imgName + "." + imgtypes[1]);
+						if(i==1) {
+							worldImg.setIsDoor(1);
+						}else {
+							worldImg.setIsDoor(0);
+						}
 						artistworldService.insertArtistWorldFile(worldImg);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					
 				}
 			}
 		}

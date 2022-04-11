@@ -13,7 +13,7 @@
 	<!-- 작가세계 이미지 insert -->
 	<insert id="insertFile" parameterType="artistworld">
 		<![CDATA[
-			insert into artistworld (imgNo, imgType, id) values (#{imgNo}, #{imgType}, #{id})
+			insert into artistworld (imgNo, imgName, id, isDoor) values (#{imgNo}, #{imgName}, #{id}, #{isDoor})
 		]]>
 	</insert>
 	
