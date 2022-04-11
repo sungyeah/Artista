@@ -40,6 +40,12 @@
     
 }
 
+.box {
+      display: none;
+      padding-bottom: 30px;
+    }
+
+
 </style>
 <body>
 <div id="wrap2">
@@ -51,15 +57,18 @@
     <li class="navi"><a href="${pageContext.request.contextPath}/exhibitionview">Exhibition </a></li>
     <li class="navi"><a href="${pageContext.request.contextPath}/artistslist">Artists</a></li>
     <li class="navi"><a href="${pageContext.request.contextPath}/storelist">Store</a></li>
-    <li class="navi"><a href="">Funding</a></li>
+    <li class="navi"><a href="${pageContext.request.contextPath}/funding/fundingov">Funding</a></li>
  </ul>
 
 <c:choose>
 <c:when test="${empty id}">
  <ul class="menu2">
-    <a style="cursor:pointer;" href="${pageContext.request.contextPath}/login"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 45px; right: 330px;"></a>
+	 <span style="cursor:pointer;" id="toggleBtn"><img src="${pageContext.request.contextPath}/images/bellno.png" style="height: 30px; width: auto; position: absolute; top: 45px; right: 375px;"></span>
+	 <div class="box">div1</div>
+    <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="height: 30px; width: auto; position: absolute; top: 45px; right: 330px;"></a>
     <li class="navi2"><a href="login">Login</a></li>
     <li class="navi2"><a href="join">SignUp</a></li>
+    
 </ul>
 </c:when>
 
@@ -84,9 +93,20 @@
 
     
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	$("#toggleBtn").on("click", function(){
+	    //$(".box").toggle(1000);
+		 $(".box").fadeToggle(1000);
+		  //$(".box").slideToggle(1000);
+	 });
+</script>
 <script>
 var uid = '<%=(String)session.getAttribute("membertype")%>';
 	console.log(uid)
+	
+	
+	
 </script>
 </body>
 </html>

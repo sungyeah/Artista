@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +19,15 @@
             <img class="image-thumb" src="/funding/thumbview/${funding.thumbImg}" />
         </div>
         <div class="fundingdetail">
-            <div id="timealert">${funding.startDate } 오픈 예정</div><br>
+            <div id="timealert">
+            <fmt:parseDate value="${funding.startDate }" var="startDate" pattern="yyyy-MM-dd HH" />
+            <fmt:formatDate value="${startDate }" pattern="M" /><span>월</span>
+            <fmt:formatDate value="${startDate }" pattern="d" /><span>일</span>
+            <fmt:formatDate value="${startDate }" pattern="H" /><span>시</span>
+            <span>오픈 예정</span>
+            </div><br>
             <div class="amountdetail">
-                <button type="button" class="Btn1" id="Btn1">알림 신청 100명 신청 중</button>
+                <button type="button" class="Btn1" id="Btn1" onclick="alarm('${funding.fundingNo}')">알림 신청 100명 신청 중</button>
             </div>
             <div>
                 지금 바로 알림 신청하고 미리 연락 받으세요.
@@ -45,13 +52,32 @@
     
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
     <script>
-    $('.Btn1').click(function(){
-    	  if($(this).hasClass("Btn")){
-    	    $(this).removeClass("Btn");
-    	  }else{
-    	    $(this).addClass("Btn");  
-    	  }
+       
+    function alarm(fundingNo){
+    	var color=document.getElementById("Btn1");
+    	console.log(fundingNo);
+    	$.ajax({
+    		type: "post",
+    		dataType: "text",
+    		async: false,
+    		url: "http://localhost:8090/funding/alarm",
+    		data:{"fundingNo": fundingNo},
+    		success: function(data, textStatus){
+    			if(data=='true'){
+    				color.style.color="white";
+    				color.style.background="black";
+    				
+    			} else {
+    				color.style.color="black";
+    				color.style.background="white";
+    				
+    			}
+    		},
+    		error:function(data, textStatus){
+    			alert("실패");
+    		}
     	});
+    }
     </script>
 </body>
 </html>

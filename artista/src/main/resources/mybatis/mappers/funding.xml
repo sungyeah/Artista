@@ -95,9 +95,28 @@
 			select * from funding where fundingNo=#{fundingNo}
 		]]>
 	</select>
+	<select  id="checkAlarm" parameterType="map" resultType="boolean">
+		<![CDATA[
+			select EXISTS (select * from alarm 
+				where fundingNo= #{fundingNo} and id=#{id} limit 1) as success
+		 ]]>
+	</select>
+	<insert id="insertAlarm" parameterType="map" >
+		<![CDATA[
+			insert into alarm(id, fundingNo, projTitle, fundingMsg, readSign)
+			values(#{id}, #{fundingNo}, (select projTitle from funding where fundingNo=#{fundingNo}), "이 시작할 예정입니다", 0)
+		]]>
+	</insert>
+	
+	<delete id="deleteAlarm" parameterType="String" >
+		<![CDATA[
+			delete from alarm where id=#{id}
+		]]>
+	</delete>
 </mapper>
 
 <!-- 
+
 펀딩 등록/수정
 create table fundingApp(
 	fundingNo int(10) not null auto_increment,
@@ -151,6 +170,15 @@ create table fundingSpon(
     primary key(sponsorNo)
 );
 
+알람
+create table alarm(
+	id varchar(100) not null,
+    fundingNo int(100) not null,
+    projTitle varchar(100) not null,
+    fundingMsg varchar(100) not null,
+    readSign boolean,
+    primary key(id)
+);
 
 CREATE EVENT IF NOT EXISTS updateFundingState
     ON SCHEDULE

@@ -320,4 +320,9 @@ public class SubPageController {
 		}
 		return followcheck;
 	}
+	
+	@GetMapping("header")
+	public String header() {
+		return "header";
+	}
 }
