@@ -6,14 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.ArtistDAO;
+import com.mulcam.artista.dao.ArtistWorldDAO;
 import com.mulcam.artista.dao.FundingDAO;
 import com.mulcam.artista.dto.Artist;
+import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.PageInfo;
 
 @Service
 public class ArtistServiceImpl implements ArtistService {
 	@Autowired
 	ArtistDAO artistDAO;
+	
+	@Autowired
+	ArtistWorldDAO artistworldDAO;
 	
 	@Autowired
 	FundingDAO fundingDAO;
@@ -68,7 +73,6 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-
 	public Artist Artistinfo(int artistNo) throws Exception {
 		return artistDAO.artistInfo(artistNo);
 	}
@@ -77,6 +81,11 @@ public class ArtistServiceImpl implements ArtistService {
 
 	public Artist artistInfo(String id) throws Exception {
 		return artistDAO.artistInfo(id);
+	}
+
+	@Override
+	public List<ArtistWorld> selectArtistWorldById(String id) throws Exception {
+		return artistworldDAO.artistWorld(id);
 	}
 
 }
