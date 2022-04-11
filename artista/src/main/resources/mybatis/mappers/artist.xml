@@ -60,6 +60,23 @@
 		]]>
 	</select>
 	
+	<select id="artistinfo" resultType="Artist" parameterType="int">
+		<![CDATA[
+			select * from artist where artistNo=#{artistNo}
+		]]>
+	</select>
+	<select id="artistInfo" resultType="Artist" parameterType="string">
+		<![CDATA[
+			SELECT * FROM artista.artist where id=#{id}
+
+		]]>
+	</select>
+	
+	<select id="artistMain" resultType="Artist" parameterType="int">
+		<![CDATA[
+			select * from artist
+		]]>
+	</select>
 
 </mapper>
 <!-- 
