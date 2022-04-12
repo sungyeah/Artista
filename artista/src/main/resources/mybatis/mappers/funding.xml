@@ -100,8 +100,8 @@
 	<!-- 펀딩 후원 insert -->
 	<insert id="insertfundingspon" parameterType="map" >
 		<![CDATA[
-			insert into fundingSpon(sponsorNo, id, fundingNo, sponsorAmount, email, sponDate)
-			values(null, #{id}, #{fundingNo}, #{sponsorAmount}, #{email}, sysdate())
+			insert into fundingSpon(sponsorNo, id, fundingNo, projTitle, sponsorAmount, email, sponDate)
+			values(#{id}, #{fundingNo}, (select projTitle from fundingNo=#{fundingNo}), #{sponsorAmount}, #{email}, sysdate())
 		]]>
 	</insert>
 	<select id="querySponCount" parameterType="int" resultType="int">
@@ -188,6 +188,11 @@
 	<select id="queryCount" parameterType="int" resultType="int">
 		<![CDATA[
 			select count(*) from alarm where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	<select id="querysponlist" parameterType="String" resultType="Funding">
+		<![CDATA[
+			select * from fundingSpon where id=#{id}
 		]]>
 	</select>
 </mapper>

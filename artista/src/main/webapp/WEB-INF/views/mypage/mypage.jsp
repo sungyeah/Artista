@@ -147,20 +147,33 @@
                     </thead>
                     <tbody>
 	                     <c:choose> 
-                    		<c:when test='${empty fundinglist}'>
+                    		<c:when test='${empty sponlist}'>
                          <tr>
                             <td class="empty" colspan="4">표시할 내역이 없습니다.</td>
                         </tr>
                         	</c:when>
                         	<c:otherwise> 
-                        <c:forEach items="${fundinglist}" var="fundinglist">
+                        <c:forEach items="${sponlist}" var="sponlist">
                         <tr>
                         	<td class="time-code" style="font-weight:bold;"><a href="paymentinfo/${fundinglist.fundingNo }">${fundinglist.fundingNo }</a></td>
                         	<td class="start-date">${fundinglist.projTitle}</td>
                         	<td class="start-date">${fundinglist.sponDate}</td>
                         	<td class="start-date" style="font-weight: bold;"><fmt:formatNumber value="${fundinglist.sponsorAmount }"/>원</td>
                         	<c:forEach items="${fundinglist}" var="fundinglist">
-                        		<td class="status">${fundinglist.orderStatus }<br></td>
+                        	<c:choose>
+                        		<c:when test="${fundinglist.fundingState == 4 }">
+                        			<td class="status">펀딩 실패</td>
+                        		</c:when>
+                        		<c:when test="${fundinglist.fundingState == 5 }">
+                        			<td class="status">펀딩 성공</td>
+                        		</c:when>
+                        		<c:when test="${fundinglist.fundingState == 6 }">
+                        			<td class="status">환불</td>
+                        		</c:when>
+                        		<c:otherwise>
+                        			<td class="status">펀딩 진행 중</td>
+                        		</c:otherwise>
+                        	</c:choose>
                         	</c:forEach>
                         	
                         </tr>
