@@ -155,6 +155,8 @@ public class FundingController {
 	}
 	
 	
+	
+	
 	//완료페이지 action, post
 	@PostMapping("/succesamount")
 	public String succesamount(@RequestParam(value="sponsorAmount")String sponsorAmount,

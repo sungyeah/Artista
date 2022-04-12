@@ -190,4 +190,9 @@ public class FundingServiceImpl implements FundingService {
 	public void updateFundingModiy(Funding funding) throws Exception {
 		fundingDAO.updateFundingModiy(funding);
 	}
+	@Override
+	public List<Funding> querysponlist(String id) {
+		// TODO Auto-generated method stub
+		return fundingDAO.querysponlist(id);
+	}
 }

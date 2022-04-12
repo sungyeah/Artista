@@ -262,31 +262,18 @@ public class SubPageController {
 		return no;
 	}
 	
-	@GetMapping("paymentinfo/{orderNo}")
-	public String paymentinfo(@PathVariable int orderNo,Model model) {
+	@GetMapping("fundingpayinfo/{fundingNo}")
+	public String fundingpayinfo(@PathVariable int fundingNo, Model model) {
 		try {
-			Order order = myPageService.orderInfo(orderNo);
-			model.addAttribute("order",order);
-			String[] arr = order.getWorkNo().split(",");
-			List<Work> wor = new ArrayList<Work>();
-			for(int i=0;i<arr.length;i++) {
-				int workno = Integer.parseInt(arr[i]);
-				Work work = workService.workinfo(workno);
-				wor.add(work);
-			}
-			model.addAttribute("works",wor);
+			Funding funding = fundingService.queryFundingNo(fundingNo);
+			model.addAttribute("funding", funding);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "mypage/paymentinfo";
-	}
-	
-	@GetMapping("fundingpayinfo")
-	public String fundingpayinfo() {
 		return "mypage/fundingpayinfo";
 	}
-	
+		
 	
 	
 //	@GetMapping("paymentsuc")

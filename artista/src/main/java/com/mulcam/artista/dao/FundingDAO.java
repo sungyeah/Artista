@@ -48,4 +48,5 @@ public interface FundingDAO {
 	public Integer maxfundingNo() throws Exception;
 	public Integer maxfundingAppNo() throws Exception;
 	public int queryCount(int fundingNo);
+	public List<Funding> querysponlist(String id);
 }
