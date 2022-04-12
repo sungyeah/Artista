@@ -150,7 +150,7 @@
                             <span class="red"> </span> 아티스트의 작업세계 
                         </div>
                         <div class="enroll-modify-form-row-value">
-                        	<!-- <span id="plusWorld" class="topadd_delete" style="font-size:20px;font-weight:bold;">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete" style="font-size:20px;">-</span><br> -->
+                        	<!-- <span id="plusWorld" class="topadd_delete" style="font-size:20px;font-weight:bold;">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete" style="font-size:20px;">-</span><br>-->
                             <div class="artistsWorld">
 	                        	<img class="artistsWorldImg"/>
                             	<label for="artistWorld1" class="labelselect">파일 선택</label>

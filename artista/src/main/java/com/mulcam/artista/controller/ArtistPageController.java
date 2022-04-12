@@ -98,7 +98,7 @@ public class ArtistPageController {
 			List<ArtistWorld> artistworld = artistService.selectArtistWorldById(id);
 			model.addAttribute("id", id);
 			model.addAttribute("artist", artist);
-			model.addAttribute("artistworld", artistworld);
+			//model.addAttribute("artistworld", artistworld[0]);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

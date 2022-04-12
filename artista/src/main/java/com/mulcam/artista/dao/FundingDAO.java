@@ -37,4 +37,10 @@ public interface FundingDAO {
 	public List<Funding> fundingExpectList()  throws Exception;//관리자 펀딩 예정리스트
 	public List<Funding> fundingNowList()  throws Exception;//관리자 펀딩 진행중리스트
 	public List<Funding> fundingEndedList()  throws Exception;//관리자 펀딩 마감리스트
+	public Funding querytfundingApp(int fundingNo)  throws Exception;//관리자 펀딩신청 상세보기
+	public void updateFundingApplyRefuse(Map map)throws Exception;
+	public void deleteFundingApply(int applyNo) throws Exception;
+	
+	public Integer maxfundingNo() throws Exception;
+	public Integer maxfundingAppNo() throws Exception;
 }
