@@ -12,12 +12,12 @@
 <link rel="stylesheet"
 	href="https://og-data.s3.amazonaws.com/CACHE/css/output.75d1aa7676f8.css"
 	type="text/css">
-<!-- <script
+<script
 	src="https://og-data.s3.amazonaws.com/static/common/js/jquery-1.12.4.min.js"></script>
 <script
 	src="https://og-data.s3.amazonaws.com/CACHE/js/output.bd018f02f86b.js"></script>
 <script
-	src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script> -->
+	src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script>
 </head>
 <body>
 	<%@include file="../header.jsp"%>
@@ -48,20 +48,27 @@
 
 
 					<!-- 반복문 -->
+					
+					
 					<c:forEach items="${exhibitList }" var="exhibit">
+						
 						<div class="season_artwork">
 							<a href="${exhibit.reserveLink }"> <img class="owl-lazy"
-								data-src="../images/${exhibit.exhibitPoster }" />
+								data-src="../../imgupload/exhibition/${exhibit.exhibitPoster }" />
 							</a>
 							<div class="season_artwork_info">
-								<h5>${exhibit.exhibitTitle }</h5>
+								<h5><c:if test="${exhibit.fundingNo == -1 }">
+								<b>펀딩</b>
+								</c:if>${exhibit.exhibitTitle }</h5>
 								<p>${exhibit.startDate } ~ ${exhibit.endDate }</p>
 								<p>${exhibit.exhibitArtist }</p>
+								
 							</div>
 						</div>
 
 					</c:forEach>
-
+					
+					
 
 				</div>
 			</section>
