@@ -58,22 +58,25 @@ public class FundingController {
 	public String fundingucdetail(@RequestParam("fundingNo") int fundingNo, Model model) {
 		Funding funding=fundingService.queryucdetail(fundingNo);
 		model.addAttribute("funding", funding);
+		int count = subPageService.queryCount(fundingNo);
+		model.addAttribute("count", count);
 		return "funding/fundingucdetail";
 	}
 	
 	@ResponseBody
-	@PostMapping("alarm")
-	public boolean alarm(@RequestParam(value="fundingNo") int fundingNo) {
+	@GetMapping("alarm")
+	public int alarm(@RequestParam(value="fundingNo") int fundingNo) {
 		String id = (String) session.getAttribute("id");
 		System.out.println(fundingNo);
-		boolean checkAlarm = false;
+		
+		int checkAlarm = 0;
 		try {
 			if(fundingService.checkAlarm(fundingNo, id)) {
 				fundingService.deleteAlarm(fundingNo, id);
-				checkAlarm = false;
+				checkAlarm = subPageService.queryCount(fundingNo);
 			}else {
 				fundingService.insertAlarm(fundingNo, id);
-				checkAlarm = true;
+				checkAlarm = subPageService.queryCount(fundingNo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

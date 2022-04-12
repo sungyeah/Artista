@@ -17,7 +17,7 @@
 
   </style>
 <body>
-          <form method="post" action="modifyfunding">
+          <form method="post" action="modifyfunding" enctype="multipart/form-data" >
     <div id="contents">
         
         <header class="account-header">

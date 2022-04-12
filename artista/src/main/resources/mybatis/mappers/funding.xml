@@ -45,9 +45,10 @@
 	</update>
 	<insert id="insertfunding" parameterType="funding" >
 		<![CDATA[
-			insert into funding(fundingNo, artistNo, artistName, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, sumAmount, fundingState, getplace)
-			values(#{fundingNo}, #{artistNo},#{artistName}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, #{sumAmount}, 
-					(case when timestampdiff(day, now(), startDate)>0 then 1 else (case when timestampdiff(day, startDate, endDate)>0 then 2 else 3 end) end), #{getplace})
+			insert into funding(fundingNo, artistNo, artistName, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, sumAmount, fundingState, getplace, getplace2)
+			values((select artistNo from artist where id=#{id}), (select artistName from artist where id=#{id}), #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding},
+			#{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 0, (case when timestampdiff(day, now(), startDate)>0 then 1 else 
+		(case when timestampdiff(day, now(), endDate)>0 then 2 else 3 end) end), #{getplace}, #{getplace2}); 
 		]]>
 	</insert>
 	<select id="queryuc" resultType="Funding">
@@ -104,8 +105,8 @@
 	</select>
 	<insert id="insertAlarm" parameterType="map" >
 		<![CDATA[
-			insert into alarm(id, fundingNo, projTitle, fundingMsg, readSign)
-			values(#{id}, #{fundingNo}, (select projTitle from funding where fundingNo=#{fundingNo}), "이 시작할 예정입니다", 0)
+			insert into alarm(id, fundingNo, projTitle, fundingMsg, readSign, startDate)
+			values(#{id}, #{fundingNo}, (select projTitle from funding where fundingNo=#{fundingNo}), "이 시작할 예정입니다", 0, (select startDate from funding where fundingNo=#{fundingNo}))
 		]]>
 	</insert>
 	
@@ -172,7 +173,11 @@
 			update fundingapp set applyStatus=applyStatus+1, refusedContents=#{refusedContents} where fundingNo=#{fundingNo}
 		]]>
 	</select>
-	
+	<select id="queryCount" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from alarm where fundingNo=#{fundingNo}
+		]]>
+	</select>
 </mapper>
 
 <!-- 
@@ -180,6 +185,7 @@
 펀딩 등록/수정
 create table fundingApp(
 	fundingNo int(10) not null auto_increment,
+	fundingOriginNo int(10),
     artistNo int(10),
     id varchar(100) not null,
     projTitle varchar(100) not null,
@@ -222,7 +228,7 @@ create table funding(
 
 펀딩 결제
 create table fundingSpon(
-	sponsorNo int(10) not null,
+	sponsorNo int(10) not null auto_increment,
     id varchar(100) not null,
     fundingNo int(10) not null,
     sponsorAmount int(10) not null,
@@ -237,7 +243,7 @@ create table alarm(
     projTitle varchar(100) not null,
     fundingMsg varchar(100) not null,
     readSign boolean,
-    primary key(id)
+    startDate timestamp
 );
 
 CREATE EVENT IF NOT EXISTS updateFundingState

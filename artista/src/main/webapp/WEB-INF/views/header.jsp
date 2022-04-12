@@ -90,8 +90,6 @@
  <ul class="menu2">
  	  <span style="cursor:pointer;" id="toggleBtn"><img src="${pageContext.request.contextPath}/images/bellyes.png"
 	 style="width: 25px; height: 25px; width: auto; position: absolute; top: 48px; right: 330px; opacity:0.6;"></span>
-	 
-	 
 	 	<li>
 	 	<div style="border: 1px solid #dfdfdf;">
 	 		<div class="box1"></div>
@@ -127,22 +125,20 @@ var uid = '<%=(String)session.getAttribute("membertype")%>';
 	
 	$(document).ready(function() {
 		$.ajax({
-			url: "/alarm",
+			url: "/headeralarm",
 			type: "post",
 			success: function(fundingList) {
 				console.log(fundingList)
-				// alert(fundingList[0].projTitle + fundingList[0].fundingMsg);
 				$("#toggleBtn").on("click", function(){
 				    //$(".box").toggle(1000);
 					//$(".box1").fadeToggle(1000);
+					$(".box1").html("");
                     if (fundingList.length == 0) {
-                        $(".box1").html("없다 얘");
+                        $(".box1").html("알람이 존재하지 않습니다");
                     } else {
                         for(let funding of fundingList) {
                          console.log(funding);
-                         let today = new Date();
-                         console.log(funding.fundingMsg + "와" + today + "를 비교")
-                         $(".box1").append(funding.projTitle + funding.fundingMsg + "<br>");
+                         $(".box1").append(funding.projTitle + funding.fundingMsg +"<br>");
                         }
                     }
 					$(".box1").slideToggle(10);

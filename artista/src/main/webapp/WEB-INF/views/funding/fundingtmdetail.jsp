@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/fundingtmdetail.css">
 <style>
@@ -18,6 +18,7 @@
 	})
 </script>
 <body style="overflow-x: hidden">
+	 <%@include file ="../header.jsp" %>
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">${funding.projTitle }</h2>
@@ -26,16 +27,16 @@
             <img class="image-thumb" src="/funding/thumbview/${funding.thumbImg}" />
         </div>
         <div class="fundingdetail">
-            <div id="name">Æİµù Á¾·á</div><br>
-            <div id="amount">${funding.targetFunding} ¸ñÇ¥ ±İ¾×</div><br>
-            <div id="amount">${funding.sumAmount } ¸ğÀÎ ±İ¾×</div><br>
-            <div id="amount">20¸í ¼­Æ÷ÅÍ</div><br>
+            <div id="name">í€ë”© ì¢…ë£Œ</div><br>
+            <div id="amount">${funding.targetFunding} ëª©í‘œ ê¸ˆì•¡</div><br>
+            <div id="amount">${funding.sumAmount } ëª¨ì¸ ê¸ˆì•¡</div><br>
+            <div id="amount">20ëª… ì„œí¬í„°</div><br>
             <div id="promain">
                 <span id="rate"></span><span>%</span>
                 <progress id="pro" value="30" max="100"></progress>
             </div><br>
             <div class="amountdetail">
-                <button class="Btn1">Àü½Ã Á¤º¸ º¸±â</button>
+                <button class="Btn1">ì „ì‹œ ì •ë³´ ë³´ê¸°</button>
             </div>
         </div>
     </div>
@@ -43,16 +44,16 @@
         ${funding.projIntro} ${funding.projBudget}
     </div>
     <div class="artistIntro">
-        <h2 class="artist">ÀÛ°¡ ¼Ò°³</h2>
+        <h2 class="artist">ì‘ê°€ ì†Œê°œ</h2>
         <div class="artistContent">
             ${funding.projArtist }
         </div>
         <div class="artistContent">
-            <button class="Btn2">ÀÛ°¡ ÆäÀÌÁö ÀÌµ¿</button>
+            <button class="Btn2">ì‘ê°€ í˜ì´ì§€ ì´ë™</button>
         </div>
     </div>
     <div>
-        <button class="Btn3">¸ñ·Ï</button>
+        <button class="Btn3">ëª©ë¡</button>
     </div>
 </body>
 </html>

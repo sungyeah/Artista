@@ -44,4 +44,5 @@ public interface SubPageService {
 	
 	String getDeliveryStatus(String trackingNo) throws Exception;
 	void updateStatus(String orderStatus,int orderNo)throws Exception;
+	public int queryCount(int fundingNo);
 }

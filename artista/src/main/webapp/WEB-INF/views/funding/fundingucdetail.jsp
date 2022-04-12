@@ -1,16 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/fundingucdetail.css">
 <style>
 
 </style>
 <body style="overflow-x: hidden">
+<%@include file ="../header.jsp" %>
     <div id="contents">
         <header class="account-header">
             <h2 class="account-header-title">${funding.projTitle}</h2>
@@ -21,16 +22,16 @@
         <div class="fundingdetail">
             <div id="timealert">
             <fmt:parseDate value="${funding.startDate }" var="startDate" pattern="yyyy-MM-dd HH" />
-            <fmt:formatDate value="${startDate }" pattern="M" /><span>¿ù</span>
-            <fmt:formatDate value="${startDate }" pattern="d" /><span>ÀÏ</span>
-            <fmt:formatDate value="${startDate }" pattern="H" /><span>½Ã</span>
-            <span>¿ÀÇÂ ¿¹Á¤</span>
+            <fmt:formatDate value="${startDate }" pattern="M" /><span>ì›”</span>
+            <fmt:formatDate value="${startDate }" pattern="d" /><span>ì¼</span>
+            <fmt:formatDate value="${startDate }" pattern="H" /><span>ì‹œ</span>
+            <span>ì˜¤í”ˆ ì˜ˆì •</span>
             </div><br>
             <div class="amountdetail">
-                <button type="button" class="Btn1" id="Btn1" onclick="alarm('${funding.fundingNo}')">¾Ë¸² ½ÅÃ» 100¸í ½ÅÃ» Áß</button>
+                <button type="button" class="Btn1" id="Btn1" onclick="alarm('${funding.fundingNo}')">ì•Œë¦¼ ì‹ ì²­ ${count}ëª… ì‹ ì²­ ì¤‘</button>
             </div>
             <div>
-                Áö±İ ¹Ù·Î ¾Ë¸² ½ÅÃ»ÇÏ°í ¹Ì¸® ¿¬¶ô ¹ŞÀ¸¼¼¿ä.
+                ì§€ê¸ˆ ë°”ë¡œ ì•Œë¦¼ ì‹ ì²­í•˜ê³  ë¯¸ë¦¬ ì—°ë½ ë°›ìœ¼ì„¸ìš”.
             </div>
         </div>
     </div>
@@ -38,43 +39,46 @@
         ${funding.projIntro} ${funding.projBudget}
     </div>
     <div class="artistIntro">
-        <h2 class="artist">ÀÛ°¡ ¼Ò°³</h2>
+        <h2 class="artist">ì‘ê°€ ì†Œê°œ</h2>
         <div class="artistContent">
             ${funding.projArtist }
         </div>
         <div class="artistContent">
-            <button class="Btn2">ÀÛ°¡ ÆäÀÌÁö ÀÌµ¿</button>
+            <button class="Btn2">ì‘ê°€ í˜ì´ì§€ ì´ë™</button>
         </div>
     </div>
     <div>
-        <button class="Btn3">¸ñ·Ï</button>
+        <button class="Btn3">ëª©ë¡</button>
     </div>
     
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
     <script>
-       
+
+     //ë²„íŠ¼ ìƒ‰ì´ ë³€ê²½ì´ ì•ˆ ë¨
     function alarm(fundingNo){
     	var color=document.getElementById("Btn1");
+        var id = '<%=(String)session.getAttribute("id")%>';
     	console.log(fundingNo);
     	$.ajax({
-    		type: "post",
+    		type: "Get",
     		dataType: "text",
     		async: false,
     		url: "http://localhost:8090/funding/alarm",
     		data:{"fundingNo": fundingNo},
     		success: function(data, textStatus){
-    			if(data=='true'){
+    			//ì¸ì›ìˆ˜
+    			if(id===null){
     				color.style.color="white";
     				color.style.background="black";
-    				
+    				$('#Btn1').text("ì•Œë¦¼"+data+"ëª… ì‹ ì²­ì¤‘");
     			} else {
     				color.style.color="black";
     				color.style.background="white";
-    				
+    				$('#Btn1').text("ì•Œë¦¼"+data+"ëª… ì‹ ì²­ì¤‘");
     			}
     		},
     		error:function(data, textStatus){
-    			alert("½ÇÆĞ");
+    			alert("ì‹¤íŒ¨");
     		}
     	});
     }

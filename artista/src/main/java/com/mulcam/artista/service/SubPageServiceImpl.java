@@ -227,16 +227,7 @@ public class SubPageServiceImpl implements SubPageService{
 	}
 
 	public List<Funding> queryAlarmlist(String id) {
-		List<Funding> fundingList = fundingDAO.queryAlarmlist(id);
-		List<String> result = new ArrayList<String>();
-		for (Funding f : fundingList) {
-			String title = f.getProjTitle();
-			String msg = f.getFundingMsg();
-			Date d = new Date(System.currentTimeMillis());
-			result.add(title+"이 시작하기 까지 d랑 msg 비교한 만큼 남았다.");
-		}
-		// return result;
-		return fundingList;
+		return fundingDAO.queryAlarmlist(id);
 	}
 	
 	public String getDeliveryStatus(String trackingNo) throws Exception {
@@ -276,6 +267,12 @@ public class SubPageServiceImpl implements SubPageService{
 		map.put("orderStatus", orderStatus);
 		map.put("orderNo", orderNo);
 		subpageDAO.updateStatus(map);
+	}
+
+	@Override
+	public int queryCount(int fundingNo) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryCount(fundingNo);
 	}
 
 	

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mulcam.artista.dto.Artist;
@@ -61,7 +62,7 @@ public class MainController {
 	}
 	
 	@ResponseBody
-	@PostMapping("alarm")
+	@PostMapping("headeralarm")
 	public List<Funding> header() {
 		return subPageService.queryAlarmlist((String) session.getAttribute("id"));
 	}

@@ -37,10 +37,9 @@
     }
     .fundingdetail{
         width: 350px;
-        height: 450px;
-        margin-left: 1075px;
-        position: absolute;
-        top: 190px;       
+	    height: 450px;
+	    margin-left: 1075px;
+	    margin-top: -421px;   
     }
     #name{
         font-size: 40px;
@@ -94,10 +93,9 @@
         width: 350px;
         height: 185px;
         margin-left: 1075px;
-        margin-top: 500px;
+        margin-top: 550px;
         position: absolute;
         top: 190px;
-        border:solid 1px rgb(224, 224, 224);
         
     }
     .projcontent{
@@ -108,7 +106,8 @@
         
     }
     .artistContent{
-        margin-bottom: 30px;
+    	margin-top: 10px;
+        margin-bottom: 65px;
         margin-left: 20px;
     }
     .account-modify-form-input {

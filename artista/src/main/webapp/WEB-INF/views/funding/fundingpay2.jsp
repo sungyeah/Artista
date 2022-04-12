@@ -13,6 +13,7 @@
 
     </style>
 <body>
+	 <%@include file ="../header.jsp" %>
     <section id="checkout_list">
         <section id="artworks">
             <h3>후원 정보</h3>
