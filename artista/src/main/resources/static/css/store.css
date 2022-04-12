@@ -429,3 +429,23 @@ img.user-thumbnail {
     justify-content: center;
     align-items: center;
 }
+.artwork-detail-info-status.red {
+	margin-top:10px;
+    color: #eb5345;
+    /* float:right; */
+}
+.artwork-detail-info-status {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 32px;
+}
+.artwork-detail-info-status::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 90px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: currentColor;
+}

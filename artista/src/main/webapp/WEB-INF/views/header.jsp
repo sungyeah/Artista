@@ -117,9 +117,9 @@
 	src="https://og-data.s3.amazonaws.com/CACHE/js/output.bd018f02f86b.js"></script>
 <script
 	src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script>
-	<script src="js/jquery-3.4.1.js"></script>
+	<!-- <script src="js/jquery-3.4.1.js"></script> -->
             <script src="js/slick.js"></script>
-            <script src="js/script.js"></script>
+           <script src="js/script.js"></script>
 <script>
 	$("#toggleBtn").on("click", function(){
 	    //$(".box").toggle(1000);
