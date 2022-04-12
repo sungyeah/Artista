@@ -115,7 +115,7 @@
                                                         <span class="artist artist3">${work.artistName }</span>
                                                        <span class="artist">￦<fmt:formatNumber value="${work.workPrice }"/></span>
                                                        <c:choose>
-                                					   		<c:when test="${work.workForSale == 1 }">
+                                					   		<c:when test="${work.orderNo == -1 }">
                                 					   			<h5>${work.workName }</h5>
                                 					   			<span class="artist artist3">${work.artistName }</span>
                                 							</c:when>
