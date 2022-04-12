@@ -137,9 +137,6 @@ public class MyPageController {
 			model.addAttribute("orderReports", orderReports);
 			model.addAttribute("followLists",followList);
 			
-			List<Funding> fundinglist=fundingService.queryMyFunding(id);
-			model.addAttribute("fundinglist", fundinglist);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
