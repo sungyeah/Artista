@@ -84,8 +84,8 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public List<ArtistWorld> selectArtistWorldById(String id) throws Exception {
-		return artistworldDAO.artistWorld(id);
+	public ArtistWorld selectArtistWorldById(String id) throws Exception {
+		return artistworldDAO.worlds(id);
 	}
 	public Artist Artistmain() throws Exception {
 		return artistDAO.artistMain();

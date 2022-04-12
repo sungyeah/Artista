@@ -17,17 +17,17 @@ public class ArtistWorld {
 	public void setImgName(String imgName) {
 		this.imgName = imgName;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public int getIsDoor() {
 		return isDoor;
 	}
 	public void setIsDoor(int isDoor) {
 		this.isDoor = isDoor;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	
