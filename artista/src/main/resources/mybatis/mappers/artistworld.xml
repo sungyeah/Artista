@@ -32,11 +32,11 @@
 	</select>
 
 		<!-- 작가 세계 -->
-<!-- 	<select id="Wlds" resultType="Worlds">
+	<select id="worlds" resultType="artistworld" parameterType="String">
 		<![CDATA[
 			select * from artistworld where id=#{id} limit 1;
 		]]>
-	</select> -->
+	</select>
 	
 </mapper>
 <!-- 

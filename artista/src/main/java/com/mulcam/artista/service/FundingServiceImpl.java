@@ -121,4 +121,55 @@ public class FundingServiceImpl implements FundingService {
 		fundingDAO.insertAlarm(map);
 	}
 
+	@Override
+	public List<Funding> fundingAppList() throws Exception {
+		return fundingDAO.fundingAppList();
+	}
+
+	@Override
+	public List<Funding> fundingExpectList() throws Exception {
+		return fundingDAO.fundingExpectList();
+	}
+
+	@Override
+	public List<Funding> fundingNowList() throws Exception {
+		return fundingDAO.fundingNowList();
+	}
+
+	@Override
+	public List<Funding> fundingEndedList() throws Exception {
+		return fundingDAO.fundingEndedList();
+	}
+
+	@Override
+	public Funding querytfundingApp(int fundingNo) throws Exception {
+		
+		return fundingDAO.querytfundingApp(fundingNo);
+	}
+
+	@Override
+	public int getfundingNo() throws Exception {
+		Integer id = fundingDAO.maxfundingNo();
+		if(id==null) id = 0;
+		return id+1;
+	}
+	@Override
+	public int 	getfundingAppNo() throws Exception {
+		Integer id = fundingDAO.maxfundingAppNo();
+		if(id==null) id = 0;
+		return id+1;
+	}
+
+	@Override
+	public void deleteFundingApply(int applyNo) throws Exception {
+		fundingDAO.deleteFundingApply(applyNo);
+	}
+
+	@Override
+	public void refuseFundingApply(int fundingNo, String refusedContents) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("fundingNo", fundingNo);
+		map.put("refusedContents", refusedContents);
+		fundingDAO.updateFundingApplyRefuse(map);
+	}
 }

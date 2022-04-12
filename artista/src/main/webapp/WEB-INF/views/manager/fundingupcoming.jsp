@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<link rel="stylesheet" href="../css/mypage.css">
+<link rel="stylesheet" href="../css/applymodal.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script	src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
 </head>
 <body>
 	<%@include file ="../header.jsp" %>
@@ -51,6 +56,57 @@
                 종료된 펀딩
             </a>
         </nav>
+        <article class="member-body">
+            <section class="member-list">
+                <table class="member-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">펀딩 번호</th>
+                        <th scope="col">대표이미지</th>
+                        <th scope="col">펀딩제목</th>
+                        <th scope="col">현재 상태</th>
+                       	<th scope="col">일정</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <c:choose>
+                    	<c:when test="${fundingUpList!=null }">
+                    	<tbody>
+                    		<c:forEach items="${fundingUpList }" var="funding">
+								<tr>
+                            	<th scope="col">${funding.fundingNo }</th>
+                            	<th scope="col">
+                            		<img src="/funding/thumbview/${funding.thumbImg}" style="width:100px; height:100px;">	
+                            	</th>
+                            	<th scope="col"">${funding.projTitle }</th>            
+                            	<th scope="col">
+                            		<c:choose>
+									<c:when test="${funding.fundingState==1}">예정</c:when>
+									<c:when test="${funding.fundingState==2}">진행</c:when>
+									<c:otherwise>종료</c:otherwise>
+									</c:choose>
+                            	</th>
+                            	<th scope="col"">${funding.fundingDate }</th>    
+                            	<th scope="col" colspan="1">
+                            		<a class="artist-detail-btn" onclick="fundingDetail('${funding.fundingNo }')">내용 상세보기</a>
+                            	</th>                  
+                           		<th scope="col" colspan="1">
+                           			<c:choose>
+									<c:when test="${funding.fundingState==1}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">알람 신청내역</a></c:when>
+									<c:when test="${funding.fundingState==2}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">스폰서 보기</a></c:when>
+									<c:otherwise><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">결과보기</a></c:otherwise>
+									</c:choose></th>
+                        		</tr>
+                        		</c:forEach>
+                        </tbody>
+                    	</c:when>
+                    </c:choose>
+                </table>
+            </section>
+        </article>
+        
+        
                 <div class="mypage-project bg">
             <div class="project-list">
                 <div id="projectCardList" class="card-list pt50">

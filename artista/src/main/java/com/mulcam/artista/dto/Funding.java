@@ -34,6 +34,23 @@ public class Funding {
 		String fundingMsg;
 		
 		public Funding() {}
+		public Funding(int fundingNo, int artistNo, String artistName, String projTitle, String projIntro, String projBudget, String projArtist, 
+				int targetFunding, String fundingDate, String startDate, String endDate, String thumbImg, String getplace, String getplace2) {
+			this.fundingNo = fundingNo;
+			this.artistNo = artistNo;
+			this.artistName = artistName;
+			this.projTitle = projTitle;
+			this.projIntro = projIntro;
+			this.projBudget = projBudget;
+			this.projArtist = projArtist;
+			this.targetFunding = targetFunding;
+			this.fundingDate = fundingDate;
+			this.startDate = startDate;
+			this.endDate = endDate;
+			this.thumbImg = thumbImg;
+			this.getplace = getplace;
+			this.getplace2 = getplace2;
+		}
 		
 		public String getStartDate() {
 			return startDate;

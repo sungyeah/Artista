@@ -237,8 +237,63 @@ public class ManagerController {
 	
 	/* 펀딩 관리 */
 	@GetMapping({"/fundinglist", "/fundingapplylist" })
-	public String fundingApplyList() {
+	public String fundingApplyList(Model model) {
+		List<Funding> fundingappList;
+		try {
+			fundingappList = fundingService.fundingAppList();
+			model.addAttribute("fundingappList", fundingappList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "manager/fundingapplylist";
+	}
+	/* 펀딩 신청 상세보기 */
+	@ResponseBody
+	@PostMapping(value="fundingapplydetail")
+	public Map<String, Object> fundingapplyDetail(@RequestParam(value="applyNo", required = false) int applyNo, Model model) {
+		Map<String, Object> json = new HashMap<>();
+		try {
+			Funding fundingapply = fundingService.querytfundingApp(applyNo);
+			Artist artist = artistService.Artistinfo(fundingapply.getArtistNo());
+			String email = subPageService.queryId(artist.getId()).getEmail();
+			json.put("fundingapply", fundingapply);
+			json.put("artist", artist);
+			json.put("email", email);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
+	
+	/* 펀딩 등록 허락 */
+	@ResponseBody
+	@PostMapping(value="fundingapplysuccess")
+	public void fundingapplySuccess(@RequestParam(value="applyNo",required = false) int fundingNo) {
+		try {
+			//fundingNo로 펀딩등록신청 내용 가져오기
+			Funding fundingapply = fundingService.querytfundingApp(fundingNo);
+			Artist artist = artistService.Artistinfo(fundingapply.getArtistNo());
+			
+			//funding data에 fundingapply 내용 옮기고 funding에 등록하기
+			Funding funding = new Funding(fundingService.getfundingNo(), artist.getArtistNo(), artist.getArtistName(), fundingapply.getProjTitle(),
+					fundingapply.getProjIntro(), fundingapply.getProjBudget(), fundingapply.getProjArtist(), fundingapply.getTargetFunding(),fundingapply.getFundingDate(), fundingapply.getStartDate(), fundingapply.getEndDate(),
+					fundingapply.getThumbImg(), fundingapply.getGetplace(), fundingapply.getGetplace2());
+			
+			fundingService.insertfunding(funding);
+			fundingService.deleteFundingApply(fundingNo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/* 펀딩 등록 거절 */
+	@ResponseBody
+	@PostMapping(value="fundingapplyfail")
+	public void fundingapplyFail(@RequestParam(value="applyNo",required = false) int fundingNo, @RequestParam(value="refusedContents",required = false) String refusedContents) {
+		try {
+			fundingService.refuseFundingApply(fundingNo, refusedContents);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//펀딩 요청 왔을 때 받아서 펀딩에 넣어주기
@@ -250,15 +305,36 @@ public class ManagerController {
 //	}
 	
 	@GetMapping("/fundingupcoming")
-	public String fundingUpcoming() {
+	public String fundingUpcoming(Model model) {
+		List<Funding> fundingUpList;
+		try {
+			fundingUpList = fundingService.fundingExpectList();
+			model.addAttribute("fundingUpList", fundingUpList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "manager/fundingupcoming";
 	}
 	@GetMapping("/fundingproceeding")
-	public String fundingupCurrent() {
+	public String fundingupCurrent(Model model) {
+		List<Funding> fundingNowList;
+		try {
+			fundingNowList = fundingService.fundingNowList();
+			model.addAttribute("fundingNowList", fundingNowList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "manager/fundingproceeding";
 	}
 	@GetMapping("/fundingended")
-	public String fundingEnded() {
+	public String fundingEnded(Model model) {
+		List<Funding> fundingEndedList;
+		try {
+			fundingEndedList = fundingService.fundingEndedList();
+			model.addAttribute("fundingEndedList", fundingEndedList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "manager/fundingended";
 	}
 	
