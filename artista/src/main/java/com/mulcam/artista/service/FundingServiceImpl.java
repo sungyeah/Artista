@@ -182,6 +182,15 @@ public class FundingServiceImpl implements FundingService {
 	}
 
 	@Override
+	public void updateFundingApplyModifyEnroll(int fundingNo) throws Exception {
+		fundingDAO.updateFundingApplyModifyEnroll(fundingNo);
+	}
+
+	@Override
+	public void updateFundingModiy(Funding funding) throws Exception {
+		fundingDAO.updateFundingModiy(funding);
+	}
+	@Override
 	public List<Funding> querysponlist(String id) {
 		// TODO Auto-generated method stub
 		return fundingDAO.querysponlist(id);

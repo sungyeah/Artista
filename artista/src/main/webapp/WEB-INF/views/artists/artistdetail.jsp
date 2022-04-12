@@ -93,6 +93,42 @@ section.palmares .prize-list li {
 section.palmares .prize-list li span {
 	color: #d5a770;
 }
+
+
+
+
+
+
+.js-load {
+    display: none;
+}
+.js-load.active {
+    display: block;
+}
+.is_comp.js-load:after {
+    display: none;
+}
+.btn-wrap, .lists, .main {
+    display: block;
+}
+.main {
+    max-width: 640px;
+    margin: 0 auto;
+}
+.lists {
+    margin-bottom: 4rem;
+}
+.lists__item {
+    padding: 20px;
+    background: #EEE;
+}
+.lists__item:nth-child(2n) {
+    background: #59b1eb;
+    color: #fff;
+}
+.btn-wrap {
+    text-align: center;
+}
 </style>
 <body>
 	<%@include file="../header.jsp"%>
@@ -271,12 +307,13 @@ section.palmares .prize-list li span {
 				</div>
 			</section>
 
-			<section id="selected-works" class="section"">
+			<section id="selected-works" class="section">
 				<h2>작가의 작품(마우스오버시 작품정보)</h2>
-				<div class="post-list flex-box">
+				
+				<div class="post-list flex-box" id="js-load">
 					<ul>
 					<c:forEach items="${worklist }" var="work">
-                    	<li><a href="#">
+                    	<li class="js-load"><a href="#">
 								<figure>
 									<img src="../imgupload/artistWorks/${work.workImg }" alt="">
 								</figure> <span class="title">${work.artistName }<br> ${work.workName }<br>${work.workSize }
@@ -284,28 +321,71 @@ section.palmares .prize-list li span {
 						</a></li>
                     </c:forEach>
 					</ul>
-				</div>
-				<div class="pagination">
-					<a href="javascript:;" class="load-more">Load More</a>
+
+				<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>
 				</div>
 			</section>
-			<!-- 여기부터 펀딩 -->
-
-
-			<!-- Receive infomation layer popup -->
-			<div id="receive-infomation" class="layer-popup receive-infomation">
-				<p>For further information on Ayoung Kim</p>
-				<form name="emailForm" id="emailForm" method="post"
-					autocomplete="off" onsubmit="">
-					<input type="email" name="email" id="email" required=""
-						maxlength="50" placeholder="Email address">
-					<button type="submit">전송</button>
-				</form>
-				<button type="button" class="close closeEmailForm">닫기</button>
-			</div>
 
 		</article>
+		
+  <!-- <div id="js-load" >
+    <ul class="">
+      <li class="">test1</li>
+      <li class="js-load">txttxttxttxttxttxt</li>
+      <li class="js-load">test2</li>
+      <li class="js-load">txttxttxttxttxttxt</li>
+      <li class="js-load">test3</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test4</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test5</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test6</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test7</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test8</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test9</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test10</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test11</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test12</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test13</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test14</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test15</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test16</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test17</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test18</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test19</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test20</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test21</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test22</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test23</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test24</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+      <li class="lists__item js-load">test25</li>
+      <li class="lists__item js-load">txttxttxttxttxttxt</li>
+    </ul>
+  </div> -->
+
+
 	</div>
+	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	function follow(follower){
@@ -337,6 +417,28 @@ section.palmares .prize-list li span {
 				alert("실패");
 			}
 		}); 
+	}
+	
+	/* load more */
+	
+	$(window).on('load', function () {
+	    load('#js-load', '8');							//8개 보여주기
+	    $("#js-btn-wrap .button").on("click", function () {
+	        load('#js-load', '4', '#js-btn-wrap');		//4개씩 추가
+	    })
+	});
+	 
+	function load(id, cnt, btn) {
+	    var girls_list = id + " .js-load:not(.active)";
+	    var girls_length = $(girls_list).length;
+	    var girls_total_cnt;
+	    if (cnt < girls_length) {
+	        girls_total_cnt = cnt;
+	    } else {
+	        girls_total_cnt = girls_length;
+	        $('.button').hide()
+	    }
+	    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
 	}
 	</script>
 	<%@include file="../footer.jsp"%>

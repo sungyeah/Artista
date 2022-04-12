@@ -33,8 +33,8 @@
                 아이디
             </div>
             <div class="account-modify-form-row-value">
-            	${mem.id }
-            	<input type="hidden" id="id" name="id" value='${mem.id }'>
+            	${id }
+            	<input type="hidden" id="id" name="id" value='${id }'>
             </div>
         </div>
         <div class="account-modify-form-row">
@@ -43,7 +43,7 @@
             </div>
             <div class="account-modify-form-row-value">
                 <div class="certification-value">
-                	${mem.name }
+                	${artistName }
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
                 이메일
             </div>
             <div class="account-modify-form-row-value">
-            	${mem.email }
+            	${email }
         </div>
         </div>
 
