@@ -140,33 +140,51 @@
                     <thead>
                     <tr>
                         <th scope="col" class="time-code">펀딩번호</th>
-                        <th scope="col" class="type">펀딩제목</th>
+                        <th scope="col" class="type">펀딩작품</th>
+                        <th scope="col" class="artworks">펀딩 기간</th>
                         <th scope="col" class="artworks">후원날짜</th>
                         <th scope="col" class="status">현황</th>
                     </tr>
                     </thead>
                     <tbody>
-	                     <c:choose> 
-                    		<c:when test='${empty fundinglist}'>
+                    	<c:choose> 
+                    		<c:when test='${empty fundingLists}'>
                          <tr>
-                            <td class="empty" colspan="4">표시할 내역이 없습니다.</td>
+                            <td class="empty" colspan="6">표시할 내역이 없습니다.</td>
                         </tr>
                         	</c:when>
-                        	<c:otherwise> 
-                        <c:forEach items="${fundinglist}" var="fundinglist">
-                        <tr>
-                        	<td class="time-code" style="font-weight:bold;"><a href="paymentinfo/${fundinglist.fundingNo }">${fundinglist.fundingNo }</a></td>
-                        	<td class="start-date">${fundinglist.projTitle}</td>
-                        	<td class="start-date">${fundinglist.sponDate}</td>
-                        	<td class="start-date" style="font-weight: bold;"><fmt:formatNumber value="${fundinglist.sponsorAmount }"/>원</td>
-                        	<c:forEach items="${fundinglist}" var="fundinglist">
-                        		<td class="status">${fundinglist.orderStatus }<br></td>
-                        	</c:forEach>
-                        	
-                        </tr>
-                        </c:forEach>
-                         </c:otherwise>
-                    	</c:choose>
+                        	<c:otherwise>
+                        		<c:forEach items="${fundingLists }" var="fundingList" varStatus="status">
+                        			<tr>
+                        				<td class="time-code" style="font-weight:bold;">${fundingList.fundingNo }</td>
+                        				<td class="artworks">${fundingList.projTitle }</td>
+                        				<td class="start-date">${fundingList.fundingDate }</td>
+                        				<td class="start-date">${dateList[status.index] }</td>
+                        				<c:choose>
+                        					<c:when test="${fundingList.fundingState == 1 }">
+                        						<td class="start-date">예정</td>
+                        					</c:when>
+                        					<c:when test="${fundingList.fundingState == 2 }">
+                        						<td class="start-date">진행</td>
+                        					</c:when>
+                        					<c:when test="${fundingList.fundingState == 3 }">
+                        						<td class="start-date">종료</td>
+                        					</c:when>
+                        					<c:when test="${fundingList.fundingState == 4 }">
+                        						<td class="start-date">실패</td>
+                        					</c:when>
+                        					<c:when test="${fundingList.fundingState == 5 }">
+                        						<td class="start-date">성공</td>
+                        					</c:when>
+                        					<c:otherwise>
+                        						<td class="start-date">환불 완료</td>
+                        					</c:otherwise>
+                        				</c:choose>
+                        			</tr>
+                        		</c:forEach>
+                        	</c:otherwise>
+                        	</c:choose>
+                    
                     </tbody>
                 </table>
                 <!-- <div class="m-account-table">
