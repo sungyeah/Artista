@@ -13,6 +13,7 @@
 
 </style>
 <body>
+	 <%@include file ="../header.jsp" %>
     <div id="contents">
         <section class="pageHead" id="checkout_head">
             <div class="pageHead-bar"></div>

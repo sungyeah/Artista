@@ -25,5 +25,5 @@ public interface WorkDAO {
 	public void updateSalePayed(int workNo) throws Exception;
 	public void updateWork(Work work) throws Exception;
 	
-	
+	public List<Work> artistwork(int artistNo) throws Exception;
 }

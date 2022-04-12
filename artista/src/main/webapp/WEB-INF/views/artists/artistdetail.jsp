@@ -6,7 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/layout.css">
 </head>
+	
 <style>
 section.palmares {
 	background: #222;
@@ -101,7 +106,7 @@ section.palmares .prize-list li span {
 				</div>
 			</div>
 			<section id="about" class="section">
-				<h1>Hong-Sung Ho</h1>
+				<h1>${artist.artistName }</h1>
 				<nav class="page-nav sticky">
 					<div class="inner">
 						<ul>
@@ -117,27 +122,15 @@ section.palmares .prize-list li span {
 							<figure>
 								<img src="/mypage/artistprofile/${artist.artistImg }" alt="Ayoung Kim ">
 							</figure>
-							<ul>
-								<li><a
-									href="/download/file/41f48fbefd6e4843a2bfe3b9bc33ba5f">CV</a></li>
-							</ul>
 							<h3>Connect</h3>
 							<ul>
-								<li><a href="http://ayoungkim.com/" target="blank">Website</a></li>
+								<li><a href="http://ayoungkim.com/" target="blank">asdf@naver.com</a></li>
 								<li><a href="https://www.instagram.com/" target="blank">Instagram</a></li>
-								<li><a href="#receive-infomation" class="toggle-layer">Further
-										Information</a></li>
+								<li><a href="#receive-infomation" class="toggle-layer">Further</a></li>
 							</ul>
 						</div>
 						<div class="person pc" style="padding: 50px 0px; float: left">
 							<div class="left">
-								<a href="/user?memberId=389" class="img">
-									<div class="user-thumbnail-div slv">
-										<img class="user-thumbnail"
-											style="width: 50px !important; height: 50px !important;"
-											src="/mypage/artistprofile/${artist.artistImg }" alt="">
-									</div>
-								</a>
 								<div class="personInfo" style="margin-top: 20px;">
 									<h4>${artist.artistName }</h4>
 									<ul>
@@ -147,30 +140,31 @@ section.palmares .prize-list li span {
 									<c:choose>
 										<c:when test="${check eq false }">
 											<a name="btnFollow" class="follow" id="a"
-												onclick="follow('${artist.id}')"
-												style="background: white; color: #222;">Follow <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
+												onclick="follow('${artist.id}');"
+												style="background: white; color: #222;" href="javascript:void(0);">Follow <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
 												<img class="1" id="heart"
 												style="width: 17.6px !important; height: 17.6px !important; margin-left: 5px;"
-												src="../images/하트2.png" alt="">
+												src="../images/하트2.png" alt="" onclick="follow('${artist.id}');">
 											</a>
 										</c:when>
 										<c:otherwise>
 											<a name="btnFollow" class="follow" id="a"
-												onclick="follow('${artist.id}')"
-												style="background: #222; color: white;">UnFollow <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
+												onclick="follow('${artist.id}');"
+												style="background: #222; color: white;" href="javascript:void(0);">UnFollow <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
 												<img class="1" id="heart"
 												style="width: 17.6px !important; height: 17.6px !important; margin-left: 5px;"
-												src="../images/white.png" alt="">
+												src="../images/white.png" alt="" onclick="follow('${artist.id}');">
 											</a>
 										</c:otherwise>
 									</c:choose>
 								</div>
 							</div>
 						</div>
+						
 					</div>
 
 				</div>
-									<div class="entry-content ellipsis">
+									<!-- <div class="entry-content ellipsis"> -->
 						<div class="inner">
 							<p>
 								<em>“What we call a ‘story’ is something that by its nature
@@ -179,8 +173,7 @@ section.palmares .prize-list li span {
 									. .] Petra Genetrix is a genderless being, and its basic
 									profundity originates in that fundamental ambiguity.” - Ayoung
 									Kim</em>
-							</p>
-							<p>In her work, the artist Ayoung Kim reconstructs complex
+							In her work, the artist Ayoung Kim reconstructs complex
 								narratives grounded in her voluminous research on history and
 								contemporary issues that, include matters such as Korea’s modern
 								and contemporary history, geopolitics, transportation, and
@@ -201,32 +194,13 @@ section.palmares .prize-list li span {
 								allowing us an opportunity to encounter the forgotten and
 								omitted “truths” of this world—while also sharing the
 								possibilities for people who transcend anthropocentrism and for
-								a new life of coexistence with nature, objects, and non-beings.</p>
-							<p>
-								Ayoung Kim has presented exhibitions and projects at major
-								institutions in Korea and around the world, including <em><a
-									href="https://videobrasil.online/">Oxbow Lake Time</a></em> (Video
-								Brasil, São Paulo, 2021, Online Solo Screening), <em><a
-									href="https://ilmin.org/notice/%eb%ae%a4%ec%a7%80%ec%97%84-producer-%ea%b8%b0%ed%9a%8d-%ec%9b%8c%ed%81%ac%ec%88%8d-1-%ec%82%ac%eb%b3%80%ec%a0%81-%ec%8a%a4%ed%86%a0%eb%a6%ac%eb%b3%b4%eb%93%9c-%ec%a0%9c%ec%9e%91-%ec%9b%8c/">Porosity
-										Valley</a></em> (Ilmin Museum of Art, Seoul, 2018), <em><a
-									href="https://2017.festival.melbourne/events/porosity-valley-portable-holes/#.YgZEv5bP1PY">Porosity
-										Valley, Portable Holes</a></em> (Melbourne Festival, Melbourne, 2017),
-								<em><a
-									href="https://palaisdetokyo.com/en/exposition/ayoung-kim/">In
-										This Vessel We Shall Be Kept</a></em> (Palais de Tokyo, Paris, 2016),<em><a
-									href="https://youtu.be/rKW6f_FrrSs">The Railway Traveler’s
-										Handbook</a></em> (Culture Station Seoul 284, Seoul, 2014), <em><a
-									href="http://ayoungkim.com/wp/works/ph-express-project-20112012">PH
-										Express</a></em> (Künstlerhaus Bethanien, Berlin, 2012), <em><a
-									href="http://ayoungkim.com/wp/works/not-in-the-wrong-place-at-the-wrong-time">Minima
-										Memoria</a></em> (Street Level,&nbsp;Glasgow, 2010), and <a
-									href="https://www.mutualart.com/Exhibition/Ephemera/5963AADD2B1C10AF">Ephemera</a>
-								(I-Myu Projects, London, 2009).&nbsp;
-							</p>
+								a new life of coexistence with nature, objects, and non-beings.
+														</p>
+							
 						</div>
 
 					</div>
-					</div>
+					<!-- </div> -->
 			</section>
 
 			<section class="palmares">
@@ -301,54 +275,14 @@ section.palmares .prize-list li span {
 				<h2>작가의 작품(마우스오버시 작품정보)</h2>
 				<div class="post-list flex-box">
 					<ul>
-						<li><a href="/gallery/artist/20000000116/work/20000000540">
+					<c:forEach items="${worklist }" var="work">
+                    	<li><a href="#">
 								<figure>
-									<img src="images/작가의세계작품1.jpg" alt="">
-								</figure> <span class="title">Petrogenesis, Petra Genetrix<br>2019-2021
+									<img src="../imgupload/artistWorks/${work.workImg }" alt="">
+								</figure> <span class="title">${work.artistName }<br> ${work.workName }<br>${work.workSize }
 							</span>
 						</a></li>
-						<li><a href="/gallery/artist/20000000116/work/20000000541">
-								<figure>
-									<img src="images/작가의세계작품2.jpg" alt="">
-								</figure> <span class="title">Petrogenesis, Petra Genetrix<br>2019-2021
-							</span>
-						</a></li>
-						<li><a href="/gallery/artist/20000000116/work/20000000542">
-								<figure>
-									<img src="images/작가의세계작품3.jpg" alt="">
-								</figure> <span class="title">At the Surisol Underwater Lab<br>2020
-							</span>
-						</a></li>
-						<li><a href="/gallery/artist/20000000116/work/20000000543">
-								<figure>
-									<img src="images/작가의세계작품4.jpg" alt="">
-								</figure> <span class="title">At the Surisol Underwater Lab<br>2020
-							</span>
-						</a></li>
-						<li><a href="/gallery/artist/20000000116/work/20000000544">
-								<figure>
-									<img src="images/작가의세계작품5.jpg" alt="">
-								</figure> <span class="title">In Search of Petra Genetrix<br>2020
-							</span>
-						</a></li>
-						<li><a href="/gallery/artist/20000000116/work/20000000545">
-								<figure>
-									<img src="images/작가의세계작품6.jpg" alt="">
-								</figure> <span class="title">In Search of Petra Genetrix<br>2020
-							</span>
-						</a></li>
-						<li><a href="/gallery/artist/20000000116/work/20000000546">
-								<figure>
-									<img src="images/작가의세계작품7.jpg" alt="">
-								</figure> <span class="title">Porosity Valley 2: Tricksters’ Plot<br>2019
-							</span>
-						</a></li>
-						<li><a href="/gallery/artist/20000000116/work/20000000547">
-								<figure>
-									<img src="images/작가의세계작품8.jpg" alt="">
-								</figure> <span class="title">Porosity Valley 2: Tricksters’ Plot<br>2019
-							</span>
-						</a></li>
+                    </c:forEach>
 					</ul>
 				</div>
 				<div class="pagination">
@@ -372,6 +306,39 @@ section.palmares .prize-list li span {
 
 		</article>
 	</div>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+	function follow(follower){
+		console.log("a")
+		var color=document.getElementById("a");
+		var id = '${id}';
+		if(id=='null'){
+			alert("로그인이 필요한 서비스입니다.")
+			return false;
+		}
+		$.ajax({     
+			type:"post",
+			dataType:"text",
+			async:false,
+			url:"http://localhost:8090/follow",
+			data:{"follower":follower},
+			success: function(data, textStatus){
+				if(data=='true'){
+					 color.style.color="white";
+					 color.style.background="#222";
+					 location.reload();
+				}else{
+					color.style.color="#222";
+					color.style.background="white";
+					location.reload();
+				}
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		}); 
+	}
+	</script>
 	<%@include file="../footer.jsp"%>
 </body>
 </html>

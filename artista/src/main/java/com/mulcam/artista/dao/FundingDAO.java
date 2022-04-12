@@ -16,7 +16,7 @@ public interface FundingDAO {
 	public List<Funding> queryMyFunding(String id);
 	public List<Funding> queryappfunding(String id);
 	public void updatefundingapp(Funding funding);
-	public void insertupdate(Funding funding);
+	public void modifyApply(Funding funding);
 	public void updateapplyStatus(Funding funding);
 	public void insertfunding(Funding funding); //펀딩 등록
 	public List<Funding> queryuc(Funding funding);
@@ -29,7 +29,7 @@ public interface FundingDAO {
 	public Funding queryFundingNo(int fundingNo);
 	public int querySponCount(int fundingNo);
 	public boolean checkAlarm(Map map);
-	public void deleteAlarm(String id);
+	public void deleteAlarm(Map map);
 	public void insertAlarm(Map map);
 	public List<Funding> queryAlarmlist(String id);
 	
@@ -38,9 +38,11 @@ public interface FundingDAO {
 	public List<Funding> fundingNowList()  throws Exception;//관리자 펀딩 진행중리스트
 	public List<Funding> fundingEndedList()  throws Exception;//관리자 펀딩 마감리스트
 	public Funding querytfundingApp(int fundingNo)  throws Exception;//관리자 펀딩신청 상세보기
+	public void updateFundingApplyEnroll(int fundingNo) throws Exception;
 	public void updateFundingApplyRefuse(Map map)throws Exception;
 	public void deleteFundingApply(int applyNo) throws Exception;
 	
 	public Integer maxfundingNo() throws Exception;
 	public Integer maxfundingAppNo() throws Exception;
+	public int queryCount(int fundingNo);
 }

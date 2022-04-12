@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -265,6 +267,12 @@ public class SubPageServiceImpl implements SubPageService{
 		map.put("orderStatus", orderStatus);
 		map.put("orderNo", orderNo);
 		subpageDAO.updateStatus(map);
+	}
+
+	@Override
+	public int queryCount(int fundingNo) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryCount(fundingNo);
 	}
 
 	

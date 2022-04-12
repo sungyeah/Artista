@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,17 +8,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="../css/fundingtm.css">
 <style>
 </style>
 <body>
-	<div>
-            <span class="postbtn"><a href="fundinguc">ÆÝµù ¿¹Á¤</a></span>
-            <span class="postbtn"><a href="fundingov">ÆÝµù ÁøÇà</a></span>
-            <span class="postbtn"><a href="fundingtm"><b>ÆÝµù Á¾·á</b></a></span>
+	<%@include file ="../header.jsp" %>
+
+	<div class="con">
+	<div class="con2">
+            <span class="postbtn"><a href="fundinguc">íŽ€ë”© ì˜ˆì •</a></span>
+            <span class="postbtn"><a href="fundingov">íŽ€ë”© ì§„í–‰</a></span>
+            <span class="postbtn"><a href="fundingtm"><b>íŽ€ë”© ì¢…ë£Œ</b></a></span>
 	</div>
     <div class="flex-container">
     	<c:forEach items="${list}" var="funding">
@@ -36,5 +39,6 @@
         </c:forEach>
     </div>
     <button class="Btn">load more</button>
+    </div>
 </body>
 </html>

@@ -90,14 +90,11 @@
  <ul class="menu2">
  	  <span style="cursor:pointer;" id="toggleBtn"><img src="${pageContext.request.contextPath}/images/bellyes.png"
 	 style="width: 25px; height: 25px; width: auto; position: absolute; top: 48px; right: 330px; opacity:0.6;"></span>
-	 
-	 <c:forEach items="${list}" var="alarm">
 	 	<li>
-	 	<div>
-	 		<div class="box1">${alarm.projTitle}${alarm.fundingMsg}</div>
+	 	<div style="border: 1px solid #dfdfdf;">
+	 		<div class="box1"></div>
 	 	</div>
 	 	</li>
-	 </c:forEach>
       <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="width: 25px; height: 25px; position: absolute; top: 48px; right: 375px;  opacity:0.6;"></a>
     <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
     <li class="navi2"><a href="${pageContext.request.contextPath}/mypage">mypage</a></li>
@@ -121,18 +118,35 @@
 <!--             <script src="js/slick.js"></script>
            <script src="js/script.js"></script> -->
 <script>
-	$("#toggleBtn").on("click", function(){
-	    //$(".box").toggle(1000);
-		 $(".box1").fadeToggle(1000);
-		  //$(".box").slideToggle(1000);
-	 });
 </script>
 <script>
 var uid = '<%=(String)session.getAttribute("membertype")%>';
 	console.log(uid);
 	
-	
-	
+	$(document).ready(function() {
+		$.ajax({
+			url: "/headeralarm",
+			type: "post",
+			success: function(fundingList) {
+				console.log(fundingList)
+				$("#toggleBtn").on("click", function(){
+				    //$(".box").toggle(1000);
+					//$(".box1").fadeToggle(1000);
+					$(".box1").html("");
+                    if (fundingList.length == 0) {
+                        $(".box1").html("알람이 존재하지 않습니다");
+                    } else {
+                        for(let funding of fundingList) {
+                         console.log(funding);
+                         $(".box1").append(funding.projTitle + funding.fundingMsg +"<br>");
+                        }
+                    }
+					$(".box1").slideToggle(10);
+				 });
+			}
+		})
+	})
+
 </script>
 </body>
 </html>

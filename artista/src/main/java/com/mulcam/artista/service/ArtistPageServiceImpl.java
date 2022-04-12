@@ -20,9 +20,9 @@ public class ArtistPageServiceImpl implements ArtistPageService {
 	}
 
 	@Override
-	public void insertupdate(Funding funding) {
+	public void modifyApply(Funding funding) {
 		// TODO Auto-generated method stub
-		fundingDAO.insertupdate(funding);
+		fundingDAO.modifyApply(funding);
 	}
 
 	@Override

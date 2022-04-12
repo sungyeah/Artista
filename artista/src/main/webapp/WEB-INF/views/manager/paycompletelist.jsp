@@ -61,6 +61,7 @@
                         <th scope="col">결제 일자</th>
                         <th scope="col">구매자</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <c:choose>
@@ -72,13 +73,16 @@
                             	<th scope="col">${workreport.work.workName }</th>
                             	<th scope="col"">${workreport.work.workPrice }</th>
                             	<th scope="col">${workreport.order.orderDate }</th>
-                            	<th scope="col">${workreport.order.receiverName }</th>                                
+                            	<th scope="col">${workreport.order.receiverName }</th>
+                            	<th scope="col" colspan="1">
+                           			<c:if test="${workreport.work.workForSale eq 2}">
+                           				<a class="artist-detail-btn" onclick="transfer('${workreport.work.workNo }')">송장번호 입력</a>
+                           			</c:if>
+                           		</th>                                
                            		<th scope="col" colspan="1">
-                           			<c:choose>
-                           			<c:when test="${workreport.work.workForSale eq 2}">
+                           			<c:if test="${workreport.work.workForSale eq 2}">
                            				<a class="artist-detail-btn" onclick="transfer('${workreport.work.workNo }')">작가 송금하기</a>
-                           			</c:when>
-                           			</c:choose>
+                           			</c:if>
                            		</th>
                         		</tr>
                         		</c:forEach>

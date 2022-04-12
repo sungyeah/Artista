@@ -14,7 +14,9 @@
 </head>
 
 <body>
-	<div>
+	 <%@include file ="../header.jsp" %>
+	 <div class="con">
+	<div class="con2">
             <span class="postbtn"><a href="fundinguc">펀딩 예정</a></span>
             <span class="postbtn"><a href="fundingov"><b>펀딩 진행</b></a></span>
             <span class="postbtn"><a href="fundingtm">펀딩 종료</a></span>
@@ -35,6 +37,7 @@
      </c:forEach>
     </div>
     <button type="button" id="load" class="Btn">load more</button>
+    </div>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script>
 $(function(){

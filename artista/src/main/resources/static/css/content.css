@@ -836,7 +836,7 @@
 
 .detail {
 	overflow: hidden;
-	max-width: 1200px;
+	max-width: 330px;
 	margin: 0 auto 160px;
 	padding: 0 15px;
 }
@@ -848,8 +848,7 @@
 	font-size: 2.5em;
 }
 .detail .info {
-	/* float: left; */
-	width: 29%;
+	width: 70%;
 }
 .detail .info figure {margin: 19px 0;}
 .detail .info figure:first-child {margin-top: 0;}

@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
@@ -208,20 +209,27 @@ public class ArtistPageController {
 			e1.printStackTrace();
 		};
 		
+		BufferedImage inputImage;
+		try {
+			inputImage = ImageIO.read(artistImgFile.getInputStream());
+	        int originHeight = inputImage.getHeight();	// 이미지 세로 가로 측정
+	        work.setWorkHeight(originHeight);
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		
 		// 작품 대표이미지 저장
 		String path = servletContext.getRealPath("/imgupload/artistWorks/");	//실제 저장 위치
 		String[] mtypes = artistImgFile.getContentType().split("/");
 		
-		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
-		Date time = new Date();
-		String workEnrollTime = simpleDate.format(time);
-		File destFile = new File(path + artistNo +"-"+ workEnrollTime +"."+ mtypes[1]);	//이미지 타입
+		String imgName = UUID.randomUUID().toString();								//랜덤으로 이름 정하기
+		File destFile = new File(path + artistNo +"-"+ imgName +"."+ mtypes[1]);	//이미지 타입
 		try {			
 			artistImgFile.transferTo(destFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String workImg = artistNo + "-" + workEnrollTime +"."+ mtypes[1];
+		String workImg = artistNo + "-" + imgName +"."+ mtypes[1];
 		work.setArtistNo(artistNo);
 		work.setArtistName(artistName);
 		work.setWorkImg(workImg);
@@ -278,10 +286,8 @@ public class ArtistPageController {
 		BufferedImage inputImage;
 		try {
 			inputImage = ImageIO.read(workImgFile.getInputStream());
-			// 이미지 세로 가로 측정
-	        int originHeight = inputImage.getHeight();
+	        int originHeight = inputImage.getHeight();	// 이미지 세로 가로 측정
 	        workapply.setWorkHeight(originHeight);
-	        System.out.println(originHeight);
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
@@ -300,17 +306,14 @@ public class ArtistPageController {
 		String path = servletContext.getRealPath("/imgupload/artistWorks/");
 		String[] mtypes = workImgFile.getContentType().split("/");
 		
-		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");
-		Date time = new Date();
-		String workEnrollTime = simpleDate.format(time);
-		System.out.println(artistNo);
-		File destFile = new File(path + artistNo +"-"+ workEnrollTime +"."+ mtypes[1]);
+		String imgName = UUID.randomUUID().toString();								//랜덤으로 이름 정하기
+		File destFile = new File(path + artistNo +"-"+ imgName +"."+ mtypes[1]);
 		try {			
 			workImgFile.transferTo(destFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String workImg = artistNo + "-" + workEnrollTime +"."+ mtypes[1];
+		String workImg = artistNo + "-" + imgName +"."+ mtypes[1];
 		
 		//작품 신청 insert
 		try {
@@ -530,6 +533,24 @@ public class ArtistPageController {
 		model.addAttribute("list", list);
 		return "artistpage/myfunding";
 	}
+	/* 펀딩 신청 상세보기 */
+	@ResponseBody
+	@PostMapping(value="fundingdetail")
+	public Map<String, Object> fundingDetail(@RequestParam(value="fundingNo", required = false) int fundingNo, Model model) {
+		Map<String, Object> json = new HashMap<>();
+		try {
+			Funding funding = fundingService.querytfundingApp(fundingNo);
+			Artist artist = artistService.Artistinfo(funding.getArtistNo());
+			String email = subPageService.queryId(artist.getId()).getEmail();
+			json.put("funding", funding);
+			json.put("id", artist.getId());
+			json.put("artistName", artist.getArtistName());
+			json.put("email", email);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
 	
 	// 아티스트의 펀딩 신청 내역
 	@GetMapping("appmyfunding")
@@ -560,21 +581,19 @@ public class ArtistPageController {
 
 	@PostMapping("applyfunding")
 	public String applyfunding1(@ModelAttribute Funding funding, Model model) {
-		
 		String id=(String) session.getAttribute("id");
-//			 File destFile = new File(path+file.getOriginalFilename());
+		// 펀딩 기간
 		String[] fundingDate = funding.getFundingDate().split(" ~ ");
-		System.out.println(fundingDate[0]);
-		System.out.println(fundingDate[1]);
 		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
 		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
-		System.out.println(Timestamp.valueOf(localDateTime));
 		funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
 		localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
-		System.out.println(Timestamp.valueOf(localDateTime));
 		funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
+		
 		try {
+			// 펀딩 대표 이미지 설졍
 			MultipartFile file = funding.getThumbFile();
+			//File destFile = new File(path+file.getOriginalFilename());
 			if(file!=null && !file.isEmpty()) {
 				String path = servletContext.getRealPath("/fundingApp/");
 				String filename = file.getOriginalFilename();
@@ -582,9 +601,11 @@ public class ArtistPageController {
 				file.transferTo(destFile);
 				funding.setThumbImg(filename);
 			}
+			//fundingAppNo 구하기 
+			int fundingAppNo = fundingService.getfundingAppNo();
 			artistPageService.insertApply(funding);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 		return "artistpage/succesapply";
 	}
@@ -612,12 +633,12 @@ public class ArtistPageController {
 	
 	
 	@GetMapping("modifyfunding")
-	public String modifyfunding(Model model) {
+	public String modifyfunding(@RequestParam(value="fundingNo") int fundingNo, Model model) {
 		String id=(String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
 			model.addAttribute("mem", mem);
-			Funding funding = fundingService.queryFunding(id);
+			Funding funding = fundingService.queryFundingNo(fundingNo);
 			model.addAttribute("funding", funding);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -625,32 +646,62 @@ public class ArtistPageController {
 		return "artistpage/modifyfunding";
 	}
 	
-	
 	@RequestMapping(value="modifyfunding", method= {RequestMethod.POST})
-	public String modifyfunding2(@ModelAttribute Funding funding) {
-		String path = servletContext.getRealPath("/fundingApp/");
+	public String modifyfunding2(@ModelAttribute Funding funding,
+			@RequestParam(value="thumbFile") MultipartFile thumbFile,
+			@RequestParam(value="fileChange") String fileChange) {
+		
 		String id=(String) session.getAttribute("id");
 		funding.setId(id);
+		funding.setApplyStatus(2);
+		
+		Funding originFunding = fundingService.queryFundingNo(funding.getFundingNo());
+		
 		String[] fundingDate = funding.getFundingDate().split(" ~ ");
-		System.out.println(fundingDate[0]);
-		System.out.println(fundingDate[1]);
 		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
 		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
-		System.out.println(Timestamp.valueOf(localDateTime));
 		funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
 		localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
-		System.out.println(Timestamp.valueOf(localDateTime));
 		funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
-		System.out.println(id);
+		
+		if(fileChange.equals("0")) {
+			try {
+				MultipartFile file = funding.getThumbFile();
+				if(file!=null && !file.isEmpty()) {
+					String path = servletContext.getRealPath("/fundingApp/");
+					String filename = file.getOriginalFilename();
+					File destFile = new File(path+filename);
+					file.transferTo(destFile);
+					funding.setThumbImg(filename);
+				}
+				artistPageService.insertApply(funding);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			funding.setThumbImg(originFunding.getThumbImg());
+		}
+		
 		try {			
-			System.out.println(funding.getId());
-			artistPageService.insertupdate(funding);				
+			artistPageService.modifyApply(funding);				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "artistpage/succesapply";
 	}
 	
+	/* 펀딩 신청 거절 이유보기 */
+	@ResponseBody
+	@PostMapping(value="fundingApplyrefuseReason")
+	public String fundingApplyrefuseReason(@RequestParam(value="fundingNo", required = false) int fundingNo) {
+		Funding funding = null;
+		try {
+			funding = fundingService.querytfundingApp(fundingNo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return funding.getRefusedContents();
+	}
 	
 	@Autowired
 	ExhibitService exhibiService;

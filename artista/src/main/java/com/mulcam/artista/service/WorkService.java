@@ -20,5 +20,6 @@ public interface WorkService {
 	public void workPayed(int workNo)throws Exception;
 	
 	public void updateWork(Work work) throws Exception;
+	public List<Work> works(int artistNo) throws Exception;	// 작가 디테일 - 작품들
 	
 }

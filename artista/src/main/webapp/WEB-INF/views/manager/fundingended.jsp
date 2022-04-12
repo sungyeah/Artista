@@ -173,85 +173,37 @@
                     </tr>
                     </thead>
                     <c:choose>
-                    	<c:when test="${fundingUpList!=null }">
+                    	<c:when test="${fundingEndedList!=null }">
                     	<tbody>
-                    		<c:forEach items="${fundingUpList }" var="funding">
+                    		<c:forEach items="${fundingEndedList }" var="funding">
 								<tr>
-                            	<th scope="col">${funding.fundingNo }</th>
+                            	<th scope="col"><a onclick="fundingDetail('${funding.fundingNo }')">${funding.fundingNo }</a></th>
                             	<th scope="col">
                             		<img src="/funding/thumbview/${funding.thumbImg}" style="width:100px; height:100px;">	
                             	</th>
-                            	<th scope="col"">${funding.projTitle }</th>            
-                            	<th scope="col">
-                            		<c:choose>
-									<c:when test="${funding.fundingState==1}">예정</c:when>
-									<c:when test="${funding.fundingState==2}">진행</c:when>
-									<c:otherwise>종료</c:otherwise>
-									</c:choose>
+                            	<th scope="col"">${funding.projTitle }</th>   
+                            	<th scope="col"">${funding.targetFunding }</th>    
+                            	<th scope="col"">${funding.sumAmount/funding.targetFunding }</th>  
+                            	<th scope="col" class="applyState">
+                            		<c:if test="${funding.fundingState eq 4}">펀딩 성공</c:if>
+                            		<c:if test="${funding.fundingState eq 5}">펀딩 실패</c:if>
+                            		<c:if test="${funding.fundingState eq 6}">환불 완료</c:if>
                             	</th>
-                            	<th scope="col"">${funding.fundingDate }</th>    
                             	<th scope="col" colspan="1">
-                            		<a class="artist-detail-btn" onclick="fundingDetail('${funding.fundingNo }')">내용 상세보기</a>
+                            		<a class="artist-detail-btn" onclick="fundingDetail('${funding.fundingNo }')">스폰서 보기</a>
                             	</th>                  
                            		<th scope="col" colspan="1">
-                           			<c:choose>
-									<c:when test="${funding.fundingState==1}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">알람 신청내역</a></c:when>
-									<c:when test="${funding.fundingState==2}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">스폰서 보기</a></c:when>
-									<c:otherwise><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">결과보기</a></c:otherwise>
-									</c:choose></th>
+                            		<c:if test="${funding.fundingState eq 5}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">환불처리 완료</a></c:if>
+                            	</th>
                         		</tr>
                         		</c:forEach>
-                        </tbody>
+                        </tbody>ㅉ
                     	</c:when>
                     </c:choose>
                 </table>
             </section>
         </article>
         
-        
-        <article class="member-body">
-            <section class="member-list">
-            	<table class="member-table">
-                    <thead>
-                    <tr>
-                        <th scope="col">펀딩 신청번호</th>
-                        <th scope="col">프로젝트 제목</th>
-                        <th scope="col">아티스트 이름</th>
-                        <th scope="col">목표금액</th>
-                        <th scope="col">대관장소</th>
-                        <th scope="col">달성률</th>
-                        <th scope="col">펀딩결과</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="col" class="fundingNo">펀딩 신청번호</th>
-                        <th scope="col" class="projTitle">프로젝트 제목</th>
-                        <th scope="col" class="artistName">아티스트 이름</th>
-                        <th scope="col" class="targetFunding">목표금액</th>
-                        <th scope="col" class="getplace">대관장소</th>
-                        <th scope="col" class="resultPercent">달성률</th>
-                        <th scope="col" class="fundingState">펀딩성공</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    <tr>
-                        <th scope="col" class="fundingNo">펀딩 신청번호</th>
-                        <th scope="col" class="projTitle">프로젝트 제목</th>
-                        <th scope="col" class="artistName">아티스트 이름</th>
-                        <th scope="col" class="targetFunding">목표금액</th>
-                        <th scope="col" class="getplace">대관장소</th>
-                        <th scope="col" class="resultPercent">달성률</th>
-                        <th scope="col" class="fundingState">펀딩실패</th>
-                        <th scope="col"><a class="artist-detail-btn detail">상세보기</a></th>
-                        <th scope="col"><a class="artist-detail-btn refund">환불완료처리</a></th>
-                    </tr>
-                    </tbody>
-                </table>
-            </section>
-        </article>
     </div>
     <%@include file ="../footer.jsp" %>
     
