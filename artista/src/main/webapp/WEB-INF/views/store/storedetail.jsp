@@ -125,7 +125,7 @@
                 }
             </style>
 
-            <section class="detail">
+            <section class="detail1">
             	<form id="form2" action="payment" method="post">
                 <!--상세페이지에만 들어가는 클래스입니다.-->
                 	<input type="hidden" id="workNo" name="workNo" value="${work.workNo }">
