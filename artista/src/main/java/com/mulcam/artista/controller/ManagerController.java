@@ -273,14 +273,27 @@ public class ManagerController {
 			//fundingNo로 펀딩등록신청 내용 가져오기
 			Funding fundingapply = fundingService.querytfundingApp(fundingNo);
 			Artist artist = artistService.Artistinfo(fundingapply.getArtistNo());
+			int applyState = fundingapply.getApplyStatus();
 			
-			//funding data에 fundingapply 내용 옮기고 funding에 등록하기
-			Funding funding = new Funding(fundingService.getfundingNo(), artist.getArtistNo(), artist.getArtistName(), fundingapply.getProjTitle(),
-					fundingapply.getProjIntro(), fundingapply.getProjBudget(), fundingapply.getProjArtist(), fundingapply.getTargetFunding(),fundingapply.getFundingDate(), fundingapply.getStartDate(), fundingapply.getEndDate(),
-					fundingapply.getThumbImg(), fundingapply.getGetplace(), fundingapply.getGetplace2());
-			fundingService.insertfunding(funding);
-			fundingService.updateFundingApplyEnroll(fundingapply.getFundingNo());
-		}catch(Exception e) {
+			//등록 허락
+			if(applyState==0) {
+				//funding data에 fundingapply 내용 옮기고 funding에 등록하기
+				Funding funding = new Funding(fundingService.getfundingNo(), artist.getArtistNo(), artist.getArtistName(), fundingapply.getProjTitle(),
+						fundingapply.getProjIntro(), fundingapply.getProjBudget(), fundingapply.getProjArtist(), fundingapply.getTargetFunding(),fundingapply.getFundingDate(), fundingapply.getStartDate(), fundingapply.getEndDate(),
+						fundingapply.getThumbImg(), fundingapply.getGetplace(), fundingapply.getGetplace2());
+				fundingService.insertfunding(funding);	// 펀딩 등록
+				fundingService.updateFundingApplyEnroll(fundingapply.getFundingNo()); // 
+			}
+			//수정 허락
+			else if(applyState==2) {
+				Funding funding = new Funding(fundingapply.getFundingOriginNo(), artist.getArtistNo(), artist.getArtistName(), fundingapply.getProjTitle(),
+						fundingapply.getProjIntro(), fundingapply.getProjBudget(), fundingapply.getProjArtist(), fundingapply.getTargetFunding(),fundingapply.getFundingDate(), fundingapply.getStartDate(), fundingapply.getEndDate(),
+						fundingapply.getThumbImg(), fundingapply.getGetplace(), fundingapply.getGetplace2());
+				fundingService.updateFundingModiy(funding);	// 펀딩 수정
+				fundingService.updateFundingApplyModifyEnroll(fundingapply.getFundingNo());
+			}
+			
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -180,4 +180,14 @@ public class FundingServiceImpl implements FundingService {
 	public void updateFundingApplyEnroll(int fundingNo) throws Exception {
 		fundingDAO.updateFundingApplyEnroll(fundingNo);
 	}
+
+	@Override
+	public void updateFundingApplyModifyEnroll(int fundingNo) throws Exception {
+		fundingDAO.updateFundingApplyModifyEnroll(fundingNo);
+	}
+
+	@Override
+	public void updateFundingModiy(Funding funding) throws Exception {
+		fundingDAO.updateFundingModiy(funding);
+	}
 }

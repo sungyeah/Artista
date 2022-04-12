@@ -570,7 +570,10 @@ public class ArtistPageController {
 		String id=(String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
-			model.addAttribute("mem", mem);
+			Artist artist = artistService.artistInfo(id);
+			model.addAttribute("email", mem.getEmail());
+			model.addAttribute("id", mem.getId());
+			model.addAttribute("artistName", artist.getArtistName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -674,7 +677,6 @@ public class ArtistPageController {
 					file.transferTo(destFile);
 					funding.setThumbImg(filename);
 				}
-				artistPageService.insertApply(funding);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -682,7 +684,9 @@ public class ArtistPageController {
 			funding.setThumbImg(originFunding.getThumbImg());
 		}
 		
-		try {			
+		try {
+			funding.setFundingNo(fundingService.getfundingAppNo());
+			funding.setFundingOriginNo(originFunding.getFundingNo());
 			artistPageService.modifyApply(funding);				
 		} catch (Exception e) {
 			e.printStackTrace();

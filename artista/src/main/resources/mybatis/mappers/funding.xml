@@ -19,8 +19,8 @@
 	<!-- 작가가 펀딩 수정요청 -->
 	<insert id="modifyApply" parameterType="funding" >
 		<![CDATA[
-			insert into fundingapp(fundingNo, artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate)
-			values(#{fundingNo}, (select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 2, #{getplace}, #{getplace2}, sysdate())
+			insert into fundingapp(fundingNo, artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate, fundingOriginNo)
+			values(#{fundingNo}, (select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 2, #{getplace}, #{getplace2}, sysdate(), #{fundingOriginNo})
 		]]>
 	</insert>
 	
@@ -178,6 +178,20 @@
 			update fundingapp set applyStatus=4 where fundingNo=#{fundingNo}
 		]]>
 	</select>
+	<!-- 펀딩수정 허락 update -->
+	<select id="updateFundingApplyModifyEnroll" parameterType="int">
+		<![CDATA[
+			update fundingapp set applyStatus=5 where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	<!-- 펀딩 수정 내용 update -->
+	<update id="updateFundingModiy" parameterType="Funding" >
+		<![CDATA[
+			update funding set projTitle=#{projTitle}, projIntro=#{projIntro}, projBudget=#{projBudget}, projArtist=#{projArtist}, 
+				targetFunding=#{targetFunding}, fundingDate=#{fundingDate}, startDate=#{startDate}, endDate=#{endDate},
+				thumbImg=#{thumbImg}, getplace=#{getplace}, getplace2=#{getplace2} where fundingNo=#{fundingNo}
+		]]>
+	</update>
 	
 	<!-- 펀딩신청 거절 update -->
 	<select id="updateFundingApplyRefuse" parameterType="map">
