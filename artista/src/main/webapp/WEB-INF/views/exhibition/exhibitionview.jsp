@@ -53,13 +53,16 @@
 					<c:forEach items="${exhibitList }" var="exhibit">
 						
 						<div class="season_artwork">
+						<c:if test="${exhibit.fundingNo == -1 }">
+						<div>
+								<img src="../images/리본.jpg" style="width:60px; height:auto; z-index: 1; position: absolute; top:-15px;">
+								</div>
+								</c:if>
 							<a href="${exhibit.reserveLink }"> <img class="owl-lazy"
 								data-src="../../imgupload/exhibition/${exhibit.exhibitPoster }" />
 							</a>
 							<div class="season_artwork_info">
-								<h5><c:if test="${exhibit.fundingNo == -1 }">
-								<b>펀딩</b>
-								</c:if>${exhibit.exhibitTitle }</h5>
+								<h5>${exhibit.exhibitTitle }</h5>
 								<p>${exhibit.startDate } ~ ${exhibit.endDate }</p>
 								<p>${exhibit.exhibitArtist }</p>
 								
