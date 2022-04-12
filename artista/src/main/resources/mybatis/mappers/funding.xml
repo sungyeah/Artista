@@ -118,6 +118,28 @@
 			select * from alarm where id =#{id}
 		 ]]>
 	</select>
+	
+	
+	<select id="fundingAppList" resultType="Funding">
+		<![CDATA[
+			select * from fundingApp
+		 ]]>
+	</select>
+	<select id="fundingExpectList" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingState=1
+		 ]]>
+	</select>
+	<select id="fundingNowList" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingState=2
+		 ]]>
+	</select>
+	<select id="fundingEndedList" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingState=3
+		 ]]>
+	</select>
 </mapper>
 
 <!-- 
