@@ -264,11 +264,9 @@ public class SubPageServiceImpl implements SubPageService{
 		}
 		rd.close();
 		conn.disconnect();
-//		System.out.println(sb.toString());
 		String a = sb.toString();
 		Document doc = Jsoup.parse(a);
-		String e = doc.getElementsByClass("title-notice").html();
-		System.out.println(e);
+		String e = doc.getElementsByClass("info-parcel-text-active").html();
 		return e;
 	}
 

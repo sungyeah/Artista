@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-            <script src="js/jquery-3.4.1.js"></script>
+            <!-- <script src="js/jquery-3.4.1.js"></script>
             <script src="js/slick.js"></script>
-            <script src="js/script.js"></script>
+            <script src="js/script.js"></script> -->
             <link rel="stylesheet" type="text/css" href="css/store.css">
 </head>
 <body>
