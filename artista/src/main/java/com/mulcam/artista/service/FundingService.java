@@ -28,6 +28,7 @@ public interface FundingService {
 	public List<Funding> fundingNowList()  throws Exception;//관리자 펀딩 진행중리스트
 	public List<Funding> fundingEndedList()  throws Exception;//관리자 펀딩 마감리스트
 	public Funding querytfundingApp(int fundingNo)  throws Exception;
+	public void updateFundingApplyEnroll(int fundingNo) throws Exception;
 	public void refuseFundingApply(int fundingNo, String refusedContents) throws Exception;
 	public void deleteFundingApply(int applyNo)  throws Exception;
 	

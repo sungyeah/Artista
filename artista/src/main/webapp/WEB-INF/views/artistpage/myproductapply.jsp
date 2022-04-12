@@ -198,8 +198,7 @@
                             		<c:if test="${worklist.applyState eq 3}">작품수정 거절</c:if>
                             	</th>
                             	<th scope="col" colspan="1">
-                           			<c:if test="${worklist.applyState eq 1}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">신청내용보기</a></c:if>
-                            		<c:if test="${worklist.applyState eq 3}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">신청내용보기</a></c:if>
+                            		<a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">신청내용보기</a>
                            		</th>                  
                            		<th scope="col" colspan="1">
                            			<c:if test="${worklist.applyState eq 0}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">신청내용보기</a></c:if>

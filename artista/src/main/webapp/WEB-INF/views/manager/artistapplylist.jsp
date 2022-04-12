@@ -307,7 +307,6 @@
     	});
     	
     	$(document).on('click', '#refuse', function(e){
-    		alert("!!");
     		$.ajax({
     			type:"post",
     			dataType:"text",

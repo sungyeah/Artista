@@ -17,12 +17,13 @@
 
   </style>
 <body>
-          <form method="post" action="modifyfunding" enctype="multipart/form-data" >
+	<%@include file ="../header.jsp" %>
+          <form method="post" action="modifyfunding"  enctype="multipart/form-data" >
     <div id="contents">
         
         <header class="account-header">
-            <h2 class="account-header-title">펀딩 신청</h2>
-            <div class="account-header-description">펀딩 신청해 보자고</div>
+            <h2 class="account-header-title">펀딩재용 수정요청</h2>
+            <div class="account-header-description">수정 내용을 입력하세요.</div>
         </header>
         <article class="account-body">
 
@@ -33,6 +34,8 @@
             </div>
             <div class="account-modify-form-row-value">
             	${mem.id }
+            	<input type="hidden" id="id" name="id" value='${mem.id }'>
+            	<input type="hidden" id="fundingNo" name="fundingNo" value='${funding.fundingNo }'>
             </div>
         </div>
         <div class="account-modify-form-row">
@@ -51,7 +54,7 @@
             </div>
             <div class="account-modify-form-row-value">
             	${mem.email }
-        </div>
+        	</div>
         </div>
 
         <div class="account-modify-form-row">
@@ -85,7 +88,10 @@
                 대표 이미지
             </div>
             <div class="account-modify-form-row-value">
-                    <input id="thumbImg" class="account-modify-form-input" value="${funding.thumbImg}"  type="file" name="thumbImg" ><br>
+            <input type="hidden" value="1" id="fileChange" name="fileChange" />
+            	<input class="upload-name" value="${funding.thumbImg}" disabled="disabled">
+				<label for="thumbImg">업로드</label>
+            	<input id="thumbImg" type="file" name="thumbFile" class="upload-hidden" ><br>
             </div>
         </div>
 

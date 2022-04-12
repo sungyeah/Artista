@@ -88,5 +88,10 @@ public class WorkServiceImpl implements WorkService {
 	public void updateWork(Work work) throws Exception{
 		workDAO.updateWork(work);
 	}
+
+	@Override
+	public List<Work> works(int artistNo) throws Exception {
+		return workDAO.artistwork(artistNo);
+	}
 	
 }

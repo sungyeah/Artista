@@ -2,19 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mulcam.artista.dao.FundingDAO">
+
+	<!-- fundingAppNo 구하기 -->
+	<select id="maxfundingAppNo" resultType="integer">
+		<![CDATA[
+			select max(fundingNo) from fundingApp
+		]]>
+	</select>
 	<!-- 작가가 펀딩 신청 -->
 	<insert id="insertApply" parameterType="funding" >
 		<![CDATA[
-			insert into fundingapp(artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate)
-			values((select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 0, #{getplace}, #{getplace2}, sysdate())
+			insert into fundingapp(fundingNo, artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate)
+			values(#{fundingNo}, (select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 0, #{getplace}, #{getplace2}, sysdate())
 		]]>
 	</insert>
-	<insert id="insertupdate" parameterType="funding" >
+	<!-- 작가가 펀딩 수정요청 -->
+	<insert id="modifyApply" parameterType="funding" >
 		<![CDATA[
-			insert into fundingapp(artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate)
-			values((select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 2, #{getplace}, #{getplace2}, sysdate())
+			insert into fundingapp(fundingNo, artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate)
+			values(#{fundingNo}, (select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 2, #{getplace}, #{getplace2}, sysdate())
 		]]>
 	</insert>
+	
 	
 	<select id="queryFunding" parameterType="string" resultType="Funding">
 		<![CDATA[
@@ -32,23 +41,28 @@
 			select * from fundingapp where id =#{id}
 		]]>
 	</select>
-	<update id="updatefundingapp" parameterType="Funding" >
-		<![CDATA[
-			update fundingapp set projTitle=#{projTitle}, projIntro=#{projIntro}, projBudget=#{projBudget}, projArtist=#{projArtist}, targetFunding=#{targetFunding},
-			fundingDate=#{fundingDate}, startDate=#{startDate}, endDate=#{endDate}, thumbImg=#{thumbImg}, getplace=#{getplace}, getplace2=#{getplace2} where id=#{id}
-		]]>
-	</update>
 		<update id="updateapplyStatus" parameterType="Funding" >
 		<![CDATA[
 			update fundingapp set applyStatus=1 where id=#{id}
 		]]>
 	</update>
+	
+	
+	<!-- fundingNo 구하기 -->
+	<select id="maxfundingNo" resultType="integer">
+		<![CDATA[
+			select max(fundingNo) from funding
+		]]>
+	</select>
+	
+	<!-- 관리자 펀딩 insert -->
 	<insert id="insertfunding" parameterType="funding" >
 		<![CDATA[
 			insert into funding(fundingNo, artistNo, artistName, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, sumAmount, fundingState, getplace, getplace2)
-			values((select artistNo from artist where id=#{id}), (select artistName from artist where id=#{id}), #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding},
+			values(#{fundingNo}, (select artistNo from artist where id=#{id}), (select artistName from artist where id=#{id}), #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding},
 			#{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 0, (case when timestampdiff(day, now(), startDate)>0 then 1 else 
 		(case when timestampdiff(day, now(), endDate)>0 then 2 else 3 end) end), #{getplace}, #{getplace2}); 
+
 		]]>
 	</insert>
 	<select id="queryuc" resultType="Funding">
@@ -66,6 +80,7 @@
 			select * from funding where fundingState=3
 		]]>
 	</select>
+	
 	<select id="queryovdetail" parameterType="int" resultType="Funding">
 		<![CDATA[
 			select * from funding where fundingNo=#{fundingNo}
@@ -81,6 +96,8 @@
 			select * from funding where fundingNo=#{fundingNo}
 		]]>
 	</select>
+	
+	<!-- 펀딩 후원 insert -->
 	<insert id="insertfundingspon" parameterType="map" >
 		<![CDATA[
 			insert into fundingSpon(sponsorNo, id, fundingNo, sponsorAmount, email)
@@ -122,6 +139,7 @@
 	</select>
 	
 	
+	<!-- 관리자 펀딩 신청 내역 가져오기(등록 신청 및 수정 신청) -->
 	<select id="fundingAppList" resultType="Funding">
 		<![CDATA[
 			select * from fundingApp where applyStatus=0 or applyStatus=2
@@ -152,18 +170,12 @@
 			delete from fundingapp where fundingNo=#{applyNo}
 		]]>
 	</delete>
+
 	
-	<!-- fundingAppNo 구하기 -->
-	<select id="maxfundingAppNo" resultType="integer">
+	<!-- 펀딩신청 허락 update -->
+	<select id="updateFundingApplyEnroll" parameterType="int">
 		<![CDATA[
-			select max(fundingNo) from fundingApp
-		]]>
-	</select>
-	
-	<!-- fundingNo 구하기 -->
-	<select id="maxfundingNo" resultType="integer">
-		<![CDATA[
-			select max(fundingNo) from funding
+			update fundingapp set applyStatus=4 where fundingNo=#{fundingNo}
 		]]>
 	</select>
 	

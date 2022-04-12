@@ -127,7 +127,7 @@
                     <p>수도권 일부 지역에 한하여 요청 시 오픈갤러리 전문인력을 통한 출장 및 설치가 가능하며, 추가 비용이 발생합니다.</p>
                 </div>
                 <div id="cartBottom">
-                    <a href="/discover/"><input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="작품 더 고르기"></a>
+                    <a href="${pageContext.request.contextPath}/storelist"><input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="작품 더 고르기"></a>
                     <input type="submit" class="cartBottom-btn" id="toCheckoutBtn" value="주문결제">
                     <!-- <a href="payment.html"><input type="submit" class="cartBottom-btn" id="toCheckoutBtn" value="주문결제"></a> -->
                 </div>

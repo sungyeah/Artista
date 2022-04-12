@@ -17,7 +17,7 @@
 <section>
 
                 <div class="container2">
-                    <div class="topBtns" style="margin: 0 82.5px;">
+                    <!-- <div class="topBtns" style="margin: 0 82.5px;">
                         <ul class="topBtnsUl" id="categoryList">
                             <span>카테고리</span>
 
@@ -35,7 +35,7 @@
                             <option value="VIEW_COUNT DESC">인기순으로 정렬</option>
 
                         </select>
-                    </div>
+                    </div> -->
                     <div class="scrollList">
                         <div class="list">
                             <div class="images card_list" id="itemList" style="height: 1777.55px;margin: 0 82.5px;">
@@ -113,6 +113,13 @@
                                                         <h5>${work.workName }</h5>
                                                         <span class="artist artist3">${work.artistName }</span>
                                                        <span class="artist">￦<fmt:formatNumber value="${work.workPrice }"/></span>
+                                                       <c:choose>
+                                					   		<c:when test="${work.workForSale == 1 }">
+                                							</c:when>
+                                							<c:otherwise>
+                                                       			<div class="artwork-detail-info-status red">판매됨</div>
+                                							</c:otherwise>
+                                						</c:choose>
                                                     </div>
                                                     <div class="p_btm">
 

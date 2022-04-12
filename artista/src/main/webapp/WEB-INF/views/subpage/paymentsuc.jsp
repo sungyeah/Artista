@@ -15,6 +15,7 @@
     </style>
 </head>
 <body>
+<%@include file ="../header.jsp" %>
     <div id="contents">
         <section class="pageHead" id="checkout_head">
             <div class="pageHead-bar"></div>
@@ -79,5 +80,6 @@
         <a href="${pageContext.request.contextPath}/mypage" class="order_detail">주문내역 확인</a>
         <!-- <a href="/account/orders/6366NS823022/" class="order_detail">주문내역 확인</a> -->
     </div>
+<%@include file ="../footer.jsp" %> 
 </body>
 </html>

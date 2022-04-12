@@ -15,6 +15,7 @@
 </style>
 </head>
 <body>
+<%@include file ="../header.jsp" %>
     <div id="contents">
         <section class="pageHead" id="checkout_head">
             <div class="pageHead-bar"></div>
@@ -251,7 +252,8 @@
                             <li>
                                 <span id="artworks-totalPrice">340,000</span>원
                                 <input type="hidden" id="totalPrice" name="orderCost" value=''>
-                                <input type="hidden" id="nocheck" name="orderNo" value=''>
+                                <input type="hidden" id="nocheck" name="orderNo">
+                                <!-- <input type="hidden" id="nocheck" name="orderNo" value=''> -->
                             </li>
                         </ul>
                     </div>
@@ -305,10 +307,12 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
+    
+	
     var total = +$('#total').val();
     var ship = +$('#shippingPrice').val();
     var tPrice = total+ship;
-    $('#totalPrice').attr('value',tPrice);
+    var tp= $('#totalPrice').attr('value',tPrice);
     document.getElementById('artworks-totalPrice').innerText = tPrice.toLocaleString();
     document.getElementById('payment-totalPrice').innerText = tPrice.toLocaleString();
     console.log($('#id').val());
@@ -394,7 +398,6 @@
                     strArr.push(a.textContent)
                 }
             	$('#result').val(strArr.toString()); 
-                console.log("강사님 "+$('#result').val())
             })
 
 
@@ -426,19 +429,18 @@
         			success: function(data, textStatus){
         				$('#nocheck').attr('value',data);
         				alert($('#nocheck').val());
-        				
         			},
         			error:function(data, textStatus){
         				alert("실패");
         			}
-        		});
+        		}); 
             	
                 IMP.init('imp30479474');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
                 IMP.request_pay({// param
                     pg: "hi", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
                     pay_method: "card", //지불 방법
-                      /* merchant_uid: $('#nocheck').val(), */    //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-                    merchant_uid:38,     //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                    /* merchant_uid: $('#nocheck').val(), */    //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+                    merchant_uid:new Date().getTime(),    //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
                     name: $('#workName').val(), //결제창에 노출될 상품명
                     amount: $('#totalPrice').val(), //금액
                     buyer_email : $('#checkout-input-billing_email').val(), 
@@ -480,6 +482,6 @@
 		}
 
     </script>
-    
+<%@include file ="../footer.jsp" %>  
 </body>
 </html>
