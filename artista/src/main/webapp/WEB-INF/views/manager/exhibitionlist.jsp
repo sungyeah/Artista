@@ -121,6 +121,9 @@
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionapplylist">
                 전시 등록 신청
             </a>
+            <a class="member-delete-btn" href="${pageContext.request.contextPath}/manager/enrollexhibition">
+       		 	전시등록
+        	</a>
         </nav>
         <article class="member-body">
             <section class="member-list">

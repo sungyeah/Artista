@@ -1,9 +1,17 @@
 package com.mulcam.artista.controller;
 
+import java.io.File;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,11 +19,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dto.Artist;
@@ -65,6 +75,9 @@ public class ManagerController {
 	
 	@Autowired
 	MypageService myPageService;
+	
+	@Autowired
+	ServletContext servletContext;
 
 	/* 결제 작품 관리 */
 	@GetMapping({"", "/", "/paymentlist"})
@@ -271,6 +284,52 @@ public class ManagerController {
 			result = new ResponseEntity<Exhibition>(HttpStatus.BAD_REQUEST);
 		}
 		return result;
+	}
+	
+	@GetMapping("/enrollexhibition")
+	public String enrollExhibition() {
+		return "manager/enrollexhibition";
+	}
+	
+	@PostMapping("exhibitionEnrollComplete")
+	public String exhibitionEnrollComplete(@ModelAttribute Exhibition exhibit, 
+			@RequestParam(value="posterImgFile") MultipartFile posterImgFile, 
+			@RequestParam(value="exhibitDate") String exhibitDate, Model model) 
+	{
+		//포스터 이미지 등록
+		String path = servletContext.getRealPath("/imgupload/exhibition/");
+		String[] mtypes = posterImgFile.getContentType().split("/");
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
+		Date time = new Date();
+		String exhibitEnrollTime = simpleDate.format(time);
+		int exhibitionNo;
+		try {
+			exhibitionNo = exhibitService.maxExhibitNo();
+			File destFile = new File(path + exhibitEnrollTime +"."+ mtypes[1]);	//이미지 타입
+			posterImgFile.transferTo(destFile);
+			
+			String exhibitposterImg = exhibitEnrollTime +"."+ mtypes[1];
+			exhibit.setExhibitNo(exhibitionNo);
+			exhibit.setExhibitPoster(exhibitposterImg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String[] date = exhibitDate.split(" ~ ");
+		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(date[0]));
+		System.out.println(Timestamp.valueOf(localDateTime));
+		exhibit.setStartDate(Timestamp.valueOf(localDateTime).toString());
+		localDateTime = LocalDateTime.from(formatDateTime.parse(date[1]));
+		exhibit.setEndDate(Timestamp.valueOf(localDateTime).toString());
+		exhibit.setFundingNo(-1);
+		
+		try {
+			exhibitService.insertExhibit(exhibit);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "artistpage/succesapply";
 	}
 	
 	@GetMapping("/exhibitionapplylist")

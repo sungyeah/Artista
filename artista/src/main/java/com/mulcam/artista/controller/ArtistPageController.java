@@ -39,6 +39,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.mulcam.artista.dto.Artist;
+import com.mulcam.artista.dto.ArtistApply;
+import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.Exhibition;
 import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
@@ -86,6 +89,21 @@ public class ArtistPageController {
 	@Autowired
 	ServletContext servletContext;
 
+	@GetMapping("artistModify")
+	public String artistModify(Model model) {
+		String id=(String) session.getAttribute("id");	
+		try {
+			Artist artist = artistService.artistInfo(id);
+			List<ArtistWorld> artistworld = artistService.selectArtistWorldById(id);
+			model.addAttribute("id", id);
+			model.addAttribute("artist", artist);
+			model.addAttribute("artistworld", artistworld);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "artistpage/modify";
+	}
+	
 	/* 아티스트 첫페이지 및 일반작품 전체 보기*/
 	@GetMapping({"","/","/mywork"})
 	public String artistpageMain(Model model) {
@@ -95,6 +113,7 @@ public class ArtistPageController {
 			String artistName = artistService.getArtistName(id);
 			artistNo = artistService.getArtistNo(id);
 			model.addAttribute("artistName", artistName);
+			model.addAttribute("artistNo", artistNo);
 			List<Work> worklist = workService.getWorkByNoList(artistNo);
 			model.addAttribute("worklist", worklist);
 		} catch (Exception e1) {
