@@ -450,7 +450,7 @@
                     if (rsp.success) {
                         /* alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
                         alert(rsp.apply_num); */
-                        payment21.submit();
+                       payment21.submit();
                     } else {
                         alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
                     }

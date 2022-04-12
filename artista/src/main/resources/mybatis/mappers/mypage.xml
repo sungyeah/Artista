@@ -23,6 +23,18 @@
 			delete from order1 where orderNo=#{orderNo}
 		]]>
 	</delete>
-
+	
+	<select id="fundingList" parameterType="string" resultType="funding">
+		<![CDATA[
+			select * from funding where fundingNo=(select fundingNo from fundingspon where id=#{id})
+		]]>
+	</select>
+	
+	<select id="sponDate" parameterType="int" resultType="string">
+		<![CDATA[
+			select sponDate from fundingSpon where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	
 </mapper>
 

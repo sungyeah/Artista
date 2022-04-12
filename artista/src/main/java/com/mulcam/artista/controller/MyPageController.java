@@ -85,6 +85,8 @@ public class MyPageController {
 			List<OrderReport> orderReports = new ArrayList<OrderReport>();
 			List<Follow> follow = subPageService.followInfo(id);
 			List<FollowingInfo> followList = new ArrayList<FollowingInfo>();
+			List<Funding> fundingList = myPageService.fundingList(id);
+			List<String> dateList = new ArrayList<String>();
 			for(int i=0;i<ord.size();i++) {
 				OrderReport or = new OrderReport();
 				Order order = ord.get(i);
@@ -125,6 +127,13 @@ public class MyPageController {
 				followingInfo.setArtistNo(artistNo);
 				followList.add(followingInfo);
 			}
+			for(int i=0;i<fundingList.size();i++) {
+				int fundingNo = fundingList.get(i).getFundingNo();
+				String spondate = myPageService.sponDate(fundingNo);
+				dateList.add(spondate);
+			}
+			model.addAttribute("dateList",dateList);
+			model.addAttribute("fundingLists",fundingList);
 			model.addAttribute("orderReports", orderReports);
 			model.addAttribute("followLists",followList);
 			
