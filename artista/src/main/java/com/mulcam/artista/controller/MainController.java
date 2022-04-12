@@ -43,7 +43,7 @@ public class MainController {
 		/* Artist artist = artistservice.Artistinfo(artistNo); */
 		Artist artist = artistservice.Artistmain();
 		model.addAttribute("exhibitList", Exhibitlist);
-		model.addAttribute("status", "ing");
+		/* model.addAttribute("status", "ing"); */
 		/* model.addAttribute("artist", artist); */
 		model.addAttribute("artist", artist);
 		System.out.println(Exhibitlist);

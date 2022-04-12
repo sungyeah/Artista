@@ -44,11 +44,30 @@
     line-height: 1.32;
     color: #222;
 }
+.artwork-detail-info-status.red {
+    color: #eb5345;
+    float:right;
+}
+.artwork-detail-info-status {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 32px;
+}
+.artwork-detail-info-status::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 0px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: currentColor;
+}
     </style>
 </head>
 
 <body>
-<%-- <%@include file ="../header.jsp" %> --%>
+<%@include file ="../header.jsp" %>
     <div id="wrap">
         <div id="container">
             <style>
@@ -215,6 +234,13 @@
                             </div>
                             <div class="w50per card_rt">
                                 <div class="topInfo">
+                                <c:choose>
+                                	<c:when test="${work.workForSale == 1 }">
+                                	</c:when>
+                                	<c:otherwise>
+                                		<div class="artwork-detail-info-status red">판매된 작품</div>
+                                	</c:otherwise>
+                                </c:choose>
                                     <h3 style="margin-bottom: 25px;">${work.workName }</h3>
                                     <div style="padding-left: 60px;margin-top: 25px;margin-bottom: 25px;">
                                       <div style="display: flex;margin-bottom: 20px;text-align: start;margin-left: 20px;">
@@ -282,6 +308,8 @@
     <input type="hidden" id="workSize" name="workSize" value="${work.workSize }">
     <input type="hidden" id="workNo" name="workNo" value="${work.workNo }">
     <input type="hidden" id="workImg" name="workImg" value="${work.workImg }">
+    <input type="hidden" id="workForSale" name="workForSale" value="${work.workForSale }">
+    
         </div>
 
     </div>
@@ -298,11 +326,16 @@ var artistName = $('#artistName').val()
 var workSize = $('#workSize').val()
 var workNo = $('#workNo').val()
 var workImg = $('#workImg').val()
+var workForSale = $('#workForSale').val()
 var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistName,"workSize":workSize,"workNo":workNo,"workImg":workImg} 
 
 	$('#purchaseBtn1').click(function(){
 		if(id=='null'){
 			alert("로그인이 필요한 서비스입니다.")
+			return false;
+		}
+		if(workForSale== 2){
+			alert("판매완료된 작품입니다.")
 			return false;
 		}
 		  $.ajax({     
@@ -312,9 +345,17 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 				data:JSON.stringify(Cart),
 				success: function(data, textStatus){
 					if(data=="true"){
-						alert("이미 카트에 담긴 작품입니다.")
+						alert=confirm("이미 카트에 담긴 작품입니다. 카트로 이동하시겠습니까?")
+						if(alert==true){
+							console.log(alert);
+							location.href="../cart";
+						}
 					}else{
-						alert("카트에 작품이 담겼습니다.")
+						alert=confirm("카트에 작품이 담겼습니다. 카트로 이동하시겠습니까?")
+						if(alert==true){
+							console.log(alert);
+							location.href="../cart";
+						}
 					}
 				},
 				error:function(data, textStatus){
@@ -326,6 +367,10 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 	$('#purchaseBtn2').click(function(){
 		if(id=='null'){
 			alert("로그인이 필요한 서비스입니다.")
+			return false;
+		}
+		if(workForSale== 2){
+			alert("판매완료된 작품입니다.")
 			return false;
 		}
 		var form = document.getElementById("form2");

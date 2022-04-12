@@ -178,16 +178,17 @@ public class SubPageController {
 	@PostMapping("/storedetail/paymentsuc")
 	public String paymentsuc2(Order order,Model model) {
 		try {
+//			order.setOrderNo(orderNo_temp);
 			subPageService.insertPayment(order);
 			model.addAttribute("order",order);
-			String str = order.getCartNo();
+//			String str = order.getCartNo();
 			String workNo = order.getWorkNo();
 			String [] workNo2 = workNo.split(",");
-			String[] cartNo = str.split(",");
-			for(int i=0;i<cartNo.length;i++) {
-				int cart = Integer.parseInt(cartNo[i]);
-				subPageService.deleteCart(cart);
-			}
+//			String[] cartNo = str.split(",");
+//			for(int i=0;i<cartNo.length;i++) {
+//				int cart = Integer.parseInt(cartNo[i]);
+//				subPageService.deleteCart(cart);
+//			}
 			for(int i=0;i<workNo2.length;i++) {
 				int work = Integer.parseInt(workNo2[i]);
 				workService.updateSale(order.getOrderNo(), work);

@@ -11,5 +11,5 @@ public interface ArtistWorldService {
 	 List<ArtistWorld> getArtistWorlds(String id) throws Exception;
 	 
 	 
-	 public ArtistWorld worlds(int artistNo) throws Exception;
+	 public ArtistWorld worlds(String id) throws Exception;
 }
