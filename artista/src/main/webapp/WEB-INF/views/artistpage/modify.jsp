@@ -52,7 +52,7 @@
         </header>
 
         <article class="enroll-body">
-            <form class="enroll-modify-form" method="post" action="/mypage/artistmodify" enctype="multipart/form-data">
+            <form class="enroll-modify-form" method="post" action="/mypage/artistmodifyComplete" enctype="multipart/form-data">
                 <div class="enroll-modify-form"></div>
                 <div class="certification-container  certified">
                     <div class="enroll-modify-form-row">
@@ -150,8 +150,9 @@
                             <span class="red"> </span> 아티스트의 작업세계 
                         </div>
                         <div class="enroll-modify-form-row-value">
-                        	<span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br>
+                        	<!-- <span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br> -->
                             <div class="artistsWorld">
+                            	<input type="hidden" value="1" id="fileChange" name="fileChange2" />
 	                        	<img class="artistsWorldImg"/>
                             	<label for="artistWorld1" class="labelselect">파일 선택</label>
                             	<input type="file" id="artistWorld1" class="fileselect" name="artistWorld1" />
