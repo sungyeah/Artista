@@ -29,7 +29,7 @@ public interface FundingDAO {
 	public Funding queryFundingNo(int fundingNo);
 	public int querySponCount(int fundingNo);
 	public boolean checkAlarm(Map map);
-	public void deleteAlarm(String id);
+	public void deleteAlarm(Map map);
 	public void insertAlarm(Map map);
 	public List<Funding> queryAlarmlist(String id);
 }

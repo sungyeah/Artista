@@ -108,8 +108,11 @@ public class FundingServiceImpl implements FundingService {
 	}
 
 	@Override
-	public void deleteAlarm(String id) {
-		fundingDAO.deleteAlarm(id);
+	public void deleteAlarm(int fundingNo, String id) {
+		Map <String, Object> map = new HashMap<>();
+		map.put("fundingNo", fundingNo);
+		map.put("id", id);
+		fundingDAO.deleteAlarm(map);
 		
 	}
 

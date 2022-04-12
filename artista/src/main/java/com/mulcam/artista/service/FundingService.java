@@ -20,6 +20,6 @@ public interface FundingService {
 	public Funding queryFundingNo(int fundingNo);
 	public int querySponCount(int fundingNo);
 	boolean checkAlarm(int fundingNo, String id);
-	public void deleteAlarm(String id);
+	public void deleteAlarm(int fundingNo, String id);
 	public void insertAlarm(int fundingNo, String id);
 }

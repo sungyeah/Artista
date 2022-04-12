@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -225,7 +227,16 @@ public class SubPageServiceImpl implements SubPageService{
 	}
 
 	public List<Funding> queryAlarmlist(String id) {
-		return fundingDAO.queryAlarmlist(id);
+		List<Funding> fundingList = fundingDAO.queryAlarmlist(id);
+		List<String> result = new ArrayList<String>();
+		for (Funding f : fundingList) {
+			String title = f.getProjTitle();
+			String msg = f.getFundingMsg();
+			Date d = new Date(System.currentTimeMillis());
+			result.add(title+"이 시작하기 까지 d랑 msg 비교한 만큼 남았다.");
+		}
+		// return result;
+		return fundingList;
 	}
 	
 	public String getDeliveryStatus(String trackingNo) throws Exception {

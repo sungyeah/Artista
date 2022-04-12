@@ -33,6 +33,7 @@
 </section>
 
 <div class="container_full">
+	<h1 id="test"></h1>
             <section id="season_section">
                 <div class="season_top"><div class="season_keyword"><span id="season_tag">봄</span><span class="season_key">#생동감</span><span class="season_key">#꽃빛발</span><span class="season_key">#움트는</span></div><h4>어느새 또다시 눈부신 봄</h4></div>
                 <div id="owl_season" class="owl-carousel owl-theme" onclick="gaClickHome('season_artwork_list_190227');">
@@ -189,8 +190,9 @@
     var uid = '<%=(String)session.getAttribute("id")%>';
 		console.log(uid) ;
 		
+		
  
- 
- </script>  
+ </script>
+   
 </body>
 </html>

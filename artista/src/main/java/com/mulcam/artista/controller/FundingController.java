@@ -69,7 +69,7 @@ public class FundingController {
 		boolean checkAlarm = false;
 		try {
 			if(fundingService.checkAlarm(fundingNo, id)) {
-				fundingService.deleteAlarm(id);
+				fundingService.deleteAlarm(fundingNo, id);
 				checkAlarm = false;
 			}else {
 				fundingService.insertAlarm(fundingNo, id);

@@ -108,9 +108,9 @@
 		]]>
 	</insert>
 	
-	<delete id="deleteAlarm" parameterType="String" >
+	<delete id="deleteAlarm" parameterType="map" >
 		<![CDATA[
-			delete from alarm where id=#{id}
+			delete from alarm where id=#{id} and fundingNo=#{fundingNo}
 		]]>
 	</delete>
 	<select  id="queryAlarmlist" parameterType="string" resultType="Funding">

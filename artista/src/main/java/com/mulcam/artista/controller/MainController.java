@@ -1,6 +1,5 @@
 package com.mulcam.artista.controller;
 
-import java.io.Console;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.Exhibition;
@@ -46,6 +45,9 @@ public class MainController {
 		model.addAttribute("status", "ing");
 		/* model.addAttribute("artist", artist); */
 		model.addAttribute("artist", artist);
+		
+		
+		
 		System.out.println(Exhibitlist);
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -58,13 +60,10 @@ public class MainController {
 		return "index";
 	}
 	
-	@GetMapping("header")
-	public String header(@ModelAttribute Funding funding, Model model) {
-		String id = (String) session.getAttribute("id");
-		List<Funding> list=subPageService.queryAlarmlist(id);
-		model.addAttribute("list", list);
-		System.out.println(id);
-		return "header";
+	@ResponseBody
+	@PostMapping("alarm")
+	public List<Funding> header() {
+		return subPageService.queryAlarmlist((String) session.getAttribute("id"));
 	}
 
 	/*
