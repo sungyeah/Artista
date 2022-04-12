@@ -37,7 +37,7 @@
 				href="${pageContext.request.contextPath}/artistpage/mywork"> 전체
 				작품 </a> <a class="manager-nav-btn"
 				href="${pageContext.request.contextPath}/artistpage/myproduct">
-				판매 작품 </a> <a class="manager-nav-btn"
+				판매 작품 </a> <a class="manager-nav-btn" style="background-color: black;color: white;"
 				href="${pageContext.request.contextPath}/artistpage/myfunding">
 				나의 펀딩 </a> <a class="manager-nav-btn"
 				href="${pageContext.request.contextPath}/artistpage/myexhibition">
