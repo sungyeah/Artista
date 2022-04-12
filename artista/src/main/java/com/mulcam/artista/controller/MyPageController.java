@@ -34,6 +34,7 @@ import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.Follow;
 import com.mulcam.artista.dto.FollowingInfo;
+import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.OrderReport;
@@ -41,6 +42,7 @@ import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.ArtistWorldService;
+import com.mulcam.artista.service.FundingService;
 import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageService;
 import com.mulcam.artista.service.WorkService;
@@ -65,6 +67,9 @@ public class MyPageController {
 	ArtistService artistService;
 	
 	@Autowired
+	FundingService fundingService;
+	
+	@Autowired
 	HttpSession session;
 	
 	@Autowired
@@ -80,6 +85,8 @@ public class MyPageController {
 			List<OrderReport> orderReports = new ArrayList<OrderReport>();
 			List<Follow> follow = subPageService.followInfo(id);
 			List<FollowingInfo> followList = new ArrayList<FollowingInfo>();
+			List<Funding> fundingList = myPageService.fundingList(id);
+			List<String> dateList = new ArrayList<String>();
 			for(int i=0;i<ord.size();i++) {
 				OrderReport or = new OrderReport();
 				Order order = ord.get(i);
@@ -120,6 +127,13 @@ public class MyPageController {
 				followingInfo.setArtistNo(artistNo);
 				followList.add(followingInfo);
 			}
+			for(int i=0;i<fundingList.size();i++) {
+				int fundingNo = fundingList.get(i).getFundingNo();
+				String spondate = myPageService.sponDate(fundingNo);
+				dateList.add(spondate);
+			}
+			model.addAttribute("dateList",dateList);
+			model.addAttribute("fundingLists",fundingList);
 			model.addAttribute("orderReports", orderReports);
 			model.addAttribute("followLists",followList);
 		} catch (Exception e) {

@@ -82,8 +82,8 @@
 	</select>
 	<insert id="insertfundingspon" parameterType="map" >
 		<![CDATA[
-			insert into fundingSpon(sponsorNo, id, fundingNo, sponsorAmount, email)
-			values(null, #{id}, #{fundingNo}, #{sponsorAmount}, #{email})
+			insert into fundingSpon(sponsorNo, id, fundingNo, sponsorAmount, email, sponDate)
+			values(null, #{id}, #{fundingNo}, #{sponsorAmount}, #{email},now())
 		]]>
 	</insert>
 	<select id="querySponCount" parameterType="int" resultType="int">
