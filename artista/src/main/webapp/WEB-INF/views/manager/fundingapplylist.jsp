@@ -223,8 +223,9 @@
         </article>
     </div>
 	<%@include file ="../footer.jsp" %>
-	<script>
 	
+	
+	<script>
 	//modal창
     const applyfunding = document.getElementById("applyfunding");
     const refuseapply = document.getElementById("refuseapply");

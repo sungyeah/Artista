@@ -20,107 +20,8 @@
 </head>
 <body>
 	<%@include file="../header.jsp"%>
-	<div id="applyfunding" class="modal-overlay">
-        <div class="modal-window">
-            <header class="modal-header">
-            	<div id="apply_close" class="close-area">X</div>
-                <h2 class="modal-header-title">펀딩 신청내용</h2>
-            </header>
-            <article class="modal-body">
-                <form class="modal-modify-form" method="post">
-                    <div class="modal-modify-form-border"></div>
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 아이디
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" id="id" type="text" disabled />
-                        </div>
-                    </div>
-                    
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 아티스트 이름
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                        	<input class="modal-modify-form-input" id="artistName" type="text" disabled />
-                        </div>
-                    </div>    
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 이메일
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" id="email" type="text" disabled />
-                        </div>
-                    </div>
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 목표 금액
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" id="targetFunding" type="text" disabled />
-                        </div>
-                    </div>
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 펀딩 일정
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" id="Date" type="text" disabled />
-                        </div>
-                    </div>
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 대관장소
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" id="place" type="text" disabled />
-                        </div>
-                    </div>
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 프로젝트 제목
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" id="projTitle" type="text" disabled />
-                        </div>
-                    </div>
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 프로젝트 소개
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                        	<textarea id="projectIntro" style="width: 250px;"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 예산정보
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                            <textarea id="projectBudgetInfo" style="width: 250px;"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-modify-form-row">
-                        <div class="modal-modify-form-row-label">
-                            <span class="red">*</span> 작가소개
-                        </div>
-                        <div class="modal-modify-form-row-value">
-                            <textarea id="projectArtistInfo" style="width: 250px;"></textarea>
-                        </div>
-                    </div>        
-                     <input type="hidden" id="fundingNo" disabled/>
-                    <div class="modal-modify-form-border">
-                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <a class="yesNo-btn" id="enroll">등록</a>                    
-                            <a class="yesNo-btn" id="refusemodal">등록 거절</a>      
-                        </div>
-                    </div>
-                    </form>
-            </article>  
-        </div>
-    </div>
+	
+	
 	<div id="contents">
 		<header class="account-header">
 			<h2 class="account-header-title">작가 페이지</h2>
@@ -193,7 +94,10 @@
                             	</th>
                             	<th scope="col"">${funding.fundingDate }</th>    
                             	<th scope="col" colspan="1">
-                            		<a class="artist-detail-btn" onclick="fundingDetail('${funding.fundingNo }')">내용 상세보기</a>
+                            		<a class="artist-detail-btn" href="${pageContext.request.contextPath}/funding/fundingtmdetail?fundingNo=${funding.fundingNo }">페이지 보기</a><br><br>
+                            		<c:if test="${funding.fundingState==1}">
+                            			<a class="artist-detail-btn" href="${pageContext.request.contextPath}/artistpage/modifyfunding">수정요청</a>
+                            		</c:if>
                             	</th>                  
                            		<th scope="col" colspan="1">
                            			<c:choose>
@@ -209,63 +113,6 @@
                 </table>
             </section>
         </article>
-        
-		<div class="mypage-project bg">
-			<div class="project-list">
-				<div id="projectCardList" class="card-list">
-					<ul>
-						<c:forEach items="${list }" var="funding">
-							<li class="reward">
-								<div class="visibility-control">
-									<button type="button" class="btn-more">
-										<i class="wadizicon wa-more-vert"></i>
-									</button>
-									<button type="button" class="btn-control"
-										onclick="deletePrjt(143877)">삭제</button>
-								</div>
-								<div class="project-card-wrap">
-									<div class="project-card">
-										<div class="card-img-section">
-											<div class="image-box">
-												<em class="project-img"> <img
-													src="/funding/thumbview/${funding.thumbImg}"
-													class="image-thumb">
-												</em>
-											</div>
-
-											<c:choose>
-												<c:when test="${funding.fundingState == 1}">
-													<em class="project-type reward">예정</em>
-												</c:when>
-												<c:when test="${funding.fundingState==2}">
-													<em class="project-type reward">진행</em>
-												</c:when>
-												<c:otherwise>
-													<em class="project-type reward">종료</em>
-												</c:otherwise>
-											</c:choose>
-										</div>
-										<div class="card-info-section making-project">
-											<h4>${funding.projTitle }</h4>
-											<h5>${funding.fundingDate }</h5>
-											<p class="status confirm">
-												<i></i>으아아앙악
-											</p>
-											<p></p>
-										</div>
-										<div class="btn-wrap">
-											<button
-												onClick="location.href=${pageContext.request.contextPath}/artistpage/modifyfunding"
-												class="btn-line div1">펀딩 내용 수정 요청</button>
-										</div>
-									</div>
-								</div>
-							</li>
-						</c:forEach>
-					</ul>
-				</div>
-			</div>
-		</div>
 	</div>
 	<script>
 	
@@ -293,14 +140,14 @@
     	});
     });
     
-    function fundingDetail(applyNo){
+    function fundingDetail(fundingNo){
     	applyfunding.style.display = "flex";
 		$.ajax({
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/manager/fundingapplydetail",
-			data:{"applyNo":applyNo},
+			url:"http://localhost:8090/artistpage/fundingdetail",
+			data:{"fundingNo":fundingNo},
 			success: function(data, textStatus){ 
 			 	var fundingData = JSON.parse(data);
 			 	$("#id").attr("value", fundingData.fundingapply.id);
@@ -355,7 +202,7 @@
 			}
 		});
 	}
-
+	</script>
 
 </body>
 </html>

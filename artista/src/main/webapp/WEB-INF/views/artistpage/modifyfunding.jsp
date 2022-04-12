@@ -17,12 +17,13 @@
 
   </style>
 <body>
+	
           <form method="post" action="modifyfunding">
     <div id="contents">
         
         <header class="account-header">
-            <h2 class="account-header-title">펀딩 신청</h2>
-            <div class="account-header-description">펀딩 신청해 보자고</div>
+            <h2 class="account-header-title">펀딩재용 수정요청</h2>
+            <div class="account-header-description">수정 내용을 입력하세요.</div>
         </header>
         <article class="account-body">
 
