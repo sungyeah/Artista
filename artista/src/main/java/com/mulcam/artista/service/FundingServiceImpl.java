@@ -180,4 +180,10 @@ public class FundingServiceImpl implements FundingService {
 	public void updateFundingApplyEnroll(int fundingNo) throws Exception {
 		fundingDAO.updateFundingApplyEnroll(fundingNo);
 	}
+
+	@Override
+	public List<Funding> querysponlist(String id) {
+		// TODO Auto-generated method stub
+		return fundingDAO.querysponlist(id);
+	}
 }
