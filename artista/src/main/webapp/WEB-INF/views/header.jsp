@@ -44,9 +44,15 @@
     
 }
 
-.box {
+.box1 {
       display: none;
       padding-bottom: 30px;
+	  z-index: 300;
+	  position:absolute;
+	  right:245px;
+	  top:95px;
+      height: 2px;
+      font-size: 12px;
     }
 
 
@@ -86,7 +92,11 @@
 	 style="width: 25px; height: 25px; width: auto; position: absolute; top: 48px; right: 330px; opacity:0.6;"></span>
 	 
 	 <c:forEach items="${list}" var="alarm">
-	 	<li><div style="z-index: auto; position:absolute;" class="box">${alarm.projTitle} ${alarm.fundingMsg}</div></li>
+	 	<li>
+	 	<div>
+	 		<div class="box1">${alarm.projTitle}${alarm.fundingMsg}</div>
+	 	</div>
+	 	</li>
 	 </c:forEach>
       <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="width: 25px; height: 25px; position: absolute; top: 48px; right: 375px;  opacity:0.6;"></a>
     <li class="navi2"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
@@ -104,7 +114,7 @@
 <script>
 	$("#toggleBtn").on("click", function(){
 	    //$(".box").toggle(1000);
-		 $(".box").fadeToggle(1000);
+		 $(".box1").fadeToggle(1000);
 		  //$(".box").slideToggle(1000);
 	 });
 </script>
