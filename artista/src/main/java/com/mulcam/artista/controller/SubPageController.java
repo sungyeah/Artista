@@ -178,6 +178,7 @@ public class SubPageController {
 	@PostMapping("/storedetail/paymentsuc")
 	public String paymentsuc2(Order order,Model model) {
 		try {
+//			order.setOrderNo(orderNo_temp);
 			subPageService.insertPayment(order);
 			model.addAttribute("order",order);
 //			String str = order.getCartNo();
