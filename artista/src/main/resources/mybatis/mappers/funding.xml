@@ -59,7 +59,7 @@
 	<insert id="insertfunding" parameterType="funding" >
 		<![CDATA[
 			insert into funding(fundingNo, artistNo, artistName, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, sumAmount, fundingState, getplace, getplace2)
-			values(#{fundingNo}, (select artistNo from artist where id=#{id}), (select artistName from artist where id=#{id}), #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding},
+			values(#{fundingNo}, #{artistNo}, #{artistName}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding},
 			#{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 0, (case when timestampdiff(day, now(), startDate)>0 then 1 else 
 		(case when timestampdiff(day, now(), endDate)>0 then 2 else 3 end) end), #{getplace}, #{getplace2}); 
 
@@ -100,8 +100,8 @@
 	<!-- 펀딩 후원 insert -->
 	<insert id="insertfundingspon" parameterType="map" >
 		<![CDATA[
-			insert into fundingSpon(sponsorNo, id, fundingNo, sponsorAmount, email)
-			values(null, #{id}, #{fundingNo}, #{sponsorAmount}, #{email})
+			insert into fundingSpon(sponsorNo, id, fundingNo, sponsorAmount, email, sponDate)
+			values(null, #{id}, #{fundingNo}, #{sponsorAmount}, #{email}, sysdate())
 		]]>
 	</insert>
 	<select id="querySponCount" parameterType="int" resultType="int">
@@ -240,13 +240,15 @@ create table funding(
 
 펀딩 결제
 create table fundingSpon(
-	sponsorNo int(10) not null auto_increment,
+	sponsorNo int(10) auto_increment not null,
     id varchar(100) not null,
     fundingNo int(10) not null,
     sponsorAmount int(10) not null,
     email varchar(100) not null,
+    sponDate Datetime,
     primary key(sponsorNo)
 );
+
 
 알람
 create table alarm(

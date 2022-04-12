@@ -32,7 +32,7 @@ public class Funding {
 		String email;
 		MultipartFile thumbFile;
 		String fundingMsg;
-		
+		Date sponDate;
 		public Funding() {}
 		public Funding(int fundingNo, int artistNo, String artistName, String projTitle, String projIntro, String projBudget, String projArtist, 
 				int targetFunding, String fundingDate, String startDate, String endDate, String thumbImg, String getplace, String getplace2) {
@@ -52,6 +52,7 @@ public class Funding {
 			this.getplace2 = getplace2;
 		}
 		
+	
 		public String getStartDate() {
 			return startDate;
 		}
@@ -209,6 +210,13 @@ public class Funding {
 
 		
 		
+		
+		public Date getSponDate() {
+			return sponDate;
+		}
+		public void setSponDate(Date sponDate) {
+			this.sponDate = sponDate;
+		}
 		public String getFundingMsg() {
 			return fundingMsg;
 		}

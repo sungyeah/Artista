@@ -34,6 +34,7 @@ import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.Follow;
 import com.mulcam.artista.dto.FollowingInfo;
+import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.OrderReport;
@@ -41,6 +42,7 @@ import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.ArtistWorldService;
+import com.mulcam.artista.service.FundingService;
 import com.mulcam.artista.service.MypageService;
 import com.mulcam.artista.service.SubPageService;
 import com.mulcam.artista.service.WorkService;
@@ -63,6 +65,9 @@ public class MyPageController {
 	
 	@Autowired
 	ArtistService artistService;
+	
+	@Autowired
+	FundingService fundingService;
 	
 	@Autowired
 	HttpSession session;
@@ -122,6 +127,10 @@ public class MyPageController {
 			}
 			model.addAttribute("orderReports", orderReports);
 			model.addAttribute("followLists",followList);
+			
+			List<Funding> fundinglist=fundingService.queryMyFunding(id);
+			model.addAttribute("fundinglist", fundinglist);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

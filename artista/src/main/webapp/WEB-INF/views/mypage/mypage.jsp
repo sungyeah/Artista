@@ -140,17 +140,33 @@
                     <thead>
                     <tr>
                         <th scope="col" class="time-code">펀딩번호</th>
-                        <th scope="col" class="type">펀딩작품</th>
+                        <th scope="col" class="type">펀딩제목</th>
                         <th scope="col" class="artworks">후원날짜</th>
                         <th scope="col" class="status">현황</th>
                     </tr>
                     </thead>
                     <tbody>
-                    
-                        <tr>
-                            <td class="empty" colspan="6">표시할 내역이 없습니다.</td>
+	                     <c:choose> 
+                    		<c:when test='${empty fundinglist}'>
+                         <tr>
+                            <td class="empty" colspan="4">표시할 내역이 없습니다.</td>
                         </tr>
-                    
+                        	</c:when>
+                        	<c:otherwise> 
+                        <c:forEach items="${fundinglist}" var="fundinglist">
+                        <tr>
+                        	<td class="time-code" style="font-weight:bold;"><a href="paymentinfo/${fundinglist.fundingNo }">${fundinglist.fundingNo }</a></td>
+                        	<td class="start-date">${fundinglist.projTitle}</td>
+                        	<td class="start-date">${fundinglist.sponDate}</td>
+                        	<td class="start-date" style="font-weight: bold;"><fmt:formatNumber value="${fundinglist.sponsorAmount }"/>원</td>
+                        	<c:forEach items="${fundinglist}" var="fundinglist">
+                        		<td class="status">${fundinglist.orderStatus }<br></td>
+                        	</c:forEach>
+                        	
+                        </tr>
+                        </c:forEach>
+                         </c:otherwise>
+                    	</c:choose>
                     </tbody>
                 </table>
                 <!-- <div class="m-account-table">

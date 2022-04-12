@@ -25,7 +25,7 @@
                     
                         <div class="checkout-item">
                             <div class="checkout-img">
-                                <img src="https://og-data.s3.amazonaws.com/media/artworks/h_fixed/A0365/A0365-0017.jpg">
+                                <img src="/funding/thumbview/${funding.thumbImg}" >
                             </div>
                             <ul class="checkout-text">
                                 <li class="code">${funding.projTitle }</li>
