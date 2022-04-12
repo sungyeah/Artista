@@ -581,21 +581,19 @@ public class ArtistPageController {
 
 	@PostMapping("applyfunding")
 	public String applyfunding1(@ModelAttribute Funding funding, Model model) {
-		
 		String id=(String) session.getAttribute("id");
-//			 File destFile = new File(path+file.getOriginalFilename());
+		// 펀딩 기간
 		String[] fundingDate = funding.getFundingDate().split(" ~ ");
-		System.out.println(fundingDate[0]);
-		System.out.println(fundingDate[1]);
 		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
 		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
-		System.out.println(Timestamp.valueOf(localDateTime));
 		funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
 		localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
-		System.out.println(Timestamp.valueOf(localDateTime));
 		funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
+		
 		try {
+			// 펀딩 대표 이미지 설졍
 			MultipartFile file = funding.getThumbFile();
+			//File destFile = new File(path+file.getOriginalFilename());
 			if(file!=null && !file.isEmpty()) {
 				String path = servletContext.getRealPath("/fundingApp/");
 				String filename = file.getOriginalFilename();
@@ -603,9 +601,11 @@ public class ArtistPageController {
 				file.transferTo(destFile);
 				funding.setThumbImg(filename);
 			}
+			//fundingAppNo 구하기 
+			int fundingAppNo = fundingService.getfundingAppNo();
 			artistPageService.insertApply(funding);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 		return "artistpage/succesapply";
 	}
@@ -633,12 +633,12 @@ public class ArtistPageController {
 	
 	
 	@GetMapping("modifyfunding")
-	public String modifyfunding(Model model) {
+	public String modifyfunding(@RequestParam(value="fundingNo") int fundingNo, Model model) {
 		String id=(String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
 			model.addAttribute("mem", mem);
-			Funding funding = fundingService.queryFunding(id);
+			Funding funding = fundingService.queryFundingNo(fundingNo);
 			model.addAttribute("funding", funding);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -646,26 +646,44 @@ public class ArtistPageController {
 		return "artistpage/modifyfunding";
 	}
 	
-	
 	@RequestMapping(value="modifyfunding", method= {RequestMethod.POST})
-	public String modifyfunding2(@ModelAttribute Funding funding) {
-		String path = servletContext.getRealPath("/fundingApp/");
+	public String modifyfunding2(@ModelAttribute Funding funding,
+			@RequestParam(value="thumbFile") MultipartFile thumbFile,
+			@RequestParam(value="fileChange") String fileChange) {
+		
 		String id=(String) session.getAttribute("id");
 		funding.setId(id);
+		funding.setApplyStatus(2);
+		
+		Funding originFunding = fundingService.queryFundingNo(funding.getFundingNo());
+		
 		String[] fundingDate = funding.getFundingDate().split(" ~ ");
-		System.out.println(fundingDate[0]);
-		System.out.println(fundingDate[1]);
 		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
 		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[0]));
-		System.out.println(Timestamp.valueOf(localDateTime));
 		funding.setStartDate(Timestamp.valueOf(localDateTime).toString());
 		localDateTime = LocalDateTime.from(formatDateTime.parse(fundingDate[1]));
-		System.out.println(Timestamp.valueOf(localDateTime));
 		funding.setEndDate(Timestamp.valueOf(localDateTime).toString());
-		System.out.println(id);
+		
+		if(fileChange.equals("0")) {
+			try {
+				MultipartFile file = funding.getThumbFile();
+				if(file!=null && !file.isEmpty()) {
+					String path = servletContext.getRealPath("/fundingApp/");
+					String filename = file.getOriginalFilename();
+					File destFile = new File(path+filename);
+					file.transferTo(destFile);
+					funding.setThumbImg(filename);
+				}
+				artistPageService.insertApply(funding);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			funding.setThumbImg(originFunding.getThumbImg());
+		}
+		
 		try {			
-			System.out.println(funding.getId());
-			artistPageService.insertupdate(funding);				
+			artistPageService.modifyApply(funding);				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

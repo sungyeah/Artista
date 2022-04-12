@@ -96,12 +96,12 @@
                             	<th scope="col" colspan="1">
                             		<a class="artist-detail-btn" href="${pageContext.request.contextPath}/funding/fundingtmdetail?fundingNo=${funding.fundingNo }">페이지 보기</a><br><br>
                             		<c:if test="${funding.fundingState==1}">
-                            			<a class="artist-detail-btn" href="${pageContext.request.contextPath}/artistpage/modifyfunding">수정요청</a>
+                            			<a class="artist-detail-btn" href="${pageContext.request.contextPath}/artistpage/modifyfunding?fundingNo=${funding.fundingNo }">수정요청</a>
                             		</c:if>
                             	</th>                  
                            		<th scope="col" colspan="1">
                            			<c:choose>
-									<c:when test="${funding.fundingState==1}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">알람 신청내역</a></c:when>
+									<c:when test="${funding.fundingState==1}"></c:when>
 									<c:when test="${funding.fundingState==2}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">스폰서 보기</a></c:when>
 									<c:otherwise><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">결과보기</a></c:otherwise>
 									</c:choose></th>

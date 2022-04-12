@@ -198,23 +198,17 @@
                             	<th scope="col">${funding.targetFunding }</th>
                             	<th scope="col">${funding.getplace } </th> 
                             	<th scope="col" class="applyState">
-                            		<c:if test="${funding.applyStatus eq 0}">신청 요청</c:if>
-                            		<c:if test="${funding.applyStatus eq 1}">신청 거절</c:if>
-                            		<c:if test="${funding.applyStatus eq 2}">신청 완료</c:if>
-                            		<c:if test="${funding.applyStatus eq 3}">수정 요청</c:if>
-                            		<c:if test="${funding.applyStatus eq 4}">수정 거절</c:if>
-                            		<c:if test="${funding.applyStatus eq 5}">수정 완료</c:if>
+                            		<c:if test="${funding.applyStatus eq 0}">등록 검토중</c:if>
+                            		<c:if test="${funding.applyStatus eq 1}">등록 거절</c:if>
+                            		<c:if test="${funding.applyStatus eq 2}">수정 검토중</c:if>
+                            		<c:if test="${funding.applyStatus eq 3}">수정 거절</c:if>
                             	</th>
                             	<th scope="col">
                            			<a class="artist-detail-btn" onclick="fundingDetail('${funding.fundingNo }')">신청 상세보기</a>
                             	</th>    
                            		<th scope="col">
-                           			<c:if test="${funding.applyStatus eq 0}"><a class="artist-detail-btn" onclick="fundingDetail('${funding.fundingNo }')">신청 상세보기</a></c:if>
-                            		<c:if test="${funding.applyStatus eq 1}"><a class="artist-detail-btn" onclick="applyDetail('${funding.fundingNo }')">거절 사유</a></c:if>
-                            		<c:if test="${funding.applyStatus eq 2}">신청 완료</c:if>
-                            		<c:if test="${funding.applyStatus eq 3}"><a class="artist-detail-btn" onclick="fundingDetail('${funding.fundingNo }')">신청 상세보기</a></c:if>
-                            		<c:if test="${funding.applyStatus eq 4}"><a class="artist-detail-btn" onclick="applyDetail('${funding.fundingNo }')">거절 사유</a></c:if>
-                            		<c:if test="${funding.applyStatus eq 5}">수정 완료</c:if>
+                           			<c:if test="${funding.applyStatus eq 1}"><a class="artist-detail-btn" onclick="applyDetail('${funding.fundingNo }')">거절 사유</a></c:if>
+                            		<c:if test="${funding.applyStatus eq 3}"><a class="artist-detail-btn" onclick="applyDetail('${funding.fundingNo }')">거절 사유</a></c:if>
                             	</th>
                            		</tr>
                         	</c:forEach>

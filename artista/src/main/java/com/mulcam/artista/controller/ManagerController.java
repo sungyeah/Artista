@@ -278,9 +278,9 @@ public class ManagerController {
 			Funding funding = new Funding(fundingService.getfundingNo(), artist.getArtistNo(), artist.getArtistName(), fundingapply.getProjTitle(),
 					fundingapply.getProjIntro(), fundingapply.getProjBudget(), fundingapply.getProjArtist(), fundingapply.getTargetFunding(),fundingapply.getFundingDate(), fundingapply.getStartDate(), fundingapply.getEndDate(),
 					fundingapply.getThumbImg(), fundingapply.getGetplace(), fundingapply.getGetplace2());
-			
+			System.out.println(fundingapply.getGetplace2());
 			fundingService.insertfunding(funding);
-			fundingService.deleteFundingApply(fundingNo);
+			//fundingService.deleteFundingApply(fundingNo);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -16,7 +16,7 @@ public interface FundingDAO {
 	public List<Funding> queryMyFunding(String id);
 	public List<Funding> queryappfunding(String id);
 	public void updatefundingapp(Funding funding);
-	public void insertupdate(Funding funding);
+	public void modifyApply(Funding funding);
 	public void updateapplyStatus(Funding funding);
 	public void insertfunding(Funding funding); //펀딩 등록
 	public List<Funding> queryuc(Funding funding);
