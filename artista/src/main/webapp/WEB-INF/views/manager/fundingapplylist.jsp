@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<link rel="stylesheet" href="../css/mypage.css">
 <link rel="stylesheet" href="../css/applymodal.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script	src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
@@ -18,18 +20,16 @@
         <div class="modal-window">
             <header class="modal-header">
             	<div id="apply_close" class="close-area">X</div>
-                <h2 class="modal-header-title">펀딩 신청</h2>
+                <h2 class="modal-header-title">펀딩 신청내용</h2>
             </header>
             <article class="modal-body">
-                <form class="modal-modify-form" method="post">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="8OgojRYOprkIqojoq6rJDIRZ5GySLqG97ZObqNAuZ7hU3OWjqtvuReHD9X6DBckA">
                     <div class="modal-modify-form-border"></div>
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
                             <span class="red">*</span> 아이디
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="id" type="text" disabled />
                         </div>
                     </div>
                     
@@ -38,7 +38,7 @@
                             <span class="red">*</span> 아티스트 이름
                         </div>
                         <div class="modal-modify-form-row-value">
-                        	<input class="modal-modify-form-input" type="text" disabled />
+                        	<input class="modal-modify-form-input" id="artistName" type="text" disabled />
                         </div>
                     </div>    
                     <div class="modal-modify-form-row">
@@ -46,7 +46,7 @@
                             <span class="red">*</span> 이메일
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="email" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -54,7 +54,7 @@
                             <span class="red">*</span> 목표 금액
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="targetFunding" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -62,7 +62,7 @@
                             <span class="red">*</span> 펀딩 일정
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" style="width:140px;" type="text" disabled /> - <input class="modal-modify-form-input" style="width:140px;" type="text" disabled />
+                            <input class="modal-modify-form-input" id="Date" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -70,7 +70,7 @@
                             <span class="red">*</span> 대관장소
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="place" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -78,7 +78,7 @@
                             <span class="red">*</span> 프로젝트 제목
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <input class="modal-modify-form-input" type="text" disabled />
+                            <input class="modal-modify-form-input" id="projTitle" type="text" disabled />
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -86,8 +86,7 @@
                             <span class="red">*</span> 프로젝트 소개
                         </div>
                         <div class="modal-modify-form-row-value">
-                        	<!-- ckeditor -->
-                            <textarea id="projectIntro" style="width: 250px;;"></textarea>
+                        	<textarea id="projectIntro" style="width: 250px;"></textarea>
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -95,8 +94,7 @@
                             <span class="red">*</span> 예산정보
                         </div>
                         <div class="modal-modify-form-row-value">
-                        	<!-- ckeditor -->
-                            <textarea id="projectBudgetInfo" style="width: 250px;;"></textarea>
+                            <textarea id="projectBudgetInfo" style="width: 250px;"></textarea>
                         </div>
                     </div>
                     <div class="modal-modify-form-row">
@@ -104,17 +102,16 @@
                             <span class="red">*</span> 작가소개
                         </div>
                         <div class="modal-modify-form-row-value">
-                        	<!-- ckeditor -->
-                            <textarea id="projectArtistInfo" style="width: 250px;;"></textarea>
+                            <textarea id="projectArtistInfo" style="width: 250px;"></textarea>
                         </div>
                     </div>        
+                     <input type="hidden" id="fundingNo" disabled/>
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                             <a class="yesNo-btn" id="enroll">등록</a>                    
                             <a class="yesNo-btn" id="refusemodal">등록 거절</a>      
                         </div>
                     </div>
-                    </form>
             </article>  
         </div>
     </div>
@@ -126,8 +123,6 @@
                 <h4 class="modal-header-title">거절 사유</h4>
             </header>
             <article class="modal-body">
-                <form class="modal-modify-form" method="post">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="8OgojRYOprkIqojoq6rJDIRZ5GySLqG97ZObqNAuZ7hU3OWjqtvuReHD9X6DBckA">
                     <div class="modal-modify-form-border"></div>
                         
                     <div class="modal-modify-form-row">
@@ -135,16 +130,15 @@
                             <span class="red">*</span> 거절사유
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <textarea class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;"></textarea>
+                            <textarea class="modal-modify-form-input" id="refusedContents" style="width:300px; height: 120px; resize: none;"></textarea>
                         </div>
                     </div>                                
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <a class="yesNo-btn" id="refuse">거절</a>                    
-                            <a class="yesNo-btn" id="cancel">취소</a>      
+                            <button class="yesNo-btn" id="refuse" type="submit">등록 거절</button>
+                    		<button class="yesNo-btn" id="refuseenroll" type="reset">취소</button>
                         </div>
                     </div>
-                    </form>
             </article>  
         </div>
     </div>
@@ -197,33 +191,33 @@
                     <tr>
                         <th scope="col">펀딩 신청번호</th>
                         <th scope="col">프로젝트 제목</th>
-                        <th scope="col">아티스트 이름</th>
+                        <th scope="col">아티스트 번호</th>
                         <th scope="col">목표금액</th>
                         <th scope="col">대관장소</th>
                         <th scope="col">신청상태</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="col" class="fundingNo">펀딩 신청번호</th>
-                        <th scope="col" class="projTitle">프로젝트 제목</th>
-                        <th scope="col" class="artistName">아티스트 이름</th>
-                        <th scope="col" class="targetFunding">목표금액</th>
-                        <th scope="col" class="getplace">대관장소</th>
-                        <th scope="col" class="applyStatus">신청상태</th>
-                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
-                    </tr>
-                    <tr>
-                        <th scope="col" class="fundingNo">펀딩 신청번호</th>
-                        <th scope="col" class="projTitle">프로젝트 제목</th>
-                        <th scope="col" class="artistName">아티스트 이름</th>
-                        <th scope="col" class="targetFunding">목표금액</th>
-                        <th scope="col" class="getplace">대관장소</th>
-                        <th scope="col" class="applyStatus">신청상태</th>
-                        <th scope="col"><a class="artist-detail-btn">상세보기</a></th>
-                    </tr>
-                    </tbody>
+                    <c:choose>
+                    	<c:when test="${fundingappList!=null }">
+                    	<tbody>
+                    		<c:forEach items="${fundingappList }" var="fundingapply">        
+                    			<tr>
+                            	<th scope="col">${fundingapply.fundingNo }</th>
+                            	<th scope="col">${fundingapply.projTitle }</th>
+                            	<th scope="col">${fundingapply.artistNo }</th>
+                            	<th scope="col">${fundingapply.targetFunding }</th>
+                            	<th scope="col">${fundingapply.getplace } </th> 
+                            	<th scope="col" class="applyState">
+                            		<c:if test="${fundingapply.applyStatus eq 0}">등록 요청</c:if>
+                            		<c:if test="${fundingapply.applyStatus eq 2}">수정 요청</c:if>
+                            	</th>    
+                           		<th scope="col"><a class="artist-detail-btn" onclick="applyDetail('${fundingapply.fundingNo }')">신청 상세보기</a></th>
+                        		</tr>
+                        	</c:forEach>
+                        </tbody>
+                    	</c:when>
+                    </c:choose>
                 </table>
             </section>
         </article>
@@ -255,8 +249,108 @@
     	});
     });
     
+    function applyDetail(applyNo){
+    	applyfunding.style.display = "flex";
+		$.ajax({
+			type:"post",
+			dataType:"text",
+			async: false,
+			url:"http://localhost:8090/manager/fundingapplydetail",
+			data:{"applyNo":applyNo},
+			success: function(data, textStatus){ 
+			 	var fundingData = JSON.parse(data);
+			 	$("#id").attr("value", fundingData.fundingapply.id);
+			 	$('#artistName').attr("value", fundingData.artist.artistName);
+			 	$('#email').attr("value", fundingData.email);
+ 			 	$("#targetFunding").attr("value", fundingData.fundingapply.targetFunding);
+ 			 	$("#Date").attr("value", fundingData.fundingapply.fundingDate);
+ 			 	$("#place").attr("value", fundingData.fundingapply.getplace + " " + fundingData.fundingapply.getplace2);
+ 			 	$("#projTitle").attr("value", fundingData.fundingapply.projTitle);
+ 			 	$("#fundingNo").attr("value", fundingData.fundingapply.fundingNo);
+ 			 	
+ 			 	ClassicEditor.create(document.querySelector("#projectIntro"))
+ 		    	.then(editor=>{
+ 		    		window.editor = editor;
+ 		    	    editor.isReadOnly = true;
+ 		    	    const toolbarElement = editor.ui.view.toolbar.element;
+ 		    	    toolbarElement.style.display = 'none';
+ 		        	editor.setData(fundingData.fundingapply.projIntro);
+ 		        })
+ 			    .catch((error) => {
+ 		    	   	console.error(error);
+ 			    });
+ 		    	ClassicEditor.create(document.querySelector("#projectBudgetInfo"))
+ 		    	.then(editor=>{
+ 		    		window.editor = editor;
+ 		    	    editor.isReadOnly = true;
+ 		    	    const toolbarElement = editor.ui.view.toolbar.element;
+ 		    	    toolbarElement.style.display = 'none';
+ 		        	editor.setData(fundingData.fundingapply.projBudget);
+ 		        })
+ 			    .catch((error) => {
+ 		    	   	console.error(error);
+ 			    });
+ 		    	ClassicEditor.create(document.querySelector("#projectArtistInfo"))
+ 		    	.then(editor=>{
+ 		    		window.editor = editor;
+ 		    	    editor.isReadOnly = true;
+ 		    	    const toolbarElement = editor.ui.view.toolbar.element;
+ 		    	    toolbarElement.style.display = 'none';
+ 		        	editor.setData(fundingData.fundingapply.projArtist);
+ 		        })
+ 			    .catch((error) => {
+ 		    	   	console.error(error);
+ 			    });
+ 			 	
+ 			 	//$('#email').attr("src", "/artistpage/posterImg/"+exhibitData.exhibitPoster);
+ 			 	//$("#reserveLink").attr("value", exhibitData.reserveLink);
+			},
+			error:function(data, textStatus){
+				alert("실패");
+				alert(applyNo);
+			}
+		});
+	}
+    
+    $(function(){
+    	$(document).on('click', '#enroll', function(e){
+    		$.ajax({
+    			type:"post",
+    			async: false,
+    			url:"http://localhost:8090/manager/fundingapplysuccess",
+    			data:{"applyNo":$('#fundingNo').val()},
+    			dataType:"text",
+    			success: function(data, textStatus){ 
+    				alert("펀딩 등록이 성공했습니다");
+    				location.reload();
+    			},
+    			error:function(data, textStatus){
+    				alert("펀딩 등록이 실패했습니다.");
+    			}
+    		});
+    	});
+    	
+    	$(document).on('click', '#refuse', function(e){
+    		$.ajax({
+    			type:"post",
+    			dataType:"text",
+    			async: false,
+    			url:"http://localhost:8090/manager/fundingapplyfail",
+    			data:{"applyNo":$('#fundingNo').val(), "refusedContents": $("#refusedContents").val()},
+    			success: function(data, textStatus){ 
+    				location.reload();
+    			},
+    			error:function(data, textStatus){
+    				alert("펀딩 등록이 실패했습니다.");
+    			}
+    		});
+    	});
+    	
+    });   
+    
     //ckeditor
     $(function(){
+    	/*
     	ClassicEditor.create(document.querySelector("#projectIntro"))
     	.then(editor=>{
     		window.editor = editor;
@@ -289,8 +383,9 @@
         })
 	    .catch((error) => {
     	   	console.error(error);
-	    });
+	    });*/
     });
+    
     
     
     </script>

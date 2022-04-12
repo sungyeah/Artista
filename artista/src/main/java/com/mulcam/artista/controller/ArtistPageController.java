@@ -50,6 +50,7 @@ import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.Work;
 import com.mulcam.artista.dto.WorkApply;
 import com.mulcam.artista.dto.WorkReport;
+import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistPageService;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.ExhibitService;
@@ -97,13 +98,78 @@ public class ArtistPageController {
 			List<ArtistWorld> artistworld = artistService.selectArtistWorldById(id);
 			model.addAttribute("id", id);
 			model.addAttribute("artist", artist);
-			model.addAttribute("artistworld", artistworld);
+			//model.addAttribute("artistworld", artistworld[0]);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "artistpage/modify";
 	}
 	
+	/*
+	@PostMapping("artistmodifyComplete")
+	public String artistmodifyComplete(@ModelAttribute ArtistApply artistapply, 
+			@RequestParam(value="posterImgFile") MultipartFile posterImgFile, 
+			@RequestParam(value="fileChange") String file,
+			@RequestParam(value="fileChange2") String file2) 
+	{
+		String id=(String) session.getAttribute("id");	
+		Integer artistNo = null;
+		String workImg = null;
+		int exhibitapplyNo;
+		
+		try {
+			artistNo = artistService.getArtistNo(id);
+			artistapply.setArtistNo(artistNo);
+			//artistapplyNo = ArtistApplyService.mas
+			//exhibitapply.setExhibitapplyNo(exhibitapplyNo);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		};
+		
+		//포스터 이미지 등록
+		if(file.equals("0")) {
+			String path = servletContext.getRealPath("/imgupload/exhibition/");
+			String[] mtypes = posterImgFile.getContentType().split("/");
+			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
+			Date time = new Date();
+			String exhibitEnrollTime = simpleDate.format(time);
+			
+			try {
+				File destFile = new File(path + exhibitEnrollTime +"."+ mtypes[1]);	//이미지 타입
+				posterImgFile.transferTo(destFile);
+				
+				String exhibitposterImg = exhibitEnrollTime +"."+ mtypes[1];
+				exhibitapply.setExhibitPoster(exhibitposterImg);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else {
+			Exhibition exhibit;
+			try {
+				exhibit = exhibitService.selectExhibit(exhibitNo);
+				exhibitapply.setExhibitPoster(exhibit.getExhibitPoster());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		String[] exhibitDate = exhibitapply.getExhibitDate().split(" ~ ");
+		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(exhibitDate[0]));
+		exhibitapply.setStartDate(Timestamp.valueOf(localDateTime).toString());
+		localDateTime = LocalDateTime.from(formatDateTime.parse(exhibitDate[1]));
+		exhibitapply.setEndDate(Timestamp.valueOf(localDateTime).toString());
+		exhibitapply.setApplyStatus(2); //수정요청
+		
+		try {
+			exhibitService.insertExhibitApply(exhibitapply);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "artistpage/succesapply";
+	}
+	*/
 	/* 아티스트 첫페이지 및 일반작품 전체 보기*/
 	@GetMapping({"","/","/mywork"})
 	public String artistpageMain(Model model) {
