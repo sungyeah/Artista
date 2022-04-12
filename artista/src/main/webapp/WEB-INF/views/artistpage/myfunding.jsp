@@ -94,9 +94,9 @@
                             	</th>
                             	<th scope="col"">${funding.fundingDate }</th>    
                             	<th scope="col" colspan="1">
-                            		<a class="artist-detail-btn" href="${pageContext.request.contextPath}/funding/fundingtmdetail?fundingNo=${funding.fundingNo }">페이지 보기</a><br><br>
+                            		<a class="artist-detail-btn" href="${pageContext.request.contextPath}/funding/fundingtmdetail?fundingNo=${funding.fundingNo }">페이지 보기</a>
                             		<c:if test="${funding.fundingState==1}">
-                            			<a class="artist-detail-btn" href="${pageContext.request.contextPath}/artistpage/modifyfunding?fundingNo=${funding.fundingNo }">수정요청</a>
+                            			<br><br><a class="artist-detail-btn" href="${pageContext.request.contextPath}/artistpage/modifyfunding?fundingNo=${funding.fundingNo }">수정요청</a>
                             		</c:if>
                             	</th>                  
                            		<th scope="col" colspan="1">
