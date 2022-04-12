@@ -113,23 +113,29 @@
         </div>
     </div>
     
-    <div id="refuseapply" class="modal-overlay">
+    <div id="refuseReason" class="modal-overlay">
         <div class="refusemodal-window">
             <header class="modal-header">
-            	<div id="refuse_close" class="close-area">X</div>
-                <h4 class="modal-header-title">거절 사유</h4>
+            	<div class="close-area">X</div>
+                <h2 class="modal-header-title">거절 사유</h2>
             </header>
             <article class="modal-body">
+                <form class="modal-modify-form" method="post">
                     <div class="modal-modify-form-border"></div>
-                        
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">
                             <span class="red">*</span> 거절사유
                         </div>
                         <div class="modal-modify-form-row-value">
-                            <textarea class="modal-modify-form-input" id="refusedContents" style="width:300px; height: 120px; resize: none;"></textarea>
+                            <textarea id="refusedContents" class="modal-modify-form-input" style="width:300px; height: 120px; resize: none;" readonly></textarea>
                         </div>
                     </div>
+                    <div class="modal-modify-form-border">
+                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">               
+                            <a class="yesNo-btn close-area">닫기</a>      
+                        </div>
+                    </div>
+                </form>
             </article>  
         </div>
     </div>
@@ -202,13 +208,15 @@
                             		<c:if test="${funding.applyStatus eq 1}">등록 거절</c:if>
                             		<c:if test="${funding.applyStatus eq 2}">수정 검토중</c:if>
                             		<c:if test="${funding.applyStatus eq 3}">수정 거절</c:if>
+                            		<c:if test="${funding.applyStatus eq 4}">등록 완료</c:if>
+                            		<c:if test="${funding.applyStatus eq 5}">수정 완료</c:if>
                             	</th>
                             	<th scope="col">
                            			<a class="artist-detail-btn" onclick="fundingDetail('${funding.fundingNo }')">신청 상세보기</a>
                             	</th>    
                            		<th scope="col">
-                           			<c:if test="${funding.applyStatus eq 1}"><a class="artist-detail-btn" onclick="applyDetail('${funding.fundingNo }')">거절 사유</a></c:if>
-                            		<c:if test="${funding.applyStatus eq 3}"><a class="artist-detail-btn" onclick="applyDetail('${funding.fundingNo }')">거절 사유</a></c:if>
+                           			<c:if test="${funding.applyStatus eq 1}"><a class="artist-detail-btn" onclick="showReason('${funding.fundingNo }')">거절 사유</a></c:if>
+                            		<c:if test="${funding.applyStatus eq 3}"><a class="artist-detail-btn" onclick="showReason('${funding.fundingNo }')">거절 사유</a></c:if>
                             	</th>
                            		</tr>
                         	</c:forEach>
@@ -224,25 +232,12 @@
 	<script>
 	//modal창
     const applyfunding = document.getElementById("applyfunding");
-    const refuseapply = document.getElementById("refuseapply");
+    const refuseReason = document.getElementById("refuseReason");
     
     $(function(){
-    	$(document).on('click', '.artist-detail-btn', function(e){
-    		applyfunding.style.display = "flex";
-    	});
-    	$(document).on('click', '#apply_close', function(e){
+    	$(document).on('click', '.close-area', function(e){
     		applyfunding.style.display = "none";
-    	});
-    });
-    $(function(){
-    	$(document).on('click', '#refusemodal', function(e){
-    		refuseapply.style.display = "flex";
-    	});
-    	$(document).on('click', '#refuse_close', function(e){
-    		refuseapply.style.display = "none";
-    	});
-    	$(document).on('click', '#cancel', function(e){
-    		refuseapply.style.display = "none";
+    		refuseReason.style.display = "none";
     	});
     });
     
@@ -257,6 +252,7 @@
 			success: function(data, textStatus){ 
 			 	var fundingData = JSON.parse(data);
 			 	console.log(data);
+			 	
 			 	$("#id").attr("value", fundingData.id);
 			 	$('#artistName').attr("value", fundingData.artistName);
 			 	$('#email').attr("value", fundingData.email);
@@ -265,52 +261,69 @@
  			 	$("#place").attr("value", fundingData.funding.getplace + " " + fundingData.funding.getplace2);
  			 	$("#projTitle").attr("value", fundingData.funding.projTitle);
  			 	$("#fundingNo").attr("value", fundingData.funding.fundingNo);
- 			 	$("#projectIntro").editor.setData(fundingData.funding.projIntro);
- 			 	$("#projectBudgetInfo").editor.setData(fundingData.funding.projBudget);
- 			 	$("#projectArtistInfo").editor.setData(fundingData.funding.projArtist);
+ 			 	projectIntro.setData(fundingData.funding.projIntro);
+ 			 	projectBudgetInfo.setData(fundingData.funding.projBudget);
+ 			 	projectArtistInfo.setData(fundingData.funding.projArtist);
 			},
 			error:function(data, textStatus){
 				alert("실패");
-				alert(applyNo);
 			}
 		});
 	}
-    $(function(){
-    	ClassicEditor.create(document.querySelector("#projectIntro"))
-	    	.then(editor=>{
-	    		window.editor = editor;
-	    	    editor.isReadOnly = true;
-	    	    const toolbarElement = editor.ui.view.toolbar.element;
-	    	    toolbarElement.style.display = 'none';
-	        	//editor.setData(fundingData.fundingapply.projIntro);
-	        })
-		    .catch((error) => {
-	    	   	console.error(error);
-		    });
-	    	ClassicEditor.create(document.querySelector("#projectBudgetInfo"))
-	    	.then(editor=>{
-	    		window.editor = editor;
-	    	    editor.isReadOnly = true;
-	    	    const toolbarElement = editor.ui.view.toolbar.element;
-	    	    toolbarElement.style.display = 'none';
-	        	//editor.setData(fundingData.fundingapply.projBudget);
-	        })
-		    .catch((error) => {
-	    	   	console.error(error);
-		    });
-	    	ClassicEditor.create(document.querySelector("#projectArtistInfo"))
-	    	.then(editor=>{
-	    		window.editor = editor;
-	    	    editor.isReadOnly = true;
-	    	    const toolbarElement = editor.ui.view.toolbar.element;
-	    	    toolbarElement.style.display = 'none';
-	        	//editor.setData(fundingData.fundingapply.projArtist);
-	        })
-		    .catch((error) => {
-	    	   	console.error(error);
-		    });
-    })
     
+    function showReason(fundingNo){
+		refuseReason.style.display = "flex";
+		$.ajax({
+			type:"post",
+			dataType:"text",
+			async: false,
+			url:"http://localhost:8090/artistpage/fundingApplyrefuseReason",
+			data:{"fundingNo":fundingNo},
+			success: function(data, textStatus){ 
+				$("#refusedContents").html(data);   
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		});		
+	}
+    
+    let projectIntro;
+    let projectBudgetInfo;
+    let projectArtistInfo;
+    ClassicEditor.create(document.querySelector("#projectIntro"))
+	.then(editor=>{
+		window.editor = editor;
+	    editor.isReadOnly = true;
+	    const toolbarElement = editor.ui.view.toolbar.element;
+	    toolbarElement.style.display = 'none';
+	    projectIntro=editor;
+    })
+    .catch((error) => {
+	   	console.error(error);
+    });
+	ClassicEditor.create(document.querySelector("#projectBudgetInfo"))
+	.then(editor=>{
+		window.editor = editor;
+	    editor.isReadOnly = true;
+	    const toolbarElement = editor.ui.view.toolbar.element;
+	    toolbarElement.style.display = 'none';
+	    projectBudgetInfo=editor;
+    })
+    .catch((error) => {
+	   	console.error(error);
+    });
+	ClassicEditor.create(document.querySelector("#projectArtistInfo"))
+	.then(editor=>{
+		window.editor = editor;
+	    editor.isReadOnly = true;
+	    const toolbarElement = editor.ui.view.toolbar.element;
+	    toolbarElement.style.display = 'none';
+	    projectArtistInfo=editor;
+    })
+    .catch((error) => {
+	   	console.error(error);
+    });
     </script>
 
 </body>

@@ -268,43 +268,9 @@
  			 	$("#place").attr("value", fundingData.fundingapply.getplace + " " + fundingData.fundingapply.getplace2);
  			 	$("#projTitle").attr("value", fundingData.fundingapply.projTitle);
  			 	$("#fundingNo").attr("value", fundingData.fundingapply.fundingNo);
- 			 	
- 			 	ClassicEditor.create(document.querySelector("#projectIntro"))
- 		    	.then(editor=>{
- 		    		window.editor = editor;
- 		    	    editor.isReadOnly = true;
- 		    	    const toolbarElement = editor.ui.view.toolbar.element;
- 		    	    toolbarElement.style.display = 'none';
- 		        	editor.setData(fundingData.fundingapply.projIntro);
- 		        })
- 			    .catch((error) => {
- 		    	   	console.error(error);
- 			    });
- 		    	ClassicEditor.create(document.querySelector("#projectBudgetInfo"))
- 		    	.then(editor=>{
- 		    		window.editor = editor;
- 		    	    editor.isReadOnly = true;
- 		    	    const toolbarElement = editor.ui.view.toolbar.element;
- 		    	    toolbarElement.style.display = 'none';
- 		        	editor.setData(fundingData.fundingapply.projBudget);
- 		        })
- 			    .catch((error) => {
- 		    	   	console.error(error);
- 			    });
- 		    	ClassicEditor.create(document.querySelector("#projectArtistInfo"))
- 		    	.then(editor=>{
- 		    		window.editor = editor;
- 		    	    editor.isReadOnly = true;
- 		    	    const toolbarElement = editor.ui.view.toolbar.element;
- 		    	    toolbarElement.style.display = 'none';
- 		        	editor.setData(fundingData.fundingapply.projArtist);
- 		        })
- 			    .catch((error) => {
- 		    	   	console.error(error);
- 			    });
- 			 	
- 			 	//$('#email').attr("src", "/artistpage/posterImg/"+exhibitData.exhibitPoster);
- 			 	//$("#reserveLink").attr("value", exhibitData.reserveLink);
+ 			 	projectIntro.setData(fundingData.funding.projIntro);
+ 			 	projectBudgetInfo.setData(fundingData.funding.projBudget);
+ 			 	projectArtistInfo.setData(fundingData.funding.projArtist);
 			},
 			error:function(data, textStatus){
 				alert("실패");
@@ -349,46 +315,42 @@
     	
     });   
     
-    //ckeditor
-    $(function(){
-    	/*
-    	ClassicEditor.create(document.querySelector("#projectIntro"))
-    	.then(editor=>{
-    		window.editor = editor;
-    	    editor.isReadOnly = true;
-    	    const toolbarElement = editor.ui.view.toolbar.element;
-    	    toolbarElement.style.display = 'none';
-        	editor.setData();
-        })
-	    .catch((error) => {
-    	   	console.error(error);
-	    });
-    	ClassicEditor.create(document.querySelector("#projectBudgetInfo"))
-    	.then(editor=>{
-    		window.editor = editor;
-    	    editor.isReadOnly = true;
-    	    const toolbarElement = editor.ui.view.toolbar.element;
-    	    toolbarElement.style.display = 'none';
-        	editor.setData();
-        })
-	    .catch((error) => {
-    	   	console.error(error);
-	    });
-    	ClassicEditor.create(document.querySelector("#projectArtistInfo"))
-    	.then(editor=>{
-    		window.editor = editor;
-    	    editor.isReadOnly = true;
-    	    const toolbarElement = editor.ui.view.toolbar.element;
-    	    toolbarElement.style.display = 'none';
-        	editor.setData();
-        })
-	    .catch((error) => {
-    	   	console.error(error);
-	    });*/
+    let projectIntro;
+    let projectBudgetInfo;
+    let projectArtistInfo;
+    ClassicEditor.create(document.querySelector("#projectIntro"))
+	.then(editor=>{
+		window.editor = editor;
+	    editor.isReadOnly = true;
+	    const toolbarElement = editor.ui.view.toolbar.element;
+	    toolbarElement.style.display = 'none';
+	    projectIntro=editor;
+    })
+    .catch((error) => {
+	   	console.error(error);
     });
-    
-    
-    
+	ClassicEditor.create(document.querySelector("#projectBudgetInfo"))
+	.then(editor=>{
+		window.editor = editor;
+	    editor.isReadOnly = true;
+	    const toolbarElement = editor.ui.view.toolbar.element;
+	    toolbarElement.style.display = 'none';
+	    projectBudgetInfo=editor;
+    })
+    .catch((error) => {
+	   	console.error(error);
+    });
+	ClassicEditor.create(document.querySelector("#projectArtistInfo"))
+	.then(editor=>{
+		window.editor = editor;
+	    editor.isReadOnly = true;
+	    const toolbarElement = editor.ui.view.toolbar.element;
+	    toolbarElement.style.display = 'none';
+	    projectArtistInfo=editor;
+    })
+    .catch((error) => {
+	   	console.error(error);
+    });
     </script>
 
 </body>

@@ -172,4 +172,9 @@ public class FundingServiceImpl implements FundingService {
 		map.put("refusedContents", refusedContents);
 		fundingDAO.updateFundingApplyRefuse(map);
 	}
+
+	@Override
+	public void updateFundingApplyEnroll(int fundingNo) throws Exception {
+		fundingDAO.updateFundingApplyEnroll(fundingNo);
+	}
 }

@@ -176,6 +176,13 @@
 	</delete>
 
 	
+	<!-- 펀딩신청 허락 update -->
+	<select id="updateFundingApplyEnroll" parameterType="int">
+		<![CDATA[
+			update fundingapp set applyStatus=4 where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	
 	<!-- 펀딩신청 거절 update -->
 	<select id="updateFundingApplyRefuse" parameterType="map">
 		<![CDATA[
