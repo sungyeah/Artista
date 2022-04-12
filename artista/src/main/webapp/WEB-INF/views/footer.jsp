@@ -6,19 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <script type="text/javascript" async="" src=""></script>
     <link rel="stylesheet" type="text/css" href="css/content.css">
     <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
 <body>
 
-<footer id="footer2">
+<footer id="footer2" style="background-color: gray; margin-top: 300px;">
     <div class="social-channel">
         <ul>
             
-            <li class="instagram"><a href="https://www.instagram.com/galleryhyundai/" target="blank">Instagram</a></li>
-            <li class="facebook"><a href="https://www.facebook.com/galleryhyundai" target="blank">Facebook</a></li>
-            <li class="youtube"><a href="https://www.youtube.com/channel/UCZnvz-IcYgBk2dpej8D8vOA" target="blank">YouTube</a></li>
+            <li class="instagram"><a href="https://www.instagram.com" target="blank">Instagram</a></li>
+            <li class="facebook"><a href="https://www.facebook.com" target="blank">Facebook</a></li>
+            <li class="youtube"><a href="https://www.youtube.com" target="blank">YouTube</a></li>
         </ul>
     </div>
     <div id="newsletter" class="newsletter-form">

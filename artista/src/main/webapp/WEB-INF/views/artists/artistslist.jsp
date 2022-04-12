@@ -31,8 +31,8 @@
         <article id="content" class="vuelayer">
             <div class="artist-list">
                 <ul>                   
-                    <c:forEach items="${atistList }" var="artist">
-                    	<li><a class="list" href="artistdetail/${artist.artistNo }" data-image="${artist.artistImg }">${artist.artistName } </a></li>
+                    <c:forEach items="${atistList }" var="artist" varStatus="status">
+                    	<li><a class="list" href="artistdetail/${artist.artistNo }" data-image="../../imgupload/artistWorlds/${ImgNames[status.index] } ">${artist.artistName } </a></li>
                     </c:forEach>
                 </ul>
             </div>

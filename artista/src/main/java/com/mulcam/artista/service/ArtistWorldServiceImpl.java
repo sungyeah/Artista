@@ -32,8 +32,8 @@ public class ArtistWorldServiceImpl implements ArtistWorldService {
 	}
 
 	@Override
-	public ArtistWorld worlds(int artistNo) throws Exception {
-		return artistworldDAO.worlds(artistNo);
+	public ArtistWorld worlds(String id) throws Exception {
+		return artistworldDAO.worlds(id);
 	}
 
 	

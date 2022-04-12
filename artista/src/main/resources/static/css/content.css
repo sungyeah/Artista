@@ -848,7 +848,7 @@
 	font-size: 2.5em;
 }
 .detail .info {
-	float: left;
+	/* float: left; */
 	width: 29%;
 }
 .detail .info figure {margin: 19px 0;}

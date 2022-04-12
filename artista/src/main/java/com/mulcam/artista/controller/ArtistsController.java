@@ -1,5 +1,6 @@
 package com.mulcam.artista.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,21 @@ public class ArtistsController {
 	ArtistWorldService artistworldservice;
 	
 	@GetMapping("artistslist")
-	public String artistslist(Model model) throws Exception {
-		List<Artist> Artistlist = artistservice.artists();
-		/* List<ArtistWorld> Wldlist = artistworldservice.worlds(); */
+	public String artistslist(Model model) {
+//		System.out.println(id);
 		try {
+			List<Artist> Artistlist = artistservice.artists();
+			List<String> ImgNames = new ArrayList<String>();
+			for(int i=0;i<Artistlist.size();i++) {
+				Artist artist=Artistlist.get(i);
+				String id=artist.getId();
+				ArtistWorld artistworld = artistworldservice.worlds(id);
+				System.out.println(artistworld);
+				String ImgName = artistworld.getImgName();
+				ImgNames.add(ImgName);
+			}
 			model.addAttribute("atistList", Artistlist);
-			/* model.addAttribute("wldList", Wldlist); */
+			model.addAttribute("ImgNames", ImgNames);
 			System.out.println(Artistlist);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,12 +48,15 @@ public class ArtistsController {
 	}
 	
 	@GetMapping("artistdetail/{artistNo}")
-	public String artistdetail(@PathVariable int artistNo, Model model) throws Exception {
+	public String artistdetail(@PathVariable int artistNo, Model model) {
 		try {
 			Artist artist = artistservice.Artistinfo(artistNo);
-			ArtistWorld artistworld = artistworldservice.worlds(artistNo);
+			String id = artist.getId();
+			ArtistWorld artistworld = artistworldservice.worlds(id);
+			String Img = artistworld.getImgName();
+			model.addAttribute("Img", Img);
+			
 			model.addAttribute("artist", artist);
-			model.addAttribute("artistworld", artistworld); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
