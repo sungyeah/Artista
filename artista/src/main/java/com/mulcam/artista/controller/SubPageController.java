@@ -281,6 +281,14 @@ public class SubPageController {
 		
 		return "mypage/paymentinfo";
 	}
+	
+	@GetMapping("fundingpayinfo")
+	public String fundingpayinfo() {
+		return "mypage/fundingpayinfo";
+	}
+	
+	
+	
 //	@GetMapping("paymentsuc")
 //	public String paymentsuc1() {
 //		return "subpage/paymentsuc";
