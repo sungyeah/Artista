@@ -42,12 +42,10 @@ public class ArtistsController {
 		try {
 			List<Artist> Artistlist = artistservice.artists();
 			List<String> ImgNames = new ArrayList<String>();
-			for(int i=0;i<Artistlist.size();i++) {
-				Artist artist=Artistlist.get(i);
+			for(Artist artist : Artistlist) {
 				String id=artist.getId();
-				ArtistWorld artistworld = artistworldservice.worlds(id);
-				//String ImgName = artistworld.getImgName();
-				String ImgName = artist.getArtistImg();
+				String ImgName = artistworldservice.worlds(id).getImgName();
+				System.out.println(ImgName);
 				ImgNames.add(ImgName);
 			}
 			model.addAttribute("atistList", Artistlist);
