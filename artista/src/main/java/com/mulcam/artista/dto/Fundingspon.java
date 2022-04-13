@@ -4,6 +4,7 @@ public class Fundingspon {
 	int sponsorNo;
 	String id;
 	int fundingNo;
+	String projTitle;
 	int sponsorAmount;
 	String email;
 	String sponDate;
@@ -42,6 +43,12 @@ public class Fundingspon {
 	}
 	public void setSponDate(String sponDate) {
 		this.sponDate = sponDate;
+	}
+	public String getProjTitle() {
+		return projTitle;
+	}
+	public void setProjTitle(String projTitle) {
+		this.projTitle = projTitle;
 	}
 	
 }

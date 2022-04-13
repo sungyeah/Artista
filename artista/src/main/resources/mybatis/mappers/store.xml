@@ -5,7 +5,7 @@
 	
 	<select id="workList" resultType="work">
 		<![CDATA[
-			select * from work
+			select * from work where workForSale=1 or workForSale=2
 		]]>
 	</select>
 	

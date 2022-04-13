@@ -33,7 +33,6 @@
             			</tr>
             		</thead>
             		<tbody id="sponsorTbody">
-            			
             		</tbody>
             	</table>
             </article>  
@@ -273,6 +272,7 @@
   					accEle += '<td>'+ fundingData[i].email +'</td>'
   					accEle += '<td>'+ fundingData[i].sponAmount +'</td>'
   					accEle += '</tr>'
+  					accEle += <div>버튼</div>
   				}
   				$('.aa').detach();
   				$('#sponsorTbody').append(accEle);
