@@ -229,3 +229,26 @@
     padding: 0px 10px;
     background-color: #f8f9fa;
 }
+.modal-detail-btn{
+      border-collapse: collapse;
+    border-spacing: 0;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-top: 600px;
+    padding: 5px 10px 5px 10px;
+    background: transparent;
+    top: 400px;
+    left: 264px;
+    width: 29px;
+    height: 19px;
+    border: 1px solid #dfdfdf;
+    border-radius: 21px;
+    font-size: 14px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+    padding-top: 7px;
+}

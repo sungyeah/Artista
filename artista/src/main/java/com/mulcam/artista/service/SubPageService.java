@@ -1,6 +1,7 @@
 package com.mulcam.artista.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Follow;
@@ -45,4 +46,6 @@ public interface SubPageService {
 	String getDeliveryStatus(String trackingNo) throws Exception;
 	void updateStatus(String orderStatus,int orderNo)throws Exception;
 	public int queryCount(int fundingNo);
+	
+	public void setTrackingNo(int orderNo, int trackingNo) throws Exception;
 }

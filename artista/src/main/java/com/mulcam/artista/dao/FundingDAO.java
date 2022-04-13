@@ -54,5 +54,9 @@ public interface FundingDAO {
 	public Integer getSumAmount(int fundingNo);
 	public Integer getSponAmount(Map map);
 	public int updateSumAmount(Map map);
+	
+	public Integer alarmCheck(Map map) throws Exception;
+	public void fundingRefund(int fundingNo);
+	public void fundingSponRefund(int fundingNo);
 
 }

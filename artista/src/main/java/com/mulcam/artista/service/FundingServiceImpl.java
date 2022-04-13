@@ -167,14 +167,10 @@ public class FundingServiceImpl implements FundingService {
 	
 	//sumamount, sponamount
 	@Override
-	public int sumAmount(int fundingNo, String id) {
+	public int sumAmount(int fundingNo, String id, int sponsAmount) {
 		Map<String,Object> map = new HashMap<>();
-		Integer sumAmount = fundingDAO.getSumAmount(fundingNo);
-		map.put("fundingNo", fundingNo);
-		map.put("id", id);
-		Integer sponAmount = fundingDAO.getSponAmount(map);
-		sumAmount = sponAmount + sumAmount;
-		map.put("sumAmount", sumAmount);
+		
+		map.put("sponsAmount", sponsAmount);
 		map.put("fundingNo", fundingNo);
 		return fundingDAO.updateSumAmount(map);
 	}
@@ -215,6 +211,26 @@ public class FundingServiceImpl implements FundingService {
 	@Override
 	public List<Fundingspon> sponList(int fundingNo) throws Exception {
 		return fundingDAO.sponList(fundingNo);
+	}
+
+	@Override
+	public Integer alarmCheck(int fundingNo, String id) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("fundingNo", fundingNo);
+		map.put("id", id);
+		return fundingDAO.alarmCheck(map);
+	}
+
+	@Override
+	public void fundingRefund(int fundingNo) {
+		fundingDAO.fundingRefund(fundingNo);
+		
+	}
+
+	@Override
+	public void fundingSponRefund(int fundingNo) {
+		// TODO Auto-generated method stub
+		fundingDAO.fundingSponRefund(fundingNo);
 	}
 
 }

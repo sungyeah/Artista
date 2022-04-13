@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/fundingucdetail.css">
 <style>
-
+	.alam { color: white; background: black; }
 </style>
 <script>
 	$(function() {
@@ -59,6 +59,14 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
     <script>
 
+    $(function() {
+    	var alarm = "<c:out value='${alarm}'/>"
+    	if(alarm>0) {
+    		$("#Btn1").addClass('alam');
+    	} else {
+    		$("#Btn1").removeClass('alam');
+    	}
+    })
      //버튼 색이 변경이 안 됨 json 파싱, artistPageCon~~
     function alarm(fundingNo){
     	var color=document.getElementById("Btn1");
@@ -72,13 +80,15 @@
     		success: function(data, textStatus){
     			var alarm = JSON.parse(data);
     			if(alarm.checkAlarm==true){
-    				color.style.color="white";
+    				$("#Btn1").addClass('alam');
+/*     				color.style.color="white";
     				color.style.background="black";
-    				$('#Btn1').text("알림 신청 "+alarm.cnt+"명 신청 중");
+ */    				$('#Btn1').text("알림 신청 "+alarm.cnt+"명 신청 중");
     			} else {
-    				color.style.color="black";
+    				$("#Btn1").removeClass('alam');
+/*     				color.style.color="black";
     				color.style.background="white";
-    				$('#Btn1').text("알림 신청 "+alarm.cnt+"명 신청 중");
+ */    				$('#Btn1').text("알림 신청 "+alarm.cnt+"명 신청 중");
     			}
     		},
     		error:function(data, textStatus){

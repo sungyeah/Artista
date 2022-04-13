@@ -222,12 +222,12 @@
 	</select>
 	<select id="getSponAmount" parameterType="map" resultType="Integer">
 		<![CDATA[
-			select sponAmount from fundingSpon where fundingNo=#{fundingNo} and id =#{id}
+			select sponsorAmount from fundingSpon where fundingNo=#{fundingNo} and id=#{id}
 		]]>
 	</select>
 	<update id="updateSumAmount" parameterType="map" >
 		<![CDATA[
-			update funding set sumAmount=#{sumAmount} where fundingNo=#{fundingNo}
+			update funding set sumAmount=sumAmount+#{sponsAmount} where fundingNo=#{fundingNo}
 		]]>
 	</update>
 	<select id="getTargetFunding" parameterType="int" resultType="Integer">
@@ -240,10 +240,24 @@
 			update funding set fundingState=#{fundingState} where fundingNo=#{fundingNo}
 		]]>
 	</update>
+	<select id="alarmCheck" parameterType="map" resultType="Integer">
+		<![CDATA[
+			select count(*) from alarm where id=#{id} and fundingNo =#{fundingNo}
+		]]>
+	</select>
+	<update id="fundingRefund" parameterType="int" >
+		<![CDATA[
+			update funding set succesFunding=6 where fundingNo=#{fundingNo}
+		]]>
+	</update>
+	<update id="fundingSponRefund" parameterType="int" >
+		<![CDATA[
+			update fundingSpon set sponsorAmount=-1 where fundingNo=#{fundingNo}
+		]]>
+	</update>
 </mapper>
 
 <!-- 
-
 펀딩 등록/수정
 create table fundingApp(
 	fundingNo int(10) not null auto_increment,

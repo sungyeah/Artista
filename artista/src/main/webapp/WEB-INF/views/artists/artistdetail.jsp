@@ -246,61 +246,26 @@ section.palmares .prize-list li span {
 						<div class="title2">작가 이력</div>
 						<div class="col-md-3 col-sm-6">
 							<div class="prize-type">
-								<div>개인전</div>
+								<div>수상</div>
 								<span> </span>
 							</div>
-							<ul class="prize-list">
-								<c:forEach items="${atistList }" var="artist">
-									<li><span>2017</span><br>solo show / Koelsch gallery
-										- Houston - Texas, 미국</li>
-								</c:forEach>
+							<ul class="prize-list" id="prize">
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
 							<div class="prize-type">
-								<div>그룹전</div>
+								<div>전시</div>
 								<span> </span>
 							</div>
-							<ul class="prize-list">
-								<li><span>2021</span><br>Exposition collective / Sybil
-									Frank Gallery - Wellington - Ontario, 캐나다</li>
-								<li><span>2021</span><br>Exposition collective /
-									Galeries Beauchamp - Montréal + Québec, 캐나다</li>
-								<li><span>2021</span><br>Exposition collective /
-									Galerie Saint Laurent+Hill - Ottawa, 캐나다</li>
-								<li><span>2021</span><br>Exposition collective /
-									Artêria Gallery - Bromont - Québec, 캐나다</li>
-								<li><span>2020</span><br>Exposition collective / Sybil
-									Frank Gallery - Wellington - Ontario, 캐나다</li>
-								<li><span>2020</span><br>Exposition collective /
-									Galerie St Laurent+Hill - Ottawa, 캐나다</li>
-								<li><span>2020</span><br>Exposition collective /
-									Artêria Gallery - Bromont - Québec, 캐나다</li>
-								<li><span>2020</span><br>Exposition collective /
-									Galerie Beauchamp - Montréal &amp; Québec, 캐나다</li>
-								<li><span>2019</span><br>Exposition collective /
-									Galerie St Laurent+Hill - Ottawa, 캐나다</li>
-								<li><span>2019</span><br>Exposition collective /
-									Galerie Beauchamp - Montréal &amp; Québec, 캐나다</li>
+							<ul class="prize-list" id="exhit">
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
 							<div class="prize-type">
-								<div>작품 소장</div>
+								<div>논문 및 저서</div>
 								<span> </span>
 							</div>
-							<ul class="prize-list">
-								<li><span>2005</span><br>Cirque du Soleil , 캐나다</li>
-								<li><span></span><br>Mercuri International, 중국</li>
-								<li><span></span><br>Restaurant Coco-Canelle, 프랑스</li>
-								<li><span></span><br>Bank Nova Scotia, 캐나다</li>
-								<li><span></span><br>PSP Investissement, 캐나다</li>
-								<li><span></span><br>Reebook, 캐나다</li>
-								<li><span></span><br>UBS gestion globale, 캐나다</li>
-								<li><span></span><br>Mercuri International, 캐나다</li>
-								<li><span></span><br>Merill Lunch, 캐나다</li>
-								<li><span></span><br>Groupe Messier, 캐나다</li>
-								<li><span></span><br>Fiducie Desjardins, 캐나다</li>
+							<ul class="prize-list" id='book'>
 							</ul>
 						</div>
 					</div>
@@ -313,7 +278,7 @@ section.palmares .prize-list li span {
 				<div class="post-list flex-box" id="js-load">
 					<ul>
 					<c:forEach items="${worklist }" var="work">
-                    	<li class="js-load"><a href="#">
+                    	<li><a href="../workdetail/${work.workNo }" style="width:100%;" class="only-pc">
 								<figure>
 									<img src="../imgupload/artistWorks/${work.workImg }" alt="">
 								</figure> <span class="title">${work.artistName }<br> ${work.workName }<br>${work.workSize }
@@ -327,61 +292,6 @@ section.palmares .prize-list li span {
 			</section>
 
 		</article>
-		
-  <!-- <div id="js-load" >
-    <ul class="">
-      <li class="">test1</li>
-      <li class="js-load">txttxttxttxttxttxt</li>
-      <li class="js-load">test2</li>
-      <li class="js-load">txttxttxttxttxttxt</li>
-      <li class="js-load">test3</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test4</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test5</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test6</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test7</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test8</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test9</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test10</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test11</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test12</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test13</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test14</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test15</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test16</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test17</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test18</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test19</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test20</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test21</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test22</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test23</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test24</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-      <li class="lists__item js-load">test25</li>
-      <li class="lists__item js-load">txttxttxttxttxttxt</li>
-    </ul>
-  </div> -->
 
 
 	</div>
@@ -419,27 +329,23 @@ section.palmares .prize-list li span {
 		}); 
 	}
 	
-	/* load more */
 	
-	$(window).on('load', function () {
-	    load('#js-load', '8');							//8개 보여주기
-	    $("#js-btn-wrap .button").on("click", function () {
-	        load('#js-load', '4', '#js-btn-wrap');		//4개씩 추가
-	    })
-	});
-	 
-	function load(id, cnt, btn) {
-	    var girls_list = id + " .js-load:not(.active)";
-	    var girls_length = $(girls_list).length;
-	    var girls_total_cnt;
-	    if (cnt < girls_length) {
-	        girls_total_cnt = cnt;
-	    } else {
-	        girls_total_cnt = girls_length;
-	        $('.button').hide()
-	    }
-	    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+	let recordArr = ${artist.artistRecord};
+	if (recordArr != null) {
+		for(let record of recordArr) {
+			console.log(record)
+			if(record.type == "수상") {
+				$("#prize").append("<li><span>"+record.year+"</span><br>"+record.recordText+"</li>");
+			}
+			else if(record.type == "전시") {
+				$("#exhit").append("<li><span>"+record.year+"</span><br>"+record.recordText+"</li>");
+			}
+			else {
+				$("#book").append("<li><span>"+record.year+"</span><br>"+record.recordText+"</li>");
+			}
+		}
 	}
+	
 	</script>
 	<%@include file="../footer.jsp"%>
 </body>

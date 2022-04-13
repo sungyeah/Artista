@@ -58,9 +58,12 @@ public class FundingController {
 	
     //들어올때부터 버튼 설정
 	@GetMapping("/fundingucdetail")
-	public String fundingucdetail(@RequestParam("fundingNo") int fundingNo, Model model) {
+	public String fundingucdetail(@RequestParam("fundingNo") int fundingNo, Model model) throws Exception {
+		String id = (String) session.getAttribute("id");
 		Funding funding=fundingService.queryucdetail(fundingNo);
+		Integer alarm=fundingService.alarmCheck(fundingNo, id);
 		model.addAttribute("funding", funding);
+		model.addAttribute("alarm", alarm);
 		int count = subPageService.queryCount(fundingNo);
 		model.addAttribute("count", count);
 		return "funding/fundingucdetail";
@@ -174,7 +177,7 @@ public class FundingController {
 		String id=(String) session.getAttribute("id");
 		int sponsAmount = Integer.parseInt(sponsorAmount);
 		fundingService.insertfundingspon(sponsAmount, fundingNo, email, id);
-		fundingService.sumAmount(fundingNo, id);
+		fundingService.sumAmount(fundingNo, id, sponsAmount);
 		//sumamount 서비스 만들고 더해서 넣기
 		
 		return "funding/succesamount";

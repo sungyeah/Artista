@@ -274,5 +274,13 @@ public class SubPageServiceImpl implements SubPageService{
 		return fundingDAO.queryCount(fundingNo);
 	}
 
+	@Override
+	public void setTrackingNo(int orderNo, int trackingNo) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		map.put("orderNo", orderNo);
+		map.put("trackingNo", trackingNo);
+		subpageDAO.setTrackingNo(map);
+	}
+
 	
 }
