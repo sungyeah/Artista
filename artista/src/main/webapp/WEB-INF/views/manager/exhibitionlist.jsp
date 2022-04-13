@@ -106,7 +106,7 @@
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/fundinglist">
                 펀딩 관리
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionlist">
+            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionlist" style="background-color:#222;color:white;">
                 전시 관리
             </a>
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/memberlist">
@@ -116,7 +116,7 @@
 
         <nav class="member-nav">
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionlist">
-                전시 목록 관리
+                <b>전시 목록 관리</b>
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionapplylist">
                 전시 등록 신청

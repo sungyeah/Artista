@@ -153,7 +153,7 @@
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionlist">
                 전시 관리
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/memberlist">
+            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/memberlist" style="background-color:#222;color:white;">
                 회원 관리
             </a>
         </nav>
@@ -166,7 +166,7 @@
                 아티스트
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/artistapplylist">
-                아티스트 신청
+                <b>아티스트 신청</b>
             </a>
         </nav>
         <article class="member-body">

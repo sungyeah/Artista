@@ -52,7 +52,7 @@
             <a class="manager-nav-btn current"  href="${pageContext.request.contextPath}/manager/paymentlist">
                 작품 관리
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/fundinglist">
+            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/fundinglist" style="background-color:#222;color:white;">
                 펀딩 관리
             </a>
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionlist">
@@ -71,7 +71,7 @@
                 펀딩 예정
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/fundingproceeding">
-                진행중인 펀딩
+                <b>진행중인 펀딩</b>
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/fundingended">
                 종료된 펀딩

@@ -26,7 +26,7 @@
             </div>
         </section>
         <nav class="manager-nav">
-            <a class="manager-nav-btn current"  href="${pageContext.request.contextPath}/manager/paymentlist">
+            <a class="manager-nav-btn current"  href="${pageContext.request.contextPath}/manager/paymentlist" style="background-color:#222;color:white;">
                 작품 관리
             </a>
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/fundinglist">
@@ -42,7 +42,7 @@
 
         <nav class="member-nav">
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/paymentlist">
-                결제 전체내역
+                <b>결제 전체내역</b>
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/paycompletelist">
                 판매완료 작품

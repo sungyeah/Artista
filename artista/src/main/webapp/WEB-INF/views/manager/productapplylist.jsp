@@ -137,7 +137,7 @@
             </div>
         </section>
         <nav class="manager-nav">
-            <a class="manager-nav-btn current"  href="${pageContext.request.contextPath}/manager/paymentlist">
+            <a class="manager-nav-btn current"  href="${pageContext.request.contextPath}/manager/paymentlist" style="background-color:#222;color:white;">
                 작품 관리
             </a>
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/fundinglist">
@@ -159,7 +159,7 @@
                 판매완료 작품
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/productapplylist">
-                판매작품 등록신청
+                <b>판매작품 등록신청</b>
             </a>
         </nav>
    

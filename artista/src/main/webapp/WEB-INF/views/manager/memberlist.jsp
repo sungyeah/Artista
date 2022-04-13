@@ -34,14 +34,14 @@
             <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/exhibitionlist">
                 전시 관리
             </a>
-            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/memberlist">
+            <a class="manager-nav-btn" href="${pageContext.request.contextPath}/manager/memberlist" style="background-color:#222;color:white;">
                 회원 관리
             </a>
         </nav>
 
         <nav class="member-nav">
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/memberlist">
-                일반회원
+                <b>일반회원</b>
             </a>
             <a class="member-nav-btn" href="${pageContext.request.contextPath}/manager/artistlist">
                 아티스트
