@@ -14,6 +14,7 @@ public interface ArtistApplyDAO {
 	
 	public Integer maxApplyNo() throws Exception;
 	public void insertArtistApply(ArtistApply artistApply) throws Exception;
+	public void insertArtistModify(ArtistApply artistApply) throws Exception;
 	
 	public ArtistApply selectArtistApplyByNo(int applyNo) throws Exception;
 	public int ArtistApplyNum() throws Exception;

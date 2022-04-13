@@ -32,6 +32,11 @@ public class ArtistApplyServiceImpl implements ArtistApplyService {
 	public void insertArtistApply(ArtistApply artistApply) throws Exception {
 		artistapplyDAO.insertArtistApply(artistApply);
 	}
+	
+	@Override
+	public void insertArtistModify(ArtistApply artistApply) throws Exception{
+		artistapplyDAO.insertArtistModify(artistApply);
+	}
 
 	@Override
 	public List<ArtistApply> getArtistApplyList(int page, PageInfo pageInfo) throws Exception {
@@ -75,7 +80,7 @@ public class ArtistApplyServiceImpl implements ArtistApplyService {
 	}
 	
 	@Override
-	public List<ArtistWorld> selectArtistWorldApplyByNo(String id) throws Exception {
+	public ArtistWorld selectArtistWorldApplyByNo(String id) throws Exception {
 		return artistworldDAO.artistWorld(id);
 	}
 

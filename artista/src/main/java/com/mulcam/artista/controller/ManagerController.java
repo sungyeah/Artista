@@ -44,6 +44,7 @@ import com.mulcam.artista.dto.WorkApply;
 import com.mulcam.artista.dto.WorkReport;
 import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistService;
+import com.mulcam.artista.service.ArtistWorldService;
 import com.mulcam.artista.service.ExhibitService;
 import com.mulcam.artista.service.FundingService;
 import com.mulcam.artista.service.MypageService;
@@ -73,6 +74,9 @@ public class ManagerController {
 	
 	@Autowired
 	SubPageServiceImpl subPageService;
+	
+	@Autowired
+	ArtistWorldService artistworldService;
 	
 	@Autowired
 	MypageService myPageService;
@@ -531,7 +535,19 @@ public class ManagerController {
 		Map<String,Object> result = new HashMap<>();
 		try {
 			ArtistApply artistApply = artistapplyService.selectArtistApplyByNo(artistapplyNo);
-			List<ArtistWorld> artistworld = artistapplyService.selectArtistWorldApplyByNo(artistApply.getId());
+			String artistworld = null;
+			if(artistApply.getArtistWorld() !=null) {
+				artistworld = artistApply.getArtistWorld();
+			} else {
+				artistworld = artistapplyService.selectArtistWorldApplyByNo(artistApply.getId()).getImgName();
+			}
+			/*
+			if(artistApply.getApplyResult()==0) { //등록
+				artistworld = artistapplyService.selectArtistWorldApplyByNo(artistApply.getId()).getImgName();
+			}
+			else if(artistApply.getApplyResult()==2) { //수정
+				artistworld = artistApply.getArtistWorld();
+			}*/
 			result.put("artistApply", artistApply);
 			result.put("artistworld", artistworld);
 		}catch(Exception e) {
@@ -548,16 +564,41 @@ public class ManagerController {
 			//artistapplyNo로 작가신청 내용 가져오기
 			ArtistApply artistApply = artistapplyService.selectArtistApplyByNo(artistapplyNo);
 			
-			//artist data에 artistapply 내용 옮기고 artist에 등록하기
-			Artist artist = new Artist(artistService.getArtistMaxId(), artistApply.getId(), artistApply.getArtistName(), artistApply.getArtistImg(),
-						artistApply.getArtistType(), artistApply.getArtistIntroduce(), artistApply.getArtistRecord(), artistApply.getArtistInstagram(), 0);
-			artistService.insertArtist(artist);
+			//아티스트 등록하기
+			if(artistApply.getApplyResult()==0) {
+				//artist data에 artistapply 내용 옮기고 artist에 등록하기
+				Artist artist = new Artist(artistService.getArtistMaxId(), artistApply.getId(), artistApply.getArtistName(), artistApply.getArtistImg(),
+							artistApply.getArtistType(), artistApply.getArtistIntroduce(), artistApply.getArtistRecord(), artistApply.getArtistInstagram(), 0);
+				//artist insert
+				artistService.insertArtist(artist);
+				
+				//artistapply에 내용 삭제
+				artistapplyService.deleteArtistApplyById(artistapplyNo);
+				
+				//member type "artist"로 변경
+				subPageService.changeMemberType(artist.getId(), "artist");
+			} 
+			// 아티스트 수정 등록하기
+			else if(artistApply.getApplyResult()==2) {
+				Artist artist = new Artist(artistApply.getOriginArtistNo(), artistApply.getId(), artistApply.getArtistName(), artistApply.getArtistImg(),
+						artistApply.getArtistType(), artistApply.getArtistIntroduce(), artistApply.getArtistRecord(), artistApply.getArtistInstagram());
+				//artist update
+				artistService.updateArtist(artist);
+				
+				String artistworld = null;
+				if(artistApply.getArtistWorld() !=null) {
+					artistworld = artistApply.getArtistWorld();
+					
+					// 세로운 아티스트 세계 추가
+					ArtistWorld worldImg = new ArtistWorld();
+					worldImg.setImgName(artistworld);
+					worldImg.setId(artistApply.getId());
+					artistworldService.artistWorldUpdate(worldImg);
+				}			
+				//artistapply에 내용 삭제
+				artistapplyService.deleteArtistApplyById(artistapplyNo);
+			}
 			
-			//artistapply에 내용 삭제
-			artistapplyService.deleteArtistApplyById(artistapplyNo);
-			
-			//member type "artist"로 변경
-			subPageService.changeMemberType(artist.getId(), "artist");
 		}catch(Exception e) {
 		}
 	}

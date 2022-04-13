@@ -12,6 +12,7 @@ import com.mulcam.artista.dto.Artist;
 public interface ArtistDAO {
 	public Integer maxArtistNo() throws Exception;
 	public void insertArtist(Artist artist) throws Exception;
+	public void updateArtist(Artist artist) throws Exception;
 	public Integer selectArtistNo(String id) throws Exception;
 	public String selectArtistName(String id) throws Exception;
 	public int ArtistNum() throws Exception;

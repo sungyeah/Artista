@@ -11,6 +11,8 @@ public class ArtistApply {
 	String artistInstagram;
 	int applyResult;
 	String refusedContents;
+	int originArtistNo;
+	String artistWorld;
 	
 	ArtistApply(){}
 	ArtistApply(int artistNo, String id, String artistName, String artistImg, String artistType,
@@ -25,6 +27,22 @@ public class ArtistApply {
 		this.artistInstagram = artistInstagram;
 		this.applyResult = applyResult;
 		this.refusedContents = refusedContents;
+	}
+	
+	ArtistApply(int artistNo, String id, String artistName, String artistImg, String artistType, String artistIntroduce, 
+			String artistRecord, String artistInstagram, int applyResult, String refusedContents, int originArtistNo, String artistWorld){
+		this.artistNo = artistNo;
+		this.id = id;
+		this.artistName = artistName;
+		this.artistImg = artistImg;
+		this.artistType = artistType;
+		this.artistIntroduce = artistIntroduce;
+		this.artistRecord = artistRecord;
+		this.artistInstagram = artistInstagram;
+		this.applyResult = applyResult;
+		this.refusedContents = refusedContents;
+		this.originArtistNo =originArtistNo;
+		this.artistWorld = artistWorld;
 	}
 	
 	public int getArtistNo() {
@@ -87,4 +105,17 @@ public class ArtistApply {
 	public void setRefusedContents(String refusedContents) {
 		this.refusedContents = refusedContents;
 	}
+	public int getOriginArtistNo() {
+		return originArtistNo;
+	}
+	public void setOriginArtistNo(int originArtistNo) {
+		this.originArtistNo = originArtistNo;
+	}
+	public String getArtistWorld() {
+		return artistWorld;
+	}
+	public void setArtistWorld(String artistWorld) {
+		this.artistWorld = artistWorld;
+	}
+	
 }

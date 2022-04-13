@@ -27,13 +27,18 @@ public class ArtistWorldServiceImpl implements ArtistWorldService {
 	}
 
 	@Override
-	public List<ArtistWorld> getArtistWorlds(String id) throws Exception {
+	public ArtistWorld getArtistWorlds(String id) throws Exception {
 		return artistworldDAO.artistWorld(id);
 	}
 
 	@Override
 	public ArtistWorld worlds(String id) throws Exception {
 		return artistworldDAO.worlds(id);
+	}
+
+	@Override
+	public void artistWorldUpdate(ArtistWorld worldImg) throws Exception {
+		artistworldDAO.artistWorldUpdate(worldImg);
 	}
 
 	
