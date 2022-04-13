@@ -215,7 +215,31 @@
 			select * from fundingspon where fundingNo=#{fundingNo}
 		]]>
 	</select>
-	
+	<select id="getSumAmount" parameterType="int" resultType="Integer">
+		<![CDATA[
+			select sumAmount from funding where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	<select id="getSponAmount" parameterType="map" resultType="Integer">
+		<![CDATA[
+			select sponAmount from fundingSpon where fundingNo=#{fundingNo} and id =#{id}
+		]]>
+	</select>
+	<update id="updateSumAmount" parameterType="map" >
+		<![CDATA[
+			update funding set sumAmount=#{sumAmount} where fundingNo=#{fundingNo}
+		]]>
+	</update>
+	<select id="getTargetFunding" parameterType="int" resultType="Integer">
+		<![CDATA[
+			select targetFunding from funding where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	<update id="updateFundingState" parameterType="map" >
+		<![CDATA[
+			update funding set fundingState=#{fundingState} where fundingNo=#{fundingNo}
+		]]>
+	</update>
 </mapper>
 
 <!-- 
@@ -259,6 +283,7 @@ create table funding(
     thumbImg varchar(100) not null,
 	sumAmount int(10),
     fundingState int(10),
+    succesFunding int(10) default 0,
     getplace varchar(500) not null,
     getplace2 varchar(255),
     primary key(fundingNo)
@@ -287,6 +312,7 @@ create table alarm(
     startDate timestamp
 );
 
+예정, 진행, 종료에 대한 이벤트
 CREATE EVENT IF NOT EXISTS updateFundingState
     ON SCHEDULE
            EVERY 1 DAY
@@ -296,6 +322,16 @@ CREATE EVENT IF NOT EXISTS updateFundingState
     DO 
     	update funding set fundingState=(case when timestampdiff(hour, now(), startDate)>0 then 1 else 
 		(case when timestampdiff(hour, now(), endDate)>0 then 2 else 3 end) end);
+		
+펀딩 성공, 실패에 대한 이벤트		
+CREATE EVENT IF NOT EXISTS updateFundingState2
+    ON SCHEDULE
+           EVERY 1 DAY
+    ON COMPLETION NOT PRESERVE
+    ENABLE
+    COMMENT 'fundingState 성공 실패 업데이트'
+    DO 
+    	update funding set succesFunding=(case when sumAmount > targetFunding then 5 else (case when targetFunding > sumAmount then 4 else 0 end) end) where fundingState=3;
 
  -->
  

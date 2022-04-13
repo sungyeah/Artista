@@ -166,12 +166,18 @@ public class FundingServiceImpl implements FundingService {
 	}
 	
 	//sumamount, sponamount
-//	@Override
-//	public int 	getfundingAppNo() throws Exception {
-//		Integer id = fundingDAO.maxfundingAppNo();
-//		if(id==null) id = 0;
-//		return id+1;
-//	}
+	@Override
+	public int sumAmount(int fundingNo, String id) {
+		Map<String,Object> map = new HashMap<>();
+		Integer sumAmount = fundingDAO.getSumAmount(fundingNo);
+		map.put("fundingNo", fundingNo);
+		map.put("id", id);
+		Integer sponAmount = fundingDAO.getSponAmount(map);
+		sumAmount = sponAmount + sumAmount;
+		map.put("sumAmount", sumAmount);
+		map.put("fundingNo", fundingNo);
+		return fundingDAO.updateSumAmount(map);
+	}
 
 	@Override
 	public void deleteFundingApply(int applyNo) throws Exception {
@@ -210,4 +216,5 @@ public class FundingServiceImpl implements FundingService {
 	public List<Fundingspon> sponList(int fundingNo) throws Exception {
 		return fundingDAO.sponList(fundingNo);
 	}
+
 }

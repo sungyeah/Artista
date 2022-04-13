@@ -10,6 +10,11 @@
 <style>
 
 </style>
+<script>
+	$(function() {
+		
+	})
+</script>
 <body style="overflow-x: hidden">
 <%@include file ="../header.jsp" %>
     <div id="contents">
@@ -55,7 +60,6 @@
     <script>
 
      //버튼 색이 변경이 안 됨 json 파싱, artistPageCon~~
-
     function alarm(fundingNo){
     	var color=document.getElementById("Btn1");
 
@@ -66,15 +70,15 @@
     		url: "http://localhost:8090/funding/alarm",
     		data:{"fundingNo": fundingNo},
     		success: function(data, textStatus){
-    			console.log(data);
-    			if(data){
+    			var alarm = JSON.parse(data);
+    			if(alarm.checkAlarm==true){
     				color.style.color="white";
     				color.style.background="black";
-    				$('#Btn1').text("알림 "+data+"명 신청중");
+    				$('#Btn1').text("알림 신청 "+alarm.cnt+"명 신청 중");
     			} else {
     				color.style.color="black";
     				color.style.background="white";
-    				$('#Btn1').text("알림"+data+"명 신청중");
+    				$('#Btn1').text("알림 신청 "+alarm.cnt+"명 신청 중");
     			}
     		},
     		error:function(data, textStatus){
