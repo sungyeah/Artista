@@ -24,6 +24,17 @@ public class Artist {
 		this.artistInstagram = artistInstagram;
 		this.followerNum = followerNum;
 	}
+	public Artist(int artistNo, String id, String artistName, String artistImg, String artistType, 
+			String artistIntroduce, String artistRecord, String artistInstagram) {
+		this.artistNo = artistNo;
+		this.id = id;
+		this.artistName = artistName;
+		this.artistImg = artistImg;
+		this.artistType = artistType;
+		this.artistIntroduce = artistIntroduce;
+		this.artistRecord = artistRecord;
+		this.artistInstagram = artistInstagram;
+	}
 	
 	public int getArtistNo() {
 		return artistNo;

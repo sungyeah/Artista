@@ -17,6 +17,14 @@
 		]]>
 	</insert>
 	
+	<!-- 아티스트 등록신청 내용 insert -->
+	<insert id="updateArtist" parameterType="artist">
+		<![CDATA[
+			update artist set artistName=#{artistName}, artistImg=#{artistImg}, artistType=#{artistType}, artistIntroduce=#{artistIntroduce},
+			 	artistRecord=#{artistRecord}, artistInstagram=#{artistInstagram} where artistNo=#{artistNo}
+		]]>
+	</insert>
+	
 	<!-- 아티스트 번호 select -->
 	<select id="selectArtistNo" parameterType="string" resultType="integer">
 		<![CDATA[

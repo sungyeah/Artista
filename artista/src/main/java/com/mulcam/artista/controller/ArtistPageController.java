@@ -23,6 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -81,6 +84,8 @@ public class ArtistPageController {
 	
 	@Autowired
 	ArtistService artistService;
+	@Autowired
+	ArtistApplyService artistapplyService;
 	
 	@Autowired
 	ExhibitService exhibitService;
@@ -96,21 +101,30 @@ public class ArtistPageController {
 		String id=(String) session.getAttribute("id");	
 		try {
 			Artist artist = artistService.artistInfo(id);
-			System.out.println(artist.getId());
 			ArtistWorld artistworld = artistService.selectArtistWorldById(artist.getId());
 			model.addAttribute("id", artist.getId());
 			model.addAttribute("artist", artist);
 			model.addAttribute("artistworld", artistworld.getImgName());
+			
+			JSONParser parser = new JSONParser();
+			Object obj = parser.parse( artist.getArtistRecord() );
+			model.addAttribute("record", obj);
+			model.addAttribute("res", artist.getArtistRecord());
+			
+			JSONArray jsonObj = new JSONArray(artist.getArtistRecord());
+			model.addAttribute("size", jsonObj.length());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "artistpage/modify";
 	}
 	
-	/*
+	
 	@PostMapping("artistmodifyComplete")
 	public String artistmodifyComplete(@ModelAttribute ArtistApply artistapply, 
 			@RequestParam(value="artistImgFile") MultipartFile artistImgFile, 
+			@RequestParam(value="artistWorld1") MultipartFile artistWorldFile, 
 			@RequestParam(value="fileChange") String file,
 			@RequestParam(value="fileChange2") String file2) 
 	{
@@ -122,8 +136,6 @@ public class ArtistPageController {
 		try {
 			artistNo = artistService.getArtistNo(id);
 			artistapply.setArtistNo(artistNo);
-			//artistapplyNo = ArtistApplyService.mas
-			//exhibitapply.setExhibitapplyNo(exhibitapplyNo);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		};
@@ -132,49 +144,53 @@ public class ArtistPageController {
 		if(file.equals("0")) {
 			String path = servletContext.getRealPath("/imgupload/artistProfile/");
 			String[] mtypes = artistImgFile.getContentType().split("/");
-			File destFile = new File(path + apply.getArtistName() +"."+ mtypes[1]);
-			
-			String path = servletContext.getRealPath("/imgupload/exhibition/");
-			String[] mtypes = posterImgFile.getContentType().split("/");
-			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
-			Date time = new Date();
-			String exhibitEnrollTime = simpleDate.format(time);
-			
+			String imgName = UUID.randomUUID().toString();
+			File destFile = new File(path + imgName +"."+ mtypes[1]);
 			try {
-				File destFile = new File(path + exhibitEnrollTime +"."+ mtypes[1]);	//이미지 타입
-				posterImgFile.transferTo(destFile);
-				
-				String exhibitposterImg = exhibitEnrollTime +"."+ mtypes[1];
-				exhibitapply.setExhibitPoster(exhibitposterImg);
+				artistImgFile.transferTo(destFile);
+				String artistImg = imgName +"."+ mtypes[1];
+				artistapply.setArtistImg(artistImg);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		} else {
-			Exhibition exhibit;
+		}
+		// 기존 아티스트 이미지 사용
+		else if(file.equals("1")) { 
+			Artist artist = null;
 			try {
-				exhibit = exhibitService.selectExhibit(exhibitNo);
-				exhibitapply.setExhibitPoster(exhibit.getExhibitPoster());
+				System.out.println();
+				artist = artistService.Artistinfo(artistapply.getOriginArtistNo());
+				artistapply.setArtistImg(artist.getArtistImg());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		
-		String[] exhibitDate = exhibitapply.getExhibitDate().split(" ~ ");
-		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
-		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(exhibitDate[0]));
-		exhibitapply.setStartDate(Timestamp.valueOf(localDateTime).toString());
-		localDateTime = LocalDateTime.from(formatDateTime.parse(exhibitDate[1]));
-		exhibitapply.setEndDate(Timestamp.valueOf(localDateTime).toString());
-		exhibitapply.setApplyStatus(2); //수정요청
+		//아티스트 작업세계 수정
+		if(file2.equals("0")) {
+			String path = servletContext.getRealPath("/imgupload/artistWorlds/");
+			String[] mtypes = artistWorldFile.getContentType().split("/");
+			String imgName = UUID.randomUUID().toString();
+			File destFile = new File(path + imgName +"."+ mtypes[1]);
+			try {
+				artistWorldFile.transferTo(destFile);
+				String artistImg = imgName +"."+ mtypes[1];
+				artistapply.setArtistWorld(artistImg);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		//아티스트 작업세계 기존거 사용 : 변화 없음
 		
 		try {
-			exhibitService.insertExhibitApply(exhibitapply);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			artistapply.setArtistNo(artistapplyService.getApplyArtistNo());
+			artistapplyService.insertArtistModify(artistapply);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}	
+		
 		return "artistpage/succesapply";
-	}*/
+	}
 	
 	/* 아티스트 첫페이지 및 일반작품 전체 보기*/
 	@GetMapping({"","/","/mywork"})

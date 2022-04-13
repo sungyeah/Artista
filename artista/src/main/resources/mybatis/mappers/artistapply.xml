@@ -17,7 +17,17 @@
 			insert into artistapply 
 			(artistNo, id, artistName, artistImg, artistType, artistIntroduce, artistRecord, artistInstagram, applyResult) 
 			values 
-			(#{artistNo}, #{id}, #{artistName}, #{artistImg}, #{artistType}, #{artistIntroduce}, #{artistRecord}, #{artistInstagram}, 1)
+			(#{artistNo}, #{id}, #{artistName}, #{artistImg}, #{artistType}, #{artistIntroduce}, #{artistRecord}, #{artistInstagram}, 0)
+		]]>
+	</insert>
+	
+	<!-- modify insert -->
+	<insert id="insertArtistModify" parameterType="artistapply">
+		<![CDATA[
+			insert into artistapply 
+			(artistNo, id, artistName, artistImg, artistType, artistIntroduce, artistRecord, artistInstagram, applyResult, originArtistNo, artistWorld) 
+			values 
+			(#{artistNo}, #{id}, #{artistName}, #{artistImg}, #{artistType}, #{artistIntroduce}, #{artistRecord}, #{artistInstagram}, 2, #{originArtistNo}, #{artistWorld})
 		]]>
 	</insert>
 	
