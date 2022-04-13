@@ -9,10 +9,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<link rel="stylesheet" href="../css/applymodal.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<%@include file ="../header.jsp" %>
+	
+	<div id="trackingapply" class="modal-overlay">
+        <div class="refusemodal-window">
+            <header class="modal-header">
+            	<div id="refuse_close" class="close-area close">X</div>
+                <h4 class="modal-header-title">운송장 번호 입력</h4>
+            </header>
+            <article class="modal-body">
+                <form class="modal-modify-form" method="post">
+                    <div class="modal-modify-form-border"></div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 운송장번호 입력
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input id="trackingNo" class="modal-modify-form-input" style="width:300px;" />
+                         </div>
+                    </div>       
+                    <input type="hidden" id="orderNo" />                          
+                    <div class="modal-modify-form-border">
+                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
+                            <a class="yesNo-btn" id="refuse">입력</a>                    
+                            <a class="yesNo-btn close" id="cancel">취소</a>      
+                        </div>
+                    </div>
+                    </form>
+            </article>  
+        </div>
+    </div>
+	
     <div class="contents">
         <header class="manager-header">
             <h2 class="manager-header-title">관리자 페이지</h2>
@@ -71,12 +102,12 @@
 								<tr>
                             	<th scope="col">${workreport.work.workNo }</th>
                             	<th scope="col">${workreport.work.workName }</th>
-                            	<th scope="col"">${workreport.work.workPrice }</th>
+                            	<th scope="col">${workreport.work.workPrice }</th>
                             	<th scope="col">${workreport.order.orderDate }</th>
                             	<th scope="col">${workreport.order.receiverName }</th>
                             	<th scope="col" colspan="1">
-                           			<c:if test="${workreport.work.workForSale eq 2}">
-                           				<a class="artist-detail-btn" onclick="transfer('${workreport.work.workNo }')">송장번호 입력</a>
+                           			<c:if test="${workreport.order.orderStatus eq '상품 준비 중'}">
+                           				<a class="artist-detail-btn" onclick="tracking('${workreport.order.orderNo }')">송장번호 입력</a>
                            			</c:if>
                            		</th>                                
                            		<th scope="col" colspan="1">
@@ -96,7 +127,22 @@
     <%@include file ="../footer.jsp" %>
     
     <script>
+    
+    tracking
+    $(function(){
+    	$(document).on('click', '.close', function(e){
+    		trackingapply.style.display = "none";
+    	});
+    });
+   
+   	function tracking(orderNo){
+   		trackingapply.style.display = "flex";
+   		$("#orderNo").attr("value", orderNo);
+   		alert($("#orderNo").val());
+   	}
     function transfer(workNo){
+    	alert("송금완료처리에 성공했습니다");
+    	/*
     	$.ajax({
 			type:"post",
 			dataType:"text",
@@ -111,13 +157,28 @@
 				alert("실패");
 			}
 		});
+    	*/
     }
     
+  
     $(function(){
-    	$(".artist-detail-btn").click(function(){
-    		alert("작가 송금하기!");
+    	$(document).on('click', '#refuse', function(e){
+    		alert($("#trackingNo").val());
+    		$.ajax({
+    			type:"post",
+    			async: false,
+    			url:"http://localhost:8090/manager/trackingNo",
+    			data:{"orderNo":$('#orderNo').val(), "trackingNo": $("#trackingNo").val() },
+    			dataType:"text",
+    			success: function(data, textStatus){ 
+    				alert("운송장 번호 등록이 완료되었습니다");
+    				location.reload();
+    			},
+    			error:function(data, textStatus){
+    				alert("운송장 번호 등록이 실패했습니다.");
+    			}
+    		});
     	});
-    	
     });
     </script>
 </body>

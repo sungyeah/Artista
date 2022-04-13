@@ -184,6 +184,12 @@
 		]]>
 	</update>
 	
+	<update id="setTrackingNo" parameterType="map" >
+		<![CDATA[
+			update order1 set trackingNo=#{trackingNo} where orderNo=#{orderNo}
+		]]>
+	</update>
+	
 </mapper>
 <!-- create table member(
 

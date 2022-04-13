@@ -48,4 +48,5 @@ public interface SubPageDAO {
 	public int workcnt(String artistName)throws Exception;
 	
 	public void updateStatus(Map map) throws Exception;
+	public void setTrackingNo(Map map) throws Exception;
 }
