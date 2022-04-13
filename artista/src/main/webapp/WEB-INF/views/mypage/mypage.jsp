@@ -170,10 +170,10 @@
                         					<c:when test="${fundingList.fundingState == 3 }">
                         						<td class="start-date">종료</td>
                         					</c:when>
-                        					<c:when test="${fundingList.fundingState == 4 }">
+                        					<c:when test="${fundingList.succesFunding == 4 }">
                         						<td class="start-date">실패</td>
                         					</c:when>
-                        					<c:when test="${fundingList.fundingState == 5 }">
+                        					<c:when test="${fundingList.succesFunding == 5 }">
                         						<td class="start-date">성공</td>
                         					</c:when>
                         					<c:otherwise>
