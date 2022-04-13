@@ -393,7 +393,7 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 				if(data=='true'){
 					 color.style.color="white";
 					 color.style.background="#222";
-					 location.reload();
+					location.reload();
 				}else{
 					color.style.color="#222";
 					color.style.background="white";

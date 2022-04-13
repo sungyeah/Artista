@@ -3,15 +3,14 @@
 <html>
 <head>
     <script	src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
     <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	<link rel="stylesheet" href="../css/applyfunding.css">
-<title>Insert title here</title>
+ --><title>Insert title here</title>
 </head>
 <style>
 
@@ -87,9 +86,8 @@
                 대표 이미지
             </div>
             <div class="account-modify-form-row-value">
-            	<input class="upload-name" value="파일선택" disabled="disabled">
+             	<input class="upload-name" value="파일선택" disabled="disabled">
 				<label for="thumbImg">업로드</label>
-            	<!-- <input id="thumbImg" class="account-modify-form-input" type="file" name="thumbFile" ><br> -->
             	<input id="thumbImg" type="file" name="thumbFile" class="upload-hidden" ><br>
             </div>
         </div>
@@ -226,14 +224,16 @@
     	var fileTarget = $('.account-modify-form-row-value .upload-hidden'); 
     	fileTarget.on('change', function(){ // 값이 변경되면 
     		if(window.FileReader){ // modern browser 
-    		var filename = $(this)[0].files[0].name; 
-    	} else { // old IE 
-    		var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+    			var filename = $(this)[0].files[0].name; 
+    		} else { // old IE 
+    			var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
     		} 
-    	// 추출한 파일명 삽입 
+    		console.log("filename:"+filename);
+    		console.log("$(this):"+$(this));
+    		// 추출한 파일명 삽입 
     		$(this).siblings('.upload-name').val(filename); 
-    		}); 
-    	});
+    	}); 
+    });
 
     </script>    
 </body>

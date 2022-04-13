@@ -107,14 +107,17 @@
 
     
 </div>
-<script src="https://og-data.s3.amazonaws.com/static/common/js/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" href="../css/applyfunding.css">
+<!-- <script src="https://og-data.s3.amazonaws.com/static/common/js/jquery-1.12.4.min.js"></script> -->
 <script src="https://og-data.s3.amazonaws.com/CACHE/js/output.bd018f02f86b.js"></script>
 <script src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script>
 <script src="js/jquery-3.4.1.js"></script>
 <script src="js/slick.js"></script>
 <script src="js/script.js"></script>
-<script>
-</script>
 <script>
 var uid = '<%=(String)session.getAttribute("membertype")%>';
 	console.log(uid);
