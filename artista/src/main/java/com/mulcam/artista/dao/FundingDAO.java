@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.mulcam.artista.dto.Funding;
+import com.mulcam.artista.dto.Fundingspon;
 
 @Mapper
 @Repository
@@ -49,4 +50,5 @@ public interface FundingDAO {
 	public Integer maxfundingAppNo() throws Exception;
 	public int queryCount(int fundingNo);
 	public List<Funding> querysponlist(String id);
+	public List<Fundingspon> sponList(int fundingNo)throws Exception;
 }
