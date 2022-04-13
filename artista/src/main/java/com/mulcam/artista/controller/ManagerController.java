@@ -165,6 +165,17 @@ public class ManagerController {
 		}
 	}
 	
+	/*운송장 번호 입력*/
+	@ResponseBody
+	@PostMapping(value="trackingNo")
+	public void TrackingNo(@RequestParam(value="orderNo",required = false) int orderNo, @RequestParam(value="trackingNo",required = false) int trackingNo) {
+		try {
+			subPageService.setTrackingNo(orderNo, trackingNo);
+			subPageService.updateStatus("배송 준비중", orderNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/* 상품 등록 or 수정 신청 */
 	@GetMapping("/productapplylist")
@@ -215,7 +226,7 @@ public class ManagerController {
 				Work work = null;
 				work = new Work(workapply.getWorkNo(), workapply.getArtistNo(), workapply.getArtistName(), workapply.getWorkName(),
 						workapply.getWorkImg(), workapply.getWorkType(), workapply.getWorkTech(), 
-						workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getWorkPrice(), 1, -1,workapply.getWorkHeight());
+						workapply.getWorkSize(), workapply.getWorkIntro(), workapply.getWorkPrice(), 1, -1, workapply.getWorkHeight());
 				workService.updateWork(work);
 				workapplyService.deleteWorkApply(workapplyNo);
 			}
