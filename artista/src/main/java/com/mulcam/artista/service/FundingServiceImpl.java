@@ -77,7 +77,8 @@ public class FundingServiceImpl implements FundingService {
 		// TODO Auto-generated method stub
 		return fundingDAO.queryappfunding(id);
 	}
-
+	
+	//
 	@Override
 	public void insertfundingspon(int sponsorAmount,int fundingNo,String email,String id) {
 		Map<String, Object> map = new HashMap<>();
@@ -163,6 +164,14 @@ public class FundingServiceImpl implements FundingService {
 		if(id==null) id = 0;
 		return id+1;
 	}
+	
+	//sumamount, sponamount
+//	@Override
+//	public int 	getfundingAppNo() throws Exception {
+//		Integer id = fundingDAO.maxfundingAppNo();
+//		if(id==null) id = 0;
+//		return id+1;
+//	}
 
 	@Override
 	public void deleteFundingApply(int applyNo) throws Exception {

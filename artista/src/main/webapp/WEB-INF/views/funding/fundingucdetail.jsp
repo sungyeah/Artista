@@ -54,11 +54,11 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
     <script>
 
-     //버튼 색이 변경이 안 됨
+     //버튼 색이 변경이 안 됨 json 파싱, artistPageCon~~
+
     function alarm(fundingNo){
     	var color=document.getElementById("Btn1");
-        var id = '<%=(String)session.getAttribute("id")%>';
-    	console.log(fundingNo);
+
     	$.ajax({
     		type: "Get",
     		dataType: "text",
@@ -66,11 +66,11 @@
     		url: "http://localhost:8090/funding/alarm",
     		data:{"fundingNo": fundingNo},
     		success: function(data, textStatus){
-    			//인원수
-    			if(id===null){
+    			console.log(data);
+    			if(data){
     				color.style.color="white";
     				color.style.background="black";
-    				$('#Btn1').text("알림"+data+"명 신청중");
+    				$('#Btn1').text("알림 "+data+"명 신청중");
     			} else {
     				color.style.color="black";
     				color.style.background="white";

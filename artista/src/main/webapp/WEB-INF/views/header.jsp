@@ -127,7 +127,7 @@ var uid = '<%=(String)session.getAttribute("membertype")%>';
 			url: "/headeralarm",
 			type: "post",
 			success: function(fundingList) {
-				console.log(fundingList)
+				console.log(fundingList);
 				$("#toggleBtn").on("click", function(){
 				    //$(".box").toggle(1000);
 					//$(".box1").fadeToggle(1000);
@@ -136,8 +136,8 @@ var uid = '<%=(String)session.getAttribute("membertype")%>';
                         $(".box1").html("알람이 존재하지 않습니다");
                     } else {
                         for(let funding of fundingList) {
-                         console.log(funding);
-                         $(".box1").append(funding.projTitle + funding.fundingMsg +"<br>");
+                         console.log(funding.fundingNo);
+                         $(".box1").append("<a href= ${path}/funding/fundingucdetail?fundingNo=" + funding.fundingNo + ">" + funding.projTitle + funding.fundingMsg + "</a>" + "<br>");
                         }
                     }
 					$(".box1").slideToggle(10);
