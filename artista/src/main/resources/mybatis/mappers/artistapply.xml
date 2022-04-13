@@ -80,6 +80,8 @@ create table artistapply(
     artistInstagram varchar(500),
     applyResult int not null,
     refusedContents longtext,
+    originArtistNo int(10),
+    artistWorld varchar(255),
     primary key(artistNo)
 );
  -->

@@ -34,6 +34,7 @@ import com.mulcam.artista.dto.ArtistWorld;
 import com.mulcam.artista.dto.Exhibition;
 import com.mulcam.artista.dto.ExhibitionApply;
 import com.mulcam.artista.dto.Funding;
+import com.mulcam.artista.dto.Fundingspon;
 import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.OrderReport;
@@ -613,4 +614,30 @@ public class ManagerController {
 		}catch(Exception e) {
 		}
 	}
+	
+	@ResponseBody
+	@PostMapping(value="sponList")
+	public List<Map> sponList(@RequestParam(value="fundingNo") int fundingNo) {
+		List<Map> sponsorList = new ArrayList<Map>();
+		try {
+			List<Fundingspon> sponList = fundingService.sponList(fundingNo);
+			for(int i=0;i<sponList.size();i++) {
+				Map<String,Object> sponInfo = new HashMap<String,Object>();
+				Fundingspon spon = sponList.get(i);
+				String id = spon.getId();
+				Member mem = subPageService.queryId(id);
+				sponInfo.put("id", id);
+				sponInfo.put("name", mem.getName());
+				sponInfo.put("contact", mem.getContact());
+				sponInfo.put("email", mem.getEmail());
+				sponInfo.put("sponAmount", spon.getSponsorAmount());
+				sponsorList.add(sponInfo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sponsorList;
+	}
+	
+	
 }
