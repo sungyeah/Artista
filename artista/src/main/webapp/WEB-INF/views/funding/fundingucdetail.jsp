@@ -10,6 +10,11 @@
 <style>
 
 </style>
+<script>
+	$(function() {
+		
+	})
+</script>
 <body style="overflow-x: hidden">
 <%@include file ="../header.jsp" %>
     <div id="contents">

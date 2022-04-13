@@ -51,4 +51,8 @@ public interface FundingDAO {
 	public int queryCount(int fundingNo);
 	public List<Funding> querysponlist(String id);
 	public List<Fundingspon> sponList(int fundingNo)throws Exception;
+	public Integer getSumAmount(int fundingNo);
+	public Integer getSponAmount(Map map);
+	public int updateSumAmount(Map map);
+
 }

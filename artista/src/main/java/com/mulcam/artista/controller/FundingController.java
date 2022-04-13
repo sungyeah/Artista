@@ -174,6 +174,7 @@ public class FundingController {
 		String id=(String) session.getAttribute("id");
 		int sponsAmount = Integer.parseInt(sponsorAmount);
 		fundingService.insertfundingspon(sponsAmount, fundingNo, email, id);
+		fundingService.sumAmount(fundingNo, id);
 		//sumamount 서비스 만들고 더해서 넣기
 		
 		return "funding/succesamount";
