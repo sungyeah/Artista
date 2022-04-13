@@ -96,10 +96,11 @@ public class ArtistPageController {
 		String id=(String) session.getAttribute("id");	
 		try {
 			Artist artist = artistService.artistInfo(id);
-			List<ArtistWorld> artistworld = artistService.selectArtistWorldById(id);
-			model.addAttribute("id", id);
+			System.out.println(artist.getId());
+			ArtistWorld artistworld = artistService.selectArtistWorldById(artist.getId());
+			model.addAttribute("id", artist.getId());
 			model.addAttribute("artist", artist);
-			//model.addAttribute("artistworld", artistworld[0]);
+			model.addAttribute("artistworld", artistworld.getImgName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -109,7 +110,7 @@ public class ArtistPageController {
 	/*
 	@PostMapping("artistmodifyComplete")
 	public String artistmodifyComplete(@ModelAttribute ArtistApply artistapply, 
-			@RequestParam(value="posterImgFile") MultipartFile posterImgFile, 
+			@RequestParam(value="artistImgFile") MultipartFile artistImgFile, 
 			@RequestParam(value="fileChange") String file,
 			@RequestParam(value="fileChange2") String file2) 
 	{
@@ -127,8 +128,12 @@ public class ArtistPageController {
 			e1.printStackTrace();
 		};
 		
-		//포스터 이미지 등록
+		//아티스트 이미지 수정
 		if(file.equals("0")) {
+			String path = servletContext.getRealPath("/imgupload/artistProfile/");
+			String[] mtypes = artistImgFile.getContentType().split("/");
+			File destFile = new File(path + apply.getArtistName() +"."+ mtypes[1]);
+			
 			String path = servletContext.getRealPath("/imgupload/exhibition/");
 			String[] mtypes = posterImgFile.getContentType().split("/");
 			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
@@ -169,8 +174,8 @@ public class ArtistPageController {
 			e.printStackTrace();
 		}
 		return "artistpage/succesapply";
-	}
-	*/
+	}*/
+	
 	/* 아티스트 첫페이지 및 일반작품 전체 보기*/
 	@GetMapping({"","/","/mywork"})
 	public String artistpageMain(Model model) {
@@ -570,7 +575,10 @@ public class ArtistPageController {
 		String id=(String) session.getAttribute("id");
 		try {
 			Member mem = subPageService.queryId(id);
-			model.addAttribute("mem", mem);
+			Artist artist = artistService.artistInfo(id);
+			model.addAttribute("email", mem.getEmail());
+			model.addAttribute("id", mem.getId());
+			model.addAttribute("artistName", artist.getArtistName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -674,7 +682,6 @@ public class ArtistPageController {
 					file.transferTo(destFile);
 					funding.setThumbImg(filename);
 				}
-				artistPageService.insertApply(funding);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -682,7 +689,9 @@ public class ArtistPageController {
 			funding.setThumbImg(originFunding.getThumbImg());
 		}
 		
-		try {			
+		try {
+			funding.setFundingNo(fundingService.getfundingAppNo());
+			funding.setFundingOriginNo(originFunding.getFundingNo());
 			artistPageService.modifyApply(funding);				
 		} catch (Exception e) {
 			e.printStackTrace();

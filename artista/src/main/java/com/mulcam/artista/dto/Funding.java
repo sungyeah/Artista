@@ -33,6 +33,8 @@ public class Funding {
 		MultipartFile thumbFile;
 		String fundingMsg;
 		Date sponDate;
+		int fundingOriginNo;
+		
 		public Funding() {}
 		public Funding(int fundingNo, int artistNo, String artistName, String projTitle, String projIntro, String projBudget, String projArtist, 
 				int targetFunding, String fundingDate, String startDate, String endDate, String thumbImg, String getplace, String getplace2) {
@@ -50,6 +52,24 @@ public class Funding {
 			this.thumbImg = thumbImg;
 			this.getplace = getplace;
 			this.getplace2 = getplace2;
+		}
+		public Funding(int fundingNo, int artistNo, String artistName, String projTitle, String projIntro, String projBudget, String projArtist, 
+				int targetFunding, String fundingDate, String startDate, String endDate, String thumbImg, String getplace, String getplace2, int fundingOriginNo) {
+			this.fundingNo = fundingNo;
+			this.artistNo = artistNo;
+			this.artistName = artistName;
+			this.projTitle = projTitle;
+			this.projIntro = projIntro;
+			this.projBudget = projBudget;
+			this.projArtist = projArtist;
+			this.targetFunding = targetFunding;
+			this.fundingDate = fundingDate;
+			this.startDate = startDate;
+			this.endDate = endDate;
+			this.thumbImg = thumbImg;
+			this.getplace = getplace;
+			this.getplace2 = getplace2;
+			this.fundingOriginNo = fundingOriginNo;
 		}
 		
 	
@@ -231,6 +251,12 @@ public class Funding {
 
 		public void setReadSign(boolean readSign) {
 			this.readSign = readSign;
+		}
+		public int getFundingOriginNo() {
+			return fundingOriginNo;
+		}
+		public void setFundingOriginNo(int fundingOriginNo) {
+			this.fundingOriginNo = fundingOriginNo;
 		}
 		
 		

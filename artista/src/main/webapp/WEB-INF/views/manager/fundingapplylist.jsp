@@ -268,9 +268,9 @@
  			 	$("#place").attr("value", fundingData.fundingapply.getplace + " " + fundingData.fundingapply.getplace2);
  			 	$("#projTitle").attr("value", fundingData.fundingapply.projTitle);
  			 	$("#fundingNo").attr("value", fundingData.fundingapply.fundingNo);
- 			 	projectIntro.setData(fundingData.funding.projIntro);
- 			 	projectBudgetInfo.setData(fundingData.funding.projBudget);
- 			 	projectArtistInfo.setData(fundingData.funding.projArtist);
+ 			 	projectIntro.setData(fundingData.fundingapply.projIntro);
+ 			 	projectBudgetInfo.setData(fundingData.fundingapply.projBudget);
+ 			 	projectArtistInfo.setData(fundingData.fundingapply.projArtist);
 			},
 			error:function(data, textStatus){
 				alert("실패");

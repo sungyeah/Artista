@@ -88,7 +88,7 @@
                 대표 이미지
             </div>
             <div class="account-modify-form-row-value">
-            <input type="hidden" value="1" id="fileChange" name="fileChange" />
+            	<input type="hidden" value="1" id="fileChange" name="fileChange" />
             	<input class="upload-name" value="${funding.thumbImg}" disabled="disabled">
 				<label for="thumbImg">업로드</label>
             	<input id="thumbImg" type="file" name="thumbFile" class="upload-hidden" ><br>
@@ -222,7 +222,19 @@
       	        timePicker24Hour: true,                  // 24시간 노출 여부(ex> true : 23:50, false : PM 11:50)
       	    });
       });
-   
+    $(document).ready(function(){ 
+    	var fileTarget = $('.account-modify-form-row-value .upload-hidden'); 
+    	fileTarget.on('change', function(){ // 값이 변경되면 
+    		if(window.FileReader){ // modern browser 
+    			var filename = $(this)[0].files[0].name; 
+    		} else { // old IE 
+    			var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+    		} 
+    		// 추출한 파일명 삽입 
+    		$(this).siblings('.upload-name').val(filename); 
+    		$("#fileChange").attr("value", 0);
+    	}); 
+    });
     
     </script>    
 </body>

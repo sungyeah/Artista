@@ -125,7 +125,7 @@
                 }
             </style>
 
-            <section class="detail">
+            <section class="detail1">
             	<form id="form2" action="payment" method="post">
                 <!--상세페이지에만 들어가는 클래스입니다.-->
                 	<input type="hidden" id="workNo" name="workNo" value="${work.workNo }">
@@ -134,7 +134,7 @@
                     <input type="hidden" id="walletAddress">
                     <div class="person pc" style="padding:50px 0px;">
                         <div class="left">
-                            <a href="/user?memberId=389" class="img">
+                            <a href="${pageContext.request.contextPath}/artistdetail/${work.artistNo }" class="img">
                                 <div class="user-thumbnail-div slv">
                                     <img class="user-thumbnail" style="width:50px !important;height:50px !important;"src="/mypage/artistprofile/${artist.artistImg }" alt="">
                                 </div>
@@ -393,7 +393,7 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 				if(data=='true'){
 					 color.style.color="white";
 					 color.style.background="#222";
-					 location.reload();
+					location.reload();
 				}else{
 					color.style.color="#222";
 					color.style.background="white";

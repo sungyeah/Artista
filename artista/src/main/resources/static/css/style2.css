@@ -656,7 +656,7 @@ h3 {}
     display: none;
 }
 
-.detail .container {
+.detail1 .container {
     max-width: 900px;
 }
 
@@ -5430,7 +5430,7 @@ input[type=range]:focus::-ms-fill-upper {
     line-height: 1.5;
 }
 
-.detail .container {
+.detail1 .container {
     max-width: 1000px;
 }
 
@@ -5643,7 +5643,7 @@ input[type=range]:focus::-ms-fill-upper {
     line-height: 1.5;
 }
 
-.detail .container {
+.detail1 .container {
     max-width: 1000px;
 }
 

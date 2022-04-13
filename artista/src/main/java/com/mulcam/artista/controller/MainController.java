@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mulcam.artista.dto.Artist;
@@ -17,6 +17,7 @@ import com.mulcam.artista.dto.Exhibition;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.ExhibitService;
+import com.mulcam.artista.service.FundingService;
 import com.mulcam.artista.service.SubPageService;
 
 @Controller
@@ -35,18 +36,22 @@ public class MainController {
 	
 	@Autowired
 	ArtistService artistservice;
+	
+	@Autowired
+	FundingService fundingserivce;
 
 	@GetMapping("main")
-	public String main(Model model) {
+	public String main(@ModelAttribute Funding funding, Model model) {
 		try {
 		List<Exhibition> Exhibitlist = exhibitservice.exhibits("view");
+		List<Funding> list=fundingserivce.queryov(funding);
 		/* Artist artist = artistservice.Artistinfo(artistNo); */
 		Artist artist = artistservice.Artistmain();
 		model.addAttribute("exhibitList", Exhibitlist);
 		/* model.addAttribute("status", "ing"); */
 		/* model.addAttribute("artist", artist); */
 		model.addAttribute("artist", artist);
-		
+		model.addAttribute("list", list);
 		
 		
 		System.out.println(Exhibitlist);
