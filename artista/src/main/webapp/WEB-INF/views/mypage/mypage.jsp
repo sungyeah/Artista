@@ -144,7 +144,7 @@
                         <th scope="col" class="artworks">펀딩 기간</th>
                         <th scope="col" class="artworks">후원날짜</th>
                         <th scope="col" class="status">현황</th>
-                        <th scope="col" class="status">여부</th>
+                        <th scope="col" class="status">결과</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -65,7 +65,7 @@
     margin: 0;
     padding: 0;
     position: relative;
-    height: auto;
+    height: 54px;
 }
 .manager-guide-name{
     -webkit-text-size-adjust: 100%;
@@ -76,8 +76,8 @@
     margin: 0;
     font-weight: normal;
     line-height: 1.5;
-    padding: 9px 0 7px 44px;
-    font-size: 14px;
+    padding: 14px 0 14px 72px;
+    font-size: 18px;
 }
 .manager-nav{
     -webkit-text-size-adjust: 100%;
