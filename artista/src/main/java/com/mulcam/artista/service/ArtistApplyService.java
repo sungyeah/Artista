@@ -19,5 +19,6 @@ public interface ArtistApplyService {
 	public void deleteArtistWorld(String artistId) throws Exception;
 	
 	public List<ArtistWorld> selectArtistWorldApplyByNo(String id) throws Exception;
+	public boolean checkArtistWorld(String id) throws Exception;
 	
 }

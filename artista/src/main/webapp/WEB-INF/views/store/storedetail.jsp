@@ -134,7 +134,7 @@
                     <input type="hidden" id="walletAddress">
                     <div class="person pc" style="padding:50px 0px;">
                         <div class="left">
-                            <a href="/user?memberId=389" class="img">
+                            <a href="${pageContext.request.contextPath}/artistdetail/${work.artistNo }" class="img">
                                 <div class="user-thumbnail-div slv">
                                     <img class="user-thumbnail" style="width:50px !important;height:50px !important;"src="/mypage/artistprofile/${artist.artistImg }" alt="">
                                 </div>

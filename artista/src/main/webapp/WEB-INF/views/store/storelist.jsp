@@ -79,8 +79,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="storedetail/${work.workNo }" style="width:100%;"
-                                        class="only-pc">
+                                    <c:choose>
+                                    <c:when test="${work.workForSale == 1 }">
+                                    	<a href="storedetail/${work.workNo }" style="width:100%;" class="only-pc">
                                         <div class="box">
                                             <div class="b01">
                                                 <div name="viewer" class="img">
@@ -114,7 +115,9 @@
                                                         <span class="artist artist3">${work.artistName }</span>
                                                        <span class="artist">￦<fmt:formatNumber value="${work.workPrice }"/></span>
                                                        <c:choose>
-                                					   		<c:when test="${work.workForSale == 1 }">
+                                					   		<c:when test="${work.orderNo == -1 }">
+                                					   			<h5>${work.workName }</h5>
+                                					   			<span class="artist artist3">${work.artistName }</span>
                                 							</c:when>
                                 							<c:otherwise>
                                                        			<div class="artwork-detail-info-status red">판매됨</div>
@@ -127,7 +130,52 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
+                                    	</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                    	<a href="workdetail/${work.workNo }" style="width:100%;" class="only-pc">
+                                        <div class="box">
+                                            <div class="b01">
+                                                <div name="viewer" class="img">
+                                                    <div class="item-type-icon icon-fdview"></div>
+                                                    <div style="position: relative; width: 100%; height: 100%;">
+                                                        <div style="height: 100%;"><img
+                                                                src="/artistpage/workImg/${work.workImg }"
+                                                                style="width: 100%; height: 100%; max-width: 100%; max-height: 100%;"><video
+                                                                loop="" autoplay="" playsinline=""
+                                                                crossorigin="anonymous"
+                                                                style="display: none; width: 100%; height: 100%; max-width: 100%; max-height: 100%; user-select: none; pointer-events: none; cursor: default;">
+                                                                <source>
+                                                            </video><audio loop="" crossorigin="anonymous" controls=""
+                                                                style="display: none; width: 100%; max-width: 100%; max-height: 100%;">
+                                                                <source>
+                                                            </audio><iframe allowfullscreen="true"
+                                                                style="display: none; width: 100%; height: 600px; max-width: 100%; max-height: 100%; border: 0px;"></iframe>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="b02" style="opacity: 1; display: none;">
+                                                <div class="cont">
+                                                    <div class="img user-thumbnail-div gld">
+                                                        <img class="user-thumbnail"
+                                                            style="width:50px !important;height:50px !important;"
+                                                            src="/mypage/artistprofile/${img[status.index] } " alt="">
+                                                    </div>
+                                                    <div class="p_top">
+                                                        <h5>${work.workName }</h5>
+                                                        <span class="artist artist3">${work.artistName }</span>
+                                                       	<div class="artwork-detail-info-status" style="color:#a48e69;">전시용</div>
+                                                    </div>
+                                                    <div class="p_btm">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    	</a>
+                                    </c:otherwise>
+                                    </c:choose>
                             	</div>	
                             	</c:forEach>
                             </div>

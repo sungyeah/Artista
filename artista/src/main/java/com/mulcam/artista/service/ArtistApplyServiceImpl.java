@@ -78,5 +78,10 @@ public class ArtistApplyServiceImpl implements ArtistApplyService {
 	public List<ArtistWorld> selectArtistWorldApplyByNo(String id) throws Exception {
 		return artistworldDAO.artistWorld(id);
 	}
+
+	@Override
+	public boolean checkArtistWorld(String id) throws Exception {
+		return artistworldDAO.checkArtistWorld(id);
+	}
 	
 }

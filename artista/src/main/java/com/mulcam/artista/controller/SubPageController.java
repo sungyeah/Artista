@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mulcam.artista.dao.WorkDAO;
+import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.Cart;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
@@ -320,5 +321,16 @@ public class SubPageController {
 			e.printStackTrace();
 		}
 		return followcheck;
+	}
+	
+	@GetMapping("workdetail/{workNo}")
+	public String storedetail(@PathVariable int workNo,Model model) {
+		try {
+			Work work = workService.workinfo(workNo);
+			model.addAttribute("work", work);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "artistpage/workdetail";
 	}
 }
