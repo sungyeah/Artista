@@ -91,4 +91,9 @@ public class ArtistServiceImpl implements ArtistService {
 		return artistDAO.artistMain();
 	}
 
+	@Override
+	public void updateArtist(Artist artist) throws Exception {
+		artistDAO.updateArtist(artist);
+	}
+
 }

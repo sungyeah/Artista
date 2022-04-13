@@ -178,6 +178,7 @@
                         <th scope="col" class="id">아이디</th>
                         <th scope="col" class="artistName">아티스트 필명</th>
                         <th scope="col" class="artistType">아티스트 유형</th>
+                        <th scope="col" class="artistType">신청 유형</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -189,7 +190,11 @@
                             	<th scope="col" class="artistNo">${artistapply.artistNo }</th>
                             	<th scope="col" class="id">${artistapply.id }</th>
                             	<th scope="col" class="artistName">${artistapply.artistName }</th>
-                            	<th scope="col" class="artistType">${artistapply.artistType }</th>                            
+                            	<th scope="col" class="artistType">${artistapply.artistType }</th>  
+                            	<th scope="col" class="artistType">
+                            		<c:if test="${artistapply.applyResult==0 }">등록 신청</c:if>
+                            		<c:if test="${artistapply.applyResult==2 }">수정 신청</c:if>
+                            	</th>                          
                            		<th scope="col"><a class="artist-detail-btn" onclick="applyDetail('${artistapply.artistNo }')">신청 상세보기</a></th>
                         		</tr>
                         		</c:forEach>
@@ -260,9 +265,11 @@
  			 	
  			 	const artistworld = applyartistData.artistworld;
  			 	var artistworldHtml ='';
+ 			 	/*
  			 	for(let i=0; i<artistworld.length;i++){
  			 		artistworldHtml += '<div class="artistsWorld"><img class="artistsWorldImg" src="/mypage/artistWorld/'+artistworld[i].imgName+'"/></div><br>';
- 			 	}
+ 			 	}*/
+ 			 	artistworldHtml += '<div class="artistsWorld"><img class="artistsWorldImg" src="/mypage/artistWorld/'+artistworld+'"/></div><br>';
  			 	$('#artistWorld').html(artistworldHtml); 
 			},
 			error:function(data, textStatus){

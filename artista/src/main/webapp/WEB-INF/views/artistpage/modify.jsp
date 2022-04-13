@@ -11,14 +11,7 @@
 <link rel="stylesheet" href="../css/manager.css">
 <link rel="stylesheet" href="../css/mypage.css">
 <link rel="stylesheet" href="../css/enroll.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.min.css" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/datepicker.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/i18n/datepicker.en.min.js"></script>
 
 <style>
 	.artistImg {
@@ -52,7 +45,7 @@
         </header>
 
         <article class="enroll-body">
-            <form class="enroll-modify-form" method="post" action="/mypage/artistmodifyComplete" enctype="multipart/form-data">
+            <form class="enroll-modify-form" method="post" action="/artistpage/artistmodifyComplete" enctype="multipart/form-data">
                 <div class="enroll-modify-form"></div>
                 <div class="certification-container  certified">
                     <div class="enroll-modify-form-row">
@@ -60,10 +53,10 @@
                             <span class="red">*</span> 프로필 사진
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input type="hidden" value="1" id="fileChange" name="fileChange" />
+                            <input type="hidden" value="1" id="fileChange1" name="fileChange" />
                         	<img class="artistImg" id="artistThumb" src="/mypage/artistprofile/${artist.artistImg }" />
                             <label for="artistImg">파일 선택</label>
-                            <input type="file" id="artistImg" name="artistImgFile" /><br>
+                            <input type="file" id="artistImg" name="artistImgFile" class="fileselect1" value="${artist.artistImg }" /><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -112,7 +105,7 @@
                             <span class="red">*</span> 아티스트 소개
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <textarea class="enroll-modify-form-input" id="artistIntroduce" name="artistIntroduce" style="width:750px; height: 120px; resize: none;"></textarea>
+                            <textarea class="enroll-modify-form-input" id="artistIntroduce" name="artistIntroduce" style="width:750px; height: 120px; resize: none;">${artist.artistIntroduce }</textarea>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -120,8 +113,24 @@
                             <span class="red">*</span> 아티스트의 이력
                         </div>
                         <div class="enroll-modify-form-row-value">
-							<table><tbody>
-                    			<tr class="artiststory">
+                        	<input type="hidden" value="${size }" id="size" />
+                        	<table><tbody>
+							<c:choose>
+                    			<c:when test="${record!=null}">
+                    				<input type="hidden" value="${record }" > 
+                    				<c:forEach items="${record }" var="record">
+                    				<tr class="artiststory">
+                    					<th style="width:122px; text-align:left;"><b class="exrecordType">${record.type }</b></th>
+                    					<th><input class="enroll-modify-form-input exrecordYear" style="display:inline-block; width:60px;" value="${record.year }" disabled/></th>
+                        				<th><input class="enroll-modify-form-input exrecordText" style="width:500px;" value="${record.recordText }" disabled/></th>	
+                        				<th><span class="recordminus" style="cursor: pointer; font-size:20px;">-</span></th>	
+                    				</tr>
+                    				</c:forEach>
+                    			</c:when>
+                    		</c:choose>
+                    		</tbody></table>
+                    		<table><tbody>
+                    			<tr class="artiststory1">
                     			<th>
                     				<div class="select wrap">
   										<div class="selected">
@@ -135,11 +144,11 @@
   										</ul>
   									</div>
                     			</th>
-                        		<th><input class="enroll-modify-form-input datepicker-here recordYear" data-min-view="years" data-view="years" data-date-format="yyyy" 
-                        					placeholder="연도" style="display:inline-block; width:60px;" /></th>
+                        		<th><input class="enroll-modify-form-input recordYear" 
+                        				type="number" min="1900" max="2099" placeholder="연도" style="display:inline-block; width:60px;" /></th>
                         		<th><input class="enroll-modify-form-input recordText" placeholder="내용을 입력하세요" 
                         					autocomplete="off" autocapitalize="off" style="width:500px;"></th>
-                        		<th><span class="plus" style="cursor: pointer;">+</span></th>
+                        		<th><span class="plus" style="cursor: pointer; font-size:20px;">+</span></th>
                     			</tr>
                     		</tbody></table>
                     		<input type="hidden" id="artistRecord" name="artistRecord"/>
@@ -152,10 +161,10 @@
                         <div class="enroll-modify-form-row-value">
                         	<!-- <span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br> -->
                             <div class="artistsWorld">
-                            	<input type="hidden" value="1" id="fileChange" name="fileChange2" />
+                            	<input type="hidden" value="1" id="fileChange2" name="fileChange2" />
 	                        	<img class="artistsWorldImg" src="/mypage/artistWorld/${artistworld }"/>
                             	<label for="artistWorld1" class="labelselect">파일 선택</label>
-                            	<input type="file" id="artistWorld1" class="fileselect" name="artistWorld1" />
+                            	<input type="file" id="artistWorld1" class="fileselect" name="artistWorld1" value="${artistworld }" />
                             </div>
                         </div>
                     </div>
@@ -169,6 +178,7 @@
                         </div>
                     </div>
                     
+                    <input type="hidden" name="originArtistNo" value="${artist.artistNo }"/>
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                     		<button class="yesNo-btn" id="applyartist" style="width:120px;">수정 요청</button>
@@ -184,20 +194,28 @@
     
     <script>
     $("#applyartist").click(function(){
-    	$("#artistType").attr("value", $(".selected-value").eq(0).text());
+    	$("#artistType").attr("value", $(".selected-value").eq(0).text());	//아티스트 유형 선택
     	
     	var artistRecordList = new Array();
+    	// 이전에 저장된 이력
+    	for(var i=0; i<exrecord;i++){	
+    		var data = new Object();
+    		data.type = $(".exrecordType").eq(i).text();
+    		data.year = $(".exrecordYear").eq(i).val();
+    		data.recordText = $(".exrecordText").eq(i).val();
+    		artistRecordList.push(data);
+    	}
+    	// 새로 등록한 저장된 이력
     	for(var i=0; i<record; i++){
     		var data = new Object();
     		data.type = $(".selected-value").eq(i+1).text();
+    		if(data.type=="none") break;
     		data.year = $(".recordYear").eq(i).val();
     		data.recordText = $(".recordText").eq(i).val();
     		artistRecordList.push(data) ;
     	}
     	$("#id").attr("value", $("#id").val());
     	$("#artistRecord").attr("value", JSON.stringify(artistRecordList));
-    	alert(JSON.stringify(artistRecordList));
-		$("#route_write").submit();
     });
     </script>
 
@@ -213,15 +231,16 @@
 	</script>
 	
 	<script>
-	// 아티스트 이력
+	// 아티스트 이력 추가하기
 	var record=1;
 	$(document).on("click",".plus", function(e){
 		e.preventDefault()
 		$(this).html("-");
 		$(this).removeClass("plus");
 		$(this).addClass("minus");
+		$(this).attr("font-size", "20px");
         var addStaffText =     
-        	'<tr class="artiststory">'+
+        	'<tr class="artiststory1">'+
             '    <th>'+
             '    <div class="select wrap">'+
             '        <div class="selected">'+
@@ -235,30 +254,50 @@
             '        </ul>'+
             '    </div>'+
             '    </th>'+    
-            '    <th><input id="datepicker" class="enroll-modify-form-input recordYear" data-min-view="years" data-view="years" data-date-format="yyyy" placeholder="연도" style="display:inline-block; width:60px;" maxlength="4"/></th>'+
+            '    <th><input class="enroll-modify-form-input recordYear" type="number" min="1900" max="2099" placeholder="연도" style="display:inline-block; width:60px;" /></th>'+
             '    <th><input class="enroll-modify-form-input recordText" placeholder="내용을 입력하세요" autocomplete="off" autocapitalize="off" style="width:500px;"></th>'+
-            '    <th><span class="plus" style="cursor: pointer;">+</span></th>'+
+            '    <th><span class="plus" style="cursor: pointer; font-size:20px;">+</span></th>' +
             '</tr>';
         
 		//last를 사용하여 artiststory라는 명을 가진 마지막 태그 호출
-        var trHtml = $( "tr[class=artiststory]:last" );
+        var trHtml = $( "tr[class=artiststory1]:last" );
         
       	//마지막 artiststory명 뒤에 붙인다.
         trHtml.after(addStaffText);
-      	$(document).find("#datepicker").addClass("datepicker-here");
       	record++;
+    });
+	
+    var exrecord = $("#size").val();
+	$(document).on("click",".recordminus", function(e){
+		e.preventDefault();
+		var trHtml = $(this).parent().parent();
+		trHtml.remove();
+		exrecord--;
+		alert(exrecord);
     });
     
 	$(document).on("click",".minus", function(e){
 		e.preventDefault();
 		var trHtml = $(this).parent().parent();
-		//tr 테그 삭제
-        trHtml.remove();
+        trHtml.remove();//tr 테그 삭제
         record--;
 	});
 	</script>
 	
 	<script>
+	
+	$(document).on("change", ".fileselect1", function(event) {
+		var reader = new FileReader();
+		const img = $(this).prev();
+		const img2 = img.prev();
+		reader.onload = function(e) {
+			img2.attr("src", e.target.result);	
+		};
+		reader.readAsDataURL(event.target.files[0]);
+		$("#fileChange1").attr("value","0");
+		
+	});
+	
 	//아티스트 작품세계 이미지 수
 	var workNum=1;		
 	// 아티스트 작품세계 이미지 show
@@ -270,6 +309,19 @@
 			img2.attr("src", e.target.result);	
 		};
 		reader.readAsDataURL(event.target.files[0]);
+		$("#fileChange2").attr("value","0");
+		
+	});
+	$(document).on("change", ".fileselect", function(event) {
+		var reader = new FileReader();
+		const img = $(this).prev();
+		const img2 = img.prev();
+		reader.onload = function(e) {
+			img2.attr("src", e.target.result);	
+		};
+		reader.readAsDataURL(event.target.files[0]);
+		$("#fileChange").attr("value","0");
+		
 	});
 	
 	// 작품세계 이미지 추가하기

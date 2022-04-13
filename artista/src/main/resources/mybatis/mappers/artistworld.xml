@@ -20,9 +20,16 @@
 	<!-- 작가 id값으로 작가세계 이미지 가져오기 -->
 	<select id="artistWorld" parameterType="string" resultType="artistworld">
 		<![CDATA[
-			select * from artistworld where id=#{id}
+			select * from artistworld where id=#{id} limit 1
 		]]>
 	</select>
+	
+	<!-- 작가 id값으로 작가세계 이미지 update하기 -->
+	<update id="artistWorldUpdate" parameterType="string">
+		<![CDATA[
+			update artistworld set imgName=#{imgName} where id=#{id} 
+		]]>
+	</update>
 	
 	<!-- 작가 id값으로 작가세계 이미지 지우기 -->
 	<select id="deleteArtistWorld" parameterType="string" >
@@ -40,7 +47,7 @@
 	
 	<select  id="checkArtistWorld" parameterType="String" resultType="boolean">
 		<![CDATA[
-			select EXISTS (select * from artistworld where where id=#{id} limit 1) as success
+			select EXISTS (select * from artistworld where id=#{id} limit 1) as success
 		]]>
 	</select>
 	

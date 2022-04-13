@@ -10,6 +10,7 @@ public interface ArtistApplyService {
 	
 	public int getApplyArtistNo() throws Exception;
 	public void insertArtistApply(ArtistApply artistApply) throws Exception;
+	public void insertArtistModify(ArtistApply artistApply) throws Exception;
 	
 	public ArtistApply selectArtistApplyByNo(int applyNo) throws Exception;
 	public List<ArtistApply> getArtistApplyList(int page, PageInfo pageInfo) throws Exception;
@@ -18,7 +19,7 @@ public interface ArtistApplyService {
 	public void refuseArtistApply(int applyNo, String refusedContents) throws Exception;	// 일반회원->아티스트변경
 	public void deleteArtistWorld(String artistId) throws Exception;
 	
-	public List<ArtistWorld> selectArtistWorldApplyByNo(String id) throws Exception;
+	public ArtistWorld selectArtistWorldApplyByNo(String id) throws Exception;
 	public boolean checkArtistWorld(String id) throws Exception;
 	
 }

@@ -8,6 +8,7 @@ import com.mulcam.artista.dto.PageInfo;
 
 public interface ArtistService {
 	public void insertArtist(Artist artist) throws Exception;
+	public void updateArtist(Artist artist) throws Exception;
 	public int getArtistMaxId() throws Exception;
 	public Integer getArtistNo(String id) throws Exception;
 	public String getArtistName(String id) throws Exception;

@@ -1,5 +1,6 @@
 package com.mulcam.artista.service;
 
+import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Member;
 
