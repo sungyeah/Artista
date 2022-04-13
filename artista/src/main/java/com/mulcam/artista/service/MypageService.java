@@ -11,4 +11,6 @@ public interface MypageService {
 	void deleteOrder(int orderNo) throws Exception;   //결제취소
 	List<Funding> fundingList(String id)throws Exception;
 	String sponDate(int fundingNo)throws Exception;
+	int sponState(int fundingNo)throws Exception;
+	int succesFunding(int fundingNo)throws Exception;
 }

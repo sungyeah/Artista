@@ -26,13 +26,25 @@
 	
 	<select id="fundingList" parameterType="string" resultType="funding">
 		<![CDATA[
-			select * from funding where fundingNo=(select fundingNo from fundingspon where id=#{id})
+			select * from fundingspon where id=#{id}
 		]]>
 	</select>
 	
 	<select id="sponDate" parameterType="int" resultType="string">
 		<![CDATA[
-			select sponDate from fundingSpon where fundingNo=#{fundingNo}
+			select fundingDate from funding where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	
+	<select id="sponState" parameterType="int" resultType="int">
+		<![CDATA[
+			select fundingState from funding where fundingNo=#{fundingNo}
+		]]>
+	</select>
+	
+	<select id="succesFunding" parameterType="int" resultType="int">
+		<![CDATA[
+			select succesFunding from funding where fundingNo=#{fundingNo}
 		]]>
 	</select>
 	

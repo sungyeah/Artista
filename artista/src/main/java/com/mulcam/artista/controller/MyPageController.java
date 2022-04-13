@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -87,6 +88,8 @@ public class MyPageController {
 			List<FollowingInfo> followList = new ArrayList<FollowingInfo>();
 			List<Funding> fundingList = myPageService.fundingList(id);
 			List<String> dateList = new ArrayList<String>();
+			List<Integer> stateList = new ArrayList<Integer>();
+			List<Integer> successList = new ArrayList<Integer>();
 			for(int i=0;i<ord.size();i++) {
 				OrderReport or = new OrderReport();
 				Order order = ord.get(i);
@@ -130,13 +133,18 @@ public class MyPageController {
 			for(int i=0;i<fundingList.size();i++) {
 				int fundingNo = fundingList.get(i).getFundingNo();
 				String spondate = myPageService.sponDate(fundingNo);
+				int sponState = myPageService.sponState(fundingNo);
+				int success = myPageService.succesFunding(fundingNo);
+				successList.add(success);
+				stateList.add(sponState);
 				dateList.add(spondate);
 			}
+			model.addAttribute("successList",successList);
+			model.addAttribute("stateList",stateList);
 			model.addAttribute("dateList",dateList);
 			model.addAttribute("fundingLists",fundingList);
 			model.addAttribute("orderReports", orderReports);
 			model.addAttribute("followLists",followList);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

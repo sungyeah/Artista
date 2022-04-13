@@ -40,5 +40,15 @@ public class MyPageServiceImpl implements MypageService{
 		return mypageDAO.sponDate(fundingNo);
 	}
 
+	@Override
+	public int sponState(int fundingNo) throws Exception {
+		return mypageDAO.sponState(fundingNo);
+	}
+
+	@Override
+	public int succesFunding(int fundingNo) throws Exception {
+		return mypageDAO.succesFunding(fundingNo);
+	}
+
 
 }

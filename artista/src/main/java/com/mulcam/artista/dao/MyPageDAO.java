@@ -18,6 +18,9 @@ public interface MyPageDAO {
 	public void deleteOrder(int orderNo) throws Exception;     //결제취소
 	public List<Funding> fundingList(String id)throws Exception;
 	public String sponDate(int fundingNo)throws Exception;
+	public int sponState(int fundingNo)throws Exception;
+	public int succesFunding(int fundingNo)throws Exception;
+	
 //	public List<Follow> followList()
 	//팔로우는 나중에
 	
