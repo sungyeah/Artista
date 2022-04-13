@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -66,24 +68,30 @@ public class FundingController {
 	
 	@ResponseBody
 	@GetMapping("alarm")
-	public int alarm(@RequestParam(value="fundingNo") int fundingNo) {
+	public Map<String, Object> alarm(@RequestParam(value="fundingNo") int fundingNo) {
 		String id = (String) session.getAttribute("id");
 		System.out.println(fundingNo);
-		
-		//map json
-		int checkAlarm = 0;
+		Map<String, Object> json = new HashMap<>();
+		boolean checkAlarm = false;
+		int cnt = 0;
 		try {
 			if(fundingService.checkAlarm(fundingNo, id)) {
 				fundingService.deleteAlarm(fundingNo, id);
-				checkAlarm = subPageService.queryCount(fundingNo);
+				cnt = subPageService.queryCount(fundingNo);
+				checkAlarm = false;
+				json.put("checkAlarm", checkAlarm);
+				json.put("cnt", cnt);
 			}else {
 				fundingService.insertAlarm(fundingNo, id);
-				checkAlarm = subPageService.queryCount(fundingNo);
+				cnt = subPageService.queryCount(fundingNo);
+				checkAlarm = true;
+				json.put("checkAlarm", checkAlarm);
+				json.put("cnt", cnt);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return checkAlarm;
+		return json;
 	}
 	
 	@GetMapping("/fundingov")
@@ -166,6 +174,7 @@ public class FundingController {
 		String id=(String) session.getAttribute("id");
 		int sponsAmount = Integer.parseInt(sponsorAmount);
 		fundingService.insertfundingspon(sponsAmount, fundingNo, email, id);
+		fundingService.sumAmount(fundingNo, id);
 		//sumamount 서비스 만들고 더해서 넣기
 		
 		return "funding/succesamount";

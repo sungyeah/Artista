@@ -73,8 +73,8 @@
 <c:choose>
 <c:when test="${empty id}">
  <ul class="menu2">
-    <li class="navi2"><a href="login">Login</a></li>
-    <li class="navi2"><a href="join">SignUp</a></li>
+    <li class="navi2"><a href="${pageContext.request.contextPath}/login">Login</a></li>
+    <li class="navi2"><a href="${pageContext.request.contextPath}/join">SignUp</a></li>
     <!-- z-index position ab width -->
 </ul>
 </c:when>

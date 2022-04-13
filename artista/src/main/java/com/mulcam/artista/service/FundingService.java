@@ -24,7 +24,9 @@ public interface FundingService {
 	boolean checkAlarm(int fundingNo, String id);
 	public void deleteAlarm(int fundingNo, String id);
 	public void insertAlarm(int fundingNo, String id);
-	
+	public int sumAmount(int fundingNo, String id);
+
+
 	public List<Funding> fundingAppList()  throws Exception;//관리자 펀딩 신청리스트
 	public List<Funding> fundingExpectList()  throws Exception;//관리자 펀딩 예정리스트
 	public List<Funding> fundingNowList()  throws Exception;//관리자 펀딩 진행중리스트
@@ -38,6 +40,7 @@ public interface FundingService {
 	
 	public int getfundingAppNo() throws Exception;
 	public int getfundingNo() throws Exception;
-	List<Fundingspon> sponList(int fundingNo)throws Exception;
+	public List<Fundingspon> sponList(int fundingNo)throws Exception;
+	
 }
 

@@ -60,7 +60,13 @@
 <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 <script>
 	$('#signupForm').submit(function(){
-		
+		let id=$('#id').val();
+		if(id==''){
+			alert("아이디를 입력하세요.");
+			$('#id').focus();
+			$('#submit').attr("disabled", true);
+			return false;
+		}
 		let password=$('#password').val();
 		if(password==''){
 			alert("비밀번호를 입력하세요.");
