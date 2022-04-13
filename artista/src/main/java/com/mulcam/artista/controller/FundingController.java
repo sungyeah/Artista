@@ -54,6 +54,7 @@ public class FundingController {
 		return "funding/fundinguc";
 	}
 	
+    //들어올때부터 버튼 설정
 	@GetMapping("/fundingucdetail")
 	public String fundingucdetail(@RequestParam("fundingNo") int fundingNo, Model model) {
 		Funding funding=fundingService.queryucdetail(fundingNo);
@@ -69,6 +70,7 @@ public class FundingController {
 		String id = (String) session.getAttribute("id");
 		System.out.println(fundingNo);
 		
+		//map json
 		int checkAlarm = 0;
 		try {
 			if(fundingService.checkAlarm(fundingNo, id)) {
@@ -164,6 +166,8 @@ public class FundingController {
 		String id=(String) session.getAttribute("id");
 		int sponsAmount = Integer.parseInt(sponsorAmount);
 		fundingService.insertfundingspon(sponsAmount, fundingNo, email, id);
+		//sumamount 서비스 만들고 더해서 넣기
+		
 		return "funding/succesamount";
 	}
 	

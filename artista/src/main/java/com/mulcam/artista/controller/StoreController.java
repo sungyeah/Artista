@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.Work;
+import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.StoreService;
 import com.mulcam.artista.service.SubPageService;
 import com.mulcam.artista.service.WorkService;
@@ -32,6 +33,9 @@ public class StoreController {
 	
 	@Autowired
 	SubPageService subPageService;
+	
+	@Autowired
+	ArtistService artistService;
 	
 	@Autowired
 	HttpSession session;
@@ -69,12 +73,12 @@ public class StoreController {
 	}
 	
 	@GetMapping("storedetail/{workNo}")
-	public String storedetail(@PathVariable int workNo,Model model) {
+	public String storedetail(@PathVariable int workNo, Model model) {
 		try {
 			String id=(String) session.getAttribute("id");
 			Work work = workService.workinfo(workNo);
-			String artistName=storeService.artistName(workNo);
-			Artist artist = storeService.artistInfo(artistName);
+			int artistNo = work.getArtistNo();
+			Artist artist = artistService.Artistinfo(artistNo);
 			int follower = subPageService.followercnt(artist.getId());
 			int following = subPageService.followingcnt(artist.getId());
 			String artistId= artist.getId();

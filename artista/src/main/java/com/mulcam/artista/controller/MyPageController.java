@@ -137,11 +137,6 @@ public class MyPageController {
 			model.addAttribute("orderReports", orderReports);
 			model.addAttribute("followLists",followList);
 			
-			List<Funding> sponlist=fundingService.querysponlist(id);	
-			List<Funding> fundinglist=fundingService.queryMyFunding(id);
-			model.addAttribute("sponlist", sponlist);
-			model.addAttribute("fundinglist", fundinglist);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -164,7 +159,7 @@ public class MyPageController {
 			@ModelAttribute ArtistApply apply,
 			@RequestParam(value="artistImgFile") MultipartFile artistImgFile,
 			MultipartHttpServletRequest mrequest) {
-		
+		String id = (String) session.getAttribute("id");
 		/* 아티스트 대표이미지 저장 */
 		String path = servletContext.getRealPath("/imgupload/artistProfile/");
 		String[] mtypes = artistImgFile.getContentType().split("/");
@@ -173,6 +168,11 @@ public class MyPageController {
 			artistImgFile.transferTo(destFile);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		try {
+			apply.setArtistNo(artistapplyService.getApplyArtistNo());
+		} catch (Exception e2) {
+			e2.printStackTrace();
 		}
 		apply.setArtistImg(apply.getArtistName() + "." + mtypes[1]);
 		
@@ -198,15 +198,21 @@ public class MyPageController {
 							e.printStackTrace();
 						}
 						
+						if(artistapplyService.checkArtistWorld(id)==true) {
+							artistapplyService.deleteArtistWorld(id);
+						}
 						// 아티스트 작품세계 이미지 DB 넣기
 						worldImg.setImgNo(artistworldService.getArtistWorldId());
-						worldImg.setId(apply.getId());
+						worldImg.setImgName(imgName + "." + imgtypes[1]);
+						worldImg.setId(id);
+						/*
+						worldImg.setArtistNo(apply);
 						worldImg.setImgName(imgName + "." + imgtypes[1]);
 						if(i==1) {
 							worldImg.setIsDoor(1);
 						}else {
 							worldImg.setIsDoor(0);
-						}
+						}*/
 						artistworldService.insertArtistWorldFile(worldImg);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -216,7 +222,6 @@ public class MyPageController {
 		}
 		
 		try {
-			apply.setArtistNo(artistapplyService.getApplyArtistNo());
 			artistapplyService.insertArtistApply(apply);
 			
 		} catch (Exception e1) {

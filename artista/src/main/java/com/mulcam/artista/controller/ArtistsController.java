@@ -39,7 +39,6 @@ public class ArtistsController {
 	
 	@GetMapping("artistslist")
 	public String artistslist(Model model) {
-//		System.out.println(id);
 		try {
 			List<Artist> Artistlist = artistservice.artists();
 			List<String> ImgNames = new ArrayList<String>();
@@ -47,8 +46,8 @@ public class ArtistsController {
 				Artist artist=Artistlist.get(i);
 				String id=artist.getId();
 				ArtistWorld artistworld = artistworldservice.worlds(id);
-				System.out.println(artistworld);
-				String ImgName = artistworld.getImgName();
+				//String ImgName = artistworld.getImgName();
+				String ImgName = artist.getArtistImg();
 				ImgNames.add(ImgName);
 			}
 			model.addAttribute("atistList", Artistlist);

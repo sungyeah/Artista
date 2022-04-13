@@ -197,7 +197,7 @@
                             	</th>
                         		</tr>
                         		</c:forEach>
-                        </tbody>ㅉ
+                        </tbody>
                     	</c:when>
                     </c:choose>
                 </table>

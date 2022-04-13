@@ -107,18 +107,17 @@
 
     
 </div>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-<!-- <script
-	src="https://og-data.s3.amazonaws.com/static/common/js/jquery-1.12.4.min.js"></script>
-<script
-	src="https://og-data.s3.amazonaws.com/CACHE/js/output.bd018f02f86b.js"></script>
-<script
-	src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script> -->
-	<!-- <script src="js/jquery-3.4.1.js"></script> -->
-<!--             <script src="js/slick.js"></script>
-           <script src="js/script.js"></script> -->
-<script>
-</script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" href="../css/applyfunding.css">
+<!-- <script src="https://og-data.s3.amazonaws.com/static/common/js/jquery-1.12.4.min.js"></script> -->
+<script src="https://og-data.s3.amazonaws.com/CACHE/js/output.bd018f02f86b.js"></script>
+<script src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script>
+<script src="js/jquery-3.4.1.js"></script>
+<script src="js/slick.js"></script>
+<script src="js/script.js"></script>
 <script>
 var uid = '<%=(String)session.getAttribute("membertype")%>';
 	console.log(uid);
@@ -128,7 +127,7 @@ var uid = '<%=(String)session.getAttribute("membertype")%>';
 			url: "/headeralarm",
 			type: "post",
 			success: function(fundingList) {
-				console.log(fundingList)
+				console.log(fundingList);
 				$("#toggleBtn").on("click", function(){
 				    //$(".box").toggle(1000);
 					//$(".box1").fadeToggle(1000);
@@ -137,8 +136,8 @@ var uid = '<%=(String)session.getAttribute("membertype")%>';
                         $(".box1").html("알람이 존재하지 않습니다");
                     } else {
                         for(let funding of fundingList) {
-                         console.log(funding);
-                         $(".box1").append(funding.projTitle + funding.fundingMsg +"<br>");
+                         console.log(funding.fundingNo);
+                         $(".box1").append("<a href= ${path}/funding/fundingucdetail?fundingNo=" + funding.fundingNo + ">" + funding.projTitle + funding.fundingMsg + "</a>" + "<br>");
                         }
                     }
 					$(".box1").slideToggle(10);

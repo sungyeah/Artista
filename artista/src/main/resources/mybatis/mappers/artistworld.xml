@@ -13,7 +13,7 @@
 	<!-- 작가세계 이미지 insert -->
 	<insert id="insertFile" parameterType="artistworld">
 		<![CDATA[
-			insert into artistworld (imgNo, imgName, id, isDoor) values (#{imgNo}, #{imgName}, #{id}, #{isDoor})
+			insert into artistworld (imgNo, id, imgName) values (#{imgNo}, #{id}, #{imgName})
 		]]>
 	</insert>
 	
@@ -27,14 +27,20 @@
 	<!-- 작가 id값으로 작가세계 이미지 지우기 -->
 	<select id="deleteArtistWorld" parameterType="string" >
 		<![CDATA[
-			delete from artistworld where id=#{artistId}
+			delete from artistworld where id=#{id}
 		]]>
 	</select>
 
-		<!-- 작가 세계 -->
+	<!-- 작가 세계 -->
 	<select id="worlds" resultType="artistworld" parameterType="String">
 		<![CDATA[
 			select * from artistworld where id=#{id} limit 1;
+		]]>
+	</select>
+	
+	<select  id="checkArtistWorld" parameterType="String" resultType="boolean">
+		<![CDATA[
+			select EXISTS (select * from artistworld where where id=#{id} limit 1) as success
 		]]>
 	</select>
 	

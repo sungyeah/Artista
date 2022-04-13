@@ -153,7 +153,7 @@
                         	<!-- <span id="plusWorld" class="topadd_delete">+</span>&nbsp;&nbsp;<span id="minusWorld" class="topadd_delete">-</span><br> -->
                             <div class="artistsWorld">
                             	<input type="hidden" value="1" id="fileChange" name="fileChange2" />
-	                        	<img class="artistsWorldImg" src="/mypage/artistWorld/${artistworld[0] }"/>
+	                        	<img class="artistsWorldImg" src="/mypage/artistWorld/${artistworld }"/>
                             	<label for="artistWorld1" class="labelselect">파일 선택</label>
                             	<input type="file" id="artistWorld1" class="fileselect" name="artistWorld1" />
                             </div>

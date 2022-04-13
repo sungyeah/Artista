@@ -8,9 +8,107 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
+<link rel="stylesheet" href="../css/applymodal.css">
 </head>
 <body>
 	<%@include file ="../header.jsp" %>
+    <div id="exhibition" class="modal-overlay">
+        <div class="modal-window">
+            <header class="modal-header">
+            	<div id="apply_close" class="close-area">X</div>
+                <h2 class="modal-header-title">스폰서 목록</h2>
+            </header>
+            <article class="modal-body">
+            	<!-- <form class="modal-modify-form" method="post" action="/artistpage/exhibitModify">
+                   	<div class="modal-modify-form-border"></div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 전시포스터
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <img style="width:300px; height:300px;" id="exhibitPoster"/>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 펀딩번호
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                        	<input class="modal-modify-form-input" id="fundingNo" type="text" disabled />
+                        </div>
+                    </div>    
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 전시명
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="exhibitTitle" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 전시작가
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="exhibitArtist" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 전시일정
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="exhibitDate" style="width:250px;" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 전시장소
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="exhibitPlace" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 예매링크
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="reserveLink" type="text" disabled />
+                        </div>
+                    </div>
+                    <input type="hidden" id="exhibitNo" name="exhibitNo" />
+                    <div class="modal-modify-form-border">
+                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
+                            <button class="yesNo-btn" id="modify" style="width:120px;">수정 요청하기</button>                    
+                            <button type="reset" class="yesNo-btn close-area">닫기</button>      
+                        </div>
+                    </div>
+            	</form> -->
+            	<table>
+            		<thead>
+            			<tr>
+            				<th>스폰서 번호</th>
+            				<th>아이디</th>
+            				<th>이름</th>
+            				<th>연락처</th>
+            				<th>이메일</th>
+            			</tr>
+            		</thead>
+            		<tbody>
+            			<tr>
+            				<td>1</td>
+            				<td>rlfehd123</td>
+            				<td>고길동</td>
+            				<td>010-4012-9131</td>
+            				<td>rlfehd123@naver.com</td>
+            			</tr>
+            		</tbody>
+            	</table>
+            </article>  
+        </div>
+    </div>
     <div class="contents">
         <header class="manager-header">
             <h2 class="manager-header-title">관리자 페이지</h2>
@@ -90,7 +188,7 @@
                            		<th scope="col" colspan="1">
                            			<c:choose>
 									<c:when test="${funding.fundingState==1}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">알람 신청내역</a></c:when>
-									<c:when test="${funding.fundingState==2}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">스폰서 보기</a></c:when>
+									<c:when test="${funding.fundingState==2}"><a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a></c:when>
 									<c:otherwise><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">결과보기</a></c:otherwise>
 									</c:choose></th>
                         		</tr>
@@ -103,6 +201,22 @@
         </article>
         
 	<%@include file ="../footer.jsp" %>
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	const exhibition = document.getElementById("exhibition");
+	
+	$(function(){
+		$(document).on('click', '.artist-detail-btn', function(e){
+			exhibition.style.display = "flex";
+		});
+		$(document).on('click', '.close-area', function(e){
+			exhibition.style.display = "none";
+		});
+	});
+	
+	function showSpon(fundingNo){
+		
+	}
+</script>
 </body>
 </html>
