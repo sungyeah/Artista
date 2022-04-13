@@ -21,7 +21,31 @@
 <body>
 	<%@include file="../header.jsp"%>
 	
-	
+	<div id="exhibition" class="modal-overlay">
+        <div class="modal-window">
+            <header class="modal-header">
+            	<div id="apply_close" class="close-area">X</div>
+                <h2 class="modal-header-title">스폰서 목록</h2>
+            </header>
+            <article class="modal-body">
+            	<table class="spon-table">
+            		<thead>
+            			<tr>
+            				<th>스폰서 번호</th>
+            				<th>아이디</th>
+            				<th>이름</th>
+            				<th>연락처</th>
+            				<th>이메일</th>
+            				<th>후원 금액</th>
+            			</tr>
+            		</thead>
+            		<tbody id="sponsorTbody">
+            			
+            		</tbody>
+            	</table>
+            </article>  
+        </div>
+    </div>
 	<div id="contents">
 		<header class="account-header">
 			<h2 class="account-header-title">작가 페이지</h2>
@@ -102,7 +126,7 @@
                            		<th scope="col" colspan="1">
                            			<c:choose>
 									<c:when test="${funding.fundingState==1}"></c:when>
-									<c:when test="${funding.fundingState==2}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">스폰서 보기</a></c:when>
+									<c:when test="${funding.fundingState==2}"><a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a></c:when>
 									<c:otherwise><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">결과보기</a></c:otherwise>
 									</c:choose></th>
                         		</tr>
@@ -119,6 +143,45 @@
 	//modal창
     const applyfunding = document.getElementById("applyfunding");
     const refuseapply = document.getElementById("refuseapply");
+    const exhibition = document.getElementById("exhibition");
+    
+    $(function(){
+		$(document).on('click', '.close-area', function(e){
+			exhibition.style.display = "none";
+		});
+		
+	});
+
+	function showSpon(fundingNo){
+		exhibition.style.display = "flex";
+		$.ajax({
+			type:"post",
+			async: false,
+			url:"http://localhost:8090/manager/sponList",
+			dataType:"text",
+			/* contentType:"application/json;charset=UTF-8", */
+			data:{"fundingNo":fundingNo},
+			success: function(data, textStatus){ 
+			 	var fundingData = JSON.parse(data);
+			 	var accEle = "";
+  				for(var i in fundingData) {
+  					accEle += '<tr class="aa">'
+					accEle += '<td>'+ (+i + 1) +'</td>'
+  					accEle += '<td>'+ fundingData[i].id +'</td>'
+  					accEle += '<td>'+ fundingData[i].name +'</td>'
+  					accEle += '<td>'+ fundingData[i].contact +'</td>'
+  					accEle += '<td>'+ fundingData[i].email +'</td>'
+  					accEle += '<td>'+ fundingData[i].sponAmount +'</td>'
+  					accEle += '</tr>'
+  				}
+  				$('.aa').detach();
+  				$('#sponsorTbody').append(accEle);
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		});
+	}
     
     $(function(){
     	$(document).on('click', '.artist-detail-btn', function(e){
