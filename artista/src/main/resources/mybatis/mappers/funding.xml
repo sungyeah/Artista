@@ -269,6 +269,7 @@ create table fundingSpon(
 	sponsorNo int(10) auto_increment not null,
     id varchar(100) not null,
     fundingNo int(10) not null,
+    projTitle varchar(100) not null,
     sponsorAmount int(10) not null,
     email varchar(100) not null,
     sponDate Datetime,

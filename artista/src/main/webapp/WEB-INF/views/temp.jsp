@@ -47,7 +47,7 @@
  						  "email":email},
  					success: function(data, textStatus){
  						console.log("success");
- 						window.location.href="/"
+ 						window.location.href="main"
  					},
  					error:function(data, textStatus){
  						alert("실패");
