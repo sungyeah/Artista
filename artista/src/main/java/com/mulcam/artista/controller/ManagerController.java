@@ -171,7 +171,7 @@ public class ManagerController {
 	public void TrackingNo(@RequestParam(value="orderNo",required = false) int orderNo, @RequestParam(value="trackingNo",required = false) int trackingNo) {
 		try {
 			subPageService.setTrackingNo(orderNo, trackingNo);
-			subPageService.updateStatus("배송 준비중", orderNo);
+			//subPageService.updateStatus("배송 준비 중", orderNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
