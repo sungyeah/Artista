@@ -42,6 +42,9 @@ public interface FundingService {
 	public int getfundingNo() throws Exception;
 	public List<Fundingspon> sponList(int fundingNo)throws Exception;
 	public Integer alarmCheck(int fundingNo, String id) throws Exception;
+	public void fundingRefund(int fundingNo);
+	public void fundingSponRefund(int fundingNo);
+
 	
 }
 

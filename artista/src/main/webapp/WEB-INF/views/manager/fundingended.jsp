@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +17,7 @@
 </head>
 <body>
 	<%@include file ="../header.jsp" %>
+	<!-- modal -->
 	<div id="exhibition" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
@@ -36,7 +40,10 @@
             			
             		</tbody>
             	</table>
-            </article>  
+      			
+            </article>
+            <button class="modal-detail-btn" onclick="refund()">환불</button><!-- 버튼 -->
+           <input type="hidden" id="refund" value="">
         </div>
     </div>
 	<div id="fundingdetail" class="modal-overlay">
@@ -182,6 +189,7 @@
                 종료된 펀딩
             </a>
         </nav>
+        <!-- 번호 누르면 상세페이지 -->
         <article class="member-body">
             <section class="member-list">
                 <table class="member-table">
@@ -203,26 +211,32 @@
                     	<tbody>
                     		<c:forEach items="${fundingEndedList }" var="funding">
 								<tr>
-                            	<th scope="col"><a onclick="fundingDetail('${funding.fundingNo }')">${funding.fundingNo }</a></th>
-                            	<th scope="col">
-                            		<img src="/funding/thumbview/${funding.thumbImg}" style="width:100px; height:100px;">	
-                            	</th>
-                            	<th scope="col"">${funding.projTitle }</th>   
-                            	<th scope="col"">${funding.targetFunding }</th>    
-                            	<th scope="col"">${funding.sumAmount/funding.targetFunding }</th>  
-                            	<th scope="col" class="applyState">
-                            		<c:if test="${funding.fundingState eq 4}">펀딩 성공</c:if>
-                            		<c:if test="${funding.fundingState eq 5}">펀딩 실패</c:if>
-                            		<c:if test="${funding.fundingState eq 6}">환불 완료</c:if>
-                            	</th>
-                            	<th scope="col" colspan="1">
-                            		<a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a>
-                            	</th>                  
-                           		<th scope="col" colspan="1">
-                            		<c:if test="${funding.fundingState eq 5}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">환불처리 완료</a></c:if>
-                            	</th>
+	                            	<th scope="col"><a onclick="fundingDetail('${funding.fundingNo }')">${funding.fundingNo }</a></th>
+	                            	<th scope="col">
+	                            		<img src="/funding/thumbview/${funding.thumbImg}" style="width:100px; height:100px;">	
+	                            	</th>
+	                            	<th scope="col">${funding.projTitle }</th>   
+	                            	<th scope="col">${funding.targetFunding }</th>    
+	                            	<th scope="col"><fmt:parseNumber value="${funding.sumAmount/funding.targetFunding*100}" integerOnly="true"/></th>  
+	                            	<th scope="col" class="applyState">
+	                            		<c:choose>
+	                            		<c:when test="${funding.fundingState eq 3 and funding.succesFunding eq 4}">
+	                            			펀딩 실패
+	                            		</c:when>
+	                            		<c:when test="${funding.fundingState eq 3 and funding.succesFunding eq 5}">
+	                            			펀딩 성공
+	                            		</c:when>
+	                            		<c:when test="${funding.fundingState eq 3 and funding.succesFunding eq 6}">
+	                            			환불 완료
+	                            		</c:when>
+	                            		</c:choose>
+	
+	                            	</th>
+	                            	<th scope="col" colspan="1">
+	                            		<a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a>
+	                            	</th>                  
                         		</tr>
-                        		</c:forEach>
+                        	</c:forEach>
                         </tbody>
                     	</c:when>
                     </c:choose>
@@ -282,9 +296,28 @@
 				alert("실패");
 			}
 		});
+  		$('#refund').val(fundingNo);
+  		console.log("ajax: "+$('#refund').val());
 	}
 	
-    $(function(){
+	function refund(){
+		var fundingNo = $('#refund').val();
+			 $.ajax({
+				type:"post",
+				async: false,
+				url:"http://localhost:8090/manager/refund",
+				dataType:"text",
+				data:{"fundingNo":fundingNo},
+				success: function(data, textStatus){ 
+				 	alert("환불되었습니다.");
+				},
+				error:function(data, textStatus){
+					alert("실패");
+				}
+		});
+	}
+	
+   $(function(){
     	$(document).on('click', '.detail', function(e){
     		fundingdetail.style.display = "flex";
     	});

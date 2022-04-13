@@ -221,4 +221,16 @@ public class FundingServiceImpl implements FundingService {
 		return fundingDAO.alarmCheck(map);
 	}
 
+	@Override
+	public void fundingRefund(int fundingNo) {
+		fundingDAO.fundingRefund(fundingNo);
+		
+	}
+
+	@Override
+	public void fundingSponRefund(int fundingNo) {
+		// TODO Auto-generated method stub
+		fundingDAO.fundingSponRefund(fundingNo);
+	}
+
 }

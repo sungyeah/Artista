@@ -245,10 +245,19 @@
 			select count(*) from alarm where id=#{id} and fundingNo =#{fundingNo}
 		]]>
 	</select>
+	<update id="fundingRefund" parameterType="int" >
+		<![CDATA[
+			update funding set succesFunding=6 where fundingNo=#{fundingNo}
+		]]>
+	</update>
+	<update id="fundingSponRefund" parameterType="int" >
+		<![CDATA[
+			update fundingSpon set sponsorAmount=-1 where fundingNo=#{fundingNo}
+		]]>
+	</update>
 </mapper>
 
 <!-- 
-
 펀딩 등록/수정
 create table fundingApp(
 	fundingNo int(10) not null auto_increment,

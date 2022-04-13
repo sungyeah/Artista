@@ -639,5 +639,16 @@ public class ManagerController {
 		return sponsorList;
 	}
 	
+	@ResponseBody
+	@PostMapping(value="refund")
+	public void refund(@RequestParam(value="fundingNo") int fundingNo) {
+			//변경 funding fundingSpon fundingNo
+			fundingService.fundingRefund(fundingNo);
+			fundingService.fundingSponRefund(fundingNo);
+	}
+			
+
+	
+	
 	
 }

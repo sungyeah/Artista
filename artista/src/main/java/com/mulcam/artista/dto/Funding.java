@@ -34,7 +34,7 @@ public class Funding {
 		String fundingMsg;
 		Date sponDate;
 		int fundingOriginNo;
-		
+		int succesFunding;
 		public Funding() {}
 		public Funding(int fundingNo, int artistNo, String artistName, String projTitle, String projIntro, String projBudget, String projArtist, 
 				int targetFunding, String fundingDate, String startDate, String endDate, String thumbImg, String getplace, String getplace2) {
@@ -72,7 +72,14 @@ public class Funding {
 			this.fundingOriginNo = fundingOriginNo;
 		}
 		
+		
 	
+		public int getSuccesFunding() {
+			return succesFunding;
+		}
+		public void setSuccesFunding(int succesFunding) {
+			this.succesFunding = succesFunding;
+		}
 		public String getStartDate() {
 			return startDate;
 		}
