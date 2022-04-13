@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.FundingDAO;
 import com.mulcam.artista.dto.Funding;
+import com.mulcam.artista.dto.Fundingspon;
 
 @Service
 public class FundingServiceImpl implements FundingService {
@@ -194,5 +195,10 @@ public class FundingServiceImpl implements FundingService {
 	public List<Funding> querysponlist(String id) {
 		// TODO Auto-generated method stub
 		return fundingDAO.querysponlist(id);
+	}
+
+	@Override
+	public List<Fundingspon> sponList(int fundingNo) throws Exception {
+		return fundingDAO.sponList(fundingNo);
 	}
 }

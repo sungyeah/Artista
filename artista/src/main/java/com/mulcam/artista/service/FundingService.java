@@ -3,6 +3,7 @@ package com.mulcam.artista.service;
 import java.util.List;
 
 import com.mulcam.artista.dto.Funding;
+import com.mulcam.artista.dto.Fundingspon;
 
 public interface FundingService {
 	public Funding queryFunding(String id);
@@ -37,4 +38,6 @@ public interface FundingService {
 	
 	public int getfundingAppNo() throws Exception;
 	public int getfundingNo() throws Exception;
+	List<Fundingspon> sponList(int fundingNo)throws Exception;
 }
+

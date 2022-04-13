@@ -111,7 +111,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" href="../css/applyfunding.css">
+
 <!-- <script src="https://og-data.s3.amazonaws.com/static/common/js/jquery-1.12.4.min.js"></script> -->
 <script src="https://og-data.s3.amazonaws.com/CACHE/js/output.bd018f02f86b.js"></script>
 <script src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script>
