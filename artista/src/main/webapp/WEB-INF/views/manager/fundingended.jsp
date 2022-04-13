@@ -197,7 +197,7 @@
                         <th scope="col"></th>
                     </tr>
                     </thead>
-                    <!-- 환불 아임포트-->
+                    <!-- 환불 아임포트 db 지우기 상세페이지-->
                     <c:choose>
                     	<c:when test="${fundingEndedList!=null }">
                     	<tbody>
