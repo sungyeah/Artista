@@ -151,8 +151,7 @@ section.palmares .prize-list li span {
 						</ul>
 					</div>
 				</nav>
-				<div style="margin-left: 250px;">
-				<div style="float: left;">
+				<div style="margin-left: 250px;float:left;">
 					<div class="detail">
 						<div class="info" style="">
 							<figure>
@@ -165,9 +164,9 @@ section.palmares .prize-list li span {
 								<li><a href="#receive-infomation" class="toggle-layer">Further</a></li>
 							</ul>
 						</div>
-						<div class="person pc" style="padding: 50px 0px; float: left">
+						<div class="person pc" style="padding: 50px 0px;;">
 							<div class="left">
-								<div class="personInfo" style="margin-top: 20px;">
+								<div class="personInfo" style="margin-top: 20px; float:left;">
 									<h4>${artist.artistName }</h4>
 									<ul>
 										<li><a href="#"><span id="spanFollowers">${follower }</span>followers</a></li>
@@ -200,7 +199,7 @@ section.palmares .prize-list li span {
 					</div>
 
 				</div>
-									<!-- <div class="entry-content ellipsis"> -->
+									<div class="entry-content ellipsis" style="float:left;">
 						<div class="inner">
 							<p>
 								<em>“What we call a ‘story’ is something that by its nature
@@ -209,6 +208,8 @@ section.palmares .prize-list li span {
 									. .] Petra Genetrix is a genderless being, and its basic
 									profundity originates in that fundamental ambiguity.” - Ayoung
 									Kim</em>
+									</p>
+									<p>
 							In her work, the artist Ayoung Kim reconstructs complex
 								narratives grounded in her voluminous research on history and
 								contemporary issues that, include matters such as Korea’s modern
@@ -232,11 +233,32 @@ section.palmares .prize-list li span {
 								possibilities for people who transcend anthropocentrism and for
 								a new life of coexistence with nature, objects, and non-beings.
 														</p>
+														<p>
+														Ayoung Kim has presented exhibitions and projects at major
+								institutions in Korea and around the world, including <em><a
+									href="https://videobrasil.online/">Oxbow Lake Time</a></em> (Video
+								Brasil, São Paulo, 2021, Online Solo Screening), <em><a
+									href="https://ilmin.org/notice/%eb%ae%a4%ec%a7%80%ec%97%84-producer-%ea%b8%b0%ed%9a%8d-%ec%9b%8c%ed%81%ac%ec%88%8d-1-%ec%82%ac%eb%b3%80%ec%a0%81-%ec%8a%a4%ed%86%a0%eb%a6%ac%eb%b3%b4%eb%93%9c-%ec%a0%9c%ec%9e%91-%ec%9b%8c/">Porosity
+										Valley</a></em> (Ilmin Museum of Art, Seoul, 2018), <em><a
+									href="https://2017.festival.melbourne/events/porosity-valley-portable-holes/#.YgZEv5bP1PY">Porosity
+										Valley, Portable Holes</a></em> (Melbourne Festival, Melbourne, 2017),
+								<em><a
+									href="https://palaisdetokyo.com/en/exposition/ayoung-kim/">In
+										This Vessel We Shall Be Kept</a></em> (Palais de Tokyo, Paris, 2016),<em><a
+									href="https://youtu.be/rKW6f_FrrSs">The Railway Traveler’s
+										Handbook</a></em> (Culture Station Seoul 284, Seoul, 2014), <em><a
+									href="http://ayoungkim.com/wp/works/ph-express-project-20112012">PH
+										Express</a></em> (Künstlerhaus Bethanien, Berlin, 2012), <em><a
+									href="http://ayoungkim.com/wp/works/not-in-the-wrong-place-at-the-wrong-time">Minima
+										Memoria</a></em> (Street Level,&nbsp;Glasgow, 2010), and <a
+									href="https://www.mutualart.com/Exhibition/Ephemera/5963AADD2B1C10AF">Ephemera</a>
+								(I-Myu Projects, London, 2009).&nbsp;
+							</p>
 							
 						</div>
 
 					</div>
-					<!-- </div> -->
+					</div>
 			</section>
 
 			<section class="palmares">
@@ -275,15 +297,35 @@ section.palmares .prize-list li span {
 			<section id="selected-works" class="section">
 				<h2>작가의 작품(마우스오버시 작품정보)</h2>
 				
-				<div class="post-list flex-box" id="js-load">
+				<div class="post-list flex-box">
 					<ul>
 					<c:forEach items="${worklist }" var="work">
+					<c:choose>
+					<c:when test="${work.workForSale eq 0}">
                     	<li><a href="../workdetail/${work.workNo }" style="width:100%;" class="only-pc">
 								<figure>
 									<img src="../imgupload/artistWorks/${work.workImg }" alt="">
-								</figure> <span class="title">${work.artistName }<br> ${work.workName }<br>${work.workSize }
+								</figure> 
+								<span class="title">${work.artistName }<br> ${work.workName }<br>${work.workSize }<br>
+								<div class="artwork-detail-info-status" style="color:#a48e69; position: absolute; margin-top: -150px; font-size: 20px;">●
+								<b>전시용</b></div>
 							</span>
+							
 						</a></li>
+						</c:when>
+						<c:otherwise>
+						<li><a href="../storedetail/${work.workNo }" style="width:100%;" class="only-pc">
+								<figure>
+									<img src="../imgupload/artistWorks/${work.workImg }" alt="">
+								</figure> 
+								<span class="title">${work.artistName }<br> ${work.workName }<br>${work.workSize }<br>
+								<div class="artwork-detail-info-status" style="color:#d11919; position: absolute; margin-top: -150px; font-size: 20px;">●
+								판매용</div>
+							</span>
+							
+						</a></li>
+						</c:otherwise>
+						</c:choose>
                     </c:forEach>
 					</ul>
 
@@ -298,10 +340,9 @@ section.palmares .prize-list li span {
 	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
+	var id = '<%=(String)session.getAttribute("id")%>';
 	function follow(follower){
-		console.log("a")
 		var color=document.getElementById("a");
-		var id = '${id}';
 		if(id=='null'){
 			alert("로그인이 필요한 서비스입니다.")
 			return false;
@@ -316,7 +357,7 @@ section.palmares .prize-list li span {
 				if(data=='true'){
 					 color.style.color="white";
 					 color.style.background="#222";
-					 location.reload();
+					location.reload();
 				}else{
 					color.style.color="#222";
 					color.style.background="white";

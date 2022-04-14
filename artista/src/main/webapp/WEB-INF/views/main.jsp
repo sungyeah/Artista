@@ -96,58 +96,6 @@
                     <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
                 </a></li>  -->
          </ul>
-         <!-- 추가 -->
-            <li class="video">
-                <a href="#">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
-                    <span class="category">목표금액 : 10,000,000원</span>
-                    <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
-                    <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
-                </a>
-            </li>
-            <li class=""><a href="/story/view/20000000200">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
-                    <span class="category">목표금액 : 10,000,000원</span>
-                    <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
-                    <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
-                </a></li>
-            <li class=""><a href="/story/view/20000000198">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
-                    <span class="category">목표금액 : 10,000,000원</span>
-                    <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
-                    <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
-                </a></li>
-            <li class=""><a href="/story/view/20000000197">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
-                    <span class="category">목표금액 : 10,000,000원</span>
-                    <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
-                    <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
-                </a></li>
-            <li class=""><a href="/story/view/20000000193">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
-                    <span class="category">목표금액 : 10,000,000원</span>
-                    <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
-                    <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
-                </a></li>
-            <li class=""><a href="/story/view/20000000191">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
-                    <span class="category">목표금액 : 10,000,000원</span>
-                    <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
-                    <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
-                </a></li>
-            <li class=""><a href="/story/view/20000000189">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
-                    <span class="category">목표금액 : 10,000,000원</span>
-                    <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
-                    <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
-                </a></li>
-            <li class="video"><a href="/story/view/20000000187">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
-                    <span class="category">목표금액 : 10,000,000원</span>
-                    <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
-                    <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
-                </a></li>
-
     </div>
     <div class="pagination"><a href="javascript:;" class="load-more">Load More</a> </div>
 </section>

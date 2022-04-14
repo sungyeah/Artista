@@ -54,6 +54,17 @@
       height: 2px;
       font-size: 12px;
     }
+    
+/* .box2 {
+      display: none;
+      padding-bottom: 30px;
+	  z-index: 300;
+	  position:absolute;
+	  right:245px;
+	  top:95px;
+      height: 2px;
+      font-size: 12px;
+    } */
 
 
 </style>
@@ -92,7 +103,12 @@
 	 style="width: 25px; height: 25px; width: auto; position: absolute; top: 48px; right: 330px; opacity:0.6;"></span>
 	 	<li>
 	 	<div style="border: 1px solid #dfdfdf;">
-	 		<div class="box1"></div>
+	 		<div class="box1">
+	 			<div class="box2">
+	 				
+	 			</div>
+	 		</div>
+	 		<!-- <div onclick=cnt(1,2)>하이</div><br> -->
 	 	</div>
 	 	</li>
       <a style="cursor:pointer;" href="${pageContext.request.contextPath}/cart"><img src="${pageContext.request.contextPath}/images/장바구니.png" style="width: 25px; height: 25px; position: absolute; top: 48px; right: 375px;  opacity:0.6;"></a>
@@ -135,17 +151,35 @@ var uid = '<%=(String)session.getAttribute("membertype")%>';
                     if (fundingList.length == 0) {
                         $(".box1").html("알람이 존재하지 않습니다");
                     } else {
-                        for(let funding of fundingList) {
-                         console.log(funding.fundingNo);
-                         $(".box1").append("<a href= ${path}/funding/fundingucdetail?fundingNo=" + funding.fundingNo + ">" + funding.projTitle + funding.fundingMsg + "</a>" + "<br>");
+                        for(let funding of fundingList) { 
+                        	
+                         $(".box1").append('<div class="box2" id="alarm'+funding.fundingNo+'">'+'<div onclick="detailModal('+funding.fundingNo+',\''+funding.id+'\')">' + funding.projTitle + funding.fundingMsg + '</div>'+'</div>' + '<br>')
+
+
                         }
                     }
 					$(".box1").slideToggle(10);
 				 });
 			}
-		})
-	})
-
+		});
+	});
+	function detailModal(no, id){
+		console.log(no+" "+id);
+		var Cart={"id":id,"no":no}
+		console.log(Cart);
+		$.ajax({     
+				type:"post",
+				url:"http://localhost:8090/cnt",
+				contentType : "application/json",
+				data:JSON.stringify(Cart),
+				success: function(data, textStatus){
+					$("#alarm"+no).detach();
+				},
+				error:function(data, textStatus){
+					alert("실패");
+				}
+			});
+	}
 </script>
 </body>
 </html>

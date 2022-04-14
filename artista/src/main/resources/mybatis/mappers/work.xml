@@ -86,7 +86,7 @@
 	
 	<select id="artistwork" resultType="Work" parameterType="int">
 		<![CDATA[
-			select * from work where artistNo=#{artistNo} and workPrice is Null
+			select * from work where artistNo=#{artistNo}
 		]]>
 	</select>
 	
