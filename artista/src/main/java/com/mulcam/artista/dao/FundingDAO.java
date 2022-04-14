@@ -20,9 +20,9 @@ public interface FundingDAO {
 	public void modifyApply(Funding funding);
 	public void updateapplyStatus(Funding funding);
 	public void insertfunding(Funding funding); //펀딩 등록
-	public List<Funding> queryuc(Funding funding);
-	public List<Funding> queryov(Funding funding);
-	public List<Funding> querytm(Funding funding);
+	public List<Funding> queryuc(Map map);
+	public List<Funding> queryov(Map map);
+	public List<Funding> querytm(Map map);
 	public Funding queryovdetail(int fundingNo);
 	public Funding queryucdetail(int fundingNo);
 	public Funding querytmdetail(int fundingNo);
@@ -58,5 +58,9 @@ public interface FundingDAO {
 	public Integer alarmCheck(Map map) throws Exception;
 	public void fundingRefund(int fundingNo);
 	public void fundingSponRefund(int fundingNo);
+	public int fundingovCnt();
+	public int fundingtmCnt();
+	public int fundingucCnt();
+	public List<Funding> queryovMain(Funding funding);
 
 }
