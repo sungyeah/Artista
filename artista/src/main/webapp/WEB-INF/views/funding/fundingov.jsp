@@ -12,7 +12,9 @@
 	<link rel="stylesheet" href="../css/fundingov.css">
 <title>Insert title here</title>
 </head>
-
+<style>
+div { display:none; }
+</style>
 <body>
 	 <%@include file ="../header.jsp" %>
 	 <div class="con">
@@ -41,15 +43,15 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script>
 $(function(){
-	$("div").slice(0, 10).show(); // 최초 10개 선택
-	$("#load").click(function(e){ // Load More를 위한 클릭 이벤트e
-	e.preventDefault();
-	$("div:hidden").slice(0, 10).show(); // 숨김 설정된 다음 10개를 선택하여 표시
-	if($("div:hidden").length == 0){ // 숨겨진 DIV가 있는지 체크
-	alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
-	}
-	});
-	});
+    $("div").slice(0, 9).show(); // select the first ten
+    $("#load").click(function(e){ // click event for load more
+        e.preventDefault();
+        $("div:hidden").slice(0, 10).show(); // select next 10 hidden divs and show them
+        if($("div:hidden").length == 0){ // check if any hidden divs still exist
+        }
+    });
+});
+
 </script>
 </body>
 </html>

@@ -137,6 +137,7 @@ var uid = '<%=(String)session.getAttribute("membertype")%>';
                     } else {
                         for(let funding of fundingList) {
                          console.log(funding.fundingNo);
+                         console.log(funding.id);
                          $(".box1").append("<a href= ${path}/funding/fundingucdetail?fundingNo=" + funding.fundingNo + ">" + funding.projTitle + funding.fundingMsg + "</a>" + "<br>");
                         }
                     }
