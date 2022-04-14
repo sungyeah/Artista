@@ -49,7 +49,7 @@ public interface FundingService {
 	public List<Funding> queryloadmoreov(int startrow, int endrow) throws Exception;
 	public List<Funding> queryloadmoretm(int startrow, int endrow) throws Exception;
 	public List<Funding> queryloadmoreuc(int startrow, int endrow) throws Exception;
-	public List<Funding> queryovMain(Funding funding);
+	public List<Funding> queryovMain(Funding funding, int page, PageInfo pageInfo);
 	void updateReadsign(String id,int fundingNo)throws Exception;
 	
 

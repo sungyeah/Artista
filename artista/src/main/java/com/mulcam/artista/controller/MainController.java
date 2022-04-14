@@ -1,5 +1,6 @@
 package com.mulcam.artista.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mulcam.artista.dto.Artist;
 import com.mulcam.artista.dto.Exhibition;
 import com.mulcam.artista.dto.Funding;
+import com.mulcam.artista.dto.PageInfo;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.ExhibitService;
 import com.mulcam.artista.service.FundingService;
@@ -44,10 +47,11 @@ public class MainController {
 	FundingService fundingserivce;
 
 	@GetMapping("main")
-	public String main(@ModelAttribute Funding funding, Model model) {
+	public String main(@ModelAttribute Funding funding, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		PageInfo pageInfo = new PageInfo();
 		try {
 		List<Exhibition> Exhibitlist = exhibitservice.exhibits("view");
-		List<Funding> list=fundingserivce.queryovMain(funding);
+		List<Funding> list = fundingserivce.queryovMain(funding, page, pageInfo);
 		/* Artist artist = artistservice.Artistinfo(artistNo); */
 		Artist artist = artistservice.Artistmain();
 		model.addAttribute("exhibitList", Exhibitlist);
@@ -55,8 +59,7 @@ public class MainController {
 		/* model.addAttribute("artist", artist); */
 		model.addAttribute("artist", artist);
 		model.addAttribute("list", list);
-		
-		
+
 		System.out.println(Exhibitlist);
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -64,6 +67,19 @@ public class MainController {
 		return "main";
 	}
 
+	@ResponseBody
+	@PostMapping("/loadFundingMain")
+	public List<Funding> loadFundingMain(@RequestParam("startrow") int startrow, @RequestParam("endrow") int endrow) {
+		List<Funding> list = new ArrayList<Funding>();
+		try {
+			list=fundingserivce.queryloadmoreov(startrow, endrow);
+			System.out.println(list.size());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	@GetMapping({"artista", "/"})
 	public String index() {
 		return "index";

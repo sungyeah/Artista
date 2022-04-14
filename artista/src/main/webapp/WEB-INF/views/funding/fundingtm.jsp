@@ -50,25 +50,25 @@
 			data:{"startrow" : startrow, "endrow" : 12},
 			url: "/funding/loadFundingtm",
 			type: "post",
-			success: function (data) {
-				for (let i of data ) {
+			success: function (datalist) {
+				for (let i of datalist ) {
 					let data = "<div class='flex-item'>"
 						data += "<div id='box' class='image-box'>"
-						data += "<a href=${path}/funding/fundingovdetail?fundingNo="
+						data += "<a href='${path}/funding/fundingovdetail?fundingNo="
 						data += i.fundingNo
-						data += ">"
-						data += "<img src=/funding/thumbview/"
+						data += "'>"
+						data += "<img src='/funding/thumbview/"
 						data += i.thumbImg
-						data += " class=image-thumb>"
+						data += "' class='image-thumb'>"
 						data += "</a>"
 						data += "</div>";
 						
 						data += "<span class='printer' id='artistName'>";
 						data += i.artistName;
 						data +="</span><br>";
-						data += "<a href=${path}/funding/fundingovdetail?fundingNo="
+						data += "<a href='${path}/funding/fundingovdetail?fundingNo="
 						data += i.fundingNo
-						data += ">"
+						data += "'>"
 						data += "<span class='projname' id='projTitle'>";
 						data += i.projTitle;
 						data +="</span></a>";

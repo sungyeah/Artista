@@ -307,9 +307,25 @@ public class FundingServiceImpl implements FundingService {
 	}
 
 	@Override
-	public List<Funding> queryovMain(Funding funding) {
+	public List<Funding> queryovMain(Funding funding, int page, PageInfo pageInfo) {
 		// TODO Auto-generated method stub
-		return fundingDAO.queryovMain(funding);
+		int listCount =  fundingDAO.fundingovCnt();
+		int maxPage = (int)Math.ceil((double)listCount/8);
+		int startPage=(((int) ((double)page/8+0.8))-1)*8+1;
+		int endPage=startPage+8-1;
+		
+		if(endPage>maxPage) endPage=maxPage;
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setPage(page);
+		pageInfo.setListCount(listCount);
+		int startrow = (page-1)*12;
+		Map<String, Object> map = new HashMap<>();
+		map.put("funding", funding);
+		map.put("startrow", startrow);
+		map.put("endrow", 8);
+		return fundingDAO.queryov(map);
 	}
 
 	public void updateReadsign(String id,int fundingNo) throws Exception {

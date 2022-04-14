@@ -71,8 +71,8 @@
 
 <!-- 여기부터 펀딩 -->
 <section class="recent-posts vuelayer">
-    <div class="post-list column-4">
-        <ul>
+    <div class="post-list column-4" >
+        <ul id="list12">
         <c:forEach items="${list }" var="funding">
         	<li class="">
             	<div id="box" class="image-box">
@@ -83,19 +83,12 @@
             	<span class="category">${funding.artistName}</span><br>
             	<a href="${path}/funding/fundingovdetail?fundingNo=${funding.fundingNo}">
             	<span class="title">${funding.projTitle }</span>
-            	<span class="excerpt"><b>펀딩기간</b> : ${funding.startDate } ~ ${funding.endDate }</span>
+            	<span class="excerpt"><b>펀딩기간</b> : ${funding.fundingDate }</span>
             	</a>
         	</li>
      	</c:forEach>
-        
-          
-            <!-- <li class="video"><a href="/story/view/20000000187">
-                    <figure><img src="images/메인사진2.jpg" alt=""></figure>
-                    <span class="category">목표금액 : 10,000,000원</span>
-                    <span class="title">Hong Sung-Ho 홍성호 : 전시회이름(예정)</span>
-                    <span class="excerpt">펀딩기간 : 2022.03.22 ~ 2022.05.21</span>
-                </a></li>  -->
          </ul>
+         <button id="loadBtn" type="button" class="Btn">load more</button>
     </div>
     <div class="pagination"><a href="javascript:;" class="load-more">Load More</a> </div>
 </section>
@@ -110,8 +103,50 @@
     var uid = '<%=(String)session.getAttribute("id")%>';
 		console.log(uid) ;
 		
-		
- 
+		let startrow = 8; 
+		$('#loadBtn').on('click', function () {
+			console.log(startrow);
+			$.ajax({
+				data:{"startrow" : startrow, "endrow" : 8},
+				url: "/loadFundingMain",
+				type: "post",
+				success: function (datalist) {
+					console.log(datalist);
+					for (let i of datalist ) {
+						let data = "<li class=''><div id='box' class='image-box'>"
+							data += "<figure><a href='${path}/funding/fundingovdetail?fundingNo="
+							data += i.fundingNo
+							data += "'>"
+							data += "<img src='/funding/thumbview/"
+							data += i.thumbImg
+							data += "' class=image-thumb>"
+							data += "</a></figure>"
+							data += "</div>";
+							
+							data += "<span class='category'>";
+							data += i.artistName;
+							data +="</span><br>";
+							data += "<a href=${path}/funding/fundingovdetail?fundingNo="
+							data += i.fundingNo
+							data += ">"
+							data += "<span class='title'>";
+							data += i.projTitle;
+							data +="</span></a>";
+							data +="</div>";
+							data += "<span class='excerpt'>";
+							data += "<b>"
+							data += "펀딩 기간: "
+							data += "</b>"
+							data += i.fundingDate;
+							data +="</span></a></li>";
+							$('#list12').append(data);
+					}
+					startrow += 8;
+				}
+			});
+		});
+
+
  </script>
    
 </body>
