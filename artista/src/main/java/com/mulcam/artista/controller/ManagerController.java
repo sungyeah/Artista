@@ -585,8 +585,13 @@ public class ManagerController {
 	public ModelAndView artistList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
 		ModelAndView mv = new ModelAndView("manager/artistlist");
 		PageInfo pageInfo = new PageInfo();
+//		List<Integer> follow = new ArrayList<Integer>();
 		try {
-			List<Artist> artistlist = artistService.artistList(page, pageInfo);			
+			List<Artist> artistlist = artistService.artistList(page, pageInfo);
+			for(int i=0;i<artistlist.size();i++) {
+				int follower = subPageService.followercnt(artistlist.get(i).getId());
+				artistlist.get(i).setFollowerNum(follower);
+			}
 			mv.addObject("pageInfo", pageInfo);
 			mv.addObject("artistlist", artistlist);
 			mv.addObject("count", artistlist.size());
