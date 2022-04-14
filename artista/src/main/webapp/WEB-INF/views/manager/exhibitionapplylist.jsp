@@ -164,6 +164,7 @@
                         <th scope="col">대관장소</th>
                         <th scope="col">신청유형</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <c:choose>
@@ -182,12 +183,14 @@
                             		<c:if test="${applylist.applyStatus eq 2}">수정 요청</c:if>
                             	</th>                         
                            		<th scope="col"><a class="artist-detail-btn" onclick="exhibitlist('${applylist.exhibitapplyNo }')">신청 상세보기</a></th>
+                        		<th scope="col"><input name="check" type="checkbox" id="${applylist.exhibitapplyNo }" value="${applylist.exhibitapplyNo }" ></th>
                         		</tr>
-                        		</c:forEach>
+                        	</c:forEach>
                         </tbody>
                     	</c:when>
                     </c:choose>
-                </table>                
+                </table>    
+                <button class="member-delete-btn">전시 삭제</button>            
             </section>
         </article>
     </div>
@@ -278,6 +281,32 @@
     			}
     		});
     	});
+    	
+    	$(document).on('click', '.member-delete-btn', function(e){
+			var result = confirm("삭제하시겠습니까?");
+			if(!result){
+			   return;
+			}
+			var checkarray = new Array(); 
+			$('input:checkbox[name=check]:checked').each(function() { 
+				checkarray.push(this.value); 
+			});
+			
+			$.ajax({     
+				type:"post",
+				dataType:"text",                  
+				async:false,
+				url:"http://localhost:8090/manager/exhibitionApplyDelete",
+				data:{"checkarray": checkarray},
+				success: function(data, textStatus){
+					alert("삭제가 완료되었습니다.")
+					location.reload();
+				},
+				error:function(data, textStatus){
+					alert("실패");
+				}
+			});
+		});
     });
     
     </script>

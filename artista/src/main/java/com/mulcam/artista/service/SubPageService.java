@@ -47,5 +47,5 @@ public interface SubPageService {
 	void updateStatus(String orderStatus,int orderNo)throws Exception;
 	public int queryCount(int fundingNo);
 	
-	public void setTrackingNo(int orderNo, int trackingNo) throws Exception;
+	public void setTrackingNo(int orderNo, String trackingNo) throws Exception;
 }

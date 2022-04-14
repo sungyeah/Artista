@@ -168,10 +168,9 @@ public class ManagerController {
 	/*운송장 번호 입력*/
 	@ResponseBody
 	@PostMapping(value="trackingNo")
-	public void TrackingNo(@RequestParam(value="orderNo",required = false) int orderNo, @RequestParam(value="trackingNo",required = false) int trackingNo) {
+	public void TrackingNo(@RequestParam(value="orderNo",required = false) int orderNo, @RequestParam(value="trackingNo",required = false) String trackingNo) {
 		try {
 			subPageService.setTrackingNo(orderNo, trackingNo);
-			//subPageService.updateStatus("배송 준비 중", orderNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -192,6 +191,20 @@ public class ManagerController {
 		}
 		return mv;
 	}
+	
+	/* 상품 신청 삭제하기 */
+	@ResponseBody
+	@PostMapping(value="productApplyDelete")
+	public void productApplyDelete(@RequestParam(value="checkarray[]") int[] productapplyNo) {
+		for(int i=0; i<productapplyNo.length; i++) {
+			try {
+				workapplyService.deleteWorkApply(productapplyNo[i]);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	@ResponseBody
 	@PostMapping(value="productapplydetail")
 	public ResponseEntity<WorkApply> productapplyDetail(@RequestParam(value="applyNo",required = false) int productapplyNo, Model model) {
@@ -377,6 +390,20 @@ public class ManagerController {
 		}
 		return "manager/exhibitionlist";
 	}
+	
+	/* 전시 삭제하기 */
+	@ResponseBody
+	@PostMapping(value="exhibitionDelete")
+	public void exhibitionDelete(@RequestParam(value="checkarray[]") int[] exhibitionNo) {
+		for(int i=0; i<exhibitionNo.length; i++) {
+			try {
+				exhibitService.deleteExhibit(exhibitionNo[i]);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	@ResponseBody
 	@PostMapping(value="exhibitdetail")
 	public ResponseEntity<Exhibition> exhibitDetail(@RequestParam(value="exhibitNo",required = false) int exhibitNo, Model model) {
@@ -446,6 +473,21 @@ public class ManagerController {
 		}
 		return "manager/exhibitionapplylist";
 	}
+	
+	/* 전시수정 삭제하기 */
+	@ResponseBody
+	@PostMapping(value="exhibitionApplyDelete")
+	public void exhibitionApplyDelete(@RequestParam(value="checkarray[]") int[] applyNo) {
+		for(int i=0; i<applyNo.length; i++) {
+			try {
+				exhibitService.deleteExhibitApply(applyNo[i]);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
 	@ResponseBody
 	@PostMapping(value="exhibitapplydetail")
 	public ResponseEntity<ExhibitionApply> exhibitapplyDetail(@RequestParam(value="applyNo",required = false) int applyNo, Model model) {
@@ -521,6 +563,24 @@ public class ManagerController {
 		}
 		return mv;
 	}
+	
+	/* 회원 탈퇴시키기 */
+	@ResponseBody
+	@PostMapping(value="memberDelete")
+	public void memberDelete(@RequestParam(value="checkarray[]") List<String> id) {
+		for(int i=0; i<id.size(); i++) {
+			try {
+				subPageService.deleteId(id.get(i));
+				if(subPageService.memTypeInfo(id.get(i))=="artist") {
+					int artistNo = artistService.artistInfo(id.get(i)).getArtistNo();
+					artistService.deleteArtist(artistNo);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	@GetMapping("/artistlist")
 	public ModelAndView artistList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
 		ModelAndView mv = new ModelAndView("manager/artistlist");
@@ -536,6 +596,23 @@ public class ManagerController {
 		}
 		return mv;
 	}
+	
+	/* 아티스트 삭제하기 */
+	@ResponseBody
+	@PostMapping(value="artistDelete")
+	public void artistDelete(@RequestParam(value="checkarray[]") int[] artistNo) {
+		for(int i=0; i<artistNo.length; i++) {
+			try {
+				String id = artistService.selectArtistByNo(artistNo[i]).getId();
+				subPageService.changeMemberType(id, null);
+				artistService.deleteArtist(artistNo[i]);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	@GetMapping(value="/artistapplylist")
 	public ModelAndView artistApplyList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
 		ModelAndView mv = new ModelAndView("manager/artistapplylist");

@@ -96,4 +96,9 @@ public class ArtistServiceImpl implements ArtistService {
 		artistDAO.updateArtist(artist);
 	}
 
+	@Override
+	public void deleteArtist(int artistNo) throws Exception {
+		artistDAO.deletebyNo(artistNo);
+	}
+
 }

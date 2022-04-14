@@ -138,6 +138,7 @@
                         <th scope="col">대관장소</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                    	<c:choose>
@@ -152,18 +153,20 @@
                             	<th scope="col">${exhibitlist.endDate }</th>
                             	<th scope="col">${exhibitlist.exhibitPlace }</th>                       
                            		<th scope="col"><a class="artist-detail-btn" onclick="exhibitDetail('${exhibitlist.exhibitNo }')">신청 상세보기</a></th>
+                        		<th scope="col"><input name="check" type="checkbox" id="${exhibitlist.exhibitNo }" value="${exhibitlist.exhibitNo }" ></th>
                         		</tr>
-                        		</c:forEach>
+                        	</c:forEach>
                         </tbody>
                     	</c:when>
                     </c:choose>
                 </table>
-                <a class="member-delete-btn">전시 삭제</a>
+                <button class="member-delete-btn">전시 삭제</button>
             </section>
         </article>
-        
     </div>
+    
 	<%@include file ="../footer.jsp" %>
+	
 	<script>
 	//modal창
     const exhibitiondetail = document.getElementById("exhibitiondetail");
@@ -175,6 +178,31 @@
     	$(document).on('click', '.close-area', function(e){
     		exhibitiondetail.style.display = "none";
     	});
+    	
+    	$(document).on('click', '.member-delete-btn', function(e){
+			var result = confirm("삭제하시겠습니까?");
+			if(!result){
+			   return;
+			}
+			var checkarray = new Array(); 
+			$('input:checkbox[name=check]:checked').each(function() { 
+				checkarray.push(this.value); 
+			});
+			$.ajax({     
+				type:"post",
+				dataType:"text",
+				async:false,
+				url:"http://localhost:8090/manager/exhibitionDelete",
+				data:{"checkarray": checkarray},
+				success: function(data, textStatus){
+					alert("삭제가 완료되었습니다.")
+					location.reload();
+				},
+				error:function(data, textStatus){
+					alert("실패");
+				}
+			});
+		});
     });
     
     function exhibitDetail(exhibitNo){

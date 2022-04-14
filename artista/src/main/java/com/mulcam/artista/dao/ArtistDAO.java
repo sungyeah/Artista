@@ -26,5 +26,7 @@ public interface ArtistDAO {
 	public Artist artistInfo(String id)throws Exception;
 	
 	public Artist artistMain() throws Exception;	// 메인화면 아티스트 정보
+	
+	public void deletebyNo(int artistNo) throws Exception;
 
 }

@@ -86,6 +86,12 @@
 		]]>
 	</select>
 
+	<!-- 아티스트 삭제 by artistNo -->
+	<delete id="deletebyNo" parameterType="int">
+		<![CDATA[
+			delete from artist where artistNo=#{artistNo}
+		]]>
+	</delete>
 </mapper>
 <!-- 
 create table artist(

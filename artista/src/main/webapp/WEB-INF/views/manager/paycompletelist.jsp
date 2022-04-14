@@ -138,7 +138,6 @@
    	function tracking(orderNo){
    		trackingapply.style.display = "flex";
    		$("#orderNo").attr("value", orderNo);
-   		alert($("#orderNo").val());
    	}
     function transfer(workNo){
     	alert("송금완료처리에 성공했습니다");
@@ -163,13 +162,12 @@
   
     $(function(){
     	$(document).on('click', '#refuse', function(e){
-    		alert($("#trackingNo").val());
     		$.ajax({
     			type:"post",
     			async: false,
     			url:"http://localhost:8090/manager/trackingNo",
     			data:{"orderNo":$('#orderNo').val(), "trackingNo": $("#trackingNo").val() },
-    			dataType:"text",
+    			dataType:"json",
     			success: function(data, textStatus){ 
     				alert("운송장 번호 등록이 완료되었습니다");
     				location.reload();

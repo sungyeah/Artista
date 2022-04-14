@@ -60,7 +60,7 @@ public class SubPageServiceImpl implements SubPageService{
 
 	@Override
 	public void deleteId(String id) throws Exception {
-		
+		subpageDAO.deleteId(id);
 	}
 
 	@Override
@@ -275,7 +275,7 @@ public class SubPageServiceImpl implements SubPageService{
 	}
 
 	@Override
-	public void setTrackingNo(int orderNo, int trackingNo) throws Exception {
+	public void setTrackingNo(int orderNo, String trackingNo) throws Exception {
 		Map<String,Object> map = new HashMap<>();
 		map.put("orderNo", orderNo);
 		map.put("trackingNo", trackingNo);
