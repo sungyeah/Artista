@@ -52,7 +52,6 @@ public class ArtistApplyServiceImpl implements ArtistApplyService {
 		pageInfo.setPage(page);
 		pageInfo.setListCount(listCount);
 		int startrow = (page-1)*9;
-		
 		return artistapplyDAO.selectArtistApplyList(startrow);
 	}
 

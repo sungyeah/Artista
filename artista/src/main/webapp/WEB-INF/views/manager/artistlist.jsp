@@ -75,21 +75,49 @@
                         		<th scope="col" class="artistType">${artist.artistType }</th>
                         		<th scope="col" class="followerNum">${artist.followerNum }</th>
                         		<th scope="col"><a class="artist-detail-btn">상세보기</a></th>
-                        		<th scope="col"><input type="checkbox" name="xxx"></th>
+                        		<th scope="col"><input name="check" type="checkbox" id="${artist.artistNo }" value="${artist.artistNo }" ></th>
                         		</tr>
                         	</c:forEach>
                         </tbody>
                     	</c:when>
                     </c:choose>
                 </table>
-                <a class="member-delete-btn" href="/account/delete/">
-                    등록 취소
-                </a>
+                <button class="member-delete-btn">등록 삭제</button>
             </section>
         </article>
         
     </div>
     
     <%@include file ="../footer.jsp" %>
+    
+    <script>
+    $(function(){
+		$(document).on('click', '.member-delete-btn', function(e){
+			var result = confirm("삭제하시겠습니까?");
+			if(!result){
+			   return;
+			}
+			var checkarray = new Array(); 
+			$('input:checkbox[name=check]:checked').each(function() { 
+				checkarray.push(this.value); 
+			});
+			$.ajax({     
+				type:"post",
+				dataType:"text",
+				async:false,
+				url:"http://localhost:8090/manager/artistDelete",
+				data:{"checkarray": checkarray},
+				success: function(data, textStatus){
+					alert("삭제가 완료되었습니다.")
+					location.reload();
+				},
+				error:function(data, textStatus){
+					alert("실패");
+				}
+			});
+		});
+		
+	});
+    </script>
 </body>
 </html>
