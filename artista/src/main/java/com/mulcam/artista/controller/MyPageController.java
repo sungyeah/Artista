@@ -95,12 +95,12 @@ public class MyPageController {
 				Order order = ord.get(i);
 				String trackingNo = order.getTrackingNo();
 				int orderNo = order.getOrderNo();
-//				if(trackingNo==null) {
-//					subPageService.updateStatus("상품 준비 중", orderNo);
-//				}else {
-//					String status = subPageService.getDeliveryStatus(trackingNo);
-//					subPageService.updateStatus(status, orderNo);
-//				}
+				if(trackingNo==null) {
+					subPageService.updateStatus("상품 준비 중", orderNo);
+				}else {
+					String status = subPageService.getDeliveryStatus(trackingNo);
+					subPageService.updateStatus(status, orderNo);
+				}
 				or.setOrder(order);
 				String[] workNos = order.getWorkNo().split(",");
 				List<Work> works = new ArrayList<Work>();
