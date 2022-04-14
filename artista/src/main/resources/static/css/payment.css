@@ -170,7 +170,7 @@
 .sect-body-td .address1 {
     width: 300px;
     margin-bottom: 7px;
-    margin-right: 8px;
+    margin-right: 3px;
 }
 input[readonly], select[readonly] {
     background: #f0f0f0!important;

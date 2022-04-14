@@ -14,7 +14,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 	.workImg {
-		width:308px; min-height:200px; margin-top:7px; display:inline-block;
+		width:290px; min-height:200px; margin-top:7px; display:inline-block;
 	}
 	input[type="number"]::-webkit-outer-spin-button,
 	input[type="number"]::-webkit-inner-spin-button {
@@ -43,6 +43,7 @@
                             <img class="workImg" id="workThumb" />
                             <label for="workImg">파일 선택</label>
                             <input type="file" id="workImg" name="workImgFile" /><br>
+                            <input type="hidden" id="workHeight" name="workHeight" /><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -162,12 +163,26 @@
 			$("#workThumb").attr("src", e.target.result);	
 		};
 		reader.readAsDataURL(event.target.files[0]);
+		
+	});
+	
+	$("#workName").click(function (event) {
+		var height = document.getElementById('workThumb').offsetHeight;
+		$('#workHeight').val(height);
+		console.log($('#workHeight').val());
+		
+		/* $("#workApply").submit(); */
+	});
+	$("#cancel").click(function () {
+		window.history.back();
 	});
 	
 	// 작품등록 신청 또는 취소
 	$("#workApply").click(function (event) {
 		$("#workType").attr("value", $(".selected-value").text());
-		$("#workApply").submit();
+		/* var height = document.getElementById('workThumb').offsetHeight;
+		console.log(height); */
+		/* $("#workApply").submit(); */
 	});
 	$("#cancel").click(function () {
 		window.history.back();

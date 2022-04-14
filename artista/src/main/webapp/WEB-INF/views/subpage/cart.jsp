@@ -53,8 +53,8 @@
                     		<c:forEach items="${carts }" var="cart">
                         	<tr>
                             <td class="cartList-checkbox">
-                                <input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.workNo }" onclick='itemSum(),getCheckedCnt()'>
-<%--                                 <input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.cartNo }" onclick='itemSum(),getCheckedCnt()'> --%>
+                               <%--  <input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.workNo }" onclick='itemSum(),getCheckedCnt()'> --%>
+								<input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.cartNo }" onclick='itemSum(),getCheckedCnt()'>
                                 <label for="${cart.cartNo }#${cart.workPrice }"></label>
                               
                             </td>
@@ -128,8 +128,7 @@
                 </div>
                 <div id="cartBottom">
                     <a href="${pageContext.request.contextPath}/storelist"><input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="작품 더 고르기"></a>
-                    <input type="submit" class="cartBottom-btn" id="toCheckoutBtn" value="주문결제">
-                    <!-- <a href="payment.html"><input type="submit" class="cartBottom-btn" id="toCheckoutBtn" value="주문결제"></a> -->
+                    <button type="button" class="cartBottom-btn" id="toCheckoutBtn" onclick="check()">주문결제</button>
                 </div>
             </form>
         </section>
@@ -138,7 +137,15 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>    
 <script>
 	
- 
+ 	function check(){
+ 		if($('#count').val()==0){
+ 			alert('주문결제할 작품이 선택되지 않았습니다.');
+ 			return false;
+ 		}
+ 		cartForm.submit();
+ 	}
+ 	
+ 	
 	function selectAll(selectAll)  {
 	  const checkboxes 
 	       = document.getElementsByName('order_artwork');
