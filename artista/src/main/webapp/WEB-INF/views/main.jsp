@@ -88,7 +88,7 @@
         	</li>
      	</c:forEach>
          </ul>
-         <button id="loadBtn" type="button" class="Btn">load more</button>
+         <button id="loadBtn" type="button">load more</button>
     </div>
     <div class="pagination"><a href="javascript:;" class="load-more">Load More</a> </div>
 </section>
@@ -119,16 +119,16 @@
 							data += "'>"
 							data += "<img src='/funding/thumbview/"
 							data += i.thumbImg
-							data += "' class=image-thumb>"
+							data += "' class='image-thumb'>"
 							data += "</a></figure>"
 							data += "</div>";
 							
 							data += "<span class='category'>";
 							data += i.artistName;
 							data +="</span><br>";
-							data += "<a href=${path}/funding/fundingovdetail?fundingNo="
+							data += "<a href='${path}/funding/fundingovdetail?fundingNo="
 							data += i.fundingNo
-							data += ">"
+							data += "'>"
 							data += "<span class='title'>";
 							data += i.projTitle;
 							data +="</span></a>";
