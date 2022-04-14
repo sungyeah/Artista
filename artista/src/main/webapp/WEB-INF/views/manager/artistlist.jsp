@@ -74,7 +74,7 @@
                         		<th scope="col" class="artistName">${artist.artistName }</th>
                         		<th scope="col" class="artistType">${artist.artistType }</th>
                         		<th scope="col" class="followerNum">${artist.followerNum }</th>
-                        		<th scope="col"><a class="artist-detail-btn">상세보기</a></th>
+                        		<th scope="col"><a class="artist-detail-btn" href="http://localhost:8090/artistdetail/${artist.artistNo }">페이지 보기</a></th>
                         		<th scope="col"><input name="check" type="checkbox" id="${artist.artistNo }" value="${artist.artistNo }" ></th>
                         		</tr>
                         	</c:forEach>

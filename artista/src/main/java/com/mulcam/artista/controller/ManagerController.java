@@ -603,7 +603,10 @@ public class ManagerController {
 	public void artistDelete(@RequestParam(value="checkarray[]") int[] artistNo) {
 		for(int i=0; i<artistNo.length; i++) {
 			try {
+				String id = artistService.selectArtistByNo(artistNo[i]).getId();
+				subPageService.changeMemberType(id, null);
 				artistService.deleteArtist(artistNo[i]);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
