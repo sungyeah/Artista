@@ -62,7 +62,7 @@
 	<!-- 회원가입 -->
 	<select id="cartList" resultType="cart" parameterType="string">
 		<![CDATA[
-			select * from cart where id=#{id}
+			select * from cart where id=#{id} order by cartDate desc
 		]]>
 	</select>
 	

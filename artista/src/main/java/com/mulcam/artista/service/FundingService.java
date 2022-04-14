@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Fundingspon;
+import com.mulcam.artista.dto.PageInfo;
 
 public interface FundingService {
 	public Funding queryFunding(String id);
@@ -12,9 +13,9 @@ public interface FundingService {
 	public List<Funding> querysponlist(String id);
 	public void insertfunding(Funding funding); //펀딩 등록
 	//펀딩 예정, 종료, 진행 검색
-	public List<Funding> queryuc(Funding funding);
-	public List<Funding> queryov(Funding funding);
-	public List<Funding> querytm(Funding funding);
+	public List<Funding> queryuc(Funding funding, int page, PageInfo pageInfo);
+	public List<Funding> queryov(Funding funding, int page, PageInfo pageInfo);
+	public List<Funding> querytm(Funding funding, int page, PageInfo pageInfo);
 	public Funding queryovdetail(int fundingNo);
 	public Funding queryucdetail(int fundingNo);
 	public Funding querytmdetail(int fundingNo);
@@ -44,6 +45,14 @@ public interface FundingService {
 	public Integer alarmCheck(int fundingNo, String id) throws Exception;
 	public void fundingRefund(int fundingNo);
 	public void fundingSponRefund(int fundingNo);
+//	public List<Funding> fundingovList(int fundingNo);
+	public List<Funding> queryloadmoreov(int startrow, int endrow) throws Exception;
+	public List<Funding> queryloadmoretm(int startrow, int endrow) throws Exception;
+	public List<Funding> queryloadmoreuc(int startrow, int endrow) throws Exception;
+	public List<Funding> queryovMain(Funding funding);
+	void updateReadsign(String id,int fundingNo)throws Exception;
+	
+
 
 	
 }

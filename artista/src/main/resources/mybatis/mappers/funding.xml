@@ -67,17 +67,17 @@
 	</insert>
 	<select id="queryuc" resultType="Funding">
 		<![CDATA[
-			select * from funding where fundingState=1
+			select * from funding where fundingState=1 limit #{startrow} , #{endrow}
 		]]>
 	</select>
 	<select id="queryov" resultType="Funding">
 		<![CDATA[
-			select * from funding where fundingState=2
+			select * from funding where fundingState=2 limit #{startrow} , #{endrow}
 		]]>
 	</select>
 	<select id="querytm" resultType="Funding">
 		<![CDATA[
-			select * from funding where fundingState=3
+			select * from funding where fundingState=3 limit #{startrow} , #{endrow}
 		]]>
 	</select>
 	
@@ -255,9 +255,36 @@
 			update fundingSpon set sponsorAmount=-1 where fundingNo=#{fundingNo}
 		]]>
 	</update>
+	<select id="fundingovCnt" resultType="int">
+		<![CDATA[
+			select count(*) from funding where fundingState=2
+		]]>
+	</select>
+	<select id="fundingtmCnt" resultType="int">
+		<![CDATA[
+			select count(*) from funding where fundingState=3
+		]]>
+	</select>
+	<select id="fundingucCnt" resultType="int">
+		<![CDATA[
+			select count(*) from funding where fundingState=1
+		]]>
+	</select>
+	<select id="queryovMain" resultType="funding">
+		<![CDATA[
+			select * from funding where fundingState=2
+		]]>
+	</select>
+	<update id="updateReadsign" parameterType="map" >
+		<![CDATA[
+			update alarm set readSign= 1 where fundingNo=#{fundingNo} and id=#{id}
+		]]>
+	</update>
+	
 </mapper>
 
 <!-- 
+
 펀딩 등록/수정
 create table fundingApp(
 	fundingNo int(10) not null auto_increment,

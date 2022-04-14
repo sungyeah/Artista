@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.FundingDAO;
+import com.mulcam.artista.dto.ArtistApply;
 import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Fundingspon;
+import com.mulcam.artista.dto.PageInfo;
 
 @Service
 public class FundingServiceImpl implements FundingService {
@@ -37,21 +39,69 @@ public class FundingServiceImpl implements FundingService {
 	}
 	
 	@Override
-	public List<Funding> queryuc(Funding funding) {
+	public List<Funding> queryuc(Funding funding, int page, PageInfo pageInfo) {
 		// TODO Auto-generated method stub
-		return fundingDAO.queryuc(funding);
+		int listCount =  fundingDAO.fundingucCnt();
+		int maxPage = (int)Math.ceil((double)listCount/12);
+		int startPage=(((int) ((double)page/12+1.2))-1)*12+1;
+		int endPage=startPage+12-1;
+		
+		if(endPage>maxPage) endPage=maxPage;
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setPage(page);
+		pageInfo.setListCount(listCount);
+		int startrow = (page-1)*12;
+		Map<String, Object> map = new HashMap<>();
+		map.put("funding", funding);
+		map.put("startrow", startrow);
+		map.put("endrow", 12);
+		return fundingDAO.queryuc(map);
 	}
 
 	@Override
-	public List<Funding> queryov(Funding funding) {
+	public List<Funding> queryov(Funding funding, int page, PageInfo pageInfo) {
 		// TODO Auto-generated method stub
-		return fundingDAO.queryov(funding);
+		int listCount =  fundingDAO.fundingovCnt();
+		int maxPage = (int)Math.ceil((double)listCount/12);
+		int startPage=(((int) ((double)page/12+1.2))-1)*12+1;
+		int endPage=startPage+12-1;
+		
+		if(endPage>maxPage) endPage=maxPage;
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setPage(page);
+		pageInfo.setListCount(listCount);
+		int startrow = (page-1)*12;
+		Map<String, Object> map = new HashMap<>();
+		map.put("funding", funding);
+		map.put("startrow", startrow);
+		map.put("endrow", 12);
+		return fundingDAO.queryov(map);
 	}
 
 	@Override
-	public List<Funding> querytm(Funding funding) {
+	public List<Funding> querytm(Funding funding, int page, PageInfo pageInfo) {
 		// TODO Auto-generated method stub
-		return fundingDAO.querytm(funding);
+		int listCount =  fundingDAO.fundingtmCnt();
+		int maxPage = (int)Math.ceil((double)listCount/12);
+		int startPage=(((int) ((double)page/12+1.2))-1)*12+1;
+		int endPage=startPage+12-1;
+		
+		if(endPage>maxPage) endPage=maxPage;
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		pageInfo.setMaxPage(maxPage);
+		pageInfo.setPage(page);
+		pageInfo.setListCount(listCount);
+		int startrow = (page-1)*12;
+		Map<String, Object> map = new HashMap<>();
+		map.put("funding", funding);
+		map.put("startrow", startrow);
+		map.put("endrow", 12);
+		return fundingDAO.querytm(map);
 	}
 
 	@Override
@@ -232,5 +282,43 @@ public class FundingServiceImpl implements FundingService {
 		// TODO Auto-generated method stub
 		fundingDAO.fundingSponRefund(fundingNo);
 	}
+
+	@Override
+	public List<Funding> queryloadmoreov(int startrow, int endrow) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("startrow", startrow);
+		map.put("endrow", endrow);
+		return fundingDAO.queryov(map);
+	}
+	
+	@Override
+	public List<Funding> queryloadmoretm(int startrow, int endrow) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("startrow", startrow);
+		map.put("endrow", endrow);
+		return fundingDAO.querytm(map);
+	}
+	@Override
+	public List<Funding> queryloadmoreuc(int startrow, int endrow) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("startrow", startrow);
+		map.put("endrow", endrow);
+		return fundingDAO.queryuc(map);
+	}
+
+	@Override
+	public List<Funding> queryovMain(Funding funding) {
+		// TODO Auto-generated method stub
+		return fundingDAO.queryovMain(funding);
+	}
+
+	public void updateReadsign(String id,int fundingNo) throws Exception {
+		Map<String,Object> map =new HashMap<>();
+		map.put("id", id);
+		map.put("fundingNo", fundingNo);
+		fundingDAO.updateReadsign(map);
+	}
+
+
 
 }
