@@ -22,6 +22,7 @@ public interface ExhibitionDAO {
 	
 	public Integer maxExhibitionId() throws Exception;
 	public void insertExhibit(Exhibition exhibition) throws Exception;
+	public void updateExibit(Exhibition exhibition) throws Exception;	
 	public Exhibition queryExhibit(int exhibitNo) throws Exception;
 	public List<Exhibition> selectExhibitList() throws Exception;
 	public void deleteExhibit(int exhibitNo) throws Exception;

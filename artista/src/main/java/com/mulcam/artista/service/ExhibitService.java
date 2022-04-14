@@ -15,6 +15,7 @@ public interface ExhibitService {
 	
 	public int maxExhibitNo() throws Exception;
 	public void insertExhibit(Exhibition exhibition) throws Exception;
+	public void updateExhibit(Exhibition exhibition) throws Exception;
 	public Exhibition selectExhibit(int exhibitNo) throws Exception;
 	public List<Exhibition> ExhibiList() throws Exception;
 	public void deleteExhibit(int exhibitNo) throws Exception;

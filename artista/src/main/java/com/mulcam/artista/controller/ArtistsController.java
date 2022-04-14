@@ -44,12 +44,14 @@ public class ArtistsController {
 			List<String> ImgNames = new ArrayList<String>();
 			for(Artist artist : Artistlist) {
 				String id=artist.getId();
+				System.out.println(id);
 				String ImgName = artistworldservice.worlds(id).getImgName();
 				System.out.println(ImgName);
 				ImgNames.add(ImgName);
 			}
 			model.addAttribute("atistList", Artistlist);
 			model.addAttribute("ImgNames", ImgNames);
+			System.out.println();
 			System.out.println(Artistlist);
 		} catch (Exception e) {
 			e.printStackTrace();

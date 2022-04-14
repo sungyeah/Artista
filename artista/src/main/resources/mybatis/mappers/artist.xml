@@ -62,7 +62,7 @@
 	</select>
 	
 	<!-- artist 이름 리스트 -->
-	<select id="nameartist" resultType="Artist">
+	<select id="nameartist" resultType="artist">
 		<![CDATA[
 			select * from artist order by artistName asc
 		]]>

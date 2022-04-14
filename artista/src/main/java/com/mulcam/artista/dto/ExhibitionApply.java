@@ -14,6 +14,7 @@ public class ExhibitionApply {
 	String reserveLink;
 	int applyStatus;
 	String refusedContents;
+	int exhibitNo;
 	
 	ExhibitionApply(){ }
 
@@ -120,5 +121,15 @@ public class ExhibitionApply {
 	public void setRefusedContents(String refusedContents) {
 		this.refusedContents = refusedContents;
 	}
+
+	public int getExhibitNo() {
+		return exhibitNo;
+	}
+
+	public void setExhibitNo(int exhibitNo) {
+		this.exhibitNo = exhibitNo;
+	}
+
+	
 	
 }

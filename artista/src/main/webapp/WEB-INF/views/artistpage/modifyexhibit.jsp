@@ -98,7 +98,7 @@
                         <div class="enroll-modify-form-row-value">
                         	<textarea class="enroll-modify-form-input" id="reserveLink" name="reserveLink" placeholder="최대 300자" maxlength="300" style="width:750px; height: 120px; resize: none;">${exhibit.reserveLink }</textarea>
                         </div>
-                    </div>   
+                    </div>  
                     <div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                         	<button class="yesNo-btn" id="exhibitApply" style="width:120px;">작품수정 신청</button>
