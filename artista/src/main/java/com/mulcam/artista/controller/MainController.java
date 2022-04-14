@@ -46,7 +46,7 @@ public class MainController {
 	public String main(@ModelAttribute Funding funding, Model model) {
 		try {
 		List<Exhibition> Exhibitlist = exhibitservice.exhibits("view");
-		List<Funding> list=fundingserivce.queryov(funding);
+		List<Funding> list=fundingserivce.queryovMain(funding);
 		/* Artist artist = artistservice.Artistinfo(artistNo); */
 		Artist artist = artistservice.Artistmain();
 		model.addAttribute("exhibitList", Exhibitlist);

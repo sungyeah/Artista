@@ -12,9 +12,7 @@
 	<link rel="stylesheet" href="../css/fundingov.css">
 <title>Insert title here</title>
 </head>
-<style>
-div { display:none; }
-</style>
+
 <body>
 	 <%@include file ="../header.jsp" %>
 	 <div class="con">
@@ -23,33 +21,63 @@ div { display:none; }
             <span class="postbtn"><a href="fundingov"><b>펀딩 진행</b></a></span>
             <span class="postbtn"><a href="fundingtm">펀딩 종료</a></span>
 	</div>
-    <div class="flex-container">
+    <div id="list12" class="flex-container">
     	<c:forEach items="${list }" var="funding">
-        <div class="flex-item" id="flex-item">
+        <div class="flex-item">
             <div id="box" class="image-box">
                 <a href="${path}/funding/fundingovdetail?fundingNo=${funding.fundingNo}">
                 <img src="/funding/thumbview/${funding.thumbImg}" class="image-thumb">
                 </a>
             </div>
-            <span class="printer" id="artistName" >${funding.artistName}</span><br>
+            <span class="printer" id="artistName">${funding.artistName}</span>
+            <br>
+            
             <a href="${path}/funding/fundingovdetail?fundingNo=${funding.fundingNo}">
             <span class="projname" id="projTitle">${funding.projTitle }</span>
             </a>
         </div>
      </c:forEach>
     </div>
-    <button type="button" id="load" class="Btn">load more</button>
+    <button id="loadBtn" type="button" class="Btn">load more</button>
     </div>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script>
-$(function(){
-    $("div").slice(0, 9).show(); // select the first ten
-    $("#load").click(function(e){ // click event for load more
-        e.preventDefault();
-        $("div:hidden").slice(0, 10).show(); // select next 10 hidden divs and show them
-        if($("div:hidden").length == 0){ // check if any hidden divs still exist
-        }
-    });
+
+let startrow = 12; 
+$('#loadBtn').on('click', function () {
+	console.log(startrow);
+	$.ajax({
+		data:{"startrow" : startrow, "endrow" : 12},
+		url: "/funding/loadFundingov",
+		type: "post",
+		success: function (data) {
+			for (let i of data ) {
+				let data = "<div class='flex-item'>"
+					data += "<div id='box' class='image-box'>"
+					data += "<a href=${path}/funding/fundingovdetail?fundingNo="
+					data += i.fundingNo
+					data += ">"
+					data += "<img src=/funding/thumbview/"
+					data += i.thumbImg
+					data += " class=image-thumb>"
+					data += "</a>"
+					data += "</div>";
+					
+					data += "<span class='printer' id='artistName'>";
+					data += i.artistName;
+					data +="</span><br>";
+					data += "<a href=${path}/funding/fundingovdetail?fundingNo="
+					data += i.fundingNo
+					data += ">"
+					data += "<span class='projname' id='projTitle'>";
+					data += i.projTitle;
+					data +="</span></a>";
+					data +="</div>";
+					$('#list12').append(data);
+			}
+			startrow += 12;
+		}
+	});
 });
 
 </script>

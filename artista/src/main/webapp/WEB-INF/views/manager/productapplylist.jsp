@@ -174,6 +174,7 @@
                         <th scope="col">작품 유형</th>
                         <th scope="col">신청유형</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <c:choose>
@@ -190,8 +191,9 @@
                             		<c:if test="${workapply.applyState eq 2}">작품수정 요청</c:if>
                             	</th>                            
                            		<th scope="col"><a class="artist-detail-btn" onclick="applyDetail('${workapply.workapplyNo }', '${workapply.applyState }')">신청 상세보기</a></th>
+                        		<th scope="col"><input name="check" type="checkbox" id="${workapply.workapplyNo }" value="${workapply.workapplyNo }" ></th>
                         		</tr>
-                        		</c:forEach>
+                        	</c:forEach>
                         </tbody>
                     	</c:when>
                     </c:choose>
@@ -220,6 +222,7 @@
 					<tr><td colspan="3"><b>신청 내역이 없습니다.</b></td></tr>
 				</c:otherwise>
 			</c:choose>
+			<button class="member-delete-btn">내역 삭제</button>
         </article>   
    
    
@@ -302,6 +305,31 @@
     			}
     		});
     	});
+    	
+    	$(document).on('click', '.member-delete-btn', function(e){
+			var result = confirm("삭제하시겠습니까?");
+			if(!result){
+			   return;
+			}
+			var checkarray = new Array(); 
+			$('input:checkbox[name=check]:checked').each(function() { 
+				checkarray.push(this.value); 
+			});
+			$.ajax({     
+				type:"post",
+				dataType:"text",
+				async:false,
+				url:"http://localhost:8090/manager/productApplyDelete",
+				data:{"checkarray": checkarray},
+				success: function(data, textStatus){
+					alert("삭제가 완료되었습니다.")
+					location.reload();
+				},
+				error:function(data, textStatus){
+					alert("실패");
+				}
+			});
+		});
     });
     
     $(function(){

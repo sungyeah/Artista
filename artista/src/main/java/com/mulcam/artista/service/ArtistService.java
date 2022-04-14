@@ -9,6 +9,7 @@ import com.mulcam.artista.dto.PageInfo;
 public interface ArtistService {
 	public void insertArtist(Artist artist) throws Exception;
 	public void updateArtist(Artist artist) throws Exception;
+	public void deleteArtist(int artistNo) throws Exception;
 	public int getArtistMaxId() throws Exception;
 	public Integer getArtistNo(String id) throws Exception;
 	public String getArtistName(String id) throws Exception;
@@ -21,4 +22,5 @@ public interface ArtistService {
 	public Artist Artistinfo(int artistNo) throws Exception;
 	Artist artistInfo(String id) throws Exception;
 	public Artist Artistmain() throws Exception;	// 메인화면 아티스트 정보
+	
 }

@@ -23,7 +23,7 @@
             <span class="postbtn"><a href="fundingov">펀딩 진행</a></span>
             <span class="postbtn"><a href="fundingtm"><b>펀딩 종료</b></a></span>
 	</div>
-    <div class="flex-container">
+    <div id="list12" class="flex-container">
     	<c:forEach items="${list}" var="funding">
         <div class="flex-item">
             <div id="box" class="image-box">
@@ -38,7 +38,48 @@
         </div>
         </c:forEach>
     </div>
-    <button class="Btn">load more</button>
+    <button id="loadBtn" class="Btn">load more</button>
     </div>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+	<script>
+
+	let startrow = 12; 
+	$('#loadBtn').on('click', function () {
+		console.log(startrow);
+		$.ajax({
+			data:{"startrow" : startrow, "endrow" : 12},
+			url: "/funding/loadFundingtm",
+			type: "post",
+			success: function (data) {
+				for (let i of data ) {
+					let data = "<div class='flex-item'>"
+						data += "<div id='box' class='image-box'>"
+						data += "<a href=${path}/funding/fundingovdetail?fundingNo="
+						data += i.fundingNo
+						data += ">"
+						data += "<img src=/funding/thumbview/"
+						data += i.thumbImg
+						data += " class=image-thumb>"
+						data += "</a>"
+						data += "</div>";
+						
+						data += "<span class='printer' id='artistName'>";
+						data += i.artistName;
+						data +="</span><br>";
+						data += "<a href=${path}/funding/fundingovdetail?fundingNo="
+						data += i.fundingNo
+						data += ">"
+						data += "<span class='projname' id='projTitle'>";
+						data += i.projTitle;
+						data +="</span></a>";
+						data +="</div>";
+						$('#list12').append(data);
+				}
+				startrow += 12;
+			}
+		});
+	});
+
+</script>
 </body>
 </html>
