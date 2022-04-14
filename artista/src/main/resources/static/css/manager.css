@@ -10,34 +10,17 @@
     margin: 0 auto;
     background-color: #fff;
     padding-bottom: 46px;
-    padding-top: 119px;
 }
 .manager-header{
-    -webkit-text-size-adjust: 100%;
-    font-family: 'Noto Sans KR', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    letter-spacing: -0.5px;
-    color: #222;
-    line-height: 1;
-    padding: 0;
-    width: 100%;
-    margin: 0 auto;
-    background-color: #fff;
-    padding-bottom: 46px;
-    padding-top: 119px;
+	width:96%;
+	max-width:1152px;
+	margin:78px auto 50px;
+	line-height:1.5;
 }
 .manager-header-title{
-    -webkit-text-size-adjust: 100%;
-    font-family: 'Noto Sans KR', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    letter-spacing: -0.5px;
-    color: #222;
-    padding: 0;
-    display: block;
-    width: 96%;
-    max-width: 1152px;
-    line-height: 1.5;
-    margin: 24px auto 20px;
+	margin-bottom:10px;
+	font-size:36px;
+	font-weight:bold;
 }
 .manager-guide{
     -webkit-text-size-adjust: 100%;
