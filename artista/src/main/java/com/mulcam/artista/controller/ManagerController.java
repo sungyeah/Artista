@@ -168,7 +168,7 @@ public class ManagerController {
 	/*운송장 번호 입력*/
 	@ResponseBody
 	@PostMapping(value="trackingNo")
-	public void TrackingNo(@RequestParam(value="orderNo",required = false) int orderNo, @RequestParam(value="trackingNo",required = false) int trackingNo) {
+	public void TrackingNo(@RequestParam(value="orderNo",required = false) int orderNo, @RequestParam(value="trackingNo",required = false) String trackingNo) {
 		try {
 			subPageService.setTrackingNo(orderNo, trackingNo);
 			//subPageService.updateStatus("배송 준비 중", orderNo);
@@ -521,6 +521,20 @@ public class ManagerController {
 		}
 		return mv;
 	}
+	
+	/* 회원 탈퇴시키기 */
+	@ResponseBody
+	@PostMapping(value="memberDelete")
+	public void memberDelete(@RequestParam(value="checkarray[]") List<String> id) {
+		for(int i=0; i<id.size(); i++) {
+			try {
+				subPageService.deleteId(id.get(i));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	@GetMapping("/artistlist")
 	public ModelAndView artistList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
 		ModelAndView mv = new ModelAndView("manager/artistlist");
@@ -536,6 +550,21 @@ public class ManagerController {
 		}
 		return mv;
 	}
+	
+	/* 아티스트 삭제하기 */
+	@ResponseBody
+	@PostMapping(value="artistDelete")
+	public void artistDelete(@RequestParam(value="checkarray[]") int[] artistNo) {
+		/*for(int i=0; i<id.size(); i++) {
+			try {
+				//artistService.deleteByNo(artistNo[i]);
+				//subPageService.deleteId(id.get(i));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}*/
+	}
+	
 	@GetMapping(value="/artistapplylist")
 	public ModelAndView artistApplyList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
 		ModelAndView mv = new ModelAndView("manager/artistapplylist");
