@@ -141,7 +141,6 @@
    	}
     function transfer(workNo){
     	alert("송금완료처리에 성공했습니다");
-    	/*
     	$.ajax({
 			type:"post",
 			dataType:"text",
@@ -156,7 +155,6 @@
 				alert("실패");
 			}
 		});
-    	*/
     }
     
   
