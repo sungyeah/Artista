@@ -795,24 +795,17 @@ public class ArtistPageController {
 			String exhibitposterImg = exhibitEnrollTime +"."+ mtypes[1];
 			exhibitapply.setExhibitapplyNo(exhibitapplyNo);
 			exhibitapply.setExhibitPoster(exhibitposterImg);
-			System.out.println("poseter : " + exhibitposterImg);
-			System.out.println(exhibitapply.getExhibitPoster());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		String[] exhibitDate = exhibitapply.getExhibitDate().split(" ~ ");
-		System.out.println(exhibitDate[0]);
-		System.out.println(exhibitDate[1]);
 		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
 		LocalDateTime localDateTime = LocalDateTime.from(formatDateTime.parse(exhibitDate[0]));
-		System.out.println(Timestamp.valueOf(localDateTime));
 		exhibitapply.setStartDate(Timestamp.valueOf(localDateTime).toString());
 		localDateTime = LocalDateTime.from(formatDateTime.parse(exhibitDate[1]));
-		System.out.println(Timestamp.valueOf(localDateTime));
 		exhibitapply.setEndDate(Timestamp.valueOf(localDateTime).toString());
 		exhibitapply.setApplyStatus(0);
-		
 		
 		try {
 			exhibitService.insertExhibitApply(exhibitapply);
@@ -839,6 +832,8 @@ public class ArtistPageController {
 			@ModelAttribute ExhibitionApply exhibitapply, @RequestParam(value="posterImgFile") MultipartFile posterImgFile, 
 			@RequestParam(value="fileChange") String file) 
 	{
+		System.out.println(exhibitapply.getExhibitNo());
+		System.out.println(exhibitapply.getExhibitNo());
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
 		String workImg = null;

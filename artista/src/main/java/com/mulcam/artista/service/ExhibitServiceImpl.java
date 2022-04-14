@@ -110,10 +110,9 @@ public class ExhibitServiceImpl implements ExhibitService {
 		return exhibitDAO.selectExhibitApplyListByArtistNo(artistNo);
 	}
 
-
-	
-
-
-	
+	@Override
+	public void updateExhibit(Exhibition exhibition) throws Exception {
+		exhibitDAO.updateExibit(exhibition);		
+	}
 
 }

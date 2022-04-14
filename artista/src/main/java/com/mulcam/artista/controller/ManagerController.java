@@ -466,13 +466,27 @@ public class ManagerController {
 		try {
 			//exhibitapplyNo로 전시등록신청 내용 가져오기
 			ExhibitionApply exhibitApply = exhibitService.selectExhibitApply(exhibitapplyNo);
+			int applyState = exhibitApply.getApplyStatus();
 			
-			//exhibit data에 artistapply 내용 옮기고 artist에 등록하기
-			Exhibition exhibit = new Exhibition(exhibitService.maxExhibitNo(), exhibitApply.getFundingNo(), exhibitApply.getArtistNo(), exhibitApply.getExhibitTitle(),
-					exhibitApply.getExhibitPoster(), exhibitApply.getExhibitArtist() , exhibitApply.getStartDate(), exhibitApply.getEndDate(), exhibitApply.getExhibitPlace(), exhibitApply.getReserveLink());
-			
-			exhibitService.insertExhibit(exhibit);
-			exhibitService.deleteExhibitApply(exhibitapplyNo);
+			//등록 허락
+			if(applyState==0) {
+				//exhibit data에 artistapply 내용 옮기고 artist에 등록하기
+				Exhibition exhibit = new Exhibition(exhibitService.maxExhibitNo(), exhibitApply.getFundingNo(), exhibitApply.getArtistNo(), exhibitApply.getExhibitTitle(),
+						exhibitApply.getExhibitPoster(), exhibitApply.getExhibitArtist() , exhibitApply.getStartDate(), exhibitApply.getEndDate(), exhibitApply.getExhibitPlace(), exhibitApply.getReserveLink());
+				
+				exhibitService.insertExhibit(exhibit);
+				exhibitService.deleteExhibitApply(exhibitapplyNo);
+			}
+			//수정 허락
+			else if(applyState==2) {
+				//exhibit data에 artistapply 내용 옮기고 artist에 등록하기
+				Exhibition exhibit = new Exhibition(exhibitApply.getExhibitNo(), exhibitApply.getFundingNo(), exhibitApply.getArtistNo(), exhibitApply.getExhibitTitle(),
+						exhibitApply.getExhibitPoster(), exhibitApply.getExhibitArtist() , exhibitApply.getStartDate(), exhibitApply.getEndDate(), exhibitApply.getExhibitPlace(), exhibitApply.getReserveLink());
+
+				exhibitService.updateExhibit(exhibit);
+				exhibitService.deleteExhibitApply(exhibitapplyNo);
+			}
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -482,6 +496,7 @@ public class ManagerController {
 	@PostMapping(value="exhibitapplyfail")
 	public void exhibitapplyFail(@RequestParam(value="applyNo",required = false) int exhibitapplyNo, @RequestParam(value="refusedContents",required = false) String refusedContents) {
 		try {
+			System.out.println(exhibitapplyNo);
 			//exhibitapplyNo로 전시등록신청 내용 가져오기
 			ExhibitionApply exhibitApply = exhibitService.selectExhibitApply(exhibitapplyNo);
 			exhibitService.refuseExhibitApply(exhibitapplyNo, refusedContents);

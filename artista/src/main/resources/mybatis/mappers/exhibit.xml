@@ -15,10 +15,10 @@
 		<![CDATA[
 			insert into exhibitionapply 
 			(exhibitapplyNo, fundingNo, artistNo, exhibitTitle, exhibitPoster, exhibitArtist, 
-				startDate, endDate, exhibitPlace, reserveLink, applyStatus) 
+				startDate, endDate, exhibitPlace, reserveLink, applyStatus, exhibitNo) 
 			values 
 			(#{exhibitapplyNo}, #{fundingNo}, #{artistNo}, #{exhibitTitle}, #{exhibitPoster}, #{exhibitArtist}, 
-				#{startDate}, #{endDate}, #{exhibitPlace}, #{reserveLink}, #{applyStatus})
+				#{startDate}, #{endDate}, #{exhibitPlace}, #{reserveLink}, #{applyStatus}, #{exhibitNo})
 		]]>
 	</insert>
 	
@@ -69,6 +69,14 @@
 				#{startDate}, #{endDate}, #{exhibitPlace}, #{reserveLink})
 		]]>
 	</insert>
+	
+	<!-- 전시내용 update -->
+	<update id="updateExibit" parameterType="exhibition">
+		<![CDATA[
+			update exhibition set fundingNo=#{fundingNo}, artistNo=#{artistNo}, exhibitTitle=#{exhibitTitle}, exhibitPoster=#{exhibitPoster}, 
+				exhibitArtist=#{exhibitArtist}, startDate=#{startDate}, endDate=#{endDate}, exhibitPlace=#{exhibitPlace}, reserveLink=#{reserveLink} where exhibitNo=#{exhibitNo}
+		]]>
+	</update>
 	
 	<!-- 전시 보기 -->
 	<select id="queryExhibit" parameterType="int" resultType="exhibition">
