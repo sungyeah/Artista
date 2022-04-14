@@ -79,8 +79,8 @@ create table workapply(
     workPrice int(10),
 	applyState int,
     refusedContents varchar(500),
+    workNo int(10),
     workHeight int(10) not null,
     primary key(workapplyNo)
-);
 );
  -->

@@ -103,9 +103,8 @@ create table work(
     workSize varchar(255) not null,
     workIntro longtext not null,
     workPrice int(10),
-    workForSale boolean not null,
+    workForSale int not null,
     orderNo int,
-    workHeight int(10) not null,
     primary key(workNo)
 );
  -->
