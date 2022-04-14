@@ -229,7 +229,6 @@
 	                            			환불 완료
 	                            		</c:when>
 	                            		</c:choose>
-	
 	                            	</th>
 	                            	<th scope="col" colspan="1">
 	                            		<a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a>

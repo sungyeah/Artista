@@ -155,6 +155,7 @@ public class ManagerController {
 		}		
 		return "manager/paycompletelist";
 	}
+	
 	@ResponseBody
 	@PostMapping(value="artistpaycomplete")
 	public void artistpayComplete(@RequestParam(value="workNo",required = false) int workNo) {

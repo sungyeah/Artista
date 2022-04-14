@@ -18,7 +18,7 @@
 	<div id="productdetail" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
-            	<div class="close-area">X</div>
+            	<div class="close-area close-area1">X</div>
                 <h2 class="modal-header-title">작품 상세내용</h2>
             </header>
             <article class="modal-body">
@@ -92,7 +92,7 @@
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                             <button class="yesNo-btn" id="modify" style="width:120px;">수정 요청하기</button>                    
-                            <button type="reset" class="yesNo-btn close-area" id="refusemodal">닫기</button>      
+                            <button type="reset" class="yesNo-btn close-area1" id="refusemodal">닫기</button>      
                         </div>
                     </div>
                     <input type="hidden" id="workNo" name="workNo" />
@@ -207,7 +207,7 @@
 		});		
 	}
     $(function(){
-	    $(document).on('click', '.close-area', function(e){
+	    $(document).on('click', '.close-area1', function(e){
 	    	productdetail.style.display = "none";
 	    });
 	});
