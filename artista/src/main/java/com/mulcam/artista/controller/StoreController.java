@@ -44,7 +44,6 @@ public class StoreController {
 	public String storelist(Model model	) {
 		try {
 			List<Work> work = storeService.workList();
-			model.addAttribute("works",work);
 			List<String> imgList = new ArrayList<String>();
 			for (int i = 0; i< work.size(); i++) {
 				int height = 0;
@@ -60,6 +59,7 @@ public class StoreController {
 				String Img = storeService.artistImg(artistNo);
 				imgList.add(Img);
 			}
+			model.addAttribute("works",work);
 			model.addAttribute("img",imgList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,4 +109,5 @@ public class StoreController {
 		}
 		return "false";
 	}
+	
 }

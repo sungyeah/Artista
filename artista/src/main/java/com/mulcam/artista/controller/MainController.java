@@ -1,6 +1,7 @@
 package com.mulcam.artista.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mulcam.artista.dto.Artist;
@@ -129,4 +131,16 @@ public class MainController {
 	public String test() {
 		return "test";
 	}
+	
+	@ResponseBody
+	@PostMapping("cnt")
+	public void addCart(@RequestBody Map<String, Object> cart) {
+		System.out.println(cart.get("id"));
+		try {
+			// 잊지마 ->매개변수를 통해 alarm 테이블의 리드사인 1 증가
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
