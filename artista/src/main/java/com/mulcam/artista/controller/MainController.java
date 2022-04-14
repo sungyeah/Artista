@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -134,13 +135,18 @@ public class MainController {
 	
 	@ResponseBody
 	@PostMapping("cnt")
-	public void addCart(@RequestBody Map<String, Object> cart) {
-		System.out.println(cart.get("id"));
+	public void addCart(@RequestBody Map<String, Object> map, Model model) {
+		JSONObject json =  new JSONObject(map);
+		System.out.println(json.get("id"));
+		System.out.println(json.get("no"));
 		try {
-			// 잊지마 ->매개변수를 통해 alarm 테이블의 리드사인 1 증가
+			//매개변수를 통해 alarm 테이블의 리드사인 1 증가
+			fundingserivce.updateReadsign((String)map.get("id"),(Integer)map.get("no"));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
-	
+
 }

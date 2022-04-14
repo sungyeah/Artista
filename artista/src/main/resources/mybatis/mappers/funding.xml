@@ -275,6 +275,12 @@
 			select * from funding where fundingState=2
 		]]>
 	</select>
+	<update id="updateReadsign" parameterType="map" >
+		<![CDATA[
+			update alarm set readSign= 1 where fundingNo=#{fundingNo} and id=#{id}
+		]]>
+	</update>
+	
 </mapper>
 
 <!-- 

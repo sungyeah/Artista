@@ -63,4 +63,6 @@ public interface FundingDAO {
 	public int fundingucCnt();
 	public List<Funding> queryovMain(Funding funding);
 
+	public void updateReadsign(Map map)throws Exception;
+
 }

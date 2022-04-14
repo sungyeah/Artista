@@ -312,6 +312,13 @@ public class FundingServiceImpl implements FundingService {
 		return fundingDAO.queryovMain(funding);
 	}
 
+	public void updateReadsign(String id,int fundingNo) throws Exception {
+		Map<String,Object> map =new HashMap<>();
+		map.put("id", id);
+		map.put("fundingNo", fundingNo);
+		fundingDAO.updateReadsign(map);
+	}
+
 
 
 }
