@@ -234,6 +234,7 @@ public class ArtistPageController {
 		try {
 			inputImage = ImageIO.read(artistImgFile.getInputStream());
 	        int originHeight = inputImage.getHeight();	// 이미지 세로 가로 측정
+	        System.out.println(originHeight);
 	        work.setWorkHeight(originHeight);
 		} catch (IOException e2) {
 			e2.printStackTrace();
@@ -304,14 +305,14 @@ public class ArtistPageController {
 	@PostMapping("workApplyComplete")
 	public String workApplyComplete(@ModelAttribute WorkApply workapply, @RequestParam(value="workImgFile") MultipartFile workImgFile) {
 
-		BufferedImage inputImage;
-		try {
-			inputImage = ImageIO.read(workImgFile.getInputStream());
-	        int originHeight = inputImage.getHeight();	// 이미지 세로 가로 측정
-	        workapply.setWorkHeight(originHeight);
-		} catch (IOException e2) {
-			e2.printStackTrace();
-		}
+//		BufferedImage inputImage;
+//		try {
+//			inputImage = ImageIO.read(workImgFile.getInputStream());
+//	        int originHeight = inputImage.getHeight();	// 이미지 세로 가로 측정
+//	        workapply.setWorkHeight(originHeight);
+//		} catch (IOException e2) {
+//			e2.printStackTrace();
+//		}
 	
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
@@ -386,7 +387,6 @@ public class ArtistPageController {
 				// 이미지 세로 가로 측정
 		        int originHeight = inputImage.getHeight();
 		        workapply.setWorkHeight(originHeight);
-		        System.out.println(originHeight);
 			} catch (IOException e2) {
 				e2.printStackTrace();
 			}
