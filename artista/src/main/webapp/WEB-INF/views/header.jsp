@@ -172,8 +172,10 @@ var uid = '<%=(String)session.getAttribute("membertype")%>';
 				url:"http://localhost:8090/cnt",
 				contentType : "application/json",
 				data:JSON.stringify(Cart),
+				/* data:Cart, */
 				success: function(data, textStatus){
 					$("#alarm"+no).detach();
+					location.href="http://localhost:8090/funding/fundingucdetail?fundingNo="+no
 				},
 				error:function(data, textStatus){
 					alert("실패");

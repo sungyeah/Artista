@@ -102,8 +102,11 @@
                 <h3 class="account-guide-name">
                     ${artistName }님 반갑습니다.
                 </h3>
-                <a class="account-modify-btn" href="mypage/mypagemodify" onclick="gaClickAccount('account_modify');">
-                    <p>작가 정보</p>
+                <a class="account-modify-btn1" href="${pageContext.request.contextPath}/artistdetail/${artistNo }" style="right:120px;">
+                    <p>미리보기</p>
+                </a>
+                <a class="account-modify-btn" href="${pageContext.request.contextPath}/artistpage/artistModify" >
+                    <p>정보 수정</p>
                 </a>
             </div>
         </section>

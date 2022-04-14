@@ -329,7 +329,6 @@ section.palmares .prize-list li span {
                     </c:forEach>
 					</ul>
 
-				<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>
 				</div>
 			</section>
 
