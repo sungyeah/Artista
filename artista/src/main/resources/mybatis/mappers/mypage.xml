@@ -6,7 +6,7 @@
 	<!-- 회원가입 -->
 	<select id="orderList" parameterType="string" resultType="order">
 		<![CDATA[
-			select * from order1 where id=#{id} order by orderDate
+			select * from order1 where id=#{id} order by orderDate desc
 		]]>
 	</select> 
 	
@@ -26,7 +26,7 @@
 	
 	<select id="fundingList" parameterType="string" resultType="funding">
 		<![CDATA[
-			select * from fundingspon where id=#{id}
+			select * from fundingspon where id=#{id} order by sponDate desc
 		]]>
 	</select>
 	
