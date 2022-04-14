@@ -55,6 +55,7 @@ create table work(
     workPrice int(10),
     workForSale boolean not null,
     orderNo int,
+    workHeight int(10) not null,
     primary key(workNo)
 );
  -->

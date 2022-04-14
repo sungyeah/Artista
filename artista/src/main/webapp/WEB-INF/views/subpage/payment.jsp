@@ -204,7 +204,7 @@
                     <div class="sect-list active">
                         <div class="checkout-artwork-list">
                         	 <input id="result" type="hidden" name="workNo">
-                        	 <input id="result2" type="hidden" name="cartNo">
+                        	 <input id="result2" type="hidden" name="cartNo" value="${carts.replace('[','').replace(']','').replace(' ','')}">
                              <c:forEach items="${works }" var="work" varStatus="status"> 
                                 <div class="checkout-item">
                                     <div class="checkout-img">
@@ -308,7 +308,7 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
     
-	
+		
     var total = +$('#total').val();
     var ship = +$('#shippingPrice').val();
     var tPrice = total+ship;
@@ -397,7 +397,8 @@
                     /* console.log(a.textContent) */
                     strArr.push(a.textContent)
                 }
-            	$('#result').val(strArr.toString()); 
+            	$('#result').val(strArr.toString());
+            	console.log(strArr);
             })
 
 
@@ -458,7 +459,7 @@
                 
             }
            
-            var count = document.getElementsByName("cartno2").length;
+            /* var count = document.getElementsByName("cartno2").length;
              var arr = [];
              for( var i=0; i< count; i++){
              	var d = document.getElementsByName("cartno2")[i].value;
@@ -466,7 +467,7 @@
              	 arr.push(d);
              }
 		     $('#result2').attr('value',arr);
-		    console.log("카트번호 "+$('#result2').val());
+		    console.log("카트번호 "+$('#result2').val()); */
             
 		
 		function search3(){

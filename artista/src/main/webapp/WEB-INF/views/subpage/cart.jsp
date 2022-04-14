@@ -53,8 +53,8 @@
                     		<c:forEach items="${carts }" var="cart">
                         	<tr>
                             <td class="cartList-checkbox">
-                                <input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.workNo }" onclick='itemSum(),getCheckedCnt()'>
-<%--                                 <input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.cartNo }" onclick='itemSum(),getCheckedCnt()'> --%>
+                               <%--  <input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.workNo }" onclick='itemSum(),getCheckedCnt()'> --%>
+								<input type="checkbox" class="cartList-checkEach" id="${cart.cartNo }#${cart.workPrice }" name="order_artwork" value="${cart.cartNo }" onclick='itemSum(),getCheckedCnt()'>
                                 <label for="${cart.cartNo }#${cart.workPrice }"></label>
                               
                             </td>
