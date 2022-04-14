@@ -32,7 +32,7 @@
         </header>
 
         <article class="enroll-body">
-        	<form class="enroll-modify-form" method="post" action="/artistpage/workApplyComplete" enctype="multipart/form-data">
+        	<form id="form" class="enroll-modify-form" method="post" action="/artistpage/workApplyComplete" enctype="multipart/form-data">
             	<div class="enroll-modify-form"></div>
                 <div class="certification-container certified">
                     <div class="enroll-modify-form-row">
@@ -50,7 +50,7 @@
                             <span class="red">*</span> 작품명
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="text" name="workName" placeholder="작품명을 입력하세요" autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
+                            <input class="enroll-modify-form-input" type="text" id="workName" name="workName" placeholder="작품명을 입력하세요" autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -82,7 +82,7 @@
                             <span class="red">*</span> 작품기법
                         </div>
                         <div class="enroll-modify-form-row-label">
-                            <input class="enroll-modify-form-input" type="text" name="workTech" placeholder="작품기법을 입력하세요" autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
+                            <input class="enroll-modify-form-input" type="text" id="workTech" name="workTech" placeholder="작품기법을 입력하세요" autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -90,7 +90,7 @@
                             <span class="red">*</span> 작품사이즈
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="text" name="workSize" placeholder="작품사이즈를 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
+                            <input class="enroll-modify-form-input" type="text" id="workSize" name="workSize" placeholder="작품사이즈를 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -98,7 +98,7 @@
                             <span class="red">*</span> 작품가격
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="number" name="workPrice" placeholder="작품가격을 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
+                            <input class="enroll-modify-form-input" type="number" id="workPrice" name="workPrice" placeholder="작품가격을 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -106,7 +106,7 @@
                             <span class="red">*</span> 작품소개
                         </div>
                         <div class="enroll-modify-form-row-value">
-                        	<textarea class="enroll-modify-form-input" name="workIntro" placeholder="최대 300자" maxlength="300" style="width:750px; height: 120px; resize: none;"></textarea>
+                        	<textarea class="enroll-modify-form-input" id="workIntro" name="workIntro" placeholder="최대 300자" maxlength="300" style="width:750px; height: 120px; resize: none;"></textarea>
                         </div>
                     </div>   
                     <div class="account-modify-form-border">
@@ -123,6 +123,38 @@
     <%@include file ="../footer.jsp" %>
 
     <script>
+    $(function(){
+    	$(document).on("click","#workApply", function(){
+    		$("#workType").attr("value", $(".selected-value").eq(0).text());
+        	if(!$("#workImg").val()){
+    			alert("작품 대표사진을 입력해주세요");
+    			return false;
+    		}
+        	if($("#workName").val()==""){
+    			alert("작품 제목을 입력해주세요");
+    			return false;
+    		}
+        	if($("#workType").val()=="none"){
+    			alert("작품 유형을 선택해주세요");
+    			return false;
+    		}
+        	if($("#workSize").val()==""){
+    			alert("작품 사이즈를 입력해주세요");
+    			return false;
+    		}
+        	if($("#workPrice").val()==""){
+    			alert("작품 가격을 입력해주세요");
+    			return false;
+    		}
+    		if($("#workIntro").val()==""){
+    			alert("작품 소개를 입력해주세요");
+    			return false;
+    		}
+    		
+    		$("#form").submit();	
+    	});
+    	
+    });
 	// 작품 대표이미지 show
 	$("#workImg").change(function (event) {
 		var reader = new FileReader();

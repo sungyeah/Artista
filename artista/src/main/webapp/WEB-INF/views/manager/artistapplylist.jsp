@@ -110,7 +110,7 @@
                 <h4 class="modal-header-title">거절 사유</h4>
             </header>
             <article class="modal-body">
-                <form class="modal-modify-form" method="post">
+                <form class="modal-modify-form" method="post" id="">
                     <div class="modal-modify-form-border"></div>
                     <div class="modal-modify-form-row">
                         <div class="modal-modify-form-row-label">

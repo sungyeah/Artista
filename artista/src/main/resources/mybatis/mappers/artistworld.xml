@@ -57,7 +57,7 @@ create table artistworld (
 	imgNo int(10) not null,
     imgName varchar(100) not null,
 	id varchar(100) not null,
-    isDoor tinyint not null,
+    idDoor int(10),
 	primary key(imgNo)
 );
  -->
