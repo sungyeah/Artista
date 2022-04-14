@@ -151,13 +151,10 @@ var uid = '<%=(String)session.getAttribute("membertype")%>';
                     if (fundingList.length == 0) {
                         $(".box1").html("알람이 존재하지 않습니다");
                     } else {
-                        for(let funding of fundingList) {
-                         console.log(funding.fundingNo);
-                         console.log(funding.id);
-                         $(".box1").append("<a href= ${path}/funding/fundingucdetail?fundingNo=" + funding.fundingNo + ">" + funding.projTitle + funding.fundingMsg + "</a>" + "<br>");
                         for(let funding of fundingList) { 
                         	
                          $(".box1").append('<div class="box2" id="alarm'+funding.fundingNo+'">'+'<div onclick="detailModal('+funding.fundingNo+',\''+funding.id+'\')">' + funding.projTitle + funding.fundingMsg + '</div>'+'</div>' + '<br>')
+
 
                         }
                     }
