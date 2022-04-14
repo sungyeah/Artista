@@ -162,6 +162,26 @@ public class SubPageController {
 		}
 	}
 	
+	@GetMapping("paymentinfo/{orderNo}")
+	public ModelAndView paymentInfo(@PathVariable(value="orderNo") int orderNo) {
+		ModelAndView mv = new ModelAndView("mypage/paymentinfo");
+		try {
+			Order order = myPageService.orderInfo(orderNo);
+			mv.addObject("order",order);
+			String[] arr = order.getWorkNo().split(",");
+			List<Work> wor = new ArrayList<Work>();
+			for(int i=0;i<arr.length;i++) {
+				int workno = Integer.parseInt(arr[i]);
+				Work work = workService.workinfo(workno);
+				wor.add(work);
+			}
+			mv.addObject("works",wor);
+		} catch(Exception e) {
+			mv.addObject("works", null);
+		}
+		return mv;
+	}
+	
 	@PostMapping("/storedetail/payment")
 	public String directpayment(@RequestParam(value="workNo")int workNo,Model model) {
 		String id = (String) session.getAttribute("id");
@@ -205,14 +225,16 @@ public class SubPageController {
 	}
 	
 //	@PostMapping("payment")
-//	public String payment(@RequestParam(value="order_artwork") int[] workNo,Model model,
+//	public String payment(@RequestParam(value="order_artwork") int[] cartNo,Model model,
 //			@RequestParam(value="total")int total,@RequestParam(value="count")String count) {
 //		String id = (String) session.getAttribute("id");
 //		List<Work> works = new ArrayList<Work>();
-//		for( int i=0;i<workNo.length;i++) {
-//			int workNo2 = workNo[i];
+//		for( int i=0;i<cartNo.length;i++) {
+//			int cartNo2 = cartNo[i];
 //			try {
-//				Work work = workService.workinfo(workNo2);
+//				Cart cart = subPageService.cartInfo(cartNo2);
+//				int workNo = cart.getWorkNo();
+//				Work work = workService.workinfo(workNo);
 //				works.add(work);
 //			} catch (Exception e) {
 //				e.printStackTrace();
@@ -222,6 +244,7 @@ public class SubPageController {
 //			Member mem = subPageService.queryId(id);
 //			model.addAttribute("mem",mem);
 //			model.addAttribute("works",works);
+//			model.addAttribute("carts",Arrays.toString(cartNo));
 //			model.addAttribute("total",total);
 //			model.addAttribute("count",count);
 //		} catch (Exception e) {
@@ -229,13 +252,17 @@ public class SubPageController {
 //		}
 //		return "subpage/payment";
 //	}
+	
+	
 	@PostMapping("payment")
 	public String payment(@RequestParam(value="order_artwork") int[] cartNo,Model model,
 			@RequestParam(value="total")int total,@RequestParam(value="count")String count) {
 		String id = (String) session.getAttribute("id");
 		List<Work> works = new ArrayList<Work>();
+		List<Integer> carts = new ArrayList<Integer>();
 		for( int i=0;i<cartNo.length;i++) {
 			int cartNo2 = cartNo[i];
+			carts.add(cartNo2);
 			try {
 				Cart cart = subPageService.cartInfo(cartNo2);
 				int workNo = cart.getWorkNo();
@@ -249,7 +276,7 @@ public class SubPageController {
 			Member mem = subPageService.queryId(id);
 			model.addAttribute("mem",mem);
 			model.addAttribute("works",works);
-			model.addAttribute("carts",Arrays.toString(cartNo));
+			model.addAttribute("carts",carts);
 			model.addAttribute("total",total);
 			model.addAttribute("count",count);
 		} catch (Exception e) {

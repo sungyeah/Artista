@@ -204,8 +204,10 @@
                     <div class="sect-list active">
                         <div class="checkout-artwork-list">
                         	 <input id="result" type="hidden" name="workNo">
-                        	 <input id="result2" type="hidden" name="cartNo" value="${carts.replace('[','').replace(']','').replace(' ','')}">
+                        	 <input id="result2" type="hidden" name="cartNo">
+                        	<%--  <input id="result2" type="hidden" name="cartNo" value="${carts.replace('[','').replace(']','').replace(' ','')}"> --%>
                              <c:forEach items="${works }" var="work" varStatus="status"> 
+                             <input type="hidden" id="cartno2" name="cartno2" value="${carts[status.index] }">
                                 <div class="checkout-item">
                                     <div class="checkout-img">
                                         <img src="/artistpage/workImg/${work.workImg }">
@@ -307,7 +309,6 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-    
 		
     var total = +$('#total').val();
     var ship = +$('#shippingPrice').val();
@@ -400,6 +401,7 @@
             	$('#result').val(strArr.toString());
             	console.log(strArr);
             })
+            
 
 
             //버튼 클릭하면 실행
@@ -459,7 +461,7 @@
                 
             }
            
-            /* var count = document.getElementsByName("cartno2").length;
+            var count = document.getElementsByName("cartno2").length;
              var arr = [];
              for( var i=0; i< count; i++){
              	var d = document.getElementsByName("cartno2")[i].value;
@@ -467,7 +469,7 @@
              	 arr.push(d);
              }
 		     $('#result2').attr('value',arr);
-		    console.log("카트번호 "+$('#result2').val()); */
+		    console.log("카트번호 "+$('#result2').val());
             
 		
 		function search3(){
