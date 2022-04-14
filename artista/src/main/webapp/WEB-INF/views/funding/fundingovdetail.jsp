@@ -17,8 +17,16 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
 <script>
 	$(function() {
-		var raminAmount = '${funding.targetFunding}' - '${funding.sumAmount}';
-		$("#remainAmount").text(raminAmount);
+		var raminAmount = 0;
+		if('${funding.targetFunding}' > '${funding.sumAmount}'){
+			raminAmount = '${funding.targetFunding}' - '${funding.sumAmount}';
+			$("#remainAmount").text(raminAmount);
+			$("#remainName").text("남은 금액");
+		} else {
+			raminAmount = '${funding.sumAmount}';
+			$("#remainAmount").text(raminAmount);
+			$("#remainName").text("모인 금액");
+		}
 		var rate = '${funding.sumAmount}'/'${funding.targetFunding}'*100;
 		$("#rate").text(rate);
 		$("#pro").val(rate);
@@ -58,7 +66,8 @@
   
             </div><br>
             <div id="amount">${funding.targetFunding} 목표 금액</div><br>
-            <div id="amount"><span id="remainAmount"></span> 남은 금액</div><br>
+            <div id="amount"><span id="remainAmount"></span>
+            <span id="remainName"></span></div><br>
             <div id="amount">${count} 서포터</div><br>
             <div id="promain">
                 <span id="rate"></span><span>%</span>
