@@ -550,14 +550,11 @@ public class ManagerController {
 		
 	/* 회원 관리 */
 	@GetMapping("/memberlist")
-	public ModelAndView memberList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+	public ModelAndView memberList() {
 		ModelAndView mv = new ModelAndView("manager/memberlist");
-		PageInfo pageInfo = new PageInfo();
 		try {
-			List<Member> memberlist = subPageService.memberList(page, pageInfo);
-			mv.addObject("pageInfo", pageInfo);
+			List<Member> memberlist = subPageService.memberList();
 			mv.addObject("memberlist", memberlist);
-			mv.addObject("count", memberlist.size());
 		} catch(Exception e) {
 			e.printStackTrace();
 			mv.addObject("memberlist", null);
