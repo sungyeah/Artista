@@ -32,7 +32,8 @@
             <div class="artist-list">
                 <ul>                   
                     <c:forEach items="${atistList }" var="artist" varStatus="status">
-                    	<li><a class="list" href="artistdetail/${artist.artistNo }" data-image="../../imgupload/artistWorlds/${ImgNames[status.index] } ">${artist.artistName } </a></li>
+                    	<li><a class="list" href="artistdetail/${artist.artistNo }" data-image="${pageContext.request.contextPath}/mypage/artistWorld/${ImgNames[status.index] } ">${artist.artistName } </a></li>
+                    	<!-- ${pageContext.request.contextPath}/imgupload/artistWorlds/${ImgNames[status.index] } -->
                     </c:forEach>
                 </ul>
             </div>
@@ -46,7 +47,7 @@
 <script>
     $('.list').mouseenter(function(e){
     	let imagePath = e.currentTarget.dataset.image;
-        var html="<figure class='landscape'><div class='portrait'><img src='${pageContext.request.contextPath}/mypage/artistprofile/" + imagePath + "'></div></figure>"
+        var html="<figure class='landscape'><div class='portrait'><img src='" + imagePath + "'></div></figure>"
         $('.artist-list').append(html);
     });
     $('.list').mouseleave(function(){
