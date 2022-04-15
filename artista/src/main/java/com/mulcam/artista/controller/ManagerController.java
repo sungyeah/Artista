@@ -94,11 +94,11 @@ public class ManagerController {
 
 	/* 결제 작품 관리 */
 	@GetMapping({"", "/", "/paymentlist"})
-	public ModelAndView paymentList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+	public ModelAndView paymentList() {
 		ModelAndView mv = new ModelAndView("manager/paymentlist");
 		PageInfo pageInfo = new PageInfo();
 		try {
-			List<Order> orderlist = subPageService.orderList(page, pageInfo);
+			List<Order> orderlist = subPageService.orderList();
 			List<OrderReport> orderdetail = new ArrayList<OrderReport>(); 
 			for(int i=0; i<orderlist.size(); i++) {
 				OrderReport orderReport = new OrderReport();
@@ -114,8 +114,6 @@ public class ManagerController {
 				orderReport.setWorks(works);
 				orderdetail.add(orderReport);
 			}
-			mv.addObject("pageInfo", pageInfo);
-			mv.addObject("count", orderlist.size());
 			mv.addObject("orderdetail", orderdetail);
 		} catch(Exception e) {
 			mv.addObject("orderlist", null);
@@ -142,10 +140,10 @@ public class ManagerController {
 		return mv;
 	}
 	@GetMapping("/paycompletelist")
-	public String paycompleteList(@RequestParam(value="page",required=false, defaultValue = "1") int page, Model model) {
+	public String paycompleteList(Model model) {
 		PageInfo pageInfo = new PageInfo();
 		try {
-			List<Work> completelist = workService.SoldProductList(page, pageInfo);
+			List<Work> completelist = workService.SoldProductList();
 			List<WorkReport> workReportList = new ArrayList<WorkReport>();
 			for(int i=0; i<completelist.size(); i++) {
 				WorkReport workreport = new WorkReport();
@@ -155,8 +153,8 @@ public class ManagerController {
 				workreport.setOrder(order);
 				workReportList.add(workreport);
 			}
-			model.addAttribute("pageInfo", pageInfo);
-			model.addAttribute("count", completelist.size());
+//			model.addAttribute("pageInfo", pageInfo);
+//			model.addAttribute("count", completelist.size());
 			model.addAttribute("workreport", workReportList);
 		}catch(Exception e) {
 			model.addAttribute("workreport", null);
@@ -191,7 +189,7 @@ public class ManagerController {
 		ModelAndView mv = new ModelAndView("manager/productapplylist");
 		PageInfo pageInfo = new PageInfo();
 		try {
-			List<WorkApply> productapplylist = workapplyService.getWorkApplyList(page, pageInfo);
+			List<WorkApply> productapplylist = workapplyService.getWorkApplyList();
 			mv.addObject("pageInfo", pageInfo);
 			mv.addObject("productapplylist", productapplylist);
 			mv.addObject("count", productapplylist.size());
