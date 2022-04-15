@@ -213,7 +213,6 @@
 			data:{"fundingNo":fundingNo},
 			success: function(data, textStatus){ 
 			 	var fundingData = JSON.parse(data);
-			 	console.log(data);
 			 	
 			 	$("#id").attr("value", fundingData.id);
 			 	$('#artistName').attr("value", fundingData.artistName);

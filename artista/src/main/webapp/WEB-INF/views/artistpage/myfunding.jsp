@@ -151,12 +151,14 @@
     $(function(){
 		$(document).on('click', '.close-area', function(e){
 			exhibition.style.display = "none";
+			applyfunding.style.display = "none";
 		});
 		
 	});
 
 	function showSpon(fundingNo){
 		exhibition.style.display = "flex";
+		
 		$.ajax({
 			type:"post",
 			async: false,

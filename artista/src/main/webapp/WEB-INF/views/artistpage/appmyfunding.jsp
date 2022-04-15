@@ -247,7 +247,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"${pageContext.request.contextPath}/artistpage/fundingdetail",
+			url:"${pageContext.request.contextPath}/artistpage/fundingApplydetail",
 			data:{"fundingNo":fundingNo},
 			success: function(data, textStatus){ 
 			 	var fundingData = JSON.parse(data);

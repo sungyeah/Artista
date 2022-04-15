@@ -335,6 +335,11 @@ public class FundingServiceImpl implements FundingService {
 		fundingDAO.updateReadsign(map);
 	}
 
+	@Override
+	public Funding queryFundingBybNo(int fundingNo) throws Exception {
+		return fundingDAO.queryFundingBybNo(fundingNo);
+	}
+
 
 
 }

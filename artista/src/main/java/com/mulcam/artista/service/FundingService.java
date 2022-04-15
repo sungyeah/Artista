@@ -52,7 +52,7 @@ public interface FundingService {
 	public List<Funding> queryovMain(Funding funding, int page, PageInfo pageInfo);
 	void updateReadsign(String id,int fundingNo)throws Exception;
 	
-
+	public Funding queryFundingBybNo(int fundingNo)throws Exception;
 
 	
 }
