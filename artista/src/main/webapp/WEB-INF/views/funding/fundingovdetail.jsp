@@ -16,12 +16,6 @@
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
 <script>
-/* document.getElementById('cartBoard-val-amount').innerText = sum.toLocaleString();
-$('#total').attr('value',sum);
-console.log($('#total').val());
-} */
-
-
 	$(function() {
 		var raminAmount = 0;
 		if('${funding.targetFunding}' > '${funding.sumAmount}'){
@@ -83,7 +77,7 @@ console.log($('#total').val());
             <form action="fundingpay" name="fundingpay" id="fundingpay" method="post">
                 <input class="account-modify-form-input" type="text" name="sponsorAmount" maxlength="20" id="sponsorAmount" placeholder="최소 금액">
                 <input type="hidden" id="fundingNo" name="fundingNo" value="${funding.fundingNo }">
-                <input class="Btn1" type="submit" id="sponsor" value="후원하기">
+                <input class="Btn1" type="button" id="sponsor" onclick="CheckForm();" value="후원하기">
             </form>
             </div>
         </div>
@@ -99,7 +93,21 @@ console.log($('#total').val());
     <div>
         <button class="Btn3" onclick="location.href='${pageContext.request.contextPath}/funding/fundingov'">목록</button>
     </div>
-    
+    <script type="text/javascript">
+	    function CheckForm() {
+	        var sponsorAmount = document.getElementById("sponsorAmount");
+	        if (sponsorAmount.value == "") {
+	            alert("값을 입력해 주세요.");
+	            sponsorAmount.focus();
+	        } else{
+	        	document.fundingpay.action = "fundingpay";
+	        	document.fundingpay.submit();
+	        }   
+	    }
+
+    </script>
+
+
 
 </body>
 
