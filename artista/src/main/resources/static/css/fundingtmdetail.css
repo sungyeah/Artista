@@ -45,19 +45,24 @@
         font-size: 40px;
         margin-bottom: 2px;
         margin-top: 2px;
+
     }
     #amount{
-        font-size: 30px;
+        font-size: 20px;
+        margin-left: 3px;
+        margin-top: 2px;
         margin-bottom: 2px;
     }
+    
     .Btn1{
-        width: 206px;
-        height: 52px;
+       width: 234px;
+        height: 45px;
         display: block;
         background-color: black;
         color: white;
         border: 0;
         font-size: 1.4em;
+        margin-top: 35px;
     }
     .Btn2{
         width: 206px;
@@ -85,15 +90,16 @@
     }
 
     #promain{
-        margin-left: 15px;
-        font-size: 20px;
+       	margin-left: 15px;
+        font-size: 18px;
         margin-left: 4px;
+        margin-top:4px;
     }
     .artistIntro{
-        width: 350px;
+       width: 350px;
         height: 185px;
-        margin-left: 1075px;
-        margin-top: 550px;
+        margin-left: 1059px;
+        margin-top: 585px;
         position: absolute;
         top: 190px;
         
@@ -127,4 +133,7 @@
     }
     .amountdetail{
         margin-left: 4px;
+    }
+    .menu{
+    	margin-top: 15px;
     }

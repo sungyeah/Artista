@@ -65,14 +65,17 @@
 			<span id="remain_minute"></span><span style="font-size:15px;">분 남음</span>
   
             </div><br>
+            <div class="menu">
             <div id="amount"><fmt:formatNumber type="number" maxFractionDigits="3" value="${funding.targetFunding}" /> 목표 금액</div><br>
             <div id="amount"><span id="remainAmount"></span>
             <span id="remainName"></span></div><br>
             <div id="amount">${count} 서포터</div><br>
             <div id="promain">
-                <span id="rate"></span><span>%</span>
-                <progress id="pro" value="30" max="100"></progress>
-            </div><br>
+                <span id="rate"></span><span>%</span><br>
+                <progress id="pro" value="30" max="100" style="width: 68%; height:7px;"></progress>
+            </div>
+            </div>
+            <br>
             <div class="amountdetail">
             <form action="fundingpay" name="fundingpay" id="fundingpay" method="post">
                 <input class="account-modify-form-input" type="text" name="sponsorAmount" maxlength="20" id="sponsorAmount" placeholder="최소 금액">

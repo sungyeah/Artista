@@ -38,13 +38,15 @@ $(function() {
         </div>
         <div class="fundingdetail">
             <div id="name">펀딩 종료</div><br>
+            <div class="menu">
             <div id="amount"><fmt:formatNumber type="number" maxFractionDigits="3" value="${funding.targetFunding}" /> 목표 금액</div><br>
             <div id="amount"><span id="remainAmount"></span>
             <span id="remainName"></span></div><br>
             <div id="amount">${count} 서포터</div><br>
             <div id="promain">
-                <span id="rate"></span><span>%</span>
-                <progress id="pro" value="30" max="100"></progress>
+                <span id="rate"></span><span>%</span><br>
+                <progress id="pro" value="30" max="100" style="width: 68%; height:7px;" ></progress>
+            </div>
             </div><br>
             <div class="amountdetail">
                 <button class="Btn1">전시 정보 보기</button>
