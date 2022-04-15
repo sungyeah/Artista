@@ -222,9 +222,6 @@
 					</c:choose>
 					</div>
 				</c:when>
-				<c:otherwise>
-					<tr><td colspan="3"><b>신청 내역이 없습니다.</b></td></tr>
-				</c:otherwise>
 			</c:choose>
         </article>
 	</div>
