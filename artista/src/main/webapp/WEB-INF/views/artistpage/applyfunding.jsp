@@ -18,42 +18,30 @@
   </style>
 <body>
 	<%@include file ="../header.jsp" %>
-          <form method="post" action="applyfunding" enctype="multipart/form-data" >
+    <form id="form" method="post" action="applyfunding" enctype="multipart/form-data" >
     <div id="contents">
-        
         <header class="account-header">
             <h2 class="account-header-title">펀딩 신청</h2>
             <div class="account-header-description">펀딩 신청해 보자고</div>
         </header>
         <article class="account-body">
-
-    <div class="account-modify-form-border"></div>
+   	 	<div class="account-modify-form-border"></div>
         <div class="account-modify-form-row">
-            <div class="account-modify-form-row-label">
-                아이디
-            </div>
+            <div class="account-modify-form-row-label">아이디</div>
             <div class="account-modify-form-row-value">
             	${id }
             	<input type="hidden" id="id" name="id" value='${id }'>
             </div>
         </div>
         <div class="account-modify-form-row">
-            <div class="account-modify-form-row-label">
-                이름
-            </div>
+            <div class="account-modify-form-row-label"> 이름 </div>
             <div class="account-modify-form-row-value">
-                <div class="certification-value">
-                	${artistName }
-                </div>
+                <div class="certification-value">${artistName }</div>
             </div>
         </div>
         <div class="account-modify-form-row">
-            <div class="account-modify-form-row-label">
-                이메일
-            </div>
-            <div class="account-modify-form-row-value">
-            	${email }
-        </div>
+            <div class="account-modify-form-row-label">이메일</div>
+            <div class="account-modify-form-row-value">${email }</div>
         </div>
 
         <div class="account-modify-form-row">
@@ -107,17 +95,17 @@
         <div class="board_detail">
             <textarea  id="projIntro" name="projIntro" placeholder="프로젝트 소개를 써 주세요."></textarea>
         </div>
-    </div>
-    </div>
-    <div class="proj-content">
+    	</div>
+    	</div>
+    	<div class="proj-content">
       <span class="question" id="que-2"><span id="que-2-toggle">+</span><span>예산 정보</span></span>
       <div class="answer" id="ans-2">
         <div class="board_detail">
             <textarea  id="projBudget" name="projBudget"  placeholder="예산에 대한 정보를 써 주세요."></textarea>
         </div>
       </div>
-    </div>
-    <div class="proj-content">
+    	</div>
+    	<div class="proj-content">
       <span class="question" id="que-3"><span id="que-3-toggle">+</span><span>작가 본인 소개</span></span>
       <div class="answer" id="ans-3">
         <div class="board_detail">
@@ -125,8 +113,8 @@
         </div>
       </div>
     </div>
-</article>
-</div>
+	</article>
+	</div>
     <div class="a">
         <button class="yesNo-btn" style="background-color:#222;color:white;" type="submit">확인</button>
         <button class="yesNo-btn" style="background-color:white;color:#222;margin-left:10px" type="button">취소</button>
