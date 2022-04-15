@@ -221,7 +221,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/productdetail",
+			url:"${pageContext.request.contextPath}/artistpage/productdetail",
 			data:{"workNo":workNo},
 			success: function(data, textStatus){ 
 			 	var workData = JSON.parse(data);

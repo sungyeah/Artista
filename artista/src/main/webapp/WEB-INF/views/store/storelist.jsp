@@ -41,7 +41,7 @@
                             <div class="images card_list" id="itemList" style="height: 1777.55px;margin: 0 82.5px;">
                             	<c:forEach var="work" items="${works}" varStatus="status">
                             	<%-- <div class="image" style="width: 100%; transform: translate(${(status.index % 3) * 100}%, ${works[status.index-3] == null ? 0 : works[status.index-3].workPrice}px);"> --%>
-                            	<div class="image" style="width: 290px; transform: translate(${(status.index % 4) * 103}%, ${works[status.index-4] == null ? 0 : works[status.index-4].workHeight+9}px);">
+                            	<div class="image" style="width: 290px; transform: translate(${(status.index % 4) * 103}%, ${works[status.index-4] == null ? 0 : works[status.index-4].workHeight+18}px);">
                             	 <div data-brackets-id="2440" class="card_b only-mb">
                                         <a data-brackets-id="2441" href=#
                                             class="whole">${work.workName }</a>

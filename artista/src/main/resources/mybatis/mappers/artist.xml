@@ -48,9 +48,9 @@
 	</select>
 	
 	<!-- 아티스트 보기 : listing 적용 -->
-	<select id="selectArtistList" parameterType="int" resultType="artist">
+	<select id="selectArtistList" resultType="artist">
 		<![CDATA[
-			select * from artist limit #{startrow}, 9
+			select * from artist
 		]]>
 	</select>
 	

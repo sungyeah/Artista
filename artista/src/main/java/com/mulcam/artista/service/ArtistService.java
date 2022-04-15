@@ -14,7 +14,7 @@ public interface ArtistService {
 	public Integer getArtistNo(String id) throws Exception;
 	public String getArtistName(String id) throws Exception;
 	
-	public List<Artist> artistList(int page, PageInfo pageInfo) throws Exception;
+	public List<Artist> artistList() throws Exception;
 	public Artist selectArtistByNo(int artistNo) throws Exception;
 	public ArtistWorld selectArtistWorldById(String id) throws Exception;
 	

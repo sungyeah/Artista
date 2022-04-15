@@ -17,8 +17,16 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
 <script>
 	$(function() {
-		var raminAmount = '${funding.targetFunding}' - '${funding.sumAmount}';
-		$("#remainAmount").text(raminAmount);
+		var raminAmount = 0;
+		if('${funding.targetFunding}' > '${funding.sumAmount}'){
+			raminAmount = '${funding.targetFunding}' - '${funding.sumAmount}';
+			$("#remainAmount").text(raminAmount);
+			$("#remainName").text("남은 금액");
+		} else {
+			raminAmount = '${funding.sumAmount}';
+			$("#remainAmount").text(raminAmount);
+			$("#remainName").text("모인 금액");
+		}
 		var rate = '${funding.sumAmount}'/'${funding.targetFunding}'*100;
 		$("#rate").text(rate);
 		$("#pro").val(rate);
@@ -58,14 +66,15 @@
   
             </div><br>
             <div id="amount">${funding.targetFunding} 목표 금액</div><br>
-            <div id="amount"><span id="remainAmount"></span> 남은 금액</div><br>
+            <div id="amount"><span id="remainAmount"></span>
+            <span id="remainName"></span></div><br>
             <div id="amount">${count} 서포터</div><br>
             <div id="promain">
                 <span id="rate"></span><span>%</span>
                 <progress id="pro" value="30" max="100"></progress>
             </div><br>
             <div class="amountdetail">
-            <form action="fundingpay" id="fundingpay" method="post">
+            <form action="fundingpay" name="fundingpay" id="fundingpay" method="post">
                 <input class="account-modify-form-input" type="text" name="sponsorAmount" maxlength="20" id="sponsorAmount" placeholder="최소 금액">
                 <input type="hidden" id="fundingNo" name="fundingNo" value="${funding.fundingNo }">
                 <input class="Btn1" type="submit" id="sponsor" value="후원하기">
@@ -78,12 +87,14 @@
         <h2 class="artist">작가 소개</h2>
         <div class="artistContent">${funding.projArtist}</div>
         <div class="artistContent">
-            <button class="Btn2">작가 페이지 이동</button>
+            <button class="Btn2" onclick="location.href='${pageContext.request.contextPath}/artistdetail/${funding.artistNo }'">작가 페이지 이동</button>
         </div>
     </div>
     <div>
-        <button class="Btn3">목록</button>
+        <button class="Btn3" onclick="location.href='${pageContext.request.contextPath}/funding/fundingov'">목록</button>
     </div>
+    
+
 </body>
 
 </html>

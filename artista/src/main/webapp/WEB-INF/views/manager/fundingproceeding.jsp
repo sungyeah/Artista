@@ -9,13 +9,15 @@
 <title>Artista</title>
 <link rel="stylesheet" href="../css/manager.css">
 <link rel="stylesheet" href="../css/applymodal.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script	src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
 </head>
 <body>
 	<%@include file ="../header.jsp" %>
     <div id="exhibition" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
-            	<div id="apply_close" class="close-area">X</div>
+            	<div id="apply_close" class="close-area close-area1">X</div>
                 <h2 class="modal-header-title">스폰서 목록</h2>
             </header>
             <article class="modal-body">
@@ -34,6 +36,99 @@
             			
             		</tbody>
             	</table>
+            </article>  
+        </div>
+    </div>
+    <div id="applyfunding" class="modal-overlay">
+        <div class="modal-window">
+            <header class="modal-header">
+            
+            	<div id="apply_close" class="close-area close-area1">X</div>
+                <h2 class="modal-header-title">펀딩 내용</h2>
+            </header>
+            <article class="modal-body">
+                    <div class="modal-modify-form-border"></div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 아이디
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="id" type="text" disabled />
+                        </div>
+                    </div>
+                    
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 아티스트 이름
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                        	<input class="modal-modify-form-input" id="artistName" type="text" disabled />
+                        </div>
+                    </div>    
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 이메일
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="email" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 목표 금액
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="targetFunding" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 펀딩 일정
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="Date" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 대관장소
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="place" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 프로젝트 제목
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <input class="modal-modify-form-input" id="projTitle" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 프로젝트 소개
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                        	<textarea id="projectIntro" style="width: 250px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 예산정보
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <textarea id="projectBudgetInfo" style="width: 250px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-modify-form-row">
+                        <div class="modal-modify-form-row-label">
+                            <span class="red">*</span> 작가소개
+                        </div>
+                        <div class="modal-modify-form-row-value">
+                            <textarea id="projectArtistInfo" style="width: 250px;"></textarea>
+                        </div>
+                    </div>      
             </article>  
         </div>
     </div>
@@ -101,7 +196,7 @@
                             	<th scope="col">
                             		<img src="/funding/thumbview/${funding.thumbImg}" style="width:100px; height:100px;">	
                             	</th>
-                            	<th scope="col"">${funding.projTitle }</th>            
+                            	<th scope="col">${funding.projTitle }</th>            
                             	<th scope="col">
                             		<c:choose>
 									<c:when test="${funding.fundingState==1}">예정</c:when>
@@ -109,16 +204,13 @@
 									<c:otherwise>종료</c:otherwise>
 									</c:choose>
                             	</th>
-                            	<th scope="col"">${funding.fundingDate }</th>    
+                            	<th scope="col">${funding.fundingDate }</th>    
                             	<th scope="col" colspan="1">
                             		<a class="artist-detail-btn" onclick="fundingDetail('${funding.fundingNo }')">내용 상세보기</a>
                             	</th>                  
                            		<th scope="col" colspan="1">
-                           			<c:choose>
-									<c:when test="${funding.fundingState==1}"><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">알람 신청내역</a></c:when>
-									<c:when test="${funding.fundingState==2}"><a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a></c:when>
-									<c:otherwise><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">결과보기</a></c:otherwise>
-									</c:choose></th>
+                           			<a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a>
+                           		</th>
                         		</tr>
                         		</c:forEach>
                         </tbody>
@@ -127,25 +219,54 @@
                 </table>
             </section>
         </article>
-        
+    </div>
 	<%@include file ="../footer.jsp" %>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
+	<script>
 	const exhibition = document.getElementById("exhibition");
+	const applyfunding = document.getElementById("applyfunding");
 	
 	$(function(){
-		$(document).on('click', '.close-area', function(e){
+		$(document).on('click',".close-area1", function(e){
 			exhibition.style.display = "none";
+			applyfunding.style.display = "none";
 		});
 		
 	});
+	
+	function fundingDetail(fundingNo){
+    	applyfunding.style.display = "flex";
+		$.ajax({
+			type:"post",
+			dataType:"text",
+			async: false,
+			url:"${pageContext.request.contextPath}/artistpage/fundingdetail",
+			data:{"fundingNo":fundingNo},
+			success: function(data, textStatus){ 
+			 	var fundingData = JSON.parse(data);			 	
+			 	$("#id").attr("value", fundingData.id);
+			 	$('#artistName').attr("value", fundingData.artistName);
+			 	$('#email').attr("value", fundingData.email);
+ 			 	$("#targetFunding").attr("value", fundingData.funding.targetFunding);
+ 			 	$("#Date").attr("value", fundingData.funding.fundingDate);
+ 			 	$("#place").attr("value", fundingData.funding.getplace + " " + fundingData.funding.getplace2);
+ 			 	$("#projTitle").attr("value", fundingData.funding.projTitle);
+ 			 	$("#fundingNo").attr("value", fundingData.funding.fundingNo);
+ 			 	projectIntro.setData(fundingData.funding.projIntro);
+ 			 	projectBudgetInfo.setData(fundingData.funding.projBudget);
+ 			 	projectArtistInfo.setData(fundingData.funding.projArtist);
+			},
+			error:function(data, textStatus){
+				alert("실패");
+			}
+		});
+	}
 	
 	function showSpon(fundingNo){
 		exhibition.style.display = "flex";
 		$.ajax({
 			type:"post",
 			async: false,
-			url:"http://localhost:8090/manager/sponList",
+			url:${pageContext.request.contextPath}/manager/sponList",
 			dataType:"text",
 			/* contentType:"application/json;charset=UTF-8", */
 			data:{"fundingNo":fundingNo},
@@ -170,7 +291,42 @@
 			}
 		});
 	}
-
+	let projectIntro;
+    let projectBudgetInfo;
+    let projectArtistInfo;
+    ClassicEditor.create(document.querySelector("#projectIntro"))
+	.then(editor=>{
+		window.editor = editor;
+	    editor.isReadOnly = true;
+	    const toolbarElement = editor.ui.view.toolbar.element;
+	    toolbarElement.style.display = 'none';
+	    projectIntro=editor;
+    })
+    .catch((error) => {
+	   	console.error(error);
+    });
+	ClassicEditor.create(document.querySelector("#projectBudgetInfo"))
+	.then(editor=>{
+		window.editor = editor;
+	    editor.isReadOnly = true;
+	    const toolbarElement = editor.ui.view.toolbar.element;
+	    toolbarElement.style.display = 'none';
+	    projectBudgetInfo=editor;
+    })
+    .catch((error) => {
+	   	console.error(error);
+    });
+	ClassicEditor.create(document.querySelector("#projectArtistInfo"))
+	.then(editor=>{
+		window.editor = editor;
+	    editor.isReadOnly = true;
+	    const toolbarElement = editor.ui.view.toolbar.element;
+	    toolbarElement.style.display = 'none';
+	    projectArtistInfo=editor;
+    })
+    .catch((error) => {
+	   	console.error(error);
+    });
 </script>
 </body>
 </html>

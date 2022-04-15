@@ -54,7 +54,7 @@
                         <div class="sect-body cf">
                             <div class="sect-body-th">주소</div>
                             <div class="sect-body-td">
-                                <input type="text" id="billing_address1" class="address1" name="address" value="${mem.address }" placeholder="기본 주소" onclick=search3() style="cursor:pointer;">
+                                <input type="text" id="billing_address1" class="address1" name="address" value="${mem.address }" placeholder="기본 주소" onclick=search3() style="cursor:pointer;" readonly="readonly">
                                 <input id="billing_address_btn" class="address-btn" type="button" value="주소 찾기" readonly="readonly" onclick=search3()><br>
                                 <input type="text" id="billing_address2" class="address2" name="address2" value="${mem.address2 }" placeholder="상세 주소" >
                             </div>
@@ -204,8 +204,10 @@
                     <div class="sect-list active">
                         <div class="checkout-artwork-list">
                         	 <input id="result" type="hidden" name="workNo">
-                        	 <input id="result2" type="hidden" name="cartNo" value="${carts.replace('[','').replace(']','').replace(' ','')}">
+                        	 <input id="result2" type="hidden" name="cartNo">
+                        	<%--  <input id="result2" type="hidden" name="cartNo" value="${carts.replace('[','').replace(']','').replace(' ','')}"> --%>
                              <c:forEach items="${works }" var="work" varStatus="status"> 
+                             <input type="hidden" id="cartno2" name="cartno2" value="${carts[status.index] }">
                                 <div class="checkout-item">
                                     <div class="checkout-img">
                                         <img src="/artistpage/workImg/${work.workImg }">
@@ -307,7 +309,6 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-    
 		
     var total = +$('#total').val();
     var ship = +$('#shippingPrice').val();
@@ -316,21 +317,18 @@
     document.getElementById('artworks-totalPrice').innerText = tPrice.toLocaleString();
     document.getElementById('payment-totalPrice').innerText = tPrice.toLocaleString();
     console.log($('#id').val());
+    
         function duplication(){
+        	if($('#billing_address1').val()==''){
+        		alert("주문자 주소를 입력해주세요.");
+        		return false;
+        	}
+        	
             if($("#shipping_name").is('[readonly]')===false){
                 $('#shipping_name').val($('#billing_name').val()); 
                 $('#shipping_address1').val($('#billing_address1').val()); 
                 $('#shipping_address2').val($('#billing_address2').val());
-
-                // var num = $('#billing_phone1').val();
-                // var num1 = num.split("-");
-
-                // $('#shipping_phone11').val(num1[0]).prop("selected",true);
-                // $('input[name=shipping_phone12]').val(num1[1]);
-                // $('input[name=shipping_phone13]').val(num1[2]);
                 $('#shipping_phone').val($('#billing_phone1').val());
-                
-
                 $('#shipping-copy_button').css({
                     "background-image": "url(/images/check-icon.png)"
                 });
@@ -338,15 +336,11 @@
                 $("#shipping_address1").prop("readonly",true);
                 $("#shipping_address2").prop("readonly",true);
                 $("#shipping_phone").prop("readonly",true);
-                // $("#shipping_phone12").prop("readonly",true);
-                // $("#shipping_phone13").prop("readonly",true);
             }else{
                 $("#shipping_name").prop("readonly",false);
                 $("#shipping_address1").prop("readonly",false);
                 $("#shipping_address2").prop("readonly",false);
                 $("#shipping_phone").prop("readonly",false);
-                // $("#shipping_phone12").prop("readonly",false);
-                // $("#shipping_phone13").prop("readonly",false);
                 $('#shipping-copy_button').css({
                     "background-image": "url(/images/checkno.png)"
                 });
@@ -394,13 +388,11 @@
             	 let arr = $('.code').get();
                 let strArr = [];
                 for(let a of arr) {
-                    /* console.log(a.textContent) */
                     strArr.push(a.textContent)
                 }
             	$('#result').val(strArr.toString());
             	console.log(strArr);
             })
-
 
             //버튼 클릭하면 실행
             function payment(data) {
@@ -429,7 +421,6 @@
         			url:"http://localhost:8090/nocheck",
         			success: function(data, textStatus){
         				$('#nocheck').attr('value',data);
-        				alert($('#nocheck').val());
         			},
         			error:function(data, textStatus){
         				alert("실패");
@@ -459,7 +450,7 @@
                 
             }
            
-            /* var count = document.getElementsByName("cartno2").length;
+            var count = document.getElementsByName("cartno2").length;
              var arr = [];
              for( var i=0; i< count; i++){
              	var d = document.getElementsByName("cartno2")[i].value;
@@ -467,7 +458,7 @@
              	 arr.push(d);
              }
 		     $('#result2').attr('value',arr);
-		    console.log("카트번호 "+$('#result2').val()); */
+		    console.log("카트번호 "+$('#result2').val());
             
 		
 		function search3(){

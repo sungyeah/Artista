@@ -32,7 +32,7 @@
         </header>
 
         <article class="enroll-body">
-        	<form class="enroll-modify-form" method="post" action="/artistpage/workModifyComplete" enctype="multipart/form-data">
+        	<form id="form" class="enroll-modify-form" method="post" action="/artistpage/workModifyComplete" enctype="multipart/form-data">
             	<div class="enroll-modify-form"></div>
                 <div class="certification-container certified">
                     <div class="enroll-modify-form-row">
@@ -111,7 +111,7 @@
                     </div>   
                     <div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        	<button class="yesNo-btn" id="workApply" style="width:120px;">작품수정 신청</button>
+                        	<button class="yesNo-btn" type="button" id="workApply" style="width:120px;">작품수정 신청</button>
                     		<button class="yesNo-btn" id="cancel" type="reset">취소</button>      
                     	</div>
                 	</div>
@@ -124,6 +124,39 @@
     <%@include file ="../footer.jsp" %>
 
     <script>
+    $(function(){
+    	$(document).on("click","#workApply", function(){
+    		$("#workType").attr("value", $(".selected-value").eq(0).text());
+        	if(!$("#workImg").val()){
+    			alert("작품 대표사진을 입력해주세요");
+    			return false;
+    		}
+        	if($("#workName").val()==""){
+    			alert("작품 제목을 입력해주세요");
+    			return false;
+    		}
+        	if($("#workType").val()=="none"){
+    			alert("작품 유형을 선택해주세요");
+    			return false;
+    		}
+        	if($("#workSize").val()==""){
+    			alert("작품 사이즈를 입력해주세요");
+    			return false;
+    		}
+        	if($("#workPrice").val()==""){
+    			alert("작품 가격을 입력해주세요");
+    			return false;
+    		}
+    		if($("#workIntro").val()==""){
+    			alert("작품 소개를 입력해주세요");
+    			return false;
+    		}
+    		
+    		$("#form").submit();	
+    	});
+    	
+    });
+    
 	// 작품 대표이미지 show
 	$("#workImgFile").change(function (event) {
 		var reader = new FileReader();

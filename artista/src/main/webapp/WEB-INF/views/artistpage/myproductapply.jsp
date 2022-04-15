@@ -18,7 +18,7 @@
 	<div id="productdetail" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
-            	<div id="apply_close" class="close-area">X</div>
+            	<div id="apply_close" class="close-area close-area1">X</div>
                 <h2 class="modal-header-title">작품 상세내용</h2>
             </header>
             <article class="modal-body">
@@ -96,7 +96,7 @@
 	<div id="refuseReason" class="modal-overlay">
         <div class="refusemodal-window">
             <header class="modal-header">
-            	<div class="close-area">X</div>
+            	<div class="close-area close-area1">X</div>
                 <h2 class="modal-header-title">거절 사유</h2>
             </header>
             <article class="modal-body">
@@ -111,8 +111,8 @@
                         </div>
                     </div>
                     <div class="modal-modify-form-border">
-                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">               
-                            <a class="yesNo-btn close-area">닫기</a>      
+                        <div style="text-align: center; margin-top:15px; margin-bottom: 15px;"> 
+                            <button type="button" class="yesNo-btn close-area1" >닫기</button>         
                         </div>
                     </div>
                 </form>
@@ -226,7 +226,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/productapplydetail",
+			url:"${pageContext.request.contextPath}/artistpage/productapplydetail",
 			data:{"workNo":workapplyNo},
 			success: function(data, textStatus){ 
 			 	var workData = JSON.parse(data);
@@ -251,7 +251,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/refuseReason",
+			url:"${pageContext.request.contextPath}/artistpage/refuseReason",
 			data:{"workNo":workapplyNo},
 			success: function(data, textStatus){ 
 				console.log(data);

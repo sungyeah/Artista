@@ -17,7 +17,7 @@
 	<div id="exhibitiondetail" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
-            	<div class="close-area">X</div>
+            	<div class="close-area close-area1">X</div>
                 <h2 class="modal-header-title">전시 상세보기</h2>
             </header>
             <article class="modal-body">
@@ -82,7 +82,7 @@
                     <input type="hidden" id="exhibitapplyNo" disabled/>
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <button class="yesNo-btn close-area">닫기</button>      
+                            <button class="yesNo-btn close-area1">닫기</button>
                         </div>
                     </div>
             </article>  
@@ -160,7 +160,7 @@
                     	</c:when>
                     </c:choose>
                 </table>
-                <button class="member-delete-btn">전시 삭제</button>
+                <button id="delete" class="member-delete-btn">전시 삭제</button>
             </section>
         </article>
     </div>
@@ -175,11 +175,11 @@
     	$(document).on('click', '.artist-detail-btn', function(e){
     		exhibitiondetail.style.display = "flex";
     	});
-    	$(document).on('click', '.close-area', function(e){
+    	$(document).on('click', '.close-area1', function(e){
     		exhibitiondetail.style.display = "none";
     	});
     	
-    	$(document).on('click', '.member-delete-btn', function(e){
+    	$(document).on('click', '#delete', function(e){
 			var result = confirm("삭제하시겠습니까?");
 			if(!result){
 			   return;
@@ -192,7 +192,7 @@
 				type:"post",
 				dataType:"text",
 				async:false,
-				url:"http://localhost:8090/manager/exhibitionDelete",
+				url:"${pageContext.request.contextPath}/manager/exhibitionDelete",
 				data:{"checkarray": checkarray},
 				success: function(data, textStatus){
 					alert("삭제가 완료되었습니다.")
@@ -211,7 +211,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/manager/exhibitdetail",
+			url:"${pageContext.request.contextPath}/manager/exhibitdetail",
 			data:{"exhibitNo":exhibitNo},
 			success: function(data, textStatus){ 
 			 	var exhibitData = JSON.parse(data);

@@ -193,7 +193,9 @@ public class FundingController {
 	@GetMapping("/fundingtmdetail")
 	public String fundingtmdetail(@RequestParam("fundingNo") int fundingNo, Model model) {
 		Funding funding = fundingService.querytmdetail(fundingNo);
+		int count = fundingService.querySponCount(fundingNo);
 		model.addAttribute("funding", funding);
+		model.addAttribute("count", count);
 		return "funding/fundingtmdetail";
 	}
 

@@ -12,6 +12,9 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
 <script>
 	$(function() {
+		var raminAmount = '${funding.sumAmount}';
+			$("#remainAmount").text(raminAmount);
+			$("#remainName").text("모인 금액");
 		var rate = '${funding.sumAmount}'/'${funding.targetFunding}'*100;
 		$("#rate").text(rate);
 		$("#pro").val(rate);
@@ -30,7 +33,7 @@
             <div id="name">펀딩 종료</div><br>
             <div id="amount">${funding.targetFunding} 목표 금액</div><br>
             <div id="amount">${funding.sumAmount } 모인 금액</div><br>
-            <div id="amount">20명 서포터</div><br>
+            <div id="amount">${count} 서포터</div><br>
             <div id="promain">
                 <span id="rate"></span><span>%</span>
                 <progress id="pro" value="30" max="100"></progress>
@@ -49,11 +52,11 @@
             ${funding.projArtist }
         </div>
         <div class="artistContent">
-            <button class="Btn2">작가 페이지 이동</button>
+            <button class="Btn2" onclick="location.href='${pageContext.request.contextPath}/artistdetail/${funding.artistNo }'">작가 페이지 이동</button>
         </div>
     </div>
     <div>
-        <button class="Btn3">목록</button>
+        <button class="Btn3" onclick="location.href='${pageContext.request.contextPath}/funding/fundingtm'">목록</button>
     </div>
 </body>
 </html>

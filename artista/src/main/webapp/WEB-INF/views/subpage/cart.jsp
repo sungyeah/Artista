@@ -128,8 +128,7 @@
                 </div>
                 <div id="cartBottom">
                     <a href="${pageContext.request.contextPath}/storelist"><input type="button" class="cartBottom-btn" id="toDiscoverBtn" value="작품 더 고르기"></a>
-                    <input type="submit" class="cartBottom-btn" id="toCheckoutBtn" value="주문결제">
-                    <!-- <a href="payment.html"><input type="submit" class="cartBottom-btn" id="toCheckoutBtn" value="주문결제"></a> -->
+                    <button type="button" class="cartBottom-btn" id="toCheckoutBtn" onclick="check()">주문결제</button>
                 </div>
             </form>
         </section>
@@ -138,7 +137,15 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>    
 <script>
 	
- 
+ 	function check(){
+ 		if($('#count').val()==0){
+ 			alert('주문결제할 작품이 선택되지 않았습니다.');
+ 			return false;
+ 		}
+ 		cartForm.submit();
+ 	}
+ 	
+ 	
 	function selectAll(selectAll)  {
 	  const checkboxes 
 	       = document.getElementsByName('order_artwork');
@@ -151,7 +158,7 @@
 		  // 선택된 목록 가져오기
 		  const query = 'input[name="order_artwork"]:checked';
 		  const selectedElements = document.querySelectorAll(query);
-		  
+		 alert(selectedElements);
 		  // 선택된 목록의 갯수 세기
 		  const selectedElementsCnt = selectedElements.length;
 		  // 출력

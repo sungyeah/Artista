@@ -128,11 +128,10 @@
                             		</c:if>
                             	</th>                  
                            		<th scope="col" colspan="1">
-                           			<c:choose>
-									<c:when test="${funding.fundingState==1}"></c:when>
-									<c:when test="${funding.fundingState==2}"><a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a></c:when>
-									<c:otherwise><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">결과보기</a></c:otherwise>
-									</c:choose></th>
+                           			<c:if test="${funding.fundingState!=1 or funding.fundingState!=0}">
+                           			<a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a>
+                           			</c:if>
+                           		</th>
                         		</tr>
                         		</c:forEach>
                         </tbody>
@@ -161,7 +160,7 @@
 		$.ajax({
 			type:"post",
 			async: false,
-			url:"http://localhost:8090/manager/sponList",
+			url:"${pageContext.request.contextPath}/manager/sponList",
 			dataType:"text",
 			/* contentType:"application/json;charset=UTF-8", */
 			data:{"fundingNo":fundingNo},
@@ -213,7 +212,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/fundingdetail",
+			url:"${pageContext.request.contextPath}/artistpage/fundingdetail",
 			data:{"fundingNo":fundingNo},
 			success: function(data, textStatus){ 
 			 	var fundingData = JSON.parse(data);

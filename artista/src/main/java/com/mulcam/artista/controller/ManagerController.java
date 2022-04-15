@@ -155,6 +155,7 @@ public class ManagerController {
 		}		
 		return "manager/paycompletelist";
 	}
+	
 	@ResponseBody
 	@PostMapping(value="artistpaycomplete")
 	public void artistpayComplete(@RequestParam(value="workNo",required = false) int workNo) {
@@ -549,14 +550,11 @@ public class ManagerController {
 		
 	/* 회원 관리 */
 	@GetMapping("/memberlist")
-	public ModelAndView memberList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+	public ModelAndView memberList() {
 		ModelAndView mv = new ModelAndView("manager/memberlist");
-		PageInfo pageInfo = new PageInfo();
 		try {
-			List<Member> memberlist = subPageService.memberList(page, pageInfo);
-			mv.addObject("pageInfo", pageInfo);
+			List<Member> memberlist = subPageService.memberList();
 			mv.addObject("memberlist", memberlist);
-			mv.addObject("count", memberlist.size());
 		} catch(Exception e) {
 			e.printStackTrace();
 			mv.addObject("memberlist", null);
@@ -582,14 +580,15 @@ public class ManagerController {
 	}
 	
 	@GetMapping("/artistlist")
-	public ModelAndView artistList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+	public ModelAndView artistList() {
 		ModelAndView mv = new ModelAndView("manager/artistlist");
-		PageInfo pageInfo = new PageInfo();
 		try {
-			List<Artist> artistlist = artistService.artistList(page, pageInfo);			
-			mv.addObject("pageInfo", pageInfo);
+			List<Artist> artistlist = artistService.artistList();
+			for(int i=0;i<artistlist.size();i++) {
+				int follower = subPageService.followercnt(artistlist.get(i).getId());
+				artistlist.get(i).setFollowerNum(follower);
+			}
 			mv.addObject("artistlist", artistlist);
-			mv.addObject("count", artistlist.size());
 		} catch(Exception e) {
 			e.printStackTrace();
 			mv.addObject("artistlist", null);
@@ -614,15 +613,11 @@ public class ManagerController {
 	}
 	
 	@GetMapping(value="/artistapplylist")
-	public ModelAndView artistApplyList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+	public ModelAndView artistApplyList() {
 		ModelAndView mv = new ModelAndView("manager/artistapplylist");
-		PageInfo pageInfo = new PageInfo();
 		try {
-			List<ArtistApply> artistapplylist = artistapplyService.getArtistApplyList(page, pageInfo);
-			
-			mv.addObject("pageInfo", pageInfo);
+			List<ArtistApply> artistapplylist = artistapplyService.getArtistApplyList();
 			mv.addObject("artistapplylist", artistapplylist);
-			mv.addObject("count", artistapplylist.size());
 		} catch(Exception e) {
 			e.printStackTrace();
 			mv.addObject("artistapplylist", null);
@@ -742,12 +737,16 @@ public class ManagerController {
 		return sponsorList;
 	}
 	
+	//환불 예외처리
 	@ResponseBody
 	@PostMapping(value="refund")
-	public void refund(@RequestParam(value="fundingNo") int fundingNo) {
-			//변경 funding fundingSpon fundingNo
+	public void refund(@RequestParam(value="fundingNo") int fundingNo, Model model) {
+		try {
 			fundingService.fundingRefund(fundingNo);
 			fundingService.fundingSponRefund(fundingNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 			
 

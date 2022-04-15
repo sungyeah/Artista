@@ -20,7 +20,7 @@
         <div class="modal-window">
             <header class="modal-header">
             	<div id="apply_close" class="close-area">X</div>
-                <h2 class="modal-header-title">펀딩 신청내용</h2>
+                <h2 class="modal-header-title">펀딩 내용</h2>
             </header>
             <article class="modal-body">
                     <div class="modal-modify-form-border"></div>
@@ -209,7 +209,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/fundingdetail",
+			url:"${pageContext.request.contextPath}/artistpage/fundingdetail",
 			data:{"fundingNo":fundingNo},
 			success: function(data, textStatus){ 
 			 	var fundingData = JSON.parse(data);

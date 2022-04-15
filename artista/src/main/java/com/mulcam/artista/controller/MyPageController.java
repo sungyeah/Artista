@@ -82,6 +82,7 @@ public class MyPageController {
 		try {
 			Member mem = subPageService.queryId(id);
 			model.addAttribute("name",mem.getName());
+			model.addAttribute("membertype", mem.getMemberType());
 			List<Order> ord = myPageService.orderList(id);
 			List<OrderReport> orderReports = new ArrayList<OrderReport>();
 			List<Follow> follow = subPageService.followInfo(id);

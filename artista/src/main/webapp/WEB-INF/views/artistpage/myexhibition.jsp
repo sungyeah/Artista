@@ -18,7 +18,8 @@
 	<div id="exhibition" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
-            	<div id="apply_close" class="close-area">X</div>
+            	
+            	<div id="apply_close" class="close-area close-area1">X</div>
                 <h2 class="modal-header-title">전시 상세보기</h2>
             </header>
             <article class="modal-body">
@@ -85,7 +86,7 @@
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
                             <button class="yesNo-btn" id="modify" style="width:120px;">수정 요청하기</button>                    
-                            <button type="reset" class="yesNo-btn close-area">닫기</button>      
+                            <button type="reset" class="yesNo-btn close-area1">닫기</button>      
                         </div>
                     </div>
             	</form>
@@ -145,8 +146,7 @@
                     <tr>
                         <th scope="col" class="artistNo">전시 번호</th>
                         <th scope="col" class="id">전시 제목</th>
-                        <th scope="col" class="artistName">전시 시작일</th>
-                        <th scope="col" class="artistType">전시 종료일</th>
+                        <th scope="col" class="artistName">전시 날짜</th>
                         <th scope="col" class="artistType">펀딩번호</th>
                         <th scope="col"></th>
                     </tr>
@@ -158,9 +158,8 @@
 								<tr>
                             	<th scope="col">${exhibitlist.exhibitNo }</th>
                             	<th scope="col">${exhibitlist.exhibitTitle }</th>
-                            	<th scope="col"">${exhibitlist.startDate }</th>
-                            	<th scope="col"">${exhibitlist.endDate }</th>
-                            	<th scope="col">${exhibitlist.fundingNo }</th>                             
+                            	<th scope="col">${exhibitlist.startDate } - ${exhibitlist.endDate }</th>
+                            	<th scope="col"><a href="${pageContext.request.contextPath}/funding/fundingovdetail?fundingNo=${exhibitlist.fundingNo }">${exhibitlist.fundingNo }</a></th>                             
                            		<th scope="col" colspan="1">
                            			<a class="artist-detail-btn" onclick="showDetail('${exhibitlist.exhibitNo }')">전시상세보기</a>
                            		</th>
@@ -170,9 +169,6 @@
                     	</c:when>
                     </c:choose>
                 </table>
-                <a class="member-delete-btn" href="/account/delete/">
-                    내용 삭제
-                </a>
             </section>
         </article>
         
@@ -188,7 +184,8 @@
     	$(document).on('click', '.artist-detail-btn', function(e){
     		exhibition.style.display = "flex";
     	});
-    	$(document).on('click', '.close-area', function(e){
+    	
+    	$(document).on('click', '.close-area1', function(e){
     		exhibition.style.display = "none";
     	});
     });
@@ -199,7 +196,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/exhibitdetail",
+			url:"${pageContext.request.contextPath}/artistpage/exhibitdetail",
 			data:{"exhibitNo":exhibitNo},
 			success: function(data, textStatus){ 
 			 	var exhibitData = JSON.parse(data);

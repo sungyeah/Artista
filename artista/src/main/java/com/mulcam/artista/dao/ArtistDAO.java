@@ -16,7 +16,7 @@ public interface ArtistDAO {
 	public Integer selectArtistNo(String id) throws Exception;
 	public String selectArtistName(String id) throws Exception;
 	public int ArtistNum() throws Exception;
-	public List<Artist> selectArtistList(int startrow) throws Exception;
+	public List<Artist> selectArtistList() throws Exception;
 	public Artist selectArtistByNo(int artistNo) throws Exception;
 	
 	public List<Artist> nameartist() throws Exception;

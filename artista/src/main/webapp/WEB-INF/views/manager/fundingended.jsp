@@ -229,7 +229,6 @@
 	                            			환불 완료
 	                            		</c:when>
 	                            		</c:choose>
-	
 	                            	</th>
 	                            	<th scope="col" colspan="1">
 	                            		<a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a>
@@ -245,14 +244,7 @@
         
     </div>
     <%@include file ="../footer.jsp" %>
-    
-    <script>
-    $(function(){
-    	$(document).on('click', '.refund', function(e){
-    		alert("환불 완료 처리되었습니다.");
-    	});
-    });
-    </script>
+
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
 	//modal창
@@ -271,7 +263,7 @@
 		$.ajax({
 			type:"post",
 			async: false,
-			url:"http://localhost:8090/manager/sponList",
+			url:"${pageContext.request.contextPath}/manager/sponList",
 			dataType:"text",
 			/* contentType:"application/json;charset=UTF-8", */
 			data:{"fundingNo":fundingNo},
@@ -287,7 +279,6 @@
   					accEle += '<td>'+ fundingData[i].email +'</td>'
   					accEle += '<td>'+ fundingData[i].sponAmount +'</td>'
   					accEle += '</tr>'
-  					accEle += '<div> 버튼 </div>'
   				}
   				$('.aa').detach();
   				$('#sponsorTbody').append(accEle);
@@ -305,11 +296,12 @@
 			 $.ajax({
 				type:"post",
 				async: false,
-				url:"http://localhost:8090/manager/refund",
+				url:"${pageContext.request.contextPath}/manager/refund",
 				dataType:"text",
 				data:{"fundingNo":fundingNo},
 				success: function(data, textStatus){ 
 				 	alert("환불되었습니다.");
+				 	location.reload();
 				},
 				error:function(data, textStatus){
 					alert("실패");

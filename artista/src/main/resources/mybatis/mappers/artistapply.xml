@@ -35,14 +35,14 @@
 	<!-- 신정 인원 -->
 	<select id="ArtistApplyNum" resultType="int">
 		<![CDATA[
-			select count(*) from artistapply
+			select count(*) from artistapply where applyResult=0 or applyResult=2
 		]]>
 	</select>
 	
 	<!-- 아티스트 선택하기 : listing 적용 -->
-	<select id="selectArtistApplyList" parameterType="int" resultType="artistapply">
+	<select id="selectArtistApplyList" resultType="artistapply">
 		<![CDATA[
-			select * from artistapply limit #{startrow}, 9
+			select * from artistapply where applyResult=0 or applyResult=2
 		]]>
 	</select>
 	
@@ -63,7 +63,7 @@
 	<!-- 아티스트 신청 거절 내용 update -->
 	<update id="updateRefuseResults" parameterType="map" >
 		<![CDATA[
-			update artistapply set applyResult=false, refusedContents=#{refusedContents} where artistNo=#{applyNo }
+			update artistapply set applyResult=applyResult+1, refusedContents=#{refusedContents} where artistNo=#{applyNo }
 		]]>
 	</update>
 	

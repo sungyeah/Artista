@@ -66,7 +66,7 @@
                     </tr>
                     </thead>
                     <c:choose>
-                    	<c:when test="${memberlist!=null && pageInfo.listCount>0 }">
+                    	<c:when test="${memberlist!=null }">
                     	<tbody>
                     		<c:forEach items="${memberlist }" var="member">
 								<tr>
@@ -107,7 +107,7 @@
 				type:"post",
 				dataType:"text",
 				async:false,
-				url:"http://localhost:8090/manager/memberDelete",
+				url:"${pageContext.request.contextPath}/manager/memberDelete",
 				data:{"checkarray": checkarray},
 				success: function(data, textStatus){
 					alert("삭제가 완료되었습니다.")

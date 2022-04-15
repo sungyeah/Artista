@@ -145,7 +145,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/manager/artistpaycomplete",
+			url:"${pageContext.request.contextPath}/manager/artistpaycomplete",
 			data:{"workNo":workNo},
 			success: function(data, textStatus){ 
 				alert("송금완료처리에 성공했습니다");
