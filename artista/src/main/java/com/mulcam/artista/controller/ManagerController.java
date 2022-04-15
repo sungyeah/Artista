@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -55,6 +56,13 @@ import com.mulcam.artista.service.WorkService;
 @Controller
 @RequestMapping("manager")
 public class ManagerController {
+	/*
+	@Value("${upload.filepath.ncloud}")
+	private boolean bcloud;
+	
+	@Value("${upload.filepath}")
+	private String filepath;s
+	*/
 	
 	@Autowired
 	FundingService fundingService;

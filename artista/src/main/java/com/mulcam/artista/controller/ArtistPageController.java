@@ -557,11 +557,29 @@ public class ArtistPageController {
 	}
 	/* 펀딩 신청 상세보기 */
 	@ResponseBody
+	@PostMapping(value="fundingApplydetail")
+	public Map<String, Object> fundingApplydetail(@RequestParam(value="fundingNo", required = false) int fundingNo, Model model) {
+		Map<String, Object> json = new HashMap<>();
+		try {
+			Funding funding = fundingService.querytfundingApp(fundingNo);
+			Artist artist = artistService.Artistinfo(funding.getArtistNo());
+			String email = subPageService.queryId(artist.getId()).getEmail();
+			json.put("funding", funding);
+			json.put("id", artist.getId());
+			json.put("artistName", artist.getArtistName());
+			json.put("email", email);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
+	/* 펀딩 상세보기 */
+	@ResponseBody
 	@PostMapping(value="fundingdetail")
 	public Map<String, Object> fundingDetail(@RequestParam(value="fundingNo", required = false) int fundingNo, Model model) {
 		Map<String, Object> json = new HashMap<>();
 		try {
-			Funding funding = fundingService.querytfundingApp(fundingNo);
+			Funding funding = fundingService.queryFundingBybNo(fundingNo);
 			Artist artist = artistService.Artistinfo(funding.getArtistNo());
 			String email = subPageService.queryId(artist.getId()).getEmail();
 			json.put("funding", funding);

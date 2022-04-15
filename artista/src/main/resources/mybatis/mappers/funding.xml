@@ -30,6 +30,11 @@
 			select * from funding where id =#{id}
 		]]>
 	</select>
+	<select id="queryFundingBybNo" parameterType="int" resultType="Funding">
+		<![CDATA[
+			select * from funding where fundingNo =#{fundingNo}
+		]]>
+	</select>
 	
 	<select id="queryMyFunding" parameterType="string" resultType="Funding">
 		<![CDATA[
