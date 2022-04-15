@@ -11,14 +11,7 @@
 <link rel="stylesheet" href="../css/manager.css">
 <link rel="stylesheet" href="../css/mypage.css">
 <link rel="stylesheet" href="../css/enroll.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.min.css" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/datepicker.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/i18n/datepicker.en.min.js"></script>
 
 <style>
 	.artistImg {
@@ -53,7 +46,7 @@
         </header>
 
         <article class="enroll-body">
-            <form class="enroll-modify-form" method="post" action="/mypage/artistapply" enctype="multipart/form-data">
+            <form id="form" class="enroll-modify-form" method="post" action="/mypage/artistapply" enctype="multipart/form-data">
                 <div class="enroll-modify-form"></div>
                 <div class="certification-container  certified">
                     <div class="enroll-modify-form-row">
@@ -117,7 +110,7 @@
                     </div>
                     <div class="enroll-modify-form-row">
                         <div class="enroll-modify-form-row-label">
-                            <span class="red">*</span> 아티스트의 이력
+                            <span class="red"></span> 아티스트의 이력
                         </div>
                         <div class="enroll-modify-form-row-value">
 							<table><tbody>
@@ -129,14 +122,15 @@
     										<div class="arrow"></div>
   										</div>
   										<ul>
+  											<li class="option">none</li>
   									    	<li class="option">수상</li>
   									    	<li class="option">전시</li>
   									    	<li class="option">논문 및 저서</li>
   										</ul>
   									</div>
                     			</th>
-                        		<th><input class="enroll-modify-form-input datepicker-here recordYear" data-min-view="years" data-view="years" data-date-format="yyyy" 
-                        					placeholder="연도" style="display:inline-block; width:60px;" /></th>
+                    			<th><input class="enroll-modify-form-input recordYear" 
+                        				type="number" min="1900" max="2099" placeholder="연도" style="display:inline-block; width:60px;" /></th>
                         		<th><input class="enroll-modify-form-input recordText" placeholder="내용을 입력하세요" 
                         					autocomplete="off" autocapitalize="off" style="width:500px;"></th>
                         		<th><span class="plus" style="cursor: pointer;font-size:20px;">+</span></th>
@@ -160,7 +154,7 @@
                     </div>
                     <div class="enroll-modify-form-row">
                         <div class="enroll-modify-form-row-label">
-                            <span class="red">*</span> 인스타그램링크
+                            <span class=""></span> 인스타그램링크
                         </div>
                         <div class="enroll-modify-form-row-value">
                             <input class="enroll-modify-form-input" id="artistInstagram" name="artistInstagram" 
@@ -170,7 +164,7 @@
                     
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                    		<button class="yesNo-btn" id="applyartist" style="background-color:#222;color:white;">아티스트 신청</button>
+                    		<button class="yesNo-btn" type="button" id="applyartist" style="background-color:#222;color:white;">아티스트 신청</button>
                     		<button class="yesNo-btn" id="cancel" style="background-color:white;color:#222;margin-left:10px" type="reset">취소</button>
                         </div>
                 	</div>
@@ -182,21 +176,43 @@
      <%@include file ="../footer.jsp" %>
     
     <script>
-    $("#applyartist").click(function(){
-    	$("#artistType").attr("value", $(".selected-value").eq(0).text());
+    
+    $(function(){
+    	$(document).on("click","#applyartist", function(){
+    		$("#artistType").attr("value", $(".selected-value").eq(0).text());
+        	
+        	var artistRecordList = new Array();
+        	for(var i=0; i<record; i++){
+        		var data = new Object();
+        		data.type = $(".selected-value").eq(i+1).text();
+        		data.year = $(".recordYear").eq(i).val();
+        		data.recordText = $(".recordText").eq(i).val();
+        		artistRecordList.push(data) ;
+        	}
+        	$("#id").attr("value", $("#id").val());
+        	$("#artistRecord").attr("value", JSON.stringify(artistRecordList));
+        	
+        	if(!$("#artistImg").val()){
+    			alert("아티스트 프로필 사진을 입력해주세요");
+    			return false;
+    		}
+        	if($("#artistName").val()==""){
+    			alert("아티스트 필명을 입력해주세요");
+    			return false;
+    		}
+        	if($("#artistType").val()=="none"){
+    			alert("아티스트 유형을 선택해주세요");
+    			return false;
+    		}
+        	
+        	if($("#artistIntroduce").val()==""){
+    			alert("아티스트 소개를 입력해주세요");
+    			return false;
+    		}
+        	
+    		$("#form").submit();	
+    	});
     	
-    	var artistRecordList = new Array();
-    	for(var i=0; i<record; i++){
-    		var data = new Object();
-    		data.type = $(".selected-value").eq(i+1).text();
-    		data.year = $(".recordYear").eq(i).val();
-    		data.recordText = $(".recordText").eq(i).val();
-    		artistRecordList.push(data) ;
-    	}
-    	$("#id").attr("value", $("#id").val());
-    	$("#artistRecord").attr("value", JSON.stringify(artistRecordList));
-    	alert(JSON.stringify(artistRecordList));
-		$("#route_write").submit();
     });
     </script>
 

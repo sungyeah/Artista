@@ -195,7 +195,8 @@ public class ArtistPageController {
 	/* 아티스트 첫페이지 및 일반작품 전체 보기*/
 	@GetMapping({"","/","/mywork"})
 	public String artistpageMain(Model model) {
-		String id=(String) session.getAttribute("id");	
+		String id=(String) session.getAttribute("id");
+		System.out.println(id);
 		Integer artistNo = null;
 		try {
 			String artistName = artistService.getArtistName(id);

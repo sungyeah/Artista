@@ -18,7 +18,7 @@
 	<div id="applyexhibition" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
-            	<div id="apply_close" class="close-area">X</div>
+            	<div id="apply_close" class="close-area cloas-area1">X</div>
                 <h2 class="modal-header-title">전시 상세보기</h2>
             </header>
             <article class="modal-body">
@@ -83,7 +83,7 @@
                     <input type="hidden" id="exhibitapplyNo" disabled/>
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <a class="yesNo-btn close-area">닫기</a>           
+                            <a class="yesNo-btn cloas-area1">닫기</a>           
                         </div>
                     </div>
             </article>  
@@ -92,7 +92,7 @@
     <div id="refuseReason" class="modal-overlay">
         <div class="refusemodal-window">
             <header class="modal-header">
-            	<div class="close-area">X</div>
+            	<div class="close-area cloas-area1">X</div>
                 <h2 class="modal-header-title">거절 사유</h2>
             </header>
             <article class="modal-body">
@@ -108,7 +108,7 @@
                     </div>
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">               
-                            <a class="yesNo-btn close-area">닫기</a>      
+                            <a class="yesNo-btn cloas-area1">닫기</a>      
                         </div>
                     </div>
                 </form>
@@ -184,9 +184,9 @@
 								<tr>
                             	<th scope="col">${exhibitlist.exhibitapplyNo }</th>
                             	<th scope="col">${exhibitlist.exhibitTitle }</th>
-                            	<th scope="col"">${exhibitlist.startDate }</th>
-                            	<th scope="col"">${exhibitlist.endDate }</th>
-                            	<th scope="col">${exhibitlist.fundingNo }</th>  
+                            	<th scope="col">${exhibitlist.startDate }</th>
+                            	<th scope="col">${exhibitlist.endDate }</th>
+                           		<th scope="col">${exhibitlist.fundingNo }</th>  
                             	<th scope="col">
                             		<c:if test="${exhibitlist.applyStatus eq 0}">전시등록 요청 중</c:if>
                             		<c:if test="${exhibitlist.applyStatus eq 1}">전시등록 거절</c:if>
@@ -206,9 +206,6 @@
                     	</c:when>
                     </c:choose>
                 </table>
-                <a class="member-delete-btn" href="/account/delete/">
-                    내용 삭제
-                </a>
             </section>
         </article>
         
@@ -226,7 +223,7 @@
     	$(document).on('click', '#showReason', function(e){
     		refuseReason.style.display = "flex";
     	});
-    	$(document).on('click', '.close-area', function(e){
+    	$(document).on('click', '.cloas-area1', function(e){
     		applyexhibition.style.display = "none";
     		refuseReason.style.display = "none";
     	});

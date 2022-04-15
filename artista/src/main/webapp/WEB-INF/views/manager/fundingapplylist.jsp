@@ -205,7 +205,7 @@
                     			<tr>
                             	<th scope="col">${fundingapply.fundingNo }</th>
                             	<th scope="col">${fundingapply.projTitle }</th>
-                            	<th scope="col">${fundingapply.artistNo }</th>
+                            	<th scope="col"><a href="${pageContext.request.contextPath}/artistdetail/${fundingapply.artistNo }">${fundingapply.artistNo }</a></th>
                             	<th scope="col">${fundingapply.targetFunding }</th>
                             	<th scope="col">${fundingapply.getplace } </th> 
                             	<th scope="col" class="applyState">

@@ -31,7 +31,7 @@
         </header>
 
         <article class="enroll-body">
-        	<form class="enroll-modify-form" method="post" action="/artistpage/exhibitModifyComplete" enctype="multipart/form-data">
+        	<form id="form" class="enroll-modify-form" method="post" action="/artistpage/exhibitModifyComplete" enctype="multipart/form-data">
             	<div class="enroll-modify-form"></div>
                 <div class="certification-container certified">
                     <div class="enroll-modify-form-row">
@@ -101,7 +101,7 @@
                     </div>  
                     <div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        	<button class="yesNo-btn" id="exhibitApply" style="width:120px;">작품수정 신청</button>
+                        	<button class="yesNo-btn" type="button" id="exhibitApply" style="width:120px;">작품수정 신청</button>
                     		<button class="yesNo-btn" id="cancel" type="reset">취소</button>      
                     	</div>
                 	</div>
@@ -114,6 +114,41 @@
     <%@include file ="../footer.jsp" %>
 
     <script>
+    $(function(){
+    	$(document).on("click","#exhibitApply", function(){
+    		if($("#posterImg").src==""){
+    			alert("포스터 사진을 입력해주세요");
+    			return false;
+    		}
+        	if($("#fundingNo").val()==""){
+    			alert("펀딩번호을 입력해주세요");
+    			return false;
+    		}
+        	if($("#exhibitTitle").val()==""){
+    			alert("전시 제목을 선택해주세요");
+    			return false;
+    		}
+        	if($("#exhibitArtist").val()==""){
+    			alert("전시 참여 작가를 입력해주세요");
+    			return false;
+    		}
+        	if($("#exhibitDate").val()==""){
+    			alert("전시 일정을 입력해주세요");
+    			return false;
+    		}
+    		if($("#getplace").val()==""){
+    			alert("전시 장소를 입력해주세요");
+    			return false;
+    		}
+    		if($("#reserveLink").val()==""){
+    			alert("전시 예매 링크를 입력해주세요");
+    			return false;
+    		}
+    		
+    		$("#form").submit();	
+    	});
+    	
+    });
 	// 작품 대표이미지 show
 	$("#posterImg").change(function (event) {
 		var reader = new FileReader();

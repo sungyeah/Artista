@@ -20,7 +20,7 @@
         <div class="modal-window">
             <header class="modal-header">
             	<div id="apply_close" class="close-area">X</div>
-                <h2 class="modal-header-title">펀딩 신청내용</h2>
+                <h2 class="modal-header-title">펀딩 내용</h2>
             </header>
             <article class="modal-body">
                     <div class="modal-modify-form-border"></div>

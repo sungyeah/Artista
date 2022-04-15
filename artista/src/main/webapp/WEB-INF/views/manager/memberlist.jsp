@@ -66,7 +66,7 @@
                     </tr>
                     </thead>
                     <c:choose>
-                    	<c:when test="${memberlist!=null && pageInfo.listCount>0 }">
+                    	<c:when test="${memberlist!=null }">
                     	<tbody>
                     		<c:forEach items="${memberlist }" var="member">
 								<tr>

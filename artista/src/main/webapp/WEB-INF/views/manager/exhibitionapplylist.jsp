@@ -248,7 +248,6 @@
     
     $(function(){
     	$(document).on('click', '#accept', function(e){
-    		alert($('#exhibitapplyNo').val());
     		$.ajax({
     			type:"post",
     			async: false,
@@ -265,7 +264,6 @@
     		});
     	});
     	$(document).on('click', '#refuse', function(e){
-    		alert($("#refusedContents").val());
     		$.ajax({
     			type:"post",
     			async: false,

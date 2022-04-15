@@ -27,7 +27,7 @@
         </header>
 
         <article class="enroll-body">
-            <form class="enroll-modify-form" method="post" action="/artistpage/enrollworkComplete" enctype="multipart/form-data">
+            <form id="form" class="enroll-modify-form" method="post" action="/artistpage/enrollworkComplete" enctype="multipart/form-data">
                  <div class="enroll-modify-form"></div>
                 <div class="certification-container certified">
                     <div class="enroll-modify-form-row">
@@ -45,7 +45,7 @@
                             <span class="red">*</span> 작품명
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="text" name="workName" placeholder="작품명을 입력하세요" autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
+                            <input id="workName" class="enroll-modify-form-input" type="text" name="workName" placeholder="작품명을 입력하세요" autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -85,7 +85,7 @@
                             <span class="red">*</span> 작품사이즈
                         </div>
                         <div class="enroll-modify-form-row-value">
-                            <input class="enroll-modify-form-input" type="text" name="workSize" placeholder="작품사이즈를 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
+                            <input id="workSize" class="enroll-modify-form-input" type="text" name="workSize" placeholder="작품사이즈를 입력하세요"  autocomplete="off" autocorrect="off" autocapitalize="off" style="width:300px;"><br>
                         </div>
                     </div>
                     <div class="enroll-modify-form-row">
@@ -93,12 +93,12 @@
                             <span class="red">*</span> 작품소개
                         </div>
                         <div class="enroll-modify-form-row-value">
-                        	<textarea class="enroll-modify-form-input" name="workIntro" placeholder="최대 300자" maxlength="300" style="width:750px; height: 120px; resize: none;"></textarea>
+                        	<textarea class="enroll-modify-form-input" id="workIntro" name="workIntro" placeholder="최대 300자" maxlength="300" style="width:750px; height: 120px; resize: none;"></textarea>
                         </div>
                     </div>                    
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        	<button class="yesNo-btn" id="workenroll" style="background-color:#222;color:white;">작품등록</button>
+                        	<button class="yesNo-btn"  type="button" id="workenroll" style="background-color:#222;color:white;">작품등록</button>
                     		<button class="yesNo-btn" id="cancel" style="background-color:white;color:#222;margin-left:10px" type="reset">취소</button>      
                     	</div>
                 	</div>
@@ -110,6 +110,36 @@
     <%@include file ="../footer.jsp" %>
     
     <script>
+    
+    $(function(){
+    	$(document).on("click","#workenroll", function(){
+    		$("#workType").attr("value", $(".selected-value").eq(0).text());
+        	if(!$("#workImg").val()){
+    			alert("작품 대표사진을 입력해주세요");
+    			return false;
+    		}
+        	if($("#workName").val()==""){
+    			alert("작품 제목을 입력해주세요");
+    			return false;
+    		}
+        	if($("#workType").val()=="none"){
+    			alert("작품 유형을 선택해주세요");
+    			return false;
+    		}
+        	if($("#workSize").val()==""){
+    			alert("작품 사이즈를 입력해주세요");
+    			return false;
+    		}
+    		if($("#workIntro").val()==""){
+    			alert("작품 소개를 입력해주세요");
+    			return false;
+    		}
+    		
+    		$("#form").submit();	
+    	});
+    	
+    });
+
 	// 작품 대표이미지 show
 	$("#workImg").change(function (event) {
 		var reader = new FileReader();
