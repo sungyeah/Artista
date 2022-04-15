@@ -74,7 +74,7 @@
                         		<th scope="col" class="artistName">${artist.artistName }</th>
                         		<th scope="col" class="artistType">${artist.artistType }</th>
                         		<th scope="col" class="followerNum">${artist.followerNum }</th>
-                        		<th scope="col"><a class="artist-detail-btn" href="http://localhost:8090/artistdetail/${artist.artistNo }">페이지 보기</a></th>
+                        		<th scope="col"><a class="artist-detail-btn" href="${pageContext.request.contextPath}/artistdetail/${artist.artistNo }">페이지 보기</a></th>
                         		<th scope="col"><input name="check" type="checkbox" id="${artist.artistNo }" value="${artist.artistNo }" ></th>
                         		</tr>
                         	</c:forEach>
@@ -84,26 +84,6 @@
                 </table>
                 <button class="member-delete-btn">등록 삭제</button>
             </section>
-            <c:choose>
-				<c:when test="${artistapplylist!=null && pageInfo.listCount>0 }">
-					<div id="pageList" style="text-align: center; margin-top:30px; margin-bottom :30px;">
-					<c:choose>
-						<c:when test="${pageInfo.page<=1}">«&nbsp;</c:when>
-						<c:otherwise><a href="matelist?page=${pageInfo.page-1}">«&nbsp;</a></c:otherwise>
-					</c:choose>
-					<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-						<c:choose>
-							<c:when test="${pageInfo.page==i }">${i }&nbsp;</c:when>
-							<c:otherwise><a href="matelist?page=${i}">${i }&nbsp;</a></c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${pageInfo.page>=pageInfo.maxPage }">»&nbsp;</c:when>
-						<c:otherwise><a href="matelist?page=${pageInfo.page+1}">»&nbsp;</a></c:otherwise>
-					</c:choose>
-					</div>
-				</c:when>
-			</c:choose>
         </article>
         
     </div>

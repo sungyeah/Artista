@@ -183,7 +183,7 @@
                     </tr>
                     </thead>
                     <c:choose>
-                    	<c:when test="${artistapplylist!=null && pageInfo.listCount>0 }">
+                    	<c:when test="${artistapplylist!=null }">
                     	<tbody>
                     		<c:forEach items="${artistapplylist }" var="artistapply">
 								<tr>
@@ -203,26 +203,6 @@
                     </c:choose>
                 </table>
             </section>
-            <c:choose>
-				<c:when test="${artistapplylist!=null && pageInfo.listCount>0 }">
-					<div id="pageList" style="text-align: center; margin-top:30px; margin-bottom :30px;">
-					<c:choose>
-						<c:when test="${pageInfo.page<=1}">«&nbsp;</c:when>
-						<c:otherwise><a href="matelist?page=${pageInfo.page-1}">«&nbsp;</a></c:otherwise>
-					</c:choose>
-					<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-						<c:choose>
-							<c:when test="${pageInfo.page==i }">${i }&nbsp;</c:when>
-							<c:otherwise><a href="matelist?page=${i}">${i }&nbsp;</a></c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${pageInfo.page>=pageInfo.maxPage }">»&nbsp;</c:when>
-						<c:otherwise><a href="matelist?page=${pageInfo.page+1}">»&nbsp;</a></c:otherwise>
-					</c:choose>
-					</div>
-				</c:when>
-			</c:choose>
         </article>
 	</div>
 	<%@include file ="../footer.jsp" %>
