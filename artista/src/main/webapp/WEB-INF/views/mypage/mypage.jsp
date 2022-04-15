@@ -171,6 +171,9 @@
                         						<c:when test="${successList[status.index] == 5 }">
                         							<td class="start-date">성공</td>
                         						</c:when>
+                        						<c:when test="${successList[status.index] == 6 }">
+                        							<td class="start-date">환불완료</td>
+                        						</c:when>
                         						<c:otherwise>
                         							<td class="start-date">진행중</td>
                         						</c:otherwise>
@@ -188,6 +191,9 @@
                         						</c:when>
                         						<c:when test="${successList[status.index] == 5 }">
                         							<td class="start-date">성공</td>
+                        						</c:when>
+                        						<c:when test="${successList[status.index] == 6 }">
+                        							<td class="start-date">환불완료</td>
                         						</c:when>
                         						<c:otherwise>
                         							<td class="start-date">진행중</td>
