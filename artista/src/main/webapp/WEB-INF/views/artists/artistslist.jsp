@@ -46,7 +46,7 @@
 <script>
     $('.list').mouseenter(function(e){
     	let imagePath = e.currentTarget.dataset.image;
-        var html="<figure class='landscape'><div class='portrait'><img src='/mypage/artistprofile/" + imagePath + "'></div></figure>"
+        var html="<figure class='landscape'><div class='portrait'><img src='${pageContext.request.contextPath}/mypage/artistprofile/" + imagePath + "'></div></figure>"
         $('.artist-list').append(html);
     });
     $('.list').mouseleave(function(){
