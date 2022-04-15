@@ -99,7 +99,7 @@
 			type:"post",
 			dataType:"text", 
 			async:false, 
-			url:"http://localhost:8090/memidoverlap",
+			url:"${pageContext.request.contextPath}/memidoverlap",
 			data:{id:$('#id').val()},
 			success: function(data, textStatus){
 				if(data=="true"){

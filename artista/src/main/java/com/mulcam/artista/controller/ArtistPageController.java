@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -95,6 +96,13 @@ public class ArtistPageController {
 	
 	@Autowired
 	ServletContext servletContext;
+	
+	@Value("${upload.filepath.ncloud}")
+	private boolean bcloud;
+	
+	@Value("${upload.filepath}")
+	private String filepath;
+
 
 	@GetMapping("artistModify")
 	public String artistModify(Model model) {
@@ -168,6 +176,9 @@ public class ArtistPageController {
 		
 		//아티스트 작업세계 수정
 		if(file2.equals("0")) {
+//			if(bcloud) {
+//				String path = "/imgupload/artistWorlds/";
+//			}else {
 			String path = servletContext.getRealPath("/imgupload/artistWorlds/");
 			String[] mtypes = artistWorldFile.getContentType().split("/");
 			String imgName = UUID.randomUUID().toString();

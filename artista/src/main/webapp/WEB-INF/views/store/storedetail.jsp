@@ -340,7 +340,7 @@ var Cart={"id":id,"workName":workName,"workPrice":workPrice,"workArtist":artistN
 		}
 		  $.ajax({     
 				type:"post",
-				url:"http://localhost:8090/addCart",
+				url:"${pageContext.request.contextPath}/addCart",
 				contentType : "application/json",
 				data:JSON.stringify(Cart),
 				success: function(data, textStatus){

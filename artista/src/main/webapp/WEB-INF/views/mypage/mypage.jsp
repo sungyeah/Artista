@@ -270,7 +270,7 @@
 			type:"post",
 			dataType:"text",
 			async:false,
-			url:"http://localhost:8090/follow",
+			url:"${pageContext.request.contextPath}/follow",
 			data:{"follower":follower},
 			success: function(data, textStatus){
 				alert("팔로우 취소되었습니다.");

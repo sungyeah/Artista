@@ -113,7 +113,7 @@
 				type:"post",
 				dataType:"text",
 				async:false,
-				url:"http://localhost:8090/mypage/pwcheck",
+				url:"${pageContext.request.contextPath}/pwcheck",
 				data:{"password":$('#password').val(),
 					  "password2":$('#password2').val()},
 				success: function(data, textStatus){

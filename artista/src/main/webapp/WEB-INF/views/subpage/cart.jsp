@@ -193,7 +193,7 @@
 			type:"post",
 			dataType:"text",
 			async:false,
-			url:"http://localhost:8090/delete",
+			url:"${pageContext.request.contextPath}/delete",
 			data:{"no":no},
 			success: function(data, textStatus){
 				alert("삭제가 완료되었습니다.")
