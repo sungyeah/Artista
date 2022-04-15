@@ -46,7 +46,7 @@
 	<!-- 작품 선택하기 : listing 적용 -->
 	<select id="selectWorkApplyList" parameterType="int" resultType="workapply">
 		<![CDATA[
-			select * from workapply where applyState=0 or applyState=2 limit #{startrow}, 9
+			select * from workapply where applyState=0 or applyState=2
 		]]>
 	</select>
 	

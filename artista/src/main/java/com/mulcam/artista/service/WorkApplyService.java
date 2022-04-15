@@ -13,6 +13,6 @@ public interface WorkApplyService {
 	public void refuseWorkApply(int workapplyNo, int applyState, String refusedContents) throws Exception;
 	
 	public WorkApply selectWorktApplyByNo(int applyNo) throws Exception;
-	public List<WorkApply> getWorkApplyList(int page, PageInfo pageInfo) throws Exception;
+	public List<WorkApply> getWorkApplyList() throws Exception;
 	public List<WorkApply> getWorkApplyListbyArtist(int artistNo) throws Exception;
 }

@@ -18,7 +18,7 @@ public interface WorkApplyDAO {
 	
 	public WorkApply selectWorkApplyByNo(int applyNo) throws Exception;
 	public int WorkApplyNum() throws Exception;
-	public List<WorkApply> selectWorkApplyList(int startrow) throws Exception;
+	public List<WorkApply> selectWorkApplyList() throws Exception;
 	public List<WorkApply> selectWorkApplyListByNo(int artistNo) throws Exception;
 } 
 

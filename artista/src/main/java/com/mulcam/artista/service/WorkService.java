@@ -14,7 +14,7 @@ public interface WorkService {
 	public List<Work> getProductByNoList(int artistNo) throws Exception;
 	public List<Work> getSoldProductByNoList(int artistNo) throws Exception;
 	
-	public List<Work> SoldProductList(int page, PageInfo pageInfo) throws Exception;
+	public List<Work> SoldProductList() throws Exception;
 	
 	public void updateSale(int orderNo,int workNo)throws Exception;
 	public void workPayed(int workNo)throws Exception;

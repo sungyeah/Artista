@@ -36,7 +36,7 @@ public interface SubPageDAO {
 	public int memberNum() throws Exception; // 회원 전체 수
 	
 	public int totalOrderNum() throws Exception;
-	public List<Order> orderList(int startrow) throws Exception;
+	public List<Order> orderList() throws Exception;
 	public Order selectOrderByNo(int orderNo) throws Exception;
 	
 	public boolean checkFollow(Map map)throws Exception;

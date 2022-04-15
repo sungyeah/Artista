@@ -68,7 +68,7 @@
 	
 	<select id="soldProductList" parameterType="int" resultType="work">
 		<![CDATA[
-			select * from work where  workForSale=2 or workForSale=3 limit #{startrow}, 9
+			select * from work where  workForSale=2 or workForSale=3 
 		]]>
 	</select>
 	<update id="updateSalePayed" parameterType="int" >

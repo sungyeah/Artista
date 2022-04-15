@@ -125,7 +125,7 @@
 	<!-- 결제 내역 보기 : listing 적용 -->
 	<select id="orderList" parameterType="int" resultType="order">
 		<![CDATA[
-			select * from order1 limit #{startrow}, 9
+			select * from order1
 		]]>
 	</select>
 	
