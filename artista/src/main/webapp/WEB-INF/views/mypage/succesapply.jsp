@@ -32,7 +32,7 @@
 <body>
 	<%@include file ="../header.jsp" %>
     <div class="align1">신청이 완료되었습니다.</div>
-    <div class="align2"><button class="Btn2" onclick="location.href='http://localhost:8090/mypage' ">메인으로 가기</button></div>
+    <div class="align2"><button class="Btn2" onclick="location.href='${pageContext.request.contextPath}/mypage' ">메인으로 가기</button></div>
     <%@include file ="../footer.jsp" %>
 </body>
 </html>

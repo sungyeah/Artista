@@ -275,7 +275,7 @@
     		$.ajax({
     			type:"post",
     			async: false,
-    			url:"http://localhost:8090/manager/productapplysuccess",
+    			url:"${pageContext.request.contextPath}/manager/productapplysuccess",
     			data:{"applyNo":$('#workapplyNo').val(), "applyState":$('#applyState').val()},
     			dataType:"text",
     			success: function(data, textStatus){ 
@@ -293,7 +293,7 @@
     		$.ajax({
     			type:"post",
     			async: false,
-    			url:"http://localhost:8090/manager/productapplyfail",
+    			url:"${pageContext.request.contextPath}/manager/productapplyfail",
     			data:{"applyNo":$('#workapplyNo').val(), "applyState":$('#applyState').val(), "refusedContents" : $("#refusedContents").val()},
     			dataType:"text",
     			success: function(data, textStatus){ 
@@ -319,7 +319,7 @@
 				type:"post",
 				dataType:"text",
 				async:false,
-				url:"http://localhost:8090/manager/productApplyDelete",
+				url:"${pageContext.request.contextPath}/manager/productApplyDelete",
 				data:{"checkarray": checkarray},
 				success: function(data, textStatus){
 					alert("삭제가 완료되었습니다.")

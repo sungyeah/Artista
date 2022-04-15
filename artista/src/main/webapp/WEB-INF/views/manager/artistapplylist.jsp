@@ -274,7 +274,7 @@
     		$.ajax({
     			type:"post",
     			async: false,
-    			url:"http://localhost:8090/manager/artistapplysuccess",
+    			url:"${pageContext.request.contextPath}/artistapplysuccess",
     			data:{"applyNo":$('#artistNo').val()},
     			dataType:"text",
     			success: function(data, textStatus){ 

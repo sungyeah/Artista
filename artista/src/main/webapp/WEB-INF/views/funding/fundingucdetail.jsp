@@ -75,7 +75,7 @@
     		type: "Get",
     		dataType: "text",
     		async: false,
-    		url: "http://localhost:8090/funding/alarm",
+    		url: "${pageContext.request.contextPath}/funding/alarm",
     		data:{"fundingNo": fundingNo},
     		success: function(data, textStatus){
     			var alarm = JSON.parse(data);
