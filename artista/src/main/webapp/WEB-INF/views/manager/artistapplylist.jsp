@@ -274,7 +274,7 @@
     		$.ajax({
     			type:"post",
     			async: false,
-    			url:"${pageContext.request.contextPath}/artistapplysuccess",
+    			url:"${pageContext.request.contextPath}/manager/artistapplysuccess",
     			data:{"applyNo":$('#artistNo').val()},
     			dataType:"text",
     			success: function(data, textStatus){ 
@@ -282,7 +282,7 @@
     				location.reload();
     			},
     			error:function(data, textStatus){
-    				alert("아티스트 등록이 실패했습니다.");
+    				alert("아티스트 등록이 실패했습니다.1");
     			}
     		});
     	});

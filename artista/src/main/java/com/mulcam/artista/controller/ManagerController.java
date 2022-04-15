@@ -152,6 +152,7 @@ public class ManagerController {
 				workreport.setWork(work);
 				workreport.setOrder(order);
 				workReportList.add(workreport);
+				System.out.println(work.getArtistName());
 			}
 //			model.addAttribute("pageInfo", pageInfo);
 //			model.addAttribute("count", completelist.size());
@@ -672,6 +673,7 @@ public class ManagerController {
 	@PostMapping(value="artistapplysuccess")
 	public void artistapplySuccess(@RequestParam(value="applyNo",required = false) int artistapplyNo) {
 		try {
+			System.out.println(artistapplyNo);
 			//artistapplyNo로 작가신청 내용 가져오기
 			ArtistApply artistApply = artistapplyService.selectArtistApplyByNo(artistapplyNo);
 			
@@ -719,9 +721,12 @@ public class ManagerController {
 	@PostMapping(value="artistapplyfail")
 	public void artistapplyFail(@RequestParam(value="applyNo") int artistapplyNo, @RequestParam(value="refusedContents") String refusedContents) {
 		try {
+			ArtistApply artistApply = artistapplyService.selectArtistApplyByNo(artistapplyNo);
 			String artistId = artistapplyService.selectArtistApplyByNo(artistapplyNo).getId();
 			artistapplyService.refuseArtistApply(artistapplyNo, refusedContents);
-			artistapplyService.deleteArtistWorld(artistId);
+			if(artistApply.getApplyResult()==0) {
+				artistapplyService.deleteArtistWorld(artistId);
+			}
 		}catch(Exception e) {
 		}
 	}

@@ -66,7 +66,7 @@
 		]]>
 	</select>
 	
-	<select id="soldProductList" parameterType="int" resultType="work">
+	<select id="soldProductList" resultType="work">
 		<![CDATA[
 			select * from work where  workForSale=2 or workForSale=3 
 		]]>
