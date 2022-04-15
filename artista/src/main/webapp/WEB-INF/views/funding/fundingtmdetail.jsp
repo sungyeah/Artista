@@ -11,14 +11,21 @@
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
 <script>
-	$(function() {
-		var raminAmount = '${funding.sumAmount}';
-			$("#remainAmount").text(raminAmount);
-			$("#remainName").text("모인 금액");
-		var rate = '${funding.sumAmount}'/'${funding.targetFunding}'*100;
-		$("#rate").text(rate);
-		$("#pro").val(rate);
-	})
+$(function() {
+	var raminAmount = 0;
+	if('${funding.targetFunding}' > '${funding.sumAmount}'){
+		raminAmount = '${funding.targetFunding}' - '${funding.sumAmount}';
+		$("#remainAmount").text(raminAmount.toLocaleString());
+		$("#remainName").text("남은 금액");
+	} else {
+		raminAmount = +'${funding.sumAmount}';
+		$("#remainAmount").text(raminAmount.toLocaleString());
+		$("#remainName").text("모인 금액");
+	}
+	var rate = '${funding.sumAmount}'/'${funding.targetFunding}'*100;
+	$("#rate").text(rate);
+	$("#pro").val(rate);
+})
 </script>
 <body style="overflow-x: hidden">
 	 <%@include file ="../header.jsp" %>
@@ -31,8 +38,9 @@
         </div>
         <div class="fundingdetail">
             <div id="name">펀딩 종료</div><br>
-            <div id="amount">${funding.targetFunding} 목표 금액</div><br>
-            <div id="amount">${funding.sumAmount } 모인 금액</div><br>
+            <div id="amount"><fmt:formatNumber type="number" maxFractionDigits="3" value="${funding.targetFunding}" /> 목표 금액</div><br>
+            <div id="amount"><span id="remainAmount"></span>
+            <span id="remainName"></span></div><br>
             <div id="amount">${count} 서포터</div><br>
             <div id="promain">
                 <span id="rate"></span><span>%</span>

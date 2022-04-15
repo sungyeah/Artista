@@ -16,15 +16,21 @@
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
 <script>
+/* document.getElementById('cartBoard-val-amount').innerText = sum.toLocaleString();
+$('#total').attr('value',sum);
+console.log($('#total').val());
+} */
+
+
 	$(function() {
 		var raminAmount = 0;
 		if('${funding.targetFunding}' > '${funding.sumAmount}'){
 			raminAmount = '${funding.targetFunding}' - '${funding.sumAmount}';
-			$("#remainAmount").text(raminAmount);
+			$("#remainAmount").text(raminAmount.toLocaleString());
 			$("#remainName").text("남은 금액");
 		} else {
-			raminAmount = '${funding.sumAmount}';
-			$("#remainAmount").text(raminAmount);
+			raminAmount = +'${funding.sumAmount}';
+			$("#remainAmount").text(raminAmount.toLocaleString());
 			$("#remainName").text("모인 금액");
 		}
 		var rate = '${funding.sumAmount}'/'${funding.targetFunding}'*100;
@@ -65,7 +71,7 @@
 			<span id="remain_minute"></span><span style="font-size:15px;">분 남음</span>
   
             </div><br>
-            <div id="amount">${funding.targetFunding} 목표 금액</div><br>
+            <div id="amount"><fmt:formatNumber type="number" maxFractionDigits="3" value="${funding.targetFunding}" /> 목표 금액</div><br>
             <div id="amount"><span id="remainAmount"></span>
             <span id="remainName"></span></div><br>
             <div id="amount">${count} 서포터</div><br>
