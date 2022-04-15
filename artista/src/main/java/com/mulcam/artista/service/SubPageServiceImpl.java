@@ -77,20 +77,8 @@ public class SubPageServiceImpl implements SubPageService{
 	}
 
 	@Override
-	public List<Member> memberList(int page, PageInfo pageInfo) throws Exception {
-		int listCount =  subpageDAO.memberNum();
-		int maxPage = (int)Math.ceil((double)listCount/9);
-		int startPage=(((int) ((double)page/9+0.9))-1)*9+1;
-		int endPage=startPage+9-1;
-		
-		if(endPage>maxPage) endPage=maxPage;
-		pageInfo.setStartPage(startPage);
-		pageInfo.setEndPage(endPage);
-		pageInfo.setMaxPage(maxPage);
-		pageInfo.setPage(page);
-		pageInfo.setListCount(listCount);
-		int startrow = (page-1)*9;
-		return subpageDAO.memberList(startrow);
+	public List<Member> memberList() throws Exception {
+		return subpageDAO.memberList();
 	}
 
 	@Override
