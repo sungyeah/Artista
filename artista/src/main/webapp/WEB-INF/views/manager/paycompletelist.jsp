@@ -96,7 +96,7 @@
                     </tr>
                     </thead>
                     <c:choose>
-                    	<c:when test="${workreport!=null && pageInfo.listCount>0 }">
+                    	<c:when test="${workreport!=null }">
                     	<tbody>
                     		<c:forEach items="${workreport }" var="workreport">
 								<tr>
