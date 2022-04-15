@@ -148,7 +148,7 @@
 				type:"post",
 				dataType:"text",
 				async:false,
-				url:"http://localhost:8090/naverlogin",
+				url:"${pageContext.request.contextPath}/naverlogin",
 				data:{"id":id,
 					  "name":name,
 					  "email":email},

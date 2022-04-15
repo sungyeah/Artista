@@ -184,10 +184,12 @@ public class ArtistPageController {
 		
 		//아티스트 작업세계 수정
 		if(file2.equals("0")) {
-//			if(bcloud) {
-//				String path = "/imgupload/artistWorlds/";
-//			}else {
-			String path = servletContext.getRealPath("/imgupload/artistWorlds/");
+			String path = "";
+			if(bcloud) {
+				path = filepath+"artistWorlds/";
+			} else {
+				path = servletContext.getRealPath(filepath+"artistWorlds/");
+			}
 			String[] mtypes = artistWorldFile.getContentType().split("/");
 			String imgName = UUID.randomUUID().toString();
 			File destFile = new File(path + imgName +"."+ mtypes[1]);
@@ -254,14 +256,19 @@ public class ArtistPageController {
 		try {
 			inputImage = ImageIO.read(artistImgFile.getInputStream());
 	        int originHeight = inputImage.getHeight();	// 이미지 세로 가로 측정
-	        System.out.println(originHeight);
 	        work.setWorkHeight(originHeight);
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
 		
 		// 작품 대표이미지 저장
-		String path = servletContext.getRealPath("/imgupload/artistWorks/");	//실제 저장 위치
+		
+		String path = "";
+		if(bcloud) {
+			path = filepath+"artistWorks/";
+		} else {
+			path = servletContext.getRealPath(filepath+"artistWorks/");
+		}
 		String[] mtypes = artistImgFile.getContentType().split("/");
 		
 		String imgName = UUID.randomUUID().toString();								//랜덤으로 이름 정하기
@@ -345,7 +352,12 @@ public class ArtistPageController {
 		};
 		
 		// 작품 대표이미지 저장
-		String path = servletContext.getRealPath("/imgupload/artistWorks/");
+		String path = "";
+		if(bcloud) {
+			path = filepath+"artistWorks/";
+		} else {
+			path = servletContext.getRealPath(filepath+"artistWorks/");
+		}
 		String[] mtypes = workImgFile.getContentType().split("/");
 		
 		String imgName = UUID.randomUUID().toString();								//랜덤으로 이름 정하기
@@ -412,7 +424,12 @@ public class ArtistPageController {
 			}
 			
 			// 작품 대표이미지 저장
-			String path = servletContext.getRealPath("/imgupload/artistWorks/");
+			String path = "";
+			if(bcloud) {
+				path = filepath+"artistWorks/";
+			} else {
+				path = servletContext.getRealPath(filepath+"artistWorks/");
+			}
 			String[] mtypes = workImgFile.getContentType().split("/");
 			
 			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");
@@ -535,7 +552,12 @@ public class ArtistPageController {
 	/* 작품 가져오기 경로 */
 	@GetMapping(value="/workImg/{filename}")
 	public void workImgView(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
-		String path= servletContext.getRealPath("/imgupload/artistWorks/");
+		String path = "";
+		if(bcloud) {
+			path = filepath+"artistWorks/";
+		} else {
+			path = servletContext.getRealPath(filepath+"artistWorks/");
+		}
 		File file=new File(path+filename); 
 		String sfilename=null;
 		FileInputStream fis=null;
@@ -657,7 +679,12 @@ public class ArtistPageController {
 			MultipartFile file = funding.getThumbFile();
 			//File destFile = new File(path+file.getOriginalFilename());
 			if(file!=null && !file.isEmpty()) {
-				String path = servletContext.getRealPath("/fundingApp/");
+				String path = "";
+				if(bcloud) {
+					path = funpath;
+				} else {
+					path = servletContext.getRealPath(funpath);
+				}
 				String filename = file.getOriginalFilename();
 				File destFile = new File(path+filename);
 				file.transferTo(destFile);
@@ -678,7 +705,12 @@ public class ArtistPageController {
 	@PostMapping("fundingApp")
 	public Map<String, Object> fileupload(@RequestParam(value="fundingApp") MultipartFile file) {
 		System.out.println(file.getOriginalFilename()+"---------------------");
-		String path = servletContext.getRealPath("/fundingApp/");
+		String path = "";
+		if(bcloud) {
+			path = funpath;
+		} else {
+			path = servletContext.getRealPath(funpath);
+		}
 		String filename = file.getOriginalFilename();
 		File destFile = new File(path+filename);
 		Map<String, Object> json = new HashMap<>();
@@ -730,7 +762,12 @@ public class ArtistPageController {
 			try {
 				MultipartFile file = funding.getThumbFile();
 				if(file!=null && !file.isEmpty()) {
-					String path = servletContext.getRealPath("/fundingApp/");
+					String path = "";
+					if(bcloud) {
+						path = funpath;
+					} else {
+						path = servletContext.getRealPath(funpath);
+					}
 					String filename = file.getOriginalFilename();
 					File destFile = new File(path+filename);
 					file.transferTo(destFile);
@@ -818,7 +855,12 @@ public class ArtistPageController {
 		};
 		
 		//포스터 이미지 등록
-		String path = servletContext.getRealPath("/imgupload/exhibition/");
+		String path = "";
+		if(bcloud) {
+			path = filepath+"exhibition/";
+		} else {
+			path = servletContext.getRealPath(filepath+"exhibition/");
+		}
 		String[] mtypes = posterImgFile.getContentType().split("/");
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
 		Date time = new Date();
@@ -888,7 +930,12 @@ public class ArtistPageController {
 		
 		//포스터 이미지 등록
 		if(file.equals("0")) {
-			String path = servletContext.getRealPath("/imgupload/exhibition/");
+			String path = "";
+			if(bcloud) {
+				path = filepath+"exhibition/";
+			} else {
+				path = servletContext.getRealPath(filepath+"exhibition/");
+			}
 			String[] mtypes = posterImgFile.getContentType().split("/");
 			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
 			Date time = new Date();
@@ -964,7 +1011,12 @@ public class ArtistPageController {
 	/* 포스터 가져오기 경로 */
 	@GetMapping(value="/posterImg/{filename}")
 	public void posterImgView(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
-		String path= servletContext.getRealPath("/imgupload/exhibition/");
+		String path = "";
+		if(bcloud) {
+			path = filepath+"exhibition/";
+		} else {
+			path = servletContext.getRealPath(filepath+"exhibition/");
+		}
 		File file=new File(path+filename); 
 		String sfilename=null;
 		FileInputStream fis=null;

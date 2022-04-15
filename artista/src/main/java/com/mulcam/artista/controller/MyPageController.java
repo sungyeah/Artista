@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -75,6 +76,15 @@ public class MyPageController {
 	
 	@Autowired
 	WorkService workService;
+	
+	@Value("${upload.filepath.ncloud}")
+	private boolean bcloud;
+	
+	@Value("${upload.filepath}")
+	private String filepath;
+	
+	@Value("${funupload.filepath}")
+	private String funpath;
 
 	@GetMapping({"/", ""})
 	public String mypageMain(Model model) {
@@ -170,7 +180,12 @@ public class MyPageController {
 			MultipartHttpServletRequest mrequest) {
 		String id = (String) session.getAttribute("id");
 		/* 아티스트 대표이미지 저장 */
-		String path = servletContext.getRealPath("/imgupload/artistProfile/");
+		String path = "";
+		if(bcloud) {
+			path = filepath+"artistProfile/";
+		} else {
+			path = servletContext.getRealPath(filepath+"artistProfile/");
+		}
 		String[] mtypes = artistImgFile.getContentType().split("/");
 		File destFile = new File(path + apply.getArtistName() +"."+ mtypes[1]);
 		try {			
@@ -197,7 +212,12 @@ public class MyPageController {
 					ArtistWorld worldImg = new ArtistWorld();
 					try {
 						//아티스트 작품세계 업로드 폴더 경로
-						String path_artistWorld = servletContext.getRealPath("/imgupload/artistWorlds/");
+						String path_artistWorld = "";
+						if(bcloud) {
+							path_artistWorld = filepath+"artistWorlds/";
+						} else {
+							path_artistWorld = servletContext.getRealPath(filepath+"artistWorlds/");
+						}
 						String[] imgtypes = mfile.getContentType().split("/");
 						String imgName = UUID.randomUUID().toString();
 						File dest_artistWorld = new File(path_artistWorld + imgName + "." + imgtypes[1]);
@@ -242,7 +262,12 @@ public class MyPageController {
 	//프로필 프리뷰
 	@GetMapping(value="/artistprofile/{filename}")
 	public void fileview(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
-		String path= servletContext.getRealPath("/imgupload/artistProfile/");
+		String path = "";
+		if(bcloud) {
+			path = filepath+"artistProfile/";
+		} else {
+			path = servletContext.getRealPath(filepath+"artistProfile/");
+		}
 		File file=new File(path+filename); 
 //		System.out.println(filename);
 		String sfilename=null;
@@ -276,7 +301,12 @@ public class MyPageController {
 		/*현재 /fileview/board/${file.originalFilename } 경로로 요청이 들어왔는데,
 		${file.originalFilename }은 URL에 변수를 담은 템플릿변수에 해당한다. 이를 filename이라는 변수로 받은 것이고
 		요청을 처리하는 메서드에서 이를 파라미터로 받아서 처리해야하기 때문에 PathVaribale이라는 어노테이션을 사용한다. */
-		String path= servletContext.getRealPath("/imgupload/artistWorlds/");
+		String path = "";
+		if(bcloud) {
+			path = filepath+"artistWorlds/";
+		} else {
+			path = servletContext.getRealPath(filepath+"artistWorlds/");
+		}
 		File file=new File(path+filename); 
 		String sfilename=null;
 		FileInputStream fis=null;

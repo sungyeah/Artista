@@ -169,13 +169,13 @@ var uid = '<%=(String)session.getAttribute("membertype")%>';
 		console.log(Cart);
 		$.ajax({     
 				type:"post",
-				url:"http://localhost:8090/cnt",
+				url:"${pageContext.request.contextPath}/cnt",
 				contentType : "application/json",
 				data:JSON.stringify(Cart),
 				/* data:Cart, */
 				success: function(data, textStatus){
 					$("#alarm"+no).detach();
-					location.href="http://localhost:8090/funding/fundingucdetail?fundingNo="+no
+					location.href="${pageContext.request.contextPath}/funding/fundingucdetail?fundingNo="+no
 				},
 				error:function(data, textStatus){
 					alert("실패");

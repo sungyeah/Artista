@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -48,6 +49,15 @@ public class FundingController {
 
 	@Autowired
 	private ServletContext servletContext;
+	
+	@Value("${upload.filepath.ncloud}")
+	private boolean bcloud;
+	
+	@Value("${upload.filepath}")
+	private String filepath;
+	
+	@Value("${funupload.filepath}")
+	private String funpath;
 
 	// 펀딩 리스트
 	@GetMapping("/fundinguc")
@@ -255,7 +265,12 @@ public class FundingController {
 
 	@GetMapping(value = "/thumbview/{filename}")
 	public void fileview(@PathVariable String filename, HttpServletRequest request, HttpServletResponse response) {
-		String path = servletContext.getRealPath("/fundingApp/");
+		String path = "";
+		if(bcloud) {
+			path = funpath;
+		} else {
+			path = servletContext.getRealPath(funpath);
+		}
 		File file = new File(path + filename);
 		String sfilename = null;
 		FileInputStream fis = null;

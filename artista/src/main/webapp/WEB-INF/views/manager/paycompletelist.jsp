@@ -163,7 +163,7 @@
     		$.ajax({
     			type:"post",
     			async: false,
-    			url:"http://localhost:8090/manager/trackingNo",
+    			url:"${pageContext.request.contextPath}/manager/trackingNo",
     			data:{"orderNo":$('#orderNo').val(), "trackingNo": $("#trackingNo").val() },
     			dataType:"json",
     			success: function(data, textStatus){ 
