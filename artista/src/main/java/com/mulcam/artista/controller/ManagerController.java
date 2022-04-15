@@ -748,12 +748,16 @@ public class ManagerController {
 		return sponsorList;
 	}
 	
+	//환불 예외처리
 	@ResponseBody
 	@PostMapping(value="refund")
-	public void refund(@RequestParam(value="fundingNo") int fundingNo) {
-			//변경 funding fundingSpon fundingNo
+	public void refund(@RequestParam(value="fundingNo") int fundingNo, Model model) {
+		try {
 			fundingService.fundingRefund(fundingNo);
 			fundingService.fundingSponRefund(fundingNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 			
 
