@@ -245,7 +245,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/manager/productapplydetail",
+			url:"${pageContext.request.contextPath}/manager/productapplydetail",
 			data:{"applyNo":applyNo},
 			success: function(data, textStatus){ 
 			 	var applyworkData = JSON.parse(data);

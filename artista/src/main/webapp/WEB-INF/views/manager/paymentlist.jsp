@@ -79,7 +79,7 @@
                             	<th scope="col" class="id">${orderdetail.order.orderDate }</th>
                             	<td scope="col" class="artistName">${orderdetail.order.orderCost }</td>
                             	<td scope="col" class="artistType">${orderdetail.order.orderStatus }</td>                            
-                           		<td scope="col"><a class="artist-detail-btn" href="/manager/paymentInfo/${orderdetail.order.orderNo }">신청 상세보기</a></td>
+                           		<td scope="col"><a class="artist-detail-btn" href="${pageContext.request.contextPath}/manager/paymentInfo/${orderdetail.order.orderNo }">신청 상세보기</a></td>
                         		</tr>
                         		</c:forEach>
                         </tbody>

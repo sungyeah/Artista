@@ -247,7 +247,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/fundingdetail",
+			url:"${pageContext.request.contextPath}/artistpage/fundingdetail",
 			data:{"fundingNo":fundingNo},
 			success: function(data, textStatus){ 
 			 	var fundingData = JSON.parse(data);
@@ -277,7 +277,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/fundingApplyrefuseReason",
+			url:"${pageContext.request.contextPath}/artistpage/fundingApplyrefuseReason",
 			data:{"fundingNo":fundingNo},
 			success: function(data, textStatus){ 
 				$("#refusedContents").html(data);   

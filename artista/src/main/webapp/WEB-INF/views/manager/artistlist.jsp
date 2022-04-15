@@ -105,7 +105,7 @@
 				type:"post",
 				dataType:"text",
 				async:false,
-				url:"http://localhost:8090/manager/artistDelete",
+				url:"${pageContext.request.contextPath}/manager/artistDelete",
 				data:{"checkarray": checkarray},
 				success: function(data, textStatus){
 					alert("삭제가 완료되었습니다.")

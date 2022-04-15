@@ -33,7 +33,7 @@
         </header>
 
         <article class="enroll-body">
-            <form id="form" class="enroll-modify-form" method="post" action="/artistpage/exhibitionApplyComplete" enctype="multipart/form-data">
+            <form id="form" class="enroll-modify-form" method="post" action="${pageContext.request.contextPath}/artistpage/exhibitionApplyComplete" enctype="multipart/form-data">
                 <div class="enroll-modify-form"></div>
                 <div class="certification-container  certified">
                     <div class="enroll-modify-form-row">

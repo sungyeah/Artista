@@ -236,7 +236,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/manager/artistapplydetail",
+			url:"${pageContext.request.contextPath}/manager/artistapplydetail",
 			data:{"applyNo":applyNo},
 			success: function(data, textStatus){ 
 			 	var applyartistData = JSON.parse(data);
@@ -318,7 +318,7 @@
     			type:"post",
     			dataType:"text",
     			async: false,
-    			url:"http://localhost:8090/manager/artistapplyfail",
+    			url:"${pageContext.request.contextPath}/manager/artistapplyfail",
     			data:{"applyNo":$('#artistNo').val(), "refusedContents": $("#refusedContents").val()},
     			success: function(data, textStatus){ 
     				location.reload();

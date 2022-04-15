@@ -160,7 +160,7 @@
 		$.ajax({
 			type:"post",
 			async: false,
-			url:"http://localhost:8090/manager/sponList",
+			url:"${pageContext.request.contextPath}/manager/sponList",
 			dataType:"text",
 			/* contentType:"application/json;charset=UTF-8", */
 			data:{"fundingNo":fundingNo},
@@ -212,7 +212,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/fundingdetail",
+			url:"${pageContext.request.contextPath}/artistpage/fundingdetail",
 			data:{"fundingNo":fundingNo},
 			success: function(data, textStatus){ 
 			 	var fundingData = JSON.parse(data);

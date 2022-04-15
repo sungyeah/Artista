@@ -250,7 +250,7 @@
             '        </ul>'+
             '    </div>'+
             '    </th>'+    
-            '    <th><input id="datepicker" class="enroll-modify-form-input recordYear" data-min-view="years" data-view="years" data-date-format="yyyy" placeholder="연도" style="display:inline-block; width:60px;" maxlength="4"/></th>'+
+            '    <th><input class="enroll-modify-form-input recordYear" type="number" min="1900" max="2099" placeholder="연도" style="display:inline-block; width:60px;" /></th>'+
             '    <th><input class="enroll-modify-form-input recordText" placeholder="내용을 입력하세요" autocomplete="off" autocapitalize="off" style="width:500px;"></th>'+
             '    <th><span class="plus" style="cursor: pointer;">+</span></th>'+
             '</tr>';

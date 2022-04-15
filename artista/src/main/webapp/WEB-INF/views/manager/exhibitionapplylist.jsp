@@ -226,7 +226,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/manager/exhibitapplydetail",
+			url:"${pageContext.request.contextPath}/manager/exhibitapplydetail",
 			data:{"applyNo":applyNo},
 			success: function(data, textStatus){ 
 			 	var exhibitData = JSON.parse(data);
@@ -251,7 +251,7 @@
     		$.ajax({
     			type:"post",
     			async: false,
-    			url:"http://localhost:8090/manager/exhibitapplysuccess",
+    			url:"${pageContext.request.contextPath}/manager/exhibitapplysuccess",
     			data:{"applyNo":$('#exhibitapplyNo').val()},
     			dataType:"text",
     			success: function(data, textStatus){ 
@@ -267,7 +267,7 @@
     		$.ajax({
     			type:"post",
     			async: false,
-    			url:"http://localhost:8090/manager/exhibitapplyfail",
+    			url:"${pageContext.request.contextPath}/manager/exhibitapplyfail",
     			data:{"applyNo":$('#exhibitapplyNo').val(), "refusedContents" : $("#refusedContents").val()},
     			dataType:"text",
     			success: function(data, textStatus){ 
@@ -294,7 +294,7 @@
 				type:"post",
 				dataType:"text",                  
 				async:false,
-				url:"http://localhost:8090/manager/exhibitionApplyDelete",
+				url:"${pageContext.request.contextPath}/manager/exhibitionApplyDelete",
 				data:{"checkarray": checkarray},
 				success: function(data, textStatus){
 					alert("삭제가 완료되었습니다.")
