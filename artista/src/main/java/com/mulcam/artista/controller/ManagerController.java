@@ -56,14 +56,7 @@ import com.mulcam.artista.service.WorkService;
 @Controller
 @RequestMapping("manager")
 public class ManagerController {
-	/*
-	@Value("${upload.filepath.ncloud}")
-	private boolean bcloud;
-	
-	@Value("${upload.filepath}")
-	private String filepath;s
-	*/
-	
+
 	@Autowired
 	FundingService fundingService;
 	
@@ -91,6 +84,13 @@ public class ManagerController {
 	
 	@Autowired
 	ServletContext servletContext;
+	
+	@Value("${upload.filepath.ncloud}")
+	private boolean bcloud;
+	
+	@Value("${upload.filepath}")
+	private String filepath;
+	
 
 	/* 결제 작품 관리 */
 	@GetMapping({"", "/", "/paymentlist"})
@@ -436,8 +436,15 @@ public class ManagerController {
 			@RequestParam(value="posterImgFile") MultipartFile posterImgFile, 
 			@RequestParam(value="exhibitDate") String exhibitDate, Model model) 
 	{
+		String path = "";
+		if(bcloud) {
+			path = filepath+"exhibition/";
+		} else {
+			path = servletContext.getRealPath(filepath+"exhibition/");
+		}
+		
 		//포스터 이미지 등록
-		String path = servletContext.getRealPath("/imgupload/exhibition/");
+		//String path = servletContext.getRealPath("/imgupload/exhibition/");
 		String[] mtypes = posterImgFile.getContentType().split("/");
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHm");		//등록 시간으로 이름 정하기
 		Date time = new Date();
