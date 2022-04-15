@@ -20,11 +20,11 @@
 		var raminAmount = 0;
 		if('${funding.targetFunding}' > '${funding.sumAmount}'){
 			raminAmount = '${funding.targetFunding}' - '${funding.sumAmount}';
-			$("#remainAmount").text(raminAmount);
+			$("#remainAmount").text(raminAmount.toLocaleString());
 			$("#remainName").text("남은 금액");
 		} else {
-			raminAmount = '${funding.sumAmount}';
-			$("#remainAmount").text(raminAmount);
+			raminAmount = +'${funding.sumAmount}';
+			$("#remainAmount").text(raminAmount.toLocaleString());
 			$("#remainName").text("모인 금액");
 		}
 		var rate = '${funding.sumAmount}'/'${funding.targetFunding}'*100;
@@ -65,7 +65,7 @@
 			<span id="remain_minute"></span><span style="font-size:15px;">분 남음</span>
   
             </div><br>
-            <div id="amount">${funding.targetFunding} 목표 금액</div><br>
+            <div id="amount"><fmt:formatNumber type="number" maxFractionDigits="3" value="${funding.targetFunding}" /> 목표 금액</div><br>
             <div id="amount"><span id="remainAmount"></span>
             <span id="remainName"></span></div><br>
             <div id="amount">${count} 서포터</div><br>
@@ -77,7 +77,7 @@
             <form action="fundingpay" name="fundingpay" id="fundingpay" method="post">
                 <input class="account-modify-form-input" type="text" name="sponsorAmount" maxlength="20" id="sponsorAmount" placeholder="최소 금액">
                 <input type="hidden" id="fundingNo" name="fundingNo" value="${funding.fundingNo }">
-                <input class="Btn1" type="submit" id="sponsor" value="후원하기">
+                <input class="Btn1" type="button" id="sponsor" onclick="CheckForm();" value="후원하기">
             </form>
             </div>
         </div>
@@ -93,7 +93,21 @@
     <div>
         <button class="Btn3" onclick="location.href='${pageContext.request.contextPath}/funding/fundingov'">목록</button>
     </div>
-    
+    <script type="text/javascript">
+	    function CheckForm() {
+	        var sponsorAmount = document.getElementById("sponsorAmount");
+	        if (sponsorAmount.value == "") {
+	            alert("값을 입력해 주세요.");
+	            sponsorAmount.focus();
+	        } else{
+	        	document.fundingpay.action = "fundingpay";
+	        	document.fundingpay.submit();
+	        }   
+	    }
+
+    </script>
+
+
 
 </body>
 
