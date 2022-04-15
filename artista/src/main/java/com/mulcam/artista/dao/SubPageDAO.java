@@ -20,7 +20,7 @@ public interface SubPageDAO {
 	public void changePw(Map map)throws Exception;         //비밀번호 수정
 	public void updateMember(Member mem)throws Exception;  //회원정보 수정
 	public String checkPw(String id)throws Exception;      //비밀번호 체크
-	public List<Member> memberList(int startrow)throws Exception;      //회원목록 조회
+	public List<Member> memberList()throws Exception;      //회원목록 조회
 	public void deleteId(String id)throws Exception;       //아이디 삭제
 	public void insertMember2(Map map)throws Exception;    //회원가입
 	public String memTypeInfo(String id)throws Exception;

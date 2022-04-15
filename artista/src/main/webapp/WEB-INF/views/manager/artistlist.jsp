@@ -65,7 +65,7 @@
                     </tr>
                     </thead>
                     <c:choose>
-                    	<c:when test="${artistlist!=null && pageInfo.listCount>0 }">
+                    	<c:when test="${artistlist!=null}">
                     	<tbody>
                     		<c:forEach items="${artistlist }" var="artist">
 								<tr>

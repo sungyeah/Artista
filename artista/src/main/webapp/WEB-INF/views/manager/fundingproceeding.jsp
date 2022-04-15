@@ -223,10 +223,12 @@
 	<%@include file ="../footer.jsp" %>
 	<script>
 	const exhibition = document.getElementById("exhibition");
+	const applyfunding = document.getElementById("applyfunding");
 	
 	$(function(){
 		$(document).on('click',".close-area1", function(e){
 			exhibition.style.display = "none";
+			applyfunding.style.display = "none";
 		});
 		
 	});

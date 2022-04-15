@@ -84,7 +84,7 @@
                     </c:choose>
                 </table>
                 <button class="member-delete-btn">회원 탈퇴</button>
-            </section>]
+            </section>
         </article>
         
     </div>
