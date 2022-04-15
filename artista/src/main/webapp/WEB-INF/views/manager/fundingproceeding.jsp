@@ -266,7 +266,7 @@
 		$.ajax({
 			type:"post",
 			async: false,
-			url:${pageContext.request.contextPath}/manager/sponList",
+			url:"${pageContext.request.contextPath}/manager/sponList",
 			dataType:"text",
 			/* contentType:"application/json;charset=UTF-8", */
 			data:{"fundingNo":fundingNo},
