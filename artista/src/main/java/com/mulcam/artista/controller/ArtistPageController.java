@@ -102,6 +102,9 @@ public class ArtistPageController {
 	
 	@Value("${upload.filepath}")
 	private String filepath;
+	
+	@Value("${funupload.filepath}")
+	private String funpath;
 
 
 	@GetMapping("artistModify")
@@ -150,7 +153,12 @@ public class ArtistPageController {
 		
 		//아티스트 이미지 수정
 		if(file.equals("0")) {
-			String path = servletContext.getRealPath("/imgupload/artistProfile/");
+			String path = "";
+			if(bcloud) {
+				path = filepath+"artistProfile/";
+			} else {
+				path = servletContext.getRealPath(filepath+"artistProfile/");
+			}
 			String[] mtypes = artistImgFile.getContentType().split("/");
 			String imgName = UUID.randomUUID().toString();
 			File destFile = new File(path + imgName +"."+ mtypes[1]);
