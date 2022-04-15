@@ -14,6 +14,20 @@
     <script src="https://og-data.s3.amazonaws.com/static/common/js/jquery-1.12.4.min.js"></script>
     <script src="https://og-data.s3.amazonaws.com/CACHE/js/output.bd018f02f86b.js"></script>
     <script src="https://og-data.s3.amazonaws.com/CACHE/js/output.85320f581d39.js"></script>
+    <style>
+    .load-more-Btn{
+        width: 206px;
+        height: 52px;
+        margin: auto;
+        display: block;
+        background-color: black;
+        color: white;
+        border: 0;
+        font-size: 1.7em;
+        margin-top: 180px;
+    }
+    
+    </style>
 </head>
 <body>
 
@@ -88,9 +102,8 @@
         	</li>
      	</c:forEach>
          </ul>
-         <button id="loadBtn" type="button">load more</button>
     </div>
-    <div class="pagination"><a href="javascript:;" class="load-more">Load More</a> </div>
+    <div class="pagination"><button id="loadBtn" type="button" class="load-more-Btn">load more</button></div>
 </section>
 </article>
 
@@ -101,17 +114,13 @@
     <script>
     /* console.log(${check}); */
     var uid = '<%=(String)session.getAttribute("id")%>';
-		console.log(uid) ;
-		
-		let startrow = 8; 
+	let startrow = 8; 
 		$('#loadBtn').on('click', function () {
-			console.log(startrow);
 			$.ajax({
 				data:{"startrow" : startrow, "endrow" : 8},
 				url: "/loadFundingMain",
 				type: "post",
 				success: function (datalist) {
-					console.log(datalist);
 					for (let i of datalist ) {
 						let data = "<li class=''><div id='box' class='image-box'>"
 							data += "<figure><a href='${path}/funding/fundingovdetail?fundingNo="
