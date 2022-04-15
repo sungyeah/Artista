@@ -66,7 +66,7 @@
 		]]>
 	</select>
 	
-	<select id="soldProductList" parameterType="int" resultType="work">
+	<select id="soldProductList" resultType="work">
 		<![CDATA[
 			select * from work where  workForSale=2 or workForSale=3 
 		]]>
@@ -91,20 +91,3 @@
 	</select>
 	
 </mapper>
-<!-- 
-create table work(
-	workNo int(10) not null,
-    artistNo int(10) not null,
-    artistName varchar(100) not null,
-    workName varchar(255) not null,
-    workImg varchar(255) not null,
-    workType varchar(100) not null,
-    workTech varchar(255) not null,
-    workSize varchar(255) not null,
-    workIntro longtext not null,
-    workPrice int(10),
-    workForSale int not null,
-    orderNo int,
-    primary key(workNo)
-);
- -->
