@@ -235,7 +235,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/manager/exhibitapplydetail",
+			url:"${pageContext.request.contextPath}/manager/exhibitapplydetail",
 			data:{"applyNo":applyNo},
 			success: function(data, textStatus){ 
 			 	var exhibitData = JSON.parse(data);
@@ -260,7 +260,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/exhibitrefuseReason",
+			url:"${pageContext.request.contextPath}/artistpage/exhibitrefuseReason",
 			data:{"exhibitapplyNo":applyNo},
 			success: function(data, textStatus){ 
 				$("#refusedContents").html(data);   

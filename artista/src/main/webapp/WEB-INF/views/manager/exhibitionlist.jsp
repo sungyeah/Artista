@@ -192,7 +192,7 @@
 				type:"post",
 				dataType:"text",
 				async:false,
-				url:"http://localhost:8090/manager/exhibitionDelete",
+				url:"${pageContext.request.contextPath}/manager/exhibitionDelete",
 				data:{"checkarray": checkarray},
 				success: function(data, textStatus){
 					alert("삭제가 완료되었습니다.")
@@ -211,7 +211,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/manager/exhibitdetail",
+			url:"${pageContext.request.contextPath}/manager/exhibitdetail",
 			data:{"exhibitNo":exhibitNo},
 			success: function(data, textStatus){ 
 			 	var exhibitData = JSON.parse(data);

@@ -40,9 +40,9 @@
 	</select>
 	
 	<!-- 아티스트 선택하기 : listing 적용 -->
-	<select id="selectArtistApplyList" parameterType="int" resultType="artistapply">
+	<select id="selectArtistApplyList" resultType="artistapply">
 		<![CDATA[
-			select * from artistapply where applyResult=0 or applyResult=2 limit #{startrow}, 9
+			select * from artistapply where applyResult=0 or applyResult=2
 		]]>
 	</select>
 	

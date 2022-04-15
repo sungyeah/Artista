@@ -42,6 +42,7 @@
     <div id="applyfunding" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
+            
             	<div id="apply_close" class="close-area close-area1">X</div>
                 <h2 class="modal-header-title">펀딩 내용</h2>
             </header>
@@ -195,7 +196,7 @@
                             	<th scope="col">
                             		<img src="/funding/thumbview/${funding.thumbImg}" style="width:100px; height:100px;">	
                             	</th>
-                            	<th scope="col"">${funding.projTitle }</th>            
+                            	<th scope="col">${funding.projTitle }</th>            
                             	<th scope="col">
                             		<c:choose>
 									<c:when test="${funding.fundingState==1}">예정</c:when>
@@ -203,15 +204,13 @@
 									<c:otherwise>종료</c:otherwise>
 									</c:choose>
                             	</th>
-                            	<th scope="col"">${funding.fundingDate }</th>    
+                            	<th scope="col">${funding.fundingDate }</th>    
                             	<th scope="col" colspan="1">
                             		<a class="artist-detail-btn" onclick="fundingDetail('${funding.fundingNo }')">내용 상세보기</a>
                             	</th>                  
                            		<th scope="col" colspan="1">
-                           			<c:choose>
-									<c:when test="${funding.fundingState==2}"><a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a></c:when>
-									<c:otherwise><a class="artist-detail-btn" onclick="showDetail('${worklist.workapplyNo }')">결과보기</a></c:otherwise>
-									</c:choose></th>
+                           			<a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a>
+                           		</th>
                         		</tr>
                         		</c:forEach>
                         </tbody>
@@ -220,14 +219,16 @@
                 </table>
             </section>
         </article>
-        
+    </div>
 	<%@include file ="../footer.jsp" %>
 	<script>
 	const exhibition = document.getElementById("exhibition");
+	const applyfunding = document.getElementById("applyfunding");
 	
 	$(function(){
 		$(document).on('click',".close-area1", function(e){
 			exhibition.style.display = "none";
+			applyfunding.style.display = "none";
 		});
 		
 	});
@@ -238,7 +239,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/fundingdetail",
+			url:"${pageContext.request.contextPath}/artistpage/fundingdetail",
 			data:{"fundingNo":fundingNo},
 			success: function(data, textStatus){ 
 			 	var fundingData = JSON.parse(data);			 	
@@ -265,7 +266,7 @@
 		$.ajax({
 			type:"post",
 			async: false,
-			url:"http://localhost:8090/manager/sponList",
+			url:${pageContext.request.contextPath}/manager/sponList",
 			dataType:"text",
 			/* contentType:"application/json;charset=UTF-8", */
 			data:{"fundingNo":fundingNo},

@@ -263,7 +263,7 @@
 		$.ajax({
 			type:"post",
 			async: false,
-			url:"http://localhost:8090/manager/sponList",
+			url:"${pageContext.request.contextPath}/manager/sponList",
 			dataType:"text",
 			/* contentType:"application/json;charset=UTF-8", */
 			data:{"fundingNo":fundingNo},
@@ -296,7 +296,7 @@
 			 $.ajax({
 				type:"post",
 				async: false,
-				url:"http://localhost:8090/manager/refund",
+				url:"${pageContext.request.contextPath}/manager/refund",
 				dataType:"text",
 				data:{"fundingNo":fundingNo},
 				success: function(data, textStatus){ 

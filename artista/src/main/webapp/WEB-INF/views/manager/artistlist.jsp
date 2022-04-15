@@ -65,7 +65,7 @@
                     </tr>
                     </thead>
                     <c:choose>
-                    	<c:when test="${artistlist!=null && pageInfo.listCount>0 }">
+                    	<c:when test="${artistlist!=null}">
                     	<tbody>
                     		<c:forEach items="${artistlist }" var="artist">
 								<tr>
@@ -74,7 +74,7 @@
                         		<th scope="col" class="artistName">${artist.artistName }</th>
                         		<th scope="col" class="artistType">${artist.artistType }</th>
                         		<th scope="col" class="followerNum">${artist.followerNum }</th>
-                        		<th scope="col"><a class="artist-detail-btn" href="http://localhost:8090/artistdetail/${artist.artistNo }">페이지 보기</a></th>
+                        		<th scope="col"><a class="artist-detail-btn" href="${pageContext.request.contextPath}/artistdetail/${artist.artistNo }">페이지 보기</a></th>
                         		<th scope="col"><input name="check" type="checkbox" id="${artist.artistNo }" value="${artist.artistNo }" ></th>
                         		</tr>
                         	</c:forEach>
@@ -105,7 +105,7 @@
 				type:"post",
 				dataType:"text",
 				async:false,
-				url:"http://localhost:8090/manager/artistDelete",
+				url:"${pageContext.request.contextPath}/manager/artistDelete",
 				data:{"checkarray": checkarray},
 				success: function(data, textStatus){
 					alert("삭제가 완료되었습니다.")

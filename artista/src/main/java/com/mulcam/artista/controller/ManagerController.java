@@ -583,19 +583,15 @@ public class ManagerController {
 	}
 	
 	@GetMapping("/artistlist")
-	public ModelAndView artistList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+	public ModelAndView artistList() {
 		ModelAndView mv = new ModelAndView("manager/artistlist");
-		PageInfo pageInfo = new PageInfo();
-//		List<Integer> follow = new ArrayList<Integer>();
 		try {
-			List<Artist> artistlist = artistService.artistList(page, pageInfo);
+			List<Artist> artistlist = artistService.artistList();
 			for(int i=0;i<artistlist.size();i++) {
 				int follower = subPageService.followercnt(artistlist.get(i).getId());
 				artistlist.get(i).setFollowerNum(follower);
 			}
-			mv.addObject("pageInfo", pageInfo);
 			mv.addObject("artistlist", artistlist);
-			mv.addObject("count", artistlist.size());
 		} catch(Exception e) {
 			e.printStackTrace();
 			mv.addObject("artistlist", null);
@@ -620,15 +616,11 @@ public class ManagerController {
 	}
 	
 	@GetMapping(value="/artistapplylist")
-	public ModelAndView artistApplyList(@RequestParam(value="page",required=false, defaultValue = "1") int page) {
+	public ModelAndView artistApplyList() {
 		ModelAndView mv = new ModelAndView("manager/artistapplylist");
-		PageInfo pageInfo = new PageInfo();
 		try {
-			List<ArtistApply> artistapplylist = artistapplyService.getArtistApplyList(page, pageInfo);
-			
-			mv.addObject("pageInfo", pageInfo);
+			List<ArtistApply> artistapplylist = artistapplyService.getArtistApplyList();
 			mv.addObject("artistapplylist", artistapplylist);
-			mv.addObject("count", artistapplylist.size());
 		} catch(Exception e) {
 			e.printStackTrace();
 			mv.addObject("artistapplylist", null);

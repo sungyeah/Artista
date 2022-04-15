@@ -256,7 +256,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/manager/fundingapplydetail",
+			url:"${pageContext.request.contextPath}/manager/fundingapplydetail",
 			data:{"applyNo":applyNo},
 			success: function(data, textStatus){ 
 			 	var fundingData = JSON.parse(data);
@@ -284,7 +284,7 @@
     		$.ajax({
     			type:"post",
     			async: false,
-    			url:"http://localhost:8090/manager/fundingapplysuccess",
+    			url:"${pageContext.request.contextPath}/manager/fundingapplysuccess",
     			data:{"applyNo":$('#fundingNo').val()},
     			dataType:"text",
     			success: function(data, textStatus){ 
@@ -302,7 +302,7 @@
     			type:"post",
     			dataType:"text",
     			async: false,
-    			url:"http://localhost:8090/manager/fundingapplyfail",
+    			url:"${pageContext.request.contextPath}/manager/fundingapplyfail",
     			data:{"applyNo":$('#fundingNo').val(), "refusedContents": $("#refusedContents").val()},
     			success: function(data, textStatus){ 
     				location.reload();

@@ -226,7 +226,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/productapplydetail",
+			url:"${pageContext.request.contextPath}/artistpage/productapplydetail",
 			data:{"workNo":workapplyNo},
 			success: function(data, textStatus){ 
 			 	var workData = JSON.parse(data);
@@ -251,7 +251,7 @@
 			type:"post",
 			dataType:"text",
 			async: false,
-			url:"http://localhost:8090/artistpage/refuseReason",
+			url:"${pageContext.request.contextPath}/artistpage/refuseReason",
 			data:{"workNo":workapplyNo},
 			success: function(data, textStatus){ 
 				console.log(data);
