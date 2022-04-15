@@ -52,11 +52,11 @@
             ${funding.projArtist }
         </div>
         <div class="artistContent">
-            <button class="Btn2">작가 페이지 이동</button>
+            <button class="Btn2" onclick="location.href='${pageContext.request.contextPath}/artistdetail/${funding.artistNo }'">작가 페이지 이동</button>
         </div>
     </div>
     <div>
-        <button class="Btn3">목록</button>
+        <button class="Btn3" onclick="location.href='${pageContext.request.contextPath}/funding/fundingtm'">목록</button>
     </div>
 </body>
 </html>

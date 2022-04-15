@@ -105,7 +105,7 @@
                 style="width: 99%; height: 30px; margin: 15px 0 15px 0;" />
         </div>
         <div class="board_detail">
-            <textarea  id="projIntro" name="projIntro"></textarea>
+            <textarea  id="projIntro" name="projIntro" placeholder="프로젝트 소개를 써 주세요."></textarea>
         </div>
     </div>
     </div>
@@ -113,7 +113,7 @@
       <span class="question" id="que-2"><span id="que-2-toggle">+</span><span>예산 정보</span></span>
       <div class="answer" id="ans-2">
         <div class="board_detail">
-            <textarea  id="projBudget" name="projBudget"></textarea>
+            <textarea  id="projBudget" name="projBudget"  placeholder="예산에 대한 정보를 써 주세요."></textarea>
         </div>
       </div>
     </div>
@@ -121,7 +121,7 @@
       <span class="question" id="que-3"><span id="que-3-toggle">+</span><span>작가 본인 소개</span></span>
       <div class="answer" id="ans-3">
         <div class="board_detail">
-            <textarea  id="projArtist" name="projArtist"></textarea>
+            <textarea  id="projArtist" name="projArtist" placeholder="작가 본인에 대한 소개를 써 주세요."></textarea>
         </div>
       </div>
     </div>
