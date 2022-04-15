@@ -128,7 +128,7 @@
 	<insert id="insertAlarm" parameterType="map" >
 		<![CDATA[
 			insert into alarm(id, fundingNo, projTitle, fundingMsg, readSign, startDate)
-			values(#{id}, #{fundingNo}, (select projTitle from funding where fundingNo=#{fundingNo}), "이 시작할 예정입니다", 0, (select startDate from funding where fundingNo=#{fundingNo}))
+			values(#{id}, #{fundingNo}, (select projTitle from funding where fundingNo=#{fundingNo}), " 알림이 신청되었습니다", 0, (select startDate from funding where fundingNo=#{fundingNo}))
 		]]>
 	</insert>
 	
