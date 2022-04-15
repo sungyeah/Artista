@@ -112,7 +112,7 @@
 			}
 		});
 	})
-	var naver_id_login = new naver_id_login("2R257h5lNLRrx1vJnLgV", "http://localhost:8090/callback");
+	var naver_id_login = new naver_id_login("2R257h5lNLRrx1vJnLgV", "http://49.50.161.113:8090/callback");
  var state = naver_id_login.getUniqState(); 
 /*  naver_id_login.setButton("white", 2,40);  */
  naver_id_login.setDomain("http://localhost:8090/login"); 
