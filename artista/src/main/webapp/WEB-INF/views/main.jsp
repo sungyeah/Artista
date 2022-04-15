@@ -90,7 +90,7 @@
          </ul>
          <button id="loadBtn" type="button">load more</button>
     </div>
-    <div class="pagination"><a href="javascript:;" class="load-more">Load More</a> </div>
+    <div class="pagination"><a href="javascript:;" class="load-more">Load More</a></div>
 </section>
 </article>
 
