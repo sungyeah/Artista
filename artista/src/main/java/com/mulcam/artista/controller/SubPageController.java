@@ -101,7 +101,6 @@ public class SubPageController {
 	
 	@GetMapping("callback")
 	public String callback(Model model) {
-		System.out.println("콜백이");
 		model.addAttribute("check","naver");
 		return "temp";
 	}

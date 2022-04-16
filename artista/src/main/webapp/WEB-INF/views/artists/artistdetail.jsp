@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/custom.css">
-<link rel="stylesheet" href="../css/style2.css">
-<link rel="stylesheet" href="../css/reset.css">
-<link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/layout.css">
 </head>
-
+	
 <style>
 section.palmares {
 	background: #222;
@@ -94,43 +94,40 @@ section.palmares .prize-list li span {
 	color: #d5a770;
 }
 
+
+
+
+
+
 .js-load {
-	display: none;
+    display: none;
 }
-
 .js-load.active {
-	display: block;
+    display: block;
 }
-
 .is_comp.js-load:after {
-	display: none;
+    display: none;
 }
-
 .btn-wrap, .lists, .main {
-	display: block;
+    display: block;
 }
-
 .main {
-	max-width: 640px;
-	margin: 0 auto;
+    max-width: 640px;
+    margin: 0 auto;
 }
-
 .lists {
-	margin-bottom: 4rem;
+    margin-bottom: 4rem;
 }
-
 .lists__item {
-	padding: 20px;
-	background: #EEE;
+    padding: 20px;
+    background: #EEE;
 }
-
 .lists__item:nth-child(2n) {
-	background: #59b1eb;
-	color: #fff;
+    background: #59b1eb;
+    color: #fff;
 }
-
 .btn-wrap {
-	text-align: center;
+    text-align: center;
 }
 </style>
 <body>
@@ -141,7 +138,7 @@ section.palmares .prize-list li span {
 		<article id="content" class="vuelayer">
 			<div class="page-cover">
 				<div class="image"
-					style="background-image: url(../../imgupload/artistWorlds/${Img }); opacity: 1;">
+					style="background-image: url(/mypage/artistWorld/${Img }); opacity: 1;">
 				</div>
 			</div>
 			<section id="about" class="section">
@@ -154,12 +151,11 @@ section.palmares .prize-list li span {
 						</ul>
 					</div>
 				</nav>
-				<div style="margin-left: 250px; float: left;">
+				<div style="margin-left: 250px;float:left;">
 					<div class="detail">
 						<div class="info" style="">
 							<figure>
-								<img src="/mypage/artistprofile/${artist.artistImg }"
-									alt="Ayoung Kim ">
+								<img src="/mypage/artistprofile/${artist.artistImg }" alt="Ayoung Kim ">
 							</figure>
 							<h3>Connect</h3>
 							<ul>
@@ -168,9 +164,9 @@ section.palmares .prize-list li span {
 								<li><a href="#receive-infomation" class="toggle-layer">Further</a></li>
 							</ul>
 						</div>
-						<div class="person pc" style="padding: 50px 0px;">
+						<div class="person pc" style="padding: 50px 0px;;">
 							<div class="left">
-								<div class="personInfo" style="margin-top: 20px; float: left;">
+								<div class="personInfo" style="margin-top: 20px; float:left;">
 									<h4>${artist.artistName }</h4>
 									<ul>
 										<li><a href="#"><span id="spanFollowers">${follower }</span>followers</a></li>
@@ -178,93 +174,95 @@ section.palmares .prize-list li span {
 									</ul>
 									<c:choose>
 										<c:when test="${check eq false }">
-											<a class="follow" id="a" onclick="follow('${artist.id}');"
-												style="background: white; color: #222;"
-												href="javascript:void(0);">Follow <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
+											<a name="btnFollow" class="follow" id="a"
+												onclick="follow('${artist.id}');"
+												style="background: white; color: #222;" href="javascript:void(0);">Follow <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
 												<img class="1" id="heart"
 												style="width: 17.6px !important; height: 17.6px !important; margin-left: 5px;"
-												src="../images/하트2.png" alt=""
-												onclick="follow('${artist.id}');">
+												src="../images/하트2.png" alt="" onclick="follow('${artist.id}');">
 											</a>
 										</c:when>
 										<c:otherwise>
-											<a class="follow" id="a" onclick="follow('${artist.id}');"
-												style="background: #222; color: white;"
-												href="javascript:void(0);">UnFollow <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
+											<a name="btnFollow" class="follow" id="a"
+												onclick="follow('${artist.id}');"
+												style="background: #222; color: white;" href="javascript:void(0);">UnFollow <!-- <span class="material-icons"style="font-size:1.1rem;vertical-align:middle;">favorite_border</span> -->
 												<img class="1" id="heart"
 												style="width: 17.6px !important; height: 17.6px !important; margin-left: 5px;"
-												src="../images/white.png" alt=""
-												onclick="follow('${artist.id}');">
+												src="../images/white.png" alt="" onclick="follow('${artist.id}');">
 											</a>
 										</c:otherwise>
 									</c:choose>
 								</div>
 							</div>
 						</div>
-
+						
 					</div>
 
 				</div>
-				<div class="entry-content ellipsis" style="float: left;">
-					<div class="inner">
-						<p>
-							<em>“What we call a ‘story’ is something that by its nature
-								always changes and transforms through its utterance, so that
-								every kind of ‘story’ has a fundamentally synthetic quality. [.
-								. .] Petra Genetrix is a genderless being, and its basic
-								profundity originates in that fundamental ambiguity.” - Ayoung
-								Kim</em>
-						</p>
-						<p>In her work, the artist Ayoung Kim reconstructs complex
-							narratives grounded in her voluminous research on history and
-							contemporary issues that, include matters such as Korea’s modern
-							and contemporary history, geopolitics, transportation, and
-							supranational movements. Her practice spans genre boundaries and,
-							incorporates video, sound, performance, fiction, and texts. She
-							creates multidimensional, fluid narratives through approaches
-							such as speculative storytelling and narrativity, worldbuilding,
-							and mythmaking. One method applied in this process involves the
-							exhaustive collection of information about specific events and
-							places—a process that serves not as a reaffirmation of historical
-							facts, but instead as a potential means of deconstructing and
-							subverting history. Through a journey of endless movement and
-							subversion, Kim suggests stories about the truths behind those
-							things we believe to be “facts.” In an era of global crisis and
-							uncertainty about the future, where all the truths we have
-							believed in are being undermined, Ayoung Kim’s works stimulate
-							our speculative imagination, allowing us an opportunity to
-							encounter the forgotten and omitted “truths” of this world—while
-							also sharing the possibilities for people who transcend
-							anthropocentrism and for a new life of coexistence with nature,
-							objects, and non-beings.</p>
-						<p>
-							Ayoung Kim has presented exhibitions and projects at major
-							institutions in Korea and around the world, including <em><a
-								href="https://videobrasil.online/">Oxbow Lake Time</a></em> (Video
-							Brasil, São Paulo, 2021, Online Solo Screening), <em><a
-								href="https://ilmin.org/notice/%eb%ae%a4%ec%a7%80%ec%97%84-producer-%ea%b8%b0%ed%9a%8d-%ec%9b%8c%ed%81%ac%ec%88%8d-1-%ec%82%ac%eb%b3%80%ec%a0%81-%ec%8a%a4%ed%86%a0%eb%a6%ac%eb%b3%b4%eb%93%9c-%ec%a0%9c%ec%9e%91-%ec%9b%8c/">Porosity
-									Valley</a></em> (Ilmin Museum of Art, Seoul, 2018), <em><a
-								href="https://2017.festival.melbourne/events/porosity-valley-portable-holes/#.YgZEv5bP1PY">Porosity
-									Valley, Portable Holes</a></em> (Melbourne Festival, Melbourne, 2017), <em><a
-								href="https://palaisdetokyo.com/en/exposition/ayoung-kim/">In
-									This Vessel We Shall Be Kept</a></em> (Palais de Tokyo, Paris, 2016),<em><a
-								href="https://youtu.be/rKW6f_FrrSs">The Railway Traveler’s
-									Handbook</a></em> (Culture Station Seoul 284, Seoul, 2014), <em><a
-								href="http://ayoungkim.com/wp/works/ph-express-project-20112012">PH
-									Express</a></em> (Künstlerhaus Bethanien, Berlin, 2012), <em><a
-								href="http://ayoungkim.com/wp/works/not-in-the-wrong-place-at-the-wrong-time">Minima
-									Memoria</a></em> (Street Level,&nbsp;Glasgow, 2010), and <a
-								href="https://www.mutualart.com/Exhibition/Ephemera/5963AADD2B1C10AF">Ephemera</a>
-							(I-Myu Projects, London, 2009).&nbsp;
-						</p>
+									<div class="entry-content ellipsis" style="float:left;">
+						<div class="inner">
+							<p>
+								<em>“What we call a ‘story’ is something that by its nature
+									always changes and transforms through its utterance, so that
+									every kind of ‘story’ has a fundamentally synthetic quality. [.
+									. .] Petra Genetrix is a genderless being, and its basic
+									profundity originates in that fundamental ambiguity.” - Ayoung
+									Kim</em>
+									</p>
+									<p>
+							In her work, the artist Ayoung Kim reconstructs complex
+								narratives grounded in her voluminous research on history and
+								contemporary issues that, include matters such as Korea’s modern
+								and contemporary history, geopolitics, transportation, and
+								supranational movements. Her practice spans genre boundaries
+								and, incorporates video, sound, performance, fiction, and texts.
+								She creates multidimensional, fluid narratives through
+								approaches such as speculative storytelling and narrativity,
+								worldbuilding, and mythmaking. One method applied in this
+								process involves the exhaustive collection of information about
+								specific events and places—a process that serves not as a
+								reaffirmation of historical facts, but instead as a potential
+								means of deconstructing and subverting history. Through a
+								journey of endless movement and subversion, Kim suggests stories
+								about the truths behind those things we believe to be “facts.”
+								In an era of global crisis and uncertainty about the future,
+								where all the truths we have believed in are being undermined,
+								Ayoung Kim’s works stimulate our speculative imagination,
+								allowing us an opportunity to encounter the forgotten and
+								omitted “truths” of this world—while also sharing the
+								possibilities for people who transcend anthropocentrism and for
+								a new life of coexistence with nature, objects, and non-beings.
+														</p>
+														<p>
+														Ayoung Kim has presented exhibitions and projects at major
+								institutions in Korea and around the world, including <em><a
+									href="https://videobrasil.online/">Oxbow Lake Time</a></em> (Video
+								Brasil, São Paulo, 2021, Online Solo Screening), <em><a
+									href="https://ilmin.org/notice/%eb%ae%a4%ec%a7%80%ec%97%84-producer-%ea%b8%b0%ed%9a%8d-%ec%9b%8c%ed%81%ac%ec%88%8d-1-%ec%82%ac%eb%b3%80%ec%a0%81-%ec%8a%a4%ed%86%a0%eb%a6%ac%eb%b3%b4%eb%93%9c-%ec%a0%9c%ec%9e%91-%ec%9b%8c/">Porosity
+										Valley</a></em> (Ilmin Museum of Art, Seoul, 2018), <em><a
+									href="https://2017.festival.melbourne/events/porosity-valley-portable-holes/#.YgZEv5bP1PY">Porosity
+										Valley, Portable Holes</a></em> (Melbourne Festival, Melbourne, 2017),
+								<em><a
+									href="https://palaisdetokyo.com/en/exposition/ayoung-kim/">In
+										This Vessel We Shall Be Kept</a></em> (Palais de Tokyo, Paris, 2016),<em><a
+									href="https://youtu.be/rKW6f_FrrSs">The Railway Traveler’s
+										Handbook</a></em> (Culture Station Seoul 284, Seoul, 2014), <em><a
+									href="http://ayoungkim.com/wp/works/ph-express-project-20112012">PH
+										Express</a></em> (Künstlerhaus Bethanien, Berlin, 2012), <em><a
+									href="http://ayoungkim.com/wp/works/not-in-the-wrong-place-at-the-wrong-time">Minima
+										Memoria</a></em> (Street Level,&nbsp;Glasgow, 2010), and <a
+									href="https://www.mutualart.com/Exhibition/Ephemera/5963AADD2B1C10AF">Ephemera</a>
+								(I-Myu Projects, London, 2009).&nbsp;
+							</p>
+							
+						</div>
 
 					</div>
-
-				</div>
-
+					</div>
 			</section>
 
 			<section class="palmares">
+				<a name="palmares"></a>
 				<div class="container2">
 					<div class="row">
 						<div class="title2">작가 이력</div>
@@ -298,60 +296,50 @@ section.palmares .prize-list li span {
 
 			<section id="selected-works" class="section">
 				<h2>작가의 작품(마우스오버시 작품정보)</h2>
-
+				
 				<div class="post-list flex-box">
 					<ul>
-						<c:forEach items="${worklist }" var="work">
-							<c:choose>
-								<c:when test="${work.workForSale eq 0}">
-									<li>
-										<figure>
-											<a href="../workdetail/${work.workNo }" style="width: 100%;"
-												class="only-pc"> <img
-												src="../imgupload/artistWorks/${work.workImg }" alt="">
-												<span class="title">${work.artistName }<br>
-													${work.workName }<br>${work.workSize }<br> <span
-													class="artwork-detail-info-status"
-													style="color: #a48e69; position: absolute; margin-top: -150px; font-size: 20px;">
-														● <b>전시용</b>
-												</span>
-											</span>
-
-											</a>
-										</figure>
-									</li>
-								</c:when>
-								<c:otherwise>
-									<li>
-										<figure>
-											<a href="../storedetail/${work.workNo }" style="width: 100%;"
-												class="only-pc"> <img
-												src="../imgupload/artistWorks/${work.workImg }" alt="">
-												<span class="title">${work.artistName }<br>
-													${work.workName }<br>${work.workSize }<br> <span
-													class="artwork-detail-info-status"
-													style="color: #d11919; position: absolute; margin-top: -150px; font-size: 20px;">●
-														판매용</span>
-											</span>
-
-											</a>
-										</figure>
-									</li>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
+					<c:forEach items="${worklist }" var="work">
+					<c:choose>
+					<c:when test="${work.workForSale eq 0}">
+                    	<li><a href="../workdetail/${work.workNo }" style="width:100%;" class="only-pc">
+								<figure>
+									<img src="/artistpage/workImg/${work.workImg }" alt="">
+								</figure> 
+								<span class="title">${work.artistName }<br> ${work.workName }<br>${work.workSize }<br>
+								<div class="artwork-detail-info-status" style="color:#a48e69; position: absolute; margin-top: -150px; font-size: 20px;">●
+								<b>전시용</b></div>
+							</span>
+							
+						</a></li>
+						</c:when>
+						<c:otherwise>
+						<li><a href="../storedetail/${work.workNo }" style="width:100%;" class="only-pc">
+								<figure>
+									<img src="/artistpage/workImg/${work.workImg }" alt="">
+								</figure> 
+								<span class="title">${work.artistName }<br> ${work.workName }<br>${work.workSize }<br>
+								<div class="artwork-detail-info-status" style="color:#d11919; position: absolute; margin-top: -150px; font-size: 20px;">●
+								판매용</div>
+							</span>
+							
+						</a></li>
+						</c:otherwise>
+						</c:choose>
+                    </c:forEach>
 					</ul>
 
 				</div>
 			</section>
 
 		</article>
-	</div>
 
+
+	</div>
+	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
-	
-	var id = '<%=(String) session.getAttribute("id")%>';
+	var id = '<%=(String)session.getAttribute("id")%>';
 	function follow(follower){
 		var color=document.getElementById("a");
 		if(id=='null'){
@@ -382,7 +370,7 @@ section.palmares .prize-list li span {
 	}
 	
 	
-	let recordArr = `${artist.artistRecord}`;
+	let recordArr = ${artist.artistRecord};
 	if (recordArr != null) {
 		for(let record of recordArr) {
 			console.log(record)
