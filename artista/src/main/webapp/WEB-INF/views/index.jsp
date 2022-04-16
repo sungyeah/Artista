@@ -26,6 +26,10 @@
         border: none; 
         color: rgba(255, 255, 255, 0.5);
     }
+    
+    .card-img-top{
+    	height: 500px;
+    }
 </style>
 <body>
 <!-- Carousel Start -->
@@ -54,13 +58,13 @@
     <div class="container mt-5 pt-5 pb-3">
         <div class="d-flex flex-column text-center mb-5">
             <h4 class="text-secondary mb-3">Team Member</h4>
-            <h1 class="display-4 m-0">Meet Our <span class="text-primary">걍 남겨둠</span></h1>
-            <h2>이거없으면 코드 짧아짐 ㅎㅎ</h2>
+            <h1 class="display-4 m-0">Meet Our <span class="text-primary">일석사조</span></h1>
+            <h2>이스터에그</h2>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="images/team-1.jpg" alt="">
+                    <img class="card-img-top" src="images/채효주.png" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
                             <h5>채효주</h5>
@@ -77,7 +81,7 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="images/team-2.jpg" alt="">
+                    <img class="card-img-top" src="images/조예선.png" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
                             <h5>조예선</h5>
@@ -94,7 +98,7 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="images/team-3.jpg" alt="">
+                    <img class="card-img-top" src="images/김상원.png" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
                             <h5>김상원</h5>
@@ -111,7 +115,7 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="images/team-4.jpg" alt="">
+                    <img class="card-img-top" src="images/홍성호.png" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
                             <h5>홍성호</h5>
