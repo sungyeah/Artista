@@ -299,7 +299,7 @@
                 <div id="checkout_submitRow">
                     <input id="input_tst" type="hidden" name="tst" value="1648449975.960295">
                     <!-- <input id="go_checkout" class="next_step" type="button" value="결제하기"> -->
-                    <input id="go_checkout" class="next_step" type="button" value="결제하기">
+                    <input id="go_checkout" class="next_step" type="button" value="결제하기" onclick="payment()">
                 </div>
             </section>
              </form>
@@ -395,7 +395,7 @@
             })
 
             //버튼 클릭하면 실행
-            function payment(data) {
+            function payment() {
             	let name = $('#shipping_name').val();
             	console.log(name);
             	let address = $('#shipping_address1').val();

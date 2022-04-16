@@ -12,14 +12,14 @@
 	<!-- 작가가 펀딩 신청 -->
 	<insert id="insertApply" parameterType="funding" >
 		<![CDATA[
-			insert into fundingapp(fundingNo, artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate)
+			insert into fundingApp(fundingNo, artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate)
 			values(#{fundingNo}, (select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 0, #{getplace}, #{getplace2}, sysdate())
 		]]>
 	</insert>
 	<!-- 작가가 펀딩 수정요청 -->
 	<insert id="modifyApply" parameterType="funding" >
 		<![CDATA[
-			insert into fundingapp(fundingNo, artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate, fundingOriginNo)
+			insert into fundingApp(fundingNo, artistNo, id, projTitle, projIntro, projBudget, projArtist, targetFunding, fundingDate, startDate, endDate, thumbImg, applyStatus, getplace, getplace2, applydate, fundingOriginNo)
 			values(#{fundingNo}, (select artistNo from artist where id=#{id}), #{id}, #{projTitle}, #{projIntro}, #{projBudget}, #{projArtist}, #{targetFunding}, #{fundingDate}, #{startDate}, #{endDate}, #{thumbImg}, 2, #{getplace}, #{getplace2}, sysdate(), #{fundingOriginNo})
 		]]>
 	</insert>
@@ -43,12 +43,12 @@
 	</select>
 	<select id="queryappfunding" parameterType="string" resultType="Funding">
 		<![CDATA[
-			select * from fundingapp where id =#{id}
+			select * from fundingApp where id =#{id}
 		]]>
 	</select>
 		<update id="updateapplyStatus" parameterType="Funding" >
 		<![CDATA[
-			update fundingapp set applyStatus=1 where id=#{id}
+			update fundingApp set applyStatus=1 where id=#{id}
 		]]>
 	</update>
 	
@@ -167,12 +167,12 @@
 	</select>
 	<select id="querytfundingApp" parameterType="int" resultType="Funding">
 		<![CDATA[
-			select * from fundingapp where fundingNo=#{fundingNo}
+			select * from fundingApp where fundingNo=#{fundingNo}
 		]]>
 	</select>
 	<delete id="deleteFundingApply" parameterType="int" >
 		<![CDATA[
-			delete from fundingapp where fundingNo=#{applyNo}
+			delete from fundingApp where fundingNo=#{applyNo}
 		]]>
 	</delete>
 
@@ -180,13 +180,13 @@
 	<!-- 펀딩신청 허락 update -->
 	<select id="updateFundingApplyEnroll" parameterType="int">
 		<![CDATA[
-			update fundingapp set applyStatus=4 where fundingNo=#{fundingNo}
+			update fundingApp set applyStatus=4 where fundingNo=#{fundingNo}
 		]]>
 	</select>
 	<!-- 펀딩수정 허락 update -->
 	<select id="updateFundingApplyModifyEnroll" parameterType="int">
 		<![CDATA[
-			update fundingapp set applyStatus=5 where fundingNo=#{fundingNo}
+			update fundingApp set applyStatus=5 where fundingNo=#{fundingNo}
 		]]>
 	</select>
 	<!-- 펀딩 수정 내용 update -->
@@ -201,7 +201,7 @@
 	<!-- 펀딩신청 거절 update -->
 	<select id="updateFundingApplyRefuse" parameterType="map">
 		<![CDATA[
-			update fundingapp set applyStatus=applyStatus+1, refusedContents=#{refusedContents} where fundingNo=#{fundingNo}
+			update fundingApp set applyStatus=applyStatus+1, refusedContents=#{refusedContents} where fundingNo=#{fundingNo}
 		]]>
 	</select>
 	<select id="queryCount" parameterType="int" resultType="int">
