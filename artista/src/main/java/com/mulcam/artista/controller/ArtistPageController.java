@@ -64,6 +64,8 @@ import com.mulcam.artista.service.SubPageService;
 import com.mulcam.artista.service.WorkApplyService;
 import com.mulcam.artista.service.WorkService;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
+
 @RequestMapping("artistpage")
 @Controller
 public class ArtistPageController {
@@ -332,14 +334,14 @@ public class ArtistPageController {
 	@PostMapping("workApplyComplete")
 	public String workApplyComplete(@ModelAttribute WorkApply workapply, @RequestParam(value="workImgFile") MultipartFile workImgFile) {
 
-//		BufferedImage inputImage;
-//		try {
-//			inputImage = ImageIO.read(workImgFile.getInputStream());
-//	        int originHeight = inputImage.getHeight();	// 이미지 세로 가로 측정
-//	        workapply.setWorkHeight(originHeight);
-//		} catch (IOException e2) {
-//			e2.printStackTrace();
-//		}
+		BufferedImage inputImage;
+		try {
+			inputImage = ImageIO.read(workImgFile.getInputStream());
+	        int originHeight = inputImage.getHeight();	// 이미지 세로 가로 측정
+	        workapply.setWorkHeight(originHeight);
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
 	
 		String id=(String) session.getAttribute("id");	
 		Integer artistNo = null;
