@@ -138,7 +138,7 @@ section.palmares .prize-list li span {
 		<article id="content" class="vuelayer">
 			<div class="page-cover">
 				<div class="image"
-					style="background-image: url(../../imgupload/artistWorlds/${Img }); opacity: 1;">
+					style="background-image: url(/mypage/artistWorld/${Img }); opacity: 1;">
 				</div>
 			</div>
 			<section id="about" class="section">
@@ -304,7 +304,7 @@ section.palmares .prize-list li span {
 					<c:when test="${work.workForSale eq 0}">
                     	<li><a href="../workdetail/${work.workNo }" style="width:100%;" class="only-pc">
 								<figure>
-									<img src="../imgupload/artistWorks/${work.workImg }" alt="">
+									<img src="/artistpage/workImg/${work.workImg }" alt="">
 								</figure> 
 								<span class="title">${work.artistName }<br> ${work.workName }<br>${work.workSize }<br>
 								<div class="artwork-detail-info-status" style="color:#a48e69; position: absolute; margin-top: -150px; font-size: 20px;">●
@@ -316,7 +316,7 @@ section.palmares .prize-list li span {
 						<c:otherwise>
 						<li><a href="../storedetail/${work.workNo }" style="width:100%;" class="only-pc">
 								<figure>
-									<img src="../imgupload/artistWorks/${work.workImg }" alt="">
+									<img src="/artistpage/workImg/${work.workImg }" alt="">
 								</figure> 
 								<span class="title">${work.artistName }<br> ${work.workName }<br>${work.workSize }<br>
 								<div class="artwork-detail-info-status" style="color:#d11919; position: absolute; margin-top: -150px; font-size: 20px;">●

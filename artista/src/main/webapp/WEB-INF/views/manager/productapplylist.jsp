@@ -199,7 +199,6 @@
                     </c:choose>
                 </table>
             </section>
-            
 			<button class="member-delete-btn">내역 삭제</button>
         </article>   
    
