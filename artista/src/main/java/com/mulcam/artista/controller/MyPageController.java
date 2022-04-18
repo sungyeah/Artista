@@ -105,14 +105,14 @@ public class MyPageController {
 			for(int i=0;i<ord.size();i++) {
 				OrderReport or = new OrderReport();
 				Order order = ord.get(i);
-//				String trackingNo = order.getTrackingNo();
-//				int orderNo = order.getOrderNo();
-//				if(trackingNo==null) {
-//					subPageService.updateStatus("상품 준비 중", orderNo);
-//				}else {
-//					String status = subPageService.getDeliveryStatus(trackingNo);
-//					subPageService.updateStatus(status, orderNo);
-//				}
+				String trackingNo = order.getTrackingNo();
+				int orderNo = order.getOrderNo();
+				if(trackingNo==null) {
+					subPageService.updateStatus("상품 준비 중", orderNo);
+				}else {
+					String status = subPageService.getDeliveryStatus(trackingNo);
+					subPageService.updateStatus(status, orderNo);
+				}
 				or.setOrder(order);
 				String[] workNos = order.getWorkNo().split(",");
 				List<Work> works = new ArrayList<Work>();
