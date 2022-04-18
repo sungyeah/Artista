@@ -41,7 +41,7 @@
             	</table>
       			
             </article>
-            <button class="modal-detail-btn" onclick="refund()">환불</button><!-- 버튼 -->
+            <button id="returns" class="modal-detail-btn1" onclick="refund()">환불</button><!-- 버튼 -->
            <input type="hidden" id="refund" value="">
         </div>
     </div>
@@ -215,8 +215,8 @@
 	                            		<img src="/funding/thumbview/${funding.thumbImg}" style="width:100px; height:100px;">	
 	                            	</th>
 	                            	<th scope="col">${funding.projTitle }</th>   
-	                            	<th scope="col">${funding.targetFunding }</th>    
-	                            	<th scope="col"><fmt:parseNumber value="${funding.sumAmount/funding.targetFunding*100}" integerOnly="true"/></th>  
+	                            	<th scope="col"><fmt:formatNumber value="${funding.targetFunding }"/>원</th>    
+	                            	<th scope="col"><fmt:parseNumber value="${funding.sumAmount/funding.targetFunding*100}" integerOnly="true"/>%</th>  
 	                            	<th scope="col" class="applyState">
 	                            		<c:choose>
 	                            		<c:when test="${funding.fundingState eq 3 and funding.succesFunding eq 4}">
@@ -231,7 +231,7 @@
 	                            		</c:choose>
 	                            	</th>
 	                            	<th scope="col" colspan="1">
-	                            		<a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }')">스폰서 보기</a>
+	                            		<a class="artist-detail-btn" onclick="showSpon('${funding.fundingNo }','${funding.succesFunding }')">스폰서 보기</a>
 	                            	</th>                  
                         		</tr>
                         	</c:forEach>
@@ -258,7 +258,8 @@
 		
 	});
 	
-	function showSpon(fundingNo){
+	function showSpon(fundingNo,succesFunding){
+		
 		exhibition.style.display = "flex";
 		$.ajax({
 			type:"post",
@@ -282,6 +283,12 @@
   				}
   				$('.aa').detach();
   				$('#sponsorTbody').append(accEle);
+  				console.log(succesFunding);
+  				if(succesFunding != "4"){
+  					$("#returns").hide();
+  				}
+  				
+
 			},
 			error:function(data, textStatus){
 				alert("실패");

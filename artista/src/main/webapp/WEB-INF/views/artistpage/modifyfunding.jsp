@@ -22,7 +22,7 @@
     <div id="contents">
         
         <header class="account-header">
-            <h2 class="account-header-title">펀딩재용 수정요청</h2>
+            <h2 class="account-header-title">펀딩내용 수정요청</h2>
             <div class="account-header-description">수정 내용을 입력하세요.</div>
         </header>
         <article class="account-body">
@@ -130,13 +130,39 @@
 </article>
 </div>
     <div class="a">
-        <button class="Btn" type="submit">확인</button>
-        <button class="Btn" type="button">취소</button>
+     	<button class="yesNo-btn" style="background-color:#222;color:white;" type="button" onclick="apply()">신청</button>
+        <button class="yesNo-btn" id="cancel" style="background-color:white;color:#222;margin-left:10px" type="reset">취소</button>
     </div>
     </form>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
 	<script>
+	
+	function apply(){
+		let targetFunding=$('#targetFunding').val();
+			if(targetFunding==''){
+				alert("목표 금액을 입력하세요.");
+				$('#targetFunding').focus();
+				return false;
+			}
+		let getplace=$('#getplace').val();
+		if(getplace==''){
+			alert("장소 대관을 입력하세요.");
+			$('#getplace').focus();
+			return false;
+		}
+		let thumbImg=$('#thumbImg').val();
+		if(thumbImg==''){
+			alert("대표 이미지를 입력하세요.");
+			return false;
+		}
+		form.submit();
+	}
+	
+	$("#cancel").click(function () {
+		window.history.back();
+	});
+	
 	function search3(){
 		new daum.Postcode({
 	        oncomplete: function(data) {

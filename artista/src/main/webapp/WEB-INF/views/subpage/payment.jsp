@@ -26,7 +26,7 @@
             </div>
         </section>
         <section id="checkout_body" class="cf">
-        	 <form id="payment21" action="paymentsuc" method="post">
+            <form id="payment21" action="paymentsuc" method="post">
             <section id="checkout_value">
                 <section id="billing_info">
                     <div class="sect-header">
@@ -54,27 +54,34 @@
                         <div class="sect-body cf">
                             <div class="sect-body-th">주소</div>
                             <div class="sect-body-td">
-                                <input type="text" id="billing_address1" class="address1" name="address" value="${mem.address }" placeholder="기본 주소" onclick=search3() style="cursor:pointer;" readonly="readonly">
-                                <input id="billing_address_btn" class="address-btn" type="button" value="주소 찾기" readonly="readonly" onclick=search3()><br>
+                                <input type="text" id="billing_address1" class="address1" name="address" value="${mem.address }" placeholder="기본 주소" onclick=search2() style="cursor:pointer;" readonly="readonly">
+                                <input id="billing_address_btn" class="address-btn" type="button" value="주소 찾기" readonly="readonly" onclick=search2()><br>
                                 <input type="text" id="billing_address2" class="address2" name="address2" value="${mem.address2 }" placeholder="상세 주소" >
                             </div>
                         </div>
                         <c:choose>
-                        	<c:when test="${empty mem.contact }">
-                        	</c:when>
-                        	<c:otherwise>
-                        	<div class="sect-body cf">
-                            	<div class="sect-body-th">휴대폰</div>
-                            		<div class="sect-body-td">
-                                		<div class="checkout-profile-box">
-                                    	<input type="hidden" id="billing_phone1" name="orderNum" value="${mem.contact }">
-                                    	<%--  <input type="text" id="billing_phone1" name="orderNum" placeholder="휴대폰" value="${mem.contact }"> --%>
-                                     	<span id="contact2">0</span>
+                           <c:when test="${empty mem.contact }">
+                           <div class="sect-body cf">
+                               <div class="sect-body-th">휴대폰</div>
+                               <div class="sect-body-td">
+                                      <input type="text" class="address1" id="billing_phone1" name="orderNum" >
+                                      <span id="contact2" style="display:none;">0</span>
+                                  </div>
+                           </div>
+                           </c:when>
+                           <c:otherwise>
+                           <div class="sect-body cf">
+                               <div class="sect-body-th">휴대폰</div>
+                                  <div class="sect-body-td">
+                                      <div class="checkout-profile-box">
+                                       <input type="hidden" id="billing_phone1" name="orderNum" value="${mem.contact }">
+                                       <%--  <input type="text" id="billing_phone1" name="orderNum" placeholder="휴대폰" value="${mem.contact }"> --%>
+                                        <span id="contact2">0</span>
                                     <!-- <input type="button" id="checkout-profile-recertifyButton" value="변경"> -->
-                                	</div>
-                            	</div>
-                        	</div>
-                        	</c:otherwise>
+                                   </div>
+                               </div>
+                           </div>
+                           </c:otherwise>
                         </c:choose>
                         
                         
@@ -203,9 +210,9 @@
                     </div>
                     <div class="sect-list active">
                         <div class="checkout-artwork-list">
-                        	 <input id="result" type="hidden" name="workNo">
-                        	 <input id="result2" type="hidden" name="cartNo">
-                        	<%--  <input id="result2" type="hidden" name="cartNo" value="${carts.replace('[','').replace(']','').replace(' ','')}"> --%>
+                            <input id="result" type="hidden" name="workNo">
+                            <input id="result2" type="hidden" name="cartNo">
+                           <%--  <input id="result2" type="hidden" name="cartNo" value="${carts.replace('[','').replace(']','').replace(' ','')}"> --%>
                              <c:forEach items="${works }" var="work" varStatus="status"> 
                              <input type="hidden" id="cartno2" name="cartno2" value="${carts[status.index] }">
                                 <div class="checkout-item">
@@ -225,7 +232,7 @@
                                             
                                         </li>
                                     </ul>
-                                	</div>
+                                   </div>
                              </c:forEach>
                         </div>
                         <div class="checkout-billing-value cf">
@@ -240,11 +247,11 @@
                                 <li>${count }점<input type="hidden" name="ordercount" value="${count }"></li>
                                 
                                     <li><fmt:formatNumber value="${total }"/>원
-                                    	<input type="hidden" id="total" name="workPrice" value='${total }'>
+                                       <input type="hidden" id="total" name="workPrice" value='${total }'>
                                     </li>
                                     <li>
                                         <span id="artworks-shippingFee-purchase">40,000원</span>
-                                		<input type="hidden" id="shippingPrice" name="deliveryCharge" value='40000'>
+                                      <input type="hidden" id="shippingPrice" name="deliveryCharge" value='40000'>
                                     </li>
                                 
                             </ul>
@@ -299,7 +306,7 @@
                 <div id="checkout_submitRow">
                     <input id="input_tst" type="hidden" name="tst" value="1648449975.960295">
                     <!-- <input id="go_checkout" class="next_step" type="button" value="결제하기"> -->
-                    <input id="go_checkout" class="next_step" type="button" value="결제하기" onclick="payment()">
+                    <input id="go_checkout" class="next_step" type="button" value="결제하기">
                 </div>
             </section>
              </form>
@@ -309,21 +316,23 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-		
+      
     var total = +$('#total').val();
     var ship = +$('#shippingPrice').val();
     var tPrice = total+ship;
     var tp= $('#totalPrice').attr('value',tPrice);
     document.getElementById('artworks-totalPrice').innerText = tPrice.toLocaleString();
     document.getElementById('payment-totalPrice').innerText = tPrice.toLocaleString();
-    console.log($('#id').val());
-    
-        function duplication(){
-        	if($('#billing_address1').val()==''){
-        		alert("주문자 주소를 입력해주세요.");
-        		return false;
-        	}
-        	
+       function duplication(){
+           if($('#billing_address1').val()==''){
+              alert("주문자 주소를 입력해주세요.");
+              return false;
+           }
+           if($('#billing_phone1').val()==''){
+               alert("주문자 연락처를 입력해주세요.");
+               return false;
+            }
+           
             if($("#shipping_name").is('[readonly]')===false){
                 $('#shipping_name').val($('#billing_name').val()); 
                 $('#shipping_address1').val($('#billing_address1').val()); 
@@ -382,58 +391,62 @@
             document.getElementById('contact2').innerText = phone; 
     
             $(document).ready(function(){ 
-            	$("#go_checkout").click(function(){ 
-                	payment(); //버튼 클릭하면 호출 
+               
+               $("#go_checkout").click(function(){ 
+                   payment(); //버튼 클릭하면 호출 
                 }); 
-            	 let arr = $('.code').get();
+               
+            })
+            	let arr2 = $('.code').get();
                 let strArr = [];
-                for(let a of arr) {
+                for(let a of arr2) {
                     strArr.push(a.textContent)
                 }
-            	$('#result').val(strArr.toString());
-            	console.log(strArr);
-            })
+               $('#result').val(strArr.toString());
 
             //버튼 클릭하면 실행
             function payment() {
-            	let name = $('#shipping_name').val();
-            	console.log(name);
-            	let address = $('#shipping_address1').val();
-            	let address2 = $('#shipping_address2').val();
-            	let num = $('#shipping_phone').val();
-            	if(name==''){
-            		alert("수취인명을 입력하세요")
-            		return false;
-            	}else if(address==''){
-            		alert("주소를 입력하세요")
-            		return false;
-            	}else if(address2==''){
-            		alert("상세주소를 입력하세요")
-            		return false;
-            	}else if(num==''){
-            		alert("연락처를 입력하세요")
-            		return false;
-            	}
-            	$.ajax({     
-        			type:"post",
-        			dataType:"text",
-        			async:false,
-        			url:"${pageContext.request.contextPath}/nocheck",
-        			success: function(data, textStatus){
-        				$('#nocheck').attr('value',data);
-        			},
-        			error:function(data, textStatus){
-        				alert("실패");
-        			}
-        		}); 
-            	
+               let name = $('#shipping_name').val();
+               let address = $('#shipping_address1').val();
+               let address2 = $('#shipping_address2').val();
+               let num = $('#shipping_phone').val();
+               if(name==''){
+                  alert("수취인명을 입력하세요")
+                  return false;
+               }else if(address==''){
+                  alert("주소를 입력하세요")
+                  return false;
+               }else if(address2==''){
+                  alert("상세주소를 입력하세요")
+                  return false;
+               }else if(num==''){
+                  alert("연락처를 입력하세요")
+                  return false;
+               }else if($("#billing_phone1").val() ==""){
+                  alert("연락처를 입력하세요")
+                  return false;
+               }
+               
+               $.ajax({     
+                 type:"post",
+                 dataType:"text",
+                 async:false,
+                 url:"${pageContext.request.contextPath}/nocheck",
+                 success: function(data, textStatus){
+                    $('#nocheck').attr('value',data);
+                 },
+                 error:function(data, textStatus){
+                    alert("실패");
+                 }
+              }); 
+               
                 IMP.init('imp30479474');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
                 IMP.request_pay({// param
                     pg: "hi", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
                     pay_method: "card", //지불 방법
                     /* merchant_uid: $('#nocheck').val(), */    //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
                     merchant_uid:new Date().getTime(),    //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-                    name: $('#workName').val(), //결제창에 노출될 상품명
+                    name: $('.title:first').text().trim(),
                     amount: $('#totalPrice').val(), //금액
                     buyer_email : $('#checkout-input-billing_email').val(), 
                     buyer_name : $('#billing_name').val(),
@@ -453,25 +466,32 @@
             var count = document.getElementsByName("cartno2").length;
              var arr = [];
              for( var i=0; i< count; i++){
-             	var d = document.getElementsByName("cartno2")[i].value;
-                console.log(d);
-             	 arr.push(d);
+                var d = document.getElementsByName("cartno2")[i].value;
+                 arr.push(d);
              }
-		     $('#result2').attr('value',arr);
-		    console.log("카트번호 "+$('#result2').val());
-            
-		
-		function search3(){
-			new daum.Postcode({
-		        oncomplete: function(data) {
-		        	$('#shipping_address1').val(data.address);
-		        	$('#shipping_address1').prop("readonly",true);
-		        	
-		            console.log(data.address);
-		            
-		        }
-		    }).open();
-		}
+           $('#result2').attr('value',arr);            
+      
+      function search3(){
+         new daum.Postcode({
+              oncomplete: function(data) {
+                 $('#shipping_address1').val(data.address);
+                 $('#shipping_address1').prop("readonly",true);
+              }
+          }).open();
+      }
+      
+      
+      function search2(){
+            new daum.Postcode({
+                 oncomplete: function(data) {
+                    $('#billing_address1').val(data.address);
+                    $('#billing_address1').prop("readonly",true);
+                    
+                     console.log(data.address);
+                     
+                 }
+             }).open();
+         }
 
     </script>
 <%@include file ="../footer.jsp" %>  

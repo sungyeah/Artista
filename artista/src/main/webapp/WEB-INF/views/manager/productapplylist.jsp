@@ -266,7 +266,6 @@
     	});
     	
     	$(document).on('click', '#refuse', function(e){
-    		alert($("#refusedContents").val());
     		$.ajax({
     			type:"post",
     			async: false,

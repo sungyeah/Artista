@@ -105,13 +105,13 @@
 	<!-- 펀딩 후원 insert -->
 	<insert id="insertfundingspon" parameterType="map" >
 		<![CDATA[
-			insert into fundingSpon(id, fundingNo, projTitle, sponsorAmount, email, sponDate)
+			insert into fundingspon(id, fundingNo, projTitle, sponsorAmount, email, sponDate)
 			values(#{id}, #{fundingNo}, (select projTitle from funding where fundingNo=#{fundingNo}), #{sponsorAmount}, #{email}, now())
 		]]>
 	</insert>
 	<select id="querySponCount" parameterType="int" resultType="int">
 		<![CDATA[
-			select count(*) from fundingSpon where fundingNo=#{fundingNo}
+			select count(*) from fundingspon where fundingNo=#{fundingNo}
 		]]>
 	</select>
 	<select id="queryFundingNo" resultType="Funding">
@@ -211,7 +211,7 @@
 	</select>
 	<select id="querysponlist" parameterType="String" resultType="Funding">
 		<![CDATA[
-			select * from fundingSpon where id=#{id}
+			select * from fundingspon where id=#{id}
 		]]>
 	</select>
 	
@@ -227,7 +227,7 @@
 	</select>
 	<select id="getSponAmount" parameterType="map" resultType="Integer">
 		<![CDATA[
-			select sponsorAmount from fundingSpon where fundingNo=#{fundingNo} and id=#{id}
+			select sponsorAmount from fundingspon where fundingNo=#{fundingNo} and id=#{id}
 		]]>
 	</select>
 	<update id="updateSumAmount" parameterType="map" >
@@ -257,7 +257,7 @@
 	</update>
 	<update id="fundingSponRefund" parameterType="int" >
 		<![CDATA[
-			update fundingSpon set sponsorAmount=-1 where fundingNo=#{fundingNo}
+			update fundingspon set sponsorAmount=-1 where fundingNo=#{fundingNo}
 		]]>
 	</update>
 	<select id="fundingovCnt" resultType="int">

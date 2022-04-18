@@ -143,70 +143,73 @@
                         <th scope="col" class="type">펀딩제목</th>
                         <th scope="col" class="artworks">펀딩 기간</th>
                         <th scope="col" class="artworks">후원날짜</th>
+                        <th scope="col" class="artworks">후원금액</th>
                         <th scope="col" class="status">현황</th>
                         <th scope="col" class="status">결과</th>
                     </tr>
                     </thead>
                     <tbody>
-                    	<c:choose> 
-                    		<c:when test='${empty fundingLists}'>
+                       <c:choose> 
+                          <c:when test='${empty fundingLists}'>
                          <tr>
                             <td class="empty" colspan="6">표시할 내역이 없습니다.</td>
                         </tr>
-                        	</c:when>
-                        	<c:otherwise>
-                        		<c:forEach items="${fundingLists }" var="fundingList" varStatus="status">
-                        			<tr>
-                        				<c:choose>
-                        					<c:when test="${stateList[status.index] == 2}">
-                        						<td class="time-code" style="font-weight:bold;"><a href="${pageContext.request.contextPath}/funding/fundingovdetail?fundingNo=${fundingList.fundingNo }">${fundingList.fundingNo }</a></td>
-                        						<td class="artworks">${fundingList.projTitle }</td>
-                        						<td class="start-date">${dateList[status.index] }</td>
-                        						<td class="start-date">${fundingList.sponDate }</td>
-                        						<td class="start-date">진행</td>
-                        						<c:choose>
-                        						<c:when test="${successList[status.index] == 4 }">
-                        							<td class="start-date">실패</td>
-                        						</c:when>
-                        						<c:when test="${successList[status.index] == 5 }">
-                        							<td class="start-date">성공</td>
-                        						</c:when>
-                        						<c:when test="${successList[status.index] == 6 }">
-                        							<td class="start-date">환불완료</td>
-                        						</c:when>
-                        						<c:otherwise>
-                        							<td class="start-date">진행중</td>
-                        						</c:otherwise>
-                        						</c:choose>
-                        					</c:when>
-                        					<c:when test="${stateList[status.index] == 3 }">
-                        						<td class="time-code" style="font-weight:bold;"><a href="${pageContext.request.contextPath}/funding/fundingtmdetail?fundingNo=${fundingList.fundingNo }">${fundingList.fundingNo }</a></td>
-                        						<td class="artworks">${fundingList.projTitle }</td>
-                        						<td class="start-date">${dateList[status.index] }</td>
-                        						<td class="start-date">${fundingList.sponDate }</td>
-                        						<td class="start-date">종료</td>
-                        						<c:choose>
-                        						<c:when test="${successList[status.index] == 4 }">
-                        							<td class="start-date">실패</td>
-                        						</c:when>
-                        						<c:when test="${successList[status.index] == 5 }">
-                        							<td class="start-date">성공</td>
-                        						</c:when>
-                        						<c:when test="${successList[status.index] == 6 }">
-                        							<td class="start-date">환불완료</td>
-                        						</c:when>
-                        						<c:otherwise>
-                        							<td class="start-date">진행중</td>
-                        						</c:otherwise>
-                        						</c:choose>
-                        					</c:when>
-                        					<c:otherwise>
-                        					</c:otherwise>
-                        				</c:choose>
-                        			</tr>
-                        		</c:forEach>
-                        	</c:otherwise>
-                        	</c:choose>
+                           </c:when>
+                           <c:otherwise>
+                              <c:forEach items="${fundingLists }" var="fundingList" varStatus="status">
+                                 <tr>
+                                    <c:choose>
+                                       <c:when test="${stateList[status.index] == 2}">
+                                          <td class="time-code" style="font-weight:bold;"><a href="${pageContext.request.contextPath}/funding/fundingovdetail?fundingNo=${fundingList.fundingNo }">${fundingList.fundingNo }</a></td>
+                                          <td class="artworks">${fundingList.projTitle }</td>
+                                          <td class="start-date">${funDateList[status.index] }</td>
+                                          <td class="start-date">${fundingList.sponDate }</td>
+                                          <td class="start-date"><fmt:formatNumber value="${fundingList.sum }"/>원</td>
+                                          <td class="start-date">진행</td>
+                                          <c:choose>
+                                          <c:when test="${successList[status.index] == 4 }">
+                                             <td class="start-date">실패</td>
+                                          </c:when>
+                                          <c:when test="${successList[status.index] == 5 }">
+                                             <td class="start-date">성공</td>
+                                          </c:when>
+                                          <c:when test="${successList[status.index] == 6 }">
+                                             <td class="start-date">환불완료</td>
+                                          </c:when>
+                                          <c:otherwise>
+                                             <td class="start-date">진행중</td>
+                                          </c:otherwise>
+                                          </c:choose>
+                                       </c:when>
+                                       <c:when test="${stateList[status.index] == 3 }">
+                                          <td class="time-code" style="font-weight:bold;"><a href="${pageContext.request.contextPath}/funding/fundingtmdetail?fundingNo=${fundingList.fundingNo }">${fundingList.fundingNo }</a></td>
+                                          <td class="artworks">${fundingList.projTitle }</td>
+                                          <td class="start-date">${funDateList[status.index] }</td>
+                                          <td class="start-date">${fundingList.sponDate }</td>
+                                          <td class="start-date"><fmt:formatNumber value="${fundingList.sum }"/>원</td>
+                                          <td class="start-date">종료</td>
+                                          <c:choose>
+                                          <c:when test="${successList[status.index] == 4 }">
+                                             <td class="start-date">실패</td>
+                                          </c:when>
+                                          <c:when test="${successList[status.index] == 5 }">
+                                             <td class="start-date">성공</td>
+                                          </c:when>
+                                          <c:when test="${successList[status.index] == 6 }">
+                                             <td class="start-date">환불완료</td>
+                                          </c:when>
+                                          <c:otherwise>
+                                             <td class="start-date">진행중</td>
+                                          </c:otherwise>
+                                          </c:choose>
+                                       </c:when>
+                                       <c:otherwise>
+                                       </c:otherwise>
+                                    </c:choose>
+                                 </tr>
+                              </c:forEach>
+                           </c:otherwise>
+                           </c:choose>
                     
                     </tbody>
                 </table>

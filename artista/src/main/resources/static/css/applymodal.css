@@ -17,7 +17,7 @@
 	-webkit-backdrop-filter: blur(13.5px);
 	border-radius: 10px;
 	border: 1px solid rgba(255, 255, 255, 0.18);
-	width: 600px;
+	width: 700px;
     height: 550px;
 	top: 0px;
 	padding: 15px;
@@ -240,6 +240,29 @@
     padding: 5px 10px 5px 10px;
     background: transparent;
     left: 264px;
+    width: 50px;
+    height: 30px;
+    border: 1px solid #dfdfdf;
+    border-radius: 21px;
+    font-size: 13px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+    padding-top: 7px;
+    padding-bottom: 10px;
+}
+.modal-detail-btn1{
+      border-collapse: collapse;
+    border-spacing: 0;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-top: 20px;
+    padding: 5px 10px 5px 10px;
+    background: transparent;
+    right: -610px;
     width: 50px;
     height: 30px;
     border: 1px solid #dfdfdf;

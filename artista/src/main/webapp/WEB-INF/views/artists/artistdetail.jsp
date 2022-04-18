@@ -138,7 +138,7 @@ section.palmares .prize-list li span {
 		<article id="content" class="vuelayer">
 			<div class="page-cover">
 				<div class="image"
-					style="background-image: url(/mypage/artistWorld/${Img }); opacity: 1;">
+				style="background-image: url(/mypage/artistWorld/${Img }); opacity: 1;width:700px; height: 500px; margin-top:100px;">
 				</div>
 			</div>
 			<section id="about" class="section">
@@ -169,8 +169,8 @@ section.palmares .prize-list li span {
 								<div class="personInfo" style="margin-top: 20px; float:left;">
 									<h4>${artist.artistName }</h4>
 									<ul>
-										<li><a href="#"><span id="spanFollowers">${follower }</span>followers</a></li>
-										<li><a href="#"><span>${following }</span>following</a></li>
+										<li><a><span id="spanFollowers">${follower }</span>followers</a></li>
+										<li><a><span>${following }</span>following</a></li>
 									</ul>
 									<c:choose>
 										<c:when test="${check eq false }">
@@ -202,60 +202,19 @@ section.palmares .prize-list li span {
 									<div class="entry-content ellipsis" style="float:left;">
 						<div class="inner">
 							<p>
-								<em>“What we call a ‘story’ is something that by its nature
-									always changes and transforms through its utterance, so that
-									every kind of ‘story’ has a fundamentally synthetic quality. [.
-									. .] Petra Genetrix is a genderless being, and its basic
-									profundity originates in that fundamental ambiguity.” - Ayoung
-									Kim</em>
+								<em>
+								${artist.artistIntroduce }
+								</em>
 									</p>
 									<p>
-							In her work, the artist Ayoung Kim reconstructs complex
-								narratives grounded in her voluminous research on history and
-								contemporary issues that, include matters such as Korea’s modern
-								and contemporary history, geopolitics, transportation, and
-								supranational movements. Her practice spans genre boundaries
-								and, incorporates video, sound, performance, fiction, and texts.
-								She creates multidimensional, fluid narratives through
-								approaches such as speculative storytelling and narrativity,
-								worldbuilding, and mythmaking. One method applied in this
-								process involves the exhaustive collection of information about
-								specific events and places—a process that serves not as a
-								reaffirmation of historical facts, but instead as a potential
-								means of deconstructing and subverting history. Through a
-								journey of endless movement and subversion, Kim suggests stories
-								about the truths behind those things we believe to be “facts.”
-								In an era of global crisis and uncertainty about the future,
-								where all the truths we have believed in are being undermined,
-								Ayoung Kim’s works stimulate our speculative imagination,
-								allowing us an opportunity to encounter the forgotten and
-								omitted “truths” of this world—while also sharing the
-								possibilities for people who transcend anthropocentrism and for
-								a new life of coexistence with nature, objects, and non-beings.
+							
 														</p>
 														<p>
-														Ayoung Kim has presented exhibitions and projects at major
-								institutions in Korea and around the world, including <em><a
-									href="https://videobrasil.online/">Oxbow Lake Time</a></em> (Video
-								Brasil, São Paulo, 2021, Online Solo Screening), <em><a
-									href="https://ilmin.org/notice/%eb%ae%a4%ec%a7%80%ec%97%84-producer-%ea%b8%b0%ed%9a%8d-%ec%9b%8c%ed%81%ac%ec%88%8d-1-%ec%82%ac%eb%b3%80%ec%a0%81-%ec%8a%a4%ed%86%a0%eb%a6%ac%eb%b3%b4%eb%93%9c-%ec%a0%9c%ec%9e%91-%ec%9b%8c/">Porosity
-										Valley</a></em> (Ilmin Museum of Art, Seoul, 2018), <em><a
-									href="https://2017.festival.melbourne/events/porosity-valley-portable-holes/#.YgZEv5bP1PY">Porosity
-										Valley, Portable Holes</a></em> (Melbourne Festival, Melbourne, 2017),
-								<em><a
-									href="https://palaisdetokyo.com/en/exposition/ayoung-kim/">In
-										This Vessel We Shall Be Kept</a></em> (Palais de Tokyo, Paris, 2016),<em><a
-									href="https://youtu.be/rKW6f_FrrSs">The Railway Traveler’s
-										Handbook</a></em> (Culture Station Seoul 284, Seoul, 2014), <em><a
-									href="http://ayoungkim.com/wp/works/ph-express-project-20112012">PH
-										Express</a></em> (Künstlerhaus Bethanien, Berlin, 2012), <em><a
-									href="http://ayoungkim.com/wp/works/not-in-the-wrong-place-at-the-wrong-time">Minima
-										Memoria</a></em> (Street Level,&nbsp;Glasgow, 2010), and <a
-									href="https://www.mutualart.com/Exhibition/Ephemera/5963AADD2B1C10AF">Ephemera</a>
-								(I-Myu Projects, London, 2009).&nbsp;
+														
 							</p>
 							
 						</div>
+
 
 					</div>
 					</div>
@@ -295,7 +254,7 @@ section.palmares .prize-list li span {
 			</section>
 
 			<section id="selected-works" class="section">
-				<h2>작가의 작품(마우스오버시 작품정보)</h2>
+				<h2>작가의 작품</h2>
 				
 				<div class="post-list flex-box">
 					<ul>

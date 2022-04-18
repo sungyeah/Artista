@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,11 +103,11 @@
 								<tr>
                             	<th scope="col">${workreport.work.workNo }</th>
                             	<th scope="col">${workreport.work.workName }</th>
-                            	<th scope="col">${workreport.work.workPrice }</th>
+                            	<th scope="col"><fmt:formatNumber value="${workreport.work.workPrice }"/>원</th>
                             	<th scope="col">${workreport.order.orderDate }</th>
                             	<th scope="col">${workreport.order.receiverName }</th>
                             	<th scope="col" colspan="1">
-                           			<c:if test="${workreport.order.orderStatus eq '상품 준비 중'}">
+                           			<c:if test="${empty workreport.order.trackingNo }">
                            				<a class="artist-detail-btn" onclick="tracking('${workreport.order.orderNo }')">송장번호 입력</a>
                            			</c:if>
                            		</th>                                
@@ -171,11 +172,13 @@
     				location.reload();
     			},
     			error:function(data, textStatus){
+    				console.log(data);
     				alert("운송장 번호 등록이 실패했습니다.");
     			}
     		});
     	});
     });
+
     </script>
 </body>
 </html>

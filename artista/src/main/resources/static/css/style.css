@@ -9787,6 +9787,7 @@ h6 {
 .team img {
   position: relative;
   z-index: 1;
+  height: 320px;
 }
 
 .team .team-text {

@@ -41,7 +41,7 @@
     <ul style="height: 1000px; transition-duration: 300ms;">             
             
                 <li class="current" style="position: absolute; top: 0px; left: 0px; opacity: 1; width: 100%; transition-duration: 2000ms; z-index: 10;">
-                        <figure><img src="images/메인사진.jpg" alt="" style="padding-top: 40px;"></figure>
+                        <figure><img src="images/메인3.png" alt="" style="padding-top: 40px;"></figure>
                 </li>
             </ul>
 </section>
@@ -55,8 +55,8 @@
                         <!-- 반복문 -->
 					<c:forEach items="${exhibitList }" var="exhibit">
 						<div class="season_artwork">
-							<a href="${exhibit.reserveLink }"> <img class="owl-lazy"
-								data-src="../../imgupload/exhibition/${exhibit.exhibitPoster }" />
+							<a href="https://${exhibit.reserveLink }"> <img class="owl-lazy"
+								data-src="/artistpage/posterImg/${exhibit.exhibitPoster }" />
 							</a>
 							<div class="season_artwork_info">
 								<h5>${exhibit.exhibitTitle }</h5>
@@ -73,8 +73,8 @@
 
 
     <section class="sticky-post " style="margin-top: -100px;">
-        <a href="#">
-            <figure><img src="../imgupload/artistProfile/${artist.artistImg }" alt=""></figure>
+        <a>
+            <figure><img src="/mypage/artistprofile/${artist.artistImg }" alt=""></figure>
             <div class="text">
                 <span class="category">작가 소개</span>
                 <span class="title"><b>${artist.artistName }</b> <br>Joins Artista</span>
@@ -90,12 +90,12 @@
         <c:forEach items="${list }" var="funding">
         	<li class="">
             	<div id="box" class="image-box">
-                	<figure><a href="${path}/funding/fundingovdetail?fundingNo=${funding.fundingNo}">
+                	<figure><a href="${pageContext.request.contextPath}/funding/fundingovdetail?fundingNo=${funding.fundingNo}">
                		<img src="/funding/thumbview/${funding.thumbImg}" class="image-thumb">
                 	</a></figure>
             	</div>
             	<span class="category">${funding.artistName}</span><br>
-            	<a href="${path}/funding/fundingovdetail?fundingNo=${funding.fundingNo}">
+            	<a href="${pageContext.request.contextPath}/funding/fundingovdetail?fundingNo=${funding.fundingNo}">
             	<span class="title">${funding.projTitle }</span>
             	<span class="excerpt"><b>펀딩기간</b> : ${funding.fundingDate }</span>
             	</a>
@@ -123,7 +123,7 @@
 				success: function (datalist) {
 					for (let i of datalist ) {
 						let data = "<li class=''><div id='box' class='image-box'>"
-							data += "<figure><a href='${path}/funding/fundingovdetail?fundingNo="
+							data += "<figure><a href='${pageContext.request.contextPath}/funding/fundingovdetail?fundingNo="
 							data += i.fundingNo
 							data += "'>"
 							data += "<img src='/funding/thumbview/"
@@ -135,7 +135,7 @@
 							data += "<span class='category'>";
 							data += i.artistName;
 							data +="</span><br>";
-							data += "<a href='${path}/funding/fundingovdetail?fundingNo="
+							data += "<a href='${pageContext.request.contextPath}/funding/fundingovdetail?fundingNo="
 							data += i.fundingNo
 							data += "'>"
 							data += "<span class='title'>";

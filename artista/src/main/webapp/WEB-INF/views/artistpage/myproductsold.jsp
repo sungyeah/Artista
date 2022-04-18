@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -198,7 +199,7 @@
                             	<th scope="col"">${soldlist.work.workName }</th>
                             	<th scope="col"">${soldlist.order.receiverName }</th>
                             	<th scope="col">${soldlist.order.orderDate }</th>
-                            	<th scope="col">${soldlist.order.workPrice }</th>                                
+                            	<th scope="col"><fmt:formatNumber value="${soldlist.order.workPrice }"/>원</th>                                
                            		<th scope="col" colspan="1">
                            			<a class="artist-detail-btn" onclick="showDetail('${workreport.work.workNo }')">작품상세보기</a>
                            		</th>

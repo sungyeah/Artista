@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +66,7 @@
                     </thead>
                     <tbody>
                     <c:choose>
-                    	<c:when test="${orderdetail!=null && pageInfo.listCount>0 }">
+                    	<c:when test="${orderdetail!=null}">
                     	<tbody>
                     		<c:forEach items="${orderdetail }" var="orderdetail">
 								<tr>
@@ -77,7 +78,7 @@
                         		 </c:forEach> 
                             	</td>
                             	<th scope="col" class="id">${orderdetail.order.orderDate }</th>
-                            	<td scope="col" class="artistName">${orderdetail.order.orderCost }</td>
+                            	<td scope="col" class="artistName"><fmt:formatNumber value="${orderdetail.order.orderCost }"/>원</td>
                             	<td scope="col" class="artistType">${orderdetail.order.orderStatus }</td>                            
                            		<td scope="col"><a class="artist-detail-btn" href="${pageContext.request.contextPath}/manager/paymentInfo/${orderdetail.order.orderNo }">신청 상세보기</a></td>
                         		</tr>

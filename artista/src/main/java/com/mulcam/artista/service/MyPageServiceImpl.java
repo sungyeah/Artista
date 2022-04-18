@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mulcam.artista.dao.MyPageDAO;
-import com.mulcam.artista.dto.Funding;
 import com.mulcam.artista.dto.Order;
+import com.mulcam.artista.dto.sponInfo;
 
 @Service
 public class MyPageServiceImpl implements MypageService{
@@ -31,7 +31,7 @@ public class MyPageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public List<Funding> fundingList(String id) throws Exception {
+	public List<sponInfo> fundingList(String id) throws Exception {
 		return mypageDAO.fundingList(id);
 	}
 
@@ -49,6 +49,7 @@ public class MyPageServiceImpl implements MypageService{
 	public int succesFunding(int fundingNo) throws Exception {
 		return mypageDAO.succesFunding(fundingNo);
 	}
+
 
 
 }

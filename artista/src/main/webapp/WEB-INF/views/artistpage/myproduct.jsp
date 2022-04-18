@@ -157,7 +157,7 @@
            	<c:when test="${worklist!=null }">
             	<c:forEach items="${worklist }" var="work">
             		<div class="discoverCard" >
-            		<a class="discoverCard-a" onclick="showDetail('${work.workNo }')">
+            		<a class="discoverCard-a" onclick="showDetail('${work.workNo }')" style="cursor: pointer;">
             		 	<div class="discoverCard-imageWrap" style="padding-bottom: 50.0%; ">
             		 		<img class="discoverCard-image" src="/artistpage/workImg/${work.workImg }">
                    			<div class="card-imageMask"></div>

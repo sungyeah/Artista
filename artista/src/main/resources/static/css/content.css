@@ -100,7 +100,7 @@
 .sticky-post {
 	position: relative;
 	max-width: 1640px;
-	margin: 0 auto 120px;
+	margin: 0 auto 250px;
 	padding: 0 15px;
 }
 .sticky-post a {
@@ -721,10 +721,11 @@
 
 .page-cover {
 	overflow: hidden;
-	height: calc(100vh - 122px);
+	/* height: calc(100vh - 122px); */
 	margin: 0 auto 155px;
 	padding: 0 15px;
 	box-sizing: border-box;
+	
 }
 .page-cover .image {
 	position: relative;
@@ -735,6 +736,8 @@
 	background-position: 50% 50%;
 	background-size: cover;
 	background-repeat: no-repeat;
+	border: 10px solid #a48e69;
+    padding: 20px;
 }
 .page-cover.video {
 	max-width: 1640px;

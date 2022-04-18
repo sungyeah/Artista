@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -151,7 +152,12 @@
                             	<th scope="col">${exhibitlist.exhibitArtist }</th>
                             	<th scope="col">${exhibitlist.startDate }</th>
                             	<th scope="col">${exhibitlist.endDate }</th>
-                            	<th scope="col">${exhibitlist.exhibitPlace }</th>                       
+                            	<th scope="col">
+                            		<c:choose>
+  									<c:when test="${fn:length('${exhibitlist.exhibitPlace }') gt 20}"><c:out value="${fn:substring(exhibitlist.exhibitPlace,0,20)}" /></c:when>
+  									<c:otherwise><c:out value="${exhibitlist.exhibitPlace }" /></c:otherwise>
+									</c:choose>
+                            	</th>
                            		<th scope="col"><a class="artist-detail-btn" onclick="exhibitDetail('${exhibitlist.exhibitNo }')">신청 상세보기</a></th>
                         		<th scope="col"><input name="check" type="checkbox" id="${exhibitlist.exhibitNo }" value="${exhibitlist.exhibitNo }" ></th>
                         		</tr>

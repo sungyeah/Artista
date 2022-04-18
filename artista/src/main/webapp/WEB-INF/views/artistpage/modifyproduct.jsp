@@ -42,6 +42,7 @@
                         <div class="enroll-modify-form-row-value">
                         	<input type="hidden" value="1" id="fileChange" name="fileChange" />
                             <img class="workImg" id="workThumb" src="/artistpage/workImg/${work.workImg }" />
+                            <label for="workImgFile">파일 선택</label>
                             <input type="file" id="workImgFile" name="workImgFile"/><br>
                         </div>
                     </div>
@@ -111,7 +112,7 @@
                     </div>   
                     <div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        	<button class="yesNo-btn" type="button" id="workApply" style="width:120px;">작품수정 신청</button>
+                        	<button class="yesNo-btn" type="button" id="workApply" style="background-color: #222;color: white;">작품수정 신청</button>
                     		<button class="yesNo-btn" id="cancel" type="reset">취소</button>      
                     	</div>
                 	</div>

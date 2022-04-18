@@ -24,9 +24,9 @@
 		]]>
 	</delete>
 	
-	<select id="fundingList" parameterType="string" resultType="funding">
+	<select id="fundingList" parameterType="string" resultType="sponInfo">
 		<![CDATA[
-			select * from fundingspon where id=#{id} order by sponDate desc
+			select id, fundingNo, projTitle, sum(sponsorAmount) as sum, sponDate from fundingspon where id=#{id} group by fundingNo,id order by sponDate desc
 		]]>
 	</select>
 	
@@ -47,6 +47,7 @@
 			select succesFunding from funding where fundingNo=#{fundingNo}
 		]]>
 	</select>
+	
 	
 </mapper>
 

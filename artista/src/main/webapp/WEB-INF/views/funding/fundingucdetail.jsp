@@ -9,7 +9,12 @@
 <link rel="stylesheet" href="../css/fundingucdetail.css">
 <style>
 	.alam { color: white; background: black; }
+	.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    border: none;
+    border-top: 1px solid var(--ck-color-base-border) !important;
+}
 </style>
+
 <script>
 	$(function() {
 		
@@ -38,24 +43,33 @@
             <div>
                 지금 바로 알림 신청하고 미리 연락 받으세요.
             </div>
+            <br><br><button class="Btn2" onclick="location.href='${pageContext.request.contextPath}/artistdetail/${funding.artistNo }'">작가 페이지 이동</button>
         </div>
-    </div>
-    <div class="projcontent">
-        ${funding.projIntro} ${funding.projBudget}
-    </div>
-    <div class="artistIntro">
-        <h2 class="artist">작가 소개</h2>
-        <div class="artistContent">
-            ${funding.projArtist }
-        </div>
-        <div class="artistContent">
-            <button class="Btn2" onclick="location.href='${pageContext.request.contextPath}/artistdetail/${funding.artistNo }'">작가 페이지 이동</button>
-        </div>
-    </div>
-    <div>
-        <button class="Btn3" onclick="location.href='${pageContext.request.contextPath}/funding/fundinguc'">목록</button>
+   <div class="projcontent" style="width:45%;">
+    		<div class="editorbox">
+    			<c:if test="${funding.projIntro ne ''}">
+    				<h2 class="artist">프로젝트 소개</h2>
+    				<br><textarea id="content" name="content" style="width: 100%; display:block;" ></textarea>
+    			</c:if>
+    		</div><br><br>
+    		<div class="editorbox">
+    			<c:if test="${funding.projBudget  ne ''}">
+    				<h2 class="artist">예산 소개</h2>
+   	 				<br><textarea id="content2" name="content" style="width: 100%; display:block;" ></textarea>
+    			</c:if>
+    		</div><br><br>
+    		<div class="editorbox">
+    			<c:if test="${funding.projArtist  ne ''}">
+    				<h2 class="artist">작가 소개</h2>
+    				<br><textarea id="content3" name="content" style="width: 100%; display:block;" ></textarea>
+    			</c:if>
+    		</div><br><br>
+ 			<div><button class="Btn3" onclick="location.href='${pageContext.request.contextPath}/funding/fundingov'">목록</button></div>
+    	</div>
     </div>
     
+    
+    <%@include file ="../footer.jsp" %>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>  
     <script>
 
@@ -69,6 +83,11 @@
     })
      //버튼 색이 변경이 안 됨 json 파싱, artistPageCon~~
     function alarm(fundingNo){
+    	var id = '<%=(String)session.getAttribute("id")%>';
+    	if(id == 'null'){
+    		alert("로그인이 필요한 서비스입니다.")
+			return false;
+    	}
     	var color=document.getElementById("Btn1");
 
     	$.ajax({
@@ -97,5 +116,43 @@
     	});
     }
     </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+    <script>   
+   $(function(){
+      ClassicEditor.create(document.querySelector("#content"))
+       .then(editor=>{
+          window.editor = editor;
+           editor.isReadOnly = true;
+           const toolbarElement = editor.ui.view.toolbar.element;
+           toolbarElement.style.display = 'none';
+           editor.setData('${funding.projIntro}');
+        })
+       .catch((error) => {
+             console.error(error);
+       });
+      ClassicEditor.create(document.querySelector("#content2"))
+       .then(editor=>{
+          window.editor = editor;
+           editor.isReadOnly = true;
+           const toolbarElement = editor.ui.view.toolbar.element;
+           toolbarElement.style.display = 'none';
+           editor.setData('${funding.projBudget}');
+        })
+       .catch((error) => {
+             console.error(error);
+       });
+      ClassicEditor.create(document.querySelector("#content3"))
+       .then(editor=>{
+          window.editor = editor;
+           editor.isReadOnly = true;
+           const toolbarElement = editor.ui.view.toolbar.element;
+           toolbarElement.style.display = 'none';
+           editor.setData('${funding.projArtist}');
+        })
+       .catch((error) => {
+             console.error(error);
+       });
+   });
+   </script>
 </body>
 </html>

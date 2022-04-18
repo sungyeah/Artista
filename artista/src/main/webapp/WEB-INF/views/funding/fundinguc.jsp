@@ -28,12 +28,12 @@
     	<c:forEach items="${list}" var="funding">
         <div class="flex-item">
             <div id="box" class="image-box">
-                <a href="${path}/funding/fundingucdetail?fundingNo=${funding.fundingNo}">
+                <a href="${pageContext.request.contextPath}/funding/fundingucdetail?fundingNo=${funding.fundingNo}">
                 <img src="/funding/thumbview/${funding.thumbImg}" class="image-thumb">
                 </a>
             </div>
             <span class="printer" id="artistName" >${funding.artistName}</span><br>
-            <a href="${path}/funding/fundingucdetail?fundingNo=${funding.fundingNo}">
+            <a href="${pageContext.request.contextPath}/funding/fundingucdetail?fundingNo=${funding.fundingNo}">
             <span class="projname" id="projName">${funding.projTitle }</span>
             </a>
         </div>
@@ -41,45 +41,46 @@
     </div>
     <button id="loadBtn" class="Btn">load more</button>
     </div>
+<%@include file ="../footer.jsp" %>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
-	<script>
+<script>
 
-	let startrow = 12; 
-	$('#loadBtn').on('click', function () {
-		console.log(startrow);
-		$.ajax({
-			data:{"startrow" : startrow, "endrow" : 12},
-			url: "/funding/loadFundinguc",
-			type: "post",
-			success: function (datalist) {
-				for (let i of datalist) {
-					let data = "<div class='flex-item'>"
-						data += "<div id='box' class='image-box'>"
-						data += "<a href='${path}/funding/fundingovdetail?fundingNo="
-						data += i.fundingNo
-						data += "'>"
-						data += "<img src='/funding/thumbview/"
-						data += i.thumbImg
-						data += "' class=image-thumb>"
-						data += "</a>"
-						data += "</div>";
-						
-						data += "<span class='printer' id='artistName'>";
-						data += i.artistName;
-						data +="</span><br>";
-						data += "<a href='${path}/funding/fundingovdetail?fundingNo="
-						data += i.fundingNo
-						data += "'>"
-						data += "<span class='projname' id='projTitle'>";
-						data += i.projTitle;
-						data +="</span></a>";
-						data +="</div>";
-						$('#list12').append(data);
-				}
-				startrow += 12;
-			}
-		});
-	});
+let startrow = 8; 
+$('#loadBtn').on('click', function () {
+   console.log(startrow);
+   $.ajax({
+      data:{"startrow" : startrow, "endrow" : 8},
+      url: "/funding/loadFundinguc",
+      type: "post",
+      success: function (datalist) {
+         for (let i of datalist ) {
+            let data = "<div class='flex-item'>"
+               data += "<div id='box' class='image-box'>"
+               data += "<a href='${path}/funding/fundingovdetail?fundingNo="
+               data += i.fundingNo
+               data += "'>"
+               data += "<img src='/funding/thumbview/"
+               data += i.thumbImg
+               data += "' class=image-thumb>"
+               data += "</a>"
+               data += "</div>";
+               
+               data += "<span class='printer' id='artistName'>";
+               data += i.artistName;
+               data +="</span><br>";
+               data += "<a href='${path}/funding/fundingovdetail?fundingNo="
+               data += i.fundingNo
+               data += "'>"
+               data += "<span class='projname' id='projTitle'>";
+               data += i.projTitle;
+               data +="</span></a>";
+               data +="</div>";
+               $('#list12').append(data);
+         }
+         startrow += 8;
+      }
+   });
+});
 
 </script>
 </body>

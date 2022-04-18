@@ -594,6 +594,12 @@ public class ArtistPageController {
 		Member mem = subPageService.queryId(id);
 		model.addAttribute("mem", mem);
 		model.addAttribute("list", list);
+		try {
+			String artistName = artistService.getArtistName(id);
+			model.addAttribute("artistName", artistName);
+		}catch (Exception e1) {
+			e1.printStackTrace();
+		};
 		return "artistpage/myfunding";
 	}
 	/* 펀딩 신청 상세보기 */
@@ -641,6 +647,12 @@ public class ArtistPageController {
 		Member mem = subPageService.queryId(id);
 		model.addAttribute("mem", mem);
 		model.addAttribute("list", list);
+		try {
+			String artistName = artistService.getArtistName(id);
+			model.addAttribute("artistName", artistName);
+		}catch (Exception e1) {
+			e1.printStackTrace();
+		};
 		return "artistpage/appmyfunding";
 	}
 

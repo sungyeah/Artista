@@ -38,71 +38,71 @@ public class FundingServiceImpl implements FundingService {
 		
 	}
 	
-	@Override
-	public List<Funding> queryuc(Funding funding, int page, PageInfo pageInfo) {
-		// TODO Auto-generated method stub
-		int listCount =  fundingDAO.fundingucCnt();
-		int maxPage = (int)Math.ceil((double)listCount/12);
-		int startPage=(((int) ((double)page/12+1.2))-1)*12+1;
-		int endPage=startPage+12-1;
-		
-		if(endPage>maxPage) endPage=maxPage;
-		pageInfo.setStartPage(startPage);
-		pageInfo.setEndPage(endPage);
-		pageInfo.setMaxPage(maxPage);
-		pageInfo.setPage(page);
-		pageInfo.setListCount(listCount);
-		int startrow = (page-1)*12;
-		Map<String, Object> map = new HashMap<>();
-		map.put("funding", funding);
-		map.put("startrow", startrow);
-		map.put("endrow", 12);
-		return fundingDAO.queryuc(map);
-	}
+	 @Override
+	   public List<Funding> queryuc(Funding funding, int page, PageInfo pageInfo) {
+	      // TODO Auto-generated method stub
+	      int listCount =  fundingDAO.fundingucCnt();
+	      int maxPage = (int)Math.ceil((double)listCount/8);
+	      int startPage=(((int) ((double)page/8+1.2))-1)*8+1;
+	      int endPage=startPage+8-1;
+	      
+	      if(endPage>maxPage) endPage=maxPage;
+	      pageInfo.setStartPage(startPage);
+	      pageInfo.setEndPage(endPage);
+	      pageInfo.setMaxPage(maxPage);
+	      pageInfo.setPage(page);
+	      pageInfo.setListCount(listCount);
+	      int startrow = (page-1)*8;
+	      Map<String, Object> map = new HashMap<>();
+	      map.put("funding", funding);
+	      map.put("startrow", startrow);
+	      map.put("endrow", 8);
+	      return fundingDAO.queryuc(map);
+	   }
 
-	@Override
-	public List<Funding> queryov(Funding funding, int page, PageInfo pageInfo) {
-		// TODO Auto-generated method stub
-		int listCount =  fundingDAO.fundingovCnt();
-		int maxPage = (int)Math.ceil((double)listCount/12);
-		int startPage=(((int) ((double)page/12+1.2))-1)*12+1;
-		int endPage=startPage+12-1;
-		
-		if(endPage>maxPage) endPage=maxPage;
-		pageInfo.setStartPage(startPage);
-		pageInfo.setEndPage(endPage);
-		pageInfo.setMaxPage(maxPage);
-		pageInfo.setPage(page);
-		pageInfo.setListCount(listCount);
-		int startrow = (page-1)*12;
-		Map<String, Object> map = new HashMap<>();
-		map.put("funding", funding);
-		map.put("startrow", startrow);
-		map.put("endrow", 12);
-		return fundingDAO.queryov(map);
-	}
+	   @Override
+	   public List<Funding> queryov(Funding funding, int page, PageInfo pageInfo) {
+	      // TODO Auto-generated method stub
+	      int listCount =  fundingDAO.fundingovCnt();
+	      int maxPage = (int)Math.ceil((double)listCount/8);
+	      int startPage=(((int) ((double)page/8+1.2))-1)*8+1;
+	      int endPage=startPage+8-1;
+	      
+	      if(endPage>maxPage) endPage=maxPage;
+	      pageInfo.setStartPage(startPage);
+	      pageInfo.setEndPage(endPage);
+	      pageInfo.setMaxPage(maxPage);
+	      pageInfo.setPage(page);
+	      pageInfo.setListCount(listCount);
+	      int startrow = (page-1)*8;
+	      Map<String, Object> map = new HashMap<>();
+	      map.put("funding", funding);
+	      map.put("startrow", startrow);
+	      map.put("endrow", 8);
+	      return fundingDAO.queryov(map);
+	   }
 
-	@Override
-	public List<Funding> querytm(Funding funding, int page, PageInfo pageInfo) {
-		// TODO Auto-generated method stub
-		int listCount =  fundingDAO.fundingtmCnt();
-		int maxPage = (int)Math.ceil((double)listCount/12);
-		int startPage=(((int) ((double)page/12+1.2))-1)*12+1;
-		int endPage=startPage+12-1;
-		
-		if(endPage>maxPage) endPage=maxPage;
-		pageInfo.setStartPage(startPage);
-		pageInfo.setEndPage(endPage);
-		pageInfo.setMaxPage(maxPage);
-		pageInfo.setPage(page);
-		pageInfo.setListCount(listCount);
-		int startrow = (page-1)*12;
-		Map<String, Object> map = new HashMap<>();
-		map.put("funding", funding);
-		map.put("startrow", startrow);
-		map.put("endrow", 12);
-		return fundingDAO.querytm(map);
-	}
+	   @Override
+	   public List<Funding> querytm(Funding funding, int page, PageInfo pageInfo) {
+	      // TODO Auto-generated method stub
+	      int listCount =  fundingDAO.fundingtmCnt();
+	      int maxPage = (int)Math.ceil((double)listCount/8);
+	      int startPage=(((int) ((double)page/8+1.2))-1)*8+1;
+	      int endPage=startPage+8-1;
+	      
+	      if(endPage>maxPage) endPage=maxPage;
+	      pageInfo.setStartPage(startPage);
+	      pageInfo.setEndPage(endPage);
+	      pageInfo.setMaxPage(maxPage);
+	      pageInfo.setPage(page);
+	      pageInfo.setListCount(listCount);
+	      int startrow = (page-1)*8;
+	      Map<String, Object> map = new HashMap<>();
+	      map.put("funding", funding);
+	      map.put("startrow", startrow);
+	      map.put("endrow", 8);
+	      return fundingDAO.querytm(map);
+	   }
 
 	@Override
 	public Funding queryovdetail(int fundingNo) {

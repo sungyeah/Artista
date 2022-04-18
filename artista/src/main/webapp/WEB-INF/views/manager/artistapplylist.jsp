@@ -216,38 +216,36 @@
 			url:"${pageContext.request.contextPath}/manager/artistapplydetail",
 			data:{"applyNo":applyNo},
 			success: function(data, textStatus){ 
-			 	var applyartistData = JSON.parse(data);
-			 	$('#artistNo').attr("value", applyartistData.artistApply.artistNo);
- 			 	$('#artistThumb').attr("src", "/mypage/artistprofile/"+applyartistData.artistApply.artistImg);
- 			 	$("#id").attr("value", applyartistData.artistApply.id);
- 			 	$("#artistName").attr("value", applyartistData.artistApply.artistName);
- 			 	$("#artistType").attr("value", applyartistData.artistApply.artistType);
- 			 	$("#artistIntroduce").html(applyartistData.artistApply.artistIntroduce);
- 			 	$("#artistInstagram").attr("value", applyartistData.artistApply.artistInstagram);
- 			 	
- 			 	const record = JSON.parse(applyartistData.artistApply.artistRecord);
- 			 	var recordReward = '<b>수상<b><br>';
- 			 	var recordExhibit = '<b>전시<b><br>';
- 			 	var recordWrite = '<b>논문 및 저서<b><br>';
- 			 	for (let i = 0; i < record.length; i++) {
- 			 		if(record[i].type=="수상"){
- 			 			recordReward =  recordReward + '<p>&emsp;<b>'+record[i].year+'</b>&emsp;' + record[i].recordText+'</p>'; 			 			
- 			 		} else if(record[i].type=="전시"){
- 			 			recordExhibit =  recordExhibit + '<p>&emsp;<b>'+record[i].year+'</b>&emsp;' + record[i].recordText+'</p>'; 			 			
- 			 		} else if(record[i].type=="논문 및 저서"){
- 			 			recordWrite =  recordWrite + '<p>&emsp;<b>'+record[i].year+'</b>&emsp;' + record[i].recordText+'</p>';
- 			 		}
- 			 	}
- 			 	$('#artistRecord').html(recordReward + recordExhibit + recordWrite); 
- 			 	
- 			 	const artistworld = applyartistData.artistworld;
- 			 	var artistworldHtml ='';
- 			 	/*
- 			 	for(let i=0; i<artistworld.length;i++){
- 			 		artistworldHtml += '<div class="artistsWorld"><img class="artistsWorldImg" src="/mypage/artistWorld/'+artistworld[i].imgName+'"/></div><br>';
- 			 	}*/
- 			 	artistworldHtml += '<div class="artistsWorld"><img class="artistsWorldImg" src="/mypage/artistWorld/'+artistworld+'"/></div><br>';
- 			 	$('#artistWorld').html(artistworldHtml); 
+				var applyartistData = JSON.parse(data);
+	             $('#artistNo').attr("value", applyartistData.artistApply.artistNo);
+	              $('#artistThumb').attr("src", "/mypage/artistprofile/"+applyartistData.artistApply.artistImg);
+	              $("#id").attr("value", applyartistData.artistApply.id);
+	              $("#artistName").attr("value", applyartistData.artistApply.artistName);
+	              $("#artistType").attr("value", applyartistData.artistApply.artistType);
+	              $("#artistIntroduce").html(applyartistData.artistApply.artistIntroduce);
+	              $("#artistInstagram").attr("value", applyartistData.artistApply.artistInstagram);
+	              
+	              const record = JSON.parse(applyartistData.artistApply.artistRecord);
+	              var recordReward = '<b>수상<b><br>';
+	              var recordExhibit = '<b>전시<b><br>';
+	              var recordWrite = '<b>논문 및 저서<b><br>';
+	              for (let i = 0; i < record.length; i++) {
+	                 if(record[i].type=="수상"){
+	                    recordReward =  recordReward + '<p>&emsp;<b>'+record[i].year+'</b>&emsp;' + record[i].recordText+'</p>';                    
+	                 } else if(record[i].type=="전시"){
+	                    recordExhibit =  recordExhibit + '<p>&emsp;<b>'+record[i].year+'</b>&emsp;' + record[i].recordText+'</p>';                    
+	                 } else if(record[i].type=="논문 및 저서"){
+	                    recordWrite =  recordWrite + '<p>&emsp;<b>'+record[i].year+'</b>&emsp;' + record[i].recordText+'</p>';
+	                 }
+	              }
+	              $('#artistRecord').html(recordReward + recordExhibit + recordWrite); 
+	              
+	              const artistworld = applyartistData.artistworld;
+	              if(artistworld!=null){
+	                 var artistworldHtml ='';
+	                  artistworldHtml += '<div class="artistsWorld"><img class="artistsWorldImg" src="/mypage/artistWorld/'+artistworld+'"/></div><br>';
+	                  $('#artistWorld').html(artistworldHtml); 
+	              }
 			},
 			error:function(data, textStatus){
 				alert("실패");

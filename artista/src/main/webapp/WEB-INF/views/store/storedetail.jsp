@@ -142,8 +142,8 @@
                             <div class="personInfo" style="margin-top: 20px;">
                                 <h4>${artist.artistName }</h4>
                                 <ul>
-                                    <li><a href="#"><span id="spanFollowers">${follower }</span>followers</a></li>
-                                    <li><a href="#"><span>${following }</span>following</a></li>
+                                    <li><a><span id="spanFollowers">${follower }</span>followers</a></li>
+                                    <li><a><span>${following }</span>following</a></li>
                                 </ul>
                                 <c:choose>
                                 	<c:when test="${check eq false }">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -206,7 +207,7 @@
                             	<th scope="col">${fundingapply.fundingNo }</th>
                             	<th scope="col">${fundingapply.projTitle }</th>
                             	<th scope="col"><a href="${pageContext.request.contextPath}/artistdetail/${fundingapply.artistNo }">${fundingapply.artistNo }</a></th>
-                            	<th scope="col">${fundingapply.targetFunding }</th>
+                            	<th scope="col"><fmt:formatNumber value="${fundingapply.targetFunding }"/>원</th>
                             	<th scope="col">${fundingapply.getplace } </th> 
                             	<th scope="col" class="applyState">
                             		<c:if test="${fundingapply.applyStatus eq 0}">등록 요청</c:if>

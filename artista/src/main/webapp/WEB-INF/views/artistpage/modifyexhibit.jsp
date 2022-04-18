@@ -101,7 +101,7 @@
                     </div>  
                     <div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                        	<button class="yesNo-btn" type="button" id="exhibitApply" style="width:120px;">작품수정 신청</button>
+                        	<button class="yesNo-btn" type="button" id="exhibitApply" style="background-color: #222;color: white;">전시수정 신청</button>
                     		<button class="yesNo-btn" id="cancel" type="reset">취소</button>      
                     	</div>
                 	</div>

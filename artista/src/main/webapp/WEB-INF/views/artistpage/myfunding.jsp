@@ -54,7 +54,7 @@
 		<section class="account-guide">
 			<div class="account-guide-inner">
 				<h3 class="account-guide-name">
-                    ${mem.name }님 반갑습니다.
+                    ${artistName }님 반갑습니다.
                 </h3>
                 <a class="account-modify-btn1" href="${pageContext.request.contextPath}/artistdetail/${artistNo }" style="right:120px;">
                     <p>미리보기</p>

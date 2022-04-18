@@ -42,7 +42,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sect-body cf">
+                    <c:choose>
+                    	<c:when test="${empty mem.contact }">
+                    		
+                    	</c:when>
+                    	<c:otherwise>
+                    		<div class="sect-body cf">
                         <div class="sect-body-th">휴대폰</div>
                         <div class="sect-body-td">
                             <div class="checkout-profile-box">
@@ -51,6 +56,8 @@
                             </div>
                         </div>
                     </div>
+                    	</c:otherwise>
+                    </c:choose>
                     <div class="sect-body cf">
                         <div class="sect-body-th">이메일</div>
                         <div class="sect-body-td">
@@ -79,15 +86,6 @@
                                                             <input id="payMethod_Card" class="checkbox_payment" type="radio" name="pay_method" value="card" checked="checked">
                                                             <label for="payMethod_Card">신용카드</label>
                                                         </span>
-                                                        <span id="id-payMethod_DirectBank" class="method active">
-                                                            <input id="payMethod_DirectBank" class="checkbox_payment" type="radio" name="pay_method" value="trans">
-                                                            <label for="payMethod_DirectBank">카카오페이</label>
-                                                        </span>
-                                                        <span class="method active">
-                                                            <input id="payMethod_VBank" class="checkbox_payment" type="radio" name="pay_method" value="vbank">
-                                                            <label for="payMethod_VBank">가상계좌(무통장입금)</label>
-                                                        </span>
-                                                    
                                                 </div>
                                             </div>
                                             <div class="sect-body cf">
@@ -106,8 +104,8 @@
                 </form>
             </section>
     </div>
+    <%@include file ="../footer.jsp" %>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    
     <script>
     console.log($('#fundingNo').val());
     </script>

@@ -66,6 +66,7 @@
             <button class="Btn" type="button">취소</button>
         </div>
         </section>
+        <%@include file ="../footer.jsp" %>
         <!-- jQuery -->
 	  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	  <!-- iamport.payment.js -->

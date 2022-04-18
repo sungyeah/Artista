@@ -176,13 +176,18 @@ public class ManagerController {
 	/*운송장 번호 입력*/
 	@ResponseBody
 	@PostMapping(value="trackingNo")
-	public void TrackingNo(@RequestParam(value="orderNo",required = false) int orderNo, @RequestParam(value="trackingNo",required = false) String trackingNo) {
+	public boolean TrackingNo(@RequestParam(value="orderNo",required = false) int orderNo, @RequestParam(value="trackingNo",required = false) String trackingNo) {
+		boolean result;
 		try {
 			subPageService.setTrackingNo(orderNo, trackingNo);
+			result = true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			result = false;
 		}
+		return result;
 	}
+
 	
 	/* 상품 등록 or 수정 신청 */
 	@GetMapping("/productapplylist")
@@ -475,7 +480,7 @@ public class ManagerController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "artistpage/succesapply";
+		return "manager/succesapply";
 	}
 	
 	@GetMapping("/exhibitionapplylist")
@@ -642,30 +647,26 @@ public class ManagerController {
 	
 	@ResponseBody
 	@PostMapping(value="artistapplydetail")
-	public ResponseEntity<Map<String,Object>> artistapplyDetail(@RequestParam(value="applyNo",required = false) int artistapplyNo, Model model) {
-		//ResponseEntity<ArtistApply> result = null;
+	public Map<String,Object> artistapplyDetail(@RequestParam(value="applyNo",required = false) int artistapplyNo, Model model) {
 		Map<String,Object> result = new HashMap<>();
 		try {
 			ArtistApply artistApply = artistapplyService.selectArtistApplyByNo(artistapplyNo);
+			result.put("artistApply", artistApply);
 			String artistworld = null;
 			if(artistApply.getArtistWorld() !=null) {
 				artistworld = artistApply.getArtistWorld();
+				System.out.println("1" + artistworld);
 			} else {
 				artistworld = artistapplyService.selectArtistWorldApplyByNo(artistApply.getId()).getImgName();
 			}
-			/*
-			if(artistApply.getApplyResult()==0) { //등록
-				artistworld = artistapplyService.selectArtistWorldApplyByNo(artistApply.getId()).getImgName();
-			}
-			else if(artistApply.getApplyResult()==2) { //수정
-				artistworld = artistApply.getArtistWorld();
-			}*/
 			result.put("artistApply", artistApply);
-			result.put("artistworld", artistworld);
+			if(artistworld!=null) {
+				result.put("artistworld", artistworld);
+			}
 		}catch(Exception e) {
 			result.put("null", "null");
 		}
-		return ResponseEntity.ok().body(result);
+		return result;
 	}
 	
 	/* 아티스트 등록 허락 */

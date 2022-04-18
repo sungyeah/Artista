@@ -7,7 +7,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -41,6 +40,7 @@ import com.mulcam.artista.dto.Member;
 import com.mulcam.artista.dto.Order;
 import com.mulcam.artista.dto.OrderReport;
 import com.mulcam.artista.dto.Work;
+import com.mulcam.artista.dto.sponInfo;
 import com.mulcam.artista.service.ArtistApplyService;
 import com.mulcam.artista.service.ArtistService;
 import com.mulcam.artista.service.ArtistWorldService;
@@ -97,15 +97,16 @@ public class MyPageController {
 			List<OrderReport> orderReports = new ArrayList<OrderReport>();
 			List<Follow> follow = subPageService.followInfo(id);
 			List<FollowingInfo> followList = new ArrayList<FollowingInfo>();
-			List<Funding> fundingList = myPageService.fundingList(id);
+			List<sponInfo> fundingList = myPageService.fundingList(id);
 			List<String> dateList = new ArrayList<String>();
+			List<String> funDateList = new ArrayList<String>();
 			List<Integer> stateList = new ArrayList<Integer>();
 			List<Integer> successList = new ArrayList<Integer>();
 			for(int i=0;i<ord.size();i++) {
 				OrderReport or = new OrderReport();
 				Order order = ord.get(i);
-				String trackingNo = order.getTrackingNo();
-				int orderNo = order.getOrderNo();
+//				String trackingNo = order.getTrackingNo();
+//				int orderNo = order.getOrderNo();
 //				if(trackingNo==null) {
 //					subPageService.updateStatus("상품 준비 중", orderNo);
 //				}else {
@@ -143,19 +144,24 @@ public class MyPageController {
 			}
 			for(int i=0;i<fundingList.size();i++) {
 				int fundingNo = fundingList.get(i).getFundingNo();
-				String spondate = myPageService.sponDate(fundingNo);
+				Funding funding = fundingService.queryFundingBybNo(fundingNo);
+				String fundingDate =funding.getFundingDate();
+//				String spondate = myPageService.sponDate(fundingNo);
 				int sponState = myPageService.sponState(fundingNo);
 				int success = myPageService.succesFunding(fundingNo);
+				funDateList.add(fundingDate);
 				successList.add(success);
 				stateList.add(sponState);
-				dateList.add(spondate);
+//				dateList.add(spondate);
 			}
+			model.addAttribute("funDateList",funDateList);
 			model.addAttribute("successList",successList);
 			model.addAttribute("stateList",stateList);
 			model.addAttribute("dateList",dateList);
 			model.addAttribute("fundingLists",fundingList);
 			model.addAttribute("orderReports", orderReports);
 			model.addAttribute("followLists",followList);
+//			model.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

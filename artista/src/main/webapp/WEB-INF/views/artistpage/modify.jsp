@@ -24,7 +24,7 @@
 		padding-left:10px; 
 	}
 	.artistsWorld {
-		width:350px;  margin-bottom:12px; 
+		min-width:350px;  margin-bottom:12px; 
 		float:left;
 		display:inline-block;
 		align-items: flex-end;
@@ -181,7 +181,7 @@
                     <input type="hidden" name="originArtistNo" value="${artist.artistNo }"/>
                 	<div class="account-modify-form-border">
                     	<div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                    		<button class="yesNo-btn" id="applyartist" style="width:120px;">수정 요청</button>
+                    		<button class="yesNo-btn" id="applyartist" style="background-color:#222;color:white;">수정 요청</button>
                     		<button class="yesNo-btn" id="cancel" type="reset">취소</button>
                         </div>
                 	</div>
@@ -273,7 +273,6 @@
 		var trHtml = $(this).parent().parent();
 		trHtml.remove();
 		exrecord--;
-		alert(exrecord);
     });
     
 	$(document).on("click",".minus", function(e){

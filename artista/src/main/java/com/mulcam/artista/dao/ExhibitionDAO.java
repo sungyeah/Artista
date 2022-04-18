@@ -24,11 +24,13 @@ public interface ExhibitionDAO {
 	public void insertExhibit(Exhibition exhibition) throws Exception;
 	public void updateExibit(Exhibition exhibition) throws Exception;	
 	public Exhibition queryExhibit(int exhibitNo) throws Exception;
+	
 	public List<Exhibition> selectExhibitList() throws Exception;
+	public List<Exhibition> exhibitlist(String condition) throws Exception; //전시회 리스트
+	
 	public void deleteExhibit(int exhibitNo) throws Exception;
 	
 
-	public List<Exhibition> exhibitlist(String condition) throws Exception; //전시회 리스트
 
 	public List<Exhibition> selectExhibitListByArtistNo(int artistNo) throws Exception;
 	public List<ExhibitionApply> selectExhibitApplyListByArtistNo(int artistNo) throws Exception;

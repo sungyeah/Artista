@@ -86,7 +86,7 @@
 	</select>
 	
 	<!-- 전시 List 보기 -->
-	<select id="selectExhibitList" parameterType="int" resultType="exhibition">
+	<select id="selectExhibitList" resultType="exhibition">
 		<![CDATA[
 			select * from exhibition
 		]]>

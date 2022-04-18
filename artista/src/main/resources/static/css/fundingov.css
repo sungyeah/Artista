@@ -30,6 +30,7 @@
         display: inline-block;
         *display: inline;
         zoom: 1.5;
+        margin-bottom:50px;
     }
     a:link{
     	color: black;
