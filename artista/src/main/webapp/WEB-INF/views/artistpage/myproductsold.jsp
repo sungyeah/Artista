@@ -19,7 +19,7 @@
 	<div id="applyproduct" class="modal-overlay">
         <div class="modal-window">
             <header class="modal-header">
-            	<div id="apply_close" class="close-area">X</div>
+            	<div id="apply_close" class="close-area close-area1">X</div>
                 <h2 class="modal-header-title">작품 상세내용</h2>
             </header>
             <article class="modal-body">
@@ -91,8 +91,7 @@
                     </div>                       
                     <div class="modal-modify-form-border">
                         <div style="text-align: center; margin-top:15px; margin-bottom: 15px;">
-                            <a class="yesNo-btn" id="enroll">등록</a>                    
-                            <a class="yesNo-btn" id="refusemodal">등록 거절</a>      
+                            <a class="yesNo-btn" id="enroll">닫기</a>                
                         </div>
                     </div>
                     <input type="hidden" id="workapplyNo" />
@@ -103,7 +102,7 @@
 	<div id="modal" class="modal-overlay">
         <div class="refusemodal-window">
             <header class="modal-header">
-            	<div id="refuse_close" class="close-area">X</div>
+            	<div id="refuse_close" class="close-area close-area1">X</div>
                 <h2 class="modal-header-title">송장번호 입력</h2>
             </header>
             <article class="modal-body">
@@ -201,7 +200,7 @@
                             	<th scope="col">${soldlist.order.orderDate }</th>
                             	<th scope="col"><fmt:formatNumber value="${soldlist.order.workPrice }"/>원</th>                                
                            		<th scope="col" colspan="1">
-                           			<a class="artist-detail-btn" onclick="showDetail('${workreport.work.workNo }')">작품상세보기</a>
+                           			<a class="artist-detail-btn" onclick="showDetail('${soldlist.work.workNo }')">작품상세보기</a>
                            		</th>
                         		</tr>
                         		</c:forEach>
@@ -216,6 +215,8 @@
 	<%@include file ="../footer.jsp" %>
 	
 	<script>
+	const modal = document.getElementById("modal");
+	const applyproduct = document.getElementById("applyproduct");
 	function showDetail(workNo){
 		applyproduct.style.display = "flex";
 		$.ajax({
@@ -223,7 +224,7 @@
 			dataType:"text",
 			async: false,
 			url:"${pageContext.request.contextPath}/artistpage/productdetail",
-			data:{"workNo":workNo},
+			data:{"workNo": workNo},
 			success: function(data, textStatus){ 
 			 	var workData = JSON.parse(data);
 			 	$('#workapplyNo').attr("value", workData.workNo);
@@ -250,7 +251,12 @@
 	    $(document).on('click', '#cancel', function(e){
 	    	applyproduct.style.display = "none";
 	    });
-	    $(document).on('click', '#refuse_close', function(e){
+	    $(document).on('click', '#enroll', function(e){
+	    	modal.style.display = "none";
+	    	applyproduct.style.display = "none";
+	    });
+	    $(document).on('click', '.close-area1', function(e){
+	    	modal.style.display = "none";
 	    	applyproduct.style.display = "none";
 	    });
 	});
