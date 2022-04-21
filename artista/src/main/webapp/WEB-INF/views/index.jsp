@@ -57,14 +57,12 @@
     <!-- Team Start -->
     <div class="container mt-5 pt-5 pb-3">
         <div class="d-flex flex-column text-center mb-5">
-            <h4 class="text-secondary mb-3">Team Member</h4>
-            <h1 class="display-4 m-0">Meet Our <span class="text-primary">일석사조</span></h1>
-            <h2>이스터에그</h2>
+            <h1 class="text-secondary mb-3">Team Member</h1>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="images/채효주.png" alt="">
+                    <img class="card-img-top" src="images/hyoju.jpg" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
                             <h5>채효주</h5>
@@ -81,7 +79,7 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="images/조예선.png" alt="">
+                    <img class="card-img-top" src="images/yeahsun.jpg" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
                             <h5>조예선</h5>
@@ -98,11 +96,11 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="images/김상원.png" alt="">
+                    <img class="card-img-top" src="images/sangwon.jpg" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
                             <h5>김상원</h5>
-                            <i>디자인 사망</i>
+                            <i>그냥 바보</i>
                         </div>
                         <div class="team-social d-flex align-items-center justify-content-center bg-dark">
                             <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
@@ -115,7 +113,7 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="images/홍성호.png" alt="">
+                    <img class="card-img-top" src="images/sungyeah.jpg" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
                             <h5>홍성호</h5>
