@@ -19,18 +19,18 @@
 
 <br>
 
-<img src="images/1.PNG" width="200" height="500"/>&ensp;&ensp;&ensp;&ensp;&ensp;<img src="images/2.PNG" width="200" height="500"/>
-&ensp;&ensp;&ensp;&ensp;&ensp;<img src="images/3.PNG" width="300" height="500"/>
+<img src="images/1.png" width="200" height="500"/>&ensp;&ensp;&ensp;&ensp;&ensp;<img src="images/2.png" width="200" height="500"/>
+&ensp;&ensp;&ensp;&ensp;&ensp;<img src="images/3.png" width="300" height="500"/>
 <br>
 
 # Demo
-[![RunningMate Demo](images/image102.PNG)](https://www.youtube.com/watch?v=7uexY16tpgA&t=225s)
+[![RunningMate Demo](images/image102.png)](https://www.youtube.com/watch?v=7uexY16tpgA&t=225s)
 
 <br>
 
 # 프로젝트 일정
 
-<img src="images/image103.PNG" width="800" height="500"/>
+<img src="images/image103.png" width="800" height="500"/>
 
 <br>
 
@@ -90,49 +90,49 @@
 
 <details><summary> <b>메인페이지</b> </summary>
 
-<img src="images/Main.PNG" width="100%" height="100%"/>
+<img src="images/Main.png" width="100%" height="100%"/>
 
 </details>
 <br>
 
 <details><summary> <b>멤버</b> </summary>
 
-<img src="images/Member.PNG" width="100%" height="100%"/>
+<img src="images/Member.png" width="100%" height="100%"/>
 
 </details>
 <br>
 
 <details><summary> <b>자유게시판</b> </summary>
 
-<img src="images/FBboard.PNG" width="100%" height="100%"/>
+<img src="images/FBboard.png" width="100%" height="100%"/>
 
 </details>
 <br>
 
 <details><summary> <b>오늘의러닝</b> </summary>
 
-<img src="images/Today.PNG" width="100%" height="100%"/>
+<img src="images/Today.png" width="100%" height="100%"/>
 
 </details>
 <br>
 
 <details><summary> <b>메이트구하기</b> </summary>
 
-<img src="images/Mate.PNG" width="100%" height="100%"/>
+<img src="images/Mate.png" width="100%" height="100%"/>
 
 </details>
 <br>
 
 <details><summary> <b>공통기능</b> </summary>
 
-<img src="images/Sub.PNG" width="100%" height="100%"/>
+<img src="images/Sub.png" width="100%" height="100%"/>
 
 </details>
 <br>
 
 <details><summary> <b>코스공유</b> </summary>
 
-<img src="images/Route.PNG" width="100%" height="100%"/>
+<img src="images/Route.png" width="100%" height="100%"/>
 
 </details>
 <br>
