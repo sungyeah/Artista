@@ -172,7 +172,7 @@
 
 # 데이터베이스
 
-![test](images/Picture1.png)
+![test](images/db.png)
 
 <br>
 
