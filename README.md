@@ -16,75 +16,107 @@
 - 이처럼 예술에 대한 사람들의 관심이 높아지지만 관련 플랫폼 및 환경의 발전은 따라가지 못함
 - 이러한 문제점들을 해결하기 위해서 프로젝트를 진행하게 
 
-
 <br>
 
 <img src="images/1.png" width="200" height="500"/>&ensp;&ensp;&ensp;&ensp;&ensp;<img src="images/2.png" width="200" height="500"/>
 &ensp;&ensp;&ensp;&ensp;&ensp;<img src="images/3.png" width="400" height="500"/>
 <br>
 
-# Demo
+## 팀 역할
+
+<br>
+
+<details><summary> <b>채효주</b> </summary>
+
+* 펀딩 리스트, 상세 페이지, 결제 설계 및 구현
+* 아티스트 펀딩 등록 및 수정
+* 펀딩 결제 API구현
+* Load More 버튼 구현
+
+</details>
+<br>
+
+<details><summary> <b>홍성호</b> </summary>
+
+* 전체 페이지 디자인 설계
+* 마이페이지 설계 및 구현
+* 로그인, 회원가입 설계 및 구현
+* 스토어, 장바구니, 결제 설계 및 구현
+* 네이버, 구글 로그인 API사용
+* 배송 조회 API사용
+* 작품 결제 API사용
+* AWS EC2 서버 배포
+ 
+</details>
+<br>
+
+<details><summary> <b>김상원</b> </summary>
+
+* 전체 페이지 디자인 설계
+* 메인 페이지 설계 및 구현
+* 전시 및 아티스트 페이지 설계 및 구현
+* 슬라이드 구현
+* 네비게이션 바 구현
+* 아티스트 사진 랜덤 
+ 
+</details>
+<br>
+
+<details><summary> <b>조예선</b> </summary>
+
+* 아티스트 마이페이지 설계 및 구현
+* 게시물 CRUD 페이징 구현
+* 관리자 페이지 설계 및 구현
+* 관리자 페이지 전시, 회원, 아티스트, 펀딩 목록 구현 및 상세보기
+* 아티스트 페이지 작품, 펀딩, 전시 목록 구현 및 상세보기
+
+</details>
+<br>
+
+
+## Demo
 [![RunningMate Demo](images/image102.png)](https://www.youtube.com/watch?v=7uexY16tpgA&t=225s)
 
 <br>
 
-# 프로젝트 일정
+## 프로젝트 일정
 
 <img src="images/10.png" width="800" height="500"/>
 
 <br>
 
-# 기능 구조
+## 기능
+<details><summary> <b>메인, 회원, 마이페이지, 관리자 페이지</b> </summary>
 
-<details><summary> <b>다이어그램</b> </summary>
-<br>
-  
-![test](images/diagram.PNG)
-  
-<br>
+<img src="images/image10.png"/>
 
 </details>
 
-<br>
+<details><summary> <b>메이트 구하기</b> </summary>
 
-### 메이트
+<img src="images/image11.png"/>
+ 
+</details>
 
-- 메이트 전체 보기
-- 메이트 검색
-- 메이트 지도로 검색
+<details><summary> <b>오늘의 러닝</b> </summary>
 
-<br>
+<img src="images/image13.png"/>
 
-### 오늘의 러닝
-- 오늘의 러닝 인증
-- 오늘의 러닝 자세히 보기
+</details>
 
-<br>
+<details><summary> <b>코스 공유</b> </summary>
 
-### 나처럼 달려
-- 나처럼 달려 글 등록
-- 나처럼 달려 CRUD
-- 검색
+<img src="images/image14.png"/>
 
-<br>
+</details>
 
-### 자유게시판
-- 자유게시판 CRUD
-- 댓글 및 좋아요
+<details><summary> <b>자유게시판</b> </summary>
+
+<img src="images/image15.png"/>
+ 
+</details>
 
 <br>
-
-### 사용자 
-- 마이페이지 (유저)
-- 내 활동 및 이력 관리 (유저)
-- 탈퇴하기 (유저)
-- 회원 리스트 (관리자)
-- 신고 리스트 (관리자)
-- 회원가입
-
-<br>
-<br>
-
 
 # 클래스 구조
 
@@ -144,67 +176,6 @@
 ![test](images/Picture1.png)
 
 <br>
-<br>
-
-# 팀원 및 
-
-<details><summary> <b>채효주(PL)</b> </summary>
-
-* 로그인, 회원가입 CRUD 구현
-* 마이페이지 JSP 디자인 설계 및 구현
-* 내가 쓴 글 보기
-* 회원목록 조회 / 회원 강제 탈퇴
-* 신고목록 조회 및 해당 게시물 삭제
-
-</details>
-<br>
-
-<details><summary> <b>김상원</b> </summary>
-
-* 메인페이지 JSP 디자인 설계 및 구현
-* 최고의 러너 구현(오늘의 러닝) / 번개모임 미리보기
-* 자유게시판 CRUD 페이징리스트 구현
-* CKEditor5 으로 게시판 구현
-* 게시글 검색 기능( 제목, 작성자 , 내용) 
-* 댓글 front 구성 설계 및 구현
-
-</details>
-<br>
-
-<details><summary> <b>김민정</b> </summary>
-
-* 오늘의 러닝 JSP 구성 설계 및 구현
-* 오늘의 러닝 CRUD 페이징 구현
-* 게시물 썸네일 기능 구현
-* CKEditor5으로 게시물 구현
-* 게시물 검색 기능 (제목, 작성자, 내용)
-
-</details>
-<br>
-
-<details><summary> <b>홍성호</b> </summary>
-
-* 러닝메이트 구하기 JSP 구성 설계 및 구현
-* 번개, 소모임 게시물 CRUD
-* 번개 참여 기능, 참여자 리스트 기능
-* 게시물 검색 기능(게시물 종류, 제목 등) 
-* Kakao map api 사용 : 현재 위치 정보, 지도로 보기 등 구현
-  
-</details>
-<br>
-
-<details><summary> <b>조예선</b> </summary> 
-
-* “나처럼 달려” JSP 구성 설계 및 구현
-* “나처럼 달려” 게시물 CRUD 페이징 구현
-* CKEditor5 으로 게시물 구현
-* Mapbox api 사용하여 코스 그리기
-* 전체 댓글 기능 CRUD
-* 전체 좋아요, 신고 DB 설계 및 구현
-
-</details>
-<br>
-<br>
 
 # 기술스택
 
@@ -254,9 +225,3 @@
 * Ck Editor  
   
 </details>
-
-러닝에 대한 여러가지  보를 공유하고
-러닝메이트를 구하는 러닝 커뮤니티 사이트
-
-
-멀티캠퍼스 풀스택 세미프로젝트 
