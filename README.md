@@ -85,9 +85,9 @@
 <br>
 
 ## 기능
-<details><summary> <b>메인, 회원, 마이페이지, 관리자 페이지</b> </summary>
+<details><summary> <b>메인, 회원, 마이페이지, 작가 페이지, 관리자 페이지</b> </summary>
 
-<img src="images/image10.png"/>
+<img src="images/기능1.png"/>
 
 </details>
 
