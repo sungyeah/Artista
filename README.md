@@ -80,7 +80,7 @@
 
 ## 프로젝트 일정
 
-<img src="images/10.png" width="800" height="500"/>
+<img src="images/10.png" width="700" height="400"/>
 
 <br>
 
