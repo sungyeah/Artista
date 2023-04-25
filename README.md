@@ -18,8 +18,8 @@
 
 <br>
 
-<img src="images/1.png" width="200" height="500"/>&ensp;&ensp;&ensp;&ensp;&ensp;<img src="images/2.png" width="200" height="500"/>
-&ensp;&ensp;&ensp;&ensp;&ensp;<img src="images/3.png" width="400" height="500"/>
+<img src="images/1.png" width="160" height="400"/>&ensp;&ensp;&ensp;&ensp;&ensp;<img src="images/2.png" width="160" height="400"/>
+&ensp;&ensp;&ensp;&ensp;&ensp;<img src="images/3.png" width="300" height="400"/>
 <br>
 
 ## 팀 역할
