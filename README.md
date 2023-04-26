@@ -1,4 +1,4 @@
-# Aritsta
+# <img src="images/로고.png" width="30" height="30"/>Aritsta
 
 ## Artista란 무엇일까?
 - 독일어로 예술, 예술가를 의미
