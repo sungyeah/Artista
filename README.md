@@ -91,25 +91,25 @@
 
 </details>
 
-<details><summary> <b>메이트 구하기</b> </summary>
+<details><summary> <b>전시회 페이지</b> </summary>
 
 <img src="images/image11.png"/>
  
 </details>
 
-<details><summary> <b>오늘의 러닝</b> </summary>
+<details><summary> <b>아티스트 페이지</b> </summary>
 
 <img src="images/image13.png"/>
 
 </details>
 
-<details><summary> <b>코스 공유</b> </summary>
+<details><summary> <b>스토어 페이지</b> </summary>
 
 <img src="images/image14.png"/>
 
 </details>
 
-<details><summary> <b>자유게시판</b> </summary>
+<details><summary> <b>펀딩 </b> </summary>
 
 <img src="images/image15.png"/>
  
