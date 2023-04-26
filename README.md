@@ -93,25 +93,25 @@
 
 <details><summary> <b>전시회 페이지</b> </summary>
 
-<img src="images/image11.png"/>
+<img src="images/전시회.png"/>
  
 </details>
 
 <details><summary> <b>아티스트 페이지</b> </summary>
 
-<img src="images/image13.png"/>
+<img src="images/아티스트.png"/>
 
 </details>
 
 <details><summary> <b>스토어 페이지</b> </summary>
 
-<img src="images/image14.png"/>
+<img src="images/스토어.png"/>
 
 </details>
 
 <details><summary> <b>펀딩 </b> </summary>
 
-<img src="images/image15.png"/>
+<img src="images/펀딩.png"/>
  
 </details>
 
